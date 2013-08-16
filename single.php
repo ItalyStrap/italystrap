@@ -29,14 +29,9 @@ get_header(); ?>
 										<section class="margin-bottom-25">
 											<div class="margin-bottom-25">
 												<?php if ( has_post_thumbnail() ) {
-														if (is_mobile()){
-															echo "<figure>";
-															the_post_thumbnail( 'thumbnail', array('class' => 'img-polaroid') );
-															echo "</figure>";
-														}else{
 															echo "<figure>";
 															the_post_thumbnail( 'article-thumb', array('class' => 'img-polaroid') );
-															echo "</figure>";}} ?>
+															echo "</figure>";} ?>
 											</div>
 												<div  itemprop="articleBody"><?php the_content(); ?></div>
 												<p class="label label-info">Ultima modifica: <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>

@@ -2,7 +2,7 @@
 require_once locate_template('/lib/cleanup.php');        	// Cleanup
 require_once locate_template('/lib/breadcrumb.php');      	// Breadcrumb
 require_once locate_template('/lib/widget.php');
-require_once('/lib/wp_bootstrap_gallery.php');					// Register Custom Gallery: https://github.com/twittem/wp-bootstrap-gallery
+require_once locate_template('/lib/wp_bootstrap_gallery.php');					// Register Custom Gallery: https://github.com/twittem/wp-bootstrap-gallery
 /*
  * Setup Theme Functions
  */
@@ -42,6 +42,16 @@ function italystrap_logo()
 	global $defaultimage;
 	return $defaultimage;
 }
+
+/* Aggiungi la favicon al tuo Blog
+ * by Roberto Iacono di robertoiacono.it
+ */
+function ri_wp_favicon()
+{
+	global $path;
+    echo '<link rel="shortcut icon" type="image/x-icon" href="' . $path . '/img/favicon.ico" />';
+}
+add_action('wp_head', 'ri_wp_favicon');
 
 //Carico gli stili CSS
 function italystrap_add_style()

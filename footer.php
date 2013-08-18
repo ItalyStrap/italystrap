@@ -38,8 +38,5 @@
     </footer><!-- #footer -->
 
 	<?php wp_footer(); ?>
-	
-	<p style="text-align:center;"><?php echo '<br/> <strong>' . get_num_queries() . "</strong> query in <strong>" . timer_stop(1) . "</strong> secondi"; ?></p>
-
 	</body>
 </html>

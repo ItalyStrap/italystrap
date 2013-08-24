@@ -343,4 +343,15 @@ function bootstrap_pagination($pages = '', $range = 2)
 	echo "</ul></div>\n";
 }
 }
+//Funzione per mostrare una descrition in open graph e twitter card
+function italystrap_open_graph_desc(){
+	global $post;
+	if ( function_exists('aioseop_load_modules')) {
+		//Codice per All in One Seo pack
+		$post_aioseo_desc = get_post_meta($post->ID, '_aioseop_description', true);
+		if($post_aioseo_desc){
+		echo stripcslashes($post_aioseo_desc);
+		}}
+}
+
 ?>

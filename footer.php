@@ -29,7 +29,7 @@
 	        	<div class="row-fluid">
 		        	<div class="span12">
 						<address></address>
-						<p class="muted">&copy; <span itemprop="copyrightYear"><?php echo date('Y'); ?></span> <?php bloginfo('name'); ?> | Developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> | Italystrap version: <span class="badge" itemprop="version">1.0</span>
+						<p class="muted">&copy; <span itemprop="copyrightYear"><?php echo date('Y'); ?></span> <?php bloginfo('name'); ?> | Developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> | Italystrap version: <span class="badge" itemprop="version">1.1</span>
 						</p>
 					</div>
                 </div>

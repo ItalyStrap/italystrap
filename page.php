@@ -41,6 +41,7 @@ get_header(); ?>
 										<?php echo italystrap_ttr_wc();?>
 										<span class="clearfix"></span>
 										<?php get_template_part( 'template/author_meta');?>
+										<meta itemprop="interactionCount" content="UserComments:<?php comments_number(0, 1, '%');?>" />
 									</article> 				
 					<?php endwhile; else: ?>
 						<?php get_template_part( 'template/non-trovato');?>

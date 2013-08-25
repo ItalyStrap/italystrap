@@ -48,6 +48,8 @@ get_header(); ?>
 											<li class="next"><?php next_post_link('%link', '%title &raquo;') ?></li>
 										</ul>
 										<span class="clearfix"></span>
+										<hr>
+										<?php show_related_posts();?>
 					<?php endwhile; else: ?>
 						<?php get_template_part( 'template/non-trovato');?>
 					<?php endif; ?>				

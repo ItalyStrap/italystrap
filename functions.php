@@ -178,7 +178,6 @@ add_image_size( 'article-thumb-index', 260, 130, true);
 add_image_size( 'full-width', 1170, 585, true);
 
 
-
 add_action('wp_insert_post', 'italystrap_set_default_custom_fields');
  
 function italystrap_set_default_custom_fields($post_id)
@@ -366,5 +365,39 @@ function italystrap_open_graph_desc(){
 		}else echo $excerpt;
 	}
 }
+//http://gabrieleromanato.com/2012/02/wordpress-visualizzare-i-post-correlati-senza-plugin/
+function show_related_posts() {
+		global $post;
 
+		$tags = wp_get_post_tags($post->ID);
+		
+		if($tags) {
+		
+  		echo '<h3>Potrebbero interessarti</h3>' . "\n";
+  		$first_tag = $tags[0]->term_id;
+  		$args = array(
+    		'tag__in' => array($first_tag),
+    		'post__not_in' => array($post->ID),
+    		'showposts'=> 4,
+    		'caller_get_posts'=>1
+   		);
+  	$post_correlati = new WP_Query($args);
+  		if( $post_correlati->have_posts() ) {
+  		    echo '<div class="row-fluid" itemscope itemtype="http://schema.org/Article">' . "\n";
+    		while ($post_correlati->have_posts()) : $post_correlati->the_post(); ?>
+				<span class="span3">
+					<?php if ( has_post_thumbnail() ) {
+							echo "<figure>";
+							the_post_thumbnail( 'thumbnail', array('class' => 'img-polaroid') );
+							echo "</figure>";} ?>
+							<meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
+					<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" itemprop="url"><span itemprop="name"><strong><?php the_title(); ?></strong></span></a>
+				</span>
+      	<?php
+    		endwhile;
+    		echo '</div>' . "\n";
+    		 wp_reset_query();
+  		}
+  	  }
+}
 ?>

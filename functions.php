@@ -84,7 +84,7 @@ function italystrap_add_javascripts()
 	{
 		global $path;
 		wp_enqueue_script( 'bootstrap', $path . '/js/bootstrap.min.js', null, null,  true );
-		wp_enqueue_script('socialite', $path . '/js/socialite.js', null, null, true);
+		//wp_enqueue_script('socialite', $path . '/js/socialite.js', null, null, true);
 	}
 if (!is_admin()) 
 	{

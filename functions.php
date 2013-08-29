@@ -379,7 +379,7 @@ function show_related_posts() {
     		'tag__in' => array($first_tag),
     		'post__not_in' => array($post->ID),
     		'showposts'=> 4,
-    		'caller_get_posts'=>1
+    		'ignore_sticky_posts'=>1
    		);
   	$post_correlati = new WP_Query($args);
   		if( $post_correlati->have_posts() ) {
@@ -400,4 +400,11 @@ function show_related_posts() {
   		}
   	  }
 }
+
+//Add img-polarod css class
+function italystrap_add_image_class($class){
+	$class .= ' img-polaroid';
+	return $class;
+}
+add_filter('get_image_tag_class','italystrap_add_image_class');
 ?>

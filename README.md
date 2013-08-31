@@ -1,4 +1,4 @@
-ItalyStrap
+ItalyStrap Wordpress starter theme with Bootstrap, Open Graph, Twitter cards and Schema.org
 ==========
 http://www.overclokk.net/italystrap-wordpress-starter-theme
 

@@ -4,7 +4,7 @@ require_once locate_template('/lib/breadcrumb.php');      		//Breadcrumb
 require_once locate_template('/lib/widget.php');
 require_once locate_template('/lib/wp_bootstrap_gallery.php');	//Register Custom Gallery:https://github.com/twittem/wp-bootstrap-gallery
 require_once locate_template('/lib/custom-post-type.php');
-
+require_once locate_template('/lib/wp-h5bp-htaccess.php');		//https://github.com/roots/wp-h5bp-htaccess
 /*
  * Setup Theme Functions
  */

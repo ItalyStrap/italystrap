@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>			<html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->	<html class="no-js"> <!--<![endif]-->
-<html lang="it" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:og="http://opengraphprotocol.org/schema/">
+<!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="it-IT" prefix="og: http://ogp.me/ns#> <![endif]-->
+<!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang="it-IT" prefix="og: http://ogp.me/ns#> <![endif]-->
+<!--[if IE 8]>			<html class="no-js lt-ie9" lang="it-IT" prefix="og: http://ogp.me/ns#> <![endif]-->
+<!--[if gt IE 8]><!-->	<html class="no-js" lang="it-IT" prefix="og: http://ogp.me/ns#> <!--<![endif]-->
 <head>
 	<meta charset="UTF-8" >
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">

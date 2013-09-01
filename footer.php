@@ -29,7 +29,7 @@
 	        	<div class="row-fluid">
 		        	<div class="span12">
 						<address></address>
-						<p class="muted">&copy; <span itemprop="copyrightYear"><?php echo date('Y'); ?></span> <?php bloginfo('name'); ?> | Developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> | Italystrap version: <span class="badge" itemprop="version">1.3.0</span>
+						<p class="muted">&copy; <span itemprop="copyrightYear"><?php echo date('Y'); ?></span> <?php bloginfo('name'); ?> | Developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> | Italystrap version: <span class="badge" itemprop="version">1.3.2</span>
 						</p>
 					</div>
                 </div>
@@ -38,5 +38,13 @@
     </footer><!-- #footer -->
 
 	<?php wp_footer(); ?>
+	<script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
 	</body>
 </html>

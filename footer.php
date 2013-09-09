@@ -1,6 +1,7 @@
 <!-- Footer -->
     <footer itemscope itemtype="http://schema.org/WPFooter">
 	    	<div class="container">
+				<hr>
 	        	<div class="row" itemscope itemtype="http://schema.org/WPSideBar">
                 	<!-- widget -->
 		        	<?php 
@@ -24,6 +25,7 @@
 	            </div>
 	        </div>
 	    	<div class="container"><!-- #copyright -->
+				<hr>
 	        	<div class="row">
 		        	<div class="col-md-12">
 						<p class="text-muted">&copy; <span itemprop="copyrightYear"><?php echo date('Y'); ?></span> <?php bloginfo('name'); ?> | Developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> | Italystrap version: <span class="badge" itemprop="version">1.4.0</span>

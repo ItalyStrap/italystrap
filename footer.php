@@ -1,8 +1,7 @@
 <!-- Footer -->
     <footer itemscope itemtype="http://schema.org/WPFooter">
-    	<div class="inner">
 	    	<div class="container">
-	        	<div class="row-fluid" itemscope itemtype="http://schema.org/WPSideBar">
+	        	<div class="row" itemscope itemtype="http://schema.org/WPSideBar">
                 	<!-- widget -->
 		        	<?php 
 					if ( ! dynamic_sidebar( 'footer-box-1' ) ) : ?>
@@ -24,12 +23,10 @@
 					<?php endif; ?>
 	            </div>
 	        </div>
-        </div>
 	    	<div class="container"><!-- #copyright -->
-	        	<div class="row-fluid">
-		        	<div class="span12">
-						<address></address>
-						<p class="muted">&copy; <span itemprop="copyrightYear"><?php echo date('Y'); ?></span> <?php bloginfo('name'); ?> | Developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> | Italystrap version: <span class="badge" itemprop="version">1.3.3</span>
+	        	<div class="row">
+		        	<div class="col-md-12">
+						<p class="text-muted">&copy; <span itemprop="copyrightYear"><?php echo date('Y'); ?></span> <?php bloginfo('name'); ?> | Developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> | Italystrap version: <span class="badge" itemprop="version">1.4.0</span>
 						</p>
 					</div>
                 </div>

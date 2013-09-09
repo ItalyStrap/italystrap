@@ -5,8 +5,8 @@
 get_header(); ?>
 	<section>
         <div class="container">
-            <div class="row-fluid">
-				<div class="span8" itemscope itemtype="http://schema.org/CollectionPage">
+            <div class="row">
+				<div class="col-md-8" itemscope itemtype="http://schema.org/CollectionPage">
 					<?php create_breadcrumbs() ?>
 							<header class="page-header">
 								<?php
@@ -35,7 +35,7 @@ get_header(); ?>
 														<h2><a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark"><span itemprop="name"><?php the_title(); ?></span></a></h2>
 													</header>
 													<footer>
-														<ul class="inline">
+														<ul class="list-inline">
 															<li>Del: <time datetime="<?php the_time('Y-m-d') ?>" itemprop="datePublished"><?php the_time('d-m-Y') ?></time></li>
 															<li>Autore: <span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php the_author_posts_link(); ?></span></li>
 															<li><?php comments_number( '0 risposte', '1 risposta', '% risposte' ); ?></li>

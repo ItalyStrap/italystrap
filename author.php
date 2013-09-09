@@ -1,15 +1,15 @@
 <?php get_header(); ?>
 	<section>
         <div class="container">
-            <div class="row-fluid">
-				<div class="span8">
+            <div class="row">
+				<div class="col-md-8">
 					<?php create_breadcrumbs() ?>
 						<header class="page-header" itemscope itemtype="http://schema.org/Person">
 							<!-- This sets the $curauth variable -->
 							<?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));?>
 							<h2>Articoli di: <span itemprop="name"><?php echo $curauth->nickname; ?></span></h2>
-								<div class="row-fluid">
-									<div class="span2">
+								<div class="row">
+									<div class="col-sm-2">
 										<?php 
 										if (!empty($curauth->avatar)){
 											echo '<img src="' . $curauth->avatar . '" alt="avatar autore" class="img-polaroid" width="94" height="94" />';
@@ -17,14 +17,14 @@
 											};
 										?>
 									</div>
-									<div class="span10">
+									<div class="col-sm-10">
 										<?php if($curauth->description != "") { ?>
 												<p itemprop="description"><?php echo $curauth->description; ?></a></p>
 										<?php } ?>
 										<?php if($curauth->user_url != "") { ?>
 												<p itemprop="url"><strong>Sito WEB:</strong> <a href="<?php echo $curauth->user_url; ?>"><?php echo $curauth->user_url; ?></a></p>
 										<?php } ?>
-										<ul class="inline">
+										<ul class="list-inline">
 											<?php
 											if (!empty($curauth->twitter)){
 											echo '<li><a href="' . $curauth->twitter . '" title="Twitter" rel="me" class="sprite twitter"></a></li>';
@@ -64,7 +64,7 @@
 														<h2><a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark"><span itemprop="name"><?php the_title(); ?></span></a></h2>
 													</header>
 													<footer>
-														<ul class="inline">
+														<ul class="list-inline">
 															<li>Del: <time datetime="<?php the_time('Y-m-d') ?>" itemprop="datePublished"><?php the_time('d-m-Y') ?></time></li>
 															<li>Autore: <span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php the_author_posts_link(); ?></span></li>
 															<li><?php comments_number( '0 risposte', '1 risposta', '% risposte' ); ?></li>
@@ -77,7 +77,7 @@
 														<div class="margin-bottom-25">
 															<?php if ( has_post_thumbnail() ) {
 																		echo "<figure>";
-																		the_post_thumbnail( 'article-thumb', array('class' => 'img-polaroid') );
+																		the_post_thumbnail( 'article-thumb', array('class' => 'img-thumbnail') );
 																		echo "</figure>";} ?>
 														</div>
 														<div  itemprop="text"><?php the_excerpt(); ?></div>

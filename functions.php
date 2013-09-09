@@ -71,7 +71,7 @@ if (function_exists('register_sidebar'))
 		'name' => __( 'Footer Box 1', 'ItalyStrap' ),
 		'id' => 'footer-box-1',
 		'description' => __( 'Footer box 1 widget area (Usa solo un widget)', 'ItalyStrap' ),
-		'before_widget' => '<div class="span3">',
+		'before_widget' => '<div class="col-md-3">',
 		'after_widget'  => '</div>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
@@ -81,7 +81,7 @@ if (function_exists('register_sidebar'))
 		'name' => __( 'Footer Box 2', 'ItalyStrap' ),
 		'id' => 'footer-box-2',
 		'description' => __( 'Footer box 2 widget area (Usa solo un widget)', 'ItalyStrap' ),
-		'before_widget' => '<div class="span3">',
+		'before_widget' => '<div class="col-md-3">',
 		'after_widget'  => '</div>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
@@ -91,7 +91,7 @@ if (function_exists('register_sidebar'))
 		'name' => __( 'Footer Box 3', 'ItalyStrap' ),
 		'id' => 'footer-box-3',
 		'description' => __( 'Footer box 3 widget area (Usa solo un widget)', 'ItalyStrap' ),
-		'before_widget' => '<div class="span3">',
+		'before_widget' => '<div class="col-md-3">',
 		'after_widget'  => '</div>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
@@ -101,7 +101,7 @@ if (function_exists('register_sidebar'))
 		'name' => __( 'Footer Box 4', 'ItalyStrap' ),
 		'id' => 'footer-box-4',
 		'description' => __( 'Footer box 4 widget area (Usa solo un widget)', 'ItalyStrap' ),
-		'before_widget' => '<div class="span3">',
+		'before_widget' => '<div class="col-md-3">',
 		'after_widget'  => '</div>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
@@ -129,10 +129,10 @@ add_filter('excerpt_more', 'new_excerpt_more');
 
 /*
 =================================================================*/
-add_image_size( 'slide', 1170, 468, true);
-add_image_size( 'article-thumb', 760, 380, true);
-add_image_size( 'article-thumb-index', 260, 130, true);
-add_image_size( 'full-width', 1170, 585, true);
+add_image_size( 'slide', 1140, 500, true);
+add_image_size( 'article-thumb', 740, 370, true);
+add_image_size( 'article-thumb-index', 253, 126, true);
+add_image_size( 'full-width', 1130, 565, true);
 
 
 add_action('wp_insert_post', 'italystrap_set_default_custom_fields');
@@ -141,7 +141,8 @@ function italystrap_set_default_custom_fields($post_id)
 {
  if (isset($_GET['post_type']) && $_GET['post_type'] == 'prodotti' ) {
  
-        add_post_meta($post_id, 'headline', '', true);
+        add_post_meta($post_id, 'title_headline', '', true);
+		add_post_meta($post_id, 'headline', '', true);
         add_post_meta($post_id, 'call_to_action', '', true);
  
     }
@@ -201,7 +202,7 @@ function new_get_cancel_comment_reply_link($text = '') {
 
 	$style = isset($_GET['replytocom']) ? '' : ' style="display:none;"';
 	$link = esc_html( remove_query_arg('replytocom') ) . '#respond';
-	return apply_filters('new_cancel_comment_reply_link', '<a rel="nofollow" id="cancel-comment-reply-link" href="' . $link . '"' . $style . ' class="btn">' . $text . '</a>', $link, $text);
+	return apply_filters('new_cancel_comment_reply_link', '<a rel="nofollow" id="cancel-comment-reply-link" href="' . $link . '"' . $style . ' class="btn btn-danger btn-sm">' . $text . '</a>', $link, $text);
 }
 function new_cancel_comment_reply_link($text = '') {
 	echo new_get_cancel_comment_reply_link($text);
@@ -282,7 +283,7 @@ function bootstrap_pagination($pages = '', $range = 2)
 
 	if(1 != $pages)
 	{
-	echo "<div class='pagination pagination-centered'><ul>";
+	echo "<div class='text-center'><ul class='pagination'>";
 	if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<li><a href='".get_pagenum_link(1)."'>&laquo;</a></li>";
 	if($paged > 1 && $showitems < $pages) echo "<li><a href='".get_pagenum_link($paged - 1)."'>&lsaquo;</a></li>";
 
@@ -340,12 +341,12 @@ function show_related_posts() {
    		);
   	$post_correlati = new WP_Query($args);
   		if( $post_correlati->have_posts() ) {
-  		    echo '<div class="row-fluid" itemscope itemtype="http://schema.org/Article">' . "\n";
+  		    echo '<div class="row" itemscope itemtype="http://schema.org/Article">' . "\n";
     		while ($post_correlati->have_posts()) : $post_correlati->the_post(); ?>
-				<span class="span3">
+				<span class="col-md-3">
 					<?php if ( has_post_thumbnail() ) {
 							echo "<figure>";
-							the_post_thumbnail( 'thumbnail', array('class' => 'img-polaroid') );
+							the_post_thumbnail( 'thumbnail', array('class' => 'img-thumbnail') );
 							echo "</figure>";} ?>
 							<meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 					<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" itemprop="url"><span itemprop="name"><strong><?php the_title(); ?></strong></span></a>
@@ -360,7 +361,7 @@ function show_related_posts() {
 
 //Add img-polarod css class
 function italystrap_add_image_class($class){
-	$class .= ' img-polaroid';
+	$class .= ' img-thumbnail';
 	return $class;
 }
 add_filter('get_image_tag_class','italystrap_add_image_class');

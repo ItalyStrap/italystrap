@@ -30,7 +30,7 @@ if(count($comment_entries) > 0){
 				else echo "<h3>$count Commenti</h3>";
 			}
 		?>
-			<div class="row-fluid">
+			<div class="row">
 				<?php
                   if ( have_comments() ) : 
                   if(!empty($comment_entries)){
@@ -64,18 +64,18 @@ if(count($comment_entries) > 0){
                 global $post; ?>
 				
 				
-                <div class="comment <?php if($depth == 1) echo 'span12'; else echo 'span11 offset1'; ?>">
-								<div class="row-fluid margin-bottom-25 <?php if ($comment->user_id === $post->post_author) { echo 'bg-color-author';} ?>"itemscope itemtype="http://schema.org/Comment">
-                                    <div class="span2"><?php echo get_avatar($comment, '92') ?></div>
-                                    <div class="span10">
-										<ul class="inline margin-bottom-10">
+                <div class="<?php if($depth == 1) echo 'col-md-12'; else echo 'col-md-11 col-md-offset-1'; ?>">
+								<div class="row margin-bottom-25 padding-15 <?php if ($comment->user_id === $post->post_author) { echo 'bg-color-author';} ?>"itemscope itemtype="http://schema.org/Comment">
+                                    <div class="col-md-2"><?php echo get_avatar($comment, '92') ?></div>
+                                    <div class="col-md-10">
+										<ul class="list-inline margin-bottom-10">
 											<li>
 											<h4 class="media-heading">
 												<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php echo get_comment_author() ?><meta itemprop="image" content="<?php  $thumbnailUrl = get_avatar($comment); echo estraiUrlsGravatar($thumbnailUrl);?>"/></span></a>
 												<?php
 												printf(
 												// If current post author is also comment author, make it known visually.
-													($comment->user_id === $post->post_author) ? '<span class="label"> ' . __(
+													($comment->user_id === $post->post_author) ? '<span class="label label-danger"> ' . __(
 														'The Boss :-)',
 														'ItalyStrap'
 													) . '</span> ' : ''); ?>
@@ -83,7 +83,7 @@ if(count($comment_entries) > 0){
 											
 											</li>
 											<li><time datetime="<?php comment_date('Y-m-d', $comment) ?>" itemprop="datePublished"><?php comment_date('j M Y', $comment) ?></time></li>
-											<?php edit_comment_link(__('Modifica','ItalyStrap'),'<span class="btn btn-small btn-info pull-right"><i class="icon-white icon-pencil"></i>','</span>') ?>
+											<?php edit_comment_link(__('Modifica','ItalyStrap'),'<span class="btn btn-sm btn-info pull-right"><i class="glyphicon glyphicon-pencil"></i> ','</span>') ?>
 										</ul>
 											<p itemprop="text"><?php echo get_comment_text($comment); ?></p>
 											<?php if ($comment->comment_approved == '0') : ?>
@@ -91,7 +91,7 @@ if(count($comment_entries) > 0){
 											<?php endif; ?>
 												<p class="reply btn btn-small btn-success pull-right">
 													<?php comment_reply_link( array_merge($args, array(
-																'reply_text' => __('Rispondi <span>&darr;</span>', 'ItalyStrap'),
+																'reply_text' => __('Rispondi <i class="glyphicon glyphicon-arrow-down"></i>', 'ItalyStrap'),
 																'depth'      => $depth,
 																'max_depth'  => $args['max_depth'],
 																'class'      => _('btn'),
@@ -116,44 +116,44 @@ if(count($comment_entries) > 0){
 					<p class="alert margin-top-25">Devi essere <a href="<?php echo wp_login_url( get_permalink() ); ?>"><?php _e("loggato","ItalyStrap"); ?></a> per scrivere il tuo commento :-)</p>
 				<?php else : ?>
 				<div class="form-actions">
-					<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="form-vertical" id="commentform">
+					<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform" role="form">
 						<?php if ( is_user_logged_in() ) : ?>
 						<p class="comments-logged-in-as"><?php _e("Loggato come","ItalyStrap"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Esci","ItalyStrap"); ?>">Esci &raquo;</a></p>
 
 						<?php else : ?>
-							<ul id="comment-form-elements" class="clearfix">
+							<ul id="comment-form-elements" class="clearfix list-unstyled">
 								
 								<li>
-									<div class="control-group">
-									  <label for="author"><?php _e("Nome","ItalyStrap"); ?> <?php if ($req) echo "(Richiesto)"; ?></label>
-									  <div class="input-prepend">
-										<span class="add-on"><i class="icon-user"></i></span><input type="text" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" placeholder="<?php _e("Il tuo nome","ItalyStrap"); ?>" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> />
-									  </div>
+									<div class="form-group">
+										<label for="author" class="sr-only"><?php _e("Nome","ItalyStrap"); ?> <?php if ($req) echo "(Richiesto)"; ?></label>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+												<input type="text" class="form-control" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" placeholder="<?php _e("Il tuo nome (Richiesto)","ItalyStrap"); ?>" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> />
+											</div>
 									</div>
 								</li>
 								<li>
-									<div class="control-group">
-									  <label for="email"><?php _e("Mail","ItalyStrap"); ?> <?php if ($req) echo "(Richiesta)"; ?></label>
-									  <div class="input-prepend">
-										<span class="add-on"><i class="icon-envelope"></i></span><input type="email" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" placeholder="<?php _e("La tua mail","ItalyStrap"); ?>" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
-										<span class="help-inline">(<?php _e("Non sarà resa pubblica","ItalyStrap"); ?>)</span>
-									  </div>
+									<div class="form-group">
+										<label for="email" class="sr-only"><?php _e("Mail","ItalyStrap"); ?> <?php if ($req) echo "(Richiesta)"; ?></label>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+												<input type="email" class="form-control" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" placeholder="<?php _e("La tua mail (Richiesta)","ItalyStrap"); ?>" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
+											</div>
 									</div>
 								</li>
 								<li>
-									<div class="control-group">
-									  <label for="url"><?php _e("Sito web","ItalyStrap"); ?></label>
-									  <div class="input-prepend">
-									  <span class="add-on"><i class="icon-home"></i></span><input type="url" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" placeholder="<?php _e("Your Website","ItalyStrap"); ?>" tabindex="3" />
-									  </div>
+									<div class="form-group">
+										<label for="url" class="sr-only"><?php _e("Sito web","ItalyStrap"); ?></label>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+												<input type="url" class="form-control" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" placeholder="<?php _e("Il tuo sito web (opzionale)","ItalyStrap"); ?>" tabindex="3" />
+											</div>
 									</div>
 								</li>
 							</ul>
 						<?php endif; ?>
-						<div class="clearfix">
-								<textarea name="comment" id="comment" placeholder="Scrivi il tuo commento qui" tabindex="4" rows="6" class="span9"></textarea>
-						</div>
-						  <input class="btn btn-large btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="Invia il commento" />
+							<textarea class="form-control" name="comment" id="comment" placeholder="Scrivi il tuo commento qui" tabindex="4" rows="6"></textarea>
+						  <input class="btn btn-large btn-primary margin-top-25" name="submit" type="submit" id="submit" tabindex="5" value="Invia il commento" />
 						  <?php comment_id_fields(); ?>
 					
 						<?php 

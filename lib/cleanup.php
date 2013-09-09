@@ -145,7 +145,7 @@ if (roots_enable_root_relative_urls()) {
 
 /**
  * Wrap embedded media as suggested by Readability
- *
+ * Add code ti Oembed media
  * @link https://gist.github.com/965956
  * @link http://www.readability.com/publishers/guidelines#publisher
  */

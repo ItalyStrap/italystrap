@@ -35,12 +35,11 @@ if (!is_admin())
 		add_action( 'wp_print_scripts', 'italystrap_add_javascripts' ); 
 	}
 	
-	
 //http://www.emoticode.net/php/add-async-and-defer-to-script-on-wordpress.html
 // function defer_parsing_of_js ( $url ) {
 	// if ( FALSE === strpos( $url, '.js' ) ) return $url;
 	// if ( strpos( $url, 'jquery.js' ) ) return $url;
 	// return "$url' async defer";
 // }
-	//add_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
+	// add_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 ?>

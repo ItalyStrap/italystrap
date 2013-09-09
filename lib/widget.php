@@ -60,7 +60,7 @@ class ItalyStrap_Vcard_Widget extends WP_Widget {
       echo $before_title, $title, $after_title;
     }
   ?>
-	<ul itemscope itemtype="http://schema.org/Organization" class="unstyled">
+	<ul itemscope itemtype="http://schema.org/Organization" class="list-unstyled">
 		<meta  itemprop="logo" content="<?php echo italystrap_logo();?>"/>
 		<li><strong><a itemprop="url" href="<?php echo home_url('/'); ?>"><span itemprop="name"><?php bloginfo('name'); ?></span></a></strong></li>
 			<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">

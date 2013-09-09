@@ -16,24 +16,26 @@
 </head>
 <body>
     <header>
-		<nav  class="navbar-wrapper">
+		<nav  class="navbar-wrapper" role="navigation">
 			<div class="container" itemscope itemtype="http://schema.org/SiteNavigationElement">
 				<div class="navbar navbar-inverse navbar-relative-top">
-					<div class="navbar-inner">
-							<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
-							</a>
+							</button>
 							<span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-								<a class="brand" href="<?php echo home_url('/'); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home" itemprop="url"><span itemprop="name"><?php bloginfo('name'); ?></span></a>
+								<a class="navbar-brand" href="<?php echo home_url('/'); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home" itemprop="url"><span itemprop="name"><?php bloginfo('name'); ?></span></a>
 								<meta  itemprop="image" content="<?php echo italystrap_logo();?>"/>
 							</span>
+						</div>
 									<?php wp_nav_menu(
 											array(
 												'menu' => 'main-menu',
-												'container_class' => 'nav-collapse collapse',
-												'menu_class' => 'nav',
+												'container_class' => 'navbar-collapse collapse',
+												'menu_class' => 'nav navbar-nav',
 												'fallback_cb' => '',
 												'menu_id' => 'main-menu',
 												'walker' => new wp_bootstrap_navwalker()

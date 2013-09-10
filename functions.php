@@ -345,11 +345,11 @@ function show_related_posts() {
     		while ($post_correlati->have_posts()) : $post_correlati->the_post(); ?>
 				<span class="col-md-3">
 					<?php if ( has_post_thumbnail() ) {
-							echo "<figure>";
-							the_post_thumbnail( 'thumbnail', array('class' => 'img-thumbnail') );
-							echo "</figure>";} ?>
+							echo "<figure><span class='thumbnail'>";
+							the_post_thumbnail( 'thumbnail', array('class' => 'img-rounded  img-responsive') );
+							echo "</span></figure>";} ?>
 							<meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
-					<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" itemprop="url"><span itemprop="name"><strong><?php the_title(); ?></strong></span></a>
+					<p class="text-center"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" itemprop="url"><span itemprop="name"><strong><?php the_title(); ?></strong></span></a></p>
 				</span>
       	<?php
     		endwhile;
@@ -359,9 +359,9 @@ function show_related_posts() {
   	  }
 }
 
-//Add img-polarod css class
+//Add img-rounded and  img-responsive css class
 function italystrap_add_image_class($class){
-	$class .= ' img-thumbnail';
+	$class .= ' img-rounded  img-responsive ';
 	return $class;
 }
 add_filter('get_image_tag_class','italystrap_add_image_class');

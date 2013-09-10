@@ -31,10 +31,10 @@ get_header();?>
 													</footer>
 													<meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 													<section>
-														<div class="margin-bottom-25">
+														<div class="margin-bottom-25 thumbnail">
 															<?php if ( has_post_thumbnail() ) {
 																		echo "<figure>";
-																		the_post_thumbnail( 'article-thumb', array('class' => 'img-polaroid') );
+																		the_post_thumbnail( 'article-thumb', array('class' => 'img-rounded img-responsive') );
 																		echo "</figure>";} ?>
 														</div>
 													<div  itemprop="text"><?php the_excerpt(); ?></div>

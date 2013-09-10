@@ -5,7 +5,7 @@ Author: Enea Overclokk
 Author URI: http://www.overclokk.net
 Template: ItalyStrap
 Description: Wordpess starter theme with twitter bootstrap, HTML5 boilerplate and Schema.org
-Version: 1.4.0
+Version: 1.4.1
 License: MIT License (MIT)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: right-sidebar, featured-images, full-width-template, microdata
@@ -17,7 +17,7 @@ Text Domain:
 figure{margin: 0px !important;padding: 0px !important;}
 body {padding-bottom: 40px;color: #5a5a5a;}
 /* CSS SPRITE ICONE SOCIALI*/
-.sprite{background:url(img/css_sprite_social_icon.jpg) no-repeat !important;display: block;height:64px;width:64px;}.twitter{background-position:0 0 !important}.facebook{background-position:-64px 0 !important}.googleplus{background-position: -128px 0 !important}.skype{background-position: -192px 0 !important}.googlepage{background-position: -256px 0 !important}.linkedin{background-position: -320px 0 !important}.pinterest{background-position: -384px 0 !important}
+.sprite{background:url(img/css_sprite_social_icon.jpg) no-repeat !important;display: block;height:64px;width:64px;}.twitter{background-position:0 0 !important}.facebook{background-position:-64px 0 !important}.googleplus{background-position: -128px 0 !important}.skype{background-position: -192px 0 !important}.googlepage{background-position: -256px 0 !important}.linkedin{background-position: -320px 0 !important}.pinterest{background-position: -384px 0 !important}.widget ul{list-style: none outside none;padding-left: 0;}
 .form-actions:before, .form-actions:after {
     content: "";
     display: table;
@@ -103,11 +103,6 @@ padding: 15px 20px;
 }
 /* RESPONSIVE CSS */
 @media (min-width: 768px) {
-  /* Remove the edge padding needed for mobile */
-  .marketing {
-    padding-left: 0;
-    padding-right: 0;
-  }
   /* Navbar positioning foo */
   .navbar-wrapper {
     margin-top: 20px;

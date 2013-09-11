@@ -17,7 +17,7 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 * HTML5 Bolierplate
 * CSS3
-* Twitter Bootstrap
+* Twitter Bootstrap 3
 * Schema.org
 * Google Authorship
 * Facebook opengraph

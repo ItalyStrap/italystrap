@@ -4,6 +4,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<?php get_template_part( 'template/non-trovato');?>
+				<?php get_template_part( 'template/sitemap_html');?>
 			</div>
 				<?php get_sidebar(); ?> 
 		</div>

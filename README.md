@@ -4,7 +4,11 @@ ItalyStrap is a Wordpress starter theme based on [HTML5 Boilerplate](http://html
 
 ## Installation
 
+Place ItalyStrap folder in the themes (/wp-content/themes/) directory and activate it via Admin - Appearance - Themes
+
 ## Configuration and Documentation
+
+### English description coming soon :-)
 
 http://www.overclokk.net/italystrap-wordpress-starter-theme
 

@@ -31,12 +31,13 @@ get_header();?>
 													</footer>
 													<meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 													<section>
-														<div class="margin-bottom-25 thumbnail">
-															<?php if ( has_post_thumbnail() ) {
-																		echo "<figure>";
+															<?php if ( has_post_thumbnail() ) { ?>
+																<div class="margin-bottom-25 thumbnail">
+																  <?php echo "<figure>";
 																		the_post_thumbnail( 'article-thumb', array('class' => 'img-rounded img-responsive') );
-																		echo "</figure>";} ?>
-														</div>
+																		echo "</figure>";?>
+																</div>
+															<?php } ?>
 													<div  itemprop="text"><?php the_excerpt(); ?></div>
 														<p class="label label-info">Ultima modifica: <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
 														<span class="clearfix"></span>

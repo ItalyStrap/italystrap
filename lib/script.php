@@ -5,7 +5,7 @@ function italystrap_add_style()
 		global $path;
 		wp_enqueue_style( 'style',  $path . '/style.css', null, null);
 		wp_enqueue_style( 'custom',  $path . '/css/custom.css', null, null);
-		wp_enqueue_style( 'bootstrap',  $path . '/css/bootstrap.min.css', null, null);
+		wp_enqueue_style( 'bootstrap',  $path . '/css/bootstrap.min.css', null, null); 
 	}
 if (!is_admin()) 
 	{

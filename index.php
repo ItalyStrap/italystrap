@@ -8,10 +8,10 @@ get_header(); ?>
 	<section>
 		<div class="container">
 			<div id="myCarousel" class="carousel slide">
-					<?php $prodotti = new WP_Query(array('meta_key'			=>	'call_to_action'  ,
-														 'category_name'	=>	'Slide',
+					<?php $prodotti = new WP_Query(array('meta_key'			=>	'slide',
+														 'meta_value' 		=> 	'on',
 														 'post_type'		=>	'prodotti',
-														 'posts_per_page' 	=> 	4
+														 'posts_per_page' 	=> 	4,
 														));?>
 								<?php $active = 0; ?>
 									  <!--<ol class="carousel-indicators">

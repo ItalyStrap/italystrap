@@ -30,17 +30,19 @@ function italystrap_add_javascripts()
 		global $path;
 		wp_enqueue_script( 'bootstrap', $path . '/js/bootstrap.min.js', null, null,  true );
 		//wp_enqueue_script('socialite', $path . '/js/socialite.js', null, null, true);
+		if ( is_home() || is_front_page() ){
+			wp_enqueue_script( 'home', $path . '/js/home.js', null, null,  true ); //Activate slide on windows load
+		}
 	}
 if (!is_admin()) 
 	{
 		add_action( 'wp_print_scripts', 'italystrap_add_javascripts' ); 
 	}
-	
 //http://www.emoticode.net/php/add-async-and-defer-to-script-on-wordpress.html
 // function defer_parsing_of_js ( $url ) {
 	// if ( FALSE === strpos( $url, '.js' ) ) return $url;
 	// if ( strpos( $url, 'jquery.js' ) ) return $url;
-	// return "$url' async defer";
+	// return "'$url' async defer";
 // }
 	// add_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 ?>

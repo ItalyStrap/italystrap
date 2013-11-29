@@ -4,7 +4,8 @@
 figure{margin: 0px !important;padding: 0px !important;}
 body {padding-bottom: 40px;color: #5a5a5a;}
 /* CSS SPRITE ICONE SOCIALI*/
-.sprite{background:url(img/css_sprite_social_icon.jpg) no-repeat !important;display: block;height:64px;width:64px;}.twitter{background-position:0 0 !important}.facebook{background-position:-64px 0 !important}.googleplus{background-position: -128px 0 !important}.skype{background-position: -192px 0 !important}.googlepage{background-position: -256px 0 !important}.linkedin{background-position: -320px 0 !important}.pinterest{background-position: -384px 0 !important}.widget ul{list-style: none outside none;padding-left: 0;}
+.sprite{background:url("../img/css_sprite_social_icon.jpg") no-repeat !important;display: block;height:64px;width:64px;}.twitter{background-position:0 0 !important}.facebook{background-position:-64px 0 !important}.googleplus{background-position: -128px 0 !important}.skype{background-position: -192px 0 !important}.googlepage{background-position: -256px 0 !important}.linkedin{background-position: -320px 0 !important}.pinterest{background-position: -384px 0 !important}.widget ul{list-style: none outside none;padding-left: 0;}
+.sprite32{background:url("../img/css_sprite_admin_comment_x32.png") no-repeat !important;display: block;height:32px;width:32px;}.twitter32{background-position:0 0 !important}.facebook32{background-position:-34px 0 !important}.googleplus32{background-position: -68px 0 !important}.skype32{background-position: -102px 0 !important}.googlepage32{background-position: -136px 0 !important}.linkedin32{background-position: -170px 0 !important}.pinterest32{background-position: -204px 0 !important}
 .form-actions:before, .form-actions:after {
     content: "";
     display: table;

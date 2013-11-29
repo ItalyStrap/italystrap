@@ -38,6 +38,8 @@ get_header(); ?>
 												<p class="label label-info">Ultima modifica: <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
 												<span class="clearfix"></span>
 													<?php edit_post_link( __( 'Modifica articolo', 'ItalyStrap' ), '<span class="btn btn-sm btn-primary margin-top-25">', '</span>' ); ?>
+												<h3>Condividi questo articolo con i tuoi amici:</h3>
+												<textarea class="form-control" tabindex="4" rows="2"><?php the_permalink(); ?></textarea>
 										</section>
 										<?php get_template_part( 'template/social-button');?>
 										<?php echo italystrap_ttr_wc();?>

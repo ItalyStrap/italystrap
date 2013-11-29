@@ -24,7 +24,7 @@ if(count($comment_entries) > 0){
 				if($count == 0){
 				echo "";
 				}
-				if($count == 1){
+				else if($count == 1){
 				echo "<h3>$count Commento</h3>";
 				}				
 				else echo "<h3>$count Commenti</h3>";

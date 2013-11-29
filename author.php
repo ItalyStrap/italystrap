@@ -12,7 +12,7 @@
 									<div class="col-sm-2">
 										<?php 
 										if (!empty($curauth->avatar)){
-											echo '<img src="' . $curauth->avatar . '" alt="avatar autore" class="img-polaroid" width="94" height="94" />';
+											echo '<img src="' . $curauth->avatar . '" alt="avatar autore" class="img-circle img-responsive" width="94" height="94" />';
 											echo '<meta itemprop="image" content="' . $curauth->avatar . '">';
 											};
 										?>

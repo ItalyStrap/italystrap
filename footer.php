@@ -37,5 +37,6 @@
     </footer><!-- #footer -->
 
 	<?php wp_footer(); ?>
-	</body>
+</div><!-- Wrapper -->
+</body>
 </html>

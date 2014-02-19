@@ -15,6 +15,7 @@
 <?php wp_head();?>
 </head>
 <body>
+<div class="wrapper">
     <header>
 		<nav  class="navbar-wrapper" role="navigation">
 			<div class="container" itemscope itemtype="http://schema.org/SiteNavigationElement">

@@ -30,7 +30,9 @@ function italystrap_meta_box_save( $post_id )
 	if( !isset( $_POST['meta_box_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_nonce'], 'my_meta_box_nonce' ) ) return;
 	
 	// if our current user can't edit this post, bail
-	if( !current_user_can( 'edit_post' ) ) return;
+	//http://code.tutsplus.com/tutorials/how-to-create-custom-wordpress-writemeta-boxes--wp-20336#comment-802227555
+	//prevents undefined offset notice and cannot modify header warning - add second parameters $post_id
+	if( !current_user_can( 'edit_post' , $post_id ) ) return;
 	
 	// now we can actually save the data	
 	// Probably a good idea to make sure your data is set

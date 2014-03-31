@@ -6,7 +6,7 @@ get_header(); ?>
 	<!-- Carousel
 	================================================== -->
 	<section>
-		<div class="container">
+		<div class="container hidden-xxs">
 			<div id="myCarousel" class="carousel slide">
 					<?php $prodotti = new WP_Query(array('meta_key'			=>	'slide',
 														 'meta_value' 		=> 	'on',

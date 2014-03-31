@@ -4,9 +4,10 @@ function italystrap_add_style_and_script()
 		global $path;
 
 		//Carico gli stili CSS
-		wp_enqueue_style( 'style',  $path . '/style.css', null, null);
+		//wp_enqueue_style( 'style',  $path . '/style.css', null, null);
 		wp_enqueue_style( 'bootstrap',  $path . '/css/bootstrap.min.css', null, null);
-		wp_enqueue_style( 'custom',  $path . '/css/custom.css', null, null);
+		wp_enqueue_style( 'italystrap-style',  $path . '/css/style.css', null, null);
+		//wp_enqueue_style( 'custom',  $path . '/css/custom.css', null, null);
 
 		//Carico jquery da google api cdn
 		wp_deregister_script('jquery');
@@ -19,6 +20,7 @@ function italystrap_add_style_and_script()
 		//wp_enqueue_script('socialite', $path . '/js/socialite.js', null, null, true);
 		//Activate slide on windows load
 		if ( is_home() || is_front_page() ){
+			wp_enqueue_style( 'home',  $path . '/css/home.css', null, null);
 			wp_enqueue_script( 'home', $path . '/js/home.js', array('jquery' , 'bootstrap'), null,  true );
 		}
 

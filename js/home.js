@@ -1,6 +1,6 @@
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel()
-        })
-      }(window.jQuery)
+jQuery.noConflict()(function($){
+	"use strict";
+	$(document).ready(function() {
+		$('#myCarousel').carousel();
+	});
+});

@@ -35,8 +35,7 @@
 			</div><!-- #copyright -->
 
     </footer><!-- #footer -->
-
-	<?php wp_footer(); ?>
 </div><!-- Wrapper -->
+	<?php wp_footer(); ?>
 </body>
 </html>

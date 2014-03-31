@@ -208,8 +208,11 @@ pip-log.txt
 .coverage
 .tox
 
-#Translations
-*.mo
-
 #Mr Developer
 .mr.developer.cfg
+
+#Grunt developer
+node_modules
+
+#Sass directory
+sass/

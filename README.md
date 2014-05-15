@@ -27,4 +27,3 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 * E chi più ne ha più ne metta :-P
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/overclokk/italystrap/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

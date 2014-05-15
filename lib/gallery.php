@@ -40,7 +40,7 @@ function roots_gallery($attr) {
     'icontag'    => '',
     'captiontag' => '',
     'columns'    => 3,
-    'size'       => 'thumbnail',
+    'size'       => 'article-thumb-index',
     'include'    => '',
     'exclude'    => '',
     'link'       => 'file'
@@ -77,24 +77,24 @@ function roots_gallery($attr) {
     return $output;
   }
 
-  $output = '<ul class="thumbnails gallery">';
+  $output = '<div class="row gallery" itemscope itemtype="http://schema.org/ImageObject">';
 
   $i = 0;
   foreach ($attachments as $id => $attachment) {
     $image = ('file' == $link) ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
 
-    $output .= '<li>' . $image;
+    $output .= '<div class="col-lg-3 col-md-4 col-sm-6" itemprop="thumbnail">' . $image;
     if (trim($attachment->post_excerpt)) {
-      $output .= '<div class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</div>';
+      $output .= '<span class="caption hidden" itemprop="caption">' . wptexturize($attachment->post_excerpt) . '</span>';
     }
-    $output .= '</li>';
+    $output .= '</div>';
   }
 
-  $output .= '</ul>';
+  $output .= '</div>';
 
   return $output;
 }
-if (current_theme_supports('bootstrap-gallery')) {
+// if (current_theme_supports('bootstrap-gallery')) {
   remove_shortcode('gallery');
   add_shortcode('gallery', 'roots_gallery');
-}
+// }

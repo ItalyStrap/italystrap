@@ -2,6 +2,7 @@
 function italystrap_add_style_and_script()
 	{
 		global $path;
+		global $pathchild;
 
 		//Carico gli stili CSS
 		//wp_enqueue_style( 'style',  $path . '/style.css', null, null);
@@ -11,7 +12,7 @@ function italystrap_add_style_and_script()
 
 		//Carico jquery da google api cdn
 		wp_deregister_script('jquery');
-		wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', false, null, true);
+		wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js', false, null, true);
 		add_filter('script_loader_src', 'italystrap_jquery_local_fallback', 10, 2);
 		wp_enqueue_script('jquery');
 

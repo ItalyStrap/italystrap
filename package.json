@@ -1,0 +1,17 @@
+{
+  "name": "Italystrap",
+  "title": "Wordpress starter theme",
+  "description": "Ottimizzazione landing corsi",
+  "author": "Enea Overclokk",
+  "homepage": "http://www.overclokk.net/italystrap",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-jshint": "~0.9.2",
+    "grunt-contrib-csslint": "~0.2.0",
+    "grunt-contrib-less": "~0.11.1",
+    "grunt-contrib-compass": "~0.7.2",
+    "grunt-contrib-watch": "~0.6.1"
+  }
+}

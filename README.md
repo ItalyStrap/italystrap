@@ -2,6 +2,8 @@
 
 ItalyStrap is a Wordpress starter theme based on [HTML5 Boilerplate](http://html5boilerplate.com/), [Bootstrap](http://getbootstrap.com/), [Schema.org](http://schema.org/), [Open Graph](https://developers.facebook.com/docs/opengraph/), [Twitter cards](https://dev.twitter.com/docs/cards)
 
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 ## Installation
 
 Place ItalyStrap folder in the themes (/wp-content/themes/) directory and activate it via Admin - Appearance - Themes

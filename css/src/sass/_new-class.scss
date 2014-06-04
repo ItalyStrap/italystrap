@@ -1,0 +1,6 @@
+/* New class to hide content with max-width: 480px*/
+@media (max-width:479px){
+  .hidden-xxs{
+    display:none !important
+    }
+  }

@@ -32,16 +32,18 @@
 								<meta  itemprop="image" content="<?php echo italystrap_logo();?>"/>
 							</span>
 						</div>
-									<?php wp_nav_menu(
-											array(
-												'menu' => 'main-menu',
-												'container_class' => 'navbar-collapse collapse',
-												'menu_class' => 'nav navbar-nav',
-												'fallback_cb' => '',
-												'menu_id' => 'main-menu',
-												'walker' => new wp_bootstrap_navwalker()
-											)
-										); ?>
+							<?php wp_nav_menu(
+									array(
+										'menu'				=> 'main-menu',
+										'depth'				=>	2,
+										'container'         => 'div',
+										'container_class'	=> 'navbar-collapse collapse',
+										'menu_class'		=> 'nav navbar-nav',
+										'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+										'menu_id'			=> 'main-menu',
+										'walker'			=> new wp_bootstrap_navwalker()
+									)
+								); ?>
 					</div>
 				</div>
 			</div>

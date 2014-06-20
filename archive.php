@@ -27,10 +27,6 @@ get_header(); ?>
 										<h2 itemprop="headline">Archivio per il mese di <?php the_time('F Y'); ?></h2>
 									<?php } elseif (is_year()) { ?>
 										<h2 itemprop="headline">Archivio per l'anno <?php the_time('Y'); ?></h2>
-									<?php } elseif ( is_post_type_archive() ) {
-										// Display or retrieve title for a post type archive.
-										// This is optimized for archive.php and archive-{posttype}.php template files for displaying the title of the post type.
-									?><h2 itemprop="headline"><?php post_type_archive_title(); ?></h2>
 									<?php } ?>
 							</header>	
 									<?php while ( have_posts() ) : the_post(); ?>

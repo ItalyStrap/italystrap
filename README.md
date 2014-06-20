@@ -28,4 +28,103 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 * WPO Friendly ;-)
 * E chi più ne ha più ne metta :-P
 
+##Changelog
+
+###1.7.2
+
++ Add post_type_archive_title() in archive.php
++ Add changelog to file Readme.md
+
+###1.7.1
+
++ Update navwalker to 2.0.4 and add itemprop= to menù
++ Built with grunt the javascript task runner
+
+###1.6.3
+
++ Add less file
++ Add file with funtction in lib
++ Fix some bug
+
+###1.6.2
+
++ Fix some bug
+
+###1.6.1
+
++ Fix some bug
+
+###1.6.0
+
++ Update to Bootstrap 3.1.1
+
+###1.5.7
+
++ Add css class to wrapper all html
+
+###1.5.6
+
++ Fix Warning:Cannot modify header information
+
+###1.5.5
+
++ Migliorata la gestione degli script e degli stili, aggunto CDN fallback
+
+###1.5.4
+
++ Aggiunte funzionalità di roots
+
+###1.5.3
+
++ Migliorata la gestione delle slide in home
+
+###1.5.1
+
++ Corretto problema stile thumb quando non presenti
+
+###1.5.0
+
++ Aggiunto layout per la Sitemap HTML
+
+###1.4.1
+
++ Sostituita classe alle immagini (thumbnail + img-rounded)
+
+###1.4.0
+
++ Aggiornato a Bootstrap 3
+
+###1.3.3
+
++ Separato gli script del file function in un file esterno e commentato riga menu_icon dei custom post type
+
+###1.3.2
+
++ Corretto il tag HTML
+
+###1.3.1
+
++ Aggiunto script per lo slider in home, ora parte in automatico
+
+###1.3.0
+
++ Aggiunto htacces HTML5 Boilerplate
+
+###1.2.0
+
++ Corretti bug e aggiunta classe css img-polaroid come classe default al caricamento di immagini
++ Aggiunto codice per i post correlati
+
+###1.1.1
+
++ Migliorata la gestione della description di open graph e twitter card
+
+###1.1.0
+
++ Aggiunto le twitter cards
+
+###1.0.0
+
++ Rilasciata la versione Beta 1.0.0
+
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/overclokk/italystrap/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

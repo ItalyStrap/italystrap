@@ -3,8 +3,8 @@
 // Load core variables and mixins
 // --------------------------------------------------
 
-// @import "variables.less";
-// @import "mixins.less";
+@import "variables.less";
+@import "mixins.less";
 
 
 
@@ -47,6 +47,12 @@
   &.active {
     background-color: darken(@btn-color, 12%);
     border-color: darken(@btn-color, 14%);
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-color: darken(@btn-color, 12%);
+    background-image: none;
   }
 }
 
@@ -191,6 +197,11 @@
 .progress-bar-warning    { .progress-bar-styles(@progress-bar-warning-bg); }
 .progress-bar-danger     { .progress-bar-styles(@progress-bar-danger-bg); }
 
+// Reset the striped class because our mixins don't do multiple gradients and
+// the above custom styles override the new `.progress-bar-striped` in v3.2.0.
+.progress-bar-striped {
+  #gradient > .striped();
+}
 
 
 //

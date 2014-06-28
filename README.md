@@ -30,6 +30,11 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.8.0
+
++ Update Botstrap to 3.2.0
++ Update Gruntfile for build bootstrap js and css after update
+
 ###1.7.3
 
 + Add conditional tag for view version only in parent theme

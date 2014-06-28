@@ -1,9 +1,10 @@
+'use strict';
 module.exports = function(grunt) {
-    'use strict';
-    grunt.initConfig({
 
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
         uglify: {
-            dist: {
+            bootstrapJS: {
                 files: {
                     'js/bootstrap.min.js': [
                         'js/src/bootstrapJS/transition.js',
@@ -24,7 +25,11 @@ module.exports = function(grunt) {
         },
 
         jshint: {
-            all: ['js/*.js', '!js/bootstrap.min.js', '!js/jquery.min.js']
+            all: [
+                'js/*.js',
+                '!js/bootstrap.min.js',
+                '!js/jquery.min.js'
+            ]
         },
 
         compass:{ // https://github.com/gruntjs/grunt-contrib-compass
@@ -83,6 +88,10 @@ module.exports = function(grunt) {
 
     grunt.registerTask('testcssbuild', ['less', 'compass', 'csslint']);
     grunt.registerTask('testjsbuild', ['jshint', 'uglify']);
+
+    // After botstrap update execute "grunt bootstrap"
+    grunt.registerTask('bootstrap', ['uglify:bootstrapJS', 'less']);
+
 
     grunt.registerTask('test', ['jshint', 'csslint']);
     grunt.registerTask('build', ['uglify', 'less', 'compass']);

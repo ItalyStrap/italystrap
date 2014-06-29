@@ -24,5 +24,4 @@ function bootstrap_pagination( $query = NULL ){
 	echo '<div class="text-center">' . $paginate . '</div>';
 
 }
-
 ?>

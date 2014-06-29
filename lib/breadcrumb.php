@@ -2,7 +2,7 @@
 function create_breadcrumbs() { //http://mkoerner.de/breadcrumbs-for-wordpress-themes-with-bootstrap-3/
   if(!is_home()) {
     echo '<div itemscope itemtype="http://schema.org/WebPage"><ol class="breadcrumb" itemprop="breadcrumb">';
-    echo '<li><a href="'.get_option('home').'">Home</a></li>';
+    echo '<li><a href="' . home_url() . '">Home</a></li>';
     if (is_single()) {
       echo '<li>';
       the_category(', ');

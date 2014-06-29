@@ -66,6 +66,15 @@ get_header(); ?>
 									</ul>
 								</footer>
 								<div itemprop="text"><?php the_excerpt(); ?></div>
+								<?php 
+									if ( has_post_format('standard') ) {
+										/**
+										  * For more improvement see http://www.wproots.com/using-wordpress-post-formats-to-their-fullest/
+										  * and see http://www.wproots.com/using-wordpress-post-formats-to-their-fullest/#comment-868
+										  *
+										  */
+									}
+								?>
 						</div>
 						<?php
 							endwhile;

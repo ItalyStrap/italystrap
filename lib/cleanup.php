@@ -131,11 +131,13 @@ add_filter('body_class', 'roots_body_class');
  * Add code ti Oembed media
  * @link https://gist.github.com/965956
  * @link http://www.readability.com/publishers/guidelines#publisher
+ * Rootstheme function
+ * Renamed and modify for new bootstrap class for video embed
  */
-function roots_embed_wrap($cache, $url, $attr = '', $post_ID = '') {
-  return '<div class="entry-content-asset">' . $cache . '</div>';
+function italystrap_embed_wrap($html, $url, $attr = '', $post_ID = '') {
+  return '<div class="entry-content-asset embed-responsive embed-responsive-16by9">' . str_replace('frame', 'frame class="embed-responsive-item"', $html) . '</div>';
 }
-add_filter('embed_oembed_html', 'roots_embed_wrap', 10, 4);
+add_filter('embed_oembed_html', 'italystrap_embed_wrap', 10, 4);
 
 /**
  * Add class="thumbnail" to attachment items

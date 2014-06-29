@@ -36,6 +36,23 @@ if(count($comment_entries) > 0){
                   if(!empty($comment_entries)){
                   wp_list_comments( array( 'type'=> 'comment', 'callback' => 'ItalyStrap_custom_comment' ) );
                 } ?>
+                <ul class="pagination pagination-sm">
+				    <?php 
+				    /**
+				    *http://wordpress.stackexchange.com/questions/125389/return-paginate-comments-links-as-array
+				    * Then I modify below code, now print bootstrap style correctly
+				    */
+				        $pages = paginate_comments_links( array( 'echo' => false, 'type' => 'array', 'prev_text'    => __('&laquo; Previous comments' , 'italystrap'), 'next_text'    => __('Next comments &raquo;', 'italystrap'),) );
+				        foreach($pages as $page){
+				        	$position = strpos($page, '<span');
+				        	if ( $position === false ) {
+				        		echo '<li>' . $page . '</li>';
+				        	} else {
+				        		echo '<li class="active">' . $page . '</li>';
+				        	}
+						}
+				    ?>
+				</ul>
             <?php endif;?>
 			</div>
 	</div>
@@ -90,13 +107,22 @@ if(count($comment_entries) > 0){
 												 <span  class="alert alert-success">Il tuo commento &egrave; in attesa di moderazione.</span>
 											<?php endif; ?>
 												<p class="reply btn btn-small btn-success pull-right">
-													<?php comment_reply_link( array_merge($args, array(
-																'reply_text' => __('Rispondi <i class="glyphicon glyphicon-arrow-down"></i>', 'ItalyStrap'),
-																'depth'      => $depth,
-																'max_depth'  => $args['max_depth'],
-																'class'      => _('btn'),
-															)
-														)); ?>
+													<?php 
+													comment_reply_link( 
+															array_merge(
+																$args, 
+																array(
+																	'reply_text' => __('Rispondi <i class="glyphicon glyphicon-arrow-down"></i>', 'ItalyStrap'),
+																	'depth'      => $depth,
+																	'max_depth'  => $args['max_depth'],
+																	'class'      => _('btn'),
+																	)
+																),
+																$comment->comment_ID
+															); 
+														// $reply = get_comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth'])), $comment->comment_ID);
+														// echo $reply;
+													?>
 												</p>
 									</div>
 								</div>

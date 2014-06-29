@@ -102,7 +102,7 @@ class ItalyStrap_Vcard_Widget extends WP_Widget {
       ${$name} = isset($instance[$name]) ? esc_attr($instance[$name]) : '';
     ?>
     <p>
-      <label for="<?php echo esc_attr($this->get_field_id($name)); ?>"><?php _e("{$label}:", 'italystrap'); ?></label>
+      <label for="<?php echo esc_attr($this->get_field_id($name)); ?>"><?php echo $label; ?></label>
       <input class="widefat" id="<?php echo esc_attr($this->get_field_id($name)); ?>" name="<?php echo esc_attr($this->get_field_name($name)); ?>" type="text" value="<?php echo ${$name}; ?>">
     </p>
     <?php

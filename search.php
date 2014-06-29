@@ -3,7 +3,7 @@
  * The search template file.
  */
 get_header();?>
-	<section>
+	<section id="post-<?php the_ID(); ?>" <?php post_class('class-name'); ?>>
         <div class="container">
             <div class="row">
 				<div class="col-md-8" itemscope itemtype="http://schema.org/SearchResultsPage">

@@ -9,7 +9,7 @@
     <meta property="og:description" content="<?php bloginfo('description'); ?>" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="<?php echo italystrap_logo();?>" /><!-- Min image size 200x200px -->
-	<meta property="og:url" content="<?php bloginfo( 'wpurl' ); ?>" />
+	<meta property="og:url" content="<?php echo site_url(); ?>" />
 	<?php } ?>	
 	<?php if ( is_singular() ) {?>
 <!-- Facebook Opengraph Single or Page -->

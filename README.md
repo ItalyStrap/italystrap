@@ -30,6 +30,24 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.8.1
+
++ Add File readme.txt (Correct theme check issue)
++ Renamed file social-button.php in social-button.bak (I will develope soon)
++ Add wp standard class in style.css (Correct theme check issue)
++ Add wp_link_pages() for pagineted post (Correct theme check issue)
++ Replaced bloginfo('url') with echo home_url() (Correct theme check issue)
++ Add post_class in search.php file (Correct theme check issue)
++ Fix variable issue in widget.php (Correct theme check issue)
++ Replaced bloginfo( 'wpurl' ) with echo site_url() in facebook_opengraph (Correct theme check issue)
++ Add textdomain in comment-replay.php (Correct theme check issue)
++ Modified Root function for new bootstrap class for video
++ Replaced get_option('home') with home_url() in breadcrumbs.php (Correct theme check issue)
++ Add has_post_format custom function in index.php (Correct theme check issue)
++ Add $content_width in functions.php (Correct theme check issue)
++ Fix theme check issue in footer.php
++ Add pagination to comments.php
+
 ###1.8.0
 
 + Update Botstrap to 3.2.0

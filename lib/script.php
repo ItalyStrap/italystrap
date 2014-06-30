@@ -25,9 +25,9 @@ function italystrap_add_style_and_script()
 			wp_enqueue_script( 'home', $path . '/js/home.js', array('jquery' , 'bootstrap'), null,  true );
 		}
 
-		//if (is_single() && comments_open() && get_option('thread_comments')) {
-    	//wp_enqueue_script('comment-reply');
-  		//}
+		if (is_single() && comments_open() && get_option('thread_comments')) {
+    	wp_enqueue_script('comment-reply');
+  		}
 	}
 // http://wordpress.stackexchange.com/a/12450
 // https://github.com/roots/roots/blob/master/lib/scripts.php

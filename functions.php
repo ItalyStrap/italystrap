@@ -19,7 +19,8 @@ require_once locate_template('/lib/custom_excerpt.php');		// Custom excerpt_leng
 require_once locate_template('/lib/schema.php');				// Function for Schema.org and OG
 require_once locate_template('/lib/custom_taxonomy.php');		// Custom taxonomy
 require_once locate_template('/lib/images.php');				// Custom function for images
-require_once locate_template('/lib/comment_reply.php');			// new_get_cancel_comment_reply_link
+require_once locate_template('/lib/comment_reply.php');         // new_get_cancel_comment_reply_link
+require_once locate_template('/lib/comments.php');			    // Walker comments
 require_once locate_template('/lib/tag_cloud.php');             // New style for tag cloud
 //require_once locate_template('/lib/css-above-the-fold.php');	//
 require_once locate_template('/lib/debug.php');					// Function for debugging

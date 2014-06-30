@@ -30,6 +30,10 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.8.2
+
++ Fix some issue in file comments.php (comment-reply.js)
+
 ###1.8.1
 
 + Add File readme.txt (Correct theme check issue)

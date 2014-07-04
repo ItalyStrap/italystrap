@@ -4,7 +4,7 @@
   "description": "Ottimizzazione landing corsi",
   "author": "Enea Overclokk",
   "homepage": "http://www.overclokk.net/italystrap",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.4.0",

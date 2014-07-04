@@ -14,12 +14,12 @@ get_header(); ?>
 									<?php if( is_tag() ) { ?>
 										<h2 itemprop="headline">Archivio per il tag <?php single_tag_title(); ?></h2>
 											<?php if ( tag_description() ) : // Show an optional tag description ?>
-												<div itemprop="description"><?php echo tag_description(); ?></div>
+												<div class="alert alert-info" role="alert" itemprop="description"><?php echo tag_description(); ?></div>
 											<?php endif; ?>
 									<?php } elseif (is_category()) { ?>
 										<h2 itemprop="headline">Archivio per la categoria <?php single_cat_title(); ?></h2>
 											<?php if ( category_description() ) : // Show an optional category description ?>
-												<div itemprop="description"><?php echo category_description(); ?></div>
+												<div class="alert alert-info" role="alert" itemprop="description"><?php echo category_description(); ?></div>
 											<?php endif; ?>
 									<?php } elseif (is_day()) { ?>
 										<h2 itemprop="headline">Archivio per il giorno <?php the_time('j F Y'); ?></h2>
@@ -31,6 +31,12 @@ get_header(); ?>
 										// Display or retrieve title for a post type archive.
 										// This is optimized for archive.php and archive-{posttype}.php template files for displaying the title of the post type.
 									?><h2 itemprop="headline"><?php post_type_archive_title(); ?></h2>
+									<div class="alert alert-info" role="alert" itemprop="description">
+										<?php
+											$cpt_description = get_post_type_object( 'prodotti' );
+											echo $cpt_description->description ; 
+										?>
+									</div>
 									<?php } ?>
 							</header>	
 									<?php while ( have_posts() ) : the_post(); ?>

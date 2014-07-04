@@ -30,6 +30,11 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.8.3
+
++ Fih issue "Header already sent"
++ Add description echo for custom post type inside a bootstrap's alert
+
 ###1.8.2
 
 + Fix some issue in file comments.php (comment-reply.js)

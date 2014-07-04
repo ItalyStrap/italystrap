@@ -19,7 +19,7 @@ function custom_post_type() {
 
 	$args = array(
 		'label'               => __( 'prodotti', 'ItalyStrap' ),
-		'description'         => __( 'prodotti information pages', 'ItalyStrap' ),
+		'description'         => __( 'Information pages of prodotti - <strong>insert here</strong> any description of custom post page', 'ItalyStrap' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', ),
 		'taxonomies'          => array( 'category', 'post_tag', 'Slide' ),

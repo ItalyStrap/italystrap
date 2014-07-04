@@ -70,9 +70,7 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
                 break;
         endswitch;
     }
-?>
 
-<?php
 /**
 * Use Bootstrap's media object for listing comments
 *

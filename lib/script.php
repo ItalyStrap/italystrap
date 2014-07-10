@@ -1,14 +1,14 @@
 <?php
-function italystrap_add_style_and_script()
-	{
+function italystrap_add_style_and_script(){
+
 		global $path;
 		global $pathchild;
 
 		//Carico gli stili CSS
-		//wp_enqueue_style( 'style',  $path . '/style.css', null, null);
-		wp_enqueue_style( 'bootstrap',  $path . '/css/bootstrap.min.css', null, null);
-		wp_enqueue_style( 'italystrap-style',  $path . '/css/style.css', null, null);
-		//wp_enqueue_style( 'custom',  $path . '/css/custom.css', null, null);
+		//wp_enqueue_style( 'style',  $path . '/style.css', null, null, null);
+		wp_enqueue_style( 'bootstrap',  $path . '/css/bootstrap.min.css', null, null, null);
+		wp_enqueue_style( 'italystrap-style',  $path . '/css/style.css', array('bootstrap'), null, null);
+		//wp_enqueue_style( 'custom',  $path . '/css/custom.css', array('bootstrap'), null, null);
 
 		//Carico jquery da google api cdn
 		wp_deregister_script('jquery');
@@ -21,18 +21,18 @@ function italystrap_add_style_and_script()
 		//wp_enqueue_script('socialite', $path . '/js/socialite.js', null, null, true);
 		//Activate slide on windows load
 		if ( is_home() || is_front_page() ){
-			wp_enqueue_style( 'home',  $path . '/css/home.css', null, null);
+			wp_enqueue_style( 'home',  $path . '/css/home.css', array('bootstrap'), null, null);
 			wp_enqueue_script( 'home', $path . '/js/home.js', array('jquery' , 'bootstrap'), null,  true );
 		}
 
 		if (is_single() && comments_open() && get_option('thread_comments')) {
-    	wp_enqueue_script('comment-reply');
+    		wp_enqueue_script('comment-reply');
   		}
 	}
 // http://wordpress.stackexchange.com/a/12450
 // https://github.com/roots/roots/blob/master/lib/scripts.php
-function italystrap_jquery_local_fallback($src, $handle = null)
-	{
+function italystrap_jquery_local_fallback($src, $handle = null){
+
 		global $path;
 		static $add_jquery_fallback = false;
 
@@ -53,11 +53,4 @@ if (!is_admin())
 		add_action( 'wp_enqueue_scripts', 'italystrap_add_style_and_script' ); 
 		add_action( 'wp_footer', 'italystrap_jquery_local_fallback' );
 	}
-//http://www.emoticode.net/php/add-async-and-defer-to-script-on-wordpress.html
-// function defer_parsing_of_js ( $url ) {
-	// if ( FALSE === strpos( $url, '.js' ) ) return $url;
-	// if ( strpos( $url, 'jquery.js' ) ) return $url;
-	// return "'$url' async defer";
-// }
-	// add_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 ?>

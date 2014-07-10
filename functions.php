@@ -23,7 +23,8 @@ require_once locate_template('/lib/comment_reply.php');         // new_get_cance
 require_once locate_template('/lib/comments.php');			    // Walker comments
 require_once locate_template('/lib/tag_cloud.php');             // New style for tag cloud
 //require_once locate_template('/lib/css-above-the-fold.php');	//
-require_once locate_template('/lib/debug.php');					// Function for debugging
+require_once locate_template('/lib/debug.php');                 // Function for debugging
+require_once locate_template('/lib/password_protection.php');	// Function for Post/page password protection Bootstrap style
 /*
  * Setup Theme Functions
  */
@@ -59,5 +60,4 @@ function italystrap_version(){
  * Default: 1140px is the default Bootstrap container width.
  */
 if ( !isset($content_width) ) { $content_width = 1140; }
-
 ?>

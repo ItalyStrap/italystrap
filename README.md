@@ -6,7 +6,13 @@ ItalyStrap is a Wordpress starter theme based on [HTML5 Boilerplate](http://html
 
 ## Installation
 
-Place ItalyStrap folder in the themes (/wp-content/themes/) directory and activate it via Admin - Appearance - Themes
+Clone the git repo
+
+'''git clone git://github.com/overclokk/ItalyStrap.git'''
+
+or [download it](https://github.com/overclokk/ItalyStrap/archive/master.zip) unzip and place it in your folder themes (/wp-content/themes/) directory and activate it via Admin - Appearance - Themes
+
+
 
 ## Configuration and Documentation
 
@@ -29,6 +35,13 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 * E chi più ne ha più ne metta :-P
 
 ##Changelog
+
+###1.8.4
+
++ New description README.md
++ Fix issue in archive.php
++ Add new function for post/page password protection
++ Improve italystrap_add_style_and_script function
 
 ###1.8.3
 

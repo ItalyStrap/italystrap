@@ -31,12 +31,12 @@ get_header(); ?>
 										// Display or retrieve title for a post type archive.
 										// This is optimized for archive.php and archive-{posttype}.php template files for displaying the title of the post type.
 									?><h2 itemprop="headline"><?php post_type_archive_title(); ?></h2>
-									<div class="alert alert-info" role="alert" itemprop="description">
-										<?php
-											$cpt_description = get_post_type_object( 'prodotti' );
-											echo $cpt_description->description ; 
-										?>
-									</div>
+									<?php $cpt_description = get_post_type_object( 'prodotti' );
+										if ($cpt_description) : ?>
+											<div class="alert alert-info" role="alert" itemprop="description">
+												<?php echo $cpt_description->description ;?>
+											</div>
+									<?php endif; ?>
 									<?php } ?>
 							</header>	
 									<?php while ( have_posts() ) : the_post(); ?>

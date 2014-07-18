@@ -4,7 +4,7 @@
  */
 get_header(); ?>
     <!-- Main Content -->
-    <section>
+    <section id="sitemap-html">
     	<div class="container">
         	<div class="row">
                 <div class="col-md-8">

@@ -36,6 +36,15 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.8.5
+
++ Add my name in licence.md
++ Add support array with all supports in custom-post-type.php
++ Add daschicon in custom post icon
++ Add ID to section tag on 404.php, archive.php, author.php, blog.php, ful-width.php, page.php, search.php, single.php, sitemap-hetml.php
++ New file and code for Entry Meta
++ Remove img-rounded class and add center-block instead
+
 ###1.8.4
 
 + New description README.md

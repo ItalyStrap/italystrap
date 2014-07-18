@@ -1,5 +1,12 @@
 <?php
-// Register Custom Post Type
+/**
+ * Register your own Custom Post Type in this file
+ * @link http://codex.wordpress.org/Function_Reference/register_post_type
+ * @link http://melchoyce.github.io/dashicons/
+ * 
+ * @package ItalyStrap
+ * @since 1.0.0
+ */
 function custom_post_type() {
 	$labels = array(
 		'name'                => _x( 'Prodotti', 'Post Type General Name', 'ItalyStrap' ),
@@ -17,11 +24,24 @@ function custom_post_type() {
 		'not_found_in_trash'  => __( 'Nessun prodotto nel cestino', 'ItalyStrap' ),
 	);
 
+	$supports_array = array(
+		'title',
+		'editor',
+		'author',
+		'thumbnail',
+		'excerpt',
+		'custom-fields',
+		'comments', // (also will see comment count balloon on edit screen) 
+		'revisions', // (will store revisions)
+		'page-attributes', // (menu order, hierarchical must be true to show Parent option) 
+		'post-formats'
+	);
+
 	$args = array(
 		'label'               => __( 'prodotti', 'ItalyStrap' ),
 		'description'         => __( 'Information pages of prodotti - <strong>insert here</strong> any description of custom post page', 'ItalyStrap' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', ),
+		'supports'            => $supports_array,
 		'taxonomies'          => array( 'category', 'post_tag', 'Slide' ),
 		'hierarchical'        => true,
 		'public'              => true,
@@ -30,7 +50,7 @@ function custom_post_type() {
 		'show_in_nav_menus'   => true,
 		'show_in_admin_bar'   => true,
 		'menu_position'       => 5,
-		//'menu_icon'           => '',
+		'menu_icon'           => 'dashicons-cart',
 		'can_export'          => true,
 		'has_archive'         => true,
 		'exclude_from_search' => false,

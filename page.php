@@ -4,7 +4,7 @@
  */
 get_header(); ?>
     <!-- Main Content -->
-    <section>
+    <section id="page">
     	<div class="container">
         	<div class="row">
                 <div class="col-md-8">
@@ -16,20 +16,14 @@ get_header(); ?>
 											<span itemprop="headline"><?php the_title(); ?></span></a></h1>
 										</header>
 										<footer>
-											<ul class="list-inline">
-												<li>Del: <time datetime="<?php the_time('Y-m-d') ?>" itemprop="datePublished"><?php the_time('d-m-Y') ?></time></li>
-												<li>Autore: <span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php the_author_posts_link(); ?></span></li>
-												<li><?php comments_number( '0 risposte', '1 risposta', '% risposte' ); ?></li>
-												<li><?php the_category('&');?></li>
-												<?php the_tags('<li itemprop="keywords">Tags: ',' - ' , '</li>'); ?>
-											</ul>
+											<?php get_template_part('template/meta'); ?>
 										</footer>
 										<meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 										<section class="margin-bottom-25">
 															<?php if ( has_post_thumbnail() ) { ?>
 																<div class="margin-bottom-25 thumbnail">
 																  <?php echo "<figure>";
-																		the_post_thumbnail( 'article-thumb', array('class' => 'img-rounded img-responsive') );
+																		the_post_thumbnail( 'article-thumb', array('class' => 'center-block img-responsive') );
 																		echo "</figure>";?>
 																</div>
 															<?php } ?>

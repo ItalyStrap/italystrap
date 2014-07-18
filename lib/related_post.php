@@ -22,7 +22,7 @@ function show_related_posts() {
 				<span class="col-md-3 col-xs-6">
 					<?php if ( has_post_thumbnail() ) {
 							echo "<figure><span class='thumbnail'>";
-							the_post_thumbnail( 'thumbnail', array('class' => 'img-rounded  img-responsive') );
+							the_post_thumbnail( 'thumbnail', array('class' => 'center-block  img-responsive') );
 							echo "</span></figure>";} ?>
 							<meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 					<p class="text-center"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" itemprop="url"><span itemprop="name"><strong><?php the_title(); ?></strong></span></a></p>

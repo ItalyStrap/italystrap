@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<section>
+<section id="error404">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">

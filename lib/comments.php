@@ -102,7 +102,13 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 			extract($args, EXTR_SKIP);
 			global $post;
 			?>
+			
 
+			<?php 
+			/**
+			 * http://codex.wordpress.org/Function_Reference/comment_class
+			 */
+			?>
 			<li id="comment-<?php comment_ID(); ?>" <?php comment_class('margin-bottom-25 media comment-' . get_comment_ID()); ?> itemscope itemtype="http://schema.org/Comment">
 
 				<span class="pull-left">

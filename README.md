@@ -44,7 +44,6 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 + Fix display post in index.php when there is a sticky post
 + Add img-responsive in wp-caption (cleanup.php)
 + Removes img-rounded in add image class image.php
-+ 
 
 ###1.8.5
 

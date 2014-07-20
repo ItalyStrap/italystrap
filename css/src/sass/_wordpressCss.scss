@@ -1,0 +1,25 @@
+// Class for figure and figure caption shortcode
+// .wp-caption{}
+// .wp-caption-text{}
+
+// .sticky{}
+// .gallery-caption{}
+// .bypostauthor{}
+
+// pull-right and pull-left are in utilities.less
+.alignright{
+	float: right !important;
+	margin-left: 15px;
+}
+.alignleft{
+	float: left !important;
+	margin-right: 20px;
+}
+
+// Center-align a block level element
+// In mixins/center-block.less
+.aligncenter{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}

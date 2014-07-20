@@ -4,7 +4,7 @@ Theme URI: http://www.overclokk.net/italystrap-wordpress-starter-theme
 Author: Enea Overclokk
 Author URI: http://www.overclokk.net
 Description: Wordpess starter theme with twitter bootstrap, HTML5 boilerplate and Schema.org <a href="https://github.com/overclokk/ItalyStrap/graphs/contributors">Contribute on GitHub</a>
-Version: 1.8.5
+Version: 1.8.6
 License: MIT License (MIT)
 License URI: http://opensource.org/licenses/MIT
 Tags: right-sidebar, featured-images, full-width-template, microdata
@@ -12,8 +12,13 @@ Text Domain:
 GitHub Theme URI: https://github.com/overclokk/ItalyStrap
 GitHub Branch:     master
 */
+
+/*
+ * Class for Figure tag and figure caption tag
+ */
 .wp-caption{}
 .wp-caption-text{}
+
 .sticky{}
 .gallery-caption{}
 .bypostauthor{}

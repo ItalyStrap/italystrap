@@ -49,7 +49,14 @@ get_header(); ?>
     	<div class="container">
 			<h3>Ultimi articoli</h3>
 				<section class="row">
-					<?php query_posts( 'posts_per_page=4' );
+					<?php
+							$sticky = get_option( 'sticky_posts' );
+							if ( isset( $sticky[0] ) ) {
+								$postperpage = 3;
+							} else {
+								$postperpage = 4;
+							}
+							query_posts( "posts_per_page=$postperpage" );
 							if(have_posts()) :
 							while(have_posts()) : the_post();
 					?>

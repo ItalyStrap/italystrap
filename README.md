@@ -36,6 +36,16 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.8.6
+
++ Change loop in file blog.php, now pagination and excerpt works well
++ Add CSS Style for css class in standard WordPress
++ Fix category view in meta.php
++ Fix display post in index.php when there is a sticky post
++ Add img-responsive in wp-caption (cleanup.php)
++ Removes img-rounded in add image class image.php
++ 
+
 ###1.8.5
 
 + Add my name in licence.md

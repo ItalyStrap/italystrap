@@ -25,12 +25,21 @@ function estraiUrlsGravatar($url)
 	return $url_pulito; 
 }
 
-//Add img-rounded and  img-responsive css class
+/**
+ *
+ * Add img-responsive css class when new images are upload
+ * For old image install Search regex plugin and replace '<img class="' to '<img class="img-responsive ' without apostrophe mark ;-)
+ */
 function italystrap_add_image_class($class){
-	$class .= ' img-rounded  img-responsive ';
+	$class .= ' img-responsive';
 	return $class;
 }
 add_filter('get_image_tag_class','italystrap_add_image_class');
+
+/**
+ * For other image class see cleanup.php from line 142 to line 189
+ * There is thumbnail class for attachment and img-responsive and thumbnail for figure and figure caption
+ */
 
 /* Aggiungi la favicon al tuo Blog
  * by Roberto Iacono di robertoiacono.it

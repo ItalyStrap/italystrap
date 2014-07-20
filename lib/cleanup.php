@@ -176,7 +176,7 @@ function roots_caption($output, $attr, $content) {
 
   // Set up the attributes for the caption <figure>
   $attributes  = (!empty($attr['id']) ? ' id="' . esc_attr($attr['id']) . '"' : '' );
-  $attributes .= ' class="thumbnail wp-caption ' . esc_attr($attr['align']) . '"';
+  $attributes .= ' class="thumbnail img-responsive wp-caption ' . esc_attr($attr['align']) . '"';
   $attributes .= ' style="width: ' . esc_attr($attr['width']) . 'px"';
 
   $output  = '<figure' . $attributes .'>';

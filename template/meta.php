@@ -13,7 +13,7 @@
 	<?php endif ?>
 	
 	<?php if ( !is_page() ): ?>
-		<li><span class="glyphicon glyphicon-folder-open"></span> <?php the_category('&');?></li>
+		<li><span class="glyphicon glyphicon-folder-open"></span> <?php the_category(' & ');?></li>
 	<?php endif ?>
 
 	<?php the_tags('<li itemprop="keywords"><span class="glyphicon glyphicon-tags"></span> ',' - ' , '</li>'); ?>

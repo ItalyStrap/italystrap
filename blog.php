@@ -8,9 +8,17 @@ get_header();?>
             <div class="row">
 				<div class="col-md-8" itemscope itemtype="http://schema.org/CollectionPage">
 					<?php create_breadcrumbs() ?>
-								<?php
-								query_posts('cat=-&paged='.$paged);
-								if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+							<?php
+							$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+							$blog = new WP_Query(
+												array( 
+														'post_type'		=>	'post',
+														'pagination'        => true,
+														'paged'             => $paged,
+														'posts_per_page' 	=> '5',
+														));
+							if ( $blog->have_posts() ) : while ( $blog->have_posts() ) : $blog->the_post()
+							?>
 												<article>
 													<header>
 														<h2><a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark"><span itemprop="name"><?php the_title(); ?></span></a></h2>
@@ -36,11 +44,12 @@ get_header();?>
 												</article>
 												<hr>
 									<?php endwhile;?>
-										<?php bootstrap_pagination();?>
+										<?php bootstrap_pagination( $blog );?>
 									<?php else : ?>
 										<?php get_template_part( 'template/non-trovato');?>
 								<?php endif;?>
-							<?php wp_reset_query();?>
+							<?php 	wp_reset_query();
+							  		wp_reset_postdata();?>
 				</div>
 				<?php get_sidebar(); ?> 
 			</div>

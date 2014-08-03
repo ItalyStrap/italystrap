@@ -1,6 +1,9 @@
 <?php
 /**
  * Register your own Custom Post Type in this file
+ *
+ * Remeber to regenerate permalink in /wp-admin/options-permalink.php?settings-updated=true
+ *
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  * @link http://melchoyce.github.io/dashicons/
  * 

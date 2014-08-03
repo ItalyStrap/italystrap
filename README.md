@@ -36,6 +36,16 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.8.7
+
++ Add commented line in custom-post-type.php
++ Fix display description for CPT in Archive page archive.php line 34, now display description for all custom post without type slug
++ Fix ID's name for author.php (chage in author-page)
++ Add <?php create_breadcrumbs() ?> to search.php
++ Improve breacrumb.php, now show custom_post_type name
++ Improve Read more link in excerpt function (custom_excerpt.php)
++ Fix domain name in single.php
+
 ###1.8.6
 
 + Change loop in file blog.php, now pagination and excerpt works well

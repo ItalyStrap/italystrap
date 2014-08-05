@@ -11,40 +11,42 @@
 								<div class="row">
 									<div class="col-sm-2">
 										<?php 
-										if (!empty($curauth->avatar)){
-											echo '<img src="' . $curauth->avatar . '" alt="avatar autore" class="img-circle img-responsive" width="94" height="94" />';
+										if ($curauth->avatar){
+											echo '<img src="' . $curauth->avatar . '" alt="avatar autore" class="img-circle img-responsive" width="96" height="96" itemprop="image" />';
 											echo '<meta itemprop="image" content="' . $curauth->avatar . '">';
-											};
-										?>
+										}else{
+
+											echo italystrap_get_avatar( get_the_author_meta('ID'), 94, NULL, $curauth->nickname, 'img-circle img-responsive' );
+										};?>
 									</div>
 									<div class="col-sm-10">
-										<?php if($curauth->description != "") { ?>
+										<?php if($curauth->description) { ?>
 												<p itemprop="description"><?php echo $curauth->description; ?></a></p>
 										<?php } ?>
-										<?php if($curauth->user_url != "") { ?>
+										<?php if($curauth->user_url) { ?>
 												<p itemprop="url"><strong>Sito WEB:</strong> <a href="<?php echo $curauth->user_url; ?>"><?php echo $curauth->user_url; ?></a></p>
 										<?php } ?>
 										<ul class="list-inline">
 											<?php
-											if (!empty($curauth->twitter)){
+											if ($curauth->twitter){
 											echo '<li><a href="' . $curauth->twitter . '" title="Twitter" rel="me" class="sprite twitter"></a></li>';
 											};
-											if (!empty($curauth->fb_profile)){
+											if ($curauth->fb_profile){
 											echo '<li><a href="' . $curauth->fb_profile . '" title="Facebook" rel="me" class="sprite facebook"></a></li>';
 											};
-											if (!empty($curauth->google_profile)){
+											if ($curauth->google_profile){
 											echo '<li><a href="' . $curauth->google_profile . '" title="Google+" rel="me" class="sprite googleplus"></a></li>';
 											};
-											if (!empty($curauth->skype)){
+											if ($curauth->skype){
 											echo '<li><a href="skype:' . $curauth->skype . '?chat" title="skype" rel="me" class="sprite skype"></a></li>';
 											};
-											if (!empty($curauth->google_page)){
+											if ($curauth->google_page){
 											echo '<li><a href="' . $curauth->google_page . '" title="Google Business page" rel="me" class="sprite googleplus"></a></li>';
 											};
-											if (!empty($curauth->linkedIn)){
+											if ($curauth->linkedIn){
 											echo '<li><a href="' . $curauth->linkedIn . '" title="linkedIn" rel="me" class="sprite linkedin"></a></li>';
 											};
-											if (!empty($curauth->pinterest)){
+											if ($curauth->pinterest){
 											echo '<li><a href="' . $curauth->pinterest . '" title="pinterest" rel="me" class="sprite pinterest"></a></li>';
 											};
 											?>

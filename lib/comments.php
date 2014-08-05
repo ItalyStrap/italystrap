@@ -112,15 +112,13 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 			<li id="comment-<?php comment_ID(); ?>" <?php comment_class('margin-bottom-25 media comment-' . get_comment_ID()); ?> itemscope itemtype="http://schema.org/Comment">
 
 				<span class="pull-left">
-					<?php
-						$avatar = get_avatar($comment, '92');
-						$avatar = str_replace('class="', 'class="media-object ', $avatar);
-						echo $avatar; ?></span>
+					<?php echo italystrap_get_avatar( $comment, NULL, NULL, get_comment_author() );?>
+				</span>
 				<div class="media-body">
 					<ul class="list-inline margin-bottom-10">
 						<li>
 							<h4 class="media-heading">
-								<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php echo get_comment_author() ?><meta itemprop="image" content="<?php  $thumbnailUrl = get_avatar($comment); echo estraiUrlsGravatar($thumbnailUrl);?>"/></span></a>
+								<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php echo get_comment_author() ?><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span></a>
 								<?php
 								printf(
 								// If current post author is also comment author, make it known visually.

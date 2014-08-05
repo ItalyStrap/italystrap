@@ -6,7 +6,12 @@
 function create_breadcrumbs() {
 
   global $post;
-  $categories = get_the_category($post->ID);
+  if (isset($post->ID)) {
+    $postID = $post->ID;
+  }else{
+    $postID = NULL;
+  }
+  $categories = get_the_category($postID);
 
   if(!is_home() || !is_front_page()) {
 

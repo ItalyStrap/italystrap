@@ -1,4 +1,5 @@
 <?php
+// require_once locate_template('/lib/activation.php');            // Activation options
 require_once locate_template('/lib/globals.php');				// Globals variables
 require_once locate_template('/lib/cleanup.php');        		// Cleanup Headers
 require_once locate_template('/lib/script.php');        		// All Js and CSS script
@@ -24,7 +25,9 @@ require_once locate_template('/lib/comments.php');			    // Walker comments
 require_once locate_template('/lib/tag_cloud.php');             // New style for tag cloud
 //require_once locate_template('/lib/css-above-the-fold.php');	//
 require_once locate_template('/lib/debug.php');                 // Function for debugging
-require_once locate_template('/lib/password_protection.php');	// Function for Post/page password protection Bootstrap style
+require_once locate_template('/lib/password_protection.php');   // Function for Post/page password protection Bootstrap style
+require_once locate_template('/lib/class-tgm-plugin-activation.php');// File for install required plugin
+require_once locate_template('/lib/class-tgm-plugin-required.php');// File for install required plugin
 /*
  * Setup Theme Functions
  */

@@ -36,6 +36,15 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.9.0
+
++ Add TGM-Plugin-Activation for require plugin
++ Fix object error in breadcrumbs.php
++ Add function for adding custom CSS class in get_avatar (Added in comments.php, author.php and author-meta.php)
++ Add function for retrieve avatar url
++ Improve if statement in author.php
+
+
 ###1.8.7
 
 + Add commented line in custom-post-type.php

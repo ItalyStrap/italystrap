@@ -112,7 +112,7 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 			<li id="comment-<?php comment_ID(); ?>" <?php comment_class('margin-bottom-25 media comment-' . get_comment_ID()); ?> itemscope itemtype="http://schema.org/Comment">
 
 				<span class="pull-left">
-					<?php echo italystrap_get_avatar( $comment, NULL, NULL, get_comment_author() );?>
+					<?php echo italystrap_get_avatar( $comment, NULL, NULL, get_comment_author(), 'img-circle img-responsive' );?>
 				</span>
 				<div class="media-body">
 					<ul class="list-inline margin-bottom-10">
@@ -146,19 +146,16 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 
 				<p itemprop="text"><?php echo get_comment_text($comment); ?></p>
 
-				<?php $reply = get_comment_reply_link( 
+				<?php comment_reply_link( 
 									array_merge(
 										$args, 
 										array(
-											'reply_text' => __('Reply <i class="glyphicon glyphicon-arrow-down"></i>', 'ItalyStrap'),
+											'reply_text' => __('Reply', 'ItalyStrap') . ' <i class="glyphicon glyphicon-arrow-down"></i>',
 											'depth'      => $depth,
 											'max_depth'  => $args['max_depth']
 											)
 										)
-									);
-					$reply = str_replace('comment-reply-link', 'btn btn-success pull-right', $reply);
-					echo $reply;
-				?>
+									);?>
 
 				<?php
 			}

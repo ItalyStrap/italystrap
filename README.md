@@ -36,6 +36,12 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.9.1
+
++ Fix issue in index.php for no content in CPT Prodotti
++ Add rel="noffolow" and button class to comment_reply_link() filter
++ Add CSS style img-rounded for all author image
+
 ###1.9.0
 
 + Add TGM-Plugin-Activation for require plugin

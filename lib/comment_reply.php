@@ -12,4 +12,21 @@ function new_cancel_comment_reply_link($text = '') {
 	echo new_get_cancel_comment_reply_link($text);
 }
 /*Fine modifica wp-includes/comment-template.php*/
+
+
+/**
+ * Add a rel="nofollow" and Bootstrap button class to the comment reply links
+ *
+ * @link http://www.robertoiacono.it/aggiungere-nofollow-link-rispondi-commenti-wordpress/ (only for nofollow)
+ * @since 1.9.1
+ */
+function add_nofollow_and_bootstrap_button_css_to_reply_link( $link ) {
+
+	$search = array( '")\'>', 'comment-reply-link');
+	$replace = array( '")\' rel=\'nofollow\'>', 'btn btn-success pull-right');
+	$link = str_replace($search, $replace, $link);
+
+	return $link;
+}
+add_filter( 'comment_reply_link', 'add_nofollow_and_bootstrap_button_css_to_reply_link' );
 ?>

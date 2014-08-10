@@ -22,26 +22,107 @@ function roots_head_cleanup() {
 
   add_filter('use_default_gallery_style', '__return_null');
 
-  if (!class_exists('WPSEO_Frontend')) {
+  // Define if SEO Yoast or AIOSP classes exists
+  if ( ( class_exists('WPSEO_Frontend') ) || ( class_exists('All_in_One_SEO_Pack') ) ) {
+    $italystrapClassexists = 1;
+  } else {
+    $italystrapClassexists = null;
+  }
+
+  if ( !$italystrapClassexists ) {
     remove_action('wp_head', 'rel_canonical');
-    add_action('wp_head', 'roots_rel_canonical');
+    add_action('wp_head', 'italystrap_rel_canonical');
+    add_action('wp_head', 'italystrap_rel_next_prev');
   }
 }
 
-function roots_rel_canonical() {
-  global $wp_the_query;
+function italystrap_rel_canonical() {
 
-  if (!is_singular()) {
-    return;
-  }
-
-  if (!$id = $wp_the_query->get_queried_object_id()) {
-    return;
-  }
-
-  $link = get_permalink($id);
-  echo "\t<link rel=\"canonical\" href=\"$link\">\n";
+  global $paged;
+  // The belove commentes code is an experiment
+  // if ( is_single() && $paged ) {
+  //   $link = get_permalink();
+  // }else{
+  //   $link = get_pagenum_link( $paged );
+  // }
+  $link = get_pagenum_link( $paged );
+  echo "\n<link rel=\"canonical\" href=\"$link\">\n";
 }
+
+/**
+ * If you would remove Canonical Link Added By Yoast WordPress SEO Plugin uncommented belove code
+ * @link http://stackoverflow.com/questions/10529409/removing-rel-canonical-added-by-yoast-seo-plugin
+ */
+// add_filter( 'wpseo_canonical', '__return_false' );
+
+/**
+ * Add rel next and prev in head tag for pagination
+ * @link http://wordpress.stackexchange.com/questions/36800/adding-rel-next-rel-prev-for-paginated-archives#comment45820_36800
+ * @link http://stackoverflow.com/questions/11086315/how-to-get-number-of-results-from-query-posts
+ * Modify for visualize in page template blog
+ * @link http://www.giorgiotave.it/forum/title-description-e-struttura/216762-pagination-rel-next-e-rel-prev-e-canonical-tag-ce-conflitto.html
+ * @since 1.9.2
+ *
+ */
+function italystrap_rel_next_prev(){
+
+    global $paged, $posts_per_page;
+
+    $allsearch = new WP_Query("showposts=-1");
+    $count = $allsearch->post_count;
+
+    wp_reset_query(); 
+    wp_reset_postdata();
+
+    $max_page = $count/$posts_per_page+1;
+    $max_page = intval($max_page);
+
+    if ( get_previous_posts_link() ) { ?>
+        <link rel="prev" href="<?php echo get_pagenum_link( $paged - 1 ); ?>" />
+<?php }
+
+    if ( get_next_posts_link() ) { ?>
+        <link rel="next" href="<?php echo get_pagenum_link( $paged +1 ); ?>" />
+<?php 
+
+    } 
+    // If is page template blog show rel="next"
+    if ( is_page('blog') && $paged < $max_page ) { ?>
+        <link rel="next" href="<?php echo get_pagenum_link( $paged +1 ); ?>" />
+<?php
+
+    } // End is page template blog
+
+    global $multipage , $page, $pages;
+    if ( is_single() && $multipage) { 
+      // If is post paginates with <!--nextpage--> quicktag
+      $get_permalink = get_permalink();
+      if ( $page == 1 ) { // If page is 1 echo only rel="next" ?>
+        <link rel="next" href="<?php echo $get_permalink . '/' . ($page+1); ?>" />
+        <p>prima</p>
+<?php
+      }
+
+      $pagTotali = count($pages); // Number of total page pagination in post
+      if ($page == 2) {
+        $prevpage = NULL; // If page number is 2 $prevpage echo nothing
+      }else {
+        $prevpage = '/' . ($page-1);
+      }
+      if ( $page > 1 && $page < $pagTotali ) { // If page is > than 1 and then $pagTotali ?>
+        <link rel="prev" href="<?php echo $get_permalink . $prevpage; ?>" />
+        <link rel="next" href="<?php echo $get_permalink . '/' . ($page+1); ?>" />
+<?php
+      }
+
+      if ( $page == $pagTotali ) { // If page is == $pagTotali echo only rel="prev" ?>
+        <link rel="prev" href="<?php echo $get_permalink . $prevpage; ?>" />
+
+<?php        
+      }
+    } // End is_single() && $multipage pagination
+}
+
 add_action('init', 'roots_head_cleanup');
 
 /**

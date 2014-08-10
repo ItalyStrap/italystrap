@@ -28,6 +28,7 @@ require_once locate_template('/lib/debug.php');                 // Function for 
 require_once locate_template('/lib/password_protection.php');   // Function for Post/page password protection Bootstrap style
 require_once locate_template('/lib/class-tgm-plugin-activation.php');// File for install required plugin
 require_once locate_template('/lib/class-tgm-plugin-required.php');// File for install required plugin
+require_once locate_template('/lib/custom_shortcode.php');       // Custom shortcode
 /*
  * Setup Theme Functions
  */

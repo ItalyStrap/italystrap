@@ -15,7 +15,7 @@ get_header();?>
 														'post_type'		=>	'post',
 														'pagination'        => true,
 														'paged'             => $paged,
-														'posts_per_page' 	=> '5',
+														// 'posts_per_page' 	=> $posts_per_page,
 														));
 							if ( $blog->have_posts() ) : while ( $blog->have_posts() ) : $blog->the_post()
 							?>

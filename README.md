@@ -36,6 +36,14 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.9.2
+
++ Add new function for reveal hidden tinymce buttons (styleselect) in new file custom_shortcode.php
++ Add button for insert <!--nextpage--> quicktag in the editor
++ Retrieve number $posts_per_page from wp backend configuration for blog.php template
++ Add rel canonical if SEO Yoast and AIOSP are not installed (cleanup.php)
++ Add rel next and prev for paginations (cleanup.php)
+
 ###1.9.1
 
 + Fix issue in index.php for no content in CPT Prodotti

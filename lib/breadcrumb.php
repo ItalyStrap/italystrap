@@ -16,7 +16,7 @@ function create_breadcrumbs() {
   if(!is_home() || !is_front_page()) {
 
     echo '<div itemscope itemtype="http://schema.org/WebPage"><ol class="breadcrumb" itemprop="breadcrumb">';
-    echo '<li><a href="' . home_url() . '">Home</a></li>';
+    echo '<li><a href="' . home_url() . '">' . __('Home', 'ItalyStrap') . '</a></li>';
 
     if (is_single()) {
 
@@ -49,29 +49,29 @@ function create_breadcrumbs() {
       echo '</li>';
 
     } elseif (is_day()) {
-      echo'<li>'. __('Archive for ', 'ItalyStrap');
+      echo'<li>'. __('Daily archive: ', 'ItalyStrap');
       the_time('F jS, Y');
       echo'</li>';
 
     } elseif (is_month()) {
-      echo'<li>'. __('Archive for ', 'ItalyStrap');
+      echo'<li>'. __('Monthly archive: ', 'ItalyStrap');
       the_time('F, Y');
       echo'</li>';
 
     } elseif (is_year()) {
-      echo'<li>' . __('Archive for ', 'ItalyStrap');
+      echo'<li>' . __('Yearly archive: ', 'ItalyStrap');
       the_time('Y');
       echo'</li>';
 
     } elseif (is_author()) {
-      echo'<li>' . __('Author Archives', 'ItalyStrap') . '</li>';
+      echo'<li>' . __('Author Archives: ', 'ItalyStrap') . get_the_author() . '</li>';
 
     } elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {
       echo '<li>' . __('Blog Archives', 'ItalyStrap');
       echo'</li>';
 
     } elseif (is_search()) {
-      echo'<li>' . __('Search Results', 'ItalyStrap');
+      echo'<li>' . __('Search Results: ', 'ItalyStrap') . get_search_query();
       echo'</li>';
 
     }

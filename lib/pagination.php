@@ -6,7 +6,7 @@ function bootstrap_pagination( $query = NULL ){
 		$query = $wp_query;
 	}
 	$big = 999999999; // need an unlikely integer
-	$translated = __( 'Page', 'ItalyStrap' ); // Supply translatable string
+	$translated = __( 'Page: ', 'ItalyStrap' ); // Supply translatable string
 
 	$paginate = paginate_links( array(
 		'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),

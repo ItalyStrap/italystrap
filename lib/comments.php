@@ -12,7 +12,7 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
                 <li class="comment media" id="comment-<?php comment_ID(); ?>">
                     <div class="media-body">
                         <p>
-                            <?php _e('Pingback:', 'ItalyStrap'); ?> <?php comment_author_link(); ?>
+                            Pingback: <?php comment_author_link(); ?>
                         </p>
                     </div><!--/.media-body -->
                 <?php
@@ -38,7 +38,7 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
 								
 								</li>
 								<li><time datetime="<?php comment_date('Y-m-d', $comment) ?>" itemprop="datePublished"><?php comment_date('j M Y', $comment) ?></time></li>
-								<?php edit_comment_link(__('Modifica','ItalyStrap'),'<span class="btn btn-sm btn-info pull-right"><i class="glyphicon glyphicon-pencil"></i> ','</span>') ?>
+								<?php edit_comment_link(__('Edit','ItalyStrap'),'<span class="btn btn-sm btn-info pull-right"><i class="glyphicon glyphicon-pencil"></i> ','</span>') ?>
 							</ul>
 
 								<p itemprop="text"><?php echo get_comment_text($comment); ?></p>
@@ -55,7 +55,7 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
 													'reply_text' => __('Reply <i class="glyphicon glyphicon-arrow-down"></i>', 'ItalyStrap'),
 													'depth'      => $depth,
 													'max_depth'  => $args['max_depth'],
-													'class'      => _('btn'),
+													'class'      => 'btn',
 													)
 												),
 												$comment->comment_ID

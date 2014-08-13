@@ -2,7 +2,7 @@
 /*Defined at: wp-includes/comment-template.php, line 1153*/
 function new_get_cancel_comment_reply_link($text = '') {
 	if ( empty($text) )
-		$text = __('Click here to cancel reply.', 'italystrap');
+		$text = __('Click here to cancel reply.', 'ItalyStrap');
 
 	$style = isset($_GET['replytocom']) ? '' : ' style="display:none;"';
 	$link = esc_html( remove_query_arg('replytocom') ) . '#respond';

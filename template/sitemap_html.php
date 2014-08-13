@@ -1,12 +1,12 @@
 <?php
 //http://yoast.com/html-sitemap-wordpress/
 ?>
-<h2 itemprop="name">Autori</h2>
+<h2 itemprop="name"><?php _e('Authors:', 'ItalyStrap'); ?></h2>
 <meta itemprop="itemListOrder" content="Descending" />
 	<ul>
 		<?php wp_list_authors( array( 'exclude_admin' => false, ));?>
 	</ul>
-<h2 itemprop="name">Pagine</h2>
+<h2 itemprop="name"><?php _e('Pages:', 'ItalyStrap'); ?></h2>
 <meta itemprop="itemListOrder" content="Descending" />
 	<ul>
 		<?php
@@ -16,7 +16,7 @@
 								)
 						  );?>
 	</ul>
-<h2 itemprop="name">Articoli</h2>
+<h2 itemprop="name"><?php _e('Articles:', 'ItalyStrap'); ?></h2>
 <meta itemprop="itemListOrder" content="Descending" />
 	<ul>
 		<?php

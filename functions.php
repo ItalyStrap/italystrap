@@ -35,7 +35,7 @@ require_once locate_template('/lib/custom_shortcode.php');       // Custom short
 if (!function_exists('ItalyStrap_theme_setup')):
     function ItalyStrap_theme_setup() {
 
-        //load_theme_textdomain('ItalyStrap', get_template_directory() . '/lang');
+        load_theme_textdomain( 'ItalyStrap', get_template_directory() . '/lang' );
 
         add_theme_support('automatic-feed-links');
         add_theme_support('post-thumbnails');
@@ -47,7 +47,6 @@ if (!function_exists('ItalyStrap_theme_setup')):
     }
 endif;
 add_action('after_setup_theme', 'ItalyStrap_theme_setup');
-
 
 //Show version theme in footer
 function italystrap_version(){

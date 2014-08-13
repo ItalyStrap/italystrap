@@ -24,7 +24,7 @@
 												<p itemprop="description"><?php echo $curauth->description; ?></a></p>
 										<?php } ?>
 										<?php if($curauth->user_url) { ?>
-												<p itemprop="url"><strong>Sito WEB:</strong> <a href="<?php echo $curauth->user_url; ?>"><?php echo $curauth->user_url; ?></a></p>
+												<p itemprop="url"><strong><?php _e('Web site:', 'ItalyStrap'); ?></strong> <a href="<?php echo $curauth->user_url; ?>"><?php echo $curauth->user_url; ?></a></p>
 										<?php } ?>
 										<ul class="list-inline">
 											<?php
@@ -78,7 +78,7 @@
 																</div>
 															<?php } ?>
 														<div  itemprop="text"><?php the_excerpt(); ?></div>
-														<p class="label label-info">Ultima modifica: <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
+														<p class="label label-info"><?php _e('Last edit:', 'ItalyStrap'); ?> <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
 													</section>
 														<?php echo italystrap_ttr_wc();?>
 												</article> 

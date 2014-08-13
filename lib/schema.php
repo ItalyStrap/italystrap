@@ -48,7 +48,7 @@ function italystrap_ttr_wc(){
 		if( $seconds > 0 ) {
 			$estimated_time = 'PT' . $minutes . 'M' . $seconds . 'S';
 		} else {
-			$estimated_time = 'PT' . $minutes.__( 'M', 'rc_prds' );
+			$estimated_time = 'PT' . $minutes . 'M';
 		}
 	}
 	

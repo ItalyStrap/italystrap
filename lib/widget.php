@@ -9,7 +9,7 @@ add_action('widgets_init', 'italystrap_widgets_init');
  */
 class ItalyStrap_Vcard_Widget extends WP_Widget {
   private $fields = array(
-    'title'          => 'Title (optional)',
+    'title'          => 'Title optional',
     'street_address' => 'Street Address',
     'locality'       => 'City/Locality',
     'region'         => 'State/Region',
@@ -19,9 +19,9 @@ class ItalyStrap_Vcard_Widget extends WP_Widget {
   );
 
   function __construct() {
-    $widget_ops = array('classname' => 'widget_italystrap_vcard', 'description' => __('Use this widget to add a vCard', 'italystrap'));
+    $widget_ops = array('classname' => 'widget_italystrap_vcard', 'description' => __('Use this widget to add a vCard', 'ItalyStrap'));
 
-    $this->WP_Widget('widget_italystrap_vcard', __('ItalyStrap: vCard', 'italystrap'), $widget_ops);
+    $this->WP_Widget('widget_italystrap_vcard', 'ItalyStrap: vCard', $widget_ops);
     $this->alt_option_name = 'widget_italystrap_vcard';
 
     add_action('save_post', array(&$this, 'flush_widget_cache'));
@@ -48,7 +48,7 @@ class ItalyStrap_Vcard_Widget extends WP_Widget {
     ob_start();
     extract($args, EXTR_SKIP);
 
-    $title = apply_filters('widget_title', empty($instance['title']) ? __('Ragione Sociale', 'italystrap') : $instance['title'], $instance, $this->id_base);
+    $title = apply_filters('widget_title', empty($instance['title']) ? __('Company name', 'ItalyStrap') : $instance['title'], $instance, $this->id_base);
 
     foreach($this->fields as $name => $label) {
       if (!isset($instance[$name])) { $instance[$name] = ''; }

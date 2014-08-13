@@ -73,8 +73,8 @@ if ($prodotti->have_posts()):
 						<h4 class="item-title"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark"><?php the_title(); ?></a></h4>
 							<footer>
 								<ul class="list-inline">
-									<li><small>Del: <time datetime="<?php the_time('Y-m-d') ?>" itemprop="datePublished"><?php the_time('d-m-Y') ?></time></small></li>
-									<li><small>Autore: <span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php the_author_posts_link(); ?></span></small></li>
+									<li><small><time datetime="<?php the_time('Y-m-d') ?>" itemprop="datePublished"><?php the_time('d-m-Y') ?></time></small></li>
+									<li><small><?php _e('Author:', 'ItalyStrap'); ?> <span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php the_author_posts_link(); ?></span></small></li>
 								</ul>
 							</footer>
 							<div itemprop="text"><?php the_excerpt(); ?></div>

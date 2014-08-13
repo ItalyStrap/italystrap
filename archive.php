@@ -12,21 +12,21 @@ get_header(); ?>
 								<?php
 								if ( have_posts() ) : ?>
 									<?php if( is_tag() ) { ?>
-										<h2 itemprop="headline">Archivio per il tag <?php single_tag_title(); ?></h2>
+										<h2 itemprop="headline"><?php _e('Tag archive:', 'ItalyStrap'); ?> <?php single_tag_title(); ?></h2>
 											<?php if ( tag_description() ) : // Show an optional tag description ?>
 												<div class="alert alert-info" role="alert" itemprop="description"><?php echo tag_description(); ?></div>
 											<?php endif; ?>
 									<?php } elseif (is_category()) { ?>
-										<h2 itemprop="headline">Archivio per la categoria <?php single_cat_title(); ?></h2>
+										<h2 itemprop="headline"><?php _e('Category archive:', 'ItalyStrap'); ?> <?php single_cat_title(); ?></h2>
 											<?php if ( category_description() ) : // Show an optional category description ?>
 												<div class="alert alert-info" role="alert" itemprop="description"><?php echo category_description(); ?></div>
 											<?php endif; ?>
 									<?php } elseif (is_day()) { ?>
-										<h2 itemprop="headline">Archivio per il giorno <?php the_time('j F Y'); ?></h2>
+										<h2 itemprop="headline"><?php _e('Daily archive:', 'ItalyStrap'); ?> <?php the_time('j F Y'); ?></h2>
 									<?php } elseif (is_month()) { ?>
-										<h2 itemprop="headline">Archivio per il mese di <?php the_time('F Y'); ?></h2>
+										<h2 itemprop="headline"><?php _e('Monthly archive:', 'ItalyStrap'); ?> <?php the_time('F Y'); ?></h2>
 									<?php } elseif (is_year()) { ?>
-										<h2 itemprop="headline">Archivio per l'anno <?php the_time('Y'); ?></h2>
+										<h2 itemprop="headline"><?php _e('Yearly archive:', 'ItalyStrap'); ?> <?php the_time('Y'); ?></h2>
 									<?php } elseif ( is_post_type_archive() ) {
 										// Display or retrieve title for a post type archive.
 										// This is optimized for archive.php and archive-{posttype}.php template files for displaying the title of the post type.
@@ -57,7 +57,7 @@ get_header(); ?>
 																</div>
 															<?php } ?>
 													<div  itemprop="text"><?php the_excerpt(); ?></div>
-														<p class="label label-info">Ultima modifica: <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
+														<p class="label label-info"><?php _e('Last edit:', 'ItalyStrap'); ?> <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
 														<span class="clearfix"></span>
 													</section>
 														<?php echo italystrap_ttr_wc();?>

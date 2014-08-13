@@ -16,7 +16,7 @@ function show_related_posts() {
    		);
   	$post_correlati = new WP_Query($args);
   		if( $post_correlati->have_posts() ) {
-          echo '<h3>Potrebbero interessarti</h3>' . "\n";
+          echo '<h3>' . __('Related posts', 'ItalyStrap') .  '</h3>' . "\n";
   		    echo '<div class="row" itemscope itemtype="http://schema.org/Article">' . "\n";
     		while ($post_correlati->have_posts()) : $post_correlati->the_post(); ?>
 				<span class="col-md-3 col-xs-6">

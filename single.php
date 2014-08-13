@@ -33,10 +33,10 @@ get_header(); ?>
 													'before' => '<p class="text-muted lead"><b>' . __( 'Pages:', 'ItalyStrap' ) . '</b>',
 													'after' => '</p>',
 													) );?>
-												<p class="label label-info">Ultima modifica: <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
+												<p class="label label-info"><?php _e('Last edit:', 'ItalyStrap'); ?> <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
 												<span class="clearfix"></span>
-													<?php edit_post_link( __( 'Modifica articolo', 'ItalyStrap' ), '<span class="btn btn-sm btn-primary margin-top-25">', '</span>' ); ?>
-												<h3>Condividi questo articolo con i tuoi amici:</h3>
+													<?php edit_post_link( __( 'Edit', 'ItalyStrap' ), '<span class="btn btn-sm btn-primary margin-top-25">', '</span>' ); ?>
+												<h3><?php _e('Share this with your friends:', 'ItalyStrap'); ?></h3>
 												<textarea class="form-control" tabindex="4" rows="2"><?php the_permalink(); ?></textarea>
 										</section>
 										<?php get_template_part( 'template/social-button');?>

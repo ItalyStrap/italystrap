@@ -2,27 +2,24 @@
 //Meta box to visualize slide in home page
 //http://wp.tutsplus.com/tutorials/plugins/how-to-create-custom-wordpress-writemeta-boxes/
 add_action( 'add_meta_boxes', 'slide_init' );
-function slide_init()
-{
-	add_meta_box("slide", "Seleziona se vuoi mostrare la slide", "italystrap_select_slide", "prodotti", "side", "high");
+function slide_init(){
+	add_meta_box("slide", __('Select if you want show this in home page slider', 'ItalyStrap'), "italystrap_select_slide", "prodotti", "side", "high");
 }
 
-function italystrap_select_slide( $post )
-{
+function italystrap_select_slide( $post ){
 	$values = get_post_custom( $post->ID );
 	$check = isset( $values['slide'] ) ? esc_attr( $values['slide'][0] ) : '';
 	wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' );
 	?>
 	<p>
 		<input type="checkbox" name="slide" id="slide" <?php checked( $check, 'on' ); ?> />
-		<label for="slide">Vuoi visualizzare nelle slide?</label>
+		<label for="slide"><?php _e('Do you want show in home slider?', 'ItalyStrap'); ?></label>
 	</p>
 	<?php	
 }
 
 add_action( 'save_post', 'italystrap_meta_box_save' );
-function italystrap_meta_box_save( $post_id )
-{
+function italystrap_meta_box_save( $post_id ){
 	// Bail if we're doing an auto save
 	if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
 	

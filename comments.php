@@ -69,8 +69,8 @@ if ( post_password_required() ) {
 						    	array( 
 						    		'echo'		=> false,
 						    		'type'		=> 'array',
-						    		'prev_text'	=> __('&laquo; Previous comments' , 'italystrap'),
-						    		'next_text'	=> __('Next comments &raquo;', 'italystrap'),
+						    		'prev_text'	=> __('&laquo; Previous comments' , 'ItalyStrap'),
+						    		'next_text'	=> __('Next comments &raquo;', 'ItalyStrap'),
 						    		)
 						    	);
 						    if ( is_array( $pages ) ){
@@ -102,12 +102,12 @@ if ( post_password_required() ) {
  */
 if ( comments_open() ) : ?>
 
-	<h3><?php comment_form_title( __("E tu cosa ne pensi?","ItalyStrap"), __("Rispondi a ","ItalyStrap") . ' %s' ); ?></h3>
+	<h3><?php comment_form_title( __("What do you think about?","ItalyStrap"), __("Reply","ItalyStrap") . ' %s' ); ?></h3>
 
-	<p><?php new_cancel_comment_reply_link( __("Annulla" , "ItalyStrap") ); ?></p>
+	<p><?php new_cancel_comment_reply_link( __("Cancel" , "ItalyStrap") ); ?></p>
 
 	<?php if ( get_option('comment_registration') && !is_user_logged_in() ) : ?>
-		<p class="alert alert-warning margin-top-25">Devi essere <a href="<?php echo wp_login_url( get_permalink() ); ?>" class="alert-link" ><?php _e("loggato","ItalyStrap"); ?></a> per scrivere il tuo commento :-)</p>
+		<p class="alert alert-warning margin-top-25"><?php _e('You need to be', 'ItalyStrap'); ?> <a href="<?php echo wp_login_url( get_permalink() ); ?>" class="alert-link" ><?php _e("logged in","ItalyStrap"); ?></a> <?php _e('to write a comment :-)', 'ItalyStrap'); ?></p>
 	<?php else : ?>
 
 <div class="form-actions">
@@ -115,7 +115,7 @@ if ( comments_open() ) : ?>
 
 		<?php if ( is_user_logged_in() ) : ?>
 
-			<p class="comments-logged-in-as"><?php _e("Loggato come","ItalyStrap"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Esci","ItalyStrap"); ?>" class="btn btn-default btn-xs">Esci &raquo;</a></p>
+			<p class="comments-logged-in-as"><?php _e("Logged in as","ItalyStrap"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Exit","ItalyStrap"); ?>" class="btn btn-default btn-xs"><?php _e('Exit &raquo;', 'ItalyStrap'); ?></a></p>
 
 		<?php else : ?>
 
@@ -150,7 +150,7 @@ if ( comments_open() ) : ?>
 
 			<div class="form-group">
 				<label for="comment" class="sr-only"><?php _e('Comment', 'ItalyStrap'); ?></label>
-				<textarea class="form-control" name="comment" id="comment" placeholder="<?php _e( 'Scrivi il tuo commento qui' ,'ItalyStrap'); ?>" tabindex="4" rows="6"></textarea>
+				<textarea class="form-control" name="comment" id="comment" placeholder="<?php _e( 'Write your comment here' ,'ItalyStrap'); ?>" tabindex="4" rows="6"></textarea>
 			</div>
 
 			<input class="btn btn-large btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="<?php _e('Submit Comment', 'ItalyStrap'); ?>" />

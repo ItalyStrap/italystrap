@@ -12,19 +12,19 @@
  */
 function custom_post_type() {
 	$labels = array(
-		'name'                => _x( 'Prodotti', 'Post Type General Name', 'ItalyStrap' ),
-		'singular_name'       => _x( 'Prodotti', 'Post Type Singular Name', 'ItalyStrap' ),
-		'menu_name'           => __( 'Prodotti', 'ItalyStrap' ),
-		'parent_item_colon'   => __( 'Parent prodotti:', 'ItalyStrap' ),
-		'all_items'           => __( 'Tutti i prodotti', 'ItalyStrap' ),
-		'view_item'           => __( 'Visualizza i prodotti', 'ItalyStrap' ),
-		'add_new_item'        => __( 'Aggiungi un nuovo prodotto', 'ItalyStrap' ),
-		'add_new'             => __( 'Aggiungi un nuovo prodotto', 'ItalyStrap' ),
-		'edit_item'           => __( 'Modifica prodotti', 'ItalyStrap' ),
-		'update_item'         => __( 'Aggiorna prodotti', 'ItalyStrap' ),
-		'search_items'        => __( 'Ricerca prodotti', 'ItalyStrap' ),
-		'not_found'           => __( 'Nessun prodotto trovato', 'ItalyStrap' ),
-		'not_found_in_trash'  => __( 'Nessun prodotto nel cestino', 'ItalyStrap' ),
+		'name'                => _x( 'Products', 'Post Type General Name', 'ItalyStrap' ),
+		'singular_name'       => _x( 'Products', 'Post Type Singular Name', 'ItalyStrap' ),
+		'menu_name'           => __( 'Products', 'ItalyStrap' ),
+		'parent_item_colon'   => __( 'Parent products:', 'ItalyStrap' ),
+		'all_items'           => __( 'All products', 'ItalyStrap' ),
+		'view_item'           => __( 'View products', 'ItalyStrap' ),
+		'add_new_item'        => __( 'Add new product', 'ItalyStrap' ),
+		'add_new'             => __( 'Add new product', 'ItalyStrap' ),
+		'edit_item'           => __( 'Edit products', 'ItalyStrap' ),
+		'update_item'         => __( 'Update products', 'ItalyStrap' ),
+		'search_items'        => __( 'Search products', 'ItalyStrap' ),
+		'not_found'           => __( 'Products not found', 'ItalyStrap' ),
+		'not_found_in_trash'  => __( 'No products found in trash', 'ItalyStrap' ),
 	);
 
 	$supports_array = array(
@@ -41,7 +41,7 @@ function custom_post_type() {
 	);
 
 	$args = array(
-		'label'               => __( 'prodotti', 'ItalyStrap' ),
+		'label'               => __( 'products', 'ItalyStrap' ),
 		'description'         => __( 'Information pages of prodotti - <strong>insert here</strong> any description of custom post page', 'ItalyStrap' ),
 		'labels'              => $labels,
 		'supports'            => $supports_array,

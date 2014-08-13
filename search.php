@@ -3,7 +3,7 @@
  * The search template file.
  */
 get_header();?>
-	<section id="search post-<?php the_ID(); ?>" <?php post_class('class-name'); ?>>
+	<section id="search post" <?php post_class('class-name'); ?>>
         <div class="container">
             <div class="row">
 				<div class="col-md-8" itemscope itemtype="http://schema.org/SearchResultsPage">
@@ -12,7 +12,7 @@ get_header();?>
 								if ( have_posts() ) : ?>
 									
 									<header class="page-header">
-										<h1 itemprop="headline"><?php printf( __( 'Risultato per la ricerca di: %s', 'twentytwelve' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+										<h1 itemprop="headline"><?php printf( __( 'Search result of: %s', 'twentytwelve' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 									</header>
 
 									<?php while ( have_posts() ) : the_post(); ?>
@@ -34,7 +34,7 @@ get_header();?>
 																</div>
 															<?php } ?>
 													<div  itemprop="text"><?php the_excerpt(); ?></div>
-														<p class="label label-info">Ultima modifica: <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
+														<p class="label label-info"><?php _e('Last edit:', 'ItalyStrap'); ?> <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
 														<span class="clearfix"></span>
 													</section>
 													<?php echo italystrap_ttr_wc();?>

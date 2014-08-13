@@ -36,7 +36,7 @@ get_header();?>
 																</div>
 															<?php } ?>
 													<div  itemprop="text"><?php the_excerpt(); ?></div>
-														<p class="label label-info">Ultima modifica: <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
+														<p class="label label-info"><?php _e('Last edit:', 'ItalyStrap'); ?> <time datetime="<?php the_modified_time('Y-m-d') ?>" itemprop="dateModified"><?php the_modified_time('d F Y') ?></time></p>
 														<span class="clearfix"></span>
 													</section>
 														<?php echo italystrap_ttr_wc();?>

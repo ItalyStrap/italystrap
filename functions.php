@@ -29,6 +29,7 @@ require_once locate_template('/lib/password_protection.php');   // Function for 
 require_once locate_template('/lib/class-tgm-plugin-activation.php');// File for install required plugin
 require_once locate_template('/lib/class-tgm-plugin-required.php');// File for install required plugin
 require_once locate_template('/lib/custom_shortcode.php');       // Custom shortcode
+require_once locate_template('/lib/security.php');       // Some function for make wordpress more secure
 /*
  * Setup Theme Functions
  */

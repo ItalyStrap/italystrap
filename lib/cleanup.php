@@ -99,7 +99,6 @@ function italystrap_rel_next_prev(){
       $get_permalink = get_permalink();
       if ( $page == 1 ) { // If page is 1 echo only rel="next" ?>
         <link rel="next" href="<?php echo $get_permalink . '/' . ($page+1); ?>" />
-        <p>prima</p>
 <?php
       }
 

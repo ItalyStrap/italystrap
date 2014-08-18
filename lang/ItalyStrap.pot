@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2014-08-13 16:36+0100\n"
-"PO-Revision-Date: 2014-08-13 16:36+0100\n"
+"POT-Creation-Date: 2014-08-16 13:26+0100\n"
+"PO-Revision-Date: 2014-08-16 13:37+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: it_IT\n"
@@ -17,22 +17,27 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 
+# There is a white space at bottom
 #: archive.php:15
 msgid "Tag archive:"
 msgstr ""
 
+# There is a white space at bottom
 #: archive.php:20
 msgid "Category archive:"
 msgstr ""
 
+# There is a white space at bottom
 #: archive.php:25
 msgid "Daily archive:"
 msgstr ""
 
+# There is a white space at bottom
 #: archive.php:27
 msgid "Monthly archive:"
 msgstr ""
 
+# There is a white space at bottom
 #: archive.php:29
 msgid "Yearly archive:"
 msgstr ""
@@ -131,7 +136,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: functions.php:43
+#: functions.php:44
 msgid "Main Menu"
 msgstr ""
 
@@ -153,30 +158,37 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
+# There is a white space at bottom
 #: lib/breadcrumb.php:47
 msgid "Tag: "
 msgstr ""
 
+# There is a white space at bottom
 #: lib/breadcrumb.php:52
 msgid "Daily archive: "
 msgstr ""
 
+# There is a white space at bottom
 #: lib/breadcrumb.php:57
 msgid "Monthly archive: "
 msgstr ""
 
+# There is a white space at bottom
 #: lib/breadcrumb.php:62
 msgid "Yearly archive: "
 msgstr ""
 
+# There is a white space at bottom
 #: lib/breadcrumb.php:67
 msgid "Author Archives: "
 msgstr ""
 
+# There is a white space at bottom
 #: lib/breadcrumb.php:70
 msgid "Blog Archives"
 msgstr ""
 
+# There is a white space at bottom
 #: lib/breadcrumb.php:74
 msgid "Search Results: "
 msgstr ""
@@ -499,6 +511,10 @@ msgstr ""
 msgid "Related posts"
 msgstr ""
 
+#: lib/security.php:7
+msgid "<strong>Login Failed</strong>: please check your username and password."
+msgstr ""
+
 #: lib/sidebar.php:13
 msgid "Footer Box 1"
 msgstr ""
@@ -567,6 +583,18 @@ msgstr ""
 
 #: single.php:39
 msgid "Share this with your friends:"
+msgstr ""
+
+#: template/meta.php:23
+msgid "No Responses"
+msgstr ""
+
+#: template/meta.php:23
+msgid "One Response"
+msgstr ""
+
+#: template/meta.php:23
+msgid "% Responses"
 msgstr ""
 
 #: template/non-trovato.php:3

@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2014-08-16 18:36+0100\n"
-"PO-Revision-Date: 2014-08-16 18:36+0100\n"
+"POT-Creation-Date: 2014-08-18 20:22+0100\n"
+"PO-Revision-Date: 2014-08-18 20:22+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
-"Language: it_IT\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.7\n"
 "X-Poedit-Basepath: ../\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -19,142 +19,142 @@ msgstr ""
 
 #: archive.php:15
 msgid "Tag archive:"
-msgstr "Archivio per il tag: "
+msgstr "Tag Archive:"
 
 #: archive.php:20
 msgid "Category archive:"
-msgstr "Archivio per la categoria: "
+msgstr "Catégorie archives:"
 
 #: archive.php:25
 msgid "Daily archive:"
-msgstr "Archivio del giorno: "
+msgstr "Archives quotidiennes: "
 
 #: archive.php:27
 msgid "Monthly archive:"
-msgstr "Archivio del mese di: "
+msgstr "Archives mensuelles: "
 
 #: archive.php:29
 msgid "Yearly archive:"
-msgstr "Archivio dell'anno: "
+msgstr "Archives annuelles: "
 
 #: archive.php:60 author.php:81 blog.php:39 full-width.php:31 page.php:31
 #: search.php:37 single.php:36
 msgid "Last edit:"
-msgstr "Ultima modifica:"
+msgstr "Dernière édition:"
 
 #: author.php:27
 msgid "Web site:"
-msgstr "Sito web:"
+msgstr "Site web:"
 
 #: comments.php:72
 msgid "&laquo; Previous comments"
-msgstr "&laquo; Commenti precedenti"
+msgstr "&laquo; Commentaires plus anciens"
 
 #: comments.php:73
 msgid "Next comments &raquo;"
-msgstr "Commenti successivi &raquo;"
+msgstr "Suivant les commentaires &raquo;"
 
 #: comments.php:105
 msgid "What do you think about?"
-msgstr "E tu, cosa ne pensi?"
+msgstr "Qu'est-ce que vous en pensez?"
 
 #: comments.php:105 lib/comments.php:153
 msgid "Reply"
-msgstr "Rispondi"
+msgstr "Répondre"
 
 #: comments.php:107
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Annuler"
 
 #: comments.php:110
 msgid "You need to be"
-msgstr "Devi essere"
+msgstr "Vous devez être"
 
 #: comments.php:110
 msgid "logged in"
-msgstr "loggato"
+msgstr "Connecté"
 
 #: comments.php:110
 msgid "to write a comment :-)"
-msgstr "per scrivere un commento :-)"
+msgstr "pour écrire un commentaire :-)"
 
 #: comments.php:118
 msgid "Logged in as"
-msgstr "Loggato come"
+msgstr "Connecté en tant que"
 
 #: comments.php:118
 msgid "Exit"
-msgstr "Esci"
+msgstr "Déconnexion"
 
 #: comments.php:118
 msgid "Exit &raquo;"
-msgstr "Esci &raquo;"
+msgstr "Déconnexion &raquo;"
 
 #: comments.php:123 comments.php:127
 msgid "Name"
-msgstr "Nome"
+msgstr "Nom"
 
 #: comments.php:123 comments.php:127 comments.php:132 comments.php:136
 msgid " (required)"
-msgstr "(richiesto)"
+msgstr " (obligatoire)"
 
 #: comments.php:132 comments.php:136
 msgid "Email (will not be published)"
-msgstr "Email (non sarà pubblicata)"
+msgstr "Email (ne sera pas publié)"
 
 #: comments.php:141
 msgid "Website"
-msgstr "Sito web"
+msgstr "Site web"
 
 #: comments.php:145
 msgid "Website (optional)"
-msgstr "Sito web (opzionale)"
+msgstr "Site web (facultatif)"
 
 #: comments.php:152
 msgid "Comment"
-msgstr "Commento"
+msgstr "Les commentaires"
 
 #: comments.php:153
 msgid "Write your comment here"
-msgstr "Scrivi qui il tuo commento"
+msgstr "Rédigez votre commentaire ici"
 
 #: comments.php:156
 msgid "Submit Comment"
-msgstr "Invia il commento"
+msgstr "Envoyer un commentaire"
 
 #: comments.php:170
 msgid "Comments are closed."
-msgstr "I commenti sono chiusi."
+msgstr "Les commentaires sont fermés."
 
 #: full-width.php:33 lib/comments.php:41 lib/comments.php:136 page.php:33
 #: single.php:38
 msgid "Edit"
-msgstr "Modifica"
+msgstr "Editer"
 
 #: functions.php:44
 msgid "Main Menu"
-msgstr "Menù principale"
+msgstr "Menu principal"
 
-#: index.php:84
+#: index.php:96
 msgid "Author:"
-msgstr "Autore:"
+msgstr "Auteurs:"
 
 #: lib/activation.php:38
 msgid "Welcome to the ItalyStrap theme"
-msgstr "Benvenuto nel tema ItalyStrap"
+msgstr "Bienvenue sur le thème ItalyStrap"
 
 #: lib/activation.php:39
 msgid ""
 "First off all install <a href=\"https://github.com/overclokk/ItalyStrap-child"
 "\" target=\"_blank\">ItalyStrap-child</a> and use it for any customization."
 msgstr ""
-"Prima di tutto installa anche <a href=\"https://github.com/overclokk/"
-"ItalyStrap-child\" target=\"_blank\">ItalyStrap-child</a> ed usa questo per "
-"le eventuali modifiche."
+"Tout d'abord installer tous <a href=\"https://github.com/overclokk/"
+"ItalyStrap-child\" target=\"_blank\">ItalyStrap-child</a> et l'utiliser pour "
+"toute personnalisation."
 
 #: lib/breadcrumb.php:19
 msgid "Home"
-msgstr "Home"
+msgstr "Maison"
 
 #: lib/breadcrumb.php:47
 msgid "Tag: "
@@ -162,84 +162,84 @@ msgstr "Tag: "
 
 #: lib/breadcrumb.php:52
 msgid "Daily archive: "
-msgstr "Archivio del giorno: "
+msgstr "Archives quotidiennes: "
 
 #: lib/breadcrumb.php:57
 msgid "Monthly archive: "
-msgstr "Archivio del mese di: "
+msgstr "Archives mensuelles: "
 
 #: lib/breadcrumb.php:62
 msgid "Yearly archive: "
-msgstr "Archivio dell'anno: "
+msgstr "Archives annuelles: "
 
 #: lib/breadcrumb.php:67
 msgid "Author Archives: "
-msgstr "Archivio autore: "
+msgstr "Archives d'auteurs: "
 
 #: lib/breadcrumb.php:70
 msgid "Blog Archives"
-msgstr "Archivio del blog: "
+msgstr "Archives du blog"
 
 #: lib/breadcrumb.php:74
 msgid "Search Results: "
-msgstr "Risultato per la ricerca di: "
+msgstr "Résultats de la recherche: "
 
 #: lib/class-tgm-plugin-activation.php:196
 #: lib/class-tgm-plugin-required.php:52
 msgid "Install Required Plugins"
-msgstr "Installa i plugin richiesti"
+msgstr "Installez requis Plugins"
 
 #: lib/class-tgm-plugin-activation.php:197
 #: lib/class-tgm-plugin-required.php:53
 msgid "Install Plugins"
-msgstr "Installa i plugin"
+msgstr "Installer des plugins"
 
 #: lib/class-tgm-plugin-activation.php:198
 #: lib/class-tgm-plugin-required.php:54
 #, php-format
 msgid "Installing Plugin: %s"
-msgstr "Installa il Plugin: %s"
+msgstr "Installation Plugin: %s"
 
 #: lib/class-tgm-plugin-activation.php:199
 msgid "Something went wrong."
-msgstr "Qualcosa non ha funzionato."
+msgstr "Quelque chose s'est mal passé."
 
 #: lib/class-tgm-plugin-activation.php:210
 #: lib/class-tgm-plugin-required.php:66
 msgid "Return to Required Plugins Installer"
-msgstr "Ritorna all'Installazione richiesta dei plugin"
+msgstr "Retour à requis Plugins Installer"
 
 #: lib/class-tgm-plugin-activation.php:211
 msgid "Return to the dashboard"
-msgstr "Ritorna al pannello di amministrazione"
+msgstr "Retour au tableau de bord"
 
 #: lib/class-tgm-plugin-activation.php:212
 #: lib/class-tgm-plugin-activation.php:1965
 #: lib/class-tgm-plugin-required.php:67
 msgid "Plugin activated successfully."
-msgstr "Il plugin è stato attivato con successo"
+msgstr "Plugin activé avec succès."
 
 #: lib/class-tgm-plugin-activation.php:213
 msgid "The following plugin was activated successfully:"
-msgstr "Il seguente plugin è stato attivato con successo:"
+msgstr "Le plugin suivant a été activé avec succès:"
 
 #: lib/class-tgm-plugin-activation.php:214
 #, php-format
 msgid "All plugins installed and activated successfully. %1$s"
-msgstr "Tutti i plugin sono stati installati ed attivati con successo. %1$s"
+msgstr "Tous les plugins installés et activés avec succès. %1$s"
 
 #: lib/class-tgm-plugin-activation.php:215
 msgid "Dismiss this notice"
-msgstr "Nascondi l'avviso"
+msgstr "Rejeter cet avis"
 
 #: lib/class-tgm-plugin-activation.php:556
 #: lib/class-tgm-plugin-activation.php:2182
 msgid "Return to the Dashboard"
-msgstr "Ritorna al pannello di controllo"
+msgstr "Retour au tableau de bord"
 
 #: lib/class-tgm-plugin-activation.php:1186
 msgid "Private Repository"
-msgstr "Repository privato"
+msgstr "Référentiel privé"
 
 #: lib/class-tgm-plugin-activation.php:1189
 msgid "Pre-Packaged"
@@ -247,33 +247,33 @@ msgstr "Pre-Packaged"
 
 #: lib/class-tgm-plugin-activation.php:1194
 msgid "WordPress Repository"
-msgstr "Repository di WordPress"
+msgstr "WordPress Repository"
 
 #: lib/class-tgm-plugin-activation.php:1197
 msgid "Required"
-msgstr "Richiesto"
+msgstr "Requis"
 
 #: lib/class-tgm-plugin-activation.php:1197
 msgid "Recommended"
-msgstr "Raccomandato"
+msgstr "Recommandé"
 
 #: lib/class-tgm-plugin-activation.php:1200
 msgid "Not Installed"
-msgstr "Non installato"
+msgstr "Non installé"
 
 #: lib/class-tgm-plugin-activation.php:1202
 msgid "Installed But Not Activated"
-msgstr "Installato ma non attivato"
+msgstr "Installé mais pas activé"
 
 #: lib/class-tgm-plugin-activation.php:1304
 #: lib/class-tgm-plugin-activation.php:1412
 msgid "Install"
-msgstr "Installa"
+msgstr "Installer"
 
 #: lib/class-tgm-plugin-activation.php:1326
 #: lib/class-tgm-plugin-activation.php:1413
 msgid "Activate"
-msgstr "Attiva"
+msgstr "Activer"
 
 #: lib/class-tgm-plugin-activation.php:1375
 #, php-format
@@ -281,8 +281,8 @@ msgid ""
 "No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
 "Dashboard\">Return to the Dashboard</a>"
 msgstr ""
-"Nessun plugin da installare o attivare. <a href=\"%1$s\" title=\"Ritorna al "
-"pannello di controllo\">Ritorna al pannello di controllo</a>"
+"Aucun plugin à installer ou à activer. <a href=\"%1$s\" title=\"Return à la "
+"Dashboard\"> retour à la tableau de bord</a>"
 
 #: lib/class-tgm-plugin-activation.php:1391
 msgid "Plugin"
@@ -290,326 +290,335 @@ msgstr "Plugin"
 
 #: lib/class-tgm-plugin-activation.php:1392
 msgid "Source"
-msgstr "Sorgente"
+msgstr "Source"
 
 #: lib/class-tgm-plugin-activation.php:1393
 msgid "Type"
-msgstr "Tipo"
+msgstr "Type"
 
 #: lib/class-tgm-plugin-activation.php:1394
 msgid "Status"
-msgstr "Stato"
+msgstr "Statut"
 
 #: lib/class-tgm-plugin-activation.php:1522
 msgid "No plugins are available to be installed at this time."
-msgstr "Nessun plugin è disponibile per essere installato in questo momento."
+msgstr "Aucun greffons sont disponibles pour être installé à l'heure actuelle."
 
 #: lib/class-tgm-plugin-activation.php:1630
 msgid "No plugins are available to be activated at this time."
-msgstr "Nessun plugin è disponibile per essere attivato in questo momento."
+msgstr "Sans les extensions sont disponibles pour être activés à ce moment."
 
 #: lib/class-tgm-plugin-activation.php:1948
 msgid "Install package not available."
-msgstr "Pacchetto installazione non disponibile."
+msgstr "Installer le paquet n'est pas disponible."
 
 #: lib/class-tgm-plugin-activation.php:1949
 #, php-format
 msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
-msgstr "Scarica il pacchetto da <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+"Téléchargement package d'installation de <span class=\"code\">%s</"
+"span>&#8230;"
 
 #: lib/class-tgm-plugin-activation.php:1950
 msgid "Unpacking the package&#8230;"
-msgstr "Decomprimi il pacchetto&#8230;"
+msgstr "Déballage du paquet&#8230;"
 
 #: lib/class-tgm-plugin-activation.php:1951
 msgid "Installing the plugin&#8230;"
-msgstr "Installa il plugin&#8230;"
+msgstr "Installation du plugin&#8230;"
 
 #: lib/class-tgm-plugin-activation.php:1952
 msgid "Plugin install failed."
-msgstr "L'installazione del plugin è fallita."
+msgstr "Plugin installation a échoué."
 
 #: lib/class-tgm-plugin-activation.php:1953
 msgid "Plugin installed successfully."
-msgstr "Il plugin è stato installato correttamente."
+msgstr "Plugin installé avec succès."
 
 #: lib/class-tgm-plugin-activation.php:1964
 msgid "Plugin activation failed."
-msgstr "L'attivazione del plugin è fallita."
+msgstr "Plugin activation a échoué."
 
 #: lib/class-tgm-plugin-activation.php:2078
 msgid ""
 "The installation and activation process is starting. This process may take a "
 "while on some hosts, so please be patient."
 msgstr ""
-"Il processo di installazione e attivazione è cominciato. In alcuni hosting "
-"potrebbe impiegare del tempo, sii paziente."
+"Le processus d'installation et d'activation commence. Ce processus peut "
+"prendre un certain temps sur certains hôtes, donc s'il vous plaît soyez "
+"patient."
 
 #: lib/class-tgm-plugin-activation.php:2079
 #, php-format
 msgid "%1$s installed and activated successfully."
-msgstr "%1$s installazione e attivazione riuscita."
+msgstr "%1$s installés et activés avec succès."
 
 #: lib/class-tgm-plugin-activation.php:2079
 #: lib/class-tgm-plugin-activation.php:2088
 msgid "Show Details"
-msgstr "Mostra i dettagli"
+msgstr "Afficher les détails"
 
 #: lib/class-tgm-plugin-activation.php:2079
 #: lib/class-tgm-plugin-activation.php:2088
 msgid "Hide Details"
-msgstr "Nascondi i dettagli"
+msgstr "Masquer les détails"
 
 #: lib/class-tgm-plugin-activation.php:2080
 msgid "All installations and activations have been completed."
-msgstr "tutte le installazioni e attivazioni sono state completate."
+msgstr "Toutes les installations et les activations ont été achevés."
 
 #: lib/class-tgm-plugin-activation.php:2081
 #, php-format
 msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
-msgstr "Installazione e attivazione Plugin %1$s (%2$d/%3$d)"
+msgstr "Installation et activation Plugin %1$s (%2$d/%3$d)"
 
 #: lib/class-tgm-plugin-activation.php:2085
 msgid ""
 "The installation process is starting. This process may take a while on some "
 "hosts, so please be patient."
 msgstr ""
-"Il processo di installazione e attivazione è cominciato. In alcuni hosting "
-"potrebbe impiegare del tempo, sii paziente."
+"Le processus d'installation commence. Ce processus peut prendre un certain "
+"temps sur certains hôtes, donc s'il vous plaît soyez patient."
 
 #: lib/class-tgm-plugin-activation.php:2086
 #, php-format
 msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
-msgstr "C'è stato un errore mentre si installava %1$s: <strong>%2$s</strong>."
+msgstr ""
+"Une erreur s'est produite lors de l'installation %1$s: <strong>%2$s</strong>."
 
 #: lib/class-tgm-plugin-activation.php:2087
 #, php-format
 msgid "The installation of %1$s failed."
-msgstr "L'installazione di %1$s è fallita."
+msgstr "L'installation de %1$s échoué."
 
 #: lib/class-tgm-plugin-activation.php:2088
 #, php-format
 msgid "%1$s installed successfully."
-msgstr "%1$s installato con successo."
+msgstr "%1$s installés avec succès."
 
 #: lib/class-tgm-plugin-activation.php:2089
 msgid "All installations have been completed."
-msgstr "Ogni installazione è stata completata."
+msgstr "Toutes les installations ont été achevées."
 
 #: lib/class-tgm-plugin-activation.php:2090
 #, php-format
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
-msgstr "Installazione del plugin %1$s (%2$d/%3$d)"
+msgstr "Installation Plugin %1$s (%2$d/%3$d)"
 
 #: lib/class-tgm-plugin-required.php:55
 msgid "Something went wrong with the plugin API."
-msgstr "Qualcosa non ha funzionato con le API del plugin."
+msgstr "Quelque chose n'allait pas avec l'API de plugin."
 
 #: lib/class-tgm-plugin-required.php:68
 #, php-format
 msgid "All plugins installed and activated successfully. %s"
-msgstr "Tutti i plugin sono stati installati ed attivati con successo. %s"
+msgstr "Tous les plugins installés et activés avec succès. %s"
 
 #: lib/comment_reply.php:5
 msgid "Click here to cancel reply."
-msgstr "Clicca qui per cancellare la tua risposta."
+msgstr "Cliquez ici pour annuler la réponse."
 
 #: lib/comments.php:36 lib/comments.php:126
 msgid "The Boss :-)"
-msgstr "The boss :-)"
+msgstr "Le Boss :-)"
 
 #: lib/comments.php:55
 msgid "Reply <i class=\"glyphicon glyphicon-arrow-down\"></i>"
-msgstr "Rispondi <i class=\"glyphicon glyphicon-arrow-down\"></i>"
+msgstr "Répondre <i class=\"glyphicon glyphicon-arrow-down\"></i>"
 
 #: lib/comments.php:143
 msgid "Your comment is awaiting moderation."
-msgstr "Il tuo commento è in attesa di essere moderato"
+msgstr "Votre commentaire est en attente de modération."
 
 #: lib/custom-post-type.php:17
 msgid "Products"
-msgstr "Prodotti"
+msgstr "Produits"
 
 #: lib/custom-post-type.php:18
 msgid "Parent products:"
-msgstr "Prodotto genitore"
+msgstr "Produits parents:"
 
 #: lib/custom-post-type.php:19
 msgid "All products"
-msgstr "Tutti i prodotti"
+msgstr "Tous les produits"
 
 #: lib/custom-post-type.php:20
 msgid "View products"
-msgstr "Visualizza prodotti"
+msgstr "Voir les produits"
 
 #: lib/custom-post-type.php:21 lib/custom-post-type.php:22
 msgid "Add new product"
-msgstr "Aggiungi nuovo prodotto"
+msgstr "Ajouter un nouveau produit"
 
 #: lib/custom-post-type.php:23
 msgid "Edit products"
-msgstr "Modifica prodotti"
+msgstr "Modifier produits"
 
 #: lib/custom-post-type.php:24
 msgid "Update products"
-msgstr "Aggiorna prodotti"
+msgstr "Produits de mise à jour"
 
 #: lib/custom-post-type.php:25
 msgid "Search products"
-msgstr "Ricerca prodotti"
+msgstr "Rechercher un produit"
 
 #: lib/custom-post-type.php:26
 msgid "Products not found"
-msgstr "Prodotti non trovati"
+msgstr "Produits introuvable"
 
 #: lib/custom-post-type.php:27
 msgid "No products found in trash"
-msgstr "Nessun prodotto nel cestino"
+msgstr "Pas de produits trouvés dans une poubelle"
 
 #: lib/custom-post-type.php:44
 msgid "products"
-msgstr "prodotti"
+msgstr "produits"
 
 #: lib/custom-post-type.php:45
 msgid ""
 "Information pages of prodotti - <strong>insert here</strong> any description "
 "of custom post page"
 msgstr ""
-"Pagina informativa del prodotto - <strong>inserisci qui</strong> una "
-"descrizione della pagina custom"
+"Les pages d'informations de prodotti - <strong> insérer ici </ strong> une "
+"description de poste personnalisé la page"
 
 #: lib/custom_excerpt.php:20
 msgid "Read more"
-msgstr "Continua a leggere"
+msgstr "En savoir plus"
 
 #: lib/custom_meta_box.php:6
 msgid "Select if you want show this in home page slider"
-msgstr "Seleziona se vuoi mostrare nello slider in home page"
+msgstr "Sélectionnez si vous voulez le montrer dans la page d'accueil curseur"
 
 #: lib/custom_meta_box.php:16
 msgid "Do you want show in home slider?"
-msgstr "Vuoi mostrarlo nello slider in home?"
+msgstr "Voulez-vous montrer à la maison curseur?"
 
 #: lib/pagination.php:9
 msgid "Page: "
-msgstr "Pagina:"
+msgstr "Page: "
 
 #: lib/password_protection.php:16
 msgid "To view this protected post, enter the password below:"
-msgstr "Per visualizzare questo post inserisci la password qui sotto:"
+msgstr ""
+"Cet article est protégé par mot de passe. Entrez le mot de passe pour voir "
+"les commentaires."
 
 #: lib/password_protection.php:18
 msgid "Password: "
-msgstr "Password:"
+msgstr "Password: "
 
 #: lib/password_protection.php:18
 msgid "Enter password"
-msgstr "Inserisci la password"
+msgstr "Entrez le mot de passe"
 
 #: lib/related_post.php:19
 msgid "Related posts"
-msgstr "Articoli correlati"
+msgstr "Related posts"
 
 #: lib/security.php:7
 msgid "<strong>Login Failed</strong>: please check your username and password."
 msgstr ""
-"<strong>Login fallito</strong>: controlla di aver inserito correttamente "
-"username o la password."
+"<strong> Échec de la connexion </ strong>: s'il vous plaît vérifier votre "
+"nom d'utilisateur et mot de passe."
 
 #: lib/sidebar.php:13
 msgid "Footer Box 1"
-msgstr "Box footer 1"
+msgstr "Pied de page Box 1"
 
 #: lib/sidebar.php:15
 msgid "Footer box 1 widget area (Use only a widget)"
-msgstr "Footer box 1 widget area (Usa solo un widget)"
+msgstr "Zone Pied de page 1 zone de widget (Utilisez uniquement un widget)"
 
 #: lib/sidebar.php:23
 msgid "Footer Box 2"
-msgstr "Footer Box 2"
+msgstr "Pied de page Box 2"
 
 #: lib/sidebar.php:25
 msgid "Footer box 2 widget area (Use only a widget)"
-msgstr "Footer box 2 widget area (Usa solo un widget)"
+msgstr "Zone Pied de page 2 zone de widget (Utilisez uniquement un widget)"
 
 #: lib/sidebar.php:33
 msgid "Footer Box 3"
-msgstr "Footer Box 3"
+msgstr "Pied de page Box 3"
 
 #: lib/sidebar.php:35
 msgid "Footer box 3 widget area (Use only a widget)"
-msgstr "Footer box 3 widget area (Usa solo un widget)"
+msgstr "Zone Pied de page 3 zone de widget (Utilisez uniquement un widget)"
 
 #: lib/sidebar.php:43
 msgid "Footer Box 4"
-msgstr "Footer Box 4"
+msgstr "Pied de page Box 4"
 
 #: lib/sidebar.php:45
 msgid "Footer box 4 widget area (Use only a widget)"
-msgstr "Footer box 4 widget area (Usa solo un widget)"
+msgstr "Zone Pied de page 4 zone de widget (Utilisez uniquement un widget)"
 
 #: lib/widget.php:22
 msgid "Use this widget to add a vCard"
-msgstr "Usa questo widget per aggiungere una scheda"
+msgstr "Utilisez ce widget pour ajouter une vCard"
 
 #: lib/widget.php:51
 msgid "Company name"
-msgstr "Ragione sociale"
+msgstr "Nom de l'entreprise"
 
 #: lib/wp-h5bp-htaccess.php:19
 #, php-format
 msgid "Please make sure your <a href=\"%s\">.htaccess</a> file is writable "
-msgstr "Assicurati che il file <a href=\"%s\">.htaccess</a> sia scrivibile "
+msgstr ""
+"S'il vous plaît assurez-vous que votre <a href=\"%s\">.htaccess</a> fichier "
+"est accessible en écriture"
 
 #: lib/wp_bootstrap_navwalker.php:196
 msgid "Add a menu"
-msgstr "Aggiungi al menù"
+msgstr "Ajouter un menu"
 
 #: search.php:15
 #, php-format
 msgid "Search result of: %s"
-msgstr "Risultato per la ricerca di: %s"
+msgstr "Résultats de la recherche pour %s"
 
 #: searchform.php:4
 msgid "Search now"
-msgstr "Cerca ora"
+msgstr "Rechercher maintenant"
 
 #: searchform.php:6
 msgid "Search"
-msgstr "Ricerca"
+msgstr "Recherche"
 
 #: single.php:33 template/sitemap_html.php:9
 msgid "Pages:"
-msgstr "Pagine:"
+msgstr "Pages:"
 
 #: single.php:39
 msgid "Share this with your friends:"
-msgstr "Condividilo con i tuoi amici:"
+msgstr "Partagez avec vos amis:"
 
 #: template/meta.php:23
 msgid "No Responses"
-msgstr "0 Risposte"
+msgstr "Pas de réponses"
 
 #: template/meta.php:23
 msgid "One Response"
-msgstr "1 Risposta"
+msgstr "Une réponse"
 
 #: template/meta.php:23
 msgid "% Responses"
-msgstr "% Risposte"
+msgstr "% Réponses"
 
 #: template/non-trovato.php:3
 msgid "Damn, what you were looking for is not there"
-msgstr "Azz, quello che stavi cercando non c'è"
+msgstr ""
+"Merde, la page demandée a changé de nom ou est temporairement inaccessible."
 
 #: template/non-trovato.php:5
 msgid "Search again with the form below."
-msgstr "Cerca ancora usando il form qui sotto:"
+msgstr "Recherche supplémentaire avec le formulaire ci-dessous."
 
 #: template/sitemap_html.php:4
 msgid "Authors:"
-msgstr "Autori:"
+msgstr "Auteurs:"
 
 #: template/sitemap_html.php:19
 msgid "Articles:"
-msgstr "Articoli:"
+msgstr "Articles:"

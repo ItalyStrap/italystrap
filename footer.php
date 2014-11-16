@@ -33,5 +33,8 @@
     </footer><!-- #footer -->
 </div><!-- Wrapper -->
 	<?php wp_footer(); ?>
+	<?php if( !is_preview() && !is_admin() ) : ?>  
+	<!-- Google Analytics Code  --> 
+	<?php endif; ?>
 </body>
 </html>

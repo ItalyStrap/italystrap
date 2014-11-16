@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
-            bootstrapJS: {
+            dist: {
                 files: {
                     'js/bootstrap.min.js': [
                         'js/src/bootstrapJS/transition.js',
@@ -19,7 +19,15 @@ module.exports = function(grunt) {
                         'js/src/bootstrapJS/scrollspy.js',
                         'js/src/bootstrapJS/tab.js',
                         'js/src/bootstrapJS/affix.js',
-                    ]
+                    ],
+
+                    'js/home.min.js': [
+                        'js/src/home.js'
+                    ],
+
+                    'js/custom.min.js': [
+                        'js/src/custom.js'
+                    ],
                 }
             }
         },

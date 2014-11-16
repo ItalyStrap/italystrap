@@ -36,6 +36,24 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
+###1.9.3
+
++ Add fully translations in Italian, English, French, German
++ Fix php error in search.php (the_ID() outside the loop)
++ Add author name in breadcrumbs author page
++ Add  get_option('date_format') in meta.php
++ Add description in meta.php
++ Add carousel-indicators in index.php
++ Fix margin in gallery img class
++ Modify Favicon function for child theme or partent theme
++ Fix issue category icon viewed even if the content is not in category (meta.php)
++ Add custom.js file in js/src directory
++ Move home.js in js/src
++ Add CSS stile for dropdown category in custom.js
++ Fix $content_width issue
++ Fix echo current page in CPT for Facebook open graph
++ Add is_preview() in single.php, page,php and footer.php (for footer only for analytics) (@link http://www.hongkiat.com/blog/wordpress-preview-mode/)
+
 ###1.9.2
 
 + Add new function for reveal hidden tinymce buttons (styleselect) in new file custom_shortcode.php
@@ -83,7 +101,7 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 + Add my name in licence.md
 + Add support array with all supports in custom-post-type.php
 + Add daschicon in custom post icon
-+ Add ID to section tag on 404.php, archive.php, author.php, blog.php, ful-width.php, page.php, search.php, single.php, sitemap-hetml.php
++ Add ID to section tag on 404.php, archive.php, author.php, blog.php, ful-width.php, page.php, search.php, single.php, sitemap-html.php
 + New file and code for Entry Meta
 + Remove img-rounded class and add center-block instead
 

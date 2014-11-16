@@ -22,10 +22,13 @@ function italystrap_add_style_and_script(){
 		//Activate slide on windows load
 		if ( is_home() || is_front_page() ){
 			wp_enqueue_style( 'home',  $path . '/css/home.css', array('bootstrap'), null, null);
-			wp_enqueue_script( 'home', $path . '/js/home.js', array('jquery' , 'bootstrap'), null,  true );
+			wp_enqueue_script( 'home', $path . '/js/home.min.js', array('jquery' , 'bootstrap'), null,  true );
+		}
+		if ( !is_home() || !is_front_page() ) {
+			wp_enqueue_script( 'custom', $path . '/js/custom.min.js', array('jquery' , 'bootstrap'), null,  true );
 		}
 
-		if (is_single() && comments_open() && get_option('thread_comments')) {
+		if (is_singular() && comments_open() && get_option('thread_comments')) {
     		wp_enqueue_script('comment-reply');
   		}
 	}

@@ -18,6 +18,11 @@ get_header(); ?>
 										<footer>
 											<?php get_template_part('template/meta'); ?>
 										</footer>
+										<?php if( is_preview() ) : ?>  
+											<div class="alert alert-info">  
+												<?php _e( '<strong>Note:</strong> You are previewing this post. This post has not yet been published.', 'ItalyStrap' ); ?>  
+											</div>  
+										<?php endif; ?>
 										<meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 										<section class="margin-bottom-25">
 															<?php if ( has_post_thumbnail() ) { ?>

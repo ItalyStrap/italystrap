@@ -1,5 +1,5 @@
 #Git files
-.gitignore
+#.gitignore
 .git
 
 #Grunt developer
@@ -11,3 +11,13 @@ css/src/sass/.sass-cache
 
 #Bower update
 bower
+
+#Files
+lang/ItalyStrap.po
+
+#Temp file
+.gitattributes
+#.gitignore
+bower.json
+lib/roadmap.php
+lib/activation.php

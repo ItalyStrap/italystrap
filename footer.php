@@ -1,3 +1,8 @@
+<?php
+/**
+ * The footer template file.
+ */
+?>
 <!-- Footer -->
     <footer itemscope itemtype="http://schema.org/WPFooter">
 	    	<div class="container">

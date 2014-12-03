@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The 404 template file.
+ */
+get_header(); ?>
 <section id="error404">
 	<div class="container">
 		<div class="row">

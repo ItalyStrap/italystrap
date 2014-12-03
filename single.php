@@ -34,6 +34,7 @@ get_header(); ?>
 																</div>
 															<?php } ?>
 												<div  itemprop="articleBody"><?php the_content(); ?></div>
+												<span class="clearfix"></span>
 												<?php wp_link_pages( array(
 													'before' => '<p class="text-muted lead"><b>' . __( 'Pages:', 'ItalyStrap' ) . '</b>',
 													'after' => '</p>',

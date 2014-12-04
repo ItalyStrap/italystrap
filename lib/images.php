@@ -1,4 +1,8 @@
 <?php
+/**
+ * For file size see image_size.php
+ */
+
 $defaultimage = $path . '/img/ItalyStrap.jpg';
 
 function italystrap_thumb_url(){

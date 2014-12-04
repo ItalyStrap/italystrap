@@ -1,6 +1,5 @@
 <?php
 /**
- *
  *  Size for image
  */
 add_image_size( 'slide', 1140, 500, true);

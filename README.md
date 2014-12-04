@@ -59,6 +59,7 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 + Update Bootstrap to 3.3.1
 + Improve load JS and CSS on hierarchy of page
 + Some fix and improvement
++ Change license from MIT to GPLv2
 
 ###1.9.2
 

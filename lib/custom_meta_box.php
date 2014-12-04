@@ -13,7 +13,7 @@ function italystrap_select_slide( $post ){
 	?>
 	<p>
 		<input type="checkbox" name="slide" id="slide" <?php checked( $check, 'on' ); ?> />
-		<label for="slide"><?php _e('Do you want show in home slider?', 'ItalyStrap'); ?></label>
+		<label for="slide"><?php _e('Do you want to show it in the home slider?', 'ItalyStrap'); ?></label>
 	</p>
 	<?php	
 }

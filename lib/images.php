@@ -1,4 +1,8 @@
 <?php
+/**
+ * For file size see image_size.php
+ */
+
 $defaultimage = $path . '/img/ItalyStrap.jpg';
 
 function italystrap_thumb_url(){
@@ -81,9 +85,15 @@ add_filter('get_image_tag_class','italystrap_add_image_class');
  * by Roberto Iacono di robertoiacono.it
  */
 function ri_wp_favicon(){
-	
-	global $path;
-    echo '<link rel="shortcut icon" type="image/x-icon" href="' . $path . '/img/favicon.ico" />';
+
+	if ( is_child_theme() ) {
+		global $pathchild;
+		$favicon = $pathchild;
+	} else {
+		global $path;
+		$favicon = $path;
+	}
+    echo '<link rel="shortcut icon" type="image/x-icon" href="' . $favicon . '/img/favicon.ico" />';
 }
 add_action('wp_head', 'ri_wp_favicon');
 ?>

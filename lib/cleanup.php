@@ -215,7 +215,16 @@ add_filter('body_class', 'roots_body_class');
  * Renamed and modify for new bootstrap class for video embed
  */
 function italystrap_embed_wrap($html, $url, $attr = '', $post_ID = '') {
-  return '<div class="entry-content-asset embed-responsive embed-responsive-16by9">' . str_replace('frame', 'frame class="embed-responsive-item"', $html) . '</div>';
+
+  if ( strpos($html, 'class="twitter-tweet"') ) {
+
+    return $html;
+
+  }else{
+
+    return '<div class="entry-content-asset embed-responsive embed-responsive-16by9">' . str_replace( array('frame') , array('frame class="embed-responsive-item"'), $html) . '</div>';
+
+  }
 }
 add_filter('embed_oembed_html', 'italystrap_embed_wrap', 10, 4);
 

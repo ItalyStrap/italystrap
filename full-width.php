@@ -1,7 +1,7 @@
 <?php
-/*
-Template Name: Full-width
-*/
+/**
+ * Template Name: Full-width
+ */
 get_header(); ?>
     <!-- Main Content -->
     <section id="full-width">

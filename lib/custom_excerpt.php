@@ -6,6 +6,10 @@
  * Codex link:
  * @link http://codex.wordpress.org/Excerpt
  * @link http://codex.wordpress.org/Customizing_the_Read_More
+ *
+ * The quicktag <!--more--> doesn't work with the_excerpt() and get_the_excerpt,
+ * it works only with the_content and get_the_content
+ * Use the box excerpt inside admin panel
  */
 
 add_action( 'after_setup_theme', 'italystrap_excerpt_more_lenght' );
@@ -17,7 +21,8 @@ if ( !function_exists( 'italystrap_excerpt_more_lenght' ) ):
 	    // Escerpt read more link function
 	    function italystrap_read_more_link() {
 
-			return $read_more_link = ' <a href="'. get_permalink() . '">... ' . __( 'Read more', 'ItalyStrap' ) . '</a>';
+	    	global $post;
+			return ' <a href="'. get_permalink( $post->ID ) . '">... ' . __( 'Read more', 'ItalyStrap' ) . '</a>';
 
 	    }
 	    // Function to override

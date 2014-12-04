@@ -4,9 +4,25 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
-            bootstrapJS: {
+            dist: {
                 files: {
-                    'js/bootstrap.min.js': [
+                    'js/home.min.js': [
+                        'js/src/bootstrapJS/transition.js',
+                        // 'js/src/bootstrapJS/alert.js',
+                        // 'js/src/bootstrapJS/button.js',
+                        'js/src/bootstrapJS/carousel.js',
+                        'js/src/bootstrapJS/collapse.js',
+                        'js/src/bootstrapJS/dropdown.js',
+                        // 'js/src/bootstrapJS/modal.js',
+                        // 'js/src/bootstrapJS/tooltip.js',
+                        // 'js/src/bootstrapJS/popover.js',
+                        // 'js/src/bootstrapJS/scrollspy.js',
+                        // 'js/src/bootstrapJS/tab.js',
+                        // 'js/src/bootstrapJS/affix.js',
+                        'js/src/home.js' // <- Modify this
+                    ],
+
+                    'js/singular.min.js': [
                         'js/src/bootstrapJS/transition.js',
                         'js/src/bootstrapJS/alert.js',
                         'js/src/bootstrapJS/button.js',
@@ -19,14 +35,47 @@ module.exports = function(grunt) {
                         'js/src/bootstrapJS/scrollspy.js',
                         'js/src/bootstrapJS/tab.js',
                         'js/src/bootstrapJS/affix.js',
-                    ]
+                        'js/src/singular.js' // <- Modify this
+                    ],
+
+                    'js/archive.min.js': [
+                        'js/src/bootstrapJS/transition.js',
+                        'js/src/bootstrapJS/alert.js',
+                        'js/src/bootstrapJS/button.js',
+                        'js/src/bootstrapJS/carousel.js',
+                        'js/src/bootstrapJS/collapse.js',
+                        'js/src/bootstrapJS/dropdown.js',
+                        'js/src/bootstrapJS/modal.js',
+                        'js/src/bootstrapJS/tooltip.js',
+                        'js/src/bootstrapJS/popover.js',
+                        'js/src/bootstrapJS/scrollspy.js',
+                        'js/src/bootstrapJS/tab.js',
+                        'js/src/bootstrapJS/affix.js',
+                        'js/src/archive.js' // <- Modify this
+                    ],
+
+                    'js/custom.min.js': [
+                        'js/src/bootstrapJS/transition.js',
+                        'js/src/bootstrapJS/alert.js',
+                        'js/src/bootstrapJS/button.js',
+                        'js/src/bootstrapJS/carousel.js',
+                        'js/src/bootstrapJS/collapse.js',
+                        'js/src/bootstrapJS/dropdown.js',
+                        'js/src/bootstrapJS/modal.js',
+                        'js/src/bootstrapJS/tooltip.js',
+                        'js/src/bootstrapJS/popover.js',
+                        'js/src/bootstrapJS/scrollspy.js',
+                        'js/src/bootstrapJS/tab.js',
+                        'js/src/bootstrapJS/affix.js',
+                        'js/src/custom.js' // <- Modify this
+                    ],                   
                 }
             }
         },
 
         jshint: {
             all: [
-                'js/*.js',
+                'js/src/*.js',
                 '!js/bootstrap.min.js',
                 '!js/jquery.min.js'
             ]
@@ -50,7 +99,9 @@ module.exports = function(grunt) {
                     optimization: 2
                 },
                 files: {
-                    'css/bootstrap.min.css': ['css/src/less/bootstrap.less'],
+                    'css/bootstrap.min.css': [
+                        'css/src/less/bootstrap.less'
+                        ],
                   }
             }
         },

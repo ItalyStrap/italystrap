@@ -8,9 +8,13 @@ ItalyStrap is a Wordpress starter theme based on [HTML5 Boilerplate](http://html
 
 Clone the git repo
 
-'''git clone git://github.com/overclokk/ItalyStrap.git'''
+```git clone git://github.com/overclokk/ItalyStrap.git```
 
-or [download it](https://github.com/overclokk/ItalyStrap/archive/master.zip) unzip and place it in your folder themes (/wp-content/themes/) directory and activate it via Admin - Appearance - Themes
+or [download it](https://github.com/overclokk/ItalyStrap/archive/master.zip) unzip and place it in your folder themes (/wp-content/themes/) directory, rename folder to ItalyStrap and activate it via Admin - Appearance - Themes
+
+Then [download Italystrap Child Theme](https://github.com/overclokk/ItalyStrap-child/archive/master.zip) and use it for your changes
+
+If you want you can install the plugin to keep it updated directly from the WordPress dashboard
 
 
 
@@ -27,7 +31,6 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 * CSS3
 * Twitter Bootstrap 3
 * Schema.org
-* Google Authorship
 * Facebook opengraph
 * Twitter cards
 * SEO Friendly (che vuol dire tutto e niente :-))
@@ -35,6 +38,27 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 * E chi più ne ha più ne metta :-P
 
 ##Changelog
+
+###2.0.0
+
++ Add fully translations in Italian, English, French, German
++ Fix php error in search.php (the_ID() outside the loop)
++ Add author name in breadcrumbs author page
++ Add  get_option('date_format') in meta.php
++ Add description in meta.php
++ Add carousel-indicators in index.php
++ Fix margin in gallery img class
++ Modify Favicon function for child theme or partent theme
++ Fix issue category icon viewed even if the content is not in category (meta.php)
++ Add custom.js file in js/src directory
++ Move home.js in js/src
++ Add CSS stile for dropdown category in custom.js
++ Fix $content_width issue
++ Fix echo current page in CPT for Facebook open graph
++ Add is_preview() in single.php, page,php and footer.php (for footer only for analytics) (@link http://www.hongkiat.com/blog/wordpress-preview-mode/)
++ Update Bootstrap to 3.3.1
++ Improve load JS and CSS on hierarchy of page
++ Some fix and improvement
 
 ###1.9.2
 
@@ -83,7 +107,7 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 + Add my name in licence.md
 + Add support array with all supports in custom-post-type.php
 + Add daschicon in custom post icon
-+ Add ID to section tag on 404.php, archive.php, author.php, blog.php, ful-width.php, page.php, search.php, single.php, sitemap-hetml.php
++ Add ID to section tag on 404.php, archive.php, author.php, blog.php, ful-width.php, page.php, search.php, single.php, sitemap-html.php
 + New file and code for Entry Meta
 + Remove img-rounded class and add center-block instead
 

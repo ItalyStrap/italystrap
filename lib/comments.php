@@ -118,11 +118,20 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 					<ul class="list-inline margin-bottom-10">
 						<li>
 							<h4 class="media-heading">
-								<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php echo get_comment_author() ?><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span></a>
-								<?php
+
+							<?php if ( get_comment_author_url() ) { ?>
+
+								<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name"><?php echo get_comment_author() ?></span><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span></a>
+
+							<?php } else { ?>
+
+								<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name"><?php echo get_comment_author() ?></span><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span>
+
+							<?php	}
+
 								printf(
 								// If current post author is also comment author, make it known visually.
-									($comment->user_id === $post->post_author) ? '<span class="label label-danger"> ' . __(
+									($comment->user_id === $post->post_author) ? ' <span class="label label-danger"> ' . __(
 										'The Boss :-)',
 										'ItalyStrap'
 									) . '</span> ' : ''); ?>

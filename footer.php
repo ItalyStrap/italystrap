@@ -1,3 +1,8 @@
+<?php
+/**
+ * The footer template file.
+ */
+?>
 <!-- Footer -->
     <footer itemscope itemtype="http://schema.org/WPFooter">
 	    	<div class="container">
@@ -24,7 +29,7 @@
 				<hr>
 	        	<div class="row">
 		        	<div class="col-md-12">
-						<p class="text-muted">&copy; <span itemprop="copyrightYear"><?php echo date('Y'); ?></span> <?php bloginfo('name'); ?> | Developed by <a href="<?php echo 'http://www.overclokk.net'; ?>" rel="nofollow" itemprop="url">Overclokk.net</a> | Theme name: <a href="<?php echo 'http://www.overclokk.net/italystrap'; ?>" rel="nofollow" itemprop="url">ItalyStrap</a> <?php if ( !is_child_theme() ): ?>| Theme version: <span class="badge" itemprop="version"><?php italystrap_version(); ?></span><?php endif; ?>
+						<p class="text-muted small">&copy; <span itemprop="copyrightYear"><?php echo date('Y'); ?></span> <?php bloginfo('name'); ?> | Developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> | Theme name: <a href="http://www.italystrap.it" rel="nofollow" itemprop="url">ItalyStrap</a> <?php if ( !is_child_theme() ): ?>| Theme version: <span class="badge" itemprop="version"><?php italystrap_version(); ?></span><?php endif; ?>
 						</p>
 					</div>
                 </div>
@@ -33,5 +38,8 @@
     </footer><!-- #footer -->
 </div><!-- Wrapper -->
 	<?php wp_footer(); ?>
+	<?php if( !is_preview() && !is_admin() ) : ?>  
+	<!-- Google Analytics Code  --> 
+	<?php endif; ?>
 </body>
 </html>

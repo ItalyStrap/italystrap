@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2014-08-18 20:22+0100\n"
-"PO-Revision-Date: 2014-08-18 20:22+0100\n"
+"POT-Creation-Date: 2014-12-04 11:56+0100\n"
+"PO-Revision-Date: 2014-12-04 12:11+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.7\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -37,18 +37,18 @@ msgstr "Archives mensuelles: "
 msgid "Yearly archive:"
 msgstr "Archives annuelles: "
 
-#: archive.php:60 author.php:81 blog.php:39 full-width.php:31 page.php:31
-#: search.php:37 single.php:36
+#: archive.php:60 author.php:85 blog.php:39 full-width.php:31 page.php:37
+#: search.php:37 single.php:42
 msgid "Last edit:"
 msgstr "Dernière édition:"
 
-#: author.php:27
+#: author.php:31
 msgid "Web site:"
 msgstr "Site web:"
 
 #: comments.php:72
 msgid "&laquo; Previous comments"
-msgstr "&laquo; Commentaires plus anciens"
+msgstr "&laquo; Commentaires précédents"
 
 #: comments.php:73
 msgid "Next comments &raquo;"
@@ -58,7 +58,7 @@ msgstr "Suivant les commentaires &raquo;"
 msgid "What do you think about?"
 msgstr "Qu'est-ce que vous en pensez?"
 
-#: comments.php:105 lib/comments.php:153
+#: comments.php:105 lib/comments.php:162
 msgid "Reply"
 msgstr "Répondre"
 
@@ -80,7 +80,7 @@ msgstr "pour écrire un commentaire :-)"
 
 #: comments.php:118
 msgid "Logged in as"
-msgstr "Connecté en tant que"
+msgstr "Connecté comment"
 
 #: comments.php:118
 msgid "Exit"
@@ -126,8 +126,8 @@ msgstr "Envoyer un commentaire"
 msgid "Comments are closed."
 msgstr "Les commentaires sont fermés."
 
-#: full-width.php:33 lib/comments.php:41 lib/comments.php:136 page.php:33
-#: single.php:38
+#: full-width.php:33 lib/comments.php:41 lib/comments.php:145 page.php:39
+#: single.php:44
 msgid "Edit"
 msgstr "Editer"
 
@@ -152,35 +152,35 @@ msgstr ""
 "ItalyStrap-child\" target=\"_blank\">ItalyStrap-child</a> et l'utiliser pour "
 "toute personnalisation."
 
-#: lib/breadcrumb.php:19
+#: lib/breadcrumb.php:26
 msgid "Home"
 msgstr "Maison"
 
-#: lib/breadcrumb.php:47
+#: lib/breadcrumb.php:58
 msgid "Tag: "
 msgstr "Tag: "
 
-#: lib/breadcrumb.php:52
+#: lib/breadcrumb.php:63
 msgid "Daily archive: "
 msgstr "Archives quotidiennes: "
 
-#: lib/breadcrumb.php:57
+#: lib/breadcrumb.php:68
 msgid "Monthly archive: "
 msgstr "Archives mensuelles: "
 
-#: lib/breadcrumb.php:62
+#: lib/breadcrumb.php:73
 msgid "Yearly archive: "
 msgstr "Archives annuelles: "
 
-#: lib/breadcrumb.php:67
+#: lib/breadcrumb.php:78
 msgid "Author Archives: "
 msgstr "Archives d'auteurs: "
 
-#: lib/breadcrumb.php:70
+#: lib/breadcrumb.php:81
 msgid "Blog Archives"
 msgstr "Archives du blog"
 
-#: lib/breadcrumb.php:74
+#: lib/breadcrumb.php:85
 msgid "Search Results: "
 msgstr "Résultats de la recherche: "
 
@@ -302,22 +302,22 @@ msgstr "Statut"
 
 #: lib/class-tgm-plugin-activation.php:1522
 msgid "No plugins are available to be installed at this time."
-msgstr "Aucun greffons sont disponibles pour être installé à l'heure actuelle."
+msgstr ""
+"Aucuns greffons sont disponibles pour être installés à l'heure actuelle."
 
 #: lib/class-tgm-plugin-activation.php:1630
 msgid "No plugins are available to be activated at this time."
-msgstr "Sans les extensions sont disponibles pour être activés à ce moment."
+msgstr "Aucune extensions sont disponibles pour être activés dans ce moment."
 
 #: lib/class-tgm-plugin-activation.php:1948
 msgid "Install package not available."
-msgstr "Installer le paquet n'est pas disponible."
+msgstr "Le paquet n'est pas disponible pour l'installation."
 
 #: lib/class-tgm-plugin-activation.php:1949
 #, php-format
 msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
 msgstr ""
-"Téléchargement package d'installation de <span class=\"code\">%s</"
-"span>&#8230;"
+"Téléchargement paquet d'installation de <span class=\"code\">%s</span>&#8230;"
 
 #: lib/class-tgm-plugin-activation.php:1950
 msgid "Unpacking the package&#8230;"
@@ -418,15 +418,15 @@ msgstr "Tous les plugins installés et activés avec succès. %s"
 msgid "Click here to cancel reply."
 msgstr "Cliquez ici pour annuler la réponse."
 
-#: lib/comments.php:36 lib/comments.php:126
+#: lib/comments.php:36 lib/comments.php:135
 msgid "The Boss :-)"
-msgstr "Le Boss :-)"
+msgstr "Le Maître :-)"
 
 #: lib/comments.php:55
 msgid "Reply <i class=\"glyphicon glyphicon-arrow-down\"></i>"
 msgstr "Répondre <i class=\"glyphicon glyphicon-arrow-down\"></i>"
 
-#: lib/comments.php:143
+#: lib/comments.php:152
 msgid "Your comment is awaiting moderation."
 msgstr "Votre commentaire est en attente de modération."
 
@@ -460,7 +460,7 @@ msgstr "Produits de mise à jour"
 
 #: lib/custom-post-type.php:25
 msgid "Search products"
-msgstr "Rechercher un produit"
+msgstr "Rechercher produits"
 
 #: lib/custom-post-type.php:26
 msgid "Products not found"
@@ -479,20 +479,21 @@ msgid ""
 "Information pages of prodotti - <strong>insert here</strong> any description "
 "of custom post page"
 msgstr ""
-"Les pages d'informations de prodotti - <strong> insérer ici </ strong> une "
+"Les pages d'informations des produits - <strong> insérer ici </ strong> une "
 "description de poste personnalisé la page"
 
-#: lib/custom_excerpt.php:20
+#: lib/custom_excerpt.php:25
 msgid "Read more"
-msgstr "En savoir plus"
+msgstr "Lire plus"
 
 #: lib/custom_meta_box.php:6
 msgid "Select if you want show this in home page slider"
-msgstr "Sélectionnez si vous voulez le montrer dans la page d'accueil curseur"
+msgstr ""
+"Sélectionnez si vous voulez le montrer dans le curseur de la page d'accueil"
 
 #: lib/custom_meta_box.php:16
-msgid "Do you want show in home slider?"
-msgstr "Voulez-vous montrer à la maison curseur?"
+msgid "Do you want to show it in the home slider?"
+msgstr "Voulez-vous le montrer dans la page primcipale ?"
 
 #: lib/pagination.php:9
 msgid "Page: "
@@ -508,13 +509,13 @@ msgstr ""
 msgid "Password: "
 msgstr "Password: "
 
-#: lib/password_protection.php:18
+#: lib/password_protection.php:19
 msgid "Enter password"
 msgstr "Entrez le mot de passe"
 
 #: lib/related_post.php:19
 msgid "Related posts"
-msgstr "Related posts"
+msgstr "Articles correxés"
 
 #: lib/security.php:7
 msgid "<strong>Login Failed</strong>: please check your username and password."
@@ -554,11 +555,11 @@ msgstr "Pied de page Box 4"
 msgid "Footer box 4 widget area (Use only a widget)"
 msgstr "Zone Pied de page 4 zone de widget (Utilisez uniquement un widget)"
 
-#: lib/widget.php:22
+#: lib/widget.php:28
 msgid "Use this widget to add a vCard"
 msgstr "Utilisez ce widget pour ajouter une vCard"
 
-#: lib/widget.php:51
+#: lib/widget.php:57
 msgid "Company name"
 msgstr "Nom de l'entreprise"
 
@@ -567,11 +568,19 @@ msgstr "Nom de l'entreprise"
 msgid "Please make sure your <a href=\"%s\">.htaccess</a> file is writable "
 msgstr ""
 "S'il vous plaît assurez-vous que votre <a href=\"%s\">.htaccess</a> fichier "
-"est accessible en écriture"
+"est accessible en  l'écriture"
 
 #: lib/wp_bootstrap_navwalker.php:196
 msgid "Add a menu"
 msgstr "Ajouter un menu"
+
+#: page.php:23 single.php:24
+msgid ""
+"<strong>Note:</strong> You are previewing this post. This post has not yet "
+"been published."
+msgstr ""
+"<strong>Remarque:</strong> Vous affichez l'aperçu ce poste. Ce poste n'a pas "
+"encore été publié."
 
 #: search.php:15
 #, php-format
@@ -586,11 +595,11 @@ msgstr "Rechercher maintenant"
 msgid "Search"
 msgstr "Recherche"
 
-#: single.php:33 template/sitemap_html.php:9
+#: single.php:39 template/sitemap_html.php:9
 msgid "Pages:"
 msgstr "Pages:"
 
-#: single.php:39
+#: single.php:45
 msgid "Share this with your friends:"
 msgstr "Partagez avec vos amis:"
 
@@ -609,7 +618,7 @@ msgstr "% Réponses"
 #: template/non-trovato.php:3
 msgid "Damn, what you were looking for is not there"
 msgstr ""
-"Merde, la page demandée a changé de nom ou est temporairement inaccessible."
+"Dommage, la page demandée a changé de nom ou est temporairement inaccessible."
 
 #: template/non-trovato.php:5
 msgid "Search again with the form below."
@@ -622,3 +631,6 @@ msgstr "Auteurs:"
 #: template/sitemap_html.php:19
 msgid "Articles:"
 msgstr "Articles:"
+
+#~ msgid "Do you want show in home slider?"
+#~ msgstr "Voulez-vous le montrer dans la page primcipale ?"

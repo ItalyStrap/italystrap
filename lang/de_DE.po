@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2014-08-18 20:55+0100\n"
-"PO-Revision-Date: 2014-08-18 20:55+0100\n"
+"POT-Creation-Date: 2014-12-04 11:56+0100\n"
+"PO-Revision-Date: 2014-12-04 12:12+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.7\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -37,12 +37,12 @@ msgstr "Monatsarchiv:"
 msgid "Yearly archive:"
 msgstr "Jährlich Archiv:"
 
-#: archive.php:60 author.php:81 blog.php:39 full-width.php:31 page.php:31
-#: search.php:37 single.php:36
+#: archive.php:60 author.php:85 blog.php:39 full-width.php:31 page.php:37
+#: search.php:37 single.php:42
 msgid "Last edit:"
 msgstr "Letzte Änderung:"
 
-#: author.php:27
+#: author.php:31
 msgid "Web site:"
 msgstr "Website:"
 
@@ -58,7 +58,7 @@ msgstr "Weiter Kommentare &raquo;"
 msgid "What do you think about?"
 msgstr "Was denken Sie über?"
 
-#: comments.php:105 lib/comments.php:153
+#: comments.php:105 lib/comments.php:162
 msgid "Reply"
 msgstr "Antworten"
 
@@ -126,8 +126,8 @@ msgstr "Kommentar abgeben"
 msgid "Comments are closed."
 msgstr "Kommentare sind geschlossen."
 
-#: full-width.php:33 lib/comments.php:41 lib/comments.php:136 page.php:33
-#: single.php:38
+#: full-width.php:33 lib/comments.php:41 lib/comments.php:145 page.php:39
+#: single.php:44
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -152,35 +152,35 @@ msgstr ""
 "ItalyStrap-child\" target=\"_blank\"> ItalyStrap-Kind</a> und verwenden Sie "
 "es für jeden die individuell gestaltet."
 
-#: lib/breadcrumb.php:19
+#: lib/breadcrumb.php:26
 msgid "Home"
 msgstr "Zuhause"
 
-#: lib/breadcrumb.php:47
+#: lib/breadcrumb.php:58
 msgid "Tag: "
 msgstr "Tag: "
 
-#: lib/breadcrumb.php:52
+#: lib/breadcrumb.php:63
 msgid "Daily archive: "
 msgstr "Tagesarchiv: "
 
-#: lib/breadcrumb.php:57
+#: lib/breadcrumb.php:68
 msgid "Monthly archive: "
 msgstr "Monatsarchiv: "
 
-#: lib/breadcrumb.php:62
+#: lib/breadcrumb.php:73
 msgid "Yearly archive: "
 msgstr "Jährlich Archiv:"
 
-#: lib/breadcrumb.php:67
+#: lib/breadcrumb.php:78
 msgid "Author Archives: "
 msgstr "Archiv des Autors: "
 
-#: lib/breadcrumb.php:70
+#: lib/breadcrumb.php:81
 msgid "Blog Archives"
 msgstr "Blog Archiv"
 
-#: lib/breadcrumb.php:74
+#: lib/breadcrumb.php:85
 msgid "Search Results: "
 msgstr "Suchergebnisse: "
 
@@ -416,7 +416,7 @@ msgstr "Alle Plugins installiert und erfolgreich aktiviert. %s"
 msgid "Click here to cancel reply."
 msgstr "Klicken Sie hier, um die Antwort abzubrechen."
 
-#: lib/comments.php:36 lib/comments.php:126
+#: lib/comments.php:36 lib/comments.php:135
 msgid "The Boss :-)"
 msgstr "Der Boss:-)"
 
@@ -424,7 +424,7 @@ msgstr "Der Boss:-)"
 msgid "Reply <i class=\"glyphicon glyphicon-arrow-down\"></i>"
 msgstr "Antworten <i class=\"glyphicon glyphicon-arrow-down\"></i>"
 
-#: lib/comments.php:143
+#: lib/comments.php:152
 msgid "Your comment is awaiting moderation."
 msgstr "Ihr Beitrag wartet auf die Moderation."
 
@@ -480,7 +480,7 @@ msgstr ""
 "Informationsseiten prodotti - <strong> hier einfügen </ strong> jede "
 "Beschreibung von benutzerdefinierten Post-Seite"
 
-#: lib/custom_excerpt.php:20
+#: lib/custom_excerpt.php:25
 msgid "Read more"
 msgstr "Weiterlesen"
 
@@ -489,8 +489,8 @@ msgid "Select if you want show this in home page slider"
 msgstr "Wählen Sie, wenn Sie zeigen dies in Startseite Schieber wollen"
 
 #: lib/custom_meta_box.php:16
-msgid "Do you want show in home slider?"
-msgstr "Sie möchten zeigen, in Heim Schieber?"
+msgid "Do you want to show it in the home slider?"
+msgstr "Wollen Sie es in der Heimat Schieberegler zeigen?"
 
 #: lib/pagination.php:9
 msgid "Page: "
@@ -504,7 +504,7 @@ msgstr "Um diesen Beitrag sehen geschützt, geben Sie das Passwort unten:"
 msgid "Password: "
 msgstr "Password: "
 
-#: lib/password_protection.php:18
+#: lib/password_protection.php:19
 msgid "Enter password"
 msgstr "Geben Sie das Passwort"
 
@@ -550,11 +550,11 @@ msgstr "Footer Box 4"
 msgid "Footer box 4 widget area (Use only a widget)"
 msgstr "Footer-Box 4 Widget-Bereich (Verwenden Sie nur ein Widget)"
 
-#: lib/widget.php:22
+#: lib/widget.php:28
 msgid "Use this widget to add a vCard"
 msgstr "Verwenden Sie diesen Widget auf eine vCard hinzufügen"
 
-#: lib/widget.php:51
+#: lib/widget.php:57
 msgid "Company name"
 msgstr "Name der Firma"
 
@@ -569,6 +569,14 @@ msgstr ""
 msgid "Add a menu"
 msgstr "Fügen Sie ein Menü"
 
+#: page.php:23 single.php:24
+msgid ""
+"<strong>Note:</strong> You are previewing this post. This post has not yet "
+"been published."
+msgstr ""
+"<strong> Hinweis: </ strong> Sie sind der Vorschau Beitrag. Dieser Beitrag "
+"wurde noch nicht veröffentlicht."
+
 #: search.php:15
 #, php-format
 msgid "Search result of: %s"
@@ -582,11 +590,11 @@ msgstr "Jetzt suchen"
 msgid "Search"
 msgstr "Suche"
 
-#: single.php:33 template/sitemap_html.php:9
+#: single.php:39 template/sitemap_html.php:9
 msgid "Pages:"
 msgstr "Seiten:"
 
-#: single.php:39
+#: single.php:45
 msgid "Share this with your friends:"
 msgstr "Teile es mit Deinen Freunden:"
 
@@ -617,3 +625,6 @@ msgstr "Autoren:"
 #: template/sitemap_html.php:19
 msgid "Articles:"
 msgstr "Artikel:"
+
+#~ msgid "Do you want show in home slider?"
+#~ msgstr "Sie möchten zeigen, in Heim Schieber?"

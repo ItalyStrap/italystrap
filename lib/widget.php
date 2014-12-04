@@ -1,4 +1,10 @@
 <?php
+/**
+ * Customize your widget here
+ * @link http://codex.wordpress.org/Function_Reference/the_widget
+ * @link https://core.trac.wordpress.org/browser/tags/3.9.2/src/wp-includes/default-widgets.php#L0
+ */
+
 function italystrap_widgets_init() {
  // Widgets
 	register_widget('ItalyStrap_Vcard_Widget');

@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The author template file.
+ */
+get_header(); ?>
 	<section id="author-page">
         <div class="container">
             <div class="row">

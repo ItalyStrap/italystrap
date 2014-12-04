@@ -1,31 +1,40 @@
 <?php
 /**
  * The main template file.
+ *
+ * This is an example of a custom index page
+ * In your home page will view a bootstrap slideshow with Custom Post Type "Prodotti" on top
+ * If CPT Prodotti is empty BT slide won't be showing
+ * In new CPT editor check meta box top-left if you want to show the new image product
+ * The CPT must have a feautured image
+ *
+ * 
  */
 get_header(); ?>
 
 <?php $prodotti = new WP_Query(array('meta_key'			=>	'slide',
 									 'meta_value' 		=> 	'on',
 									 'post_type'		=>	'prodotti',
-									 'posts_per_page' 	=> 	4,
 									));
-$active = 1; 
-if ($prodotti->have_posts()):
+if ( $prodotti->have_posts() ):
 ?>
 <!-- Carousel -->
 <section id="carousel">
 	<div class="container hidden-xxs">
 		<div id="myCarousel" class="carousel slide">
-			<!-- <ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>
-			</ol> -->
+			<ol class="carousel-indicators">
+				<?php
+				$active = 0;
+				foreach ( $prodotti->posts as $post ) {
+						$class = ( $active == 0 ) ? 'active' : '';
+						echo  '<li data-target="#myCarousel" data-slide-to="' . $active . '" class="' . $class . '"></li>';
+						$active++;
+						}
+				 ?>
+			</ol>
 			<div class="carousel-inner">
-				<?php while ($prodotti->have_posts()) : $prodotti->the_post(); ?>				
-					<div class="item <?php if ($active == 1 ) : ?>active
-									<?php endif;
-									$active ++; ?>"  itemscope itemtype="http://schema.org/Article">
+				<?php $active = 1; while ( $prodotti->have_posts() ) : $prodotti->the_post(); ?>
+					<div class="item <?php if ($active == 1 ) : ?>active<?php endif; $active ++; ?>"  itemscope itemtype="http://schema.org/Article">
 					  <?php the_post_thumbnail( 'slide' ); ?><meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 					  <div class="container">
 						<div class="carousel-caption">
@@ -49,12 +58,22 @@ if ($prodotti->have_posts()):
 
 <?php endif; ?>
 
+<?php 
+/**
+ * This is the standard loop for show your article
+ * In this case it is configured to show only 4 article because each article are configured to show using col-md-3 class
+ */
+?>
+
 <!-- Main Content -->
-<section>
+<section id="main">
 	<div class="container">
 		<h3>Ultimi articoli</h3>
 			<section class="row">
 				<?php
+						/**
+						 * Example code: If there is a stycky post the loop show only 3 articles
+						 */
 						$sticky = get_option( 'sticky_posts' );
 						if ( isset( $sticky[0] ) ) {
 							$postperpage = 3;
@@ -73,7 +92,7 @@ if ($prodotti->have_posts()):
 						<h4 class="item-title"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark"><?php the_title(); ?></a></h4>
 							<footer>
 								<ul class="list-inline">
-									<li><small><time datetime="<?php the_time('Y-m-d') ?>" itemprop="datePublished"><?php the_time('d-m-Y') ?></time></small></li>
+									<li><small><time datetime="<?php the_time('Y-m-d') ?>" itemprop="datePublished"><?php the_time( get_option('date_format') ) ?></time></small></li>
 									<li><small><?php _e('Author:', 'ItalyStrap'); ?> <span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php the_author_posts_link(); ?></span></small></li>
 								</ul>
 							</footer>

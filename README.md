@@ -8,7 +8,7 @@ ItalyStrap is a Wordpress starter theme based on [HTML5 Boilerplate](http://html
 
 Clone the git repo
 
-'''git clone git://github.com/overclokk/ItalyStrap.git'''
+```git clone git://github.com/overclokk/ItalyStrap.git```
 
 or [download it](https://github.com/overclokk/ItalyStrap/archive/master.zip) unzip and place it in your folder themes (/wp-content/themes/) directory and activate it via Admin - Appearance - Themes
 
@@ -27,7 +27,6 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 * CSS3
 * Twitter Bootstrap 3
 * Schema.org
-* Google Authorship
 * Facebook opengraph
 * Twitter cards
 * SEO Friendly (che vuol dire tutto e niente :-))
@@ -36,7 +35,7 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 
 ##Changelog
 
-###1.9.3
+###2.0.0
 
 + Add fully translations in Italian, English, French, German
 + Fix php error in search.php (the_ID() outside the loop)
@@ -53,6 +52,9 @@ http://www.overclokk.net/italystrap-wordpress-starter-theme
 + Fix $content_width issue
 + Fix echo current page in CPT for Facebook open graph
 + Add is_preview() in single.php, page,php and footer.php (for footer only for analytics) (@link http://www.hongkiat.com/blog/wordpress-preview-mode/)
++ Update Bootstrap to 3.3.1
++ Improve load JS and CSS on hierarchy of page
++ Some fix and improvement
 
 ###1.9.2
 

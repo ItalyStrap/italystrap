@@ -18,14 +18,7 @@ lang/ItalyStrap.po
 #Temp file
 .gitattributes
 #.gitignore
-<<<<<<< HEAD
-bower.json
-lib/roadmap.php
-lib/activation.php
-=======
 
 bower.json
 lib/roadmap.php
-lib/activation.php
 lang/README.txt
->>>>>>> origin/Dev

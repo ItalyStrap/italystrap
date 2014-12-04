@@ -10,7 +10,11 @@ Clone the git repo
 
 ```git clone git://github.com/overclokk/ItalyStrap.git```
 
-or [download it](https://github.com/overclokk/ItalyStrap/archive/master.zip) unzip and place it in your folder themes (/wp-content/themes/) directory and activate it via Admin - Appearance - Themes
+or [download it](https://github.com/overclokk/ItalyStrap/archive/master.zip) unzip and place it in your folder themes (/wp-content/themes/) directory, rename folder to ItalyStrap and activate it via Admin - Appearance - Themes
+
+Then [download Italystrap Child Theme](https://github.com/overclokk/ItalyStrap-child/archive/master.zip) and use it for your changes
+
+If you want you can install the plugin to keep it updated directly from the WordPress dashboard
 
 
 

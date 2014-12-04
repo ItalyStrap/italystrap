@@ -1,21 +1,24 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2014-08-16 13:26+0100\n"
-"PO-Revision-Date: 2014-08-16 13:37+0100\n"
+"POT-Creation-Date: 2014-12-04 11:56+0100\n"
+"PO-Revision-Date: 2014-12-04 11:57+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.7\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: .git\n"
+"X-Poedit-SearchPathExcluded-2: .sass-cache\n"
+"X-Poedit-SearchPathExcluded-3: bower\n"
 
 # There is a white space at bottom
 #: archive.php:15
@@ -42,12 +45,12 @@ msgstr ""
 msgid "Yearly archive:"
 msgstr ""
 
-#: archive.php:60 author.php:81 blog.php:39 full-width.php:31 page.php:31
-#: search.php:37 single.php:36
+#: archive.php:60 author.php:85 blog.php:39 full-width.php:31 page.php:37
+#: search.php:37 single.php:42
 msgid "Last edit:"
 msgstr ""
 
-#: author.php:27
+#: author.php:31
 msgid "Web site:"
 msgstr ""
 
@@ -63,7 +66,7 @@ msgstr ""
 msgid "What do you think about?"
 msgstr ""
 
-#: comments.php:105 lib/comments.php:153
+#: comments.php:105 lib/comments.php:162
 msgid "Reply"
 msgstr ""
 
@@ -131,8 +134,8 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
-#: full-width.php:33 lib/comments.php:41 lib/comments.php:136 page.php:33
-#: single.php:38
+#: full-width.php:33 lib/comments.php:41 lib/comments.php:145 page.php:39
+#: single.php:44
 msgid "Edit"
 msgstr ""
 
@@ -140,7 +143,7 @@ msgstr ""
 msgid "Main Menu"
 msgstr ""
 
-#: index.php:77
+#: index.php:96
 msgid "Author:"
 msgstr ""
 
@@ -154,42 +157,42 @@ msgid ""
 "\" target=\"_blank\">ItalyStrap-child</a> and use it for any customization."
 msgstr ""
 
-#: lib/breadcrumb.php:19
+#: lib/breadcrumb.php:26
 msgid "Home"
 msgstr ""
 
 # There is a white space at bottom
-#: lib/breadcrumb.php:47
+#: lib/breadcrumb.php:58
 msgid "Tag: "
 msgstr ""
 
 # There is a white space at bottom
-#: lib/breadcrumb.php:52
+#: lib/breadcrumb.php:63
 msgid "Daily archive: "
 msgstr ""
 
 # There is a white space at bottom
-#: lib/breadcrumb.php:57
+#: lib/breadcrumb.php:68
 msgid "Monthly archive: "
 msgstr ""
 
 # There is a white space at bottom
-#: lib/breadcrumb.php:62
+#: lib/breadcrumb.php:73
 msgid "Yearly archive: "
 msgstr ""
 
 # There is a white space at bottom
-#: lib/breadcrumb.php:67
+#: lib/breadcrumb.php:78
 msgid "Author Archives: "
 msgstr ""
 
 # There is a white space at bottom
-#: lib/breadcrumb.php:70
+#: lib/breadcrumb.php:81
 msgid "Blog Archives"
 msgstr ""
 
 # There is a white space at bottom
-#: lib/breadcrumb.php:74
+#: lib/breadcrumb.php:85
 msgid "Search Results: "
 msgstr ""
 
@@ -417,7 +420,7 @@ msgstr ""
 msgid "Click here to cancel reply."
 msgstr ""
 
-#: lib/comments.php:36 lib/comments.php:126
+#: lib/comments.php:36 lib/comments.php:135
 msgid "The Boss :-)"
 msgstr ""
 
@@ -425,7 +428,7 @@ msgstr ""
 msgid "Reply <i class=\"glyphicon glyphicon-arrow-down\"></i>"
 msgstr ""
 
-#: lib/comments.php:143
+#: lib/comments.php:152
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
@@ -479,7 +482,7 @@ msgid ""
 "of custom post page"
 msgstr ""
 
-#: lib/custom_excerpt.php:20
+#: lib/custom_excerpt.php:25
 msgid "Read more"
 msgstr ""
 
@@ -488,7 +491,7 @@ msgid "Select if you want show this in home page slider"
 msgstr ""
 
 #: lib/custom_meta_box.php:16
-msgid "Do you want show in home slider?"
+msgid "Do you want to show it in the home slider?"
 msgstr ""
 
 #: lib/pagination.php:9
@@ -503,7 +506,7 @@ msgstr ""
 msgid "Password: "
 msgstr ""
 
-#: lib/password_protection.php:18
+#: lib/password_protection.php:19
 msgid "Enter password"
 msgstr ""
 
@@ -547,11 +550,11 @@ msgstr ""
 msgid "Footer box 4 widget area (Use only a widget)"
 msgstr ""
 
-#: lib/widget.php:22
+#: lib/widget.php:28
 msgid "Use this widget to add a vCard"
 msgstr ""
 
-#: lib/widget.php:51
+#: lib/widget.php:57
 msgid "Company name"
 msgstr ""
 
@@ -562,6 +565,12 @@ msgstr ""
 
 #: lib/wp_bootstrap_navwalker.php:196
 msgid "Add a menu"
+msgstr ""
+
+#: page.php:23 single.php:24
+msgid ""
+"<strong>Note:</strong> You are previewing this post. This post has not yet "
+"been published."
 msgstr ""
 
 #: search.php:15
@@ -577,11 +586,11 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: single.php:33 template/sitemap_html.php:9
+#: single.php:39 template/sitemap_html.php:9
 msgid "Pages:"
 msgstr ""
 
-#: single.php:39
+#: single.php:45
 msgid "Share this with your friends:"
 msgstr ""
 

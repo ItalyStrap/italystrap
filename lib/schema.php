@@ -6,15 +6,15 @@ function italystrap_open_graph_desc(){
 		foreach( $myposts as $post ) : setup_postdata( $post );
 			$excerpt = substr( strip_tags( get_the_content() ), 4, 200);
 		endforeach; wp_reset_query();
-	//Codice per All in One Seo pack
+	// Codice per All in One Seo pack
 	if ( function_exists('aioseop_load_modules')) {
 		$post_aioseo_desc = get_post_meta($post->ID, '_aioseop_description', true);
 		if($post_aioseo_desc){
 		echo stripcslashes($post_aioseo_desc);
 		}}
-	//Codice per SEO by Yoast
-	if ( function_exists('wpseo_get_value') ){
-		echo wpseo_get_value('metadesc');
+	// Codice per SEO by Yoast
+	if ( class_exists('WPSEO_Meta') ){
+		echo WPSEO_Meta::get_value('metadesc');
 	}
 	if ( !function_exists('wpseo_get_value') && !function_exists('aioseop_load_modules')){
 		if ( !empty($post->post_excerpt) ){

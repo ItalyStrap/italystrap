@@ -160,6 +160,10 @@ require_once locate_template('/lib/custom_shortcode.php');
  */
 require_once locate_template('/lib/security.php');
 
+/**
+ * Define ITALYSTRAP_THEME constant for interna use
+ */
+define('ITALYSTRAP_THEME', true);
 
 /**
  * Setup Theme Functions

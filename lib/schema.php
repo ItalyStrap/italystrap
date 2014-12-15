@@ -52,7 +52,11 @@ function italystrap_ttr_wc(){
 		}
 	}
 	
-	$ttr_wc = '<meta  itemprop="wordCount" content="' . $word_count . '"/><meta  itemprop="timeRequired" content="' . $estimated_time . '"/>';
+	$ttr_wc = '<meta  itemprop="timeRequired" content="' . $estimated_time . '"/>';
+
+	if ( is_singular() ) {
+		$ttr_wc .= '<meta  itemprop="wordCount" content="' . $word_count . '"/>';
+	}
 	return $ttr_wc;
 }
 ?>

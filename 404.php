@@ -8,8 +8,8 @@ get_header(); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
-					<?php get_template_part( 'template/non-trovato');?>
-					<?php get_template_part( 'template/sitemap_html');?>
+					<?php get_template_part( 'loops/content', 'none');
+					get_template_part( 'template/sitemap_html');?>
 
 
 					

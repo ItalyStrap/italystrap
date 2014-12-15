@@ -38,9 +38,9 @@ function create_breadcrumbs() {
       }
 
     } elseif (is_category()) {
-      echo '<li>';
+      // echo '<li>';
       // echo get_category_parents( get_query_var('cat'), true, '</li><li>', true );
-      echo '</li>';
+      // echo '</li>';
 
       echo '<li>';
       single_cat_title();

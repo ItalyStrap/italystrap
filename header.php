@@ -4,21 +4,20 @@
  *
  * Displays all of the <head> section and Main menu
  *
- * For improve performance replace it_IT with lang="xx-XX" when xx_XX is your language (en_EN - de_DE - fr_FR - ecc)
+ * For improve performance replace $lang_attr with lang="xx-XX" when xx_XX is your language (en_EN - de_DE - fr_FR - ecc)
  * Otherwise you can use <?php language_attributes(); ?> instead 
  *
- * You calso can replace <?php bloginfo( 'charset' ); ?> with "UTF-8" or your charset
+ * You can also replace <?php bloginfo( 'charset' ); ?> with "UTF-8" or your charset
  * @since ItalyStrap 1.0
  */
 
-$language_attributes = get_bloginfo('language');
-
+$lang_attr = get_bloginfo('language');
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="it_IT" prefix="og: http://ogp.me/ns#"> <![endif]-->
-<!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang="it_IT" prefix="og: http://ogp.me/ns#"> <![endif]-->
-<!--[if IE 8]>			<html class="no-js lt-ie9" lang="it_IT" prefix="og: http://ogp.me/ns#"> <![endif]-->
-<!--[if gt IE 8]><!-->	<html class="no-js" lang="it_IT" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="<?php echo $lang_attr; ?>" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang="<?php echo $lang_attr; ?>" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 8]>			<html class="no-js lt-ie9" lang="<?php echo $lang_attr; ?>" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if gt IE 8]><!-->	<html class="no-js" lang="<?php echo $lang_attr; ?>" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
 <head>
 	<meta charset="UTF-8" >
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">

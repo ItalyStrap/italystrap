@@ -36,7 +36,11 @@ add_action( 'admin_enqueue_scripts', 'italystrap_enqueue_pointer_script_style' )
 function italystrap_pointer_print_scripts() {
  
     $pointer_content  = '<h3>' . __( 'Welcome to the ItalyStrap theme', 'ItalyStrap' ) . '</h3>';
-    $pointer_content .= '<p>' . __('First off all install <a href="https://github.com/overclokk/ItalyStrap-child" target="_blank">ItalyStrap-child</a> and use it for any customization.', 'ItalyStrap' ) . '</p><p>' . __( 'Also read the Wiki <a href="https://github.com/overclokk/ItalyStrap-child/wiki/How-to-use-Child-Theme" target="_blank">How to use Child Theme</a>', 'ItalyStrap' ) . '</p>';
+
+    if ( !is_child_theme() ) {
+        $pointer_content .= '<p>' . __('First off all install <a href="https://github.com/overclokk/ItalyStrap-child" target="_blank">ItalyStrap-child</a> and use it for any customization.', 'ItalyStrap' ) . '</p><p>' . __( 'Also read the Wiki <a href="https://github.com/overclokk/ItalyStrap-child/wiki/How-to-use-Child-Theme" target="_blank">How to use Child Theme</a>', 'ItalyStrap' ) . '</p>';
+    }
+    
     ?>
  
     <script type="text/javascript">

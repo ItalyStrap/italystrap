@@ -2,20 +2,32 @@
 /**
  * The search template file.
  */
-get_header();?>
+get_header(); ?>
     <!-- Main Content -->
-	<section id="search post" <?php post_class('class-name'); ?>>
+	<section id="search" <?php post_class('class-name'); ?>>
         <div class="container">
             <div class="row">
 				<div class="col-md-8" itemscope itemtype="http://schema.org/SearchResultsPage">
-					<?php create_breadcrumbs() ?>
+					<?php
+
+                    if ( class_exists('ItalyStrapBreadcrumbs') ) {
+
+                        $defaults = array(
+                            'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
+                        );
+
+                        new ItalyStrapBreadcrumbs( $defaults );
+                    
+                    }
+
+					?>
 						<header class="page-header">
-							<h1 itemprop="headline"><?php printf( __( 'Search result of: %s', 'twentytwelve' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+							<h1 itemprop="headline"><?php printf( __( 'Search result of: %s', 'ItalyStrap' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 						</header>
 					<?php
 					if ( have_posts() ) : while ( have_posts() ) : the_post();
 
-						get_template_part( 'loops/content', 'search');
+						get_template_part( 'loops/content', 'archive');
 
 						endwhile;
 					else : 

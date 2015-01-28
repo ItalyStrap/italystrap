@@ -3,11 +3,24 @@
  * The author template file.
  */
 get_header(); ?>
+    <!-- Main Content -->
 	<section id="author-page">
         <div class="container">
             <div class="row">
 				<div class="col-md-8" itemscope itemtype="http://schema.org/CollectionPage">
-					<?php create_breadcrumbs(); ?>
+					<?php
+
+                    if ( class_exists('ItalyStrapBreadcrumbs') ) {
+
+                        $defaults = array(
+                            'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
+                        );
+
+                        new ItalyStrapBreadcrumbs( $defaults );
+                    
+                    }
+
+					?>
 					<!-- This sets the $curauth variable -->
 					<?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));?>
 					<div class="row" itemprop="author" itemscope itemtype="http://schema.org/Person">

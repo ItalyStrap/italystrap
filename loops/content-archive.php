@@ -1,6 +1,12 @@
 <article>
 	<header>
-		<h2><a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark"><span itemprop="name"><?php the_title(); ?></span></a></h2>
+		<h2>
+			<a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark">
+				<span itemprop="name">
+					<?php the_title(); ?>
+				</span>
+			</a>
+		</h2>
 	</header>
 	<footer>
 		<?php get_template_part('template/meta'); ?>

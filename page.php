@@ -9,12 +9,24 @@ get_header(); ?>
         	<div class="row">
                 <div class="col-md-8">
                     <?php
-                    create_breadcrumbs();
+
+                    if ( class_exists('ItalyStrapBreadcrumbs') ) {
+
+                        $defaults = array(
+                            'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
+                        );
+
+                        new ItalyStrapBreadcrumbs( $defaults );
+                    
+                    }
+           
                     if (have_posts()) : while (have_posts()) : the_post();
 
                         get_template_part( 'loops/content', 'page' );
 
-                    endwhile;
+                        
+
+                        endwhile;
                     else:
 
                         get_template_part( 'loops/content', 'none');

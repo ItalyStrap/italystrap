@@ -8,8 +8,22 @@ get_header(); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
-					<?php get_template_part( 'loops/content', 'none');
-					get_template_part( 'template/sitemap_html');?>
+					<?php
+
+                    if ( class_exists('ItalyStrapBreadcrumbs') ) {
+
+                        $defaults = array(
+                            'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
+                        );
+
+                        new ItalyStrapBreadcrumbs( $defaults );
+                    
+                    }
+
+					get_template_part( 'loops/content', 'none');
+					get_template_part( 'template/sitemap_html');
+
+					?>
 
 
 					

@@ -3,11 +3,24 @@
  * The archive template file.
  */
 get_header(); ?>
+    <!-- Main Content -->
 	<section id="archive">
         <div class="container">
             <div class="row">
 				<div class="col-md-8" itemscope itemtype="http://schema.org/CollectionPage">
-					<?php create_breadcrumbs(); ?>
+					<?php
+
+                    if ( class_exists('ItalyStrapBreadcrumbs') ) {
+
+                        $defaults = array(
+                            'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
+                        );
+
+                        new ItalyStrapBreadcrumbs( $defaults );
+                    
+                    }
+
+					?>
 					<header class="page-header">
 						<?php
 						the_archive_title('<h2 itemprop="headline">', '</h2>');

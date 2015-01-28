@@ -2,38 +2,47 @@
 /*
  * Template Name: blog
  */
-get_header();?>
+get_header(); ?>
     <!-- Main Content -->
 	<section id="blog">
         <div class="container">
             <div class="row">
 				<div class="col-md-8" itemscope itemtype="http://schema.org/CollectionPage">
 				<?php
-				create_breadcrumbs();
 
-				$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
-				$blog = new WP_Query(
-									array( 
-											'post_type'		=>	'post',
-											'pagination'        => true,
-											'paged'             => $paged,
-											// 'posts_per_page' 	=> $posts_per_page,
-											));
-				if ( $blog->have_posts() ) : while ( $blog->have_posts() ) : $blog->the_post();
+                    if ( class_exists('ItalyStrapBreadcrumbs') ) {
 
-					get_template_part( 'loops/content', 'blog' );
+                        $defaults = array(
+                            'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
+                        );
 
-				endwhile;
+                        new ItalyStrapBreadcrumbs( $defaults );
+                    
+                    }
 
-					bootstrap_pagination( $blog );
+					$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+					$blog = new WP_Query(
+										array( 
+												'post_type'		=>	'post',
+												'pagination'        => true,
+												'paged'             => $paged,
+												// 'posts_per_page' 	=> $posts_per_page,
+												));
+					if ( $blog->have_posts() ) : while ( $blog->have_posts() ) : $blog->the_post();
 
-				else :
+						get_template_part( 'loops/content', 'archive' );
 
-					get_template_part( 'loops/content', 'none');
+					endwhile;
 
-				endif;
-					wp_reset_query();
-					wp_reset_postdata();
+						bootstrap_pagination( $blog );
+
+					else :
+
+						get_template_part( 'loops/content', 'none');
+
+					endif;
+						wp_reset_query();
+						wp_reset_postdata();
 ?>
 
 

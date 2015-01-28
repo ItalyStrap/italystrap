@@ -1,4 +1,5 @@
 <?php
+_deprecated_file( basename(__FILE__), 'ItalyStrap 2.1.0', null, __( 'This file no longer needs to be included.' ) );
 /**
  * @link http://mkoerner.de/breadcrumbs-for-wordpress-themes-with-bootstrap-3/
  * Bootstrap breadcrumbs for wordpress modified by Enea Overclokk
@@ -8,9 +9,13 @@
  * @link http://codex.wordpress.org/Function_Reference/get_category_parents
  * @link https://core.trac.wordpress.org/browser/tags/4.0/src/wp-includes/category-template.php#L0
  * Inserire markup rdfa per google richsnippet
+ *
+ * @deprecated 2.1.0
+ * @deprecated Use new ItalyStrapBreadcrumbs( $defaults );
+ * @see ItalyStrapBreadcrumbs( $defaults );
  */
 function create_breadcrumbs() {
-
+  _deprecated_function( __FUNCTION__, 'ItalyStrap 2.1.0', 'ItalyStrap_the_breadcrumbs' );
   global $post;
   if (isset($post->ID)) {
     $postID = $post->ID;

@@ -32,8 +32,20 @@ $lang_attr = get_bloginfo('language');
 <body>
 <div class="wrapper">
     <header>
+    	<?php
+    	/**
+    	 * This it's only a nav container
+    	 * .navbar-wrapper style is in _menu.scss css/src/sass
+    	 */
+    	?>
 		<nav  class="navbar-wrapper" role="navigation">
 			<div class="container" itemscope itemtype="http://schema.org/SiteNavigationElement">
+				<?php
+				/**
+				 * Modify style for menù with bootstrap style
+				 * @link http://getbootstrap.com/components/#navbar
+				 */
+				?>
 				<div class="navbar navbar-inverse navbar-relative-top">
 					<div class="container">
 						<div class="navbar-header">
@@ -49,7 +61,7 @@ $lang_attr = get_bloginfo('language');
 						</div>
 							<?php wp_nav_menu(
 									array(
-										'menu'				=> 'main-menu',
+										'theme_location'	=> 'main-menu',
 										'depth'				=>	2,
 										'container'         => 'div',
 										'container_class'	=> 'navbar-collapse collapse',

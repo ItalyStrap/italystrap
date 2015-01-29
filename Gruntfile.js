@@ -155,6 +155,7 @@ module.exports = function(grunt) {
                         // 'bower.json', //For now bower it is not uploaded
                         'style.css',
                         'readme.txt',
+                        'README.md',
                         'package.json',
                         // 'functions.php'
                         ]

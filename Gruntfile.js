@@ -268,8 +268,10 @@ module.exports = function(grunt) {
 
     /**
      * My workflow when the all files are committed and the new version has to be created
-     * Update description only in readme.txt
+     * Checkout in master (not dev)
+     * Update description and changelog only in readme.txt
      * Change only version in package.json
+     * $ grunt deploy
      */
     grunt.registerTask('deploy', [
                                 'version',

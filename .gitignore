@@ -14,6 +14,7 @@ bower
 
 #Files
 lang/ItalyStrap.po
+*.zip
 
 #Temp file
 .gitattributes

@@ -4,7 +4,7 @@
 **Tags:** breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant  
 **Requires at least:** 3.8  
 **Tested up to:** 4.1  
-**Stable tag:** 2.0.0  
+**Stable tag:** 2.1.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -69,6 +69,7 @@ Release Date:
 * Improved script for debug
 * Add init.php for after_setup_theme and $content_width
 * Add content for readme.txt
+* Some improvements
 
 ### 2.0.0 ###
 Release Date:
@@ -296,7 +297,7 @@ Release Date:
 *Note:* This plugins is localized/ translateable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating I recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/) and for validating the ["Poedit Editor"](http://www.poedit.net/).
  
 ## Additional Info ##
-**Idea Behind / Philosophy:** A plugin for improve and add some powerful improvement to your site. I'll try to add more feautures if it makes some sense. So stay tuned :).
+**Idea Behind / Philosophy:** A theme for improve and add some powerful improvement to your site. I'll try to add more feautures if it makes some sense. So stay tuned :).
  
 ## Credits ##
 

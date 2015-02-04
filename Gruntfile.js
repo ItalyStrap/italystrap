@@ -268,6 +268,18 @@ module.exports = function(grunt) {
 
     /**
      * My workflow when the all files are committed and the new version has to be created
+     *
+     * Add another step to workflow
+     * First aff all check all update files with bower
+     * 
+     * $ cd bower
+     * $ bower update
+     * $ grunt copy (if bower has updated som files)
+     * $ cd..
+     * $ grunt less (in case bootstrap has been updated)
+     * $ grunt uglify (in case bootstrap has been updated)
+     * And commit new update
+     * 
      * Checkout in master (not dev)
      * Update description and changelog only in readme.txt
      * Change only version in package.json

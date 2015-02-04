@@ -78,15 +78,21 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
 */
 class ItalyStrap_Walker_Comment extends Walker_Comment {
 	function start_lvl(&$output, $depth = 0, $args = array()) {
-		$GLOBALS['comment_depth'] = $depth + 1; ?>
+
+		$GLOBALS['comment_depth'] = $depth + 1;
+		?>
+
 		<span class="clearfix"></span>
 		<ul <?php comment_class('media list-unstyled comment-' . get_comment_ID()); ?>>
-			<?php
+
+		<?php
 		}
 
 		function end_lvl(&$output, $depth = 0, $args = array()) {
 			$GLOBALS['comment_depth'] = $depth + 1;
-			echo '</ul>';
+		?>
+		</ul>
+		<?php
 		}
 
 		function start_el(&$output, $comment, $depth = 0, $args = array(), $id = 0) {
@@ -102,7 +108,9 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 			extract($args, EXTR_SKIP);
 			global $post;
 			?>
-			
+
+		<span class="clearfix"></span>
+		<ul <?php comment_class('media list-unstyled comment-' . get_comment_ID()); ?>>
 
 			<?php 
 			/**
@@ -175,6 +183,6 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 					return;
 				}
 // Close ".media-body" <div> located in templates/comment.php, and then the comment's <li>
-				echo "</div></li>\n";
+				echo "</div></li></ul>\n";
 			}
 		}

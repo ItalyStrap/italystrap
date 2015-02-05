@@ -284,6 +284,9 @@ module.exports = function(grunt) {
      *
      * Upgrade a project's package.json:
      * $ npm-check-updates -u
+     *
+     * Install update
+     * $ npm install
      */
 
     /**

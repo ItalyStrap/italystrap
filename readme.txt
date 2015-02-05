@@ -62,6 +62,7 @@ Release Date:
 * Fix missing ul in comment template
 * Fix gruntfile syntax
 * Add grunt task for update bower dependency
+* Update node modules
 
 = 2.1.0 =
 Release Date: 31-01-2015

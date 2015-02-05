@@ -19,6 +19,42 @@ module.exports = function(grunt) {
             }
         },
 
+        /**
+         * Copy updated dependency
+         * $ grunt copy
+         */
+        copy: { // https://github.com/gruntjs/grunt-contrib-copy
+            bootstrapcss: {
+                expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
+                cwd: 'bower/bootstrap/less/',
+                src: ['**'],
+                dest: 'css/src/less/',
+                filter: 'isFile',
+            },
+            bootstrapjs: {
+                expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
+                cwd: 'bower/bootstrap/js/',
+                src: ['**'],
+                dest: 'js/src/bootstrapJS/',
+                filter: 'isFile',
+            },
+            bootstrapfonts: {
+                expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
+                cwd: 'bower/bootstrap/fonts/',
+                src: ['**'],
+                dest: 'fonts/',
+                filter: 'isFile',
+            },
+            jquery: {
+                expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
+                cwd: 'bower/jquery/dist/',
+                src: ['jquery.min.js'],
+                dest: 'js/',
+                filter: 'isFile',              
+            }
+
+        },
+
         uglify: {
             dist: {
                 files: {
@@ -267,6 +303,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.loadNpmTasks('grunt-bower-installer');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.loadNpmTasks('grunt-version');
     grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
@@ -288,6 +325,14 @@ module.exports = function(grunt) {
      * Install update
      * $ npm install
      */
+    
+    /**
+     * Update and copy bower dependency
+     */
+    grunt.registerTask('update', [
+                                'bower',
+                                'copy',
+                                ]);
 
     /**
      * My workflow when the all files are committed and the new version has to be created

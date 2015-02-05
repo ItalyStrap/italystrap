@@ -63,6 +63,7 @@ Release Date:
 * Fix gruntfile syntax
 * Add grunt task for update bower dependency
 * Update node modules
+* Add grunt tasks for update bower packages
 
 = 2.1.0 =
 Release Date: 31-01-2015

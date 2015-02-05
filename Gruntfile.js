@@ -1,6 +1,5 @@
-'use strict';
 module.exports = function(grunt) {
-
+    'use strict';
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
@@ -75,6 +74,7 @@ module.exports = function(grunt) {
 
         jshint: {
             all: [
+                'Gruntfile.js',
                 'js/src/*.js',
                 '!js/bootstrap.min.js',
                 '!js/jquery.min.js'
@@ -315,4 +315,4 @@ module.exports = function(grunt) {
       grunt.log.writeln(filepath + ' has ' + action);
     });
 
-}
+};

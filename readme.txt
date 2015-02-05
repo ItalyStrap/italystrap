@@ -52,8 +52,18 @@ If you want to keep it updated please also install github-updater from your admi
 
 == Changelog ==
 
-= 2.1.0 =
+= 2.1.1 =
 Release Date:
+
+(Dev time h)
+
+* Update to Bootstrap 3.3.2
+* Update to jQuery 2.3.1
+* Fix missing ul in comment template
+* Fix gruntfile syntax
+
+= 2.1.0 =
+Release Date: 31-01-2015
 
 (Dev time 50h)
 
@@ -97,6 +107,9 @@ Release Date:
 * Change license from MIT to GPLv2
 
 = 1.9.2 =
+Release Date:
+
+(Dev time 10h)
 
 * Add new function for reveal hidden tinymce buttons (styleselect) in new file custom_shortcode.php
 * Add button for insert <!--nextpage--> quicktag in the editor
@@ -105,12 +118,18 @@ Release Date:
 * Add rel next and prev for paginations (cleanup.php)
 
 = 1.9.1 =
+Release Date:
+
+(Dev time 7h)
 
 * Fix issue in index.php for no content in CPT Prodotti
-* Add rel="noffolow" and button class to comment_reply_link() filter
+* Add rel="nofollow" and button class to comment_reply_link() filter
 * Add CSS style img-rounded for all author image
 
 = 1.9.0 =
+Release Date:
+
+(Dev time 15h)
 
 * Add TGM-Plugin-Activation for require plugin
 * Fix object error in breadcrumbs.php
@@ -120,6 +139,9 @@ Release Date:
 
 
 = 1.8.7 =
+Release Date:
+
+(Dev time 15h)
 
 * Add commented line in custom-post-type.php
 * Fix display description for CPT in Archive page archive.php line 34, now display description for all custom post without type slug
@@ -130,6 +152,9 @@ Release Date:
 * Fix domain name in single.php
 
 = 1.8.6 =
+Release Date:
+
+(Dev time 10h)
 
 * Change loop in file blog.php, now pagination and excerpt works well
 * Add CSS Style for css class in standard WordPress
@@ -139,6 +164,9 @@ Release Date:
 * Removes img-rounded in add image class image.php
 
 = 1.8.5 =
+Release Date:
+
+(Dev time 10h)
 
 * Add my name in licence.md
 * Add support array with all supports in custom-post-type.php
@@ -148,6 +176,9 @@ Release Date:
 * Remove img-rounded class and add center-block instead
 
 = 1.8.4 =
+Release Date:
+
+(Dev time 10h)
 
 * New description README.md
 * Fix issue in archive.php
@@ -155,15 +186,24 @@ Release Date:
 * Improve italystrap_add_style_and_script function
 
 = 1.8.3 =
+Release Date:
+
+(Dev time 2h)
 
 * Fix issue "Header already sent"
 * Add description echo for custom post type inside a bootstrap's alert
 
 = 1.8.2 =
+Release Date:
+
+(Dev time 3h)
 
 * Fix some issue in file comments.php (comment-reply.js)
 
 = 1.8.1 =
+Release Date:
+
+(Dev time 15h)
 
 * Add File readme.txt (Correct theme check issue)
 * Renamed file social-button.php in social-button.bak (I will develope soon)
@@ -182,108 +222,183 @@ Release Date:
 * Add pagination to comments.php
 
 = 1.8.0 =
+Release Date:
+
+(Dev time 3h)
 
 * Update Botstrap to 3.2.0
 * Update Gruntfile for build bootstrap js and css after update
 
 = 1.7.3 =
+Release Date:
+
+(Dev time 2h)
 
 * Add conditional tag for view version only in parent theme
 
 = 1.7.2 =
+Release Date:
+
+(Dev time 3h)
 
 * Add post_type_archive_title() in archive.php
 * Add changelog to file Readme.md
 
 = 1.7.1 =
+Release Date:
+
+(Dev time 5h)
 
 * Update navwalker to 2.0.4 and add itemprop= to menù
 * Built with grunt the javascript task runner
 
 = 1.6.3 =
+Release Date:
+
+(Dev time 5h)
 
 * Add less file
-* Add file with funtction in lib
+* Add file with function in lib
 * Fix some bug
 
 = 1.6.2 =
+Release Date:
+
+(Dev time 2h)
 
 * Fix some bug
 
 = 1.6.1 =
+Release Date:
+
+(Dev time 2h)
 
 * Fix some bug
 
 = 1.6.0 =
+Release Date:
+
+(Dev time 3h)
 
 * Update to Bootstrap 3.1.1
 
 = 1.5.7 =
+Release Date:
+
+(Dev time 2h)
 
 * Add css class to wrapper all html
 
 = 1.5.6 =
+Release Date:
+
+(Dev time 3h)
 
 * Fix Warning:Cannot modify header information
 
 = 1.5.5 =
+Release Date:
+
+(Dev time 2h)
 
 * Migliorata la gestione degli script e degli stili, aggunto CDN fallback
 
 = 1.5.4 =
+Release Date:
+
+(Dev time 2h)
 
 * Aggiunte funzionalità di roots
 
 = 1.5.3 =
+Release Date:
+
+(Dev time 3h)
 
 * Migliorata la gestione delle slide in home
 
 = 1.5.1 =
+Release Date:
+
+(Dev time 2h)
 
 * Corretto problema stile thumb quando non presenti
 
 = 1.5.0 =
+Release Date:
+
+(Dev time 2h)
 
 * Aggiunto layout per la Sitemap HTML
 
 = 1.4.1 =
+Release Date:
+
+(Dev time 1h)
 
 * Sostituita classe alle immagini (thumbnail * img-rounded)
 
 = 1.4.0 =
+Release Date:
+
+(Dev time 2h)
 
 * Aggiornato a Bootstrap 3
 
 = 1.3.3 =
+Release Date:
+
+(Dev time 2h)
 
 * Separato gli script del file function in un file esterno e commentato riga menu_icon dei custom post type
 
 = 1.3.2 =
+Release Date:
+
+(Dev time 2h)
 
 * Corretto il tag HTML
 
 = 1.3.1 =
+Release Date:
+
+(Dev time 2h)
 
 * Aggiunto script per lo slider in home, ora parte in automatico
 
 = 1.3.0 =
+Release Date:
+
+(Dev time 2h)
 
 * Aggiunto htacces HTML5 Boilerplate
 
 = 1.2.0 =
+Release Date:
+
+(Dev time 10h)
 
 * Corretti bug e aggiunta classe css img-polaroid come classe default al caricamento di immagini
 * Aggiunto codice per i post correlati
 
 = 1.1.1 =
+Release Date:
+
+(Dev time 5h)
 
 * Migliorata la gestione della description di open graph e twitter card
 
 = 1.1.0 =
+Release Date:
+
+(Dev time 10h)
 
 * Aggiunto le twitter cards
 
 = 1.0.0 =
+Release Date:
+
+(Dev time 200h)
 
 * Rilasciata la versione Beta 1.0.0
 

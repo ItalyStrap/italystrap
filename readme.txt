@@ -61,6 +61,7 @@ Release Date:
 * Update to jQuery 2.3.1
 * Fix missing ul in comment template
 * Fix gruntfile syntax
+* Add grunt task for update bower dependency
 
 = 2.1.0 =
 Release Date: 31-01-2015

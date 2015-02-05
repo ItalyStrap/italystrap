@@ -2,6 +2,23 @@ module.exports = function(grunt) {
     'use strict';
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+
+        /**
+         * Update all bower dependency
+         * $ grunt bower
+         */
+        bower: { // https://www.npmjs.com/package/grunt-bower-installer
+            install: {
+                options: {
+                    copy: false,
+                bowerOptions: {
+                    forceLatest: true,
+                    //production: true
+                    }      
+                } 
+            }
+        },
+
         uglify: {
             dist: {
                 files: {
@@ -248,6 +265,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
+
+    grunt.loadNpmTasks('grunt-bower-installer');
+
     grunt.loadNpmTasks('grunt-version');
     grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
     grunt.loadNpmTasks('grunt-git');

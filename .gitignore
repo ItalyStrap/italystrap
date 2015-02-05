@@ -19,6 +19,6 @@ lang/ItalyStrap.po
 .gitattributes
 #.gitignore
 
-bower.json
+#bower.json
 lib/roadmap.php
 lang/README.txt

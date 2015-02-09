@@ -163,18 +163,27 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 
 				<p itemprop="text"><?php echo get_comment_text($comment); ?></p>
 
-				<?php comment_reply_link( 
-									array_merge(
-										$args, 
-										array(
-											'reply_text' => __('Reply', 'ItalyStrap') . ' <i class="glyphicon glyphicon-arrow-down"></i>',
-											'depth'      => $depth,
-											'max_depth'  => $args['max_depth']
-											)
-										)
-									);?>
-
 				<?php
+				/**
+				 * If comment type is not pingback and trackback add comment reply button
+				 *
+				 * @link http://codex.wordpress.org/Function_Reference/comment_reply_link
+				 * @see comment_reply.php for customizations
+				 */
+				if ( $comment->comment_type === '' ) {
+
+					$comment_author = $comment->comment_author;
+					comment_reply_link( 
+							array_merge(
+								$args, 
+								array(
+									'reply_text' => __('Reply to ', 'ItalyStrap') . $comment_author . ' <i class="glyphicon glyphicon-arrow-down"></i>',
+									'depth'      => $depth,
+									'max_depth'  => $args['max_depth']
+									)
+								)
+							);
+					}
 			}
 
 			function end_el(&$output, $comment, $depth = 0, $args = array()) {

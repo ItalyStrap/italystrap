@@ -64,6 +64,7 @@ Release Date:
 * Add grunt task for update bower dependency
 * Update node modules
 * Add grunt tasks for update bower packages
+* Improved functions in comment_reply.php
 
 = 2.1.0 =
 Release Date: 31-01-2015

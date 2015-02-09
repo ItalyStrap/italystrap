@@ -335,6 +335,10 @@ module.exports = function(grunt) {
                                 ]);
 
     /**
+     * Verify new line in pot file
+     */
+
+    /**
      * My workflow when the all files are committed and the new version has to be created
      *
      * Add another step to workflow

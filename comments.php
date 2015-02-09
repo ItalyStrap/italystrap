@@ -104,7 +104,16 @@ if ( comments_open() ) : ?>
 
 	<h3><?php comment_form_title( __("What do you think about?","ItalyStrap"), __("Reply","ItalyStrap") . ' %s' ); ?></h3>
 
-	<p><?php new_cancel_comment_reply_link( __("Cancel" , "ItalyStrap") ); ?></p>
+	<p>
+		<?php
+		/**
+		 * New comment cancel button
+		 * @see comment_reply.php
+		 */
+		new_cancel_comment_reply_link( __("Cancel" , "ItalyStrap") );
+
+		?>
+	</p>
 
 	<?php if ( get_option('comment_registration') && !is_user_logged_in() ) : ?>
 		<p class="alert alert-warning margin-top-25"><?php _e('You need to be', 'ItalyStrap'); ?> <a href="<?php echo wp_login_url( get_permalink() ); ?>" class="alert-link" ><?php _e("logged in","ItalyStrap"); ?></a> <?php _e('to write a comment :-)', 'ItalyStrap'); ?></p>

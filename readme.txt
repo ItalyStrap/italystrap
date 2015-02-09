@@ -55,7 +55,7 @@ If you want to keep it updated please also install github-updater from your admi
 = 2.1.1 =
 Release Date:
 
-(Dev time h)
+(Dev time 10h)
 
 * Update to Bootstrap 3.3.2
 * Update to jQuery 2.3.1
@@ -65,6 +65,7 @@ Release Date:
 * Update node modules
 * Add grunt tasks for update bower packages
 * Improved functions in comment_reply.php
+* Add span clearfix to pagination function
 
 = 2.1.0 =
 Release Date: 31-01-2015

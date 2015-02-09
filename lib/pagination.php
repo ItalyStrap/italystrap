@@ -21,7 +21,7 @@ function bootstrap_pagination( $query = NULL ){
 	$paginate = str_replace("<ul class='page-numbers'", "<ul class='pagination'", $paginate);
 	$paginate = str_replace("<li><span class='page-numbers current'", "<li class='active'><span class='page-numbers current'", $paginate);
 
-	echo '<div class="text-center">' . $paginate . '</div>';
+	echo '<span class="clearfix"></span><div class="text-center">' . $paginate . '</div>';
 
 }
 ?>

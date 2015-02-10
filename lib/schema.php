@@ -1,62 +1,104 @@
 <?php
-//Funzione per mostrare una description in open graph e twitter card
+/**
+ * Display post description for Open Graph and Twitter card
+ * 
+ * @return string A description text of post
+ */
 function italystrap_open_graph_desc(){
+
 	global $post;
-	$myposts = get_posts();
-		foreach( $myposts as $post ) : setup_postdata( $post );
-			$excerpt = substr( strip_tags( get_the_content() ), 4, 200);
-		endforeach; wp_reset_query();
-	// Codice per All in One Seo pack
-	if ( function_exists('aioseop_load_modules')) {
-		$post_aioseo_desc = get_post_meta($post->ID, '_aioseop_description', true);
-		if($post_aioseo_desc){
-		echo stripcslashes($post_aioseo_desc);
-		}}
-	// Codice per SEO by Yoast
-	if ( class_exists('WPSEO_Meta') ){
-		echo WPSEO_Meta::get_value('metadesc');
+
+	if ( function_exists('aioseop_load_modules') ) {
+
+		$excerpt = get_post_meta($post->ID, '_aioseop_description', true);
+
+	}else if ( class_exists('WPSEO_Meta') ) {
+
+		$excerpt = WPSEO_Meta::get_value('metadesc');
+
+	}else if ( $post->post_excerpt ) {
+
+		$excerpt = trim(str_replace(array("\n", "\r","\t"), ' ', substr( strip_tags( $post->post_excerpt ), 0, 200 ) ) );
+
+	}else{
+
+		$excerpt = trim(str_replace(array("\n", "\r","\t"), ' ', substr( strip_tags( $post->post_content ), 0, 200 ) ) ) . ' ...';
+
 	}
-	if ( !function_exists('wpseo_get_value') && !function_exists('aioseop_load_modules')){
-		if ( !empty($post->post_excerpt) ){
-			echo $post->post_excerpt;
-		}else echo $excerpt;
-	}
+
+	echo $excerpt;
 }
 
+/**
+ * Get the number of words in post content
+ * Use in loop
+ *
+ * @since 2.1.0
+ * 
+ * @return integer Get the number of words in post content.
+ */
+function italystrap_get_words_count(){
 
-//Funzione per http://schema.org/Article: wordCount - timeRequired
-function italystrap_ttr_wc(){
+	/**
+	 * Number of total words in content
+	 * @var integer
+	 */
+    return str_word_count( get_the_content() );
 
-	ob_start();
-    the_content();
-    $content = ob_get_clean();
-    $word_count = sizeof(explode(" ", $content));
+}
 
-	$words_per_minute = 150;
-	
-	// Get Estimated time
+/**
+ * Add metatag for Schema.org itemprops timeRequired and wordCount
+ *
+ * @link http://schema.org/Article
+ *
+ * @since 1.0.0
+ * 
+ * @return string The meta tags with itemprops timeRequired and wordCount.
+ */
+function italystrap_ttr_wc( $words_per_minute = NULL ){
+
+	/**
+	 * Number of total words in content
+	 * @var integer
+	 */
+    $word_count = italystrap_get_words_count();
+
+    /**
+     * Number of words per minute
+     * @var integer
+     */
+    if ( !$words_per_minute )
+    	$words_per_minute = 150;
+
+	/**
+	 * Get Estimated time to read
+	 */
 	$minutes = floor( $word_count / $words_per_minute);
 	$seconds = floor( ($word_count / ($words_per_minute / 60) ) - ( $minutes * 60 ) );
 	
-	// If less than a minute
-	if( $minutes < 1 ) {
+	/**
+	 * If less than a minute
+	 */
+	if( $minutes < 1 )
 		$estimated_time = 'PT1M';
-	}
 	
-	// If more than a minute
-	if( $minutes >= 1 ) {
-		if( $seconds > 0 ) {
+	/**
+	 * If more than a minute
+	 */
+	if( $minutes >= 1 )
+		if( $seconds > 0 )
 			$estimated_time = 'PT' . $minutes . 'M' . $seconds . 'S';
-		} else {
+		else
 			$estimated_time = 'PT' . $minutes . 'M';
-		}
-	}
 	
 	$ttr_wc = '<meta  itemprop="timeRequired" content="' . $estimated_time . '"/>';
 
-	if ( is_singular() ) {
+	/**
+	 * Display wordCount only in singular
+	 */
+	if ( is_singular() )
 		$ttr_wc .= '<meta  itemprop="wordCount" content="' . $word_count . '"/>';
-	}
+
 	return $ttr_wc;
 }
-?>

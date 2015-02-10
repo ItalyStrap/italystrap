@@ -66,6 +66,9 @@ Release Date:
 * Add grunt tasks for update bower packages
 * Improved functions in comment_reply.php
 * Add span clearfix to pagination function
+* Fix comments paragraph break
+* Improved italystrap_open_graph_desc() and italystrap_ttr_wc() in schema.php
+* Add italystrap_get_words_count()
 
 = 2.1.0 =
 Release Date: 31-01-2015

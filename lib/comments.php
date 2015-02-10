@@ -161,7 +161,9 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 					</div>
 					<?php endif; ?>
 
-				<p itemprop="text"><?php echo get_comment_text($comment); ?></p>
+				<div itemprop="text">
+					<?php comment_text( $comment->comment_ID ); ?>
+				</div>
 
 				<?php
 				/**

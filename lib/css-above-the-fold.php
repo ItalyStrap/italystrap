@@ -1,6 +1,9 @@
 <?php
-function italystrap_css_above_the_fold()
-{
+/**
+ * This functions are experimental
+ */
+function italystrap_css_above_the_fold(){
+
 	echo "<style type='text/css'>";
 	echo "*, ::before, ::after { box-sizing: border-box; }
 html { font-family: sans-serif; font-size: 62.5%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
@@ -16,4 +19,3 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 	echo "</style>\n";
 }
 add_action('wp_head', 'italystrap_css_above_the_fold', 1);
-?>

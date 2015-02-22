@@ -21,13 +21,13 @@ if ( $prodotti->have_posts() ):
 <!-- Carousel -->
 <section id="carousel">
 	<div class="container hidden-xxs">
-		<div id="myCarousel" class="carousel slide">
+		<div id="IndexCarousel" class="carousel slide">
 			<ol class="carousel-indicators">
 				<?php
 				$active = 0;
 				foreach ( $prodotti->posts as $post ) {
 						$class = ( $active == 0 ) ? 'active' : '';
-						echo  '<li data-target="#myCarousel" data-slide-to="' . $active . '" class="' . $class . '"></li>';
+						echo  '<li data-target="#IndexCarousel" data-slide-to="' . $active . '" class="' . $class . '"></li>';
 						$active++;
 						}
 				 ?>
@@ -49,9 +49,9 @@ if ( $prodotti->have_posts() ):
 				wp_reset_postdata();
 				?>
 			</div>
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-		</div><!-- / #myCarousel -->
+			<a class="left carousel-control" role="button" href="#IndexCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a class="right carousel-control" role="button" href="#IndexCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+		</div><!-- / #IndexCarousel -->
 		<hr>
 	</div><!-- / .container -->
 </section><!-- / .carousel -->

@@ -10,9 +10,9 @@
  *
  * 
  */
-get_header(); ?>
+get_header();
 
-<?php $prodotti = new WP_Query(array('meta_key'			=>	'slide',
+$prodotti = new WP_Query(array('meta_key'			=>	'slide',
 									 'meta_value' 		=> 	'on',
 									 'post_type'		=>	'prodotti',
 									));
@@ -56,9 +56,8 @@ if ( $prodotti->have_posts() ):
 	</div><!-- / .container -->
 </section><!-- / .carousel -->
 
-<?php endif; ?>
+<?php endif;
 
-<?php 
 /**
  * This is the standard loop for show your article
  * In this case it is configured to show only 4 article because each article are configured to show using col-md-3 class

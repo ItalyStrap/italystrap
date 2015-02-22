@@ -1,5 +1,5 @@
 <?php
-_deprecated_file( basename(__FILE__), 'ItalyStrap 2.1.0', null, __( 'This file no longer needs to be included.' ) );
+// _deprecated_file( basename(__FILE__), 'ItalyStrap 2.1.0', null, __( 'This file no longer needs to be included.' ) );
 /**
  * @link http://mkoerner.de/breadcrumbs-for-wordpress-themes-with-bootstrap-3/
  * Bootstrap breadcrumbs for wordpress modified by Enea Overclokk

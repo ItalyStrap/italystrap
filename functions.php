@@ -6,6 +6,17 @@
  */
 
 /**
+ * Mobile Detect CLass
+ * Load only if class not exist
+ */
+if ( !class_exists( 'Mobile_Detect' ) ){
+
+  require_once locate_template('/lib/Mobile_Detect.php');
+  $detect = new Mobile_Detect;
+
+}
+
+/**
  * Function for init load.
  * In this file there are after_setup_theme and $content_width
  */

@@ -17,7 +17,7 @@
 <ul class="list-inline">
 	<li><span class="glyphicon glyphicon-calendar"></span> <time datetime="<?php the_time('Y-m-d') ?>" itemprop="datePublished"><?php the_time( get_option('date_format') ); ?></time></li>
 
-	<li><span class="glyphicon glyphicon-user"></span> <span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php the_author_posts_link(); ?></span></li>
+	<li><span class="glyphicon glyphicon-user"></span> <span itemprop="author"><?php the_author_posts_link(); ?></span></li>
 
 	<?php if ( comments_open() ): ?>
 		<li><span class="glyphicon glyphicon-comment"></span> <?php comments_number( __('No Responses', 'ItalyStrap'), __('One Response', 'ItalyStrap'), __( '% Responses', 'ItalyStrap')  ); ?></li>

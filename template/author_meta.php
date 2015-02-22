@@ -11,15 +11,15 @@
 			<ul class="list-inline">
 			<?php   $twitter = get_the_author_meta( 'twitter' ); 
 					if (!empty($twitter)){
-						echo '<li><a href="' . $twitter . '" title="Twitter" rel="me" class="sprite32 twitter32"></a></li>';
+						echo '<li><a href="' . $twitter . '" title="Twitter" rel="me" class="sprite32 twitter32" itemprop="sameAs"></a></li>';
 					};
 					$fb_profile = get_the_author_meta( 'fb_profile' ); 
 					if (!empty($fb_profile)){
-						echo '<li><a href="' . $fb_profile . '" title="Facebook" rel="me" class="sprite32 facebook32"></a></li>';
+						echo '<li><a href="' . $fb_profile . '" title="Facebook" rel="me" class="sprite32 facebook32" itemprop="sameAs"></a></li>';
 					};
 					$google_profile = get_the_author_meta( 'google_profile' ); 
 					if (!empty($google_profile)){
-						echo '<li><a href="' . $google_profile . '" title="Google+" rel="me" class="sprite32 googleplus32"></a></li>';
+						echo '<li><a href="' . $google_profile . '" title="Google+" rel="me" class="sprite32 googleplus32" itemprop="sameAs"></a></li>';
 					};
 					$skype = get_the_author_meta( 'skype' ); 
 					if (!empty($skype)){
@@ -27,15 +27,15 @@
 					};
 					$google_page = get_the_author_meta( 'google_page' ); 
 					if (!empty($google_page)){
-						echo '<li><a href="' . $google_page . '" title="Google Business page" rel="me" class="sprite32 googleplus32"></a></li>';
+						echo '<li><a href="' . $google_page . '" title="Google Business page" rel="me" class="sprite32 googleplus32" itemprop="sameAs"></a></li>';
 					};
 					$linkedIn = get_the_author_meta( 'linkedIn' ); 
 					if (!empty($linkedIn)){
-						echo '<li><a href="' . $linkedIn . '" title="linkedIn" rel="me" class="sprite32 linkedin32"></a></li>';
+						echo '<li><a href="' . $linkedIn . '" title="linkedIn" rel="me" class="sprite32 linkedin32" itemprop="sameAs"></a></li>';
 					};
 					$pinterest = get_the_author_meta( 'pinterest' ); 
 					if (!empty($pinterest)){
-						echo '<li><a href="' . $pinterest . '" title="pinterest" rel="me" class="sprite32 pinterest32"></a></li>';
+						echo '<li><a href="' . $pinterest . '" title="pinterest" rel="me" class="sprite32 pinterest32" itemprop="sameAs"></a></li>';
 					};
 			?>
 			</ul>

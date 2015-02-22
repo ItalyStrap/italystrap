@@ -73,7 +73,7 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 			 * Cache the bloginfo name if is not cached before
 			 * @var string
 			 */
-			if ( !isset( $bloginfo_name ) ) $bloginfo_name = get_bloginfo( 'name' );
+			if ( !isset( $bloginfo_name ) ) $bloginfo_name = esc_attr( get_bloginfo( 'name', 'display' ) );
 
 			/**
 			 * Default argument for method ItalyStrap_get_the_breadcrumbs()

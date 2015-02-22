@@ -4,6 +4,9 @@ jQuery.noConflict()(function($){
 		/**
 		 * Activate slide on windows load
 		 */
-		$('#myCarousel').carousel();
+		$('#IndexCarousel').carousel({
+			interval : 0,
+			pause : "hover"
+		});
 	});
 });

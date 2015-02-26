@@ -7,3 +7,7 @@ body.wp-autoresize{
 .wpview-wrap{
 	background-color: #eaeaea;
 }
+.wpview-wrap .toolbar div{
+	margin: 3px;
+	padding: 0;
+}

@@ -51,6 +51,11 @@ require_once locate_template('/lib/script.php');
 require_once locate_template('/lib/breadcrumb.php');
 
 /**
+ * Register Custom Gallery:https://github.com/twittem/wp-bootstrap-gallery.
+ */
+//require_once locate_template('/lib/wp_bootstrap_gallery.php');
+
+/**
  * New gallery.
  */
 require_once locate_template('/lib/gallery.php');
@@ -64,11 +69,6 @@ require_once locate_template('/lib/relative-urls.php');
  * Custom Widget.
  */
 require_once locate_template('/lib/widget.php');
-
-/**
- * Register Custom Gallery:https://github.com/twittem/wp-bootstrap-gallery.
- */
-//require_once locate_template('/lib/wp_bootstrap_gallery.php');
 
 /**
  * Custom Post Type.
@@ -175,6 +175,12 @@ require_once locate_template('/lib/custom_shortcode.php');
  */
 require_once locate_template('/lib/security.php');
 
+/**
+ * Add field for adding glyphicon in menu
+ */
+require_once locate_template('/classes/ItalyStrap_custom_menu.php');
+  new ItalyStrap_custom_menu();
+  
 /**
  * Add new Class for Breadcrumbs
  */

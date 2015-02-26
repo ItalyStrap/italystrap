@@ -1,0 +1,9 @@
+/**
+ * Css for admin panel
+ */
+body.wp-autoresize{
+	padding: 15px !important;
+}
+.wpview-wrap{
+	background-color: #eaeaea;
+}

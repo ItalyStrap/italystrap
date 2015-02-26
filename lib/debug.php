@@ -3,6 +3,7 @@
 
     // add_action('wp_head', 'debug_scripts_queued');
     // add_action('wp_head', 'debug_styles_queued');
+    // add_action('init', 'debug_styles_queued');
 
     
 
@@ -27,7 +28,8 @@ function debug_scripts_queued() {
 
 function debug_styles_queued() {
     global $wp_styles;
-    var_dump($wp_styles->in_footer);
+    // var_dump($wp_styles->in_footer);
+    var_dump($wp_styles);
     // echo "<style>pre{display:none;}</style>";
     echo '<pre> Script trovati in coda'."\r\n";
     foreach ( $wp_styles->queue as $script ) {

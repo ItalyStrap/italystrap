@@ -1,13 +1,12 @@
 <?php
-
 /**
 * Register the required plugins for this theme.
 *
 */
  
-add_action( 'tgmpa_register', 'my_theme_register_required_plugins' );
+add_action( 'tgmpa_register', 'italystrap_register_required_plugins' );
  
-function my_theme_register_required_plugins() {
+function italystrap_register_required_plugins() {
  
     /**
      * Array of plugin arrays. Required keys are name and slug.
@@ -25,6 +24,17 @@ function my_theme_register_required_plugins() {
             'force_activation'         => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
             'force_deactivation'     => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
             'external_url'             => 'https://github.com/afragen/github-updater', // If set, overrides default API URL and points to an external URL
+        ),
+
+        array(
+            'name'                     => 'ItalyStrap plugin', // The plugin name
+            'slug'                     => 'italystrap', // The plugin slug (typically the folder name)
+            // 'source'                   => '', // The plugin source
+            'required'                 => true, // If false, the plugin is only 'recommended' instead of required
+            'version'                 => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+            'force_activation'         => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
+            'force_deactivation'     => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+            // 'external_url'             => '', // If set, overrides default API URL and points to an external URL
         ),
  
     );

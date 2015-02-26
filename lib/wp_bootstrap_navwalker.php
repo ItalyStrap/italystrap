@@ -45,14 +45,22 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 		 * comparison that is not case sensitive. The strcasecmp() function returns
 		 * a 0 if the strings are equal.
 		 */
-		if ( strcasecmp( $item->attr_title, 'divider' ) == 0 && $depth === 1 ) {
+		if ( strcasecmp( $item->attr_title, 'divider' ) === 0 && $depth === 1 ) {
+
 			$output .= $indent . '<li role="presentation" class="divider">';
-		} else if ( strcasecmp( $item->title, 'divider') == 0 && $depth === 1 ) {
+
+		} else if ( strcasecmp( $item->title, 'divider') === 0 && $depth === 1 ) {
+
 			$output .= $indent . '<li role="presentation" class="divider">';
-		} else if ( strcasecmp( $item->attr_title, 'dropdown-header') == 0 && $depth === 1 ) {
+
+		} else if ( strcasecmp( $item->attr_title, 'dropdown-header') === 0 && $depth === 1 ){
+
 			$output .= $indent . '<li role="presentation" class="dropdown-header">' . esc_attr( $item->title );
-		} else if ( strcasecmp($item->attr_title, 'disabled' ) == 0 ) {
+
+		} else if ( strcasecmp($item->attr_title, 'disabled' ) === 0 ) {
+
 			$output .= $indent . '<li role="presentation" class="disabled"><a href="#">' . esc_attr( $item->title ) . '</a>';
+
 		} else {
 
 			$class_names = $value = '';
@@ -108,8 +116,8 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			 * if there is a value in the attr_title property. If the attr_title
 			 * property is NOT null we apply it as the class name for the glyphicon.
 			 */
-			if ( ! empty( $item->attr_title ) )
-				$item_output .= '<a'. $attributes .' itemprop="url"><span class="glyphicon ' . esc_attr( $item->attr_title ) . '"></span>&nbsp;';
+			if ( ! empty( $item->glyphicon ) )
+				$item_output .= '<a'. $attributes .' itemprop="url"><span class="' . esc_attr( $item->glyphicon ) . '"></span>&nbsp;';
 			else
 				$item_output .= '<a'. $attributes .' itemprop="url">';
 

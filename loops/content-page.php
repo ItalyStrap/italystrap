@@ -26,7 +26,7 @@
 			  			$thumb_size,
 			  			array(
 			  				'class' => 'center-block img-responsive',
-			  				'alt'   => get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ),
+			  				'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
 			  				) );
 			  		?>
 				</figure>

@@ -8,19 +8,24 @@
  * In new CPT editor check meta box top-left if you want to show the new image product
  * The CPT must have a feautured image
  *
- * 
+ * @example for loading carousel only if is not smarphone
+ *          use if (!$detect->isMobile()){}
+ *          It works also for any code
+ *          In example here below the if is
+ *          if ( $prodotti->have_posts() && ! $detect->isMobile() ):
+ * @example You can also use css class hidden-xxs for hide element but still remain in HTML
  */
 get_header();
 
-$prodotti = new WP_Query(array('meta_key'			=>	'slide',
+$prodotti = new WP_Query( array(	 'meta_key'			=>	'slide',
 									 'meta_value' 		=> 	'on',
 									 'post_type'		=>	'prodotti',
 									));
-if ( $prodotti->have_posts() ):
+if ( $prodotti->have_posts() && ! $detect->isMobile() ):
 ?>
 <!-- Carousel -->
 <section id="carousel">
-	<div class="container hidden-xxs">
+	<div class="container">
 		<div id="IndexCarousel" class="carousel slide">
 			<ol class="carousel-indicators">
 				<?php
@@ -56,7 +61,8 @@ if ( $prodotti->have_posts() ):
 	</div><!-- / .container -->
 </section><!-- / .carousel -->
 
-<?php endif;
+<?php
+endif;
 
 /**
  * This is the standard loop for show your article

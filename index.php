@@ -38,9 +38,9 @@ if ( $prodotti->have_posts() ):
 					  <?php the_post_thumbnail( 'slide' ); ?><meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 					  <div class="container">
 						<div class="carousel-caption">
-							<h1><?php echo get_post_meta($post->ID, 'title_headline', true); ?></h1>
-						  <p class="lead" itemprop="text"><?php echo get_post_meta($post->ID, 'headline', true); ?></p>
-						  <p><a class="btn btn-large btn-primary" href="<?php the_permalink(); ?>" itemprop="url"><?php echo get_post_meta($post->ID, 'call_to_action', true); ?></a></p>
+							<h1><?php echo sanitize_text_field( get_post_meta($post->ID, 'title_headline', true) ); ?></h1>
+						  <p class="lead" itemprop="text"><?php echo sanitize_text_field( get_post_meta($post->ID, 'headline', true) ); ?></p>
+						  <p><a class="btn btn-large btn-primary" href="<?php the_permalink(); ?>" itemprop="url"><?php echo sanitize_text_field( get_post_meta($post->ID, 'call_to_action', true) ); ?></a></p>
 						</div>
 					  </div>
 					</div>
@@ -91,7 +91,7 @@ if ( $prodotti->have_posts() ):
 				  			'article-thumb-index',
 				  			array(
 				  				'class' => 'center-block img-responsive',
-				  				'alt'   => get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ),
+				  				'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
 				  				) );
 
 					?>

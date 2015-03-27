@@ -42,7 +42,7 @@ function custom_post_type() {
 
 	$args = array(
 		'label'               => __( 'products', 'ItalyStrap' ),
-		'description'         => __( 'Information pages of prodotti - <strong>insert here</strong> any description of custom post page', 'ItalyStrap' ),
+		'description'         => __( 'Archive page of custom post type - To change this description modify the custom-post-type.php file in lib directory.', 'ItalyStrap' ),
 		'labels'              => $labels,
 		'supports'            => $supports_array,
 		'taxonomies'          => array( 'category', 'post_tag', 'Slide' ),
@@ -67,4 +67,9 @@ function custom_post_type() {
 
 // Hook into the 'init' action
 add_action( 'init', 'custom_post_type', 0 );
-?>
+
+
+function italystrap_rewrite_flush() {
+    flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'italystrap_rewrite_flush' );

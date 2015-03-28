@@ -57,7 +57,7 @@ Release Date:
 
 (Dev time 10h)
 
-* Update to Bootstrap 3.3.2
+* Update to Bootstrap 3.3.4
 * Update to jQuery 2.3.1
 * Fix missing ul in comment template
 * Fix gruntfile syntax
@@ -69,6 +69,15 @@ Release Date:
 * Fix comments paragraph break
 * Improved italystrap_open_graph_desc() and italystrap_ttr_wc() in schema.php
 * Add italystrap_get_words_count()
+* Add class for adding glyphicon in new filed of menu
+* Add markup for Sitelinks Search Box in searchform.php
+* @see link below for more informations
+* @link https://developers.google.com/structured-data/slsb-overview
+* Add width:100% to table
+* Add Bootstrap class to table calendar
+* Add flush_rewrite_rules(); for CPT
+* Add new CPT description
+
 
 = 2.1.0 =
 Release Date: 31-01-2015

@@ -49,4 +49,3 @@ function debug_styles_queued() {
 // var_dump();
 
 // var_dump($wpdb->queries);
-?>

@@ -289,7 +289,7 @@ module.exports = function(grunt) {
                 tasks: ['testjsbuild'],
             },
             options: {
-                livereload: 9000,
+                livereload: 9001,
             },
         },
 

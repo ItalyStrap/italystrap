@@ -27,6 +27,7 @@
   "devDependencies": {
     "jquery": "latest",
     "bootstrap": "latest",
-    "wp-bootstrap-navwalker": "git://github.com/twittem/wp-bootstrap-navwalker.git#~2.0.4"
+    "wp-bootstrap-navwalker": "git://github.com/twittem/wp-bootstrap-navwalker.git#~2.0.4",
+    "Mobile-Detect": "git://github.com/serbanghita/Mobile-Detect.git"
   }
 }

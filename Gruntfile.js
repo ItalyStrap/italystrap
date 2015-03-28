@@ -50,7 +50,14 @@ module.exports = function(grunt) {
                 cwd: 'bower/jquery/dist/',
                 src: ['jquery.min.js'],
                 dest: 'js/',
-                filter: 'isFile',              
+                filter: 'isFile',
+            },
+            mobiledetect: {
+                expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
+                cwd: 'bower/Mobile-Detect/',
+                src: ['Mobile_Detect.php'],
+                dest: 'lib/',
+                filter: 'isFile',
             }
 
         },

@@ -56,9 +56,16 @@ module.exports = function(grunt) {
                 expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
                 cwd: 'bower/Mobile-Detect/',
                 src: ['Mobile_Detect.php'],
-                dest: 'lib/',
+                dest: 'includes/',
                 filter: 'isFile',
-            }
+            },
+            tgm: {
+                expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
+                cwd: 'bower/TGM-Plugin-Activation/',
+                src: ['class-tgm-plugin-activation.php'],
+                dest: 'includes/',
+                filter: 'isFile',
+            },
 
         },
 

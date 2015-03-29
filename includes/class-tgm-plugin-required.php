@@ -1,9 +1,9 @@
 <?php
 /**
 * Register the required plugins for this theme.
-*
 */
- 
+require_once locate_template('/includes/class-tgm-plugin-activation.php');
+
 add_action( 'tgmpa_register', 'italystrap_register_required_plugins' );
  
 function italystrap_register_required_plugins() {

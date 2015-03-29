@@ -89,4 +89,4 @@ class ItalyStrap_custom_menu {
 
 }
 
-require_once locate_template( '/classes/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php' );
+require_once locate_template( '/core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php' );

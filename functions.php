@@ -3,7 +3,14 @@
  * ItalyStrap functions and definitions
  *
  * @package ItalyStrap
+ * @since 1.0.0
  */
+
+/**
+ * File for install required plugin
+ */
+if ( is_admin() )
+	require_once locate_template('/includes/class-tgm-plugin-required.php');
 
 /**
  * Mobile Detect CLass
@@ -11,10 +18,15 @@
  */
 if ( !class_exists( 'Mobile_Detect' ) ){
 
-  require_once locate_template('/lib/Mobile_Detect.php');
-  $detect = new Mobile_Detect;
+	require_once locate_template('/includes/Mobile_Detect.php');
+	$detect = new Mobile_Detect;
 
 }
+
+/**
+ * 
+ */
+require_once locate_template('/admin/admin.php');
 
 /**
  * Function for init load.
@@ -68,7 +80,7 @@ require_once locate_template('/lib/relative-urls.php');
 /**
  * Custom Widget.
  */
-require_once locate_template('/lib/widget.php');
+// require_once locate_template('/lib/widget.php');
 
 /**
  * Custom Post Type.
@@ -156,16 +168,6 @@ require_once locate_template('/lib/tag_cloud.php');
 require_once locate_template('/lib/password_protection.php');
 
 /**
- * File for install required plugin
- */
-require_once locate_template('/lib/class-tgm-plugin-activation.php');
-
-/**
- * File for install required plugin
- */
-require_once locate_template('/lib/class-tgm-plugin-required.php');
-
-/**
  * Custom shortcode
  */
 require_once locate_template('/lib/custom_shortcode.php');
@@ -178,13 +180,13 @@ require_once locate_template('/lib/security.php');
 /**
  * Add field for adding glyphicon in menu
  */
-require_once locate_template('/classes/ItalyStrap_custom_menu.php');
-  new ItalyStrap_custom_menu();
-  
+require_once locate_template('/core/ItalyStrap_custom_menu.php');
+new ItalyStrap_custom_menu();
+
 /**
  * Add new Class for Breadcrumbs
  */
-require_once locate_template('/classes/ItalyStrapBreadcrumbs.php');
+require_once locate_template('/core/ItalyStrapBreadcrumbs.php');
 
 /**
  * Function for debugging
@@ -204,9 +206,9 @@ define('ITALYSTRAP_THEME', true);
  */
 function italystrap_version(){
 
-    $ver = wp_get_theme();
-    echo $ver->display('Version');
-    
+	$ver = wp_get_theme();
+	echo $ver->display('Version');
+
 }
 
 /**
@@ -231,10 +233,10 @@ remove_filter( 'comment_text', 'capital_P_dangit', 31 );
  */
 function ItaliStrap_capital_P_dangit($text){
 
-    return str_replace(
-        array( ' Wordpress', '&#8216;Wordpress', 'Wordpress', '>Wordpress', '(Wordpress', ' wordpress', '&#8216;wordpress', 'wordpress', '>wordpress', '(wordpress' ),
-        array( ' WordPress', '&#8216;WordPress', 'WordPress', '>WordPress', '(WordPress', ' WordPress', '&#8216;WordPress', 'WordPress', '>WordPress', '(WordPress' ),
-    $text );
+	return str_replace(
+		array( ' Wordpress', '&#8216;Wordpress', 'Wordpress', '>Wordpress', '(Wordpress', ' wordpress', '&#8216;wordpress', 'wordpress', '>wordpress', '(wordpress' ),
+			array( ' WordPress', '&#8216;WordPress', 'WordPress', '>WordPress', '(WordPress', ' WordPress', '&#8216;WordPress', 'WordPress', '>WordPress', '(WordPress' ),
+				$text );
 }
 
 /**
@@ -250,10 +252,10 @@ function ItaliStrap_capital_P_dangit($text){
  */
 function ItalyStrap_P_dangit_sanitize_content( $data , $postarr ){
 
-    $data['post_title'] = ItaliStrap_capital_P_dangit($data['post_title']);
-    $data['post_content'] = ItaliStrap_capital_P_dangit($data['post_content']);
+	$data['post_title'] = ItaliStrap_capital_P_dangit($data['post_title']);
+	$data['post_content'] = ItaliStrap_capital_P_dangit($data['post_content']);
 
-  return $data;
+	return $data;
 }
 
 add_filter( 'wp_insert_post_data' , 'ItalyStrap_P_dangit_sanitize_content' , '99', 2 );
@@ -268,9 +270,9 @@ add_filter( 'wp_insert_post_data' , 'ItalyStrap_P_dangit_sanitize_content' , '99
  */
 function ItalyStrap_P_dangit_sanitize_comments( $commentdata ) {
 
-    $commentdata['comment_content'] = ItaliStrap_capital_P_dangit( $commentdata['comment_content'] );
+	$commentdata['comment_content'] = ItaliStrap_capital_P_dangit( $commentdata['comment_content'] );
 
-  return $commentdata;
+	return $commentdata;
 }
 add_filter( 'preprocess_comment' , 'ItalyStrap_P_dangit_sanitize_comments' );
 
@@ -285,8 +287,8 @@ add_filter( 'preprocess_comment' , 'ItalyStrap_P_dangit_sanitize_comments' );
  */
 function ItalyStrap_P_dangit_sanitize_comments_update($comment_content){
 
-    $comment_content = ItaliStrap_capital_P_dangit( $comment_content );
+	$comment_content = ItaliStrap_capital_P_dangit( $comment_content );
 
-  return $comment_content;
+	return $comment_content;
 }
 add_filter( 'comment_save_pre', 'ItalyStrap_P_dangit_sanitize_comments_update', 10 , 3 );

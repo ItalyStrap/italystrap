@@ -77,6 +77,7 @@ Release Date:
 * Add Bootstrap class to table calendar
 * Add flush_rewrite_rules(); for CPT
 * Add new CPT description
+* Update file structure
 
 
 = 2.1.0 =

@@ -87,13 +87,10 @@ function italystrap_jquery_local_fallback($src, $handle = null){
 }
 
 /**
- * If is not admin load scripts and styles
+ * Hook into the 'wp_enqueue_scripts' action
  */
-if ( !is_admin() ){
-
-	add_action( 'wp_enqueue_scripts', 'italystrap_add_style_and_script' ); 
-	add_action( 'wp_footer', 'italystrap_jquery_local_fallback' );
-}
+add_action( 'wp_enqueue_scripts', 'italystrap_add_style_and_script' ); 
+add_action( 'wp_footer', 'italystrap_jquery_local_fallback' );
 
 /**
  * Add Custom CSS in visual editor

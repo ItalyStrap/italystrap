@@ -95,6 +95,6 @@ function roots_gallery($attr) {
   return $output;
 }
 // if (current_theme_supports('bootstrap-gallery')) {
-  remove_shortcode('gallery');
-  add_shortcode('gallery', 'roots_gallery');
+  // remove_shortcode('gallery');
+  // add_shortcode('gallery', 'roots_gallery');
 // }

@@ -3,6 +3,8 @@
  * Display post description for Open Graph and Twitter card
  * 
  * @return string A description text of post
+ *
+ * @todo Sanitize $excerpt http://codex.wordpress.org/Function_Reference/sanitize_text_field
  */
 function italystrap_open_graph_desc(){
 
@@ -18,11 +20,11 @@ function italystrap_open_graph_desc(){
 
 	}else if ( $post->post_excerpt ) {
 
-		$excerpt = trim(str_replace(array("\n", "\r","\t"), ' ', substr( strip_tags( $post->post_excerpt ), 0, 200 ) ) );
+		$excerpt = trim(str_replace(array("\n", "\r", "\t"), ' ', substr( strip_tags( $post->post_excerpt ), 0, 200 ) ) );
 
 	}else{
 
-		$excerpt = trim(str_replace(array("\n", "\r","\t"), ' ', substr( strip_tags( $post->post_content ), 0, 200 ) ) ) . ' ...';
+		$excerpt = trim(str_replace(array("\n", "\r", "\t", "[", "]", "\""), ' ', substr( strip_tags( $post->post_content ), 0, 200 ) ) ) . ' ...';
 
 	}
 

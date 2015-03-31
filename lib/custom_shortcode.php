@@ -36,5 +36,3 @@ function italystrap_break_page_button( $buttons, $id ){
 
 /* Add Next Page Button in First Row */
 add_filter( 'mce_buttons', 'italystrap_break_page_button', 1, 2 ); // 1st row
-
-?>

@@ -102,16 +102,17 @@ add_action( 'wp_footer', 'italystrap_jquery_local_fallback' );
  */
 function italystrap_add_editor_styles() {
 
-	/**
-	 * @todo Background su elementi tipo gallery
-	 */
 	global $path;
-	global $pathchild;
-    // add_editor_style( $pathchild . '/css/visual_editor.css' );
-    add_editor_style( $pathchild . '/css/bootstrap.min.css' );
-    add_editor_style( $pathchild . '/css/admin.css' );
+	// global $pathchild; // In case you have activate child-theme
+
+	$arg = array(
+		// $pathchild . '/css/visual_editor.css',
+		$path . '/css/bootstrap.min.css',
+		$path . '/css/admin.css'
+		);
+
+	add_editor_style( $arg );
 
 }
 
-if ( is_admin() )
-	add_action( 'after_setup_theme', 'italystrap_add_editor_styles' );
+add_action( 'after_setup_theme', 'italystrap_add_editor_styles' );

@@ -45,4 +45,3 @@ function italystrap_add_social_contactmethod( $contactmethods ) {
   return $contactmethods;
 }
 add_filter( 'user_contactmethods', 'italystrap_add_social_contactmethod', 10, 1 );
-?>

@@ -19,4 +19,3 @@ add_image_size( 'article-thumb-index', 253, 126, true);
  * Display image size 1130x565 in full-width page
  */
 add_image_size( 'full-width', 1130, 565, true);
-?>

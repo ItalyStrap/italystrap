@@ -34,4 +34,3 @@ function wp_tag_cloud_filter( $return, $args )
 {
   return '<div id="tag-cloud">' . $return . '</div>';
 }
-?>

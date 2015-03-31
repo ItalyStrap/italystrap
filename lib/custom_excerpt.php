@@ -74,4 +74,3 @@ endif; // italystrap_excerpt_more_lenght
 // 	}
 // }
 // add_filter('excerpt_more', 'new_excerpt_more');
-?>

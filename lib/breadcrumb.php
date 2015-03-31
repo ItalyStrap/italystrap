@@ -94,4 +94,3 @@ function create_breadcrumbs() {
     echo '</ol></div>';
   }
 }
-?>

@@ -8,4 +8,3 @@ function italystrap_login_errors( $error ){
 }
 
 add_filter( 'login_errors', 'italystrap_login_errors' );
-?>

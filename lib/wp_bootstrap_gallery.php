@@ -168,5 +168,3 @@ function wp_bootstrap_gallery( $content, $attr ) {
 }
 
 add_filter( 'post_gallery', 'wp_bootstrap_gallery', 10, 2 );
-
-?>

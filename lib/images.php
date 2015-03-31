@@ -96,4 +96,3 @@ function ri_wp_favicon(){
     echo '<link rel="shortcut icon" type="image/x-icon" href="' . $favicon . '/img/favicon.ico" />';
 }
 add_action('wp_head', 'ri_wp_favicon');
-?>

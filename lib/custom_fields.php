@@ -12,4 +12,3 @@ function italystrap_set_default_custom_fields($post_id)
     }
     return true;
 }
-?>

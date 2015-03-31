@@ -34,4 +34,3 @@ function show_related_posts() {
   		}
   	  }
 }
-?>

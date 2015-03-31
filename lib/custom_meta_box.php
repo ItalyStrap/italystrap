@@ -37,4 +37,3 @@ function italystrap_meta_box_save( $post_id ){
 	$chk = ( isset( $_POST['slide'] ) && $_POST['slide'] ) ? 'on' : 'off';
 	update_post_meta( $post_id, 'slide', $chk );
 }
-?>

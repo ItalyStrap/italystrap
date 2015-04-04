@@ -26,7 +26,7 @@ if ( !class_exists( 'Mobile_Detect' ) ){
 /**
  * 
  */
-require_once locate_template('/admin/admin.php');
+require_once locate_template('/admin/ItalyStrapOptionTheme.php');
 
 /**
  * Function for init load.

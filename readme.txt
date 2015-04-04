@@ -78,6 +78,7 @@ Release Date:
 * Add flush_rewrite_rules(); for CPT
 * Add new CPT description
 * Update file structure
+* Gallery deactivated for more future improvements
 
 
 = 2.1.0 =

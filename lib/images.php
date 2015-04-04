@@ -3,26 +3,63 @@
  * For file size see image_size.php
  */
 
-$defaultimage = $path . '/img/ItalyStrap.jpg';
+/**
+ * Return the defaul image
+ * Useful for Opengraph
+ * @return string Return url of default image
+ */
+function italystrap_get_default_image(){
 
-function italystrap_thumb_url(){
+	global $path;
 
-	global $defaultimage;
-	if ( has_post_thumbnail() ) {
-	$post_thumbnail_id = get_post_thumbnail_id();
-	$image_attributes = wp_get_attachment_image_src( $post_thumbnail_id, 'full' );
-	echo $image_attributes[0]; 
-	
-	} else echo $defaultimage;
+	if ( $GLOBALS['italystrap_options']['default_image'] )
+		$default_image = $GLOBALS['italystrap_options']['default_image'];
+	else
+		$default_image = $path . '/img/italystrap-default-image.png';
+
+	return $default_image;
+
 }
 
+/**
+ * Echo image url, if exist get the post image, else get the default image
+ * @return string Echo image url
+ */
+function italystrap_thumb_url(){
+
+	if ( has_post_thumbnail() ) {
+
+		$post_thumbnail_id = get_post_thumbnail_id();
+		$image_attributes = wp_get_attachment_image_src( $post_thumbnail_id, 'full' );
+		echo $image_attributes[0]; 
+	
+	}
+	else
+		echo italystrap_get_default_image();
+}
+
+/**
+ * Get the logo url
+ * @return string Return logo url
+ */
 function italystrap_logo(){
 
-	global $defaultimage;
-	return $defaultimage;
+	global $path;
+
+	if ( $GLOBALS['italystrap_options']['logo'] )
+		$logo = $GLOBALS['italystrap_options']['logo'];
+	else
+		$logo = $path . '/img/italystrap-logo.jpg';
+
+	return $logo;
 }
 
 //funzione per estrapolare le url da gravatar
+/**
+ * Get the Gravatar URL
+ * @param  string $url [description]
+ * @return string      Return Gravatar url
+ */
 function estraiUrlsGravatar($url){
 
 	$url_pulito = substr($url,17,-56);
@@ -59,9 +96,10 @@ function italystrap_get_avatar_url( $email ){
 function italystrap_get_avatar(  $id_or_email, $size = '96', $default = '', $alt = false, $class = '' ){
 
 	$avatar = get_avatar( $id_or_email, $size, $default, $alt );
-	if ($class) {
+	
+	if ($class)
 		$avatar = str_replace('photo', "photo $class" , $avatar);
-	}
+
 	return $avatar;
 }
 
@@ -81,18 +119,27 @@ add_filter('get_image_tag_class','italystrap_add_image_class');
  * There is thumbnail class for attachment and img-responsive and thumbnail for figure and figure caption
  */
 
-/* Aggiungi la favicon al tuo Blog
- * by Roberto Iacono di robertoiacono.it
+/**
+ * Add a favicons to site
+ * @link http://www.robertoiacono.it/aggiungere-favicon-wordpress-come-perche/
  */
 function ri_wp_favicon(){
 
-	if ( is_child_theme() ) {
+	if ( $GLOBALS['italystrap_options']['favicon'] )
+		$favicon = $GLOBALS['italystrap_options']['favicon'];
+
+	elseif ( is_child_theme() ) {
+
 		global $pathchild;
-		$favicon = $pathchild;
+		$favicon = $pathchild . '/img/favicon.ico';
+
 	} else {
+
 		global $path;
-		$favicon = $path;
+		$favicon = $path . '/img/favicon.ico';
+
 	}
-    echo '<link rel="shortcut icon" type="image/x-icon" href="' . $favicon . '/img/favicon.ico" />';
+
+    echo '<link rel="shortcut icon" type="image/x-icon" href="' . $favicon . '" />';
 }
 add_action('wp_head', 'ri_wp_favicon');

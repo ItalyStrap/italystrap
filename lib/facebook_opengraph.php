@@ -8,7 +8,7 @@
     <meta property="og:site_name" content="<?php bloginfo('name'); ?>" />
     <meta property="og:description" content="<?php bloginfo('description'); ?>" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="<?php echo italystrap_logo();?>" /><!-- Min image size 200x200px -->
+    <meta property="og:image" content="<?php echo italystrap_thumb_url();?>" /><!-- Min image size 200x200px -->
     <?php 
     /**
      * Get the current page (For custom post category)

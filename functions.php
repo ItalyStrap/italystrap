@@ -7,7 +7,12 @@
  */
 
 /**
- * File for install required plugin
+ * Define ITALYSTRAP_THEME constant for internal use
+ */
+define('ITALYSTRAP_THEME', true);
+
+/**
+ * TGM class for required plugin
  */
 if ( is_admin() )
 	require_once locate_template('/includes/class-tgm-plugin-required.php');
@@ -23,11 +28,46 @@ if ( !class_exists( 'Mobile_Detect' ) ){
 
 }
 
-/**
+/*********************************************************************
+ * Start Admins functionality, don't touch that, extend class instead
  * 
+ *********************************************************************/
+
+/**
+ * Admin Options Theme
  */
 require_once locate_template('/admin/ItalyStrapOptionTheme.php');
+
+/**
+ * Admin functionality
+ */
 require_once locate_template('/admin/ItalyStrapAdmin.php');
+
+/*******************************************************************
+ * Start Core functionality, don't touch that, extend class instead
+ * 
+ *******************************************************************/
+
+/**
+ * Add field for adding glyphicon in menu
+ */
+require_once locate_template('/core/ItalyStrap_custom_menu.php');
+new ItalyStrap_custom_menu();
+
+/**
+ * Add new Class for Breadcrumbs
+ */
+require_once locate_template('/core/ItalyStrapBreadcrumbs.php');
+
+
+require_once locate_template('/core/analytics.php');
+
+
+
+/*************************************************************************
+ * Start custom functionality, you can touch that, please use child theme
+ * 
+ *************************************************************************/
 
 /**
  * Function for init load.
@@ -179,25 +219,9 @@ require_once locate_template('/lib/custom_shortcode.php');
 require_once locate_template('/lib/security.php');
 
 /**
- * Add field for adding glyphicon in menu
- */
-require_once locate_template('/core/ItalyStrap_custom_menu.php');
-new ItalyStrap_custom_menu();
-
-/**
- * Add new Class for Breadcrumbs
- */
-require_once locate_template('/core/ItalyStrapBreadcrumbs.php');
-
-/**
- * Function for debugging
+ * Functions for debugging porpuse
  */
 require_once locate_template('/lib/debug.php');
-
-/**
- * Define ITALYSTRAP_THEME constant for internal use
- */
-define('ITALYSTRAP_THEME', true);
 
 
 /**

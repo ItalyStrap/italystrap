@@ -231,7 +231,7 @@ class ItalyStrapOptionTheme{
 			$new_input['logo'] = sanitize_text_field( $input['logo'] );
 
 		if( isset( $input['analytics'] ) )
-			$new_input['analytics'] = absint( $input['analytics'] );
+			$new_input['analytics'] = sanitize_text_field( $input['analytics'] );
 
 		return $new_input;
 
@@ -243,13 +243,13 @@ class ItalyStrapOptionTheme{
 		 * $arg show add_settings_section $id, $title, $callback and $page name
 		 */
 
-		_e( 'Manage or enter your settings below:', 'ItalyStrap' );
+		_e( 'Manage or enter your settings below: <strong>(It is still in Beta version)</strong>', 'ItalyStrap' );
 
 	}
 
 	public function option_404(){
 
-		$default_404 = ( isset( $this->options['default_404'] ) ) ? esc_attr( $this->options['default_404'] ) : '' ;
+		$default_404 = ( isset( $this->options['default_404'] ) ) ? esc_url( $this->options['default_404'] ) : '' ;
 
 		?>
 		<div id="option_404">
@@ -267,7 +267,7 @@ class ItalyStrapOptionTheme{
 
 	public function option_default_image(){
 
-		$default_image = ( isset( $this->options['default_image'] ) ) ? esc_attr( $this->options['default_image'] ) : '' ;
+		$default_image = ( isset( $this->options['default_image'] ) ) ? esc_url( $this->options['default_image'] ) : '' ;
 
 		?>
 		<div id="option_default_image">
@@ -285,7 +285,7 @@ class ItalyStrapOptionTheme{
 
 	public function option_favicon(){
 
-		$favicon = ( isset( $this->options['favicon'] ) ) ? esc_attr( $this->options['favicon'] ) : '' ;
+		$favicon = ( isset( $this->options['favicon'] ) ) ? esc_url( $this->options['favicon'] ) : '' ;
 
 		?>
 		<div id="option_favicon">
@@ -303,7 +303,7 @@ class ItalyStrapOptionTheme{
 
 	public function option_logo(){
 
-		$logo = ( isset( $this->options['logo'] ) ) ? esc_attr( $this->options['logo'] ) : '' ;
+		$logo = ( isset( $this->options['logo'] ) ) ? esc_url( $this->options['logo'] ) : '' ;
 
 		?>
 		<div id="option_logo">
@@ -321,11 +321,11 @@ class ItalyStrapOptionTheme{
 
 	public function option_analytics(){
 
-		$analytics = ( isset( $this->options['analytics'] ) ) ? esc_attr( $this->options['analytics'] ) : '' ;
+		$analytics = ( isset( $this->options['analytics'] ) ) ? esc_textarea( $this->options['analytics'] ) : '' ;
 
 		?>
-		<input type="text" id="analytics" name="italystrap_theme_settings[analytics]" value="<?php echo esc_textarea( $analytics ); ?>" />
-		<span class="description"><?php _e('Enter your analytics ID.', 'ItalyStrap' ); ?></span>
+		<input type="text" id="analytics" name="italystrap_theme_settings[analytics]" value="<?php echo esc_textarea( $analytics ); ?>" placeholder="UA-XXXXX-X" />
+		<span class="description"><?php _e('Enter your analytics ID (e.g. UA-XXXXX-X ).', 'ItalyStrap' ); ?></span>
 		<?php
 
 	}

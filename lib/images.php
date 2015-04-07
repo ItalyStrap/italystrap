@@ -36,6 +36,7 @@ function italystrap_thumb_url(){
 	}
 	else
 		echo italystrap_get_default_image();
+	
 }
 
 /**
@@ -96,7 +97,7 @@ function italystrap_get_avatar_url( $email ){
 function italystrap_get_avatar(  $id_or_email, $size = '96', $default = '', $alt = false, $class = '' ){
 
 	$avatar = get_avatar( $id_or_email, $size, $default, $alt );
-	
+
 	if ($class)
 		$avatar = str_replace('photo', "photo $class" , $avatar);
 
@@ -128,7 +129,7 @@ function ri_wp_favicon(){
 	if ( $GLOBALS['italystrap_options']['favicon'] )
 		$favicon = $GLOBALS['italystrap_options']['favicon'];
 
-	elseif ( is_child_theme() ) {
+	elseif ( is_child_theme() && !$favicon ) {
 
 		global $pathchild;
 		$favicon = $pathchild . '/img/favicon.ico';

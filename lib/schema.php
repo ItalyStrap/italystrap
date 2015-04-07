@@ -104,3 +104,15 @@ function italystrap_ttr_wc( $words_per_minute = NULL ){
 
 	return $ttr_wc;
 }
+
+/**
+ * Beta functions for FB Open Graph and Twitter cards
+ * @return string Return the FB & TW meta tags
+ */
+function italystrap_add_fb_tw_meta_tags(){
+
+	get_template_part( 'lib/facebook_opengraph' );
+	get_template_part( 'lib/twitter_card' );
+
+}
+add_action('wp_head', 'italystrap_add_fb_tw_meta_tags', 7);

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2014-12-04 11:56+0100\n"
-"PO-Revision-Date: 2014-12-04 12:11+0100\n"
+"POT-Creation-Date: 2015-04-07 19:09+0100\n"
+"PO-Revision-Date: 2015-04-07 19:11+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -17,32 +17,103 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 
-#: archive.php:15
-msgid "Tag archive:"
-msgstr "Tag Archive:"
+#: admin/ItalyStrapOptionTheme.php:54 admin/ItalyStrapOptionTheme.php:69
+msgid "Theme Options"
+msgstr ""
 
-#: archive.php:20
-msgid "Category archive:"
-msgstr "Catégorie archives:"
+#: admin/ItalyStrapOptionTheme.php:68
+msgid "ItalyStrap Theme Options"
+msgstr ""
 
-#: archive.php:25
-msgid "Daily archive:"
-msgstr "Archives quotidiennes: "
+#: admin/ItalyStrapOptionTheme.php:84
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
 
-#: archive.php:27
-msgid "Monthly archive:"
-msgstr "Archives mensuelles: "
+#: admin/ItalyStrapOptionTheme.php:139
+msgid "ItalyStrap options page"
+msgstr ""
 
-#: archive.php:29
-msgid "Yearly archive:"
-msgstr "Archives annuelles: "
+#: admin/ItalyStrapOptionTheme.php:150
+msgid "Default image for 404 page"
+msgstr ""
 
-#: archive.php:60 author.php:85 blog.php:39 full-width.php:31 page.php:37
-#: search.php:37 single.php:42
-msgid "Last edit:"
-msgstr "Dernière édition:"
+#: admin/ItalyStrapOptionTheme.php:162
+msgid "Default image"
+msgstr ""
 
-#: author.php:31
+#: admin/ItalyStrapOptionTheme.php:174
+msgid "Favicon"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:186
+msgid "Logo"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:198
+msgid "Analytics ID"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:246
+msgid ""
+"Manage or enter your settings below: <strong>(It is still in Beta version)</"
+"strong>"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:257
+msgid "Upload default 404 image"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:258
+msgid "Upload an image for the 404.php page (at least width 750px)."
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:259
+msgid "Default 404 image preview"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:275
+msgid "Upload default image"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:276
+msgid ""
+"Upload an image for the default image used for social share (must be "
+"1200x600px)."
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:277
+msgid "Default image preview"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:293
+msgid "Upload favicon"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:294
+msgid "Upload an image for the favicon (max 32x32px)."
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:295
+msgid "Favicon preview"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:311
+msgid "Upload Logo"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:312
+msgid "Upload an image for the logo."
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:313
+msgid "Logo preview"
+msgstr ""
+
+#: admin/ItalyStrapOptionTheme.php:328
+msgid "Enter your analytics ID (e.g. UA-XXXXX-X )."
+msgstr ""
+
+#: author.php:44 template/author-bio.php:21
 msgid "Web site:"
 msgstr "Site web:"
 
@@ -58,224 +129,261 @@ msgstr "Suivant les commentaires &raquo;"
 msgid "What do you think about?"
 msgstr "Qu'est-ce que vous en pensez?"
 
-#: comments.php:105 lib/comments.php:162
+#: comments.php:105
 msgid "Reply"
 msgstr "Répondre"
 
-#: comments.php:107
+#: comments.php:113 core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:204
 msgid "Cancel"
 msgstr "Annuler"
 
-#: comments.php:110
+#: comments.php:119
 msgid "You need to be"
 msgstr "Vous devez être"
 
-#: comments.php:110
+#: comments.php:119
 msgid "logged in"
 msgstr "Connecté"
 
-#: comments.php:110
+#: comments.php:119
 msgid "to write a comment :-)"
 msgstr "pour écrire un commentaire :-)"
 
-#: comments.php:118
+#: comments.php:127
 msgid "Logged in as"
 msgstr "Connecté comment"
 
-#: comments.php:118
+#: comments.php:127
 msgid "Exit"
 msgstr "Déconnexion"
 
-#: comments.php:118
+#: comments.php:127
 msgid "Exit &raquo;"
 msgstr "Déconnexion &raquo;"
 
-#: comments.php:123 comments.php:127
+#: comments.php:132 comments.php:136
 msgid "Name"
 msgstr "Nom"
 
-#: comments.php:123 comments.php:127 comments.php:132 comments.php:136
+#: comments.php:132 comments.php:136 comments.php:141 comments.php:145
 msgid " (required)"
 msgstr " (obligatoire)"
 
-#: comments.php:132 comments.php:136
+#: comments.php:141 comments.php:145
 msgid "Email (will not be published)"
 msgstr "Email (ne sera pas publié)"
 
-#: comments.php:141
+#: comments.php:150
 msgid "Website"
 msgstr "Site web"
 
-#: comments.php:145
+#: comments.php:154
 msgid "Website (optional)"
 msgstr "Site web (facultatif)"
 
-#: comments.php:152
+#: comments.php:161
 msgid "Comment"
 msgstr "Les commentaires"
 
-#: comments.php:153
+#: comments.php:162
 msgid "Write your comment here"
 msgstr "Rédigez votre commentaire ici"
 
-#: comments.php:156
+#: comments.php:165
 msgid "Submit Comment"
 msgstr "Envoyer un commentaire"
 
-#: comments.php:170
+#: comments.php:179
 msgid "Comments are closed."
 msgstr "Les commentaires sont fermés."
 
-#: full-width.php:33 lib/comments.php:41 lib/comments.php:145 page.php:39
-#: single.php:44
-msgid "Edit"
-msgstr "Editer"
-
-#: functions.php:44
-msgid "Main Menu"
-msgstr "Menu principal"
-
-#: index.php:96
-msgid "Author:"
-msgstr "Auteurs:"
-
-#: lib/activation.php:38
-msgid "Welcome to the ItalyStrap theme"
-msgstr "Bienvenue sur le thème ItalyStrap"
-
-#: lib/activation.php:39
-msgid ""
-"First off all install <a href=\"https://github.com/overclokk/ItalyStrap-child"
-"\" target=\"_blank\">ItalyStrap-child</a> and use it for any customization."
+#. translators: %s: title of menu item which is invalid
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:79
+#, php-format
+msgid "%s (Invalid)"
 msgstr ""
-"Tout d'abord installer tous <a href=\"https://github.com/overclokk/"
-"ItalyStrap-child\" target=\"_blank\">ItalyStrap-child</a> et l'utiliser pour "
-"toute personnalisation."
 
-#: lib/breadcrumb.php:26
-msgid "Home"
-msgstr "Maison"
+#. translators: %s: title of menu item in draft status
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:83
+#, php-format
+msgid "%s (Pending)"
+msgstr ""
 
-#: lib/breadcrumb.php:58
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:124
+msgid "Edit Menu Item"
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:133
+msgid "URL"
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:140
+msgid "Navigation Label"
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:146
+msgid "Title Attribute"
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:153
+msgid "Open link in a new window/tab"
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:158
+msgid "CSS Classes (optional)"
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:164
+msgid "Link Relationship (XFN)"
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:170
+msgid "Description"
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:172
+msgid ""
+"The description will be displayed in the menu if the current theme supports "
+"it."
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:180
+msgid "glyphicon"
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:190
+#, php-format
+msgid "Original: %s"
+msgstr ""
+
+#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:203
+msgid "Remove"
+msgstr ""
+
+#: core/ItalyStrapBreadcrumbs.php:304 lib/breadcrumb.php:63
 msgid "Tag: "
 msgstr "Tag: "
 
-#: lib/breadcrumb.php:63
-msgid "Daily archive: "
-msgstr "Archives quotidiennes: "
-
-#: lib/breadcrumb.php:68
-msgid "Monthly archive: "
-msgstr "Archives mensuelles: "
-
-#: lib/breadcrumb.php:73
+#: core/ItalyStrapBreadcrumbs.php:311 lib/breadcrumb.php:78
 msgid "Yearly archive: "
 msgstr "Archives annuelles: "
 
-#: lib/breadcrumb.php:78
+#: core/ItalyStrapBreadcrumbs.php:325 lib/breadcrumb.php:73
+msgid "Monthly archive: "
+msgstr "Archives mensuelles: "
+
+#: core/ItalyStrapBreadcrumbs.php:347 lib/breadcrumb.php:68
+msgid "Daily archive: "
+msgstr "Archives quotidiennes: "
+
+#: core/ItalyStrapBreadcrumbs.php:354 lib/breadcrumb.php:83
 msgid "Author Archives: "
 msgstr "Archives d'auteurs: "
 
-#: lib/breadcrumb.php:81
-msgid "Blog Archives"
-msgstr "Archives du blog"
-
-#: lib/breadcrumb.php:85
+#: core/ItalyStrapBreadcrumbs.php:361 lib/breadcrumb.php:90
 msgid "Search Results: "
 msgstr "Résultats de la recherche: "
 
-#: lib/class-tgm-plugin-activation.php:196
-#: lib/class-tgm-plugin-required.php:52
+#: core/ItalyStrapBreadcrumbs.php:367
+msgid "Not Found"
+msgstr ""
+
+#: core/ItalyStrapBreadcrumbs.php:376
+msgid "Page"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:161
+#: includes/class-tgm-plugin-required.php:62
 msgid "Install Required Plugins"
 msgstr "Installez requis Plugins"
 
-#: lib/class-tgm-plugin-activation.php:197
-#: lib/class-tgm-plugin-required.php:53
+#: includes/class-tgm-plugin-activation.php:162
+#: includes/class-tgm-plugin-required.php:63
 msgid "Install Plugins"
 msgstr "Installer des plugins"
 
-#: lib/class-tgm-plugin-activation.php:198
-#: lib/class-tgm-plugin-required.php:54
+#: includes/class-tgm-plugin-activation.php:163
+#: includes/class-tgm-plugin-required.php:64
 #, php-format
 msgid "Installing Plugin: %s"
 msgstr "Installation Plugin: %s"
 
-#: lib/class-tgm-plugin-activation.php:199
+#: includes/class-tgm-plugin-activation.php:164
 msgid "Something went wrong."
 msgstr "Quelque chose s'est mal passé."
 
-#: lib/class-tgm-plugin-activation.php:210
-#: lib/class-tgm-plugin-required.php:66
+#: includes/class-tgm-plugin-activation.php:175
+#: includes/class-tgm-plugin-required.php:76
 msgid "Return to Required Plugins Installer"
 msgstr "Retour à requis Plugins Installer"
 
-#: lib/class-tgm-plugin-activation.php:211
+#: includes/class-tgm-plugin-activation.php:176
 msgid "Return to the dashboard"
 msgstr "Retour au tableau de bord"
 
-#: lib/class-tgm-plugin-activation.php:212
-#: lib/class-tgm-plugin-activation.php:1965
-#: lib/class-tgm-plugin-required.php:67
+#: includes/class-tgm-plugin-activation.php:177
+#: includes/class-tgm-plugin-activation.php:1945
+#: includes/class-tgm-plugin-required.php:77
 msgid "Plugin activated successfully."
 msgstr "Plugin activé avec succès."
 
-#: lib/class-tgm-plugin-activation.php:213
+#: includes/class-tgm-plugin-activation.php:178
 msgid "The following plugin was activated successfully:"
 msgstr "Le plugin suivant a été activé avec succès:"
 
-#: lib/class-tgm-plugin-activation.php:214
+#: includes/class-tgm-plugin-activation.php:179
 #, php-format
 msgid "All plugins installed and activated successfully. %1$s"
 msgstr "Tous les plugins installés et activés avec succès. %1$s"
 
-#: lib/class-tgm-plugin-activation.php:215
+#: includes/class-tgm-plugin-activation.php:180
 msgid "Dismiss this notice"
 msgstr "Rejeter cet avis"
 
-#: lib/class-tgm-plugin-activation.php:556
-#: lib/class-tgm-plugin-activation.php:2182
+#: includes/class-tgm-plugin-activation.php:534
+#: includes/class-tgm-plugin-activation.php:2162
 msgid "Return to the Dashboard"
 msgstr "Retour au tableau de bord"
 
-#: lib/class-tgm-plugin-activation.php:1186
+#: includes/class-tgm-plugin-activation.php:1169
 msgid "Private Repository"
 msgstr "Référentiel privé"
 
-#: lib/class-tgm-plugin-activation.php:1189
+#: includes/class-tgm-plugin-activation.php:1172
 msgid "Pre-Packaged"
 msgstr "Pre-Packaged"
 
-#: lib/class-tgm-plugin-activation.php:1194
+#: includes/class-tgm-plugin-activation.php:1177
 msgid "WordPress Repository"
 msgstr "WordPress Repository"
 
-#: lib/class-tgm-plugin-activation.php:1197
+#: includes/class-tgm-plugin-activation.php:1180
 msgid "Required"
 msgstr "Requis"
 
-#: lib/class-tgm-plugin-activation.php:1197
+#: includes/class-tgm-plugin-activation.php:1180
 msgid "Recommended"
 msgstr "Recommandé"
 
-#: lib/class-tgm-plugin-activation.php:1200
+#: includes/class-tgm-plugin-activation.php:1183
 msgid "Not Installed"
 msgstr "Non installé"
 
-#: lib/class-tgm-plugin-activation.php:1202
+#: includes/class-tgm-plugin-activation.php:1185
 msgid "Installed But Not Activated"
 msgstr "Installé mais pas activé"
 
-#: lib/class-tgm-plugin-activation.php:1304
-#: lib/class-tgm-plugin-activation.php:1412
+#: includes/class-tgm-plugin-activation.php:1290
+#: includes/class-tgm-plugin-activation.php:1398
 msgid "Install"
 msgstr "Installer"
 
-#: lib/class-tgm-plugin-activation.php:1326
-#: lib/class-tgm-plugin-activation.php:1413
+#: includes/class-tgm-plugin-activation.php:1312
+#: includes/class-tgm-plugin-activation.php:1399
 msgid "Activate"
 msgstr "Activer"
 
-#: lib/class-tgm-plugin-activation.php:1375
+#: includes/class-tgm-plugin-activation.php:1361
 #, php-format
 msgid ""
 "No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
@@ -284,62 +392,53 @@ msgstr ""
 "Aucun plugin à installer ou à activer. <a href=\"%1$s\" title=\"Return à la "
 "Dashboard\"> retour à la tableau de bord</a>"
 
-#: lib/class-tgm-plugin-activation.php:1391
+#: includes/class-tgm-plugin-activation.php:1377
 msgid "Plugin"
 msgstr "Plugin"
 
-#: lib/class-tgm-plugin-activation.php:1392
+#: includes/class-tgm-plugin-activation.php:1378
 msgid "Source"
 msgstr "Source"
 
-#: lib/class-tgm-plugin-activation.php:1393
+#: includes/class-tgm-plugin-activation.php:1379
 msgid "Type"
 msgstr "Type"
 
-#: lib/class-tgm-plugin-activation.php:1394
+#: includes/class-tgm-plugin-activation.php:1380
 msgid "Status"
 msgstr "Statut"
 
-#: lib/class-tgm-plugin-activation.php:1522
-msgid "No plugins are available to be installed at this time."
-msgstr ""
-"Aucuns greffons sont disponibles pour être installés à l'heure actuelle."
-
-#: lib/class-tgm-plugin-activation.php:1630
-msgid "No plugins are available to be activated at this time."
-msgstr "Aucune extensions sont disponibles pour être activés dans ce moment."
-
-#: lib/class-tgm-plugin-activation.php:1948
+#: includes/class-tgm-plugin-activation.php:1928
 msgid "Install package not available."
 msgstr "Le paquet n'est pas disponible pour l'installation."
 
-#: lib/class-tgm-plugin-activation.php:1949
+#: includes/class-tgm-plugin-activation.php:1929
 #, php-format
 msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
 msgstr ""
 "Téléchargement paquet d'installation de <span class=\"code\">%s</span>&#8230;"
 
-#: lib/class-tgm-plugin-activation.php:1950
+#: includes/class-tgm-plugin-activation.php:1930
 msgid "Unpacking the package&#8230;"
 msgstr "Déballage du paquet&#8230;"
 
-#: lib/class-tgm-plugin-activation.php:1951
+#: includes/class-tgm-plugin-activation.php:1931
 msgid "Installing the plugin&#8230;"
 msgstr "Installation du plugin&#8230;"
 
-#: lib/class-tgm-plugin-activation.php:1952
+#: includes/class-tgm-plugin-activation.php:1932
 msgid "Plugin install failed."
 msgstr "Plugin installation a échoué."
 
-#: lib/class-tgm-plugin-activation.php:1953
+#: includes/class-tgm-plugin-activation.php:1933
 msgid "Plugin installed successfully."
 msgstr "Plugin installé avec succès."
 
-#: lib/class-tgm-plugin-activation.php:1964
+#: includes/class-tgm-plugin-activation.php:1944
 msgid "Plugin activation failed."
 msgstr "Plugin activation a échoué."
 
-#: lib/class-tgm-plugin-activation.php:2078
+#: includes/class-tgm-plugin-activation.php:2058
 msgid ""
 "The installation and activation process is starting. This process may take a "
 "while on some hosts, so please be patient."
@@ -348,31 +447,31 @@ msgstr ""
 "prendre un certain temps sur certains hôtes, donc s'il vous plaît soyez "
 "patient."
 
-#: lib/class-tgm-plugin-activation.php:2079
+#: includes/class-tgm-plugin-activation.php:2059
 #, php-format
 msgid "%1$s installed and activated successfully."
 msgstr "%1$s installés et activés avec succès."
 
-#: lib/class-tgm-plugin-activation.php:2079
-#: lib/class-tgm-plugin-activation.php:2088
+#: includes/class-tgm-plugin-activation.php:2059
+#: includes/class-tgm-plugin-activation.php:2068
 msgid "Show Details"
 msgstr "Afficher les détails"
 
-#: lib/class-tgm-plugin-activation.php:2079
-#: lib/class-tgm-plugin-activation.php:2088
+#: includes/class-tgm-plugin-activation.php:2059
+#: includes/class-tgm-plugin-activation.php:2068
 msgid "Hide Details"
 msgstr "Masquer les détails"
 
-#: lib/class-tgm-plugin-activation.php:2080
+#: includes/class-tgm-plugin-activation.php:2060
 msgid "All installations and activations have been completed."
 msgstr "Toutes les installations et les activations ont été achevés."
 
-#: lib/class-tgm-plugin-activation.php:2081
+#: includes/class-tgm-plugin-activation.php:2061
 #, php-format
 msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
 msgstr "Installation et activation Plugin %1$s (%2$d/%3$d)"
 
-#: lib/class-tgm-plugin-activation.php:2085
+#: includes/class-tgm-plugin-activation.php:2065
 msgid ""
 "The installation process is starting. This process may take a while on some "
 "hosts, so please be patient."
@@ -380,55 +479,95 @@ msgstr ""
 "Le processus d'installation commence. Ce processus peut prendre un certain "
 "temps sur certains hôtes, donc s'il vous plaît soyez patient."
 
-#: lib/class-tgm-plugin-activation.php:2086
+#: includes/class-tgm-plugin-activation.php:2066
 #, php-format
 msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
 msgstr ""
 "Une erreur s'est produite lors de l'installation %1$s: <strong>%2$s</strong>."
 
-#: lib/class-tgm-plugin-activation.php:2087
+#: includes/class-tgm-plugin-activation.php:2067
 #, php-format
 msgid "The installation of %1$s failed."
 msgstr "L'installation de %1$s échoué."
 
-#: lib/class-tgm-plugin-activation.php:2088
+#: includes/class-tgm-plugin-activation.php:2068
 #, php-format
 msgid "%1$s installed successfully."
 msgstr "%1$s installés avec succès."
 
-#: lib/class-tgm-plugin-activation.php:2089
+#: includes/class-tgm-plugin-activation.php:2069
 msgid "All installations have been completed."
 msgstr "Toutes les installations ont été achevées."
 
-#: lib/class-tgm-plugin-activation.php:2090
+#: includes/class-tgm-plugin-activation.php:2070
 #, php-format
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr "Installation Plugin %1$s (%2$d/%3$d)"
 
-#: lib/class-tgm-plugin-required.php:55
+#: includes/class-tgm-plugin-required.php:65
 msgid "Something went wrong with the plugin API."
 msgstr "Quelque chose n'allait pas avec l'API de plugin."
 
-#: lib/class-tgm-plugin-required.php:68
+#: includes/class-tgm-plugin-required.php:78
 #, php-format
 msgid "All plugins installed and activated successfully. %s"
 msgstr "Tous les plugins installés et activés avec succès. %s"
 
-#: lib/comment_reply.php:5
+#: index.php:111
+msgid "Author:"
+msgstr "Auteurs:"
+
+#: lib/activation.php:38
+msgid "Welcome to the ItalyStrap theme"
+msgstr "Bienvenue sur le thème ItalyStrap"
+
+#: lib/activation.php:41
+msgid ""
+"First off all install <a href=\"https://github.com/overclokk/ItalyStrap-child"
+"\" target=\"_blank\">ItalyStrap-child</a> and use it for any customization."
+msgstr ""
+"Tout d'abord installer tous <a href=\"https://github.com/overclokk/"
+"ItalyStrap-child\" target=\"_blank\">ItalyStrap-child</a> et l'utiliser pour "
+"toute personnalisation."
+
+#: lib/activation.php:41
+msgid ""
+"Also read the Wiki <a href=\"https://github.com/overclokk/ItalyStrap-child/"
+"wiki/How-to-use-Child-Theme\" target=\"_blank\">How to use Child Theme</a>"
+msgstr ""
+
+#: lib/breadcrumb.php:31
+msgid "Home"
+msgstr "Maison"
+
+#: lib/breadcrumb.php:86
+msgid "Blog Archives"
+msgstr "Archives du blog"
+
+#: lib/comment_reply.php:23
 msgid "Click here to cancel reply."
 msgstr "Cliquez ici pour annuler la réponse."
 
-#: lib/comments.php:36 lib/comments.php:135
+#: lib/comments.php:36 lib/comments.php:143
 msgid "The Boss :-)"
 msgstr "Le Maître :-)"
+
+#: lib/comments.php:41 lib/comments.php:153 loops/content-page.php:39
+#: loops/content-single.php:38
+msgid "Edit"
+msgstr "Editer"
 
 #: lib/comments.php:55
 msgid "Reply <i class=\"glyphicon glyphicon-arrow-down\"></i>"
 msgstr "Répondre <i class=\"glyphicon glyphicon-arrow-down\"></i>"
 
-#: lib/comments.php:152
+#: lib/comments.php:160
 msgid "Your comment is awaiting moderation."
 msgstr "Votre commentaire est en attente de modération."
+
+#: lib/comments.php:182
+msgid "Reply to "
+msgstr ""
 
 #: lib/custom-post-type.php:17
 msgid "Products"
@@ -476,11 +615,9 @@ msgstr "produits"
 
 #: lib/custom-post-type.php:45
 msgid ""
-"Information pages of prodotti - <strong>insert here</strong> any description "
-"of custom post page"
+"Archive page of custom post type - To change this description modify the "
+"custom-post-type.php file in lib directory."
 msgstr ""
-"Les pages d'informations des produits - <strong> insérer ici </ strong> une "
-"description de poste personnalisé la page"
 
 #: lib/custom_excerpt.php:25
 msgid "Read more"
@@ -495,7 +632,11 @@ msgstr ""
 msgid "Do you want to show it in the home slider?"
 msgstr "Voulez-vous le montrer dans la page primcipale ?"
 
-#: lib/pagination.php:9
+#: lib/init.php:73
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: lib/pagination.php:19
 msgid "Page: "
 msgstr "Page: "
 
@@ -570,11 +711,25 @@ msgstr ""
 "S'il vous plaît assurez-vous que votre <a href=\"%s\">.htaccess</a> fichier "
 "est accessible en  l'écriture"
 
-#: lib/wp_bootstrap_navwalker.php:196
+#: lib/wp_bootstrap_navwalker.php:204
 msgid "Add a menu"
 msgstr "Ajouter un menu"
 
-#: page.php:23 single.php:24
+#: loops/content-archive.php:31 loops/content-page.php:37
+#: loops/content-single.php:36
+msgid "Last edit:"
+msgstr "Dernière édition:"
+
+#: loops/content-none.php:4 template/non-trovato.php:3
+msgid "Damn, what you were looking for is not there"
+msgstr ""
+"Dommage, la page demandée a changé de nom ou est temporairement inaccessible."
+
+#: loops/content-none.php:8 template/non-trovato.php:5
+msgid "Search again with the form below."
+msgstr "Recherche supplémentaire avec le formulaire ci-dessous."
+
+#: loops/content-page.php:11 loops/content-single.php:11
 msgid ""
 "<strong>Note:</strong> You are previewing this post. This post has not yet "
 "been published."
@@ -582,26 +737,26 @@ msgstr ""
 "<strong>Remarque:</strong> Vous affichez l'aperçu ce poste. Ce poste n'a pas "
 "encore été publié."
 
-#: search.php:15
+#: loops/content-single.php:33 template/sitemap_html.php:9
+msgid "Pages:"
+msgstr "Pages:"
+
+#: loops/content-single.php:39
+msgid "Share this with your friends:"
+msgstr "Partagez avec vos amis:"
+
+#: search.php:25
 #, php-format
 msgid "Search result of: %s"
 msgstr "Résultats de la recherche pour %s"
 
-#: searchform.php:4
+#: searchform.php:14
 msgid "Search now"
 msgstr "Rechercher maintenant"
 
-#: searchform.php:6
+#: searchform.php:16
 msgid "Search"
 msgstr "Recherche"
-
-#: single.php:39 template/sitemap_html.php:9
-msgid "Pages:"
-msgstr "Pages:"
-
-#: single.php:45
-msgid "Share this with your friends:"
-msgstr "Partagez avec vos amis:"
 
 #: template/meta.php:23
 msgid "No Responses"
@@ -615,15 +770,6 @@ msgstr "Une réponse"
 msgid "% Responses"
 msgstr "% Réponses"
 
-#: template/non-trovato.php:3
-msgid "Damn, what you were looking for is not there"
-msgstr ""
-"Dommage, la page demandée a changé de nom ou est temporairement inaccessible."
-
-#: template/non-trovato.php:5
-msgid "Search again with the form below."
-msgstr "Recherche supplémentaire avec le formulaire ci-dessous."
-
 #: template/sitemap_html.php:4
 msgid "Authors:"
 msgstr "Auteurs:"
@@ -631,6 +777,36 @@ msgstr "Auteurs:"
 #: template/sitemap_html.php:19
 msgid "Articles:"
 msgstr "Articles:"
+
+#~ msgid "Tag archive:"
+#~ msgstr "Tag Archive:"
+
+#~ msgid "Category archive:"
+#~ msgstr "Catégorie archives:"
+
+#~ msgid "Daily archive:"
+#~ msgstr "Archives quotidiennes: "
+
+#~ msgid "Monthly archive:"
+#~ msgstr "Archives mensuelles: "
+
+#~ msgid "Yearly archive:"
+#~ msgstr "Archives annuelles: "
+
+#~ msgid "No plugins are available to be installed at this time."
+#~ msgstr ""
+#~ "Aucuns greffons sont disponibles pour être installés à l'heure actuelle."
+
+#~ msgid "No plugins are available to be activated at this time."
+#~ msgstr ""
+#~ "Aucune extensions sont disponibles pour être activés dans ce moment."
+
+#~ msgid ""
+#~ "Information pages of prodotti - <strong>insert here</strong> any "
+#~ "description of custom post page"
+#~ msgstr ""
+#~ "Les pages d'informations des produits - <strong> insérer ici </ strong> "
+#~ "une description de poste personnalisé la page"
 
 #~ msgid "Do you want show in home slider?"
 #~ msgstr "Voulez-vous le montrer dans la page primcipale ?"

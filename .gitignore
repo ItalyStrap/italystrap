@@ -13,6 +13,7 @@ bower
 
 #Files
 lang/ItalyStrap.po
+lang/ItalyStrap.mo
 *.zip
 
 #Temp file

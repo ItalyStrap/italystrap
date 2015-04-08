@@ -126,6 +126,7 @@ add_filter('get_image_tag_class','italystrap_add_image_class');
  */
 function ri_wp_favicon(){
 
+
 	if ( $GLOBALS['italystrap_options']['favicon'] )
 		$favicon = $GLOBALS['italystrap_options']['favicon'];
 

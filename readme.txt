@@ -3,7 +3,7 @@ Contributors: overclokk
 Donate link: http://www.italystrap.it/
 Tags: breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant
 Requires at least: 3.8
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -52,13 +52,14 @@ If you want to keep it updated please also install github-updater from your admi
 
 == Changelog ==
 
-= 2.1.1 =
-Release Date:
+= 3.0.0 =
+Release Date: April 8th, 2015
 
 (Dev time 10h)
 
 * Update to Bootstrap 3.3.4
 * Update to jQuery 2.3.1
+* Add [Mobile Detect Library](http://mobiledetect.net)
 * Fix missing ul in comment template
 * Fix gruntfile syntax
 * Add grunt task for update bower dependency
@@ -69,16 +70,18 @@ Release Date:
 * Fix comments paragraph break
 * Improved italystrap_open_graph_desc() and italystrap_ttr_wc() in schema.php
 * Add italystrap_get_words_count()
-* Add class for adding glyphicon in new filed of menu
+* Add class for adding glyphicon in new menu item
 * Add markup for Sitelinks Search Box in searchform.php
 * @see link below for more informations
 * @link https://developers.google.com/structured-data/slsb-overview
-* Add width:100% to table
-* Add Bootstrap class to table calendar
+* Add width:100% to table in sass files
+* Add Bootstrap class to table calendar with jQuery
 * Add flush_rewrite_rules(); for CPT
 * Add new CPT description
 * Update file structure
 * Gallery deactivated for more future improvements
+* Fix some issue
+* Add new admin panel for Theme options
 
 
 = 2.1.0 =

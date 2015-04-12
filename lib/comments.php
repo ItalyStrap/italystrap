@@ -38,7 +38,7 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
 								
 								</li>
 								<li><time datetime="<?php comment_date('Y-m-d', $comment) ?>" itemprop="datePublished"><?php comment_date('j M Y', $comment) ?></time></li>
-								<?php edit_comment_link(__('Edit','ItalyStrap'),'<span class="btn btn-sm btn-info pull-right"><i class="glyphicon glyphicon-pencil"></i> ','</span>') ?>
+								<?php edit_comment_link(__('Edit','ItalyStrap'),'<span class="btn btn-sm btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i> ','</span>') ?>
 							</ul>
 
 								<p itemprop="text"><?php echo get_comment_text($comment); ?></p>
@@ -150,7 +150,7 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 						</li>
 						
 						<?php if ( is_user_logged_in() ): ?>
-							<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-info pull-right"><?php echo __('Edit','ItalyStrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
+							<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit','ItalyStrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
 						<?php endif ?>
 
 					</ul>

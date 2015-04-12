@@ -70,7 +70,7 @@ function new_cancel_comment_reply_link($text = '', $class = '' ) {
 function add_nofollow_and_bootstrap_button_css_to_reply_link( $link ) {
 
 	$search = array( '")\'>', 'comment-reply-link');
-	$replace = array( '")\' rel=\'nofollow\'>', 'btn btn-success btn-sm pull-right');
+	$replace = array( '")\' rel=\'nofollow\'>', 'btn btn-primary btn-sm pull-right');
 	$link = str_replace($search, $replace, $link);
 
 	return $link;

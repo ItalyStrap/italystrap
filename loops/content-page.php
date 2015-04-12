@@ -44,3 +44,4 @@
 	<?php get_template_part( 'template/author_meta');?>
 	<meta itemprop="interactionCount" content="UserComments:<?php comments_number(0, 1, '%');?>" />
 </article>
+<hr>

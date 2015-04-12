@@ -19,3 +19,4 @@
 			<img src="<?php echo $img_404; ?>" alt="Page 404" class="img-responsive center-block">
 		</p>
 </article><!-- #post-0 -->
+<hr>

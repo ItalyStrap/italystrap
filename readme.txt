@@ -52,6 +52,14 @@ If you want to keep it updated please also install github-updater from your admi
 
 == Changelog ==
 
+
+= 3.0.3 =
+Release Date: April 12th, 2015
+
+(Dev time 1h)
+
+* Edit hr HTML tag in loop
+
 = 3.0.2 =
 Release Date: April 12th, 2015
 

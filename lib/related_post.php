@@ -1,20 +1,20 @@
 <?php
 //http://gabrieleromanato.com/2012/02/wordpress-visualizzare-i-post-correlati-senza-plugin/
 function show_related_posts() {
-		global $post;
+	global $post;
 
 		$tags = wp_get_post_tags($post->ID);
 		
 		if($tags) {
 		
-  		$first_tag = $tags[0]->term_id;
-  		$args = array(
+    	$first_tag = $tags[0]->term_id;
+    	$args = array(
     		'tag__in' => array($first_tag),
     		'post__not_in' => array($post->ID),
     		'showposts'=> 4,
     		'ignore_sticky_posts'=>1
    		);
-  	$post_correlati = new WP_Query($args);
+    $post_correlati = new WP_Query($args);
   		if( $post_correlati->have_posts() ) {
           echo '<h3>' . __('Related posts', 'ItalyStrap') .  '</h3>' . "\n";
   		    echo '<div class="row" itemscope itemtype="http://schema.org/Article">' . "\n";
@@ -22,14 +22,19 @@ function show_related_posts() {
 				<span class="col-md-3 col-xs-6">
 					<?php if ( has_post_thumbnail() ) {
 							echo "<figure><span class='thumbnail'>";
-							the_post_thumbnail( 'thumbnail', array('class' => 'center-block  img-responsive') );
+                              the_post_thumbnail(
+                                'thumbnail',
+                                array(
+                                  'class' => 'center-block img-responsive',
+                                  'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
+                                  ) );
 							echo "</span></figure>";} ?>
 							<meta  itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 					<p class="text-center"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" itemprop="url"><span itemprop="name"><strong><?php the_title(); ?></strong></span></a></p>
 				</span>
       	<?php
     		endwhile;
-    		echo '</div>' . "\n";
+    		echo '</div><hr>' . "\n";
     		 wp_reset_query();
   		}
   	  }

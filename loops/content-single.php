@@ -17,12 +17,12 @@
 			<div class="margin-bottom-25 thumbnail">
 				<figure>
 			  		<?php
-			  		the_post_thumbnail(
-			  			'article-thumb',
-			  			array(
-			  				'class' => 'center-block img-responsive',
-			  				'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
-			  				) );
+					the_post_thumbnail(
+						'article-thumb',
+						array(
+							'class' => 'center-block img-responsive',
+							'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
+							) );
 			  		?>
 				</figure>
 			</div>

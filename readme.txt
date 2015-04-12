@@ -52,10 +52,17 @@ If you want to keep it updated please also install github-updater from your admi
 
 == Changelog ==
 
+= 3.0.1 =
+Release Date: April 12th, 2015
+
+(Dev time 1h)
+
+* Fix variable error
+
 = 3.0.0 =
 Release Date: April 8th, 2015
 
-(Dev time 10h)
+(Dev time 200h)
 
 * Update to Bootstrap 3.3.4
 * Update to jQuery 2.3.1

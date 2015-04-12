@@ -53,6 +53,13 @@ If you want to keep it updated please also install github-updater from your admi
 == Changelog ==
 
 = 3.0.0 =
+Release Date: April 12th, 2015
+
+(Dev time 1h)
+
+* Fix variable error
+
+= 3.0.0 =
 Release Date: April 8th, 2015
 
 (Dev time 200h)

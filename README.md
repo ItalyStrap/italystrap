@@ -4,7 +4,7 @@
 **Tags:** breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant  
 **Requires at least:** 3.8  
 **Tested up to:** 4.2  
-**Stable tag:** 3.0.0  
+**Stable tag:** 3.0.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -52,10 +52,17 @@ If you want to keep it updated please also install github-updater from your admi
 
 ## Changelog ##
 
+### 3.0.1 ###
+**Release Date:** April 12th, 2015  
+
+(Dev time 1h)
+
+* Fix variable error
+
 ### 3.0.0 ###
 **Release Date:** April 8th, 2015  
 
-(Dev time 10h)
+(Dev time 200h)
 
 * Update to Bootstrap 3.3.4
 * Update to jQuery 2.3.1

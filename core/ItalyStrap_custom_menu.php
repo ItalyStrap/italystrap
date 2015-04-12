@@ -67,7 +67,7 @@ class ItalyStrap_custom_menu {
 	function italystrap_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
 	
 	    // Check if element is properly sent
-	    if ( is_array( $_REQUEST['menu-item-glyphicon']) ) {
+	    if ( is_array( isset( $_REQUEST['menu-item-glyphicon'] ) ) ) {
 	        $glyphicon_value = $_REQUEST['menu-item-glyphicon'][$menu_item_db_id];
 	        update_post_meta( $menu_item_db_id, '_menu_item_glyphicon', $glyphicon_value );
 	    }

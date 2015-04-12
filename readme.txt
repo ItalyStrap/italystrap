@@ -52,6 +52,14 @@ If you want to keep it updated please also install github-updater from your admi
 
 == Changelog ==
 
+= 3.0.2 =
+Release Date: April 12th, 2015
+
+(Dev time 1h)
+
+* Fix some issue
+* Change class in reply button and edit button (comments.php)
+
 = 3.0.1 =
 Release Date: April 12th, 2015
 

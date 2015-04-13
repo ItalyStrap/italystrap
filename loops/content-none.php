@@ -7,16 +7,12 @@
 		<p>
 			<?php _e( 'Search again with the form below.', 'ItalyStrap' ); ?>
 		</p>
-		<?php get_search_form();
+		<?php
 
-		if ( $GLOBALS['italystrap_options']['default_404'] )
-			$img_404 = $GLOBALS['italystrap_options']['default_404'];
-		else
-			$img_404 = get_template_directory_uri() . '/img/404.jpg';
+		get_search_form();
+
+		echo italystrap_get_404_image( 'margin-top-25 img-responsive center-block' );
 		
 		?>
-		<p class="margin-top-25">
-			<img src="<?php echo $img_404; ?>" alt="Page 404" class="img-responsive center-block">
-		</p>
 </article><!-- #post-0 -->
 <hr>

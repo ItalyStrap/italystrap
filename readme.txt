@@ -59,6 +59,7 @@ Release Date: April 12th, 2015
 (Dev time 1h)
 
 * Edit hr HTML tag in loop
+* Add new function to echo 404 image
 
 = 3.0.2 =
 Release Date: April 12th, 2015

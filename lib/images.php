@@ -146,3 +146,45 @@ function ri_wp_favicon(){
     echo '<link rel="shortcut icon" type="image/x-icon" href="' . $favicon . '" />';
 }
 add_action('wp_head', 'ri_wp_favicon');
+
+/**
+ * Get the image for 404 page
+ *
+ * @link https://wordpress.org/support/topic/need-to-get-attachment-id-by-image-url
+ * @see https://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata
+ * @return string Return html image string for 404 page
+ */
+function italystrap_get_404_image( $class = '' ){
+
+	$image_404 = $path . '/img/404.jpg';
+	$width = 320;
+	$height = 347;
+	$alt = '';
+
+	global $path;
+
+	if ($GLOBALS['italystrap_options']['default_404'] ){
+
+		global $wpdb;
+
+		$image_404 = esc_attr( $GLOBALS['italystrap_options']['default_404'] );
+		$query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$image_404'";
+		$id = $wpdb->get_var($query);
+		$meta = wp_get_attachment_metadata( $id );
+		$width = $meta['width'];
+		$height = $meta['height'];
+		$alt = trim( strip_tags( get_post_meta($id, '_wp_attachment_image_alt', true) ) );
+
+	}else
+		$alt = esc_attr( get_bloginfo( "name", "display" ) );
+
+
+	$html = '<img width="' . $width . 'px" height="' . $height . 'px" src="' . $image_404 . '" alt="' . $alt . '" class="' . $class . '">';
+
+	if ( function_exists( 'italystrap_apply_lazyload' ) )
+		return italystrap_get_apply_lazyload( $html );
+
+	else
+		return $html;
+
+}

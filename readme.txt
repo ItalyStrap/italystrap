@@ -54,12 +54,13 @@ If you want to keep it updated please also install github-updater from your admi
 
 
 = 3.0.3 =
-Release Date: April 12th, 2015
+Release Date: April 22th, 2015
 
-(Dev time 1h)
+(Dev time 5h)
 
 * Edit hr HTML tag in loop
 * Add new function to echo 404 image
+* Fix XSS vulnerability in Custom Walker nav menu
 
 = 3.0.2 =
 Release Date: April 12th, 2015

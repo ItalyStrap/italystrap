@@ -61,6 +61,7 @@ Release Date: April 22th, 2015
 * Edit hr HTML tag in loop
 * Add new function to echo 404 image
 * Fix XSS vulnerability in Custom Walker nav menu
+* Update TGM class due to XSS vulnerability
 
 = 3.0.2 =
 Release Date: April 12th, 2015

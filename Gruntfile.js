@@ -365,11 +365,13 @@ module.exports = function(grunt) {
      * $ grunt less (in case bootstrap has been updated)
      * $ grunt uglify (in case bootstrap has been updated)
      * And commit new update
-     * 
+     *
+     * Merge Dev to Master
      * Checkout in master (not dev)
      * Update description and changelog only in readme.txt
      * Change only version in package.json
      * $ grunt deploy
+     * Merge Master to Dev
      */
     grunt.registerTask('deploy', [
                                 'version',

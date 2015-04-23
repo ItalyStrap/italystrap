@@ -176,8 +176,7 @@ module.exports = function(grunt) {
         csslint: { // http://astainforth.com/blogs/grunt-part-2
             files: ['css/*.css', '!css/bootstrap.min.css',],
             options: {
-                "important": false,
-                "ids": false,
+                csslintrc: '.csslintrc'
             }
         },
 

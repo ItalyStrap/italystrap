@@ -72,6 +72,7 @@ function italystrap_add_style_and_script(){
 function italystrap_jquery_local_fallback($src, $handle = null){
 
 	global $path;
+	global $pathchild;
 	static $add_jquery_fallback = false;
 
 	if ($add_jquery_fallback) {
@@ -103,10 +104,10 @@ add_action( 'wp_footer', 'italystrap_jquery_local_fallback' );
 function italystrap_add_editor_styles() {
 
 	global $path;
-	// global $pathchild; // In case you have activate child-theme
+	global $pathchild;
 
 	$arg = array(
-		// $pathchild . '/css/visual_editor.css',
+		// $path . '/css/visual_editor.css',
 		$path . '/css/bootstrap.min.css',
 		$path . '/css/admin.css'
 		);

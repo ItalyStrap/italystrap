@@ -143,9 +143,10 @@ module.exports = function(grunt) {
             all: [
                 'Gruntfile.js',
                 'js/src/*.js',
-                '!js/bootstrap.min.js',
+                'js/bootstrap.min.js',
                 '!js/jquery.min.js'
-            ]
+            ],
+            options: true,
         },
 
         compass:{ // https://github.com/gruntjs/grunt-contrib-compass

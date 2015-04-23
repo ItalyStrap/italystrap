@@ -14,6 +14,17 @@
  */
 
 /**
+ * This file is only for Theme versioning, it doesn't loaded, for your custom CSS use:
+ * 		home.css		[loaded with is_home and is_front_page]
+ * 		singular.css	[loaded with is_singular]
+ * 		archive.css		[loaded with is_archive]
+ * 		custom.css		[loaded only in the other pages]
+ * 		@see script.php	[for loading all script]
+ *
+ * For customize your theme use this child: https://github.com/overclokk/ItalyStrap-child
+ */
+
+/**
  * Class for Figure tag and figure caption tag
  */
 .wp-caption{}

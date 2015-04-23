@@ -1,15 +1,10 @@
-// figure{
-//   margin: 0 !important;
-//   padding: 0 !important;
-// }
+/**
+ * Some CSS fix not included in Bootstrap.css
+ */
 .widget ul{
   list-style: none outside none;
   padding-left: 0;
 }
-// .breadcrumb > li + li:before { // Era lo stile per fixare il problema / nel breadcrumbs
-//   content: ""!important;
-//   padding: 0;
-// }
 .comment-edit-link, .comment-reply-link, .btn-primary a{
   color: #FFFFFF !important;
 }

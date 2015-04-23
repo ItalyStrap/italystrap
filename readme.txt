@@ -52,6 +52,13 @@ If you want to keep it updated please also install github-updater from your admi
 
 == Changelog ==
 
+= 3.0.4 =
+Release Date: April 22th, 2015
+
+(Dev time 1h)
+
+* Delete custom style
+* Add custom jQuery in home for table, select box
 
 = 3.0.3 =
 Release Date: April 22th, 2015

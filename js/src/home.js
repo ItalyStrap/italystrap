@@ -9,6 +9,11 @@ jQuery.noConflict()(function($){
 			pause : "hover"
 		});
 
+		$('#cat').addClass('form-control');
+		$('select').addClass('form-control');
+		$('#wp-calendar').addClass('table table-hover');
+		$('td a').addClass('badge').css('margin-right', '-10px');
+
 		/**
 		 * This snippet works only if ItalyStrap plugin with
 		 * Lazy Load functionality is active

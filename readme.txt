@@ -59,6 +59,7 @@ Release Date: April 22th, 2015
 
 * Delete custom style
 * Add custom jQuery in home for table, select box
+* Fix register_sidebar error
 
 = 3.0.3 =
 Release Date: April 22th, 2015

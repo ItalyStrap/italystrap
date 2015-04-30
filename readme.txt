@@ -53,11 +53,11 @@ If you want to keep it updated please also install github-updater from your admi
 == Changelog ==
 
 = 3.0.4 =
-Release Date: April 22th, 2015
+Release Date: April 30th, 2015
 
-(Dev time 1h)
+(Dev time 3h)
 
-* Delete custom style
+* Delete custom style example
 * Add custom jQuery in home for table, select box
 * Fix register_sidebar error
 

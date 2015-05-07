@@ -156,12 +156,12 @@ add_action('wp_head', 'ri_wp_favicon');
  */
 function italystrap_get_404_image( $class = '' ){
 
+	global $path;
+
 	$image_404 = $path . '/img/404.jpg';
 	$width = 320;
 	$height = 347;
 	$alt = '';
-
-	global $path;
 
 	if ($GLOBALS['italystrap_options']['default_404'] ){
 

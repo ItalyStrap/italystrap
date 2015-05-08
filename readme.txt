@@ -52,6 +52,16 @@ If you want to keep it updated please also install github-updater from your admi
 
 == Changelog ==
 
+= 3.0.5 =
+Release Date: April 30th, 2015
+
+(Dev time 2h)
+
+* Move image.php in core directory
+* Add some file for future develope
+* Update TGM to 2.4.2
+* Fix some error
+
 = 3.0.4 =
 Release Date: April 30th, 2015
 

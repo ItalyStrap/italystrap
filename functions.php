@@ -62,6 +62,18 @@ require_once locate_template('/core/ItalyStrapBreadcrumbs.php');
 
 require_once locate_template('/core/analytics.php');
 
+/**
+ * Custom function for images.
+ */
+require_once locate_template('/core/images.php');
+
+/**
+ * Class for template functions
+ * Depend of images.php
+ */
+require_once locate_template('/core/class_italystrap_template_functions.php');
+	// $italystrap_template = new ItalyStrap_template_functions;
+
 
 
 /*************************************************************************
@@ -177,11 +189,6 @@ require_once locate_template('/lib/schema.php');
  * Custom taxonomy.
  */
 require_once locate_template('/lib/custom_taxonomy.php');
-
-/**
- * Custom function for images.
- */
-require_once locate_template('/lib/images.php');
 
 /**
  * new_get_cancel_comment_reply_link

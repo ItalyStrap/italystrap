@@ -52,6 +52,14 @@ If you want to keep it updated please also install github-updater from your admi
 
 == Changelog ==
 
+= 3.0.6 =
+Release Date: May 24th, 2015
+
+(Dev time 2h)
+
+* Added [AnonymizeIP](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#anonymizeIp) for cookie law
+* Fixed regex in italystrap_embed_wrap cleanup.php
+
 = 3.0.5 =
 Release Date: May 8th, 2015
 

@@ -171,8 +171,8 @@ function italystrap_get_404_image( $class = '' ){
 		$query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$image_404'";
 		$id = $wpdb->get_var($query);
 		$meta = wp_get_attachment_metadata( $id );
-		$width = $meta['width'];
-		$height = $meta['height'];
+		$width = ( isset( $meta['width'] ) ) ? $meta['width'] : '' ;
+		$height = ( isset( $meta['height'] ) ) ? $meta['height'] : '' ;
 		$alt = trim( strip_tags( get_post_meta($id, '_wp_attachment_image_alt', true) ) );
 
 	}else

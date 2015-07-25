@@ -166,7 +166,7 @@ if ( comments_open() ) : ?>
 
 			<?php comment_id_fields(); ?>
 
-			<?php do_action('comment_form()', $post->ID); ?>
+			<?php do_action('comment_form', $post->ID); ?>
 
 	</form>
 </div>
@@ -180,4 +180,4 @@ if ( comments_open() ) : ?>
 </div>
 
 <?php endif; // Comment open ?>
-</section>
+</section><?php comment_form(); ?>

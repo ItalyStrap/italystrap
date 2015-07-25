@@ -81,7 +81,7 @@ class ItalyStrapOptionTheme{
 	public function italystrap_callback_function(){
 
 			if ( !current_user_can( $this->capability ) )
-				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+				wp_die( __( 'You do not have sufficient permissions to access this page.', 'ItalyStrap' ) );
 
 			?>
 

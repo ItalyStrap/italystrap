@@ -1,5 +1,11 @@
 <?php
 //http://yoast.com/html-sitemap-wordpress/
+//
+// var_dump(get_pages());
+// var_dump(get_posts());
+/**
+ * @deprecated 3.0.6 Deprecated, use loop/content-sitemaps-html.php instead
+ */
 ?>
 <h2 itemprop="name"><?php _e('Authors:', 'ItalyStrap'); ?></h2>
 <meta itemprop="itemListOrder" content="Descending" />

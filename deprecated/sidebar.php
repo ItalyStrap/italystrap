@@ -1,4 +1,6 @@
 <?php
+_deprecated_file( basename(__FILE__), 'ItalyStrap 3.0.6', 'core/class-italystrap-sidebars.php', __( 'This file is deprecated, please use class-italystrap-sidebars.php instead', 'ItalyStrap' ) );
+
 //Registro l'area widget classica nella sidebar
 if (function_exists('register_sidebar')){
 	

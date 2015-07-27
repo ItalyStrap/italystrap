@@ -62,6 +62,7 @@ Release Date: May 24th, 2015
 * [Fixed Warning: Illegal string offset](https://github.com/overclokk/ItalyStrap/commit/4c2e4f9afc48e123dbebfa85509774d155b6adf8)
 * Fixed do_action hook name in comments.php
 * Added new class for sidebars and made dynamic the footer's sidebars
+* Deprecated breadcrumbs.php and sidebar.php
 
 = 3.0.5 =
 Release Date: May 8th, 2015

@@ -29,7 +29,7 @@ if ( !class_exists( 'Mobile_Detect' ) ){
 }
 
 /*********************************************************************
- * Start Admins functionality, don't touch that, extend class instead
+ * Start Admins functionality, don't touch that, extend the class instead
  * 
  *********************************************************************/
 
@@ -57,24 +57,34 @@ new ItalyStrap_custom_menu();
 /**
  * Add new Class for Breadcrumbs
  */
-require_once locate_template('/core/ItalyStrapBreadcrumbs.php');
+require locate_template('/core/ItalyStrapBreadcrumbs.php');
 
-
-require_once locate_template('/core/analytics.php');
+/**
+ * 
+ */
+require locate_template('/core/analytics.php');
 
 /**
  * Custom function for images.
  */
-require_once locate_template('/core/images.php');
+require locate_template('/core/images.php');
 
 /**
  * Class for template functions
  * Depend of images.php
  */
-require_once locate_template('/core/class_italystrap_template_functions.php');
+require locate_template('/core/class_italystrap_template_functions.php');
 	// $italystrap_template = new ItalyStrap_template_functions;
 
-
+/**
+ * Sidebar class.
+ */
+require locate_template('/core/class-italystrap-sidebars.php');
+/**
+ * If function exist init
+ */
+if ( function_exists( 'register_widget' ) )
+	$italystrap_sidebars = new ItalyStrap_Sidebars;
 
 /*************************************************************************
  * Start custom functionality, you can touch that, please use child theme
@@ -106,14 +116,6 @@ require_once locate_template('/lib/cleanup.php');
  * Load all Js and CSS script in theme.
  */
 require_once locate_template('/lib/script.php');
-
-/**
- * Breadcrumb.
- * @deprecated 2.0.0
- * @deprecated Use new ItalyStrapBreadcrumbs( $defaults );
- * @see ItalyStrapBreadcrumbs( $defaults );
- */
-require_once locate_template('/lib/breadcrumb.php');
 
 /**
  * Register Custom Gallery:https://github.com/twittem/wp-bootstrap-gallery.
@@ -149,11 +151,6 @@ require_once locate_template('/lib/wp-h5bp-htaccess.php');
  * Custom Meta Box.
  */
 require_once locate_template('/lib/custom_meta_box.php');
-
-/**
- * Sidebar.
- */
-require_once locate_template('/lib/sidebar.php');
 
 /**
  * Pagination.
@@ -230,6 +227,26 @@ require_once locate_template('/lib/security.php');
  */
 require_once locate_template('/lib/debug.php');
 
+/*********************************************************************
+ * Deprecated files and functions
+ *********************************************************************/
+
+/**
+ * Breadcrumb.
+ * @deprecated 2.0.0
+ * @deprecated Use new ItalyStrapBreadcrumbs( $defaults );
+ * @see ItalyStrapBreadcrumbs( $defaults );
+ */
+// require_once locate_template('/deprecated/breadcrumb.php');
+
+/**
+ * Sidebar.
+ */
+// require_once locate_template('/deprecated/sidebar.php');
+
+/*********************************************************************
+ * Standard Functions
+ *********************************************************************/
 
 /**
  * Echo the ItalyStrap theme version (parent or child if exist)
@@ -324,3 +341,23 @@ function ItalyStrap_P_dangit_sanitize_comments_update($comment_content){
 	return $comment_content;
 }
 add_filter( 'comment_save_pre', 'ItalyStrap_P_dangit_sanitize_comments_update', 10 , 3 );
+
+// function prova(){
+
+// 	echo '<div style="background-color:yellow;width:100%;height:30px;"></div>';
+
+// }
+// function prova(){
+
+//                     if ( class_exists('ItalyStrapBreadcrumbs') ) {
+
+//                         $defaults = array(
+//                             'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
+//                         );
+
+//                         new ItalyStrapBreadcrumbs( $defaults );
+                    
+//                     }
+
+// }
+// add_action( 'before_loop', 'prova' );

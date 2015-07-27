@@ -241,6 +241,7 @@ require_once locate_template('/lib/debug.php');
 
 /**
  * Sidebar.
+ * @deprecated 3.0.6 [<description>]
  */
 // require_once locate_template('/deprecated/sidebar.php');
 

@@ -19,16 +19,10 @@ get_header(); ?>
                         new ItalyStrapBreadcrumbs( $defaults );
                     
                     }
+                    do_action( 'before_loop' );
+                    get_template_part( 'loops/content', 'sitemaps-html' );
 
 					?>
-					<div itemscope itemtype="http://schema.org/ItemList">
-						<header class="page-header">
-							<h1><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark" itemprop="url">
-							<span itemprop="name"><?php the_title(); ?></span></a></h1>
-						</header>
-					<?php get_template_part( 'template/sitemap_html');?>
-					<?php // get_template_part( 'template/social-button');?>
-					</div>
                 </div>	
 				<?php get_sidebar(); ?> 
             </div>

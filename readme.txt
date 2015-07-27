@@ -63,6 +63,7 @@ Release Date: May 24th, 2015
 * Fixed do_action hook name in comments.php
 * Added new class for sidebars and made dynamic the footer's sidebars
 * Deprecated breadcrumbs.php and sidebar.php
+* Deprecated file sitemap-html.php
 
 = 3.0.5 =
 Release Date: May 8th, 2015

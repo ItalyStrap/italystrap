@@ -24,7 +24,7 @@ get_header(); ?>
 					<header class="page-header">
 						<?php
 						the_archive_title('<h2 itemprop="headline">', '</h2>');
-						the_archive_description('<div class="alert alert-info" role="alert" itemprop="description">', '</div>');
+						the_archive_description('<div class="well" role="alert" itemprop="description"><p>', '</p></div>');
 
 						if ( is_post_type_archive() ) {
 							// Display or retrieve title for a post type archive.
@@ -32,9 +32,9 @@ get_header(); ?>
 
 							$cpt_description = get_post_type_object( get_post_type() );
 							if ($cpt_description) { ?>
-								<div class="alert alert-info" role="alert" itemprop="description">
+								<div class="well" role="alert" itemprop="description"><p>
 									<?php echo $cpt_description->description ;?>
-								</div>
+								</p></div>
 						<?php }
 						} ?>
 					</header>

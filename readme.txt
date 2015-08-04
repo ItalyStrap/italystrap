@@ -64,7 +64,10 @@ Release Date: May 24th, 2015
 * Added new class for sidebars and made dynamic the footer's sidebars
 * Deprecated breadcrumbs.php and sidebar.php
 * Deprecated file sitemap-html.php
+* Deprecated file globals.php
+* Deprecated file init.php
 * Added home.php, now the index.php is only a simple loop, [more info](https://developer.wordpress.org/themes/basics/template-hierarchy/)
+*
 
 = 3.0.5 =
 Release Date: May 8th, 2015

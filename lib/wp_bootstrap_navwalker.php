@@ -9,7 +9,14 @@
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
-
+/**
+ * @todo Spostare in core
+ *       Attualmente è posibile usare l'atreibuto e i ltitolo epr inserire le classi
+ *       bootstrap per gestire divider, header e disabled ma così non ha senso
+ *       usare la sua classe css invece
+ * @todo Sarebbe interessante aggiunger un autocomplete con le classi Bootstrap
+ *       nel menù admin
+ */
 class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 
 	/**
@@ -45,23 +52,23 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 		 * comparison that is not case sensitive. The strcasecmp() function returns
 		 * a 0 if the strings are equal.
 		 */
-		if ( strcasecmp( $item->attr_title, 'divider' ) === 0 && $depth === 1 ) {
+		if ( strcasecmp( $item->attr_title, 'divider' ) === 0 && $depth === 1 )
 
 			$output .= $indent . '<li role="presentation" class="divider">';
 
-		} else if ( strcasecmp( $item->title, 'divider') === 0 && $depth === 1 ) {
+		else if ( strcasecmp( $item->title, 'divider') === 0 && $depth === 1 )
 
 			$output .= $indent . '<li role="presentation" class="divider">';
 
-		} else if ( strcasecmp( $item->attr_title, 'dropdown-header') === 0 && $depth === 1 ){
+		else if ( strcasecmp( $item->attr_title, 'dropdown-header') === 0 && $depth === 1 )
 
 			$output .= $indent . '<li role="presentation" class="dropdown-header">' . esc_attr( $item->title );
 
-		} else if ( strcasecmp($item->attr_title, 'disabled' ) === 0 ) {
+		else if ( strcasecmp($item->attr_title, 'disabled' ) === 0 )
 
 			$output .= $indent . '<li role="presentation" class="disabled"><a href="#">' . esc_attr( $item->title ) . '</a>';
 
-		} else {
+		else {
 
 			$class_names = $value = '';
 

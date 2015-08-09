@@ -73,7 +73,7 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 			 * Cache the bloginfo name if is not cached before
 			 * @var string
 			 */
-			if ( !isset( $bloginfo_name ) ) $bloginfo_name = esc_attr( get_bloginfo( 'name', 'display' ) );
+			if ( !isset( $bloginfo_name ) ) $bloginfo_name = esc_attr( GET_BLOGINFO_NAME );
 
 			/**
 			 * Default argument for method ItalyStrap_get_the_breadcrumbs()
@@ -116,7 +116,7 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 
 			} else {
 
-				$breadcrumb .= $before_element .'<a itemprop="item" href="' . home_url() . '" title="' . $bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
+				$breadcrumb .= $before_element .'<a itemprop="item" href="' . esc_attr( HOME_URL ) . '" title="' . $bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
 
 			}
 
@@ -197,7 +197,7 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 					 */
 					$slug = $post_type->rewrite;
 
-					$breadcrumb .= $before_element . '<a itemprop="item" href="' . home_url('/') . $slug['slug'] . '/' . '" title="' . $title . '">' . $wrapper_name . $title . $close_wrapper_name . '</a>' . $this->meta($this->count, 2) . $after_element;
+					$breadcrumb .= $before_element . '<a itemprop="item" href="' . esc_attr( HOME_URL ) . $slug['slug'] . '/' . '" title="' . $title . '">' . $wrapper_name . $title . $close_wrapper_name . '</a>' . $this->meta($this->count, 2) . $after_element;
 
 					/**
 					 * Get array of all anchestor ID

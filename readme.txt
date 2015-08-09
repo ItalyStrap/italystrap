@@ -67,7 +67,9 @@ Release Date: May 24th, 2015
 * Deprecated file globals.php
 * Deprecated file init.php
 * Added home.php, now the index.php is only a simple loop, [more info](https://developer.wordpress.org/themes/basics/template-hierarchy/)
-*
+* Added support to [custom-header](https://codex.wordpress.org/Custom_Headers)
+* Added support to [custom-background](https://codex.wordpress.org/Custom_Backgrounds)
+* Improved performance with new constant for home url `HOME_URL`, blog name `GET_BLOGINFO_NAME`, and blog description `GET_BLOGINFO_DESCRIPTION`, use it with `esc_attr()` and `echo`
 
 = 3.0.5 =
 Release Date: May 8th, 2015

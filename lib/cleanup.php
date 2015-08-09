@@ -134,6 +134,10 @@ add_filter('the_generator', '__return_false');
  *
  * Change lang="en-US" to lang="en"
  * Remove dir="ltr"
+ * @todo  Da capire perché esiste questa funzione
+ *        Disattivata nella versione 3.1 perchè devo capirne il senso
+ *        Forse hanno aperto una qualche issue in merito
+ *        
  */
 function roots_language_attributes() {
   $attributes = array();
@@ -158,7 +162,7 @@ function roots_language_attributes() {
 
   return $output;
 }
-add_filter('language_attributes', 'roots_language_attributes');
+// add_filter('language_attributes', 'roots_language_attributes');
 
 /**
  * Manage output of wp_title()
@@ -168,7 +172,7 @@ function roots_wp_title($title) {
     return $title;
   }
 
-  $title .= get_bloginfo('name');
+  $title .= GET_BLOGINFO_NAME;
 
   return $title;
 }

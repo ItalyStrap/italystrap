@@ -176,7 +176,7 @@ function italystrap_get_404_image( $class = '' ){
 		$alt = trim( strip_tags( get_post_meta($id, '_wp_attachment_image_alt', true) ) );
 
 	}else
-		$alt = esc_attr( get_bloginfo( "name", "display" ) );
+		$alt = esc_attr( GET_BLOGINFO_NAME );
 
 
 	$html = '<img width="' . $width . 'px" height="' . $height . 'px" src="' . $image_404 . '" alt="' . $alt . '" class="' . $class . '">';

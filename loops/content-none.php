@@ -1,4 +1,4 @@
-<article>
+<article class="no-results not-found">
 	<header class="page-header">
 		<h1 itemprop="headline">
 			<?php _e( 'Damn, what you were looking for is not there', 'ItalyStrap' ); ?>

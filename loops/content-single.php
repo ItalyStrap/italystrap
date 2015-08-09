@@ -1,4 +1,4 @@
-<article itemscope itemtype="http://schema.org/Article">
+<article itemscope itemtype="http://schema.org/Article" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="page-header">
 		<h1><a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark">
 		<span itemprop="headline"><?php the_title(); ?></span></a></h1>

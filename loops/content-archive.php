@@ -1,4 +1,4 @@
-<article>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header>
 		<h2>
 			<a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark">

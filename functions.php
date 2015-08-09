@@ -9,13 +9,57 @@
 /**
  * Define ITALYSTRAP_THEME constant for internal use
  */
-define('ITALYSTRAP_THEME', true);
+define( 'ITALYSTRAP_THEME', true );
+
+/**
+ * Define parent path directory
+ */
+define( 'ITALYSTRAP_PARENT_PATH', get_template_directory_uri() );
+$path = ITALYSTRAP_PARENT_PATH; //Var deprecated from 3.0.6
+
+/**
+ * Define child path directory if is active child theme
+ */
+if ( is_child_theme() ) {
+	define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
+	$pathchild = ITALYSTRAP_CHILD_PATH;
+}else
+	$pathchild = '';
+
+/**
+ * Define Bog Name constant
+ */
+if ( !defined( 'GET_BLOGINFO_NAME' ) )
+    define( 'GET_BLOGINFO_NAME', get_option('blogname') );
+
+/**
+ * Define Blog Description Constant
+ */
+if ( !defined( 'GET_BLOGINFO_DESCRIPTION' ) )
+    define( 'GET_BLOGINFO_DESCRIPTION', get_option('blogdescription') );
+
+/**
+ * Define HOME_URL
+ */
+if ( !defined( 'HOME_URL' ) )
+    define( 'HOME_URL', get_home_url( null, '/') );
+
+/**
+ * Define theme otpion array
+ * @var array
+ */
+$italystrap_options = get_option( 'italystrap_theme_settings' );
+
+/*********************************************************************
+ * Required external class
+ * 
+ *********************************************************************/
 
 /**
  * TGM class for required plugin
  */
 if ( is_admin() )
-	require_once locate_template('/includes/class-tgm-plugin-required.php');
+	require locate_template('/includes/class-tgm-plugin-required.php');
 
 /**
  * Mobile Detect CLass
@@ -23,7 +67,7 @@ if ( is_admin() )
  */
 if ( !class_exists( 'Mobile_Detect' ) ){
 
-	require_once locate_template('/includes/Mobile_Detect.php');
+	require locate_template('/includes/Mobile_Detect.php');
 	$detect = new Mobile_Detect;
 
 }
@@ -36,12 +80,17 @@ if ( !class_exists( 'Mobile_Detect' ) ){
 /**
  * Admin Options Theme
  */
-require_once locate_template('/admin/ItalyStrapOptionTheme.php');
+require locate_template('/admin/ItalyStrapOptionTheme.php');
 
 /**
  * Admin functionality
  */
-require_once locate_template('/admin/ItalyStrapAdmin.php');
+require locate_template('/admin/ItalyStrapAdmin.php');
+
+/**
+ * Admin customizer
+ */
+require locate_template('/admin/class-italystrap-theme-customizer.php');
 
 /*******************************************************************
  * Start Core functionality, don't touch that, extend class instead
@@ -51,7 +100,7 @@ require_once locate_template('/admin/ItalyStrapAdmin.php');
 /**
  * Add field for adding glyphicon in menu
  */
-require_once locate_template('/core/ItalyStrap_custom_menu.php');
+require locate_template('/core/ItalyStrap_custom_menu.php');
 new ItalyStrap_custom_menu();
 
 /**
@@ -77,6 +126,11 @@ require locate_template('/core/class_italystrap_template_functions.php');
 	// $italystrap_template = new ItalyStrap_template_functions;
 
 /**
+ * Class for Excerpt
+ */
+require locate_template('/core/class_italystrap_excerpt.php');
+
+/**
  * Sidebar class.
  */
 require locate_template('/core/class-italystrap-sidebars.php');
@@ -92,140 +146,134 @@ if ( function_exists( 'register_widget' ) )
  *************************************************************************/
 
 /**
- * Function for init load.
- * In this file there are after_setup_theme and $content_width
- */
-require_once locate_template('/lib/init.php');
-
-/**
  * Activation options, added pointer for theme instructions.
  */
-require_once locate_template('/lib/activation.php');
-
-/**
- * Globals variables for internal use.
- */
-require_once locate_template('/lib/globals.php');
+require locate_template('/lib/activation.php');
 
 /**
  * Cleanup Headers.
  */
-require_once locate_template('/lib/cleanup.php');
+require locate_template('/lib/cleanup.php');
 
 /**
  * Load all Js and CSS script in theme.
  */
-require_once locate_template('/lib/script.php');
+require locate_template('/lib/script.php');
 
 /**
  * Register Custom Gallery:https://github.com/twittem/wp-bootstrap-gallery.
  */
-//require_once locate_template('/lib/wp_bootstrap_gallery.php');
+//require locate_template('/lib/wp_bootstrap_gallery.php');
 
 /**
  * New gallery.
  */
-require_once locate_template('/lib/gallery.php');
+require locate_template('/lib/gallery.php');
 
 /**
  *
  */
-require_once locate_template('/lib/relative-urls.php');
+require locate_template('/lib/relative-urls.php');
 
 /**
  * Custom Widget.
  */
-// require_once locate_template('/lib/widget.php');
+// require locate_template('/lib/widget.php');
 
 /**
  * Custom Post Type.
  */
-require_once locate_template('/lib/custom-post-type.php');
+require locate_template('/lib/custom-post-type.php');
 
 /**
  * https://github.com/roots/wp-h5bp-htaccess.
  */
-require_once locate_template('/lib/wp-h5bp-htaccess.php');
+require locate_template('/lib/wp-h5bp-htaccess.php');
 
 /**
  * Custom Meta Box.
  */
-require_once locate_template('/lib/custom_meta_box.php');
+require locate_template('/lib/custom_meta_box.php');
 
 /**
  * Pagination.
  */
-require_once locate_template('/lib/pagination.php');
+require locate_template('/lib/pagination.php');
 
 /**
  * Related Post.
  */
-require_once locate_template('/lib/related_post.php');
+require locate_template('/lib/related_post.php');
 
 /**
  * Custom fields.
  */
-require_once locate_template('/lib/custom_fields.php');
+require locate_template('/lib/custom_fields.php');
 
 /**
  * Users meta.
  */
-require_once locate_template('/lib/users_meta.php');
+require locate_template('/lib/users_meta.php');
 
 /**
  * Custom excerpt_length and more.
  */
-require_once locate_template('/lib/custom_excerpt.php');
+require locate_template('/lib/custom_excerpt.php');
 
 /**
  * Function for Schema.org and OG.
  */
-require_once locate_template('/lib/schema.php');
+require locate_template('/lib/schema.php');
 
 /**
  * Custom taxonomy.
  */
-require_once locate_template('/lib/custom_taxonomy.php');
+require locate_template('/lib/custom_taxonomy.php');
 
 /**
  * new_get_cancel_comment_reply_link
  */
-require_once locate_template('/lib/comment_reply.php');
+require locate_template('/lib/comment_reply.php');
 
 /**
  * Walker comments
  */
-require_once locate_template('/lib/comments.php');
+require locate_template('/lib/comments.php');
 
 /**
  * New style for tag cloud
  */
-require_once locate_template('/lib/tag_cloud.php');
+require locate_template('/lib/tag_cloud.php');
 
 /**
  * 
  */
-//require_once locate_template('/lib/css-above-the-fold.php');
+//require locate_template('/lib/css-above-the-fold.php');
 
 /**
  * Function for Post/page password protection Bootstrap style
  */
-require_once locate_template('/lib/password_protection.php');
+require locate_template('/lib/password_protection.php');
 
 /**
  * Custom shortcode
  */
-require_once locate_template('/lib/custom_shortcode.php');
+require locate_template('/lib/custom_shortcode.php');
 
 /**
  * Some function for make wordpress more secure
  */
-require_once locate_template('/lib/security.php');
+require locate_template('/lib/security.php');
 
 /**
  * Functions for debugging porpuse
  */
-require_once locate_template('/lib/debug.php');
+require locate_template('/lib/debug.php');
+
+/**
+ * load custom walker menu class file
+ */
+require locate_template('lib/wp_bootstrap_navwalker.php');
 
 /*********************************************************************
  * Deprecated files and functions
@@ -237,17 +285,187 @@ require_once locate_template('/lib/debug.php');
  * @deprecated Use new ItalyStrapBreadcrumbs( $defaults );
  * @see ItalyStrapBreadcrumbs( $defaults );
  */
-// require_once locate_template('/deprecated/breadcrumb.php');
+// require locate_template('/deprecated/breadcrumb.php');
 
 /**
  * Sidebar.
- * @deprecated 3.0.6 [<description>]
+ * @deprecated 3.0.6
  */
-// require_once locate_template('/deprecated/sidebar.php');
+// require locate_template('/deprecated/sidebar.php');
+
+/**
+ * Globals variables for internal use.
+ * @deprecated 3.0.6
+ */
+// require locate_template('/deprecated/globals.php');
+
+/**
+ * Function for init load.
+ * In this file there are after_setup_theme and $content_width
+ * @deprecated 3.0.6
+ */
+// require locate_template('/lib/init.php');
+
+/*********************************************************************
+ * Class init for Theme
+ *********************************************************************/
+
+/**
+ * 
+ */
+class ItaltStrap_Init_Theme{
+	
+	function __construct(){
+		
+		add_action('after_setup_theme', array( $this, 'theme_setup') );
+
+	}
+
+	/**
+	 * Sets up theme defaults and registers support for various WordPress features.
+	 *
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
+	 */
+    public function theme_setup() {
+        
+        /*
+         * Make theme available for translation.
+         */
+        load_theme_textdomain( 'ItalyStrap', get_template_directory() . '/lang' );
+
+        /**
+         * @link http://codex.wordpress.org/Function_Reference/add_theme_support
+         */
+
+        /**
+         * Add default posts and comments RSS feed links to head.
+         */
+        add_theme_support('automatic-feed-links');
+
+        /**
+         * Enable support for Post Thumbnails on posts and pages.
+         *
+         * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
+         */
+        add_theme_support('post-thumbnails');
+
+        /**
+         * Switch default core markup for search form, comment form, and comments
+         * to output valid HTML5.
+         */
+        $html5 = array(
+            'search-form',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption',
+        );
+        add_theme_support( 'html5', apply_filters( 'html5_support', $html5 ) );
+
+        /**
+         * Enable support for title-tag.
+         */
+        add_theme_support( 'title-tag' );
+
+        /**
+         * Enable support for Post Formats.
+         * See http://codex.wordpress.org/Post_Formats
+         * @var array
+         */
+        $post_formats = array(
+            'aside',
+            'image',
+            'gallery',
+            'link',
+            'quote',
+            'status',
+            'video',
+            'audio',
+            'chat'
+        );
+        add_theme_support('post-formats', apply_filters( 'post_formats_support', $post_formats ) );
+
+        /**
+         * Custom header value array
+         * @var array
+         */
+        $custom_header = array(
+        	'default-image'          => '',
+        	'width'                  => 1140,
+        	'height'                 => 400,
+        	'flex-height'            => true,
+        	'flex-width'             => true,
+        	'uploads'                => true,
+        	'random-default'         => false,
+        	'header-text'            => true,
+        	'default-text-color'     => '',
+        	'wp-head-callback'       => '',
+        	'admin-head-callback'    => '',
+        	'admin-preview-callback' => '',
+        	);
+        add_theme_support( 'custom-header', apply_filters( 'custom_header_support', $custom_header ) );
+
+        /**
+         * Custom background support
+         * @link http://codex.wordpress.org/Custom_Backgrounds
+         * @var array
+         * $defaults = array(
+		 *      'default-image'          => '',
+		 *		'default-repeat'         => 'repeat',
+		 *		'default-position-x'     => 'left',
+		 *		'default-attachment'     => 'scroll',
+		 *		'default-color'          => '',
+		 *		'wp-head-callback'       => '_custom_background_cb',
+		 *		'admin-head-callback'    => '',
+		 *		'admin-preview-callback' => '',
+		 * );
+		 *
+		 * 'wp-head-callback' => null In case is printed from Theme customizer
+		 * @see class-italystrap-theme-customizer.php
+         */
+		$custom_background = array(
+			'wp-head-callback' => 'italystrap_custom_background_cb'
+		);
+		add_theme_support( 'custom-background', apply_filters( 'custom_background_support', $custom_background ) );
+
+        /**
+         * This theme uses wp_nav_menu() in one location.
+         */
+        $nav_menus_locations = array(
+            'main-menu' => __( 'Main Menu', 'ItalyStrap' ) 
+        );
+        register_nav_menus( apply_filters( 'register_nav_menu', $nav_menus_locations ) );
+
+        /**
+         *  Size for default template image
+         */
+        require locate_template('lib/image_size.php');
+    }
+
+}
+
+new ItaltStrap_Init_Theme;
+
+
+
+
+
 
 /*********************************************************************
  * Standard Functions
  *********************************************************************/
+
+/**
+ * $content_width is a global variable used by WordPress for max image upload sizes
+ * and media embeds (in pixels).
+ *
+ * Example: If the content area is 640px wide,
+ * set $content_width = 620; so images and videos will not overflow.
+ * Default: 848px is the default ItalyStrap container width.
+ */
+if ( !isset($content_width) ) $content_width = apply_filters( 'content_width', 848 );
 
 /**
  * Echo the ItalyStrap theme version (parent or child if exist)
@@ -362,3 +580,37 @@ add_filter( 'comment_save_pre', 'ItalyStrap_P_dangit_sanitize_comments_update', 
 
 // }
 // add_action( 'before_loop', 'prova' );
+
+/**
+ * @link https://codex.wordpress.org/Function_Reference/get_search_form
+ * @return string Return the search form
+ */
+function italystrap_get_search_form(){
+
+	$get_search_query = ( is_search() ) ? get_search_query() : '' ;
+
+	$form = '<div itemscope itemtype="http://schema.org/WebSite"><meta itemprop="url" content="' . esc_attr( HOME_URL ) . '"/><form class="navbar-form navbar-right" role="search" method="get" action="' . esc_attr( HOME_URL ) . '" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction"><meta itemprop="target" content="' . esc_attr( HOME_URL ) . '?s={s}"/><div class="input-group input-group-sm"><input type="search" size="16" placeholder="' . __('Search now', 'ItalyStrap') . '" value="' . $get_search_query . '" name="s" class="form-control" itemprop="query-input"><span class="input-group-btn"><button type="submit" class="btn btn-default" value="' . __('Search', 'ItalyStrap') . '"><i class="glyphicon glyphicon-search"></i></button></span></div></form></div>';
+
+	return $form;
+
+}
+
+
+add_filter( 'wp_nav_menu', 'italystrap_print_search_form_in_menu', 10, 2 );
+
+/**
+ * Funzione per aggiungere il form di ricerca nel menù di navigazione
+ * Per funzionare aggiungere il parametro search con valore true all'array passato a wp_nav_menu()
+ * 
+ * @todo Aggiungere opzione per stampare il form prima o dopo wp_nav_menu()
+ * @param  string $nav_menu The nav menu output
+ * @param  object $args     wp_nav_menu arguments in object
+ * @return string           The nav menu output
+ */
+function italystrap_print_search_form_in_menu( $nav_menu, $args ){
+
+	if ( !isset( $args->search ) )
+		return $nav_menu;
+	// var_dump($args->search);
+	return str_replace( '</div>', italystrap_get_search_form() . '</div>', $nav_menu);
+}

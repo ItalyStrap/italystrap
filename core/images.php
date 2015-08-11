@@ -1,6 +1,6 @@
 <?php
 /**
- * For file size see image_size.php
+ * For file size @see image_size.php
  */
 
 /**
@@ -44,6 +44,9 @@ function italystrap_thumb_url(){
  * @return string Return logo url
  */
 function italystrap_logo(){
+
+	if ( empty( $italystrap_theme_mods['logo'] ) )
+		return;
 
 	global $path;
 
@@ -125,6 +128,7 @@ add_filter('get_image_tag_class','italystrap_add_image_class');
  * @link http://www.robertoiacono.it/aggiungere-favicon-wordpress-come-perche/
  */
 function ri_wp_favicon(){
+	_deprecated_function( __FUNCTION__, '3.1' );
 
 	$favicon = false;
 
@@ -145,10 +149,12 @@ function ri_wp_favicon(){
 
     echo '<link rel="shortcut icon" type="image/x-icon" href="' . $favicon . '" />';
 }
-add_action('wp_head', 'ri_wp_favicon');
+// add_action('wp_head', 'ri_wp_favicon');
 
 /**
  * Get the image for 404 page
+ * The image is set in the customizer
+ * Default /img/404.jpg
  *
  * @link https://wordpress.org/support/topic/need-to-get-attachment-id-by-image-url
  * @see https://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata
@@ -156,35 +162,62 @@ add_action('wp_head', 'ri_wp_favicon');
  */
 function italystrap_get_404_image( $class = '' ){
 
-	global $path;
+	global $italystrap_theme_mods;
 
-	$image_404 = $path . '/img/404.jpg';
-	$width = 320;
-	$height = 347;
-	$alt = '';
+	if ( empty( $italystrap_theme_mods['default_404'] ) )
+		return;
 
-	if ($GLOBALS['italystrap_options']['default_404'] ){
+	// $image_404_url = ITALYSTRAP_PARENT_PATH . '/img/404.jpg';
+	$image_404_url = $italystrap_theme_mods['default_404'];
+	$width = 848;
+	$height = 477;
+	$alt = __( 'Image for 404 page', 'ItalyStrap' ) . ' ' . esc_attr( GET_BLOGINFO_NAME );
 
-		global $wpdb;
+	if ( is_int( $italystrap_theme_mods['default_404'] ) ){
 
-		$image_404 = esc_attr( $GLOBALS['italystrap_options']['default_404'] );
-		$query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$image_404'";
-		$id = $wpdb->get_var($query);
-		$meta = wp_get_attachment_metadata( $id );
-		$width = ( isset( $meta['width'] ) ) ? $meta['width'] : '' ;
-		$height = ( isset( $meta['height'] ) ) ? $meta['height'] : '' ;
-		$alt = trim( strip_tags( get_post_meta($id, '_wp_attachment_image_alt', true) ) );
+		// global $wpdb;
 
-	}else
-		$alt = esc_attr( GET_BLOGINFO_NAME );
+		// $image_404_url = esc_attr( $italystrap_theme_mods['default_404'] );
+		// $query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$image_404_url'";
+		// $id = $wpdb->get_var($query);
+		// $meta = wp_get_attachment_metadata( $id );var_dump($meta);
+		// $width = ( isset( $meta['width'] ) ) ? $meta['width'] : '' ;
+		// $height = ( isset( $meta['height'] ) ) ? $meta['height'] : '' ;
+		// $alt = trim( strip_tags( get_post_meta($id, '_wp_attachment_image_alt', true) ) );
+		$size = apply_filters( '404-image-size', 'article-thumb' );
+		$id = $italystrap_theme_mods['default_404'];
+		$meta = wp_get_attachment_image_src( $id, $size );
+		$image_404_url = $meta[0];
+		$width = $meta[1];
+		$height = $meta[2];
 
+	}
 
-	$html = '<img width="' . $width . 'px" height="' . $height . 'px" src="' . $image_404 . '" alt="' . $alt . '" class="' . $class . '">';
+	$html = '<img width="' . $width . 'px" height="' . $height . 'px" src="' . $image_404_url . '" alt="' . $alt . '" class="' . $class . '">';
 
+	/**
+	 * If is active ItalyStrap plugin
+	 */
 	if ( function_exists( 'italystrap_apply_lazyload' ) )
-		return italystrap_get_apply_lazyload( $html );
-
+		return italystrap_get_apply_lazyload( apply_filters( 'italystrap-404-image', $html ) );
 	else
-		return $html;
+		return apply_filters( 'italystrap-404-image', $html );
+
+}
+
+/**
+ * Get the attachment ID from image url
+ * @link https://wordpress.org/support/topic/need-to-get-attachment-id-by-image-url
+ * @param  string $url The url of image
+ * @return int         The ID of the image
+ */
+function italystrap_get_ID_image_from_url( $url ){
+
+	global $wpdb;
+
+	$query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$url'";
+	$id = $wpdb->get_var($query);
+
+	return intval($id);
 
 }

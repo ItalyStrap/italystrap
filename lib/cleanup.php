@@ -140,6 +140,7 @@ add_filter('the_generator', '__return_false');
  *        
  */
 function roots_language_attributes() {
+  _deprecated_function( __FUNCTION__, '3.1' );
   $attributes = array();
   $output = '';
 
@@ -166,17 +167,19 @@ function roots_language_attributes() {
 
 /**
  * Manage output of wp_title()
+ * @deprecated 3.1
  */
 function roots_wp_title($title) {
+  _deprecated_function( __FUNCTION__, '3.1' );
   if (is_feed()) {
     return $title;
   }
 
-  $title .= GET_BLOGINFO_NAME;
+  $title .= ' ' . GET_BLOGINFO_NAME;
 
   return $title;
 }
-add_filter('wp_title', 'roots_wp_title', 10);
+// add_filter('wp_title', 'roots_wp_title', 10);
 
 /**
  * Clean up output of stylesheet <link> tags

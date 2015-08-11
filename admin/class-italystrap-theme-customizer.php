@@ -1,8 +1,11 @@
 <?php
 /**
  * Contains methods for customizing the theme customization screen.
+ *
+ * @todo https://codex.wordpress.org/Function_Reference/header_textcolor
  * 
  * @link http://codex.wordpress.org/Theme_Customization_API
+ * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/
  * @since ItalyStrap 1.0
  */
 class ItalyStrap_Theme_Customizer{
@@ -22,13 +25,92 @@ class ItalyStrap_Theme_Customizer{
 	function __construct(){
 
 		// Setup the Theme Customizer settings and controls...
-		add_action( 'customize_register' , array( $this , 'register' ) );
+		add_action( 'customize_register' , array( $this , 'register_init' ) );
 
 		// Enqueue live preview javascript in Theme Customizer admin screen
 		add_action( 'customize_preview_init' , array( $this , 'live_preview' ) );
 
 		// Output custom CSS to live site
 		add_action( 'wp_head' , array( $this , 'css_output' ), 11 );
+
+		/**
+		 * Add link to Theme Options in case ItalyStrap plugin is active
+		 */
+		if ( defined('ITALYSTRAP_PLUGIN') )
+			add_action('admin_menu', array( $this, 'add_link_to_theme_option_page') );
+
+		/**
+		 * Add new voice to theme menu
+		 */
+		add_action('admin_menu', array( $this, 'add_appearance_menu' ));
+
+	}
+
+	/**
+	 * Function for adding link to Theme Options in case ItalyStrap plugin is active
+	 * @link http://snippets.webaware.com.au/snippets/add-an-external-link-to-the-wordpress-admin-menu/
+	 */
+	public function add_link_to_theme_option_page() {
+		global $submenu;
+		/**
+		 * Link to customizer
+		 * @link http://wptheming.com/2015/01/link-to-customizer-sections/
+		 * @var string
+		 */
+		$url = admin_url( 'customize.php?autofocus[control]=italystrap_options' );
+		$submenu['italystrap-dashboard'][] = array(
+											__( 'Theme Options', 'ItalyStrap' ),
+											$this->capability,
+											$url);
+	}
+
+	/**
+	 * Add new menu in theme.php
+	 */
+	public function add_appearance_menu(){
+		
+		/**
+		 * @link https://codex.wordpress.org/Function_Reference/add_theme_page
+		 */
+		add_theme_page(
+			__( 'ItalyStrap Theme Info', 'ItalyStrap' ),	// $page_title <title></title>
+			__( 'ItalyStrap Theme Info', 'ItalyStrap' ),			// $menu_title
+			$this->capability,								// $capability
+			'italystrap-theme-info',						// $menu_slug
+			array( $this, 'callback_function' )				// $function
+			);
+
+	}
+
+	/**
+	 * Add WordPress standard form for options page
+	 * @return string
+	 */
+	public function callback_function(){
+
+			if ( !current_user_can( $this->capability ) )
+				wp_die( __( 'You do not have sufficient permissions to access this page.', 'ItalyStrap' ) );
+
+			?>
+
+				<div class="wrap">
+					<h2>
+						<span class="dashicons dashicons-admin-settings" style="font-size:32px;margin-right:15px"></span> ItalyStrap panel
+					</h2>
+						<?php // settings_errors(); ?>
+
+					<form action='options.php' method='post'>
+						
+						<?php
+						settings_fields( 'italystrap_theme_options_group' );
+						do_settings_sections( 'italystrap_theme_options_group' );
+						submit_button();
+						?>
+						
+					</form>
+				</div>
+
+			<?php
 
 	}
 
@@ -44,27 +126,12 @@ class ItalyStrap_Theme_Customizer{
 	 * @link http://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/
 	 * @since ItalyStrap 1.0
 	 */
-	public function register ( $wp_customize ) {
+	public function register_init ( $wp_customize ) {
 
-
-
-// $wp_customize->add_panel( 'menus', array(
-//   'title' => __( 'Menus' ),
-//   'description' => 'add_panel', // Include html tags such as <p>.
-//   'priority' => 160, // Mixed with top-level-section hierarchy.
-// ) );
-
-
-      //1. Define a new section (if desired) to the Theme Customizer
-      // $wp_customize->add_section( 'italystrap_options', 
-      //    array(
-      //       'title' => __( 'ItalyStrap Options', 'italystrap' ), //Visible title of section
-      //       'panel' => 'menus',
-      //       'priority' => 0, //Determines what order this appears in
-      //       'capability' => 'edit_theme_options', //Capability needed to tweak
-      //       'description' => __('Allows you to customize some example settings for ItalyStrap.', 'italystrap'), //Descriptive tooltip
-      //    ) 
-      // );
+		/**
+		 * Changing Customizer Color Sections Titles
+		 */
+		$wp_customize->get_section('colors')->title = __( 'Theme Colors', 'italystrap'  );
 
 		//2. Register new settings to the WP database...
 		$wp_customize->add_setting( 'link_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
@@ -73,6 +140,7 @@ class ItalyStrap_Theme_Customizer{
 			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
 			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+			// 'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
 
@@ -96,6 +164,7 @@ class ItalyStrap_Theme_Customizer{
 			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
 			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+			// 'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
 
@@ -112,11 +181,215 @@ class ItalyStrap_Theme_Customizer{
 			)
 		);
 
+		$wp_customize->add_panel( 'italystrap_options_page',
+			array(
+				'title' => __( 'ItalyStrap Options', 'italystrap' ),
+				'description' => 'add_panel', // Include html tags such as <p>.
+				'priority' => 160, // Mixed with top-level-section hierarchy.
+			)
+		);
+
+
+		// 1. Define a new section (if desired) to the Theme Customizer
+		$wp_customize->add_section( 'italystrap_image_options', 
+			array(
+				'title' => __( 'Theme Image Options', 'italystrap' ), //Visible title of section
+				'panel' => 'italystrap_options_page',
+				// 'priority' => 0, //Determines what order this appears in
+				'capability' => $this->capability, //Capability needed to tweak
+				'description' => __('Allows you to customize settings for ItalyStrap.', 'italystrap'), //Descriptive tooltip
+			) 
+		);
+
+		//2. Register new settings to the WP database...
+		$wp_customize->add_setting( 'logo', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+		array(
+			'default' => ITALYSTRAP_PARENT_PATH . '/img/italystrap-logo.jpg', //Default setting/value to save
+			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
+			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+			)
+		);
+
+		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+		$wp_customize->add_control( new WP_Customize_Media_Control( //Instantiate the color control class
+			$wp_customize, //Pass the $wp_customize object (required)
+			'italystrap_logo', //Set a unique ID for the control
+			array(
+				'label' => __( 'Your Logo', 'italystrap' ), //Admin-visible name of the control
+				'description' => __( 'Insert here your logo', 'italystrap' ),
+				'section' => 'italystrap_image_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+				'settings' => 'logo', //Which setting to load and manipulate (serialized is okay)
+				'priority' => 10, //Determines the order this control appears in for the specified section
+				) 
+			)
+		);
+
+
+		//2. Register new settings to the WP database...
+		$wp_customize->add_setting( 'default_image', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+		array(
+			'default' => ITALYSTRAP_PARENT_PATH . '/img/italystrap-default-image.png', //Default setting/value to save
+			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
+			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+			)
+		);
+
+		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+		$wp_customize->add_control( new WP_Customize_Media_Control( //Instantiate the color control class
+			$wp_customize, //Pass the $wp_customize object (required)
+			'italystrap_default_image', //Set a unique ID for the control
+			array(
+				'label' => __( 'Default Image', 'italystrap' ), //Admin-visible name of the control
+				'description' => __( 'Upload an image for the default image used for social sharing (must be at least 1200x600px for Facebook), it will also be displayed if no feautured image will be added in your content page/post if the theme supports this feature.', 'italystrap' ),
+				'section' => 'italystrap_image_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+				'settings' => 'default_image', //Which setting to load and manipulate (serialized is okay)
+				'priority' => 10, //Determines the order this control appears in for the specified section
+				) 
+			)
+		);
+
+		//2. Register new settings to the WP database...
+		$wp_customize->add_setting( 'default_404', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+		array(
+			'default' => ITALYSTRAP_PARENT_PATH . '/img/404.jpg', //Default setting/value to save
+			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
+			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+			)
+		);
+
+		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+		$wp_customize->add_control( new WP_Customize_Media_Control( //Instantiate the color control class
+			$wp_customize, //Pass the $wp_customize object (required)
+			'italystrap_default_404', //Set a unique ID for the control
+			array(
+				'label' => __( 'Default 404 Image', 'italystrap' ), //Admin-visible name of the control
+				'description' => __( 'This is a default 404 image, it will be displayed in 404 page (must be at least weight 848px)', 'italystrap' ),
+				'section' => 'italystrap_image_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+				'settings' => 'default_404', //Which setting to load and manipulate (serialized is okay)
+				'priority' => 10, //Determines the order this control appears in for the specified section
+				) 
+			)
+		);
+
+
+
+
+		$wp_customize->add_section( 'custom_css',
+			array(
+				'title' => __( 'Custom CSS' ),
+				'description' => __( 'Add custom CSS here' ),
+				// 'panel' => 'italystrap_options_page', // Not typically needed.
+				'priority' => 160,
+				'capability' => $this->capability,
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		//2. Register new settings to the WP database...
+		$wp_customize->add_setting( 'custom_css', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+		array(
+			'default' => ITALYSTRAP_PARENT_PATH . '/img/404.jpg', //Default setting/value to save
+			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
+			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+			)
+		);
+
+		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+		$wp_customize->add_control( new WP_Customize_Media_Control( //Instantiate the color control class
+			$wp_customize, //Pass the $wp_customize object (required)
+			'italystrap_custom_css', //Set a unique ID for the control
+			array(
+				'label' => __( 'Default 404 Image', 'italystrap' ), //Admin-visible name of the control
+				'description' => __( 'This is a default 404 image, it will be displayed in 404 page (must be at least weight 848px)', 'italystrap' ),
+				// 'section' => 'custom_css', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+				// 'settings' => 'custom_css', //Which setting to load and manipulate (serialized is okay)
+				'priority' => 10, //Determines the order this control appears in for the specified section
+				) 
+			)
+		);
+
+		// // Add a footer/copyright information section.
+		// $wp_customize->add_section( 'footer',
+		// 	array(
+		// 		'title' => __( 'Footer', 'themename' ),
+		// 		'priority' => 90, // Before Navigation.
+		// 	)
+		// );
+
 		//4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
 		$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 		$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 		$wp_customize->get_setting( 'background_color' )->transport = 'postMessage';
+
+		// Hide core sections/controls when they aren't used on the current page.
+		// $wp_customize->get_section( 'header_image' )->active_callback = 'is_front_page';
+		// $wp_customize->get_control( 'blogdescription' )->active_callback = 'is_front_page';
+		$this->set_theme_mod_from_options();
+
+	}
+
+	/**
+	 * retrieves the attachment ID from the file URL
+	 * @link https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
+	 * @param  [type] $image_url [description]
+	 * @return [type]            [description]
+	 */
+	private function pippin_get_image_id($image_url) {
+		global $wpdb;
+		$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url )); 
+		return intval( $attachment[0] );
+	}
+
+	public function set_theme_mod_from_options(){
+
+		// $italystrap_options = get_option( 'italystrap_theme_settings' );
+		// customize_save
+		global $italystrap_options;
+		// var_dump($italystrap_options);
+		// var_dump($italystrap_options['logo']);
+		// var_dump(get_theme_mod( 'logo' ));
+
+		// set_theme_mod( $name, $value );
+
+		foreach ($italystrap_options as $key => $value) {
+
+			if ( ! get_theme_mod( $key ) && preg_match( '#png|jpg|gif#is', $italystrap_options[$key] ) )
+				set_theme_mod( $key, $this->pippin_get_image_id( $italystrap_options[$key] ) );
+			elseif ( ! get_theme_mod( $key ) )	
+				set_theme_mod( $key, $italystrap_options[$key] );
+
+			// var_dump( $key . ' => ' . get_theme_mod( $key ) );
+			// remove_theme_mod( $key );
+		}
+
+		// var_dump(get_theme_mods());
+	}
+
+
+	/**
+	 * This outputs the javascript needed to automate the live settings preview.
+	 * Also keep in mind that this function isn't necessary unless your settings 
+	 * are using 'transport'=>'postMessage' instead of the default 'transport'
+	 * => 'refresh'
+	 * 
+	 * Used by hook: 'customize_preview_init'
+	 * 
+	 * @see add_action('customize_preview_init',$func)
+	 * @since ItalyStrap 1.0
+	 */
+	public function live_preview() {
+		wp_enqueue_script( 
+			'italystrap-theme-customizer', // Give the script a unique ID
+			ITALYSTRAP_PARENT_PATH . '/admin/js/theme-customizer.min.js', // Define the path to the JS file
+			array(  'jquery', 'customize-preview' ), // Define dependencies
+			null, // Define a version (optional) 
+			true // Specify whether to put in footer (leave this true)
+			);
 	}
 
 	/**
@@ -171,27 +444,6 @@ class ItalyStrap_Theme_Customizer{
 
 		$this->style .= 'body.custom-background{' . trim( $style ) . '}';
 
-	}
-
-	/**
-	 * This outputs the javascript needed to automate the live settings preview.
-	 * Also keep in mind that this function isn't necessary unless your settings 
-	 * are using 'transport'=>'postMessage' instead of the default 'transport'
-	 * => 'refresh'
-	 * 
-	 * Used by hook: 'customize_preview_init'
-	 * 
-	 * @see add_action('customize_preview_init',$func)
-	 * @since ItalyStrap 1.0
-	 */
-	public function live_preview() {
-		wp_enqueue_script( 
-			'italystrap-theme-customizer', // Give the script a unique ID
-			ITALYSTRAP_PARENT_PATH . '/admin/js/theme-customizer.min.js', // Define the path to the JS file
-			array(  'jquery', 'customize-preview' ), // Define dependencies
-			null, // Define a version (optional) 
-			true // Specify whether to put in footer (leave this true)
-			);
 	}
 
     /**

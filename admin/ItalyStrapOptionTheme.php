@@ -49,7 +49,8 @@ class ItalyStrapOptionTheme{
 	 */
 	public function add_link_to_theme_option_page() {
 		global $submenu;
-		$url = 'themes.php?page=italystrap-option-page';
+		// $url = 'themes.php?page=italystrap-option-page';
+		$url = admin_url( 'customize.php?autofocus[control]=italystrap_options' );
 		$submenu['italystrap-dashboard'][] = array(
 											__( 'Theme Options', 'ItalyStrap' ),
 											$this->capability,
@@ -89,7 +90,7 @@ class ItalyStrapOptionTheme{
 					<h2>
 						<span class="dashicons dashicons-admin-settings" style="font-size:32px;margin-right:15px"></span> ItalyStrap panel
 					</h2>
-						<?php settings_errors(); ?>
+						<?php // settings_errors(); ?>
 
 					<form action='options.php' method='post'>
 						
@@ -118,7 +119,7 @@ class ItalyStrapOptionTheme{
 		$default_options = array(
 					'default_404'	=>	$this->path . '/img/404.jpg',
 					'default_image'	=>	$this->path . '/img/italystrap-default-image.png',
-					'favicon'		=>	$this->path . '/img/favicon.ico',
+					// 'favicon'		=>	$this->path . '/img/favicon.ico',
 					'logo'			=>	$this->path . '/img/italystrap-logo.jpg',
 					'analytics'		=>	''
 					);
@@ -169,14 +170,14 @@ class ItalyStrapOptionTheme{
 		/**
 		 * Code for favicon
 		 */
-		add_settings_field( 
-			'favicon',
-			__( 'Favicon', 'ItalyStrap' ),
-			array( $this, 'option_favicon'),
-			'italystrap_theme_options_group',
-			'italystrap_option_theme_section',
-			null
-			);
+		// add_settings_field( 
+		// 	'favicon',
+		// 	__( 'Favicon', 'ItalyStrap' ),
+		// 	array( $this, 'option_favicon'),
+		// 	'italystrap_theme_options_group',
+		// 	'italystrap_option_theme_section',
+		// 	null
+		// 	);
 
 		/**
 		 * Code for Logo
@@ -349,5 +350,5 @@ class ItalyStrapOptionTheme{
 
 }
 
-if ( is_admin() && ! is_child_theme() )
-	new ItalyStrapOptionTheme;
+// if ( is_admin() && ! is_child_theme() )
+// 	new ItalyStrapOptionTheme;

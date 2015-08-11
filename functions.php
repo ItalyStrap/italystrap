@@ -50,6 +50,12 @@ if ( !defined( 'HOME_URL' ) )
  */
 $italystrap_options = get_option( 'italystrap_theme_settings' );
 
+/**
+ * The customiser optionr of ItalyStrap
+ * @var array
+ */
+$italystrap_theme_mods = get_theme_mods();
+
 /*********************************************************************
  * Required external class
  * 

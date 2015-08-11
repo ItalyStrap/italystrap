@@ -28,7 +28,7 @@ get_header(); ?>
 
 					
 				</div><!-- / .col-md-8 -->
-					<?php get_sidebar(); ?> 
+				<?php get_sidebar(); ?> 
 			</div><!-- / .row -->
 		</div><!-- / .container -->
 	</section><!-- / #error404 -->

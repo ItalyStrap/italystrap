@@ -326,6 +326,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-github-releaser');
 
+    // https://github.com/tkadlec/grunt-perfbudget
+    grunt.loadNpmTasks('grunt-perfbudget');
+
     /**
      * Check grunt plugin update
      * @link https://www.npmjs.com/package/npm-check-updates

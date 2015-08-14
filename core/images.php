@@ -1,6 +1,19 @@
 <?php
 /**
  * For file size @see image_size.php
+ * @todo Upload default image on switch theme
+ *       (da usare invece della fallback
+ *       dell'immagine nella cartella img)
+ * @link https://codex.wordpress.org/Plugin_API/Action_Reference/switch_theme
+ * @link https://codex.wordpress.org/Plugin_API/Action_Reference/after_switch_theme
+ * @link https://wordpress.org/plugins/auto-upload-images/
+ *
+ * @todo Al momento dalla versione 3.1 ho cambiato solo il path delle varie
+ *       immagini prese dal nuovo theme customizer in futuro eventualmente
+ *       migliorare queste funzioni in base alle varie situazioni,
+ *       per esempio se non ci sono immagini non ritornare nessun valore
+ * @todo L'immagine di default dovrebbe anche essere creata per
+ *       le misure varie misure impostate
  */
 
 /**
@@ -10,10 +23,16 @@
  */
 function italystrap_get_default_image(){
 
-	global $path;
+	global $italystrap_theme_mods, $path;
 
-	if ( $GLOBALS['italystrap_options']['default_image'] )
-		$default_image = $GLOBALS['italystrap_options']['default_image'];
+	if ( empty( $italystrap_theme_mods['default_image'] ) )
+		return;
+
+	
+	if ( is_int( $italystrap_theme_mods['default_image'] ) )
+		$default_image = wp_get_attachment_url( $italystrap_theme_mods['default_image'] );
+	elseif ( $italystrap_theme_mods['default_image'] )
+		$default_image = $italystrap_theme_mods['default_image'];
 	else
 		$default_image = $path . '/img/italystrap-default-image.png';
 
@@ -45,13 +64,15 @@ function italystrap_thumb_url(){
  */
 function italystrap_logo(){
 
+	global $path;
+
 	if ( empty( $italystrap_theme_mods['logo'] ) )
 		return;
 
-	global $path;
-
-	if ( $GLOBALS['italystrap_options']['logo'] )
-		$logo = $GLOBALS['italystrap_options']['logo'];
+	if ( is_int( $italystrap_theme_mods['logo'] ) )
+		$logo = wp_get_attachment_url( $italystrap_theme_mods['logo'] );
+	elseif ( $italystrap_theme_mods['logo'] )
+		$logo = $italystrap_theme_mods['logo'];
 	else
 		$logo = $path . '/img/italystrap-logo.jpg';
 

@@ -107,7 +107,7 @@ require locate_template('/admin/class-italystrap-theme-customizer.php');
  * Add field for adding glyphicon in menu
  */
 require locate_template('/core/ItalyStrap_custom_menu.php');
-new ItalyStrap_custom_menu();
+    new ItalyStrap_custom_menu();
 
 /**
  * Add new Class for Breadcrumbs
@@ -154,7 +154,7 @@ if ( function_exists( 'register_widget' ) )
 /**
  * Activation options, added pointer for theme instructions.
  */
-require locate_template('/lib/activation.php');
+require locate_template('/lib/pointer.php');
 
 /**
  * Cleanup Headers.

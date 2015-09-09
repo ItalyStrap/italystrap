@@ -98,16 +98,26 @@ require locate_template('/admin/ItalyStrapAdmin.php');
  */
 require locate_template('/admin/class-italystrap-theme-customizer.php');
 
+/**
+ * Add field for adding glyphicon in menu
+ */
+require locate_template('/admin/class-italystrap-admin-menu-custom-field.php');
+    new ItalyStrap_Add_Admin_Menu_Custom_Field();
+
+/**
+ * Wp Editor in Category description
+ */
+require locate_template('/admin/class-italystrap-category-editor.php');
+
 /*******************************************************************
  * Start Core functionality, don't touch that, extend class instead
  * 
  *******************************************************************/
 
 /**
- * Add field for adding glyphicon in menu
+ * load custom walker menu class file
  */
-require locate_template('/core/ItalyStrap_custom_menu.php');
-    new ItalyStrap_custom_menu();
+require locate_template('core/class-italystrap-navwalker.php');
 
 /**
  * Add new Class for Breadcrumbs
@@ -127,14 +137,15 @@ require locate_template('/core/images.php');
 /**
  * Class for template functions
  * Depend of images.php
+ * @todo Da mettere a posto, al momento non fa nulla
  */
-require locate_template('/core/class_italystrap_template_functions.php');
+require locate_template('/core/class-italystrap-template-functions.php');
 	// $italystrap_template = new ItalyStrap_template_functions;
 
 /**
  * Class for Excerpt
  */
-require locate_template('/core/class_italystrap_excerpt.php');
+require locate_template('/core/class-italystrap-excerpt.php');
 
 /**
  * Sidebar class.
@@ -275,11 +286,6 @@ require locate_template('/lib/security.php');
  * Functions for debugging porpuse
  */
 require locate_template('/lib/debug.php');
-
-/**
- * load custom walker menu class file
- */
-require locate_template('lib/wp_bootstrap_navwalker.php');
 
 /*********************************************************************
  * Deprecated files and functions
@@ -599,24 +605,4 @@ function italystrap_get_search_form(){
 
 	return $form;
 
-}
-
-
-add_filter( 'wp_nav_menu', 'italystrap_print_search_form_in_menu', 10, 2 );
-
-/**
- * Funzione per aggiungere il form di ricerca nel menù di navigazione
- * Per funzionare aggiungere il parametro search con valore true all'array passato a wp_nav_menu()
- * 
- * @todo Aggiungere opzione per stampare il form prima o dopo wp_nav_menu()
- * @param  string $nav_menu The nav menu output
- * @param  object $args     wp_nav_menu arguments in object
- * @return string           The nav menu output
- */
-function italystrap_print_search_form_in_menu( $nav_menu, $args ){
-
-	if ( !isset( $args->search ) )
-		return $nav_menu;
-	// var_dump($args->search);
-	return str_replace( '</div>', italystrap_get_search_form() . '</div>', $nav_menu);
 }

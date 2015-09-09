@@ -49,6 +49,8 @@ class ItalyStrap_Theme_Customizer{
 	/**
 	 * Function for adding link to Theme Options in case ItalyStrap plugin is active
 	 * @link http://snippets.webaware.com.au/snippets/add-an-external-link-to-the-wordpress-admin-menu/
+	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#focusing
+	 * autofocus[panel|section|control]=ID
 	 */
 	public function add_link_to_theme_option_page() {
 		global $submenu;
@@ -57,7 +59,7 @@ class ItalyStrap_Theme_Customizer{
 		 * @link http://wptheming.com/2015/01/link-to-customizer-sections/
 		 * @var string
 		 */
-		$url = admin_url( 'customize.php?autofocus[control]=italystrap_options' );
+		$url = admin_url( 'customize.php?autofocus[panel]=italystrap_options_page' );
 		$submenu['italystrap-dashboard'][] = array(
 											__( 'Theme Options', 'ItalyStrap' ),
 											$this->capability,
@@ -140,7 +142,7 @@ class ItalyStrap_Theme_Customizer{
 			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
 			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
-			// 'sanitize_callback' => 'sanitize_hex_color',
+			'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
 
@@ -164,7 +166,7 @@ class ItalyStrap_Theme_Customizer{
 			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
 			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
-			// 'sanitize_callback' => 'sanitize_hex_color',
+			'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
 
@@ -208,6 +210,7 @@ class ItalyStrap_Theme_Customizer{
 			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
 			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+			'sanitize_callback' => 'sanitize_text_field',
 			)
 		);
 
@@ -233,6 +236,7 @@ class ItalyStrap_Theme_Customizer{
 			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
 			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+			'sanitize_callback' => 'sanitize_text_field',
 			)
 		);
 
@@ -257,6 +261,7 @@ class ItalyStrap_Theme_Customizer{
 			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
 			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+			'sanitize_callback' => 'sanitize_text_field',
 			)
 		);
 
@@ -295,6 +300,7 @@ class ItalyStrap_Theme_Customizer{
 			'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 			'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
 			'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+			'sanitize_callback' => 'sanitize_text_field',
 			)
 		);
 
@@ -340,9 +346,14 @@ class ItalyStrap_Theme_Customizer{
 	 * @return [type]            [description]
 	 */
 	private function pippin_get_image_id($image_url) {
+
 		global $wpdb;
-		$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url )); 
+		$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
+
+		$attachment[0] = ( isset( $attachment[0] ) ) ? $attachment[0] : null;
+
 		return intval( $attachment[0] );
+		
 	}
 
 	public function set_theme_mod_from_options(){

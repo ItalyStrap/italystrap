@@ -15,6 +15,8 @@
 
         if ( class_exists('ItalyStrapHTMLSitemaps') ){
 
+        	$args = null;
+
         	// $args = array(
         	// 	'print' => 1
         	// 	);

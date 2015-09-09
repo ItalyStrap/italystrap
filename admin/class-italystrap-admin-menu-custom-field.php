@@ -8,16 +8,15 @@
  * @since 3.0.0
  * @uses Walker_Nav_Menu
  */
-// if (!class_exists('ItalyStrap_custom_menu'))
-class Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
+class ItalyStrap_Admin_Menu_Custom_Field extends Walker_Nav_Menu  {
 	/**
 	 * @see Walker_Nav_Menu::start_lvl()
 	 * @since 3.0.0
 	 *
 	 * @param string $output Passed by reference.
 	 */
-	function start_lvl(&$output, $depth = 0, $args = array()) {	
-	}
+	// function start_lvl(&$output, $depth = 0, $args = array()) {	
+	// }
 	
 	/**
 	 * @see Walker_Nav_Menu::end_lvl()
@@ -25,8 +24,8 @@ class Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
 	 *
 	 * @param string $output Passed by reference.
 	 */
-	function end_lvl(&$output, $depth = 0, $args = array()) {
-	}
+	// function end_lvl(&$output, $depth = 0, $args = array()) {
+	// }
 	
 	/**
 	 * @see Walker::start_el()
@@ -283,4 +282,82 @@ class Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
 		$output .= ob_get_clean();
 
 		}
+}
+
+
+/**
+ * Add possibility to adding glyphicon directly in new custom field in menu
+ * @link http://www.wpexplorer.com/adding-custom-attributes-to-wordpress-menus/
+ */
+class ItalyStrap_Add_Admin_Menu_Custom_Field {
+
+	/*--------------------------------------------*
+	 * Constructor
+	 *--------------------------------------------*/
+
+	/**
+	 * Initializes the plugin by setting localization, filters, and administration functions.
+	 */
+	function __construct() {
+
+		// add custom menu fields to menu
+		add_filter( 'wp_setup_nav_menu_item', array( $this, 'italystrap_add_custom_nav_fields' ) );
+
+		// save menu custom fields
+		if ( is_admin() )
+			add_action( 'wp_update_nav_menu_item', array( $this, 'italystrap_update_custom_nav_fields'), 10, 3 );
+		
+		// edit menu walker
+		if ( is_admin() )
+			add_filter( 'wp_edit_nav_menu_walker', array( $this, 'italystrap_edit_walker'), 10, 2 );
+
+	} // end constructor
+	
+	/**
+	 * Add custom fields to $item nav object
+	 * in order to be used in custom Walker
+	 *
+	 * @access      public
+	 * @since       1.0 
+	 * @return      void
+	*/
+	function italystrap_add_custom_nav_fields( $menu_item ) {
+
+	    $menu_item->glyphicon = get_post_meta( $menu_item->ID, '_menu_item_glyphicon', true );
+	    return $menu_item;
+	    
+	}
+	
+	/**
+	 * Save menu custom fields
+	 *
+	 * @access      public
+	 * @since       1.0 
+	 * @return      void
+	*/
+	function italystrap_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
+
+		$glyphicon = ( isset( $_REQUEST['menu-item-glyphicon'] ) ) ? $_REQUEST['menu-item-glyphicon'] : null;
+
+	    /**
+	     * Check if element is properly sent
+	     */
+	    if ( $glyphicon && is_array( $glyphicon ) )
+	        update_post_meta( $menu_item_db_id, '_menu_item_glyphicon', $glyphicon[$menu_item_db_id] );
+	    
+	}
+	
+	/**
+	 * Define new Walker edit
+	 *
+	 * @access      public
+	 * @since       1.0 
+	 * @return      void
+	*/
+	function italystrap_edit_walker($walker,$menu_id) {
+	
+	    return 'ItalyStrap_Admin_Menu_Custom_Field';
+	    
+	}
+
 }

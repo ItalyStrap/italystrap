@@ -36,7 +36,7 @@ function italystrap_get_default_image(){
 	else
 		$default_image = $path . '/img/italystrap-default-image.png';
 
-	return $default_image;
+	return esc_url( $default_image );
 
 }
 
@@ -76,7 +76,7 @@ function italystrap_logo(){
 	else
 		$logo = $path . '/img/italystrap-logo.jpg';
 
-	return $logo;
+	return esc_url( $logo );
 }
 
 //funzione per estrapolare le url da gravatar
@@ -222,7 +222,7 @@ function italystrap_get_404_image( $class = '' ){
 	if ( function_exists( 'italystrap_apply_lazyload' ) )
 		return italystrap_get_apply_lazyload( apply_filters( 'italystrap-404-image', $html ) );
 	else
-		return apply_filters( 'italystrap-404-image', $html );
+		return esc_url( apply_filters( 'italystrap-404-image', $html ) );
 
 }
 
@@ -237,8 +237,8 @@ function italystrap_get_ID_image_from_url( $url ){
 	global $wpdb;
 
 	$query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$url'";
-	$id = $wpdb->get_var($query);
+	$id = $wpdb->get_var( $query );
 
-	return intval($id);
+	return absint( $id );
 
 }

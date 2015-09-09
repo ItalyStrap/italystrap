@@ -46,8 +46,8 @@
 	<meta itemprop="interactionCount" content="UserComments:<?php comments_number(0, 1, '%');?>" />
 </article>
 <ul class="pager">
-	<li class="previous"><?php previous_post_link('%link', '<i class="glyphicon glyphicon-arrow-left"></i> %title');?></li>
-	<li class="next"><?php next_post_link('%link', '%title <i class="glyphicon glyphicon-arrow-right"></i>') ?></li>
+	<li class="previous pager-prev"><?php previous_post_link('%link', '<i class="glyphicon glyphicon-arrow-left"></i> %title');?></li>
+	<li class="next pager-next"><?php next_post_link('%link', '%title <i class="glyphicon glyphicon-arrow-right"></i>') ?></li>
 </ul>
 <span class="clearfix"></span>
 <hr>

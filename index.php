@@ -22,7 +22,7 @@ get_header(); ?>
 
 					if ( have_posts() ) : while ( have_posts() ) : the_post();
 
-						get_template_part( 'loops/content', 'archive' );
+						get_template_part( 'loops/content', get_post_type() );
 
 					endwhile;
 

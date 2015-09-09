@@ -180,4 +180,4 @@ if ( comments_open() ) : ?>
 </div>
 
 <?php endif; // Comment open ?>
-</section><?php comment_form(); ?>
+</section><?php // comment_form(); ?>

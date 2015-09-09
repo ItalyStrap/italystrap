@@ -29,6 +29,7 @@
     "bootstrap": "latest",
     "wp-bootstrap-navwalker": "git://github.com/twittem/wp-bootstrap-navwalker.git#~2.0.4",
     "Mobile-Detect": "git://github.com/serbanghita/Mobile-Detect.git",
-    "TGM-Plugin-Activation": "git://github.com/thomasgriffin/TGM-Plugin-Activation.git"
+    "TGM-Plugin-Activation": "git://github.com/thomasgriffin/TGM-Plugin-Activation.git",
+    "font-awesome": "~4.4.0"
   }
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Template Name: blog
+ * Template Name: Blog
  */
 get_header(); ?>
     <!-- Main Content -->
@@ -25,12 +25,11 @@ get_header(); ?>
 										array( 
 												'post_type'		=>	'post',
 												'pagination'        => true,
-												'paged'             => $paged,
-												// 'posts_per_page' 	=> $posts_per_page,
+												'paged'             => $paged
 												));
 					if ( $blog->have_posts() ) : while ( $blog->have_posts() ) : $blog->the_post();
-
-						get_template_part( 'loops/content', 'archive' );
+var_dump(get_post_type());
+						get_template_part( 'loops/content', 'post' );
 
 					endwhile;
 

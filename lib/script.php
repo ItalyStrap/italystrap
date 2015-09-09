@@ -13,6 +13,13 @@ function italystrap_add_style_and_script(){
 	global $pathchild;
 
 	/**
+	 * Only for 
+	 * @link http://www.bootstrapcdn.com/alpha/
+	 */
+	// wp_register_style( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css', null, null, null );
+	// wp_enqueue_style( 'bootstrap' );
+
+	/**
 	 * Load Bootstrap styles
 	 */
 	wp_enqueue_style( 'bootstrap',  $path . '/css/bootstrap.min.css', null, null, null);

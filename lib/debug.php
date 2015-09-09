@@ -105,15 +105,15 @@ $theme_action = array(
 
 static $i = 0;
 
-// foreach ($theme_action as $value)
-//     if ( !empty( $value ) )
-//         add_action( $value, 'italustrap_test_action_theme' );
+foreach ($theme_action as $value)
+    if ( !empty( $value ) )
+        add_action( $value, 'italystrap_test_action_theme' );
 
 
-function italustrap_test_action_theme( $val ){
+function italystrap_test_action_theme( $val ){
     
     global $theme_action, $i;
-    echo '<div style="height:30px;width:100%;background-color:yellow;border: 2px solid black;margin:10px 0"><p style="text-align:center">' . $val . '</p></div>';
+    echo '<div style="height:30px;width:100%;background-color:trasparent;border: 2px solid black;margin:10px 0"><p style="text-align:center">' . $val . '</p></div>';
     $i++;
 
 }

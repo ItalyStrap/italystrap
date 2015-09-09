@@ -44,6 +44,8 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
+		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+
 		/**
 		 * Dividers, Headers or Disabled
 		 * =============================
@@ -51,20 +53,21 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 		 * menu item. To prevent errors we use the strcasecmp() function to so a
 		 * comparison that is not case sensitive. The strcasecmp() function returns
 		 * a 0 if the strings are equal.
+		 *
+		 * The relative classes must set in CSS class input
+		 *
+		 * @todo Aggiungere la possibilità di poter inserire i pulsanti nel menù
+		 * @link http://getbootstrap.com/components/#navbar-buttons
 		 */
-		if ( strcasecmp( $item->attr_title, 'divider' ) === 0 && $depth === 1 )
+		if ( strcasecmp( $classes[0], 'divider' ) === 0 && $depth === 1 )
 
 			$output .= $indent . '<li role="presentation" class="divider">';
 
-		else if ( strcasecmp( $item->title, 'divider') === 0 && $depth === 1 )
-
-			$output .= $indent . '<li role="presentation" class="divider">';
-
-		else if ( strcasecmp( $item->attr_title, 'dropdown-header') === 0 && $depth === 1 )
+		else if ( strcasecmp( $classes[0], 'dropdown-header') === 0 && $depth === 1 )
 
 			$output .= $indent . '<li role="presentation" class="dropdown-header">' . esc_attr( $item->title );
 
-		else if ( strcasecmp($item->attr_title, 'disabled' ) === 0 )
+		else if ( strcasecmp( $classes[0], 'disabled' ) === 0 )
 
 			$output .= $indent . '<li role="presentation" class="disabled"><a href="#">' . esc_attr( $item->title ) . '</a>';
 
@@ -72,18 +75,22 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 
 			$class_names = $value = '';
 
-			$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+			// $classes = empty( $item->classes ) ? array() : (array) $item->classes;
 			$classes[] = 'menu-item-' . $item->ID;
 
 			$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 
+			/**
+			 * If item has children and has class dropup add it as a class to the item itself, else ad dropdown
+			 * @link http://getbootstrap.com/components/#dropdowns-example
+			 */
 			if ( $args->has_children )
-				$class_names .= ' dropdown';
+				$class_names .= $dropdown = ( $classes[0] === 'dropup' ) ? '' : ' dropdown';
 
 			if ( in_array( 'current-menu-item', $classes ) )
 				$class_names .= ' active';
 
-			$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+			$class_names = $class_names ? ' class="nav-item ' . esc_attr( $class_names ) . '"' : '';
 
 			$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
 			$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
@@ -95,14 +102,15 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			$atts['target'] = ! empty( $item->target )	? $item->target	: '';
 			$atts['rel']    = ! empty( $item->xfn )		? $item->xfn	: '';
 
-			// If item has_children add atts to a.
+			/**
+			 * If item has_children add atts to a.
+			 */
 			if ( $args->has_children && $depth === 0 ) {
 				$atts['href']   		= '#';
 				$atts['data-toggle']	= 'dropdown';
 				$atts['class']			= 'dropdown-toggle';
-			} else {
+			} else
 				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
-			}
 
 			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
 
@@ -173,7 +181,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 	 * Menu Fallback
 	 * =============
 	 * If this function is assigned to the wp_nav_menu's fallback_cb variable
-	 * and a manu has not been assigned to the theme location in the WordPress
+	 * and a menu has not been assigned to the theme location in the WordPress
 	 * menu manager the function with display nothing to a non-logged in user,
 	 * and will add a link to the WordPress menu manager if logged in as an admin.
 	 *
@@ -218,3 +226,26 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 		}
 	}
 }
+
+
+/**
+ * Funzione per aggiungere il form di ricerca nel menù di navigazione
+ * Per funzionare aggiungere il parametro search con valore true all'array passato a wp_nav_menu()
+ * wp_nav_menu( array( 'search' => true ) );
+ * 
+ * @todo Aggiungere opzione per stampare il form prima o dopo wp_nav_menu()
+ * @todo Aggiungere opzione nel customizer
+ * 
+ * @param  string $nav_menu The nav menu output
+ * @param  object $args     wp_nav_menu arguments in object
+ * @return string           The nav menu output
+ * @uses italystrap_get_search_form()
+ */
+function italystrap_print_search_form_in_menu( $nav_menu, $args ){
+
+	if ( !isset( $args->search ) )
+		return $nav_menu;
+
+	return str_replace( '</div>', italystrap_get_search_form() . '</div>', $nav_menu);
+}
+add_filter( 'wp_nav_menu', 'italystrap_print_search_form_in_menu', 10, 2 );

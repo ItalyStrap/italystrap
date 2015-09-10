@@ -53,9 +53,9 @@ If you want to keep it updated please also install github-updater from your admi
 == Changelog ==
 
 = 3.1.0 =
-Release Date: May 24th, 2015
+Release Date: Sep 10th, 2015
 
-(Dev time 2h)
+(Dev time 100h)
 
 * Added [AnonymizeIP](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#anonymizeIp) for cookie law
 * Fixed regex in italystrap_embed_wrap cleanup.php
@@ -67,11 +67,15 @@ Release Date: May 24th, 2015
 * Deprecated file globals.php
 * Deprecated file init.php
 * Now the index.php is only a simple loop, [more info](https://developer.wordpress.org/themes/basics/template-hierarchy/)
+* Added Theme customizer (with: logo image, custom image, 404 image, custom css, analytics ID)
 * Added support to [custom-header](https://codex.wordpress.org/Custom_Headers)
 * Added support to [custom-background](https://codex.wordpress.org/Custom_Backgrounds)
 * Improved performance with new constant for home url `HOME_URL`, blog name `GET_BLOGINFO_NAME`, and blog description `GET_BLOGINFO_DESCRIPTION`, use it with `esc_attr()` and `echo`
-* Added Theme customizer
 * Added new hooks in template files
+* Moved breadcrumbs functions to hook
+* Added new Author info file
+* Template HTML sitemaps and Blog moved to child theme
+
 
 = 3.0.5 =
 Release Date: May 8th, 2015

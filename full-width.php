@@ -3,42 +3,37 @@
  * Template Name: Full-width
  */
 get_header(); ?>
-    <!-- Main Content -->
-    <section id="full-width">
-    	<div class="container">
-        	<div class="row">
-                <div class="col-md-12">
-                    <?php
+<!-- Main Content -->
+	<section id="full-width">
+		<?php do_action( 'content_open' ); ?>
+		<div class="container">
+			<?php do_action( 'content_container_open' ); ?>
+			<div class="row">
+				<div class="col-md-12">
+					<?php
+					do_action( 'content_col_open' );
 
-                    if ( class_exists('ItalyStrapBreadcrumbs') ) {
+					if ( have_posts() ) : while ( have_posts() ) : the_post();
 
-                        $defaults = array(
-                            'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
-                        );
+						get_template_part( 'loops/content', 'page' );
 
-                        new ItalyStrapBreadcrumbs( $defaults );
-                    
-                    }
 
-                    if (have_posts()) : while (have_posts()) : the_post();
 
-                        get_template_part( 'loops/content', 'page' );
+						endwhile;
+					else:
 
-                        
+						get_template_part( 'loops/content', 'none');
 
-                        endwhile;
-                    else:
+					endif;
 
-                        get_template_part( 'loops/content', 'none');
+					comments_template();
+					do_action( 'content_col_closed' ); ?>
+				</div><!-- / .col-md-8 -->
 
-                    endif;
-                    
-					comments_template(); ?> 	
-   
-                </div><!-- / .col-md-8 -->
-                
-            </div><!-- / .row -->
+			</div><!-- / .row -->
+			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->
-    </section><!-- / #full-width -->
+		<?php do_action( 'content_closed' ); ?>
+	</section><!-- / #full-width -->
    
 <?php get_footer(); ?>

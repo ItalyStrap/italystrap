@@ -3,42 +3,37 @@
  * The page template file.
  */
 get_header(); ?>
-    <!-- Main Content -->
-    <section id="page">
-    	<div class="container">
-        	<div class="row">
-                <div class="col-md-8">
-                    <?php
+<!-- Main Content -->
+	<section id="page">
+		<?php do_action( 'content_open' ); ?>
+		<div class="container">
+			<?php do_action( 'content_container_open' ); ?>
+			<div class="row">
+				<div class="col-md-8">
+					<?php
+					do_action( 'content_col_open' );
 
-                    if ( class_exists('ItalyStrapBreadcrumbs') ) {
+					if ( have_posts() ) : while ( have_posts() ) : the_post();
 
-                        $defaults = array(
-                            'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
-                        );
+						get_template_part( 'loops/content', 'page' );
 
-                        new ItalyStrapBreadcrumbs( $defaults );
-                    
-                    }
-           
-                    if (have_posts()) : while (have_posts()) : the_post();
 
-                        get_template_part( 'loops/content', 'page' );
 
-                        
+						endwhile;
+					else:
 
-                        endwhile;
-                    else:
+						get_template_part( 'loops/content', 'none');
 
-                        get_template_part( 'loops/content', 'none');
+					endif;
 
-                    endif;
-                    
-					comments_template(); ?> 	
-   
-                </div><!-- / .col-md-8 -->
+					comments_template();
+					do_action( 'content_col_closed' ); ?>
+				</div><!-- / .col-md-8 -->
 				<?php get_sidebar(); ?> 
-            </div><!-- / .row -->
+			</div><!-- / .row -->
+			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->
-    </section><!-- / #page -->
-   
+		<?php do_action( 'content_closed' ); ?>
+	</section><!-- / #page -->
+
 <?php get_footer(); ?>

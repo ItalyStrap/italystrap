@@ -578,20 +578,33 @@ add_filter( 'comment_save_pre', 'ItalyStrap_P_dangit_sanitize_comments_update', 
 // 	echo '<div style="background-color:yellow;width:100%;height:30px;"></div>';
 
 // }
-// function prova(){
 
-//                     if ( class_exists('ItalyStrapBreadcrumbs') ) {
+// function displayAuthorInfo(){
 
-//                         $defaults = array(
-//                             'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
-//                         );
-
-//                         new ItalyStrapBreadcrumbs( $defaults );
-                    
-//                     }
-
+//     get_template_part( 'template/content', 'author-info');
+//     echo "<h1>Chupa</h1>";
 // }
-// add_action( 'before_loop', 'prova' );
+
+
+/**
+ * Display the breadcrumbs
+ * @return string Echo breadcrumbs
+ */
+function display_breadcrumbs(){
+
+    if ( !class_exists('ItalyStrapBreadcrumbs') )
+        return;
+
+        $defaults = array(
+            'home'    =>  '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'
+            );
+
+        new ItalyStrapBreadcrumbs( $defaults );
+
+}
+// add_action( 'content_container_open', 'display_breadcrumbs' );
+add_action( 'content_col_open', 'display_breadcrumbs' );
+// add_action( 'content_col_closed', 'displayAuthorInfo' );
 
 /**
  * @link https://codex.wordpress.org/Function_Reference/get_search_form

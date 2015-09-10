@@ -1,3 +1,7 @@
+<?php
+_deprecated_file( basename(__FILE__), 'ItalyStrap 3.1.0', 'template/content-author-info', __( 'This file no longer needs to be included. Please use the plugin ItalyStrap.' ) );
+get_template_part( 'template/content', 'author-info' );
+?>
 <!-- AUTHOR -->
 <section class="margin-top-25 well" itemprop="author" itemscope itemtype="http://schema.org/Person">
 	<div class="row">

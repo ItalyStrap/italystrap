@@ -8,41 +8,41 @@
     
 
 function debug_scripts_queued() {
-    global $wp_scripts;
-    var_dump($wp_scripts->in_footer);
+	global $wp_scripts;
+	var_dump($wp_scripts->in_footer);
     // echo "<style>pre{display:none;}</style>";
-    echo '<pre> Script trovati in coda'."\r\n";
-    foreach ( $wp_scripts->queue as $script ) {
-        echo "\r\nScript: ".$script."\r\n";
-        $deps = $wp_scripts->registered[$script]->deps;
-        if ($deps) {
-            echo "Dipende da: ";
-            print_r($deps);
-        }else{
-            echo "Non dipende da nessuno\r\n";
-        }
-   }
-    echo "\r\n</pre>";
+	echo '<pre> Script trovati in coda'."\r\n";
+	foreach ( $wp_scripts->queue as $script ) {
+		echo "\r\nScript: ".$script."\r\n";
+		$deps = $wp_scripts->registered[$script]->deps;
+		if ($deps) {
+			echo "Dipende da: ";
+			print_r($deps);
+		}else{
+			echo "Non dipende da nessuno\r\n";
+		}
+	}
+	echo "\r\n</pre>";
 }
 
 
 function debug_styles_queued() {
-    global $wp_styles;
+	global $wp_styles;
     // var_dump($wp_styles->in_footer);
-    var_dump($wp_styles);
+	var_dump($wp_styles);
     // echo "<style>pre{display:none;}</style>";
-    echo '<pre> Script trovati in coda'."\r\n";
-    foreach ( $wp_styles->queue as $script ) {
-        echo "\r\nScript: ".$script."\r\n";
-        $deps = $wp_styles->registered[$script]->deps;
-        if ($deps) {
-            echo "Dipende da: ";
-            print_r($deps);
-        }else{
-            echo "Non dipende da nessuno\r\n";
-        }
-   }
-    echo "\r\n</pre>";
+	echo '<pre> Script trovati in coda'."\r\n";
+	foreach ( $wp_styles->queue as $script ) {
+		echo "\r\nScript: ".$script."\r\n";
+		$deps = $wp_styles->registered[$script]->deps;
+		if ($deps) {
+			echo "Dipende da: ";
+			print_r($deps);
+		}else{
+			echo "Non dipende da nessuno\r\n";
+		}
+	}
+	echo "\r\n</pre>";
 }
 
 
@@ -56,29 +56,29 @@ function debug_styles_queued() {
 // http://www.wprecipes.com/list-all-hooked-wordpress-functions
 function list_hooked_functions( $tag = false ){
 
-   global $wp_filter;
-   if ($tag) {
-      $hook[$tag]=$wp_filter[$tag];
-      if (!is_array($hook[$tag])) {
-          trigger_error("Nothing found for '$tag' hook", E_USER_WARNING);
-          return;
-      }
-  }
-  else {
-      $hook=$wp_filter;
-      ksort($hook);
-  }
-  echo '<pre>';
-  foreach($hook as $tag => $priority){
-      echo "<br />&gt;&gt;&gt;&gt;&gt;\t<strong>$tag</strong><br />";
+	global $wp_filter;
+	if ($tag) {
+		$hook[$tag]=$wp_filter[$tag];
+		if (!is_array($hook[$tag])) {
+			trigger_error("Nothing found for '$tag' hook", E_USER_WARNING);
+			return;
+		}
+	}
+	else {
+		$hook=$wp_filter;
+		ksort($hook);
+	}
+	echo '<pre>';
+	foreach($hook as $tag => $priority){
+		echo "<br />&gt;&gt;&gt;&gt;&gt;\t<strong>$tag</strong><br />";
       // ksort($priority);
-      foreach($priority as $priority => $function){
-          echo $priority;
-          foreach($function as $name => $properties) echo "\t$name<br />";
-      }
-  }
-  echo '</pre>';
-  return;
+		foreach($priority as $priority => $function){
+			echo $priority;
+			foreach($function as $name => $properties) echo "\t$name<br />";
+		}
+	}
+	echo '</pre>';
+	return;
 }
 
 // list_hooked_functions('body_open');
@@ -87,37 +87,52 @@ function list_hooked_functions( $tag = false ){
  * @var array
  */
 $theme_action = array(
-    'body_open',
-    'wrapper_open',
-    'content_container_open',
-    'content_col_open',
-    'content_col_closed',
-    'sidebar_col_open',
-    'sidebar_col_closed',
-    'content_container_closed',
-    'footer_open',
-    'footer_container_open',
-    'footer_container_closed',
-    'footer_closed',
-    'wrapper_closed',
-    'body_closed',
-    );
+	'body_open',
+	'wrapper_open',
+	'header_open',
+	'header_closed',
+	'nav_open',
+	// 'before_wp_nav_menu',
+	// 'after_wp_nav_menu',
+	'nav_closed',
+	'content_open',
+	'content_container_open',
+	'content_col_open',
+	'content_col_closed',
+	'sidebar_col_open',
+	'sidebar_col_closed',
+	'content_container_closed',
+	'content_closed',
+	'footer_open',
+	'footer_container_open',
+	'footer_container_closed',
+	'footer_closed',
+	'wrapper_closed',
+	'body_closed'
+	);
 
 static $i = 0;
 
-foreach ($theme_action as $value)
-    if ( !empty( $value ) )
-        add_action( $value, 'italystrap_test_action_theme' );
+// foreach ($theme_action as $value)
+// 	add_action( $value, 'italystrap_test_action_theme' );
 
+/**
+ * Display the hook in pages
+ * @uses current_filter() https://codex.wordpress.org/Function_Reference/current_filter
+ * @return string      Print an HTML tag with border and hooks name
+ */
+function italystrap_test_action_theme(){
 
-function italystrap_test_action_theme( $val ){
-    
-    global $theme_action, $i;
-    echo '<div style="height:30px;width:100%;background-color:trasparent;border: 2px solid black;margin:10px 0"><p style="text-align:center">' . $val . '</p></div>';
-    $i++;
+	global $i;
+	echo '<div style="padding:10px 0 5px;width:100%;background-color:#777;border: 1px solid black;margin:10px 0"><p style="color:white;font-weight:bold;text-align:center">' . current_filter() . '</p></div>';
+	$i++;
 
 }
 
+
+
+
+// var_dump($theme_action);
 // var_dump($i);
 
 // var_dump(get_option( 'stylesheet' ));
@@ -126,10 +141,10 @@ function italystrap_test_action_theme( $val ){
 
 // add_action('wp','My_Test');
 function My_Test(){
-    var_dump(microtime(true));
-    for ($i=1; $i<100; $i++) { get_option('blogdescription'); }
-    var_dump(microtime(true));
-    for ($i=1; $i<100; $i++) { get_theme_mod('blogdescription'); }
-    var_dump(microtime(true));
-    exit;
+	var_dump(microtime(true));
+	for ($i=1; $i<100; $i++) { get_option('blogdescription'); }
+		var_dump(microtime(true));
+	for ($i=1; $i<100; $i++) { get_theme_mod('blogdescription'); }
+		var_dump(microtime(true));
+	exit;
 }   

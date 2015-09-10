@@ -52,7 +52,7 @@ If you want to keep it updated please also install github-updater from your admi
 
 == Changelog ==
 
-= 3.0.6 =
+= 3.1.0 =
 Release Date: May 24th, 2015
 
 (Dev time 2h)
@@ -66,11 +66,12 @@ Release Date: May 24th, 2015
 * Deprecated file sitemap-html.php
 * Deprecated file globals.php
 * Deprecated file init.php
-* Added home.php, now the index.php is only a simple loop, [more info](https://developer.wordpress.org/themes/basics/template-hierarchy/)
+* Now the index.php is only a simple loop, [more info](https://developer.wordpress.org/themes/basics/template-hierarchy/)
 * Added support to [custom-header](https://codex.wordpress.org/Custom_Headers)
 * Added support to [custom-background](https://codex.wordpress.org/Custom_Backgrounds)
 * Improved performance with new constant for home url `HOME_URL`, blog name `GET_BLOGINFO_NAME`, and blog description `GET_BLOGINFO_DESCRIPTION`, use it with `esc_attr()` and `echo`
 * Added Theme customizer
+* Added new hooks in template files
 
 = 3.0.5 =
 Release Date: May 8th, 2015

@@ -209,20 +209,22 @@ function italystrap_get_404_image( $class = '' ){
 		$id = $italystrap_theme_mods['default_404'];
 		$meta = wp_get_attachment_image_src( $id, $size );
 		$image_404_url = $meta[0];
-		$width = $meta[1];
-		$height = $meta[2];
+		$width = esc_attr( $meta[1] );
+		$height = esc_attr( $meta[2] );
 
 	}
 
-	$html = '<img width="' . $width . 'px" height="' . $height . 'px" src="' . $image_404_url . '" alt="' . $alt . '" class="' . $class . '">';
+	$html = '<img width="' . $width . 'px" height="' . $height . 'px" src="' . esc_url( $image_404_url ) . '" alt="' . $alt . '" class="' . $class . '">';
+
+	$html = apply_filters( 'italystrap-404-image', $html );
 
 	/**
 	 * If is active ItalyStrap plugin
 	 */
 	if ( function_exists( 'italystrap_apply_lazyload' ) )
-		return italystrap_get_apply_lazyload( apply_filters( 'italystrap-404-image', $html ) );
+		return italystrap_get_apply_lazyload( $html );
 	else
-		return esc_url( apply_filters( 'italystrap-404-image', $html ) );
+		return $html;
 
 }
 

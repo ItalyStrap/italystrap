@@ -42,7 +42,7 @@
 	<?php get_template_part( 'template/social-button');?>
 	<?php echo italystrap_ttr_wc();?>
 	<span class="clearfix"></span>
-	<?php get_template_part( 'template/author_meta');?>
+	<?php get_template_part( 'template/content', 'author-info');?>
 	<meta itemprop="interactionCount" content="UserComments:<?php comments_number(0, 1, '%');?>" />
 </article>
 <ul class="pager">

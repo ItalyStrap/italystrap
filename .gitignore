@@ -22,4 +22,5 @@ lang/ItalyStrap.mo
 
 #bower.json
 lib/roadmap.php
+lib/01-hook-schema.php
 lang/README.txt

@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2015-04-07 19:09+0100\n"
-"PO-Revision-Date: 2015-04-12 17:57+0100\n"
+"POT-Creation-Date: 2015-09-09 17:38+0200\n"
+"PO-Revision-Date: 2015-09-09 18:16+0200\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
-"X-Poedit-Basepath: ../\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -20,43 +20,42 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: .sass-cache\n"
 "X-Poedit-SearchPathExcluded-3: bower\n"
 
-#: admin/ItalyStrapOptionTheme.php:54 admin/ItalyStrapOptionTheme.php:69
+#: admin/ItalyStrapOptionTheme.php:55 admin/ItalyStrapOptionTheme.php:70
+#: admin/class-italystrap-theme-customizer.php:64
+#: admin/class-italystrap-theme-customizer.php:191
 msgid "Theme Options"
 msgstr "Opzioni del tema"
 
-#: admin/ItalyStrapOptionTheme.php:68
+#: admin/ItalyStrapOptionTheme.php:69
 msgid "ItalyStrap Theme Options"
 msgstr "Pagina opzioni di ItalyStrap"
 
-#: admin/ItalyStrapOptionTheme.php:84
+#: admin/ItalyStrapOptionTheme.php:85
+#: admin/class-italystrap-theme-customizer.php:94
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Non hai sufficienti permessi per accedere a questa pagina."
 
-#: admin/ItalyStrapOptionTheme.php:139
+#: admin/ItalyStrapOptionTheme.php:140
 msgid "ItalyStrap options page"
 msgstr "Pagina opzioni di ItalyStrap"
 
-#: admin/ItalyStrapOptionTheme.php:150
+#: admin/ItalyStrapOptionTheme.php:151
 msgid "Default image for 404 page"
 msgstr "Immagine predefinita per pagina 404"
 
-#: admin/ItalyStrapOptionTheme.php:162
+#: admin/ItalyStrapOptionTheme.php:163
 msgid "Default image"
 msgstr "Immagine di default"
 
-#: admin/ItalyStrapOptionTheme.php:174
-msgid "Favicon"
-msgstr "Favicon"
-
-#: admin/ItalyStrapOptionTheme.php:186
+#: admin/ItalyStrapOptionTheme.php:187
 msgid "Logo"
 msgstr "Logo"
 
-#: admin/ItalyStrapOptionTheme.php:198
+#: admin/ItalyStrapOptionTheme.php:199
 msgid "Analytics ID"
 msgstr "ID Analytics"
 
-#: admin/ItalyStrapOptionTheme.php:246
+#: admin/ItalyStrapOptionTheme.php:247
 msgid ""
 "Manage or enter your settings below: <strong>(It is still in Beta version)</"
 "strong>"
@@ -64,24 +63,24 @@ msgstr ""
 "Modifica o inserisci i tuoi settaggi qui sotto: <strong>(Funzionalità ancora "
 "in versione beta)</strong>"
 
-#: admin/ItalyStrapOptionTheme.php:257
+#: admin/ItalyStrapOptionTheme.php:258
 msgid "Upload default 404 image"
 msgstr "Carica l'immagine per la 404"
 
-#: admin/ItalyStrapOptionTheme.php:258
+#: admin/ItalyStrapOptionTheme.php:259
 msgid "Upload an image for the 404.php page (at least width 750px)."
 msgstr ""
 "Carica un'immagine per la pagina 404.php (deve essere larga almeno 750px)."
 
-#: admin/ItalyStrapOptionTheme.php:259
+#: admin/ItalyStrapOptionTheme.php:260
 msgid "Default 404 image preview"
 msgstr "Anteprima immagine 404 predefinita"
 
-#: admin/ItalyStrapOptionTheme.php:275
+#: admin/ItalyStrapOptionTheme.php:276
 msgid "Upload default image"
 msgstr "Carica un immagine di default"
 
-#: admin/ItalyStrapOptionTheme.php:276
+#: admin/ItalyStrapOptionTheme.php:277
 msgid ""
 "Upload an image for the default image used for social share (must be "
 "1200x600px)."
@@ -89,37 +88,180 @@ msgstr ""
 "Carica un'immagine da usare come immagine di default per la condivisione "
 "sociale (deve essere almeno 1200x600px)."
 
-#: admin/ItalyStrapOptionTheme.php:277
+#: admin/ItalyStrapOptionTheme.php:278
 msgid "Default image preview"
 msgstr "Anteprima immagine predefinita"
 
-#: admin/ItalyStrapOptionTheme.php:293
+#: admin/ItalyStrapOptionTheme.php:294
 msgid "Upload favicon"
 msgstr "Carica la favicon"
 
-#: admin/ItalyStrapOptionTheme.php:294
+#: admin/ItalyStrapOptionTheme.php:295
 msgid "Upload an image for the favicon (max 32x32px)."
 msgstr "Carica un immagine per la favivon (max 32x32px)."
 
-#: admin/ItalyStrapOptionTheme.php:295
+#: admin/ItalyStrapOptionTheme.php:296
 msgid "Favicon preview"
 msgstr "Anteprima Favicon"
 
-#: admin/ItalyStrapOptionTheme.php:311
+#: admin/ItalyStrapOptionTheme.php:312
 msgid "Upload Logo"
 msgstr "Carica il logo"
 
-#: admin/ItalyStrapOptionTheme.php:312
+#: admin/ItalyStrapOptionTheme.php:313
 msgid "Upload an image for the logo."
 msgstr "Carica un'immagine per il logo"
 
-#: admin/ItalyStrapOptionTheme.php:313
+#: admin/ItalyStrapOptionTheme.php:314
 msgid "Logo preview"
 msgstr "Anteprima logo"
 
-#: admin/ItalyStrapOptionTheme.php:328
+#: admin/ItalyStrapOptionTheme.php:329
 msgid "Enter your analytics ID (e.g. UA-XXXXX-X )."
 msgstr "Inserisci il tuo ID analytics (es. UA-XXXXX-X )."
+
+#. translators: %s: title of menu item which is invalid
+#. @var string
+#.
+#: admin/class-italystrap-admin-menu-custom-field.php:90
+#, php-format
+msgid "%s (Invalid)"
+msgstr "%s (Non Valido)"
+
+#. translators: %s: title of menu item in draft status
+#. @var string
+#.
+#: admin/class-italystrap-admin-menu-custom-field.php:99
+#, php-format
+msgid "%s (Pending)"
+msgstr "%s (In Attesa)"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:163
+msgid "Edit Menu Item"
+msgstr "Modifica la voce di menù"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:173
+msgid "URL"
+msgstr "URL"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:180
+msgid "Navigation Label"
+msgstr "Etichetta di navigazione"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:186
+msgid "Title Attribute"
+msgstr "Attributo del titolo"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:193
+msgid "Open link in a new window/tab"
+msgstr "Apri il link in una nuova finestra/tab"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:198
+msgid "CSS Classes (optional)"
+msgstr "Classi CSS (optionale)"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:204
+msgid "Link Relationship (XFN)"
+msgstr "Link Relationship (XFN)"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:210
+msgid "Description"
+msgstr "Descrizione"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:212
+msgid ""
+"The description will be displayed in the menu if the current theme supports "
+"it."
+msgstr "La descrizione sarà mostrata nel menù se il tema corrente la supporta."
+
+#: admin/class-italystrap-admin-menu-custom-field.php:220
+msgid "Glyphicon or your icon class"
+msgstr "Una Glyphicon o una tua icona personalizzata"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:232
+#, php-format
+msgid "Original: %s"
+msgstr "Originale: %s"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:253
+msgid "Remove"
+msgstr "Rimuovi"
+
+#: admin/class-italystrap-admin-menu-custom-field.php:268 comments.php:113
+msgid "Cancel"
+msgstr "Cancella"
+
+#: admin/class-italystrap-category-editor.php:90
+#: admin/class-italystrap-category-editor.php:111
+msgid ""
+"The description is not prominent by default; however, some themes may show "
+"it."
+msgstr ""
+
+#: admin/class-italystrap-theme-customizer.php:78
+#: admin/class-italystrap-theme-customizer.php:79
+msgid "ItalyStrap Theme Info"
+msgstr "Info su Tema"
+
+#: admin/class-italystrap-theme-customizer.php:136
+msgid "Theme Colors"
+msgstr "Colori del tema"
+
+#: admin/class-italystrap-theme-customizer.php:154
+msgid "Link Color"
+msgstr "Colore dei link"
+
+#: admin/class-italystrap-theme-customizer.php:178
+msgid "Heading Color"
+msgstr "Colore della testata"
+
+#: admin/class-italystrap-theme-customizer.php:201
+msgid "Theme Image Options"
+msgstr "Opzioni per le immagini"
+
+#: admin/class-italystrap-theme-customizer.php:205
+msgid "Allows you to customize settings for ItalyStrap."
+msgstr "Ti consente di personalizzare le impostazioni per ItalyStrap."
+
+#: admin/class-italystrap-theme-customizer.php:225
+msgid "Your Logo"
+msgstr "Il tuo logo"
+
+#: admin/class-italystrap-theme-customizer.php:226
+msgid "Insert here your logo"
+msgstr "Inserisci qui il tuo logo"
+
+#: admin/class-italystrap-theme-customizer.php:251
+msgid "Default Image"
+msgstr "Immagine predefinita"
+
+#: admin/class-italystrap-theme-customizer.php:252
+msgid ""
+"Upload an image for the default image used for social sharing (must be at "
+"least 1200x600px for Facebook), it will also be displayed if no feautured "
+"image will be added in your content page/post if the theme supports this "
+"feature."
+msgstr ""
+
+#: admin/class-italystrap-theme-customizer.php:276
+#: admin/class-italystrap-theme-customizer.php:315
+msgid "Default 404 Image"
+msgstr "Immagine predefinita per la pagina 404"
+
+#: admin/class-italystrap-theme-customizer.php:277
+#: admin/class-italystrap-theme-customizer.php:316
+msgid ""
+"This is a default 404 image, it will be displayed in 404 page (must be at "
+"least weight 848px)"
+msgstr ""
+
+#: admin/class-italystrap-theme-customizer.php:290
+msgid "Custom CSS"
+msgstr "CSS personalizzato"
+
+#: admin/class-italystrap-theme-customizer.php:291
+msgid "Add custom CSS here"
+msgstr "Aggiungi il tuo CSS personalizzato qui"
 
 #: author.php:44 template/author-bio.php:21
 msgid "Web site:"
@@ -140,10 +282,6 @@ msgstr "E tu, cosa ne pensi?"
 #: comments.php:105
 msgid "Reply"
 msgstr "Rispondi"
-
-#: comments.php:113 core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:204
-msgid "Cancel"
-msgstr "Cancella"
 
 #: comments.php:119
 msgid "You need to be"
@@ -205,100 +343,115 @@ msgstr "Invia il commento"
 msgid "Comments are closed."
 msgstr "I commenti sono chiusi."
 
-#. translators: %s: title of menu item which is invalid
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:79
-#, php-format
-msgid "%s (Invalid)"
-msgstr "%s (Non Valido)"
-
-#. translators: %s: title of menu item in draft status
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:83
-#, php-format
-msgid "%s (Pending)"
-msgstr "%s (In Attesa)"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:124
-msgid "Edit Menu Item"
-msgstr "Modifica la voce di menù"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:133
-msgid "URL"
-msgstr "URL"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:140
-msgid "Navigation Label"
-msgstr "Etichetta di navigazione"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:146
-msgid "Title Attribute"
-msgstr "Attributo del titolo"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:153
-msgid "Open link in a new window/tab"
-msgstr "Apri il link in una nuova finestra/tab"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:158
-msgid "CSS Classes (optional)"
-msgstr "Classi CSS (optionale)"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:164
-msgid "Link Relationship (XFN)"
-msgstr "Link Relationship (XFN)"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:170
-msgid "Description"
-msgstr "Descrizione"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:172
-msgid ""
-"The description will be displayed in the menu if the current theme supports "
-"it."
-msgstr "La descrizione sarà mostrata nel menù se il tema corrente la supporta."
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:180
-msgid "glyphicon"
-msgstr "glyphicon"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:190
-#, php-format
-msgid "Original: %s"
-msgstr "Originale: %s"
-
-#: core/Admin_Edit_Custom_Walker_Nav_Menu_Edit_Custom.php:203
-msgid "Remove"
-msgstr "Rimuovi"
-
-#: core/ItalyStrapBreadcrumbs.php:304 lib/breadcrumb.php:63
+#: core/ItalyStrapBreadcrumbs.php:304 deprecated/breadcrumb.php:63
 msgid "Tag: "
 msgstr "Tag: "
 
-#: core/ItalyStrapBreadcrumbs.php:311 lib/breadcrumb.php:78
+#: core/ItalyStrapBreadcrumbs.php:311 deprecated/breadcrumb.php:78
 msgid "Yearly archive: "
 msgstr "Archivio dell'anno: "
 
-#: core/ItalyStrapBreadcrumbs.php:325 lib/breadcrumb.php:73
+#: core/ItalyStrapBreadcrumbs.php:325 deprecated/breadcrumb.php:73
 msgid "Monthly archive: "
 msgstr "Archivio del mese di: "
 
-#: core/ItalyStrapBreadcrumbs.php:347 lib/breadcrumb.php:68
+#: core/ItalyStrapBreadcrumbs.php:347 deprecated/breadcrumb.php:68
 msgid "Daily archive: "
 msgstr "Archivio del giorno: "
 
-#: core/ItalyStrapBreadcrumbs.php:354 lib/breadcrumb.php:83
+#: core/ItalyStrapBreadcrumbs.php:354 deprecated/breadcrumb.php:83
 msgid "Author Archives: "
 msgstr "Archivio autore: "
 
-#: core/ItalyStrapBreadcrumbs.php:361 lib/breadcrumb.php:90
+#: core/ItalyStrapBreadcrumbs.php:361 deprecated/breadcrumb.php:90
 msgid "Search Results: "
 msgstr "Risultato per la ricerca di: "
 
-#: core/ItalyStrapBreadcrumbs.php:367
+#: core/ItalyStrapBreadcrumbs.php:367 lib/custom_taxonomy.php:36
 msgid "Not Found"
 msgstr "Non trovato"
 
 #: core/ItalyStrapBreadcrumbs.php:376
 msgid "Page"
 msgstr "Pagina"
+
+#: core/class-italystrap-excerpt.php:49
+msgid "Read more"
+msgstr "Continua a leggere"
+
+#: core/class-italystrap-navwalker.php:219
+msgid "Add a menu"
+msgstr "Aggiungi al menù"
+
+#: core/class-italystrap-sidebars.php:44 deprecated/sidebar.php:16
+msgid "Footer Box 1"
+msgstr "Box footer 1"
+
+#: core/class-italystrap-sidebars.php:46 deprecated/sidebar.php:18
+msgid "Footer box 1 widget area (Use only a widget)"
+msgstr "Footer box 1 widget area (Usa solo un widget)"
+
+#: core/class-italystrap-sidebars.php:54 deprecated/sidebar.php:26
+msgid "Footer Box 2"
+msgstr "Footer Box 2"
+
+#: core/class-italystrap-sidebars.php:56 deprecated/sidebar.php:28
+msgid "Footer box 2 widget area (Use only a widget)"
+msgstr "Footer box 2 widget area (Usa solo un widget)"
+
+#: core/class-italystrap-sidebars.php:64 deprecated/sidebar.php:36
+msgid "Footer Box 3"
+msgstr "Footer Box 3"
+
+#: core/class-italystrap-sidebars.php:66 deprecated/sidebar.php:38
+msgid "Footer box 3 widget area (Use only a widget)"
+msgstr "Footer box 3 widget area (Usa solo un widget)"
+
+#: core/class-italystrap-sidebars.php:74 deprecated/sidebar.php:46
+msgid "Footer Box 4"
+msgstr "Footer Box 4"
+
+#: core/class-italystrap-sidebars.php:76 deprecated/sidebar.php:48
+msgid "Footer box 4 widget area (Use only a widget)"
+msgstr "Footer box 4 widget area (Usa solo un widget)"
+
+#: core/images.php:195
+msgid "Image for 404 page"
+msgstr "Immagine per la pagina 404"
+
+#: deprecated/breadcrumb.php:2
+msgid ""
+"This file no longer needs to be included. Please use the plugin ItalyStrap."
+msgstr ""
+
+#: deprecated/breadcrumb.php:31
+msgid "Home"
+msgstr "Home"
+
+#: deprecated/breadcrumb.php:86
+msgid "Blog Archives"
+msgstr "Archivio del blog: "
+
+#: deprecated/globals.php:2
+msgid "All globals now are in functions.php"
+msgstr "Tutte le variabili globali sono ora in functions.php"
+
+#: deprecated/init.php:92 functions.php:449
+msgid "Main Menu"
+msgstr "Menù principale"
+
+#: deprecated/sidebar.php:2
+msgid ""
+"This file is deprecated, please use class-italystrap-sidebars.php instead"
+msgstr ""
+
+#: functions.php:604 searchform.php:14 searchform.php:15
+msgid "Search now"
+msgstr "Cerca ora"
+
+#: functions.php:604 searchform.php:17
+msgid "Search"
+msgstr "Ricerca"
 
 #: includes/class-tgm-plugin-activation.php:161
 #: includes/class-tgm-plugin-required.php:62
@@ -330,7 +483,7 @@ msgid "Return to the dashboard"
 msgstr "Ritorna al pannello di amministrazione"
 
 #: includes/class-tgm-plugin-activation.php:177
-#: includes/class-tgm-plugin-activation.php:1945
+#: includes/class-tgm-plugin-activation.php:1956
 #: includes/class-tgm-plugin-required.php:77
 msgid "Plugin activated successfully."
 msgstr "Il plugin è stato attivato con successo"
@@ -348,50 +501,52 @@ msgstr "Tutti i plugin sono stati installati ed attivati con successo. %1$s"
 msgid "Dismiss this notice"
 msgstr "Nascondi l'avviso"
 
-#: includes/class-tgm-plugin-activation.php:534
-#: includes/class-tgm-plugin-activation.php:2162
+#: includes/class-tgm-plugin-activation.php:532
+#: includes/class-tgm-plugin-activation.php:2173
 msgid "Return to the Dashboard"
 msgstr "Ritorna al pannello di controllo"
 
-#: includes/class-tgm-plugin-activation.php:1169
+#: includes/class-tgm-plugin-activation.php:1167
+#: includes/class-tgm-plugin-activation.php:1348
 msgid "Private Repository"
 msgstr "Repository privato"
 
-#: includes/class-tgm-plugin-activation.php:1172
+#: includes/class-tgm-plugin-activation.php:1170
+#: includes/class-tgm-plugin-activation.php:1351
 msgid "Pre-Packaged"
 msgstr "Pre-Packaged"
 
-#: includes/class-tgm-plugin-activation.php:1177
+#: includes/class-tgm-plugin-activation.php:1175
 msgid "WordPress Repository"
 msgstr "Repository di WordPress"
 
-#: includes/class-tgm-plugin-activation.php:1180
+#: includes/class-tgm-plugin-activation.php:1178
 msgid "Required"
 msgstr "Richiesto"
 
-#: includes/class-tgm-plugin-activation.php:1180
+#: includes/class-tgm-plugin-activation.php:1178
 msgid "Recommended"
 msgstr "Raccomandato"
 
-#: includes/class-tgm-plugin-activation.php:1183
+#: includes/class-tgm-plugin-activation.php:1181
 msgid "Not Installed"
 msgstr "Non installato"
 
-#: includes/class-tgm-plugin-activation.php:1185
+#: includes/class-tgm-plugin-activation.php:1183
 msgid "Installed But Not Activated"
 msgstr "Installato ma non attivato"
 
-#: includes/class-tgm-plugin-activation.php:1290
-#: includes/class-tgm-plugin-activation.php:1398
+#: includes/class-tgm-plugin-activation.php:1288
+#: includes/class-tgm-plugin-activation.php:1409
 msgid "Install"
 msgstr "Installa"
 
 #: includes/class-tgm-plugin-activation.php:1312
-#: includes/class-tgm-plugin-activation.php:1399
+#: includes/class-tgm-plugin-activation.php:1410
 msgid "Activate"
 msgstr "Attiva"
 
-#: includes/class-tgm-plugin-activation.php:1361
+#: includes/class-tgm-plugin-activation.php:1372
 #, php-format
 msgid ""
 "No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
@@ -400,52 +555,52 @@ msgstr ""
 "Nessun plugin da installare o attivare. <a href=\"%1$s\" title=\"Ritorna al "
 "pannello di controllo\">Ritorna al pannello di controllo</a>"
 
-#: includes/class-tgm-plugin-activation.php:1377
+#: includes/class-tgm-plugin-activation.php:1388
 msgid "Plugin"
 msgstr "Plugin"
 
-#: includes/class-tgm-plugin-activation.php:1378
+#: includes/class-tgm-plugin-activation.php:1389
 msgid "Source"
 msgstr "Sorgente"
 
-#: includes/class-tgm-plugin-activation.php:1379
+#: includes/class-tgm-plugin-activation.php:1390
 msgid "Type"
 msgstr "Tipo"
 
-#: includes/class-tgm-plugin-activation.php:1380
+#: includes/class-tgm-plugin-activation.php:1391
 msgid "Status"
 msgstr "Stato"
 
-#: includes/class-tgm-plugin-activation.php:1928
+#: includes/class-tgm-plugin-activation.php:1939
 msgid "Install package not available."
 msgstr "Pacchetto installazione non disponibile."
 
-#: includes/class-tgm-plugin-activation.php:1929
+#: includes/class-tgm-plugin-activation.php:1940
 #, php-format
 msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
 msgstr "Scarica il pacchetto da <span class=\"code\">%s</span>&#8230;"
 
-#: includes/class-tgm-plugin-activation.php:1930
+#: includes/class-tgm-plugin-activation.php:1941
 msgid "Unpacking the package&#8230;"
 msgstr "Decomprimi il pacchetto&#8230;"
 
-#: includes/class-tgm-plugin-activation.php:1931
+#: includes/class-tgm-plugin-activation.php:1942
 msgid "Installing the plugin&#8230;"
 msgstr "Installa il plugin&#8230;"
 
-#: includes/class-tgm-plugin-activation.php:1932
+#: includes/class-tgm-plugin-activation.php:1943
 msgid "Plugin install failed."
 msgstr "L'installazione del plugin è fallita."
 
-#: includes/class-tgm-plugin-activation.php:1933
+#: includes/class-tgm-plugin-activation.php:1944
 msgid "Plugin installed successfully."
 msgstr "Il plugin è stato installato correttamente."
 
-#: includes/class-tgm-plugin-activation.php:1944
+#: includes/class-tgm-plugin-activation.php:1955
 msgid "Plugin activation failed."
 msgstr "L'attivazione del plugin è fallita."
 
-#: includes/class-tgm-plugin-activation.php:2058
+#: includes/class-tgm-plugin-activation.php:2069
 msgid ""
 "The installation and activation process is starting. This process may take a "
 "while on some hosts, so please be patient."
@@ -453,31 +608,31 @@ msgstr ""
 "Il processo di installazione e attivazione è cominciato. In alcuni hosting "
 "potrebbe impiegare del tempo, sii paziente."
 
-#: includes/class-tgm-plugin-activation.php:2059
+#: includes/class-tgm-plugin-activation.php:2070
 #, php-format
 msgid "%1$s installed and activated successfully."
 msgstr "%1$s installazione e attivazione riuscita."
 
-#: includes/class-tgm-plugin-activation.php:2059
-#: includes/class-tgm-plugin-activation.php:2068
+#: includes/class-tgm-plugin-activation.php:2070
+#: includes/class-tgm-plugin-activation.php:2079
 msgid "Show Details"
 msgstr "Mostra i dettagli"
 
-#: includes/class-tgm-plugin-activation.php:2059
-#: includes/class-tgm-plugin-activation.php:2068
+#: includes/class-tgm-plugin-activation.php:2070
+#: includes/class-tgm-plugin-activation.php:2079
 msgid "Hide Details"
 msgstr "Nascondi i dettagli"
 
-#: includes/class-tgm-plugin-activation.php:2060
+#: includes/class-tgm-plugin-activation.php:2071
 msgid "All installations and activations have been completed."
 msgstr "tutte le installazioni e attivazioni sono state completate."
 
-#: includes/class-tgm-plugin-activation.php:2061
+#: includes/class-tgm-plugin-activation.php:2072
 #, php-format
 msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
 msgstr "Installazione e attivazione Plugin %1$s (%2$d/%3$d)"
 
-#: includes/class-tgm-plugin-activation.php:2065
+#: includes/class-tgm-plugin-activation.php:2076
 msgid ""
 "The installation process is starting. This process may take a while on some "
 "hosts, so please be patient."
@@ -485,26 +640,26 @@ msgstr ""
 "Il processo di installazione e attivazione è cominciato. In alcuni hosting "
 "potrebbe impiegare del tempo, sii paziente."
 
-#: includes/class-tgm-plugin-activation.php:2066
+#: includes/class-tgm-plugin-activation.php:2077
 #, php-format
 msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
 msgstr "C'è stato un errore mentre si installava %1$s: <strong>%2$s</strong>."
 
-#: includes/class-tgm-plugin-activation.php:2067
+#: includes/class-tgm-plugin-activation.php:2078
 #, php-format
 msgid "The installation of %1$s failed."
 msgstr "L'installazione di %1$s è fallita."
 
-#: includes/class-tgm-plugin-activation.php:2068
+#: includes/class-tgm-plugin-activation.php:2079
 #, php-format
 msgid "%1$s installed successfully."
 msgstr "%1$s installato con successo."
 
-#: includes/class-tgm-plugin-activation.php:2069
+#: includes/class-tgm-plugin-activation.php:2080
 msgid "All installations have been completed."
 msgstr "Ogni installazione è stata completata."
 
-#: includes/class-tgm-plugin-activation.php:2070
+#: includes/class-tgm-plugin-activation.php:2081
 #, php-format
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr "Installazione del plugin %1$s (%2$d/%3$d)"
@@ -517,39 +672,6 @@ msgstr "Qualcosa non ha funzionato con le API del plugin."
 #, php-format
 msgid "All plugins installed and activated successfully. %s"
 msgstr "Tutti i plugin sono stati installati ed attivati con successo. %s"
-
-#: index.php:111
-msgid "Author:"
-msgstr "Autore:"
-
-#: lib/activation.php:38
-msgid "Welcome to the ItalyStrap theme"
-msgstr "Benvenuto nel tema ItalyStrap"
-
-#: lib/activation.php:41
-msgid ""
-"First off all install <a href=\"https://github.com/overclokk/ItalyStrap-child"
-"\" target=\"_blank\">ItalyStrap-child</a> and use it for any customization."
-msgstr ""
-"Prima di tutto installa anche <a href=\"https://github.com/overclokk/"
-"ItalyStrap-child\" target=\"_blank\">ItalyStrap-child</a> ed usa questo per "
-"le eventuali modifiche."
-
-#: lib/activation.php:41
-msgid ""
-"Also read the Wiki <a href=\"https://github.com/overclokk/ItalyStrap-child/"
-"wiki/How-to-use-Child-Theme\" target=\"_blank\">How to use Child Theme</a>"
-msgstr ""
-"Leggi anche la Wiki <a href=\"https://github.com/overclokk/ItalyStrap-child/"
-"wiki/How-to-use-Child-Theme\" target=\"_blank\">Come usare un Child Theme</a>"
-
-#: lib/breadcrumb.php:31
-msgid "Home"
-msgstr "Home"
-
-#: lib/breadcrumb.php:86
-msgid "Blog Archives"
-msgstr "Archivio del blog: "
 
 #: lib/comment_reply.php:23
 msgid "Click here to cancel reply."
@@ -628,10 +750,6 @@ msgstr ""
 "Pagina archivio del custom post type - Per cambiare questa description "
 "modifica il file custom.post-type.php nella cartella lib."
 
-#: lib/custom_excerpt.php:25
-msgid "Read more"
-msgstr "Continua a leggere"
-
 #: lib/custom_meta_box.php:6
 msgid "Select if you want show this in home page slider"
 msgstr "Seleziona se vuoi mostrare nello slider in home page"
@@ -640,9 +758,61 @@ msgstr "Seleziona se vuoi mostrare nello slider in home page"
 msgid "Do you want to show it in the home slider?"
 msgstr "Vuoi mostrarlo nello slider in home page?"
 
-#: lib/init.php:73
-msgid "Main Menu"
-msgstr "Menù principale"
+#: lib/custom_taxonomy.php:22
+msgid "Taxonomy"
+msgstr ""
+
+#: lib/custom_taxonomy.php:23
+msgid "All Items"
+msgstr "Tutte le voci"
+
+#: lib/custom_taxonomy.php:24
+msgid "Parent Item"
+msgstr "Voce genitore"
+
+#: lib/custom_taxonomy.php:25
+msgid "Parent Item:"
+msgstr "Voce genitore:"
+
+#: lib/custom_taxonomy.php:26
+msgid "New Item Name"
+msgstr "Nuova voce"
+
+#: lib/custom_taxonomy.php:27
+msgid "Add New Item"
+msgstr "Aggiungi una nuova voce"
+
+#: lib/custom_taxonomy.php:28
+msgid "Edit Item"
+msgstr "Modifica voce"
+
+#: lib/custom_taxonomy.php:29
+msgid "Update Item"
+msgstr ""
+
+#: lib/custom_taxonomy.php:30
+msgid "View Item"
+msgstr ""
+
+#: lib/custom_taxonomy.php:31
+msgid "Separate items with commas"
+msgstr ""
+
+#: lib/custom_taxonomy.php:32
+msgid "Add or remove items"
+msgstr "Aggiungi o rimuovi voci"
+
+#: lib/custom_taxonomy.php:33
+msgid "Choose from the most used"
+msgstr "Scegli fra quelli più utilizzati"
+
+#: lib/custom_taxonomy.php:34
+msgid "Popular Items"
+msgstr ""
+
+#: lib/custom_taxonomy.php:35
+msgid "Search Items"
+msgstr ""
 
 #: lib/pagination.php:19
 msgid "Page: "
@@ -660,6 +830,27 @@ msgstr "Password:"
 msgid "Enter password"
 msgstr "Inserisci la password"
 
+#: lib/pointer.php:38
+msgid "Welcome to the ItalyStrap theme"
+msgstr "Benvenuto nel tema ItalyStrap"
+
+#: lib/pointer.php:41
+msgid ""
+"First off all install <a href=\"https://github.com/overclokk/ItalyStrap-child"
+"\" target=\"_blank\">ItalyStrap-child</a> and use it for any customization."
+msgstr ""
+"Prima di tutto installa anche <a href=\"https://github.com/overclokk/"
+"ItalyStrap-child\" target=\"_blank\">ItalyStrap-child</a> ed usa questo per "
+"le eventuali modifiche."
+
+#: lib/pointer.php:41
+msgid ""
+"Also read the Wiki <a href=\"https://github.com/overclokk/ItalyStrap-child/"
+"wiki/How-to-use-Child-Theme\" target=\"_blank\">How to use Child Theme</a>"
+msgstr ""
+"Leggi anche la Wiki <a href=\"https://github.com/overclokk/ItalyStrap-child/"
+"wiki/How-to-use-Child-Theme\" target=\"_blank\">Come usare un Child Theme</a>"
+
 #: lib/related_post.php:19
 msgid "Related posts"
 msgstr "Articoli correlati"
@@ -669,38 +860,6 @@ msgid "<strong>Login Failed</strong>: please check your username and password."
 msgstr ""
 "<strong>Login fallito</strong>: controlla di aver inserito correttamente "
 "username o la password."
-
-#: lib/sidebar.php:13
-msgid "Footer Box 1"
-msgstr "Box footer 1"
-
-#: lib/sidebar.php:15
-msgid "Footer box 1 widget area (Use only a widget)"
-msgstr "Footer box 1 widget area (Usa solo un widget)"
-
-#: lib/sidebar.php:23
-msgid "Footer Box 2"
-msgstr "Footer Box 2"
-
-#: lib/sidebar.php:25
-msgid "Footer box 2 widget area (Use only a widget)"
-msgstr "Footer box 2 widget area (Usa solo un widget)"
-
-#: lib/sidebar.php:33
-msgid "Footer Box 3"
-msgstr "Footer Box 3"
-
-#: lib/sidebar.php:35
-msgid "Footer box 3 widget area (Use only a widget)"
-msgstr "Footer box 3 widget area (Usa solo un widget)"
-
-#: lib/sidebar.php:43
-msgid "Footer Box 4"
-msgstr "Footer Box 4"
-
-#: lib/sidebar.php:45
-msgid "Footer box 4 widget area (Use only a widget)"
-msgstr "Footer box 4 widget area (Usa solo un widget)"
 
 #: lib/widget.php:28
 msgid "Use this widget to add a vCard"
@@ -715,24 +874,32 @@ msgstr "Ragione sociale"
 msgid "Please make sure your <a href=\"%s\">.htaccess</a> file is writable "
 msgstr "Assicurati che il file <a href=\"%s\">.htaccess</a> sia scrivibile "
 
-#: lib/wp_bootstrap_navwalker.php:204
-msgid "Add a menu"
-msgstr "Aggiungi al menù"
+#: loops/content-none.php:4
+msgid "What you were looking for is not there"
+msgstr "Quello che stavi cercando non è qui"
 
-#: loops/content-archive.php:31 loops/content-page.php:37
-#: loops/content-single.php:36
-msgid "Last edit:"
-msgstr "Ultima modifica:"
+#: loops/content-none.php:12
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
 
-#: loops/content-none.php:4 template/non-trovato.php:3
-msgid "Damn, what you were looking for is not there"
-msgstr "Azz, quello che stavi cercando non c'è"
+#: loops/content-none.php:18
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
 
-#: loops/content-none.php:8 template/non-trovato.php:5
-msgid "Search again with the form below."
-msgstr "Cerca ancora usando il form qui sotto:"
+#: loops/content-none.php:28
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+"Sembra che non possiamo trovare quello che stavi cercando. Forse la ricerca "
+"ti può aiutare."
 
 #: loops/content-page.php:11 loops/content-single.php:11
+#: loops/content-sitemaps-html.php:11
 msgid ""
 "<strong>Note:</strong> You are previewing this post. This post has not yet "
 "been published."
@@ -740,7 +907,12 @@ msgstr ""
 "<strong>Nota:</strong> Stai visualizzando questo post. Questo post non è "
 "ancora stato pubblicato."
 
-#: loops/content-single.php:33 template/sitemap_html.php:9
+#: loops/content-page.php:37 loops/content-post.php:31
+#: loops/content-single.php:36
+msgid "Last edit:"
+msgstr "Ultima modifica:"
+
+#: loops/content-single.php:33 template/sitemap_html.php:15
 msgid "Pages:"
 msgstr "Pagine:"
 
@@ -748,18 +920,20 @@ msgstr "Pagine:"
 msgid "Share this with your friends:"
 msgstr "Condividilo con i tuoi amici:"
 
+#: loops/content-sitemaps-html.php:27
+msgid ""
+"Please, install <a href=\"https://wordpress.org/plugins/italystrap/\" target="
+"\"_blank\">the ItalyStrap plugin</a> for Sitemap HTML feauture"
+msgstr ""
+
 #: search.php:25
 #, php-format
 msgid "Search result of: %s"
 msgstr "Risultato per la ricerca di: %s"
 
-#: searchform.php:14
-msgid "Search now"
-msgstr "Cerca ora"
-
-#: searchform.php:16
-msgid "Search"
-msgstr "Ricerca"
+#: template/content-header.php:54
+msgid "Toggle navigation"
+msgstr ""
 
 #: template/meta.php:23
 msgid "No Responses"
@@ -773,13 +947,30 @@ msgstr "1 Risposta"
 msgid "% Responses"
 msgstr "% Risposte"
 
-#: template/sitemap_html.php:4
+#: template/non-trovato.php:3
+msgid "Damn, what you were looking for is not there"
+msgstr "Azz, quello che stavi cercando non c'è"
+
+#: template/non-trovato.php:5
+msgid "Search again with the form below."
+msgstr "Cerca ancora usando il form qui sotto:"
+
+#: template/sitemap_html.php:10
 msgid "Authors:"
 msgstr "Autori:"
 
-#: template/sitemap_html.php:19
+#: template/sitemap_html.php:25
 msgid "Articles:"
 msgstr "Articoli:"
+
+#~ msgid "Favicon"
+#~ msgstr "Favicon"
+
+#~ msgid "glyphicon"
+#~ msgstr "glyphicon"
+
+#~ msgid "Author:"
+#~ msgstr "Autore:"
 
 #~ msgid "Tag archive:"
 #~ msgstr "Archivio per il tag: "

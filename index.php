@@ -1,10 +1,21 @@
 <?php
-/*
- * Index file
+/**
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * e.g., it puts together the home page when no home.php file exists.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package ItalyStrap
+ * @since 1.0.0
  */
+
 get_header(); ?>
 <!-- Main Content -->
-	<section id="index">
+	<main id="index" role="main">
 		<?php do_action( 'content_open' ); ?>
 		<div class="container">
 			<?php do_action( 'content_container_open' ); ?>
@@ -13,22 +24,23 @@ get_header(); ?>
 					<?php
 					do_action( 'content_col_open' );
 
-					if ( have_posts() ) : while ( have_posts() ) : the_post();
+					if ( have_posts() ) :
 
-						get_template_part( 'loops/content', get_post_type() );
+						while ( have_posts() ) :
 
-					endwhile;
+							the_post();
+
+							get_template_part( 'loops/content', get_post_type() );
+
+						endwhile;
 
 						bootstrap_pagination();
 
 					else :
 
-						get_template_part( 'loops/content', 'none');
+						get_template_part( 'loops/content', 'none' );
 
 					endif;
-						wp_reset_query();
-						wp_reset_postdata();
-
 
 					do_action( 'content_col_closed' ); ?>
 				</div><!-- / .col-md-8 -->
@@ -37,6 +49,6 @@ get_header(); ?>
 			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->
 		<?php do_action( 'content_closed' ); ?>
-	</section><!-- / #index -->
+	</main><!-- / #index -->
 
-<?php get_footer(); ?>
+<?php get_footer();

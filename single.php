@@ -1,32 +1,44 @@
 <?php
 /**
- * The single template file.
+ * The template for displaying all single posts and attachments
+ *
+ * This is the template that displays all single posts and attachments by default.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package ItalyStrap
+ * @since 1.0.0
  */
+
 get_header(); ?> 
 	<!-- Main Content -->
-	<section id="single">
+	<main id="single" role="main">
 		<?php do_action( 'content_open' ); ?>
 		<div class="container">
 			<?php do_action( 'content_container_open' ); ?>
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-8" itemscope itemtype="http://schema.org/Article">
 					<?php
 					do_action( 'content_col_open' );
 
-					if ( have_posts() ) : while ( have_posts() ) : the_post();
+					if ( have_posts() ) :
 
-						get_template_part( 'loops/content', 'single' );
+						while ( have_posts() ) :
+
+							the_post();
+
+							get_template_part( 'loops/content', 'single' );
 
 
 
 						endwhile;
-					else:
+					else :
 
-						get_template_part( 'loops/content', 'none');
+						get_template_part( 'loops/content', 'none' );
 
 					endif;
 
-					comments_template();	
+					comments_template();
 					do_action( 'content_col_closed' ); ?>
 				</div><!-- / .col-md-8 -->
 				<?php get_sidebar(); ?> 
@@ -34,6 +46,6 @@ get_header(); ?>
 			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->
 		<?php do_action( 'content_closed' ); ?>
-	</section><!-- / #single -->
+	</main><!-- / #single -->
    
-<?php get_footer(); ?>
+<?php get_footer();

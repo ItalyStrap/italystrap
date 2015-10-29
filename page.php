@@ -1,28 +1,42 @@
 <?php
 /**
- * The page template file.
+ * The template for displaying pages
+ *
+ * This is the template that displays all pages by default.
+ * Please note that this is the WordPress construct of pages and that
+ * other "pages" on your WordPress site will use a different template.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package ItalyStrap
+ * @since 1.0.0
  */
+
 get_header(); ?>
 <!-- Main Content -->
-	<section id="page">
+	<main id="page" role="main">
 		<?php do_action( 'content_open' ); ?>
 		<div class="container">
 			<?php do_action( 'content_container_open' ); ?>
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-8" itemscope itemtype="http://schema.org/Article">
 					<?php
 					do_action( 'content_col_open' );
 
-					if ( have_posts() ) : while ( have_posts() ) : the_post();
+					if ( have_posts() ) :
 
-						get_template_part( 'loops/content', 'page' );
+						while ( have_posts() ) :
+
+							the_post();
+
+							get_template_part( 'loops/content', 'page' );
 
 
 
 						endwhile;
-					else:
+					else :
 
-						get_template_part( 'loops/content', 'none');
+						get_template_part( 'loops/content', 'none' );
 
 					endif;
 
@@ -34,6 +48,6 @@ get_header(); ?>
 			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->
 		<?php do_action( 'content_closed' ); ?>
-	</section><!-- / #page -->
+	</main><!-- / #page -->
 
-<?php get_footer(); ?>
+<?php get_footer();

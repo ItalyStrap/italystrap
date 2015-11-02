@@ -1,4 +1,4 @@
-<?php
+<?php namespace ItalyStrap;
 /**
  * The template for displaying archive pages
  *

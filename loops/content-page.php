@@ -1,4 +1,4 @@
-<?php
+<?php namespace ItalyStrap;
 /**
  * The template used for displaying page content
  *

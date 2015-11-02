@@ -1,4 +1,4 @@
-<?php
+<?php namespace ItalyStrap;
 /**
  * The template for displaying all single posts and attachments
  *

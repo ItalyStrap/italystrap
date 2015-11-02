@@ -1,4 +1,4 @@
-<?php
+<?php namespace ItalyStrap;
 /**
  * Template Name: Full-width
  *

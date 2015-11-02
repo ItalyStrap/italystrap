@@ -1,13 +1,14 @@
-<?php
+<?php namespace ItalyStrap;
 /**
  * The Header for Italystrap
  *
  * Displays all of the <head> section and Main menu
  *
  * For improve performance replace $lang_attr with lang="xx-XX" when xx_XX is your language (en_EN - de_DE - fr_FR - ecc)
- * Otherwise you can use <?php language_attributes(); ?> instead 
+ * Otherwise you can use <?php language_attributes(); ?> instead
  *
  * You can also replace <?php bloginfo( 'charset' ); ?> with "UTF-8" or your charset
+ *
  * @since ItalyStrap 1.0
  */
 ?>

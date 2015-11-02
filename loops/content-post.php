@@ -1,4 +1,4 @@
-<?php
+<?php namespace ItalyStrap;
 /**
  * The template part for displaying standard posts
  *

@@ -43,3 +43,22 @@ function bootstrap_pagination( $query = NULL ){
 
 // 	# code...
 // }
+/**
+ * @todo Mettere a posto la paginazione nel caso si decida di togliere dal numero di articoli mostrati il numero degli articoli in sticky in modo da mostrere il numero corretto di articoli
+ * Esempio:
+ * visualizzo 10 post
+ * 2 sono in sticky
+ * ne verranno mostrati 12
+ * fare in modo che ne risultino 10
+ *
+ * Piccolo problema
+ * Se i post in evidenza sono più reventi dei 10 mostrati non verrà aggiunto nessun articolo oltre i 10 classici, se sono più vecchi invece verranno aggiunti allo stream.
+ */
+// http://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
+// http://codex.wordpress.org/Plugin_API/Action_Reference/pre_get_posts
+						// $sticky = get_option( 'sticky_posts' );
+						// $sticky = count($sticky);
+
+						// $postperpage = ( ! empty( $sticky ) ) ? 12 - $sticky : 12;
+
+						// query_posts( "posts_per_page=$postperpage" );

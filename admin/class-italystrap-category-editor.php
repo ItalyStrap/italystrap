@@ -71,7 +71,9 @@ class ItalyStrapAdminCategoryEditor{
 			'textarea_name'		=> 'description'
 			);
 
-		wp_editor( wp_kses_post( $tax->description , ENT_QUOTES, 'UTF-8' ), 'cat_description', $settings );
+		$description = ( isset( $tax->description ) ) ? $tax->description : '';
+
+		wp_editor( wp_kses_post( $description , ENT_QUOTES, 'UTF-8' ), 'cat_description', $settings );
 
 	}
 

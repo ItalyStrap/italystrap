@@ -349,6 +349,8 @@ module.exports = function(grunt) {
     grunt.registerTask('update', [
                                 'bower',
                                 'copy',
+                                'less',
+                                'uglify'
                                 ]);
 
     /**

@@ -17,13 +17,46 @@
  */
 
 /**
+ * Get the custom image URL from customizer
+ * @param  string $key     Custom image array's key name
+ *                         default_image
+ *                         logo
+ *                         default_404
+ * @param  string $default SRC of default image url
+ * @return string          Return the image URL if exist
+ */
+function italystrap_get_the_custom_image_url( $key = null, $default = null ){
+
+	if ( !$key )
+		return;
+
+	global $italystrap_theme_mods;
+
+	if ( empty( $italystrap_theme_mods[ $key ] ) )
+		return;
+
+	if ( is_numeric( $italystrap_theme_mods[ $key ] ) )
+		$image = wp_get_attachment_url( $italystrap_theme_mods[ $key ] );
+
+	elseif ( $italystrap_theme_mods[ $key ] )
+		$image = $italystrap_theme_mods[ $key ];
+
+	else
+		$image = $default;
+
+	return esc_url( $image );
+
+}
+
+/**
  * Return the defaul image
  * Useful for Opengraph
  * @return string Return url of default image
+ * @deprecated 3.1 Funzione deprecata in favore di italystrap_get_the_custom_image_url()
  */
 function italystrap_get_default_image(){
 
-	global $italystrap_theme_mods, $path;
+	global $italystrap_theme_mods;
 
 	if ( empty( $italystrap_theme_mods['default_image'] ) )
 		return;
@@ -34,7 +67,7 @@ function italystrap_get_default_image(){
 	elseif ( $italystrap_theme_mods['default_image'] )
 		$default_image = $italystrap_theme_mods['default_image'];
 	else
-		$default_image = $path . '/img/italystrap-default-image.png';
+		$default_image = ITALYSTRAP_PARENT_PATH . '/img/italystrap-default-image.png';
 
 	return esc_url( $default_image );
 
@@ -58,25 +91,31 @@ function italystrap_thumb_url(){
 	
 }
 
+
+
 /**
  * Get the logo url
  * @return string Return logo url
  */
 function italystrap_logo(){
 
-	global $path;
+	// global $italystrap_theme_mods;
 
-	if ( empty( $italystrap_theme_mods['logo'] ) )
-		return;
+	// if ( empty( $italystrap_theme_mods['logo'] ) )
+	// 	return;
 
-	if ( is_int( $italystrap_theme_mods['logo'] ) )
-		$logo = wp_get_attachment_url( $italystrap_theme_mods['logo'] );
-	elseif ( $italystrap_theme_mods['logo'] )
-		$logo = $italystrap_theme_mods['logo'];
-	else
-		$logo = $path . '/img/italystrap-logo.jpg';
+	// if ( is_numeric( $italystrap_theme_mods['logo'] ) )
+	// 	$logo = wp_get_attachment_url( $italystrap_theme_mods['logo'] );
+	// elseif ( $italystrap_theme_mods['logo'] )
+	// 	$logo = $italystrap_theme_mods['logo'];
+	// else
+	// 	$logo = ITALYSTRAP_PARENT_PATH . '/img/italystrap-logo.jpg';
 
-	return esc_url( $logo );
+	// return esc_url( $logo );
+	// 
+	// 
+	echo italystrap_get_the_custom_image_url( 'logo', ITALYSTRAP_PARENT_PATH . '/img/italystrap-logo.jpg' );
+
 }
 
 //funzione per estrapolare le url da gravatar
@@ -102,8 +141,13 @@ function estraiUrlsGravatar($url){
  * @return string Avatar url
  */
 function italystrap_get_avatar_url( $email ){
+
+	if ( !$email )
+		return;
+
     $hash = md5( strtolower( trim ( $email ) ) );
-    return 'http://gravatar.com/avatar/' . $hash;	
+    return 'http://gravatar.com/avatar/' . $hash;
+
 }
 
 /**
@@ -163,8 +207,7 @@ function ri_wp_favicon(){
 
 	} else {
 
-		global $path;
-		$favicon = $path . '/img/favicon.ico';
+		$favicon = ITALYSTRAP_PARENT_PATH . '/img/favicon.ico';
 
 	}
 
@@ -230,6 +273,9 @@ function italystrap_get_404_image( $class = '' ){
 
 /**
  * Get the attachment ID from image url
+ *
+ * @todo Get the ID from image resized (eg: thumbnail)
+ * 
  * @link https://wordpress.org/support/topic/need-to-get-attachment-id-by-image-url
  * @param  string $url The url of image
  * @return int         The ID of the image
@@ -244,3 +290,146 @@ function italystrap_get_ID_image_from_url( $url ){
 	return absint( $id );
 
 }
+
+/**
+ * Questa funzione pesca l'immagine correlata all'articolo (attachment) e la visualizza
+ * se non c'è visualizza un'immagine di default inserita nella cartella img del tema
+ * 
+ * Viene inserita l'ultima immagine associata ad un post, per visualizzarne un'altra
+ * bisogna cancellare la prima e inserire la nuova.
+ *
+ * @todo In questa funzione creare una if per stampare o ritornare il codice, per farlo aggiungere un parametro alla funzione o all'array, esempio:
+ * if (true)
+ * 	return
+ * else
+ * 	echo
+ *
+ * @todo Interessante funzionalità potrebbe essere quella di avere più immagini di default variabili.
+ * 
+ * @param $postID ID del post nel loop
+ * @param $size Il nome della thumb dichiarate in add_image_size()
+ * @param $default_width Deve essere un numero intero corrispondente alla larghezza dell'immagine di default
+ * @param $default_height Deve essere un numero intero corrispondente all'altezza' dell'immagine di default
+ */
+function italystrap_get_the_post_thumbnail( $postID = null, $size = 'post-thumbnail' , $attr = array(),  $default_width = 0, $default_height = 0, $default_image = '' ) {
+
+	/**
+	 * If has feautured image return that
+	 */
+	if ( has_post_thumbnail() )
+		return get_the_post_thumbnail( $postID, $size, $attr );
+
+
+	$postID = ( null === $postID ) ? get_the_ID() : $postID;
+
+	/**
+	 * The value to return
+	 * @var string
+	 */
+	$image_html = '';
+
+	/**
+	 * Array arguments for get_posts()
+	 * @var array
+	 */
+	$args = array(
+		'numberposts' => 1,
+		'post_parent' => $postID,
+		'post_type' => 'attachment',
+		// 'post_status' => null,
+		'post_mime_type' => 'image',
+		'order' => 'ASC',
+	);
+
+	/**
+	 * Get the post object
+	 * @var object
+	 */
+	$first_images = get_posts( $args );
+
+	/**
+	 * Text alternative for image
+	 * @var string
+	 */
+	$alt = ( empty($first_images[0]->post_title) ) ? get_the_title() : $first_images[0]->post_title ;
+
+	/**
+	 * Set the default alt value if $attr['alt'] is empty
+	 */
+	$attr['alt'] = ( !empty( $attr['alt'] ) ) ? $attr['alt'] : $alt;
+
+	/**
+	 * Set the default class value if $attr['class'] is empty
+	 */
+	$attr['class'] = ( !empty( $attr['class'] ) ) ? $attr['class'] : 'center-block img-responsive';
+
+	$default_image = italystrap_get_the_custom_image_url( 'default_image' );
+	/**
+	 * Fallback image
+	 * @var string
+	 */
+	$default_image = '<img src="' . $default_image . '" width="' . $default_width . 'px" height="' . $default_height . 'px" alt="' . $attr['alt'] . '" class="' . $attr['class'] . '">';
+
+	/**
+	 * Set the default image
+	 * @var string
+	 */
+	$image_html = $default_image;
+
+	if ( $first_images ) {
+
+		/**
+		 * Get the attachment value
+		 * @var array
+		 */
+		$image_attributes = wp_get_attachment_image_src( $first_images[0]->ID, $size );
+
+		/**
+		 * $default_width imposta la larghezza di default dell'immagine
+		 * Se l'immagine nel post è più piccola del 10% la mostra altrimenti no.
+		 */
+		if ( $image_attributes[1] >= $default_width / 1.1 )
+			$image_html = '<img src="' . $image_attributes[0] . '" width="' . $image_attributes[1] . '" height="' . $image_attributes[2] . '" alt="' . $attr['alt'] . '" class="' . $attr['class'] . '">';
+
+	}
+
+	if ( function_exists( 'italystrap_get_apply_lazyload' ) )
+		$image_html = italystrap_get_apply_lazyload( $image_html ); 
+
+	return $image_html;
+
+}
+
+function italystrap_the_post_thumbnail( $size = 'post-thumbnail' , $attr = '',  $default_width = '', $default_height = '' ) {
+
+	echo italystrap_get_the_post_thumbnail( null, $size, $attr,  $default_width, $default_height );
+
+}
+
+
+/*
+* Display Image from the_post_thumbnail or the first image of a post else display a default Image
+* Chose the size from "thumbnail", "medium", "large", "full" or your own defined size using filters.
+* USAGE: <?php echo my_image_display(); ?>
+*/
+ 
+// function my_image_display($size = 'article-thumb') {
+// 	global $pathchild;
+// 	if (has_post_thumbnail()) {
+// 		$image_id = get_post_thumbnail_id();
+// 		$image_url = wp_get_attachment_image_src($image_id, $size);
+// 		$image_url = $image_url[0];
+// 	} else {
+// 		global $post, $posts;
+// 		$image_url = '';
+// 		ob_start();
+// 		ob_end_clean();
+// 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+// 		$image_url = $matches [1] [0];
+// 		//Defines a default image
+// 		if(empty($image_url)){
+// 			$image_url = $pathchild . "/img/default.jpg";
+// 		}
+// 	}
+// 	return $image_url;
+// }

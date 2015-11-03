@@ -149,7 +149,7 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 							<time datetime="<?php comment_date('Y-m-d', $comment) ?>" itemprop="datePublished"><?php comment_date('j M Y', $comment) ?></time>
 						</li>
 						
-						<?php if ( is_user_logged_in() ): ?>
+						<?php if ( is_user_logged_in() && current_user_can( 'manage_options' ) ): ?>
 							<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit','ItalyStrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
 						<?php endif ?>
 
@@ -171,6 +171,9 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 				 *
 				 * @link http://codex.wordpress.org/Function_Reference/comment_reply_link
 				 * @see comment_reply.php for customizations
+				 * @todo Se è impostata la possibilità di commentare solo da loggati viene
+				 *       stampato solo un link, eventualmente provare ad inserire uno
+				 *       stile bottone che è più bellino :-)
 				 */
 				if ( $comment->comment_type === '' ) {
 

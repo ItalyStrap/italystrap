@@ -1,14 +1,19 @@
-<?php
+<?php namespace ItalyStrap\Admin;
+
+use WP_Customize_Color_Control,
+	WP_Customize_Media_Control,
+	Textarea_Custom_Control;
+
 /**
  * Contains methods for customizing the theme customization screen.
  *
  * @todo https://codex.wordpress.org/Function_Reference/header_textcolor
- * 
+ *
  * @link http://codex.wordpress.org/Theme_Customization_API
  * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/
  * @since ItalyStrap 1.0
  */
-class ItalyStrap_Theme_Customizer{
+class Customizer{
 
 	/**
 	 * $capability
@@ -22,27 +27,32 @@ class ItalyStrap_Theme_Customizer{
 	 */
 	private $style = '';
 
-	function __construct(){
+	/**
+	 * Init the class
+	 */
+	function __construct() {
 
-		// Setup the Theme Customizer settings and controls...
-		add_action( 'customize_register' , array( $this , 'register_init' ) );
+		/**
+		 * Setup the Theme Customizer settings and controls...
+		 */
+		add_action( 'customize_register' , array( $this, 'register_init' ) );
 
-		// Enqueue live preview javascript in Theme Customizer admin screen
-		add_action( 'customize_preview_init' , array( $this , 'live_preview' ) );
+		// Enqueue live preview javascript in Theme Customizer admin screen.
+		add_action( 'customize_preview_init' , array( $this, 'live_preview' ) );
 
-		// Output custom CSS to live site
-		add_action( 'wp_head' , array( $this , 'css_output' ), 11 );
+		// Output custom CSS to live site.
+		add_action( 'wp_head' , array( $this, 'css_output' ), 11 );
 
 		/**
 		 * Add link to Theme Options in case ItalyStrap plugin is active
 		 */
-		if ( defined('ITALYSTRAP_PLUGIN') )
-			add_action('admin_menu', array( $this, 'add_link_to_theme_option_page') );
+		if ( defined( 'ITALYSTRAP_PLUGIN' ) )
+			add_action( 'admin_menu', array( $this, 'add_link_to_theme_option_page' ) );
 
 		/**
 		 * Add new voice to theme menu
 		 */
-		add_action('admin_menu', array( $this, 'add_appearance_menu' ));
+		add_action( 'admin_menu', array( $this, 'add_appearance_menu' ) );
 
 	}
 
@@ -63,14 +73,15 @@ class ItalyStrap_Theme_Customizer{
 		$submenu['italystrap-dashboard'][] = array(
 											__( 'Theme Options', 'ItalyStrap' ),
 											$this->capability,
-											$url);
+											$url,
+											);
 	}
 
 	/**
 	 * Add new menu in theme.php
 	 */
-	public function add_appearance_menu(){
-		
+	public function add_appearance_menu() {
+
 		/**
 		 * @link https://codex.wordpress.org/Function_Reference/add_theme_page
 		 */
@@ -86,12 +97,11 @@ class ItalyStrap_Theme_Customizer{
 
 	/**
 	 * Add WordPress standard form for options page
-	 * @return string
 	 */
 	public function callback_function(){
 
-			if ( !current_user_can( $this->capability ) )
-				wp_die( __( 'You do not have sufficient permissions to access this page.', 'ItalyStrap' ) );
+			if ( ! current_user_can( $this->capability ) )
+				wp_die( esc_attr__( 'You do not have sufficient permissions to access this page.', 'ItalyStrap' ) );
 
 			?>
 
@@ -99,8 +109,6 @@ class ItalyStrap_Theme_Customizer{
 					<h2>
 						<span class="dashicons dashicons-admin-settings" style="font-size:32px;margin-right:15px"></span> ItalyStrap panel
 					</h2>
-						<?php // settings_errors(); ?>
-
 					<form action='options.php' method='post'>
 						
 						<?php
@@ -119,23 +127,25 @@ class ItalyStrap_Theme_Customizer{
 	/**
 	 * This hooks into 'customize_register' (available as of WP 3.4) and allows
 	 * you to add new sections and controls to the Theme Customize screen.
-	 * 
+	 *
 	 * Note: To enable instant preview, we have to actually write a bit of custom
 	 * javascript. See live_preview() for more.
-	 *  
+	 *
 	 * @see add_action('customize_register',$func)
 	 * @param \WP_Customize_Manager $wp_customize
 	 * @link http://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/
 	 * @since ItalyStrap 1.0
 	 */
-	public function register_init ( $wp_customize ) {
+	public function register_init( $wp_customize ) {
 
 		/**
 		 * Changing Customizer Color Sections Titles
 		 */
-		$wp_customize->get_section('colors')->title = __( 'Theme Colors', 'ItalyStrap'  );
+		$wp_customize->get_section( 'colors' )->title = __( 'Theme Colors', 'ItalyStrap' );
 
-		//2. Register new settings to the WP database...
+		/**
+		 * 2. Register new settings to the WP database...
+		 */
 		$wp_customize->add_setting( 'link_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 		array(
 			'default' => '#337ab7', //Default setting/value to save
@@ -301,8 +311,10 @@ class ItalyStrap_Theme_Customizer{
 			)
 		);
 
-        // Add a textarea control
-		require_once dirname(__FILE__) . '/textarea/textarea-custom-control.php';
+		/**
+		 * Add a textarea control for custom css
+		 */
+		require dirname(__FILE__) . '/textarea/textarea-custom-control.php';
 		$wp_customize->add_setting( 'custom_css',
 			array(
 				'default'        => '',
@@ -324,6 +336,48 @@ class ItalyStrap_Theme_Customizer{
 			)
 		);
 
+
+		/**
+		 * Define a new section for Footer colophon
+		 */
+		$wp_customize->add_section( 'colophon',
+			array(
+				'title' => __( 'Footer\'s Colophon' ),
+				'description' => __( 'Add text for footer\'s colophon here' ),
+				'panel' => 'italystrap_options_page', // Not typically needed.
+				'priority' => 160,
+				'capability' => $this->capability,
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		/**
+		 * Add a textarea control for Colophon
+		 */
+		// require_once dirname(__FILE__) . '/textarea/textarea-custom-control.php';
+		$wp_customize->add_setting( 'colophon',
+			array(
+				'default'        => '',
+				'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+				'capability' => $this->capability, //Optional. Special permissions for accessing this setting.
+				'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				'sanitize_callback' => 'sanitize_text_field',
+			) );
+		$wp_customize->add_control( new Textarea_Custom_Control(
+			$wp_customize,
+			'colophon',
+			array(
+				'label'   => __( 'Footer\'s Colophon', 'ItalyStrap' ),
+				'description' => __( '', 'ItalyStrap' ),
+				'section' => 'colophon',
+				'settings'   => 'colophon',
+				'priority' => 10
+				)
+			)
+		);
+
+
+
 		// // Add a footer/copyright information section.
 		// $wp_customize->add_section( 'footer',
 		// 	array(
@@ -332,7 +386,9 @@ class ItalyStrap_Theme_Customizer{
 		// 	)
 		// );
 
-		//4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
+		/**
+		 * Let's make some stuff use live preview JS...
+		 */
 		$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 		$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
@@ -362,17 +418,18 @@ class ItalyStrap_Theme_Customizer{
 		
 	}
 
+	/**
+	 * Esporto le opzioni precedentemente registrate in options e le carico nelle opzioni del tema
+	 */
 	public function set_theme_mod_from_options(){
 
-		// $italystrap_options = get_option( 'italystrap_theme_settings' );
-		// customize_save
+		/**
+		 * Rendo globale la variabile delle opzioni
+		 */
 		global $italystrap_options;
-		// var_dump($italystrap_options);
-		// var_dump($italystrap_options['logo']);
-		// var_dump(get_theme_mod( 'logo' ));
 
-		// set_theme_mod( $name, $value );
-
+		if ( !$italystrap_options )
+			return;
 		foreach ($italystrap_options as $key => $value) {
 
 			if ( ! get_theme_mod( $key ) && preg_match( '#png|jpg|gif#is', $italystrap_options[$key] ) )
@@ -416,11 +473,18 @@ class ItalyStrap_Theme_Customizer{
 	 * @access protected
 	 */
 	public function custom_background_cb() {
-		// $background is the saved custom image, or the default image.
+
+		/**
+		 * $background is the saved custom image, or the default image.
+		 * @var string
+		 */
 		$background = set_url_scheme( get_background_image() );
 
-		// $color is the saved custom color.
-		// A default has to be specified in style.css. It will not be printed here.
+		/**
+		 * $color is the saved custom color.
+		 * A default has to be specified in style.css. It will not be printed here.
+		 * @var string
+		 */
 		$color = get_background_color();
 
 		if ( $color === get_theme_support( 'custom-background', 'default-color' ) )
@@ -463,31 +527,31 @@ class ItalyStrap_Theme_Customizer{
 
 	}
 
-    /**
-     * This will generate a line of CSS for use in header or footer output.
-     * If the setting ($mod_name) has no defined value, the CSS will not be output.
-     * 
-     * @uses get_theme_mod()
-     * @param string $selector CSS selector
-     * @param string $property The name of the CSS *property* to modify
-     * @param string $mod_name The name of the 'theme_mod' option to fetch
-     * @param string $prefix Optional. Anything that needs to be output before the CSS property
-     * @param string $postfix Optional. Anything that needs to be output after the CSS property
-     * @param bool $echo Optional. Whether to print directly to the page (default: true).
-     * @return string Returns a single line of CSS with selectors, property and value.
-     * @since ItalyStrap 1.0
-     */
-    public function generate_css( $selector, $property, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
+	/**
+	 * This will generate a line of CSS for use in header or footer output.
+	 * If the setting ($mod_name) has no defined value, the CSS will not be output.
+	 * 
+	 * @uses get_theme_mod()
+	 * @param string $selector CSS selector
+	 * @param string $property The name of the CSS *property* to modify
+	 * @param string $mod_name The name of the 'theme_mod' option to fetch
+	 * @param string $prefix Optional. Anything that needs to be output before the CSS property
+	 * @param string $postfix Optional. Anything that needs to be output after the CSS property
+	 * @param bool $echo Optional. Whether to print directly to the page (default: true).
+	 * @return string Returns a single line of CSS with selectors, property and value.
+	 * @since ItalyStrap 1.0
+	 */
+	public function generate_css( $selector, $property, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
 
-    	/**
-    	 * Get theme mod by mod_name
-    	 * @var string
-    	 */
-    	$mod = get_theme_mod( $mod_name );
+		/**
+		 * Get theme mod by mod_name
+		 * @var string
+		 */
+		$mod = get_theme_mod( $mod_name );
 
-    	/**
-    	 * If mod is empty return
-    	 */
+		/**
+		 * If mod is empty return
+		 */
 		if ( empty( $mod ) )
 			return;
 		
@@ -501,7 +565,7 @@ class ItalyStrap_Theme_Customizer{
 		// 	echo $return;
 		// else
 			return $return;
-    	}
+		}
 
 	/**
 	 * This will output the custom WordPress settings to the live theme's WP head.
@@ -516,37 +580,36 @@ class ItalyStrap_Theme_Customizer{
 
 		global $italystrap_theme_mods;
 
+		$custom_css = ( isset( $italystrap_theme_mods['custom_css'] ) ) ? $italystrap_theme_mods['custom_css'] : '' ;
+
 		$this->style .= $this->generate_css('#site-title a', 'color', 'header_textcolor', '#');
 
-		$this->style .= $this->generate_css('h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6', 'color', 'hx_textcolor' );
+		$this->style .= $this->generate_css('h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading', 'color', 'hx_textcolor' );
 		// $css .= $this->generate_css('body.custom-background', 'background-color', 'background_color', '#');
 		$this->style .= $this->generate_css('a', 'color', 'link_textcolor');
 		// $css .= $this->generate_css('.widget-title,.footer-widget-title', 'border-bottom-color', 'link_textcolor');
 
-		$this->style .= $italystrap_theme_mods['custom_css'];
+		$this->style .= $custom_css;
+
+		$this->style .= apply_filters( 'italystrap_css_output', $this->style );
 
 		echo '<style type="text/css" id="custom-background-css">' . esc_attr( $this->style ) . '</style>';
 
 	}
 
 }
-/**
- * Initialize Customizer Class
- * @var ItalyStrap_Theme_Customizer
- */
-$italystrap_customizer = new ItalyStrap_Theme_Customizer;
 
 /**
  * Fallback function for custom background
  * @return string Return the custom background for body
  */
-function italystrap_custom_background_cb(){
-    
-    global $italystrap_customizer;
+function italystrap_custom_background_cb() {
 
-    if ( ! $italystrap_customizer )
-    	return;
+	global $italystrap_customizer;
 
-    $italystrap_customizer->custom_background_cb();
+	if ( ! $italystrap_customizer )
+		return;
+
+	$italystrap_customizer->custom_background_cb();
 
 }

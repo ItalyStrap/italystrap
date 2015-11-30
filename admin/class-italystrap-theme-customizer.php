@@ -284,11 +284,11 @@ class Customizer{
 			$wp_customize, //Pass the $wp_customize object (required)
 			'italystrap_default_404', //Set a unique ID for the control
 			array(
-				'label' => __( 'Default 404 Image', 'ItalyStrap' ), //Admin-visible name of the control
+				'label' => __( 'Default 404 Image', 'ItalyStrap' ), //Admin-visible name of the control.
 				'description' => __( 'This is a default 404 image, it will be displayed in 404 page (must be at least weight 848px)', 'ItalyStrap' ),
-				'section' => 'italystrap_image_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
-				'settings' => 'default_404', //Which setting to load and manipulate (serialized is okay)
-				'priority' => 10, //Determines the order this control appears in for the specified section
+				'section' => 'italystrap_image_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section).
+				'settings' => 'default_404', //Which setting to load and manipulate (serialized is okay).
+				'priority' => 10, //Determines the order this control appears in for the specified section.
 				) 
 			)
 		);
@@ -331,7 +331,7 @@ class Customizer{
 				'description' => __( '', 'ItalyStrap' ),
 				'section' => 'custom_css',
 				'settings'   => 'custom_css',
-				'priority' => 10
+				'priority' => 10,
 				)
 			)
 		);
@@ -371,7 +371,7 @@ class Customizer{
 				'description' => __( '', 'ItalyStrap' ),
 				'section' => 'colophon',
 				'settings'   => 'colophon',
-				'priority' => 10
+				'priority' => 10,
 				)
 			)
 		);
@@ -402,40 +402,40 @@ class Customizer{
 	}
 
 	/**
-	 * retrieves the attachment ID from the file URL
+	 * Retrieves the attachment ID from the file URL
 	 * @link https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
-	 * @param  [type] $image_url [description]
+	 * @param  [type] $image_url [description].
 	 * @return [type]            [description]
 	 */
-	private function pippin_get_image_id($image_url) {
+	private function pippin_get_image_id( $image_url ) {
 
 		global $wpdb;
-		$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
+		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ) );
 
 		$attachment[0] = ( isset( $attachment[0] ) ) ? $attachment[0] : null;
 
 		return intval( $attachment[0] );
-		
+
 	}
 
 	/**
 	 * Esporto le opzioni precedentemente registrate in options e le carico nelle opzioni del tema
 	 */
-	public function set_theme_mod_from_options(){
+	public function set_theme_mod_from_options() {
 
 		/**
 		 * Rendo globale la variabile delle opzioni
 		 */
 		global $italystrap_options;
 
-		if ( !$italystrap_options )
+		if ( ! $italystrap_options )
 			return;
-		foreach ($italystrap_options as $key => $value) {
+		foreach ( $italystrap_options as $key => $value ) {
 
-			if ( ! get_theme_mod( $key ) && preg_match( '#png|jpg|gif#is', $italystrap_options[$key] ) )
-				set_theme_mod( $key, $this->pippin_get_image_id( $italystrap_options[$key] ) );
+			if ( ! get_theme_mod( $key ) && preg_match( '#png|jpg|gif#is', $italystrap_options[ $key ] ) )
+				set_theme_mod( $key, $this->pippin_get_image_id( $italystrap_options[ $key ] ) );
 			elseif ( ! get_theme_mod( $key ) )	
-				set_theme_mod( $key, $italystrap_options[$key] );
+				set_theme_mod( $key, $italystrap_options[ $key ] );
 
 			// var_dump( $key . ' => ' . get_theme_mod( $key ) );
 			// remove_theme_mod( $key );
@@ -450,20 +450,20 @@ class Customizer{
 	 * Also keep in mind that this function isn't necessary unless your settings 
 	 * are using 'transport'=>'postMessage' instead of the default 'transport'
 	 * => 'refresh'
-	 * 
+	 *
 	 * Used by hook: 'customize_preview_init'
-	 * 
+	 *
 	 * @see add_action('customize_preview_init',$func)
 	 * @since ItalyStrap 1.0
 	 */
 	public function live_preview() {
-		wp_enqueue_script( 
+		wp_enqueue_script(
 			'italystrap-theme-customizer', // Give the script a unique ID
 			ITALYSTRAP_PARENT_PATH . '/admin/js/theme-customizer.min.js', // Define the path to the JS file
-			array(  'jquery', 'customize-preview' ), // Define dependencies
-			null, // Define a version (optional) 
-			true // Specify whether to put in footer (leave this true)
-			);
+			array(  'jquery', 'customize-preview' ), // Define dependencies.
+			null, // Define a version (optional).
+			true // Specify whether to put in footer (leave this true).
+		);
 	}
 
 	/**
@@ -487,37 +487,37 @@ class Customizer{
 		 */
 		$color = get_background_color();
 
-		if ( $color === get_theme_support( 'custom-background', 'default-color' ) )
+		if ( get_theme_support( 'custom-background', 'default-color' ) === $color )
 			$color = false;
 
 		if ( ! $background && ! $color )
 			return;
 
-		$style = $color ? "background-color:#$color;" : '';
+		$style = $color ? 'background-color:#' . $color . ';' : '';
 
 		if ( $background ) {
-			$image = " background-image:url('$background');";
+			$image = 'background-image:url(' . $background . ');';
 
 			$repeat = get_theme_mod( 'background_repeat', get_theme_support( 'custom-background', 'default-repeat' ) );
 
 			if ( ! in_array( $repeat, array( 'no-repeat', 'repeat-x', 'repeat-y', 'repeat' ) ) )
 				$repeat = 'repeat';
 
-			$repeat = " background-repeat:$repeat;";
+			$repeat = 'background-repeat:' . $repeat . ';';
 
 			$position = get_theme_mod( 'background_position_x', get_theme_support( 'custom-background', 'default-position-x' ) );
 
 			if ( ! in_array( $position, array( 'center', 'right', 'left' ) ) )
 				$position = 'left';
 
-			$position = " background-position: top $position;";
+			$position = 'background-position: top ' . $position . ';';
 
 			$attachment = get_theme_mod( 'background_attachment', get_theme_support( 'custom-background', 'default-attachment' ) );
 
 			if ( ! in_array( $attachment, array( 'fixed', 'scroll' ) ) )
 				$attachment = 'scroll';
 
-			$attachment = " background-attachment: $attachment;";
+			$attachment = 'background-attachment: ' . $attachment . ';';
 
 			$style .= $image . $repeat . $position . $attachment;
 
@@ -530,14 +530,14 @@ class Customizer{
 	/**
 	 * This will generate a line of CSS for use in header or footer output.
 	 * If the setting ($mod_name) has no defined value, the CSS will not be output.
-	 * 
+	 *
 	 * @uses get_theme_mod()
-	 * @param string $selector CSS selector
-	 * @param string $property The name of the CSS *property* to modify
-	 * @param string $mod_name The name of the 'theme_mod' option to fetch
-	 * @param string $prefix Optional. Anything that needs to be output before the CSS property
-	 * @param string $postfix Optional. Anything that needs to be output after the CSS property
-	 * @param bool $echo Optional. Whether to print directly to the page (default: true).
+	 * @param string $selector CSS selector.
+	 * @param string $property The name of the CSS *property* to modify.
+	 * @param string $mod_name The name of the 'theme_mod' option to fetch.
+	 * @param string $prefix Optional. Anything that needs to be output before the CSS property.
+	 * @param string $postfix Optional. Anything that needs to be output after the CSS property.
+	 * @param bool   $echo Optional. Whether to print directly to the page (default: true).
 	 * @return string Returns a single line of CSS with selectors, property and value.
 	 * @since ItalyStrap 1.0
 	 */
@@ -554,24 +554,22 @@ class Customizer{
 		 */
 		if ( empty( $mod ) )
 			return;
-		
+
 		/**
 		 * CSS style from customizer
 		 * @var string
 		 */
 		$return = $selector . '{' . $property . ':' . $prefix . $mod . $postfix . ';}';
 
-		// if ( $echo )
-		// 	echo $return;
-		// else
-			return $return;
+		return $return;
+
 		}
 
 	/**
 	 * This will output the custom WordPress settings to the live theme's WP head.
-	 * 
+	 *
 	 * Used by hook: 'wp_head'
-	 * 
+	 *
 	 * @see add_action('wp_head',$func)
 	 * @see add_action('wp_footer',$func)
 	 * @since ItalyStrap 1.0
@@ -580,23 +578,48 @@ class Customizer{
 
 		global $italystrap_theme_mods;
 
+		/**
+		 * Custom CSS section on customizer page
+		 * @var string
+		 */
 		$custom_css = ( isset( $italystrap_theme_mods['custom_css'] ) ) ? $italystrap_theme_mods['custom_css'] : '' ;
 
-		$this->style .= $this->generate_css('#site-title a', 'color', 'header_textcolor', '#');
+		$this->style .= $this->generate_css( '#site-title a', 'color', 'header_textcolor', '#' );
 
-		$this->style .= $this->generate_css('h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading', 'color', 'hx_textcolor' );
+		$this->style .= $this->generate_css( 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading', 'color', 'hx_textcolor' );
 		// $css .= $this->generate_css('body.custom-background', 'background-color', 'background_color', '#');
-		$this->style .= $this->generate_css('a', 'color', 'link_textcolor');
+		$this->style .= $this->generate_css( 'a', 'color', 'link_textcolor' );
 		// $css .= $this->generate_css('.widget-title,.footer-widget-title', 'border-bottom-color', 'link_textcolor');
 
 		$this->style .= $custom_css;
 
 		$this->style .= apply_filters( 'italystrap_css_output', $this->style );
 
-		echo '<style type="text/css" id="custom-background-css">' . esc_attr( $this->style ) . '</style>';
+		echo '<style type="text/css" id="custom-background-css">' . esc_attr( $this->minify_output( $this->style ) ) . '</style>';
 
 	}
 
+	/**
+	 * Minify the CSS output
+	 * @param  string $css The CSS output.
+	 * @return string      The CSS minified
+	 */
+	public function minify_output( $css ) {
+
+		return $css = str_replace(
+			array(
+				// ' ',
+				"\n",
+				"\r",
+				"\t",
+				// "\0",
+				// "\x0B",
+				'&amp;nbsp;',
+				),
+			'',
+			$css
+		);
+	}
 }
 
 /**

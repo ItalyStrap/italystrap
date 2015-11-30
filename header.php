@@ -9,6 +9,7 @@
  *
  * You can also replace <?php bloginfo( 'charset' ); ?> with "UTF-8" or your charset
  *
+ * @package ItalyStrap
  * @since ItalyStrap 1.0
  */
 ?>

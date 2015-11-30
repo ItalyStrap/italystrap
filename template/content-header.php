@@ -4,8 +4,8 @@
  * This file is for display the HTML tags header and nav
  */
 use \ItalyStrap\Core;
-use \ItalyStrap\Core\ItalyStrap_Navwalker;
-use \wp_bootstrap_navwalker;
+use \ItalyStrap\Core\Bootstrap_Navwalker;
+
 /**
  * Get the header image url if is set
  * @var string
@@ -77,9 +77,9 @@ if ( has_nav_menu( 'main-menu' ) ) :
 					'container'         => 'div',
 					'container_class'	=> 'navbar-collapse collapse',
 					'menu_class'		=> 'nav navbar-nav',
-					'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+					'fallback_cb'       => 'Bootstrap_Navwalker::fallback',
 					'menu_id'			=> 'main-menu',
-					'walker'			=> new wp_bootstrap_navwalker(),
+					'walker'			=> new Bootstrap_Navwalker(),
 					'search'			=> false,
 				)
 			);

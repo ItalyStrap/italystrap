@@ -28,6 +28,7 @@ use \ItalyStrap\Admin\Customizer;
 use \ItalyStrap_Add_Admin_Menu_Custom_Field;
 use \ItalyStrap_Sidebars;
 use \ItalyStrapBreadcrumbs;
+use \Mobile_Detect;
 
 /**
  * Define ITALYSTRAP_THEME constant for internal use
@@ -304,48 +305,48 @@ require locate_template( '/lib/wp-sanitize-capital-p.php' );
  */
 require locate_template( '/lib/debug.php' );
 
-/*********************************************************************
+/** *******************************************************************
  * Deprecated files and functions
- *********************************************************************/
+ ******************************************************************** */
 
-require locate_template( '/lib/deprecated.php' );
+require locate_template( '/deprecated/deprecated.php' );
 
 /**
  * Breadcrumb.
  * @deprecated 2.0.0
  * @deprecated Use new ItalyStrapBreadcrumbs( $defaults );
  * @see ItalyStrapBreadcrumbs( $defaults );
+ * require locate_template( '/deprecated/breadcrumb.php' );
  */
-// require locate_template( '/deprecated/breadcrumb.php' );
 
 /**
  * Sidebar.
  * @deprecated 3.0.6
+ * require locate_template( '/deprecated/sidebar.php' );
  */
-// require locate_template( '/deprecated/sidebar.php' );
 
 /**
  * Globals variables for internal use.
  * @deprecated 3.0.6
+ * require locate_template( '/deprecated/globals.php' );
  */
-// require locate_template( '/deprecated/globals.php' );
 
 /**
  * Function for init load.
  * In this file there are after_setup_theme and $content_width
  * @deprecated 3.0.6
+ * require locate_template( '/lib/init.php' );
  */
-// require locate_template( '/lib/init.php' );
-// 
+
 /**
  * new_get_cancel_comment_reply_link
+ * require locate_template( '/lib/comment_reply.php' );
  */
-// require locate_template( '/lib/comment_reply.php' );
 
 /**
  * Walker comments
+ * require locate_template( '/lib/comments.php' );
  */
-// require locate_template( '/lib/comments.php' );
 
 /*********************************************************************
  * Class init for Theme
@@ -354,7 +355,7 @@ require locate_template( '/lib/deprecated.php' );
 /**
  * Theme init
  */
-class ItaltStrap_Init_Theme{
+class ItalyStrap_Init_Theme{
 
 	/**
 	 * Init some functionality
@@ -493,7 +494,7 @@ class ItaltStrap_Init_Theme{
 
 }
 
-new ItaltStrap_Init_Theme;
+new ItalyStrap_Init_Theme;
 
 
 

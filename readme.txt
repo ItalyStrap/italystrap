@@ -43,6 +43,17 @@ Then [download Italystrap Child Theme](https://github.com/overclokk/ItalyStrap-c
 
 If you want to keep it updated please also install github-updater from your admin dashboard and use the child theme for your customizations.
 
+== How to migrate from older version of 4.0.0 ==
+
+= In file functions.php add this constant =
+```define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );```
+
+= In file script.php =
+Change all $pathchild variable to ITALYSTRAP_CHILD_PATH constant
+
+= Deprecated Class =
+wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
+
 
 == Frequently Asked Questions ==
 
@@ -74,7 +85,9 @@ Release Date: Sep 10th, 2015
 * Added new hooks in template files
 * Moved breadcrumbs functions to hook
 * Added new Author info file
-* Template HTML sitemaps and Blog moved to child theme
+* Page template HTML sitemaps and Blog moved to child theme
+* Added namespace PHP 5.3 to all files
+* wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
 
 
 = 3.0.5 =

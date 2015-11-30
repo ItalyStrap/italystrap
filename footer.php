@@ -49,11 +49,9 @@ $col = ( isset( $col ) ) ? $col : $italystrap_sidebars->set_col();
 				<div class="row">
 					<div class="col-md-12">
 						<?php
-
-global $italystrap_theme_mods;
-var_dump($italystrap_theme_mods);
+						global $italystrap_theme_mods;
 						?>
-						<p class="text-muted small">&copy; <span itemprop="copyrightYear"><?php echo date('Y'); ?></span> <?php echo esc_attr( GET_BLOGINFO_NAME ); ?> | This website uses <?php echo wp_get_theme()->get('Name'); ?> powered by <a href="http://www.italystrap.it" rel="nofollow" itemprop="url">ItalyStrap</a> developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> <?php if ( !is_child_theme() ): ?>| Theme version: <span class="badge" itemprop="version"><?php italystrap_version(); ?></span><?php endif; ?>
+						<p class="text-muted small">&copy; <span itemprop="copyrightYear"><?php echo date( 'Y' ); ?></span> <?php echo esc_attr( GET_BLOGINFO_NAME ); ?> | This website uses <?php echo wp_get_theme()->get( 'Name' ); ?> powered by <a href="http://www.italystrap.it" rel="nofollow" itemprop="url">ItalyStrap</a> developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> <?php if ( ! is_child_theme() ) : ?>| Theme version: <span class="badge" itemprop="version"><?php italystrap_version(); ?></span><?php endif; ?>
 						</p>
 					</div>
 				</div>

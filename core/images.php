@@ -1,6 +1,7 @@
 <?php
 /**
  * For file size @see image_size.php
+ *
  * @todo Upload default image on switch theme
  *       (da usare invece della fallback
  *       dell'immagine nella cartella img)
@@ -14,6 +15,8 @@
  *       per esempio se non ci sono immagini non ritornare nessun valore
  * @todo L'immagine di default dovrebbe anche essere creata per
  *       le misure varie misure impostate
+ *
+ * @package ItalyStrap
  */
 
 /**
@@ -21,13 +24,13 @@
  * @param  string $key     Custom image array's key name
  *                         default_image
  *                         logo
- *                         default_404
- * @param  string $default SRC of default image url
+ *                         default_404.
+ * @param  string $default SRC of default image url.
  * @return string          Return the image URL if exist
  */
-function italystrap_get_the_custom_image_url( $key = null, $default = null ){
+function italystrap_get_the_custom_image_url( $key = null, $default = null ) {
 
-	if ( !$key )
+	if ( ! $key )
 		return;
 
 	global $italystrap_theme_mods;
@@ -41,8 +44,7 @@ function italystrap_get_the_custom_image_url( $key = null, $default = null ){
 	elseif ( $italystrap_theme_mods[ $key ] )
 		$image = $italystrap_theme_mods[ $key ];
 
-	else
-		$image = $default;
+	else $image = $default;
 
 	return esc_url( $image );
 
@@ -54,20 +56,20 @@ function italystrap_get_the_custom_image_url( $key = null, $default = null ){
  * @return string Return url of default image
  * @deprecated 3.1 Funzione deprecata in favore di italystrap_get_the_custom_image_url()
  */
-function italystrap_get_default_image(){
+function italystrap_get_default_image() {
 
 	global $italystrap_theme_mods;
 
 	if ( empty( $italystrap_theme_mods['default_image'] ) )
 		return;
 
-	
 	if ( is_int( $italystrap_theme_mods['default_image'] ) )
 		$default_image = wp_get_attachment_url( $italystrap_theme_mods['default_image'] );
+
 	elseif ( $italystrap_theme_mods['default_image'] )
 		$default_image = $italystrap_theme_mods['default_image'];
-	else
-		$default_image = ITALYSTRAP_PARENT_PATH . '/img/italystrap-default-image.png';
+
+	else $default_image = ITALYSTRAP_PARENT_PATH . '/img/italystrap-default-image.png';
 
 	return esc_url( $default_image );
 

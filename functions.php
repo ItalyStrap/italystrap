@@ -41,9 +41,13 @@ define( 'ITALYSTRAP_THEME', true );
  * define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
  */
 define( 'ITALYSTRAP_PARENT_PATH', get_template_directory_uri() );
-
-// Var deprecated from 3.0.6.
+// Var deprecated from 4.0.0.
 $path = ITALYSTRAP_PARENT_PATH;
+
+/**
+ * Define child path directory if is active child theme
+ */
+define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
 
 /**
  * Define Bog Name constant
@@ -65,12 +69,14 @@ if ( ! defined( 'HOME_URL' ) )
 
 /**
  * Define theme otpion array
+ *
  * @var array
  */
 $italystrap_options = get_option( 'italystrap_theme_settings' );
 
 /**
  * The customiser optionr of ItalyStrap
+ *
  * @var array
  */
 $italystrap_theme_mods = get_theme_mods();
@@ -112,7 +118,12 @@ require locate_template( '/admin/ItalyStrapOptionTheme.php' );
 /**
  * Admin functionality
  */
-require locate_template( '/admin/ItalyStrapAdmin.php' );
+require locate_template( '/admin/class-admin-text-editor.php' );
+
+/**
+ * Admin customizer
+ */
+require locate_template( '/admin/class-custom-meta-box.php' );
 
 /**
  * Admin customizer
@@ -120,6 +131,7 @@ require locate_template( '/admin/ItalyStrapAdmin.php' );
 require locate_template( '/admin/class-italystrap-theme-customizer.php' );
 /**
  * Initialize Customizer Class
+ *
  * @var ItalyStrap_Theme_Customizer
  */
 $italystrap_customizer = new Customizer;
@@ -164,6 +176,7 @@ require locate_template( '/core/images.php' );
 /**
  * Class for template functions
  * Depend of images.php
+ *
  * @todo Da mettere a posto, al momento non fa nulla
  */
 require locate_template( '/core/class-italystrap-template-functions.php' );
@@ -226,12 +239,8 @@ require locate_template( '/lib/gallery.php' );
 require locate_template( '/lib/relative-urls.php' );
 
 /**
- * Custom Widget.
- */
-// require locate_template( '/lib/widget.php' );
-
-/**
  * Add htaccess from HTML5 Boilerplate
+ *
  * @link   [<description>]https://github.com/roots/wp-h5bp-htaccess.
  */
 require locate_template( '/lib/wp-h5bp-htaccess.php' );
@@ -247,19 +256,9 @@ require locate_template( '/lib/pagination.php' );
 require locate_template( '/lib/related_post.php' );
 
 /**
- * Custom fields.
- */
-require locate_template( '/lib/custom_fields.php' );
-
-/**
  * Users meta.
  */
 require locate_template( '/lib/users_meta.php' );
-
-/**
- * Custom excerpt_length and more.
- */
-require locate_template( '/lib/custom_excerpt.php' );
 
 /**
  * Function for Schema.org and OG.
@@ -287,11 +286,6 @@ require locate_template( '/lib/tag_cloud.php' );
 require locate_template( '/lib/password_protection.php' );
 
 /**
- * Custom shortcode
- */
-require locate_template( '/lib/custom_shortcode.php' );
-
-/**
  * Some function for make wordpress more secure
  */
 require locate_template( '/lib/security.php' );
@@ -299,6 +293,8 @@ require locate_template( '/lib/security.php' );
 require locate_template( '/lib/search-form.php' );
 
 require locate_template( '/lib/wp-sanitize-capital-p.php' );
+
+require locate_template( '/lib/woocommerce.php' );
 
 /**
  * Functions for debugging porpuse
@@ -313,6 +309,7 @@ require locate_template( '/deprecated/deprecated.php' );
 
 /**
  * Breadcrumb.
+ *
  * @deprecated 2.0.0
  * @deprecated Use new ItalyStrapBreadcrumbs( $defaults );
  * @see ItalyStrapBreadcrumbs( $defaults );
@@ -321,31 +318,63 @@ require locate_template( '/deprecated/deprecated.php' );
 
 /**
  * Sidebar.
- * @deprecated 3.0.6
+ *
+ * @deprecated 4.0.0
  * require locate_template( '/deprecated/sidebar.php' );
  */
 
 /**
  * Globals variables for internal use.
- * @deprecated 3.0.6
+ *
+ * @deprecated 4.0.0
  * require locate_template( '/deprecated/globals.php' );
  */
 
 /**
  * Function for init load.
  * In this file there are after_setup_theme and $content_width
- * @deprecated 3.0.6
+ *
+ * @deprecated 4.0.0
  * require locate_template( '/lib/init.php' );
  */
 
 /**
- * new_get_cancel_comment_reply_link
+ * Deprecated new_get_cancel_comment_reply_link
  * require locate_template( '/lib/comment_reply.php' );
  */
 
 /**
  * Walker comments
  * require locate_template( '/lib/comments.php' );
+ */
+
+/**
+ * Custom fields.
+ *
+ * @deprecated 4.0.0
+ * require locate_template( '/lib/custom_fields.php' );
+ */
+
+/**
+ * Custom Widget.
+ *
+ * @deprecated 4.0.0
+ * require locate_template( '/lib/widget.php' );
+ */
+
+/**
+ * Custom excerpt_length and more.
+ * Now is in core directory
+ *
+ * @deprecated 4.0.0
+ * require locate_template( '/lib/custom_excerpt.php' );
+ */
+
+/**
+ * Custom shortcode
+ *
+ * @deprecated 4.0.0
+ * require locate_template( '/lib/custom_shortcode.php' );
  */
 
 /*********************************************************************
@@ -355,7 +384,7 @@ require locate_template( '/deprecated/deprecated.php' );
 /**
  * Theme init
  */
-class ItalyStrap_Init_Theme{
+class Init_Theme{
 
 	/**
 	 * Init some functionality
@@ -378,10 +407,11 @@ class ItalyStrap_Init_Theme{
 		/**
 		 * Make theme available for translation.
 		 */
-		load_theme_textdomain( 'ItalyStrap', get_template_directory() . '/lang' );
+		load_theme_textdomain( 'ItalyStrap', TEMPLATEPATH . '/lang' );
 
 		/**
 		 * Add theme support functionality
+		 *
 		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support
 		 */
 
@@ -418,6 +448,7 @@ class ItalyStrap_Init_Theme{
 		/**
 		 * Enable support for Post Formats.
 		 * See http://codex.wordpress.org/Post_Formats
+		 *
 		 * @var array
 		 */
 		$post_formats = array(
@@ -435,6 +466,7 @@ class ItalyStrap_Init_Theme{
 
 		/**
 		 * Custom header value array
+		 *
 		 * @var array
 		 */
 		$custom_header = array(
@@ -490,11 +522,17 @@ class ItalyStrap_Init_Theme{
 		 */
 		require locate_template( 'lib/image_size.php' );
 
-	}
+		/**
+		 * Add support to WooCommerce
+		 *
+		 * @since 4.0.0
+		 */
+		add_theme_support( 'woocommerce' );
 
+	}
 }
 
-new ItalyStrap_Init_Theme;
+new Init_Theme;
 
 
 
@@ -552,3 +590,16 @@ add_action( 'content_col_open', __NAMESPACE__ . '\display_breadcrumbs' );
  * Permetto gli shortcode nel widget testo
  */
 add_filter( 'widget_text', 'do_shortcode' );
+
+/**
+ * Echo the colophon function
+ *
+ * @param  string $italystrap_theme_mods The theme mods array.
+ */
+function get_the_colophon( $italystrap_theme_mods ) {
+
+	$output = ( isset( $value['colophon'] ) ) ? $value['colophon'] : Admin\colophon_default_text();
+
+	return apply_filters( 'colophon-output', wp_kses_post( $output ) );
+}
+

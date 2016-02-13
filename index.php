@@ -44,7 +44,7 @@ get_header(); ?>
 
 					do_action( 'content_col_closed' ); ?>
 				</div><!-- / .col-md-8 -->
-				<?php get_sidebar(); ?> 
+				<?php get_sidebar(); ?>
 			</div><!-- / .row -->
 			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->

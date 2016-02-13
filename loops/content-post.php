@@ -23,7 +23,7 @@
 	<meta itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 	<section class="entry-content">
 		<?php if ( has_post_thumbnail() ) { ?>
-			<div class="margin-bottom-25 thumbnail">
+			<div class="thumbnail">
 				<figure>
 			  		<?php
 			  		the_post_thumbnail(

@@ -21,7 +21,7 @@
 		if ( is_home() && current_user_can( 'publish_posts' ) ) :?>
 
 			<p>
-				<?php printf( esc_attr__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'ItalyStrap' ), esc_url( admin_url( 'post-new.php' ) ) ); ?>
+				<?php printf( wp_kses( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'ItalyStrap' ), array( 'a' => array( 'href' => array(), 'title' => array() ) ) ), esc_url( admin_url( 'post-new.php' ) ) ); ?>
 			</p>
 
 		<?php
@@ -41,7 +41,7 @@
 			</p>
 			<?php
 			get_search_form();
-			echo italystrap_get_404_image( 'margin-top-25 img-responsive center-block' );
+			echo italystrap_get_404_image( 'img-responsive center-block' );
 
 		endif; ?>
 

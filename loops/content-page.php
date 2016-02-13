@@ -26,9 +26,9 @@
 		</div>  
 	<?php endif; ?>
 	<meta itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
-	<section class="entry-content margin-bottom-25">
+	<section class="entry-content">
 		<?php if ( has_post_thumbnail() ) { ?>
-			<div class="margin-bottom-25 thumbnail">
+			<div class="thumbnail">
 				<figure>
 			  		<?php
 			  		if ( is_page_template( 'full-width.php' ) ) {
@@ -50,7 +50,7 @@
 		<span class="clearfix"></span>
 		<p class="sr-only"><?php esc_attr_e( 'Last edit:', 'ItalyStrap' ); ?> <time datetime="<?php the_modified_time( 'Y-m-d' ) ?>" itemprop="dateModified"><?php the_modified_time( 'd F Y' ) ?></time></p>
 		<span class="clearfix"></span>
-			<?php edit_post_link( __( 'Edit', 'ItalyStrap' ), '<span class="btn btn-sm btn-primary margin-top-25">', '</span>' ); ?>
+			<?php edit_post_link( __( 'Edit', 'ItalyStrap' ), '<span class="btn btn-sm btn-primary">', '</span>' ); ?>
 	</section><!-- /.entry-content -->
 	<?php get_template_part( 'template/social-button' ); ?>
 	<?php echo italystrap_ttr_wc();?>

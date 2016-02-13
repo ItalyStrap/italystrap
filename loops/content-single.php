@@ -5,7 +5,6 @@
  * @package ItalyStrap
  * @since 1.0.0
  */
-
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="page-header entry-header">
@@ -26,9 +25,9 @@
 		</div>  
 	<?php endif; ?>
 	<meta itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
-	<section class="entry-content margin-bottom-25">
+	<section class="entry-content">
 		<?php if ( has_post_thumbnail() ) { ?>
-			<div class="margin-bottom-25 thumbnail">
+			<div class="thumbnail">
 				<figure>
 			  		<?php
 					the_post_thumbnail(
@@ -49,7 +48,7 @@
 			) );?>
 		<p class="sr-only"><?php esc_attr_e( 'Last edit:', 'ItalyStrap' ); ?> <time datetime="<?php the_modified_time( 'Y-m-d' ) ?>" itemprop="dateModified"><?php the_modified_time( 'd F Y' ) ?></time></p>
 		<span class="clearfix"></span>
-			<?php edit_post_link( __( 'Edit', 'ItalyStrap' ), '<span class="btn btn-sm btn-primary margin-top-25">', '</span>' ); ?>
+			<?php edit_post_link( __( 'Edit', 'ItalyStrap' ), '<span class="btn btn-sm btn-primary">', '</span>' ); ?>
 		<h3><?php esc_attr_e( 'Share this with your friends:', 'ItalyStrap' ); ?></h3>
 		<textarea class="form-control" tabindex="4" rows="2"><?php the_permalink(); ?></textarea>
 	</section><!-- /.entry-content -->

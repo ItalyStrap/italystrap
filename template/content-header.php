@@ -43,8 +43,9 @@ if ( $get_header_image->url ) :?>
 /**
  * This is only a nav container
  * .navbar-wrapper style is in _menu.scss css/src/sass
+ * @todo Da verificare la mancanza di un menù se attiva il link per crearne uno dal front-end
  */
-if ( has_nav_menu( 'main-menu' ) ) :
+// if ( has_nav_menu( 'main-menu' ) ) :
 ?>
 <nav class="container navbar-wrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 	<?php
@@ -89,4 +90,4 @@ if ( has_nav_menu( 'main-menu' ) ) :
 	</div>
 	<?php do_action( 'nav_closed' ); ?>
 </nav>
-<?php endif;
+<?php // endif;

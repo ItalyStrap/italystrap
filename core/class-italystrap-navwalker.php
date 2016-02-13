@@ -88,7 +88,12 @@ class Bootstrap_Navwalker extends Walker_Nav_Menu{
 			if ( $args->has_children )
 				$class_names .= $dropdown = ( 'dropup' === $classes[0] ) ? '' : ' dropdown';
 
-			if ( in_array( 'current-menu-item', $classes ) )
+			/**
+			 * Da fare
+			 * @todo Verificare l'aggiunta di active in tutte le pagine tranne in home
+			 *       con tutte le configurazioni possibili.
+			 */
+			if ( in_array( 'current-menu-item', $classes ) && ! is_front_page() )
 				$class_names .= ' active';
 
 			$class_names = $class_names ? ' class="nav-item ' . esc_attr( $class_names ) . '"' : '';

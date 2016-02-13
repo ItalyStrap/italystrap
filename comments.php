@@ -50,7 +50,7 @@ if ( have_comments() ) : ?>
 		italystrap_comment_pagination();
 		?>
 	</section><!-- /#comments -->
-<?php else : ?>
+<?php elseif ( comments_open() ) : ?>
 	<section id="comments" class="comments-area">
 		<h3 id="comments-title"><?php esc_html_e( 'There are no comments yet, why not be the first', 'ItalyStrap' ); ?></h3>
 	</section>

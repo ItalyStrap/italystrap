@@ -143,13 +143,13 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 		 * @link http://codex.wordpress.org/Function_Reference/comment_class
 		 */
 		?>
-		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( 'margin-bottom-25 media comment-' . get_comment_ID() ); ?> itemscope itemtype="http://schema.org/Comment">
+		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( 'media comment-' . get_comment_ID() ); ?> itemscope itemtype="http://schema.org/Comment">
 
 			<span class="pull-left">
 				<?php echo italystrap_get_avatar( $comment, null, null, get_comment_author(), 'img-circle img-responsive' );?>
 			</span>
 			<div class="media-body"><h2>Bello</h2>
-				<ul class="list-inline margin-bottom-10">
+				<ul class="list-inline">
 					<li>
 						<h4 class="media-heading">
 
@@ -389,7 +389,7 @@ function comment_form_args( $comment_author, $user_identity ){
 			'<p class="logged-in-as">' . sprintf( 
 				__( 'Logged in as <a href="%1$s" class="btn btn-primary btn-xs">%2$s</a>. <a href="%3$s" title="Log out of this account" class="btn btn-warning btn-xs">Log out?</a>' ), get_edit_user_link(), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink() ) ) ) . '</p>',
 		'must_log_in'		=>
-			'<p class="alert alert-danger margin-top-25 must-log-in">' . sprintf( __( 'You must be <a href="%s" class="alert-link">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ) . '</p>',
+			'<p class="alert alert-danger must-log-in">' . sprintf( __( 'You must be <a href="%s" class="alert-link">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ) . '</p>',
 		// 'cancel_reply_link'	=> '<span class="btn btn-danger btn-xs">' . __( 'Cancel reply' ) . '</span>',
 
 		);
@@ -539,10 +539,10 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
 
 
 		<div class="<?php if($depth == 1) echo 'col-md-12'; else echo 'col-md-11 col-md-offset-1'; ?>">
-			<div class="row margin-bottom-25 padding-15 <?php if ($comment->user_id === $post->post_author) { echo 'bg-color-author';} ?>"itemscope itemtype="http://schema.org/Comment">
+			<div class="row <?php if ($comment->user_id === $post->post_author) { echo 'bg-color-author';} ?>"itemscope itemtype="http://schema.org/Comment">
 				<div class="col-md-2"><?php echo get_avatar($comment, '92') ?></div>
 				<div class="col-md-10">
-					<ul class="list-inline margin-bottom-10">
+					<ul class="list-inline">
 						<li>
 							<h4 class="media-heading">
 								<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php echo get_comment_author() ?><meta itemprop="image" content="<?php  $thumbnailUrl = get_avatar($comment); echo estraiUrlsGravatar($thumbnailUrl);?>"/></span></a>

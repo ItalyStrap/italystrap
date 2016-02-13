@@ -33,7 +33,7 @@ get_header(); ?>
 						<header class="page-header">
 							<?php
 							the_archive_title( '<h1 class="page-title" itemprop="name">', '</h1>' );
-							the_archive_description( '<div class="well taxonomy-description" role="alert" itemprop="description"><p>', '</p></div>' );
+							the_archive_description( '<div class="well taxonomy-description" role="alert" itemprop="description">', '</div>' );
 
 							/**
 							 * Display or retrieve title for a Custom Post Type archive.

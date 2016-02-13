@@ -1,14 +1,28 @@
-<?php
+<?php namespace ItalyStrap\Admin;
 /**
-* 
+* Initialize custom meta box build with CMB2
+*
+*
+* @package ItalyStrap\Admin
+* @version 1.0
+* @since   4.0.0
 */
-class ItalyStrapAdminTextEditor{
+
+/**
+ * Improve WordPress text editor
+ */
+class Admin_Text_editor{
 	
+	/**
+	 * Init the constructor
+	 */
 	function __construct(){
 
 		add_filter( 'mce_buttons_2', array( $this, 'reveal_hidden_tinymce_buttons' ) );
 
-		/* Add Next Page Button in First Row */
+		/**
+		 * Add Next Page Button in First Row
+		 */
 		add_filter( 'mce_buttons', array( $this, 'break_page_button' ), 1, 2 ); // 1st row
 
 	}
@@ -19,7 +33,6 @@ class ItalyStrapAdminTextEditor{
 	 * @since 1.9.2
 	 *
 	 */
-
 	public function reveal_hidden_tinymce_buttons( $buttons ){
 
 		/**
@@ -57,4 +70,4 @@ class ItalyStrapAdminTextEditor{
 
 }
 if ( is_admin() )
-	new ItalyStrapAdminTextEditor;
+	new Admin_Text_editor;

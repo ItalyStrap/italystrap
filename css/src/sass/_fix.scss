@@ -10,7 +10,7 @@
 }
 
 // Fix Title overflow content area
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, a, p {
 	-ms-word-wrap: break-word;
 	word-wrap: break-word;	
 }

@@ -18,6 +18,9 @@ function italystrap_add_style_and_script() {
 	 */
 	$ver = ( WP_DEBUG ) ? rand( 0, 100000 ) : null;
 
+	// $min = ( WP_DEBUG ) ? '' : '.min';
+	$min = '.min';
+
 	/**
 	 * Only for
 	 * @link http://www.bootstrapcdn.com/alpha/
@@ -52,22 +55,22 @@ function italystrap_add_style_and_script() {
 	if ( is_home() || is_front_page() ) {
 
 		wp_enqueue_style( 'home',  ITALYSTRAP_PARENT_PATH . '/css/home.css', array( 'bootstrap' ), $ver, null );
-		wp_enqueue_script( 'home', ITALYSTRAP_PARENT_PATH . '/js/home.min.js', array( 'jquery' ), $ver,  true );
+		wp_enqueue_script( 'home', ITALYSTRAP_PARENT_PATH . '/js/home' . $min . '.js', array( 'jquery' ), $ver,  true );
 
 	} elseif ( is_singular() ) {
 
 		wp_enqueue_style( 'singular',  ITALYSTRAP_PARENT_PATH . '/css/singular.css', array( 'bootstrap' ), $ver, null );
-		wp_enqueue_script( 'singular', ITALYSTRAP_PARENT_PATH . '/js/singular.min.js', array( 'jquery' ), $ver,  true );
+		wp_enqueue_script( 'singular', ITALYSTRAP_PARENT_PATH . '/js/singular' . $min . '.js', array( 'jquery' ), $ver,  true );
 
 	} elseif ( is_archive() ) {
 
 		wp_enqueue_style( 'archive',  ITALYSTRAP_PARENT_PATH . '/css/archive.css', array( 'bootstrap' ), $ver, null );
-		wp_enqueue_script( 'archive', ITALYSTRAP_PARENT_PATH . '/js/archive.min.js', array( 'jquery' ), $ver,  true );
+		wp_enqueue_script( 'archive', ITALYSTRAP_PARENT_PATH . '/js/archive' . $min . '.js', array( 'jquery' ), $ver,  true );
 
 	} else {
 
 		wp_enqueue_style( 'custom',  ITALYSTRAP_PARENT_PATH . '/css/custom.css', array( 'bootstrap' ), $ver, null );
-		wp_enqueue_script( 'custom', ITALYSTRAP_PARENT_PATH . '/js/custom.min.js', array( 'jquery' ), $ver,  true );
+		wp_enqueue_script( 'custom', ITALYSTRAP_PARENT_PATH . '/js/custom' . $min . '.js', array( 'jquery' ), $ver,  true );
 
 	}
 

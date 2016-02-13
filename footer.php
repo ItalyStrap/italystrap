@@ -13,30 +13,29 @@ $col = ( isset( $col ) ) ? $col : $italystrap_sidebars->set_col();
 	<footer class="site-footer" itemscope itemtype="http://schema.org/WPFooter">
 	<?php do_action( 'footer_open' ); ?>
 		<div class="container">
-		<hr>
 		<?php do_action( 'footer_container_open' ); ?>
 			<div class="row" itemscope itemtype="http://schema.org/WPSideBar">
 
 				<?php if ( is_active_sidebar( 'footer-box-1' ) ) : ?>
-					<div class="col-md-<?php echo $col; ?>">
+					<div class="col-md-<?php echo $col; // XSS ok. ?>">
 						<?php dynamic_sidebar( 'footer-box-1' ) ?>
 					</div>
 				<?php endif; ?>
 
 				<?php if ( is_active_sidebar( 'footer-box-2' ) ) : ?>
-					<div class="col-md-<?php echo $col; ?>">
+					<div class="col-md-<?php echo $col; // XSS ok. ?>">
 						<?php dynamic_sidebar( 'footer-box-2' ) ?>
 					</div>
 				<?php endif; ?>
 
 				<?php if ( is_active_sidebar( 'footer-box-3' ) ) : ?>
-					<div class="col-md-<?php echo $col; ?>">
+					<div class="col-md-<?php echo $col; // XSS ok. ?>">
 						<?php dynamic_sidebar( 'footer-box-3' ) ?>
 					</div>
 				<?php endif; ?>
 
 				<?php if ( is_active_sidebar( 'footer-box-4' ) ) : ?>
-					<div class="col-md-<?php echo $col; ?>">
+					<div class="col-md-<?php echo $col; // XSS ok. ?>">
 						<?php dynamic_sidebar( 'footer-box-4' ) ?>
 					</div>
 				<?php endif; ?>
@@ -45,14 +44,12 @@ $col = ( isset( $col ) ) ? $col : $italystrap_sidebars->set_col();
 		</div>
 		<div id="colophon" class="colophon"><!-- #copyright -->
 			<div class="container">
-				<hr>
 				<div class="row">
 					<div class="col-md-12">
 						<?php
 						global $italystrap_theme_mods;
+						echo get_the_colophon( $italystrap_theme_mods ); // XSS ok.
 						?>
-						<p class="text-muted small">&copy; <span itemprop="copyrightYear"><?php echo date( 'Y' ); ?></span> <?php echo esc_attr( GET_BLOGINFO_NAME ); ?> | This website uses <?php echo wp_get_theme()->get( 'Name' ); ?> powered by <a href="http://www.italystrap.it" rel="nofollow" itemprop="url">ItalyStrap</a> developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> <?php if ( ! is_child_theme() ) : ?>| Theme version: <span class="badge" itemprop="version"><?php italystrap_version(); ?></span><?php endif; ?>
-						</p>
 					</div>
 				</div>
 			</div>

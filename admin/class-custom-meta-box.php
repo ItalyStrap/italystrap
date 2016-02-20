@@ -58,9 +58,11 @@ class Custom_Meta_Box {
 				'id'		=> 'layout_options',
 				'type'		=> 'multicheck',
 				'options'	=> array(
+					'breadcrumbs'	=> __( 'Hide breadcrumbs', 'ItalyStrap' ),
 					'title'			=> __( 'Hide title', 'ItalyStrap' ),
 					'meta'			=> __( 'Hide meta', 'ItalyStrap' ),
 					'thumb'			=> __( 'Hide feautured image', 'ItalyStrap' ),
+					'figcaption'	=> __( 'Hide figure caption', 'ItalyStrap' ),
 					'content'		=> __( 'Hide the content', 'ItalyStrap' ),
 					'author'		=> __( 'Hide author', 'ItalyStrap' ),
 					'social'		=> __( 'Hide builtin social sharing', 'ItalyStrap' ),

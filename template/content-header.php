@@ -3,16 +3,10 @@
  * The template part for header.php
  * This file is for display the HTML tags header and nav
  */
-use \ItalyStrap\Core;
-use \ItalyStrap\Core\Bootstrap_Navwalker;
 
 /**
- * Get the header image url if is set
- * @var string
- */
-// $get_header_image = get_header_image();
-/**
- * Get the header pbject
+ * Get the header object
+ *
  * @var object
  */
 $get_header_image = get_custom_header();
@@ -26,14 +20,9 @@ if ( $get_header_image->url ) :?>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<?php
-					$custom_header = '<img src="' . $get_header_image->url . '" class="img-responsive center-block" height="' . $get_header_image->height . '" width="' . $get_header_image->width . '" alt="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
-
-					if ( function_exists( 'italystrap_apply_lazyload' ) )
-						echo italystrap_apply_lazyload( $custom_header );
-					else echo $custom_header;
-
-					?>
+					<a href="<?php echo esc_url( HOME_URL ); ?>" rel="home">
+						<?php echo Core\get_the_custom_header_image( $get_header_image->attachment_id ); ?>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -43,15 +32,16 @@ if ( $get_header_image->url ) :?>
 /**
  * This is only a nav container
  * .navbar-wrapper style is in _menu.scss css/src/sass
+ *
  * @todo Da verificare la mancanza di un menù se attiva il link per crearne uno dal front-end
  */
-// if ( has_nav_menu( 'main-menu' ) ) :
 ?>
 <nav class="container navbar-wrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 	<?php
 	do_action( 'nav_open' );
 	/**
 	 * Modify style for menù with bootstrap style
+	 *
 	 * @link http://getbootstrap.com/components/#navbar
 	 */
 	?>
@@ -64,30 +54,53 @@ if ( $get_header_image->url ) :?>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-					<a class="navbar-brand" href="<?php echo esc_attr( HOME_URL ); ?>" title="<?php echo esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ); ?>" rel="home" itemprop="url"><span itemprop="name"><?php echo esc_attr( GET_BLOGINFO_NAME ); ?></span></a>
-					<meta  itemprop="image" content="<?php echo italystrap_logo();?>"/>
-				</span>
+				<?php if ( $logo_url = false ) : ?>
+					<a class="navbar-brand" href="<?php echo esc_attr( HOME_URL ); ?>">
+						<img alt="<?php echo esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ); ?>" src="<?php echo esc_html( $logo_url ); ?>" width="214px" height="45px" class="img-responsive">
+					</a>
+				<?php else : ?>
+					<span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+						<a class="navbar-brand" href="<?php echo esc_attr( HOME_URL ); ?>" title="<?php echo esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ); ?>" rel="home" itemprop="url"><span itemprop="name"><?php echo esc_attr( GET_BLOGINFO_NAME ); ?></span></a>
+						<meta  itemprop="image" content="<?php echo italystrap_logo();?>"/>
+					</span>
+				<?php endif; ?>
 			</div>
-			<?php
-			do_action( 'before_wp_nav_menu' );
-			wp_nav_menu(
-				array(
-					'theme_location'	=> 'main-menu',
-					'depth'				=> 2,
-					'container'         => 'div',
-					'container_class'	=> 'navbar-collapse collapse',
+			<?php do_action( 'italystrap_before_wp_nav_menu' ); ?>
+			<div class="navbar-collapse collapse">
+				<?php
+				/**
+				 * Arguments for wp_nav_menu()
+				 *
+				 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
+				 * @var array
+				 */
+				$args = array(
+					'menu'				=> '',
+					'container'			=> false, // WP Default div
+					'container_class'	=> false,
+					'container_id'		=> false,
 					'menu_class'		=> 'nav navbar-nav',
-					'fallback_cb'       => 'Bootstrap_Navwalker::fallback',
 					'menu_id'			=> 'main-menu',
-					'walker'			=> new Bootstrap_Navwalker(),
+					'echo'				=> true,
+					'fallback_cb'		=> 'Core\Bootstrap_Nav_Menu::fallback',
+					'before'			=> '',
+					'after'				=> '',
+					'link_before'		=> '<span class="item-title" itemprop="name">',
+					'link_after'		=> '</span>',
+					'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
+					'depth'				=> 2,
+					'walker'			=> new Core\Bootstrap_Nav_Menu(),
+					'theme_location'	=> 'main-menu',
 					'search'			=> false,
-				)
-			);
-			do_action( 'after_wp_nav_menu' );
-			?>
+				);
+
+				$args = apply_filters( 'italystrap_main_nav_menu_args', $args );
+
+				wp_nav_menu( $args ); ?>
+			</div>
+			<?php do_action( 'italystrap_after_wp_nav_menu' ); ?>
 		</div>
 	</div>
 	<?php do_action( 'nav_closed' ); ?>
 </nav>
-<?php // endif;
+<?php

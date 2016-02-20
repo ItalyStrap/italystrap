@@ -47,8 +47,11 @@ $col = ( isset( $col ) ) ? $col : $italystrap_sidebars->set_col();
 				<div class="row">
 					<div class="col-md-12">
 						<?php
+
+						echo apply_filters( 'italystrap_colophon', false );
+
 						global $italystrap_theme_mods;
-						echo get_the_colophon( $italystrap_theme_mods ); // XSS ok.
+						echo Core\get_the_colophon( $italystrap_theme_mods ); // XSS ok.
 						?>
 					</div>
 				</div>

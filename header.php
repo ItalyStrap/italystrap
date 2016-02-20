@@ -29,7 +29,5 @@
 <div class="wrapper">
 	<?php do_action( 'wrapper_open' );
 
-	/**
-	 * Get the template for displaing the header's contents (header and nav tags)
-	 */
-	get_template_part( 'template/content', 'header' );
+
+	do_action( 'italystrap_content_header' );

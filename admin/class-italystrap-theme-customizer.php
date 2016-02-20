@@ -1,19 +1,10 @@
 <?php namespace ItalyStrap\Admin;
 
-use WP_Customize_Color_Control,
-	WP_Customize_Media_Control,
-	Textarea_Custom_Control;
+use ItalyStrap\Core as Core;
 
-/**
- * Get the default text for colophon
- *
- * @return string The dafault text for colophon
- */
-function colophon_default_text() {
-
-	return '<p class="text-muted small">&copy; <span itemprop="copyrightYear">' . esc_attr( date( 'Y' ) ) . '</span> ' . esc_attr( GET_BLOGINFO_NAME ) . ' | This website uses ' . esc_attr( wp_get_theme()->get( 'Name' ) ) . ' powered by <a href="http://www.italystrap.it" rel="nofollow" itemprop="url">ItalyStrap</a> developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> ' . ( ( ! is_child_theme() ) ? '| Theme version: <span class="badge" itemprop="version">' . esc_attr( wp_get_theme()->display( 'Version' ) ) . '</span>' : '' ) . '</p>';
-
-}
+use WP_Customize_Color_Control;
+use	WP_Customize_Media_Control;
+use	Textarea_Custom_Control;
 
 /**
  * Contains methods for customizing the theme customization screen.
@@ -52,7 +43,7 @@ class Customizer{
 	 */
 	function __construct() {
 
-		$this->colophon_default_text = apply_filters( 'italystrap_colophon_default_text', colophon_default_text() );
+		$this->colophon_default_text = apply_filters( 'italystrap_colophon_default_text', Core\colophon_default_text() );
 
 		/**
 		 * Setup the Theme Customizer settings and controls...

@@ -25,26 +25,25 @@
 			<?php esc_attr_e( '<strong>Note:</strong> You are previewing this post. This post has not yet been published.', 'ItalyStrap' ); ?>  
 		</div>  
 	<?php endif; ?>
-	<meta itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 	<section class="entry-content">
 		<?php if ( has_post_thumbnail() ) { ?>
-			<div class="thumbnail">
-				<figure>
-			  		<?php
-			  		if ( is_page_template( 'full-width.php' ) ) {
-			  			$thumb_size = 'full-width';
-			  		} else {
-			  			$thumb_size = 'article-thumb';
-			  		}
-			  		the_post_thumbnail(
-			  			$thumb_size,
-			  			array(
-			  				'class' => 'center-block img-responsive',
-			  				'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
-			  				) );
-			  		?>
-				</figure>
-			</div>
+			<figure class="<?php echo esc_attr( apply_filters( 'italystrap-figure-thumb-class', 'thumbnail' ) ); ?>">
+				<?php
+				if ( is_page_template( 'full-width.php' ) ) {
+					$thumb_size = 'full-width';
+				} else {
+					$thumb_size = 'article-thumb';
+				}
+				the_post_thumbnail(
+					$thumb_size,
+					array(
+						'class' => 'center-block img-responsive',
+						'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
+						'itemprop'	=> 'image',
+					)
+				);
+				?>
+			</figure>
 		<?php } ?>
 		<div  itemprop="articleBody"><?php the_content(); ?></div>
 		<span class="clearfix"></span>
@@ -53,7 +52,7 @@
 			<?php edit_post_link( __( 'Edit', 'ItalyStrap' ), '<span class="btn btn-sm btn-primary">', '</span>' ); ?>
 	</section><!-- /.entry-content -->
 	<?php get_template_part( 'template/social-button' ); ?>
-	<?php echo italystrap_ttr_wc();?>
+	<?php echo italystrap_ttr_wc(); // XSS ok.?>
 	<span class="clearfix"></span>
 	<?php get_template_part( 'template/content', 'author-info' );?>
 	<meta itemprop="interactionCount" content="UserComments:<?php comments_number( 0, 1, '%' );?>" />

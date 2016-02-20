@@ -24,28 +24,30 @@
 			<?php esc_attr_e( '<strong>Note:</strong> You are previewing this post. This post has not yet been published.', 'ItalyStrap' ); ?>  
 		</div>  
 	<?php endif; ?>
-	<meta itemprop="image" content="<?php echo italystrap_thumb_url();?>"/>
 	<section class="entry-content">
 		<?php if ( has_post_thumbnail() ) { ?>
-			<div class="thumbnail">
-				<figure>
-			  		<?php
-					the_post_thumbnail(
-						'article-thumb',
-						array(
-							'class' => 'center-block img-responsive',
-							'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
-							) );
-			  		?>
-				</figure>
-			</div>
+			<figure class="<?php echo esc_attr( apply_filters( 'italystrap-figure-thumb-class', 'thumbnail' ) ); ?>">
+		  		<?php
+				the_post_thumbnail(
+					'article-thumb',
+					array(
+						'class' => 'center-block img-responsive',
+						'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
+						'itemprop'	=> 'image',
+					)
+				);
+		  		?>
+			</figure>
 		<?php } ?>
 		<div  itemprop="articleBody"><?php the_content(); ?></div>
 		<span class="clearfix"></span>
-		<?php wp_link_pages( array(
+		<?php
+		wp_link_pages(
+			array(
 			'before' => '<p class="text-muted lead"><b>' . __( 'Pages:', 'ItalyStrap' ) . '</b>',
 			'after' => '</p>',
-			) );?>
+			)
+		);?>
 		<p class="sr-only"><?php esc_attr_e( 'Last edit:', 'ItalyStrap' ); ?> <time datetime="<?php the_modified_time( 'Y-m-d' ) ?>" itemprop="dateModified"><?php the_modified_time( 'd F Y' ) ?></time></p>
 		<span class="clearfix"></span>
 			<?php edit_post_link( __( 'Edit', 'ItalyStrap' ), '<span class="btn btn-sm btn-primary">', '</span>' ); ?>
@@ -53,7 +55,7 @@
 		<textarea class="form-control" tabindex="4" rows="2"><?php the_permalink(); ?></textarea>
 	</section><!-- /.entry-content -->
 	<?php get_template_part( 'template/social-button' );?>
-	<?php echo italystrap_ttr_wc();?>
+	<?php echo italystrap_ttr_wc(); // XSS ok.?>
 	<span class="clearfix"></span>
 	<?php get_template_part( 'template/content', 'author-info' );?>
 	<meta itemprop="interactionCount" content="UserComments:<?php comments_number( 0, 1, '%' );?>" />

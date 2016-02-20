@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap;
+<?php namespace ItalyStrap\Core;
 /**
  * ItalyStrap functions and definitions
  *
@@ -34,6 +34,31 @@ use \Mobile_Detect;
  * Define ITALYSTRAP_THEME constant for internal use
  */
 define( 'ITALYSTRAP_THEME', true );
+
+/**
+ * Define the name of parent theme
+ */
+define( 'ITALYSTRAP_THEME_NAME', 'ItalyStrap' );
+
+/**
+ * The version of the theme
+ */
+define( 'ITALYSTRAP_THEME_VERSION', wp_get_theme()->display( 'Version' ) );
+
+/**
+ * The name of active theme
+ */
+define( 'ITALYSTRAP_CURRENT_THEME_NAME', wp_get_theme()->get( 'Name' ) );
+
+/**
+ * Define the prefix for internal use
+ */
+define( 'PREFIX', strtolower( ITALYSTRAP_CURRENT_THEME_NAME ) );
+
+/**
+ * Define the prefix for internal use with underscore
+ */
+define( '_PREFIX', '_' . strtolower( ITALYSTRAP_CURRENT_THEME_NAME ) );
 
 /**
  * Define parent path directory
@@ -129,12 +154,6 @@ require locate_template( '/admin/class-custom-meta-box.php' );
  * Admin customizer
  */
 require locate_template( '/admin/class-italystrap-theme-customizer.php' );
-/**
- * Initialize Customizer Class
- *
- * @var ItalyStrap_Theme_Customizer
- */
-$italystrap_customizer = new Customizer;
 
 /**
  * Add field for adding glyphicon in menu
@@ -154,9 +173,14 @@ require locate_template( '/admin/class-italystrap-category-editor.php' );
  *******************************************************************/
 
 /**
+ * General Template functions
+ */
+require locate_template( 'core/general-functions.php' );
+
+/**
  * Load custom walker menu class file
  */
-require locate_template( 'core/class-italystrap-navwalker.php' );
+require locate_template( 'core/class-bootstrap-nav-menu.php' );
 
 /**
  * Add new Class for Breadcrumbs
@@ -190,12 +214,6 @@ require locate_template( '/core/class-italystrap-excerpt.php' );
  * Sidebar class.
  */
 require locate_template( '/core/class-italystrap-sidebars.php' );
-
-/**
- * If function exist init
- */
-if ( function_exists( 'register_widget' ) )
-	$italystrap_sidebars = new ItalyStrap_Sidebars;
 
 /**
  * New class for comments and comments form functionality
@@ -290,8 +308,6 @@ require locate_template( '/lib/password_protection.php' );
  */
 require locate_template( '/lib/security.php' );
 
-require locate_template( '/lib/search-form.php' );
-
 require locate_template( '/lib/wp-sanitize-capital-p.php' );
 
 require locate_template( '/lib/woocommerce.php' );
@@ -307,79 +323,32 @@ require locate_template( '/lib/debug.php' );
 
 require locate_template( '/deprecated/deprecated.php' );
 
+/********************
+ * Set content width
+ ********************/
+
 /**
- * Breadcrumb.
+ * $content_width is a global variable used by WordPress for max image upload sizes
+ * and media embeds (in pixels).
  *
- * @deprecated 2.0.0
- * @deprecated Use new ItalyStrapBreadcrumbs( $defaults );
- * @see ItalyStrapBreadcrumbs( $defaults );
- * require locate_template( '/deprecated/breadcrumb.php' );
+ * Example: If the content area is 640px wide,
+ * set $content_width = 620; so images and videos will not overflow.
+ * Default: 848px is the default ItalyStrap container width.
  */
+if ( ! isset( $content_width ) ) $content_width = apply_filters( 'content_width', 848 );
 
 /**
- * Sidebar.
+ * If function exist init
+ */
+if ( function_exists( 'register_widget' ) )
+	$italystrap_sidebars = new ItalyStrap_Sidebars;
+
+/**
+ * Initialize Customizer Class
  *
- * @deprecated 4.0.0
- * require locate_template( '/deprecated/sidebar.php' );
+ * @var ItalyStrap_Theme_Customizer
  */
-
-/**
- * Globals variables for internal use.
- *
- * @deprecated 4.0.0
- * require locate_template( '/deprecated/globals.php' );
- */
-
-/**
- * Function for init load.
- * In this file there are after_setup_theme and $content_width
- *
- * @deprecated 4.0.0
- * require locate_template( '/lib/init.php' );
- */
-
-/**
- * Deprecated new_get_cancel_comment_reply_link
- * require locate_template( '/lib/comment_reply.php' );
- */
-
-/**
- * Walker comments
- * require locate_template( '/lib/comments.php' );
- */
-
-/**
- * Custom fields.
- *
- * @deprecated 4.0.0
- * require locate_template( '/lib/custom_fields.php' );
- */
-
-/**
- * Custom Widget.
- *
- * @deprecated 4.0.0
- * require locate_template( '/lib/widget.php' );
- */
-
-/**
- * Custom excerpt_length and more.
- * Now is in core directory
- *
- * @deprecated 4.0.0
- * require locate_template( '/lib/custom_excerpt.php' );
- */
-
-/**
- * Custom shortcode
- *
- * @deprecated 4.0.0
- * require locate_template( '/lib/custom_shortcode.php' );
- */
-
-/*********************************************************************
- * Class init for Theme
- *********************************************************************/
+$italystrap_customizer = new Customizer;
 
 /**
  * Theme init
@@ -389,11 +358,11 @@ class Init_Theme{
 	/**
 	 * Init some functionality
 	 */
-	public function __construct() {
+	// public function __construct() {
 
-		add_action( 'after_setup_theme', array( $this, 'theme_setup' ) );
+	// 	add_action( 'after_setup_theme', array( $this, 'theme_setup' ) );
 
-	}
+	// }
 
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -513,9 +482,12 @@ class Init_Theme{
 		 * This theme uses wp_nav_menu() in one location.
 		 */
 		$nav_menus_locations = array(
-			'main-menu' => __( 'Main Menu', 'ItalyStrap' ),
+			'main-menu'		=> __( 'Main Menu', 'ItalyStrap' ),
+			'social-menu'	=> __( 'Social Menu', 'ItalyStrap' ),
+			'info-menu'		=> __( 'Info Menu', 'ItalyStrap' ),
+			'footer-menu'	=> __( 'Footer Menu', 'ItalyStrap' ),
 			);
-		register_nav_menus( apply_filters( 'register_nav_menu', $nav_menus_locations ) );
+		register_nav_menus( apply_filters( 'register_nav_menu_locations', $nav_menus_locations ) );
 
 		/**
 		 * Size for default template image
@@ -532,74 +504,15 @@ class Init_Theme{
 	}
 }
 
-new Init_Theme;
-
-
-
-
-
-
-/*********************************************************************
- * Standard Functions
- *********************************************************************/
-
 /**
- * $content_width is a global variable used by WordPress for max image upload sizes
- * and media embeds (in pixels).
+ * Init theme functions
  *
- * Example: If the content area is 640px wide,
- * set $content_width = 620; so images and videos will not overflow.
- * Default: 848px is the default ItalyStrap container width.
+ * @see in hooks.php file
+ * @var object The init obj.
  */
-if ( ! isset( $content_width ) ) $content_width = apply_filters( 'content_width', 848 );
+$init = new Init_Theme;
 
 /**
- * Echo the ItalyStrap theme version (parent or child if exist)
- * Used in footer
+ * Functions for debugging porpuse
  */
-function italystrap_version() {
-
-	$ver = wp_get_theme();
-
-	echo esc_attr( $ver->display( 'Version' ) );
-
-}
-
-
-/**
- * Display the breadcrumbs
- *
- * @param array $defaults Default array for parameters.
- * @return string Echo breadcrumbs
- */
-function display_breadcrumbs( $defaults = array() ) {
-
-	if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) )
-		return;
-
-		$defaults = array(
-			'home'	=> '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>',
-			);
-
-		new ItalyStrapBreadcrumbs( $defaults );
-
-}
-add_action( 'content_col_open', __NAMESPACE__ . '\display_breadcrumbs' );
-
-/**
- * Permetto gli shortcode nel widget testo
- */
-add_filter( 'widget_text', 'do_shortcode' );
-
-/**
- * Echo the colophon function
- *
- * @param  string $italystrap_theme_mods The theme mods array.
- */
-function get_the_colophon( $italystrap_theme_mods ) {
-
-	$output = ( isset( $value['colophon'] ) ) ? $value['colophon'] : Admin\colophon_default_text();
-
-	return apply_filters( 'colophon-output', wp_kses_post( $output ) );
-}
-
+require locate_template( '/lib/hooks.php' );

@@ -182,6 +182,8 @@ require locate_template( 'core/general-functions.php' );
  */
 require locate_template( 'core/class-bootstrap-nav-menu.php' );
 
+require locate_template( 'core/class-navbar.php' );
+
 /**
  * Add new Class for Breadcrumbs
  */
@@ -482,10 +484,11 @@ class Init_Theme{
 		 * This theme uses wp_nav_menu() in one location.
 		 */
 		$nav_menus_locations = array(
-			'main-menu'		=> __( 'Main Menu', 'ItalyStrap' ),
-			'social-menu'	=> __( 'Social Menu', 'ItalyStrap' ),
-			'info-menu'		=> __( 'Info Menu', 'ItalyStrap' ),
-			'footer-menu'	=> __( 'Footer Menu', 'ItalyStrap' ),
+			'main-menu'			=> __( 'Main Menu', 'ItalyStrap' ),
+			'secondary-menu'	=> __( 'Secondary Menu', 'ItalyStrap' ),
+			'social-menu'		=> __( 'Social Menu', 'ItalyStrap' ),
+			'info-menu'			=> __( 'Info Menu', 'ItalyStrap' ),
+			'footer-menu'		=> __( 'Footer Menu', 'ItalyStrap' ),
 			);
 		register_nav_menus( apply_filters( 'register_nav_menu_locations', $nav_menus_locations ) );
 

@@ -32,8 +32,6 @@ if ( $get_header_image->url ) :?>
 /**
  * This is only a nav container
  * .navbar-wrapper style is in _menu.scss css/src/sass
- *
- * @todo Da verificare la mancanza di un menù se attiva il link per crearne uno dal front-end
  */
 ?>
 <nav class="container navbar-wrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
@@ -48,7 +46,7 @@ if ( $get_header_image->url ) :?>
 	<div class="navbar navbar-inverse navbar-relative-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
 					<span class="sr-only"><?php esc_attr_e( 'Toggle navigation', 'ItalyStrap' ); ?></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -66,7 +64,7 @@ if ( $get_header_image->url ) :?>
 				<?php endif; ?>
 			</div>
 			<?php do_action( 'italystrap_before_wp_nav_menu' ); ?>
-			<div class="navbar-collapse collapse">
+			<div id="navbar-collapse" class="navbar-collapse collapse">
 				<?php
 				/**
 				 * Arguments for wp_nav_menu()
@@ -96,7 +94,42 @@ if ( $get_header_image->url ) :?>
 
 				$args = apply_filters( 'italystrap_main_nav_menu_args', $args );
 
-				wp_nav_menu( $args ); ?>
+				wp_nav_menu( $args );
+
+				if ( has_nav_menu( 'secondary-menu' ) ) :
+
+					/**
+					 * Arguments for wp_nav_menu()
+					 *
+					 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
+					 * @var array
+					 */
+					$args = array(
+						'menu'				=> '',
+						'container'			=> false, // WP Default div
+						'container_class'	=> false,
+						'container_id'		=> false,
+						'menu_class'		=> 'nav navbar-nav navbar-right',
+						'menu_id'			=> 'secondary-menu',
+						'echo'				=> true,
+						'fallback_cb'		=> false,
+						'before'			=> '',
+						'after'				=> '',
+						'link_before'		=> '<span class="item-title" itemprop="name">',
+						'link_after'		=> '</span>',
+						'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
+						'depth'				=> 2,
+						'walker'			=> new Core\Bootstrap_Nav_Menu(),
+						'theme_location'	=> 'secondary-menu',
+						'search'			=> false,
+					);
+
+					$args = apply_filters( 'italystrap_secondary_nav_menu_args', $args );
+
+					wp_nav_menu( $args );
+
+				endif;
+				?>
 			</div>
 			<?php do_action( 'italystrap_after_wp_nav_menu' ); ?>
 		</div>
@@ -104,3 +137,5 @@ if ( $get_header_image->url ) :?>
 	<?php do_action( 'nav_closed' ); ?>
 </nav>
 <?php
+$navbar = new Core\Navbar;
+$navbar->output();

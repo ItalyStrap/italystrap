@@ -49,9 +49,31 @@
 		<span class="clearfix"></span>
 		<p class="sr-only"><?php esc_attr_e( 'Last edit:', 'ItalyStrap' ); ?> <time datetime="<?php the_modified_time( 'Y-m-d' ) ?>" itemprop="dateModified"><?php the_modified_time( 'd F Y' ) ?></time></p>
 		<span class="clearfix"></span>
-			<?php edit_post_link( __( 'Edit', 'ItalyStrap' ), '<span class="btn btn-sm btn-primary">', '</span>' ); ?>
+		<?php
+		/**
+		 * Arguments for edit_post_link()
+		 *
+		 * @var array
+		 */
+		$args = array(
+			/* translators: %s: Name of current post */
+			'link_text'	=> __( 'Edit<span class="screen-reader-text"> "%s"</span>', 'ItalyStrap' ),
+			'before'	=> '<span class="btn btn-sm btn-primary">',
+			'after'		=> '</span>',
+			);
+		$args = apply_filters( 'italystrap_edit_post_link_args', $args );
+
+		edit_post_link(
+			sprintf(
+				$args['link_text'],
+				get_the_title()
+			),
+			$args['before'],
+			$args['after']
+		);
+		?>
 	</section><!-- /.entry-content -->
-	<?php get_template_part( 'template/social-button' ); ?>
+
 	<?php echo italystrap_ttr_wc(); // XSS ok.?>
 	<span class="clearfix"></span>
 	<?php get_template_part( 'template/content', 'author-info' );?>

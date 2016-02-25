@@ -138,7 +138,7 @@ if ( ! class_exists( 'Mobile_Detect' ) ) {
 /**
  * Admin Options Theme
  */
-require locate_template( '/admin/ItalyStrapOptionTheme.php' );
+require( TEMPLATEPATH . '/admin/ItalyStrapOptionTheme.php' );
 
 /**
  * Admin functionality
@@ -182,7 +182,7 @@ require locate_template( 'core/general-functions.php' );
  */
 require locate_template( 'core/class-bootstrap-nav-menu.php' );
 
-require locate_template( 'core/class-navbar.php' );
+require( 'core/class-navbar.php' );
 
 /**
  * Add new Class for Breadcrumbs
@@ -514,8 +514,13 @@ class Init_Theme{
  * @var object The init obj.
  */
 $init = new Init_Theme;
+$navbar = new Navbar;
 
 /**
  * Functions for debugging porpuse
  */
 require locate_template( '/lib/hooks.php' );
+
+/**
+ * Da leggere http://mikejolley.com/2013/12/15/deprecating-plugin-functions-hooks-woocommmerce/
+ */

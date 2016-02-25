@@ -214,7 +214,7 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 						'reply_text' => __('Reply to ', 'ItalyStrap') . $comment->comment_author . ' <i class="glyphicon glyphicon-arrow-down"></i>',
 						'depth'      => $depth,
 						// 'max_depth'  => $args['max_depth']
-						'max_depth'  => 1000
+						'max_depth'  => -1,
 					)
 				)
 			);

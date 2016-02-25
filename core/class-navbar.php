@@ -7,7 +7,7 @@
  */
 
 /**
- * Template for Navbar like Botstrap CSS 
+ * Template for Navbar like Botstrap CSS
  */
 class Navbar {
 
@@ -16,7 +16,14 @@ class Navbar {
 	 *
 	 * @var integer
 	 */
-	private static $instanceCount = 0;
+	private static $instance_count = 0;
+
+	/**
+	 * The number of this instance
+	 *
+	 * @var integer
+	 */
+	private $number;
 
 	/**
 	 * The ID of the Navbar instance
@@ -30,48 +37,53 @@ class Navbar {
 	 */
 	public function __construct() {
 
-		self::$instanceCount++;
+		self::$instance_count++;
 
-		$this->navbar_id = apply_filters( 'italystrap_navbar_id', 'menu-' . self::$instanceCount );
+		$this->number = self::$instance_count;
+
+		$this->navbar_id = apply_filters( 'italystrap_navbar_id', 'italystrap-menu-' . $this->number );
 	}
 
+	/**
+	 * Render the HTML tag attributes from an array
+	 *
+	 * @param  array $attr The HTML attributes with key value.
+	 * @return string      Return a string with HTML attributes
+	 */
 	public function get_html_tag_attr( $attr = array() ) {
 
 		$html = '';
 
-		/**
-		 * Filter the list of attachment image attributes.
-		 *
-		 * @since 2.8.0
-		 *
-		 * @param array        $attr       Attributes for the image markup.
-		 * @param WP_Post      $attachment Image attachment post.
-		 * @param string|array $size       Requested size. Image size or array of width and height values
-		 *                                 (in that order). Default 'thumbnail'.
-		 */
-		// $attr = apply_filters( 'wp_get_attachment_image_attributes', $attr );
 		$attr = array_map( 'esc_attr', $attr );
-		// $html = rtrim("<img $hwstring");
 		foreach ( $attr as $name => $value ) {
 			$html .= " $name=" . '"' . $value . '"';
 		}
-		// $html .= ' />';
-		
+
 		return $html;
 
 	}
 
+	/**
+	 * Get the wp_nav_menu with default parameters for Bootstrap CSS style
+	 *
+	 * @param  array $args The wp_nav_menu arguments.
+	 * @return string      Return the wp_nav_menu HTML
+	 */
 	public function get_wp_nav_menu( $args = array() ) {
 
 		/**
 		 * Arguments for wp_nav_menu()
+		 * For filtering wp_nav_menu use the 'wp_nav_menu' hooks with 2 parameters
+		 * add_filter( 'wp_nav_menu', 'your_functions', 10, 2 );
+		 * For this situation the container attribute is set to false because
+		 * we need the collapsable functionality of Bootstrap CSS.
 		 *
 		 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
 		 * @var array
 		 */
 		$defaults = array(
 			'menu'				=> '',
-			'container'			=> false, // WP Default div
+			'container'			=> false, // WP Default div.
 			'container_class'	=> false,
 			'container_id'		=> false,
 			'menu_class'		=> 'nav navbar-nav',
@@ -97,6 +109,11 @@ class Navbar {
 
 	}
 
+	/**
+	 * Get the HTML for Navbar Header
+	 *
+	 * @return string Return the HTML for Navbar Header
+	 */
 	public function get_navbar_header() {
 
 		$a = array(
@@ -119,7 +136,14 @@ class Navbar {
 
 	}
 
+	/**
+	 * Get the HTML for toggle button
+	 *
+	 * @return string Return the HTML for toggle button
+	 */
 	public function get_toggle_button() {
+
+		$icon_bar = apply_filters( 'italystrap_icon_bar', '<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>' );
 
 		$output = '';
 
@@ -134,16 +158,26 @@ class Navbar {
 
 		$output .= '<button';
 		$output .= $this->get_html_tag_attr( $a ) . '>';
-		$output .= '<span class="sr-only">' . esc_attr__( 'Toggle navigation', 'ItalyStrap' ) . '</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>';
+		$output .= '<span class="sr-only">' . esc_attr__( 'Toggle navigation', 'ItalyStrap' ) . '</span>' . $icon_bar . '</button>';
 
 		return apply_filters( 'italystrap_toggle_button', $output, $this->navbar_id );
 	}
 
+	/**
+	 * Get the HTML for description
+	 *
+	 * @return string Return the HTML for description
+	 */
 	public function get_navbar_brand() {
+
+		/**
+		 * Theme options
+		 *
+		 * @todo Da mettere a posto.
+		 * @var array
+		 */
+		$theme_mods = get_theme_mods();
+		$attachment_id = absint( $theme_mods['logo'] );
 
 		$output = '';
 
@@ -159,7 +193,7 @@ class Navbar {
 
 		$output .= '<a' . $this->get_html_tag_attr( $a ) . '>';
 
-		if ( $attachment_id = false ) {
+		if ( $attachment_id ) {
 
 			$attr = array(
 				'class'			=> 'img-responsive center-block',
@@ -178,11 +212,16 @@ class Navbar {
 		}
 
 		$output .= '</a>';
-		
+
 		return apply_filters( 'italystrap_navbar_brand', $output, $this->navbar_id );
 
 	}
 
+	/**
+	 * Get the collapsable HTML menu
+	 *
+	 * @return string Return the HTML
+	 */
 	public function get_collapsable_menu() {
 
 		$a = array(
@@ -196,6 +235,13 @@ class Navbar {
 
 		$output .= '<div' . $this->get_html_tag_attr( $a ) . '>';
 		$output .= $this->get_wp_nav_menu();
+
+		/**
+		 * http://bootsnipp.com/snippets/featured/expanding-search-button-in-css
+		 */
+		if ( false ) {
+			$output .= get_search_form();
+		}
 
 		if ( has_nav_menu( 'secondary-menu' ) ) :
 
@@ -215,30 +261,76 @@ class Navbar {
 		return apply_filters( 'italystrap_collapsable_menu', $output, $this->navbar_id );
 	}
 
-	public function output() {
+	public function get_last_container() {
 
-		/**
-		 * This is only a nav container
-		 * .navbar-wrapper style is in _menu.scss css/src/sass
-		 */
-		?>
-		<nav class="container navbar-wrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
-			<?php
-			/**
-			 * Modify style for menù with bootstrap style
-			 *
-			 * @link http://getbootstrap.com/components/#navbar
-			 */
-			?>
-			<div class="navbar navbar-inverse navbar-relative-top">
-				<div class="container-fluid">
-					<?php echo $this->get_navbar_header(); ?>
-					<?php echo $this->get_collapsable_menu(); ?>
-				</div>
-			</div>
-		</nav>
-		<?php
+		$a = array(
+			'class'			=> 'container-fluid',
+		);
+
+		$a = apply_filters( 'italystrap_last_container_attr', $a, $this->navbar_id );
+
+		$output = '';
+
+		$output .= '<div' . $this->get_html_tag_attr( $a ) . '>';
+
+		$output .= $this->get_navbar_header();
+		$output .= $this->get_collapsable_menu();
+
+		$output .= '</div>';
+
+		return apply_filters( 'italystrap_last_container', $output, $this->navbar_id );
 
 	}
 
+	public function get_navbar_container() {
+
+		$a = array(
+			'class'			=> 'navbar navbar-inverse navbar-relative-top',
+		);
+
+		$a = apply_filters( 'italystrap_navbar_container_attr', $a, $this->navbar_id );
+
+		$output = '';
+
+		$output .= '<div' . $this->get_html_tag_attr( $a ) . '>';
+
+		$output .= $this->get_last_container();
+
+		$output .= '</div>';
+
+		return apply_filters( 'italystrap_navbar_container', $output, $this->navbar_id );
+
+	}
+
+	public function get_nav_container() {
+
+		$a = array(
+			'class'			=> 'container navbar-wrapper',
+			'role'			=> 'navigation',
+			'itemscope'		=> '',
+			'itemtype'		=> 'http://schema.org/SiteNavigationElement',
+		);
+
+		$a = apply_filters( 'italystrap_nav_container_attr', $a, $this->navbar_id );
+
+		$output = '';
+
+		$output .= '<div' . $this->get_html_tag_attr( $a ) . '>';
+
+		$output .= $this->get_navbar_container();
+
+		$output .= '</div>';
+
+		return apply_filters( 'italystrap_nav_container', $output, $this->navbar_id );
+
+	}
+
+	/**
+	 * Output the HTML
+	 */
+	public function output() {
+
+		echo $this->get_nav_container();
+
+	}
 }

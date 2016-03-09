@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap;
+<?php
 /**
  * The template for displaying Comments
  *
@@ -8,6 +8,8 @@
  * @since ItalyStrap 1.8.1
  */
 
+namespace ItalyStrap;
+
 /*
  * If the current post is protected by a password and the visitor has not yet
  * entered the password we will return early without loading the comments.
@@ -15,10 +17,11 @@
 if ( post_password_required() )
 	return;
 
+$layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() );
 /**
  * If there are comments
  */
-if ( have_comments() ) : ?>
+if ( have_comments() && ! in_array( 'hide_comments', $layout_settings ) ) : ?>
 	<section id="comments" class="comments-area">
 		<h3 class="comments-title"><?php printf( _n( 'One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'ItalyStrap' ), number_format_i18n( get_comments_number() ), get_the_title() ); ?></h3>
 				
@@ -56,6 +59,7 @@ if ( have_comments() ) : ?>
 	</section>
 <?php endif;  // End have_comments(). ?>
 
+<?php if ( ! in_array( 'hide_comments_form', $layout_settings )  ) : ?>
 <section class="form-actions">
 	<?php
 	/**
@@ -67,3 +71,4 @@ if ( have_comments() ) : ?>
 	comment_form( comment_form_args( $comment_author, $user_identity ) );
 	?>
 </section>
+<?php endif; ?>

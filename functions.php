@@ -148,7 +148,7 @@ require locate_template( '/admin/class-admin-text-editor.php' );
 /**
  * Admin customizer
  */
-require locate_template( '/admin/class-custom-meta-box.php' );
+require( TEMPLATEPATH . '/admin/class-custom-meta-box.php' );
 
 /**
  * Admin customizer
@@ -524,3 +524,7 @@ require locate_template( '/lib/hooks.php' );
 /**
  * Da leggere http://mikejolley.com/2013/12/15/deprecating-plugin-functions-hooks-woocommmerce/
  */
+function get_layout_settings() {
+	return get_post_meta( get_the_ID(), '_italystrap_layout_settings', true );
+}
+add_filter( 'italystrap_layout_settings', __NAMESPACE__ . '\get_layout_settings' );

@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap;
+<?php
 /**
  * The template for displaying pages
  *
@@ -11,6 +11,8 @@
  * @package ItalyStrap
  * @since 1.0.0
  */
+
+namespace ItalyStrap;
 
 get_header(); ?>
 <!-- Main Content -->

@@ -147,8 +147,8 @@ function italystrap_get_avatar_url( $email ){
 	if ( !$email )
 		return;
 
-    $hash = md5( strtolower( trim ( $email ) ) );
-    return 'http://gravatar.com/avatar/' . $hash;
+	$hash = md5( strtolower( trim ( $email ) ) );
+	return 'http://gravatar.com/avatar/' . $hash;
 
 }
 
@@ -213,7 +213,7 @@ function ri_wp_favicon(){
 
 	}
 
-    echo '<link rel="shortcut icon" type="image/x-icon" href="' . $favicon . '" />';
+	echo '<link rel="shortcut icon" type="image/x-icon" href="' . $favicon . '" />';
 }
 // add_action('wp_head', 'ri_wp_favicon');
 
@@ -435,3 +435,77 @@ function italystrap_the_post_thumbnail( $size = 'post-thumbnail' , $attr = '',  
 // 	}
 // 	return $image_url;
 // }
+
+/**
+ * Add Bootstrap thumbnail styling to images with captions
+ * Use <figure> and <figcaption>
+ *
+ * @see https://developer.wordpress.org/reference/functions/img_caption_shortcode/
+ *
+ * @link http://justintadlock.com/archives/2011/07/01/captions-in-wordpress
+ */
+function italystrap_new_caption_style( $output, $attr, $content ) {
+
+	if ( is_feed() ) {
+		return $output;
+	}
+
+	$defaults = array(
+		'id'      => '',
+		'align'   => 'alignnone',
+		'width'   => '',
+		'caption' => '',
+		'class'   => '',
+	);
+
+	$attr = shortcode_atts( $defaults, $attr, 'caption' );
+
+	$atts['width'] = (int) $atts['width'];
+
+	/**
+	 * If the width is less than 1 or there is no caption, return the content wrapped between the [caption] tags
+	 */
+	if ( $attr['width'] < 1 || empty( $attr['caption'] ) ) {
+		return $content;
+	}
+
+	$figure_attr = array(
+		'class'	=> 'img-responsive wp-caption ' . esc_attr( $attr['align'] ),
+		'style'	=> 'width: ' . esc_attr( $attr['width'] ) . 'px',
+		);
+
+	if ( ! empty( $attr['id'] ) ) {
+		$figure_attr['id'] = 'id="' . esc_attr( $attr['id'] ) . '"';
+	}
+
+	/**
+	 * Filter the figure attribute
+	 *
+	 * @var array
+	 */
+	$figure_attr = apply_filters( 'italystrap_img_caption_shortcode_figure_attr', $figure_attr );
+
+	$html_figure_attributes = ItalyStrap\Core\get_html_tag_attr( $figure_attr );
+
+	$output  = '<figure ' . $html_figure_attributes .'>';
+	$output .= do_shortcode( $content );
+
+	$figcaption_attr = array(
+		'class'	=> 'caption wp-caption-text',
+		);
+
+	/**
+	 * Filter the figcaption attribute
+	 *
+	 * @var array
+	 */
+	$figcaption_attr = apply_filters( 'italystrap_img_caption_shortcode_figcaption_attr', $figcaption_attr );
+
+	$html_figcaption_attributes = ItalyStrap\Core\get_html_tag_attr( $figcaption_attr );
+
+	$output .= '<figcaption ' . $html_figcaption_attributes . '>' . $attr['caption'] . '</figcaption></figure>';
+
+	return $output;
+
+}
+add_filter( 'img_caption_shortcode', 'italystrap_new_caption_style', 10, 3 );

@@ -180,3 +180,22 @@ function get_the_colophon( $italystrap_theme_mods ) {
 
 	return apply_filters( 'italystrap_colophon_output', wp_kses_post( $output ) );
 }
+
+/**
+ * Render the HTML tag attributes from an array
+ *
+ * @param  array $attr The HTML attributes with key value.
+ * @return string      Return a string with HTML attributes
+ */
+function get_html_tag_attr( $attr = array() ) {
+
+	$html = '';
+
+	$attr = array_map( 'esc_attr', $attr );
+	foreach ( $attr as $name => $value ) {
+		$html .= " $name=" . '"' . $value . '"';
+	}
+
+	return $html;
+
+}

@@ -143,7 +143,7 @@ require( TEMPLATEPATH . '/admin/ItalyStrapOptionTheme.php' );
 /**
  * Admin functionality
  */
-require locate_template( '/admin/class-admin-text-editor.php' );
+require( TEMPLATEPATH . '/admin/class-admin-text-editor.php' );
 
 /**
  * Admin customizer
@@ -153,18 +153,20 @@ require( TEMPLATEPATH . '/admin/class-custom-meta-box.php' );
 /**
  * Admin customizer
  */
-require locate_template( '/admin/class-italystrap-theme-customizer.php' );
+require( TEMPLATEPATH . '/admin/class-italystrap-theme-customizer.php' );
+require( TEMPLATEPATH . '/admin/textarea/textarea-custom-control.php' );
+require( TEMPLATEPATH . '/admin/class-customizer-check-control.php' );
 
 /**
  * Add field for adding glyphicon in menu
  */
-require locate_template( '/admin/class-italystrap-admin-menu-custom-field.php' );
+require( TEMPLATEPATH . '/admin/class-italystrap-admin-menu-custom-field.php' );
 	new ItalyStrap_Add_Admin_Menu_Custom_Field();
 
 /**
  * Wp Editor in Category description
  */
-require locate_template( '/admin/class-italystrap-category-editor.php' );
+require( TEMPLATEPATH . '/admin/class-italystrap-category-editor.php' );
 
 /*******************************************************************
  *

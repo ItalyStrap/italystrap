@@ -10,6 +10,7 @@ use	Textarea_Custom_Control;
  * Contains methods for customizing the theme customization screen.
  *
  * @todo https://codex.wordpress.org/Function_Reference/header_textcolor
+ * @todo https://github.com/overclokk/wordpress-theme-customizer-custom-controls
  *
  * @link http://codex.wordpress.org/Theme_Customization_API
  * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/
@@ -267,6 +268,55 @@ class Customizer{
 			)
 		);
 
+		$wp_customize->add_setting(
+			'navbar_logo_image',
+			array(
+				// 'default' => ITALYSTRAP_PARENT_PATH . '/img/italystrap-navbar_logo_image.jpg',
+				'default' => '',
+				'type' => 'theme_mod',
+				'capability' => $this->capability,
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Media_Control(
+				$wp_customize,
+				'italystrap_navbar_logo_image',
+				array(
+					'label' => __( 'Your logo brand for nav menu', 'ItalyStrap' ),
+					'description' => __( 'Insert here your logo brand for nav menu', 'ItalyStrap' ),
+					'section' => 'italystrap_image_options',
+					'settings' => 'navbar_logo_image',
+					'priority' => 10,
+				)
+			)
+		);
+
+		/**
+		 * Display navbar brand name with navbar logo image
+		 */
+		$wp_customize->add_setting(
+			'display_navbar_logo_image',
+			array(
+				'default' => '',
+				'type' => 'theme_mod',
+				'capability' => $this->capability,
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control(
+			'italystrap_display_navbar_logo_image',
+			array(
+				'settings' => 'display_navbar_logo_image',
+				'label'    => __( 'Display navbar brand name with navbar logo image', 'ItalyStrap' ),
+				'section'  => 'italystrap_image_options',
+				'type'     => 'checkbox',
+			) 
+		);
+
 
 		$wp_customize->add_setting(
 			'default_image',
@@ -339,7 +389,6 @@ class Customizer{
 		/**
 		 * Add a textarea control for custom css
 		 */
-		require dirname( __FILE__ ) . '/textarea/textarea-custom-control.php';
 		$wp_customize->add_setting(
 			'custom_css',
 			array(
@@ -383,7 +432,6 @@ class Customizer{
 		/**
 		 * Add a textarea control for Colophon
 		 */
-		// require_once dirname(__FILE__) . '/textarea/textarea-custom-control.php';
 		$wp_customize->add_setting(
 			'colophon',
 			array(

@@ -2,6 +2,8 @@
 /**
  * Navbar Menu template Class
  *
+ * @example http://www.bootply.com/mQh8DyRfWY bootstrap navbar center logo
+ *
  * @package ItalyStrap\Core
  * @since 4.0.0
  */
@@ -177,7 +179,14 @@ class Navbar {
 		 * @var array
 		 */
 		$theme_mods = get_theme_mods();
-		$attachment_id = absint( $theme_mods['logo'] );
+// var_dump($theme_mods);
+		/**
+		 * The ID of the logo image for navbar
+		 * By default in the customizer is set a url for the image instead an integer
+		 * When it is choices an image than it will set an integer for $theme_mods['navbar_logo']
+		 * @var integer
+		 */
+		$attachment_id = absint( $theme_mods['navbar_logo_image'] );
 
 		$output = '';
 
@@ -193,10 +202,10 @@ class Navbar {
 
 		$output .= '<a' . $this->get_html_tag_attr( $a ) . '>';
 
-		if ( $attachment_id ) {
+		if ( $attachment_id && empty( $theme_mods['display_navbar_logo_image'] ) ) {
 
 			$attr = array(
-				'class'			=> 'img-responsive center-block',
+				'class'			=> 'img-brand img-responsive center-block',
 				'alt'			=> esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
 				'itemprop'		=> 'image',
 			);
@@ -205,9 +214,22 @@ class Navbar {
 
 			$output .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
 
+		} elseif ( $attachment_id && ! empty( $theme_mods['display_navbar_logo_image'] ) ) {
+
+			$attr = array(
+				'class'			=> 'img-brand',
+				'alt'			=> esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
+				'itemprop'		=> 'image',
+				'style'			=> 'display:inline;margin-right:15px;',
+			);
+
+			$output .= wp_get_attachment_image( $attachment_id, 'navbar-brand-image', false, $attr );
+
+			$output .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
+
 		} else {
 
-			$output .= '<span itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span><meta  itemprop="image" content="' . \italystrap_get_the_custom_image_url( 'logo', ITALYSTRAP_PARENT_PATH . '/img/italystrap-logo.jpg' ) . '"/>';
+			$output .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span><meta  itemprop="image" content="' . \italystrap_get_the_custom_image_url( 'logo', ITALYSTRAP_PARENT_PATH . '/img/italystrap-logo.jpg' ) . '"/>';
 
 		}
 

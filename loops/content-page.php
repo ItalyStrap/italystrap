@@ -12,7 +12,7 @@ $layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-<?php if ( ! in_array( 'hide_title', $layout_settings ) ) : ?>
+<?php if ( ! in_array( 'hide_title', $layout_settings, true ) ) : ?>
 	<header class="page-header entry-header">
 		<h1 class="entry-title">
 			<a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark">
@@ -24,7 +24,7 @@ $layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() 
 	</header>
 <?php endif; ?>
 
-<?php if ( ! in_array( 'hide_meta', $layout_settings ) ) : ?>
+<?php if ( ! in_array( 'hide_meta', $layout_settings, true ) ) : ?>
 	<footer class="entry-footer">
 		<?php get_template_part( 'template/meta' ); ?>
 	</footer>
@@ -38,7 +38,7 @@ $layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() 
 
 	<section class="entry-content">
 
-		<?php if ( has_post_thumbnail() && ! in_array( 'hide_thumb', $layout_settings )  ) { ?>
+		<?php if ( has_post_thumbnail() && ! in_array( 'hide_thumb', $layout_settings, true )  ) { ?>
 			<figure class="<?php echo esc_attr( apply_filters( 'italystrap-figure-thumb-class', 'thumbnail' ) ); ?>">
 				<?php
 				if ( is_page_template( 'full-width.php' ) ) {
@@ -94,7 +94,7 @@ $layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() 
 	/**
 	 * Display author info box
 	 */
-	if ( ! in_array( 'hide_author', $layout_settings ) ) {
+	if ( ! in_array( 'hide_author', $layout_settings, true ) ) {
 		get_template_part( 'template/content', 'author-info' );
 	}
 	?>

@@ -33,6 +33,13 @@ class Customizer{
 	private $style = '';
 
 	/**
+	 * ItalyStrap option panel page name
+	 *
+	 * @var string
+	 */
+	private $panel = 'italystrap_options_page';
+
+	/**
 	 * The default text for colophon
 	 *
 	 * @var string
@@ -46,28 +53,28 @@ class Customizer{
 
 		$this->colophon_default_text = apply_filters( 'italystrap_colophon_default_text', Core\colophon_default_text() );
 
-		/**
-		 * Setup the Theme Customizer settings and controls...
-		 */
-		add_action( 'customize_register' , array( $this, 'register_init' ) );
+		// /**
+		//  * Setup the Theme Customizer settings and controls...
+		//  */
+		// add_action( 'customize_register' , array( $this, 'register_init' ) );
 
-		// Enqueue live preview javascript in Theme Customizer admin screen.
-		add_action( 'customize_preview_init' , array( $this, 'live_preview' ) );
+		// // Enqueue live preview javascript in Theme Customizer admin screen.
+		// add_action( 'customize_preview_init' , array( $this, 'live_preview' ) );
 
-		// Output custom CSS to live site.
-		add_action( 'wp_head' , array( $this, 'css_output' ), 11 );
+		// // Output custom CSS to live site.
+		// add_action( 'wp_head' , array( $this, 'css_output' ), 11 );
 
-		/**
-		 * Add link to Theme Options in case ItalyStrap plugin is active
-		 */
-		if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
-			add_action( 'admin_menu', array( $this, 'add_link_to_theme_option_page' ) );
-		}
+		// /**
+		//  * Add link to Theme Options in case ItalyStrap plugin is active
+		//  */
+		// if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
+		// 	add_action( 'admin_menu', array( $this, 'add_link_to_theme_option_page' ) );
+		// }
 
-		/**
-		 * Add new voice to theme menu
-		 */
-		add_action( 'admin_menu', array( $this, 'add_appearance_menu' ) );
+		// /**
+		//  * Add new voice to theme menu
+		//  */
+		// add_action( 'admin_menu', array( $this, 'add_appearance_menu' ) );
 
 	}
 
@@ -89,10 +96,10 @@ class Customizer{
 		 */
 		$url = admin_url( 'customize.php?autofocus[panel]=italystrap_options_page' );
 		$submenu['italystrap-dashboard'][] = array(
-											__( 'Theme Options', 'ItalyStrap' ),
-											$this->capability,
-											$url,
-											);
+			__( 'Theme Options', 'ItalyStrap' ),
+			$this->capability,
+			$url,
+		);
 	}
 
 	/**
@@ -106,11 +113,11 @@ class Customizer{
 		 * @link https://codex.wordpress.org/Function_Reference/add_theme_page
 		 */
 		add_theme_page(
-			__( 'ItalyStrap Theme Info', 'ItalyStrap' ),	// $page_title <title></title>
-			__( 'ItalyStrap Theme Info', 'ItalyStrap' ),			// $menu_title.
-			$this->capability,								// $capability.
-			'italystrap-theme-info',						// $menu_slug.
-			array( $this, 'callback_function' )				// $function.
+			__( 'ItalyStrap Theme Info', 'ItalyStrap' ),// $page_title <title></title>
+			__( 'ItalyStrap Theme Info', 'ItalyStrap' ),// $menu_title.
+			$this->capability,							// $capability.
+			'italystrap-theme-info',					// $menu_slug.
+			array( $this, 'callback_function' )			// $function.
 		);
 
 	}
@@ -194,6 +201,9 @@ class Customizer{
 			)
 		);
 
+		/**
+		 * Hx font color
+		 */
 		$wp_customize->add_setting(
 			'hx_textcolor',
 			array(
@@ -221,7 +231,7 @@ class Customizer{
 		/**
 		 * Add new panel for ItalyStrap theme options
 		 */
-		$wp_customize->add_panel( 'italystrap_options_page',
+		$wp_customize->add_panel( $this->panel,
 			array(
 				'title' => __( 'Theme Options', 'ItalyStrap' ),
 				'description' => 'add_panel', // Include html tags such as <p>.
@@ -236,13 +246,15 @@ class Customizer{
 			'italystrap_image_options',
 			array(
 				'title' => __( 'Theme Image Options', 'ItalyStrap' ), // Visible title of section.
-				'panel' => 'italystrap_options_page',
+				'panel' => $this->panel,
 				'capability' => $this->capability,
 				'description' => __( 'Allows you to customize settings for ItalyStrap.', 'ItalyStrap' ),
 			)
 		);
 
-		// 2. Register new settings to the WP database...
+		/**
+		 * Register new settings to the WP database...
+		 */
 		$wp_customize->add_setting(
 			'logo',
 			array(
@@ -268,6 +280,9 @@ class Customizer{
 			)
 		);
 
+		/**
+		 * Setting for navbar logo image
+		 */
 		$wp_customize->add_setting(
 			'navbar_logo_image',
 			array(
@@ -314,10 +329,13 @@ class Customizer{
 				'label'    => __( 'Display navbar brand name with navbar logo image', 'ItalyStrap' ),
 				'section'  => 'italystrap_image_options',
 				'type'     => 'checkbox',
-			) 
+			)
 		);
 
-
+		/**
+		 * Set a default image to use in:
+		 * the_thumbnail
+		 */
 		$wp_customize->add_setting(
 			'default_image',
 			array(
@@ -368,9 +386,9 @@ class Customizer{
 			)
 		);
 
-		/***********************************
+		/**
 		 * NEW SECTION
-		 **********************************/
+		 */
 
 		/**
 		 * Define a new section for cusom CSS
@@ -379,7 +397,7 @@ class Customizer{
 			array(
 				'title' => __( 'Custom CSS' ),
 				'description' => __( 'Add custom CSS here' ),
-				'panel' => 'italystrap_options_page', // Not typically needed.
+				'panel' => $this->panel, // Not typically needed.
 				'priority' => 160,
 				'capability' => $this->capability,
 				'theme_supports' => '', // Rarely needed.
@@ -414,6 +432,47 @@ class Customizer{
 			)
 		);
 
+		/**
+		 * Define a new section for typography
+		 */
+		$wp_customize->add_section( 'typography',
+			array(
+				'title' => __( 'Typography', 'ItalyStrap' ),
+				'description' => __( 'Chose typography style', 'ItalyStrap' ),
+				'panel' => $this->panel, // Not typically needed.
+				'priority' => 160,
+				'capability' => $this->capability,
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		/**
+		 * Add a textarea control for custom css
+		 */
+		$wp_customize->add_setting(
+			'typography',
+			array(
+				'default'        => '',
+				'type' => 'theme_mod',
+				'capability' => $this->capability,
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+
+		$wp_customize->add_control(
+			new Google_Font_Dropdown_Custom_Control(
+				$wp_customize,
+				'typography',
+				array(
+					'label'   => __( 'Typography', 'ItalyStrap' ),
+					'description' => __( 'Chose typography style', 'ItalyStrap' ),
+					'section' => 'typography',
+					'settings'   => 'typography',
+					'priority' => 10,
+				)
+			)
+		);
 
 		/**
 		 * Define a new section for Footer colophon
@@ -422,7 +481,7 @@ class Customizer{
 			array(
 				'title' => __( 'Footer\'s Colophon' ),
 				'description' => __( 'Add text for footer\'s colophon here' ),
-				'panel' => 'italystrap_options_page', // Not typically needed.
+				'panel' => $this->panel, // Not typically needed.
 				'priority' => 160,
 				'capability' => $this->capability,
 				'theme_supports' => '', // Rarely needed.
@@ -457,16 +516,6 @@ class Customizer{
 			)
 		);
 
-
-
-		// // Add a footer/copyright information section.
-		// $wp_customize->add_section( 'footer',
-		// 	array(
-		// 		'title' => __( 'Footer', 'themename' ),
-		// 		'priority' => 90, // Before Navigation.
-		// 	)
-		// );
-
 		/**
 		 * Let's make some stuff use live preview JS...
 		 */
@@ -486,17 +535,23 @@ class Customizer{
 	 * Retrieves the attachment ID from the file URL
 	 *
 	 * @link https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
-	 * @param  [type] $image_url [description].
-	 * @return [type]            [description]
+	 * @param  string $image_url The src of the image.
+	 * @return int               Return the ID of the image
 	 */
 	private function pippin_get_image_id( $image_url ) {
 
-		global $wpdb;
-		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ) );
+		$attachment = wp_cache_get( 'get_image_id' . $image_url );
+
+		if ( false === $attachment ) {
+
+			global $wpdb;
+			$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ) );
+			wp_cache_set( 'get_image_id' . $image_url, $attachment );
+		}
 
 		$attachment[0] = ( isset( $attachment[0] ) ) ? $attachment[0] : null;
 
-		return intval( $attachment[0] );
+		return absint( $attachment[0] );
 
 	}
 
@@ -525,13 +580,19 @@ class Customizer{
 
 			}
 
-			// var_dump( $key . ' => ' . get_theme_mod( $key ) );
-			// remove_theme_mod( $key );
+			/**
+			 * Test
+			 * var_dump( $key . ' => ' . get_theme_mod( $key ) );
+			 * remove_theme_mod( $key );
+			 */
+
 		}
 
-		// remove_theme_mod( 'colophon' );
-
-		// var_dump(get_theme_mods());
+		/**
+		 * Test
+		 * remove_theme_mod( 'colophon' );
+		 * var_dump(get_theme_mods());
+		 */
 	}
 
 
@@ -594,7 +655,7 @@ class Customizer{
 
 			$repeat = get_theme_mod( 'background_repeat', get_theme_support( 'custom-background', 'default-repeat' ) );
 
-			if ( ! in_array( $repeat, array( 'no-repeat', 'repeat-x', 'repeat-y', 'repeat' ) ) ) {
+			if ( ! in_array( $repeat, array( 'no-repeat', 'repeat-x', 'repeat-y', 'repeat' ), true ) ) {
 				$repeat = 'repeat';
 			}
 
@@ -602,7 +663,7 @@ class Customizer{
 
 			$position = get_theme_mod( 'background_position_x', get_theme_support( 'custom-background', 'default-position-x' ) );
 
-			if ( ! in_array( $position, array( 'center', 'right', 'left' ) ) ) {
+			if ( ! in_array( $position, array( 'center', 'right', 'left' ), true ) ) {
 				$position = 'left';
 			}
 
@@ -610,7 +671,7 @@ class Customizer{
 
 			$attachment = get_theme_mod( 'background_attachment', get_theme_support( 'custom-background', 'default-attachment' ) );
 
-			if ( ! in_array( $attachment, array( 'fixed', 'scroll' ) ) ) {
+			if ( ! in_array( $attachment, array( 'fixed', 'scroll' ), true ) ) {
 				$attachment = 'scroll';
 			}
 
@@ -688,9 +749,13 @@ class Customizer{
 		$this->style .= $this->generate_css( '#site-title a', 'color', 'header_textcolor', '#' );
 
 		$this->style .= $this->generate_css( 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading', 'color', 'hx_textcolor' );
-		// $css .= $this->generate_css('body.custom-background', 'background-color', 'background_color', '#');
+		/**
+		 * $css .= $this->generate_css('body.custom-background', 'background-color', 'background_color', '#');
+		 */
 		$this->style .= $this->generate_css( 'a', 'color', 'link_textcolor' );
-		// $css .= $this->generate_css('.widget-title,.footer-widget-title', 'border-bottom-color', 'link_textcolor');
+		/**
+		 * $css .= $this->generate_css('.widget-title,.footer-widget-title', 'border-bottom-color', 'link_textcolor');
+		 */
 
 		$this->style .= $custom_css;
 

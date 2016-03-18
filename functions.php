@@ -153,9 +153,10 @@ require( TEMPLATEPATH . '/admin/class-custom-meta-box.php' );
 /**
  * Admin customizer
  */
-require( TEMPLATEPATH . '/admin/class-italystrap-theme-customizer.php' );
+require( TEMPLATEPATH . '/admin/class-customizer.php' );
 require( TEMPLATEPATH . '/admin/textarea/textarea-custom-control.php' );
 require( TEMPLATEPATH . '/admin/class-customizer-check-control.php' );
+require( TEMPLATEPATH . '/admin/class-customizer-google-font-dropdown-control.php' );
 
 /**
  * Add field for adding glyphicon in menu
@@ -355,6 +356,31 @@ if ( function_exists( 'register_widget' ) )
 $italystrap_customizer = new Customizer;
 
 /**
+ * Setup the Theme Customizer settings and controls...
+ */
+add_action( 'customize_register' , array( $italystrap_customizer, 'register_init' ) );
+
+// Enqueue live preview javascript in Theme Customizer admin screen.
+add_action( 'customize_preview_init' , array( $italystrap_customizer, 'live_preview' ) );
+
+// Output custom CSS to live site.
+add_action( 'wp_head' , array( $italystrap_customizer, 'css_output' ), 11 );
+
+/**
+ * Add link to Theme Options in case ItalyStrap plugin is active
+ */
+if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
+	add_action( 'admin_menu', array( $italystrap_customizer, 'add_link_to_theme_option_page' ) );
+}
+
+/**
+ * Add new voice to theme menu
+ */
+add_action( 'admin_menu', array( $italystrap_customizer, 'add_appearance_menu' ) );
+
+
+
+/**
  * Theme init
  */
 class Init_Theme{
@@ -527,6 +553,81 @@ require locate_template( '/lib/hooks.php' );
  * Da leggere http://mikejolley.com/2013/12/15/deprecating-plugin-functions-hooks-woocommmerce/
  */
 function get_layout_settings() {
-	return get_post_meta( get_the_ID(), '_italystrap_layout_settings', true );
+
+	/**
+	 * Front page ID get_option( 'page_on_front' );
+	 * Home page ID get_option( 'page_for_posts' );
+	 */
+
+	$id = '';
+
+	if ( is_home() ) {
+		$id = get_option( 'page_for_posts' );
+	} else {
+		$id = get_the_ID();
+	}
+
+	return get_post_meta( $id, '_italystrap_layout_settings', true );
 }
 add_filter( 'italystrap_layout_settings', __NAMESPACE__ . '\get_layout_settings' );
+
+/**
+ * Get the google fonts from the API or in the cache
+ *
+ * @param  integer $amount
+ *
+ * @return String
+ */
+function get_fonts( $amount = 3 ) {
+
+	$select_directory = STYLESHEETPATH . '/admin/';
+
+	$final_select_directory = '';
+
+	if ( is_dir( $select_directory ) ) {
+		$final_select_directory = $select_directory;
+	}
+
+	$font_file = $final_select_directory . '/cache/google-web-fonts.txt';
+
+	if ( file_exists( $font_file ) && WEEK_IN_SECONDS < filemtime( $font_file ) ) {
+		// $content = json_decode( file_get_contents( $font_file ) );
+		$content = json_decode( get_file_content( $font_file ) );
+	} else {
+
+		$google_api = 'https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyAukcQy3eDah9zhEKEwdBKnMbB1egGVpuM';
+
+		$font_content = wp_remote_get( $google_api, array( 'sslverify' => false ) );
+
+		$fp = fopen( $font_file, 'w' );
+		fwrite( $fp, $font_content['body'] );
+		fclose( $fp );
+
+		$content = json_decode( $font_content['body'] );
+	}
+
+	// var_dump($content);
+	// var_dump($content->items);
+	// var_dump($content->items[0]);
+	// var_dump($content->items[0]->family);
+	var_dump($content->items[0]->files);
+	/**
+	 * Return the array of object of alla fonts
+	 */
+	if ( 'all' === $amount ) {
+		return $content->items;
+	} else {
+		return array_slice( $content->items, 0, $amount );
+	}
+}
+// var_dump( get_fonts() );
+// $get_fonts = get_fonts();
+?>
+<!-- <select> -->
+	<?php
+		// foreach ( $get_fonts as $k => $v ) {
+
+		// 		printf( '<option value="%s" %s>%s</option>', $k, selected( '1', $k, false ), $v->family );
+		// }
+	?>
+<!-- </select> -->

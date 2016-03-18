@@ -186,7 +186,7 @@ class Navbar {
 		 * When it is choices an image than it will set an integer for $theme_mods['navbar_logo']
 		 * @var integer
 		 */
-		$attachment_id = absint( $theme_mods['navbar_logo_image'] );
+		$attachment_id = absint( isset( $theme_mods['navbar_logo_image'] ) ? $theme_mods['navbar_logo_image'] : null );
 
 		$output = '';
 

@@ -14,6 +14,7 @@
 
 namespace ItalyStrap;
 
+$layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() );
 get_header(); ?>
 <!-- Main Content -->
 	<main id="page" role="main">
@@ -21,7 +22,7 @@ get_header(); ?>
 		<div class="container">
 			<?php do_action( 'content_container_open' ); ?>
 			<div class="row">
-				<div class="col-md-8" itemscope itemtype="http://schema.org/Article">
+				<div <?php Core\content_class( 'col-md-8' ) ?> itemscope itemtype="http://schema.org/Article">
 					<?php
 					do_action( 'content_col_open' );
 
@@ -45,7 +46,11 @@ get_header(); ?>
 					comments_template();
 					do_action( 'content_col_closed' ); ?>
 				</div><!-- / .col-md-8 -->
-				<?php get_sidebar(); ?> 
+				<?php
+				if ( ! in_array( 'hide_sidebar', $layout_settings, true ) ) { 
+					get_sidebar();
+				}
+				?>
 			</div><!-- / .row -->
 			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->

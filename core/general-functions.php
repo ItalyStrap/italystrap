@@ -199,3 +199,50 @@ function get_html_tag_attr( $attr = array() ) {
 	return $html;
 
 }
+
+/**
+ * Display the classes for content element
+ *
+ * @since 4.0.0
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function content_class( $class = '' ) {
+	/**
+	 * Separates classes with a single space, collates classes for content element
+	 */
+	echo 'class="' . join( ' ', get_content_class( $class ) ) . '"';
+}
+
+/**
+ * Retrieve the classes for the body element as an array.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array              Array of classes.
+ */
+function get_content_class( $class = '' ) {
+
+	$classes = array();
+
+	if ( ! is_array( $class ) ) {
+		$classes[] = trim( $class );
+	} else {
+		$classes = array_merge( $classes, $class );
+	}
+	
+
+	$classes[] = trim( $class );
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	/**
+	 * Filter the list of CSS content classes for the current post or page.
+	 *
+	 * @var array
+	 */
+	$classes = apply_filters( 'italystrap_content_class', $classes, $class );
+
+	return  array_flip( array_flip( $classes ) );
+
+}
+
+

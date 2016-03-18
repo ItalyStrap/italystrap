@@ -13,6 +13,9 @@
  * @since 1.0.0
  */
 
+namespace ItalyStrap;
+
+$layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() );
 get_header(); ?>
 <!-- Main Content -->
 	<main id="index" role="main">
@@ -20,7 +23,7 @@ get_header(); ?>
 		<div class="container">
 			<?php do_action( 'content_container_open' ); ?>
 			<div class="row">
-				<div class="col-md-8" itemscope itemtype="http://schema.org/CollectionPage">
+				<div <?php Core\content_class( 'col-md-8' ) ?> itemscope itemtype="http://schema.org/CollectionPage">
 					<?php
 					do_action( 'content_col_open' );
 
@@ -44,7 +47,11 @@ get_header(); ?>
 
 					do_action( 'content_col_closed' ); ?>
 				</div><!-- / .col-md-8 -->
-				<?php get_sidebar(); ?>
+				<?php
+				if ( ! in_array( 'hide_sidebar', $layout_settings, true ) ) { 
+					get_sidebar();
+				}
+				?>
 			</div><!-- / .row -->
 			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->

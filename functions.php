@@ -509,6 +509,12 @@ class Init_Theme{
 		add_theme_support( 'custom-background', apply_filters( 'custom_background_support', $custom_background ) );
 
 		/**
+		 * @since 4.5 WordPress Core
+		 * @see https://make.wordpress.org/core/2016/03/22/implementing-selective-refresh-support-for-widgets/
+		 */
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		/**
 		 * This theme uses wp_nav_menu() in one location.
 		 */
 		$nav_menus_locations = array(

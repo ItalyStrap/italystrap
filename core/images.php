@@ -444,9 +444,13 @@ function italystrap_the_post_thumbnail( $size = 'post-thumbnail' , $attr = '',  
  *
  * @link http://justintadlock.com/archives/2011/07/01/captions-in-wordpress
  */
-function italystrap_new_caption_style( $output, $attr, $content ) {
+function italystrap_new_caption_style( $output, array $attr, $content ) {
 
 	if ( is_feed() ) {
+		return $output;
+	}
+
+	if ( ! isset( $attr ) ) {
 		return $output;
 	}
 
@@ -460,7 +464,7 @@ function italystrap_new_caption_style( $output, $attr, $content ) {
 
 	$attr = shortcode_atts( $defaults, $attr, 'caption' );
 
-	$atts['width'] = (int) $atts['width'];
+	$attr['width'] = (int) $attr['width'];
 
 	/**
 	 * If the width is less than 1 or there is no caption, return the content wrapped between the [caption] tags

@@ -69,8 +69,12 @@ module.exports = function(grunt) {
 
         },
 
-        uglify: {
+        uglify: { // https://github.com/gruntjs/grunt-contrib-uglify
             dist: {
+                options: {
+                    sourceMap: true
+                    // ,beautify: true
+                },
                 files: {
                     'js/home.min.js': [
                         'js/src/bootstrapJS/transition.js',
@@ -403,6 +407,10 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', ['jshint', 'csslint']);
     grunt.registerTask('build', ['uglify', 'less', 'compass']);
+
+    grunt.registerTask('php', 'A sample task that logs stuff.', function() {
+        return null;
+    });
 
     grunt.event.on('watch', function(action, filepath) {
       grunt.log.writeln(filepath + ' has ' + action);

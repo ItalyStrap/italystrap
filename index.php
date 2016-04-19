@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap;
+<?php
 /**
  * The main template file
  *
@@ -48,7 +48,7 @@ get_header(); ?>
 					do_action( 'content_col_closed' ); ?>
 				</div><!-- / .col-md-8 -->
 				<?php
-				if ( ! in_array( 'hide_sidebar', $layout_settings, true ) ) { 
+				if ( ! in_array( 'hide_sidebar', $layout_settings, true ) ) {
 					get_sidebar();
 				}
 				?>

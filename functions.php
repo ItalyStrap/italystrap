@@ -108,11 +108,7 @@ $italystrap_theme_mods = get_theme_mods();
 
 require( TEMPLATEPATH . '/vendor/autoload.php' );
 
-/*********************************************************************
- *
- * Required external class
- *
- *********************************************************************/
+// $injector = new \Auryn\Injector;
 
 /**
  * TGM class for required plugin
@@ -131,40 +127,29 @@ if ( ! class_exists( 'Mobile_Detect' ) ) {
 
 }
 
-/*********************************************************************
- *
- * Start Admins functionality, don't touch that, extend the class instead
- *
- *********************************************************************/
+if ( is_admin() ){
 
-/**
- * Admin functionality
- */
-if ( is_admin() )
+	/**
+	 * Admin functionality
+	 */
 	new \ItalyStrap\Admin\Admin_Text_editor;
 
-/**
- * Admin customizer
- */
-$metabox = new \ItalyStrap\Admin\Custom_Meta_Box;
-add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );
+	/**
+	 * Admin customizer
+	 */
+	$metabox = new \ItalyStrap\Admin\Custom_Meta_Box;
+	add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );
 
-/**
- * Add field for adding glyphicon in menu
- */
-new ItalyStrap_Add_Admin_Menu_Custom_Field();
+	/**
+	 * Add field for adding glyphicon in menu
+	 */
+	new ItalyStrap_Add_Admin_Menu_Custom_Field();
 
-/**
- * Wp Editor in Category description
- */
-if ( is_admin() )
+	/**
+	 * Wp Editor in Category description
+	 */
 	new \ItalyStrapAdminCategoryEditor;
-
-/*************************************************************************
- *
- * Start custom functionality, you can touch that, please use child theme
- *
- *************************************************************************/
+}
 
 /**
  * Custom function for images.
@@ -175,11 +160,6 @@ require locate_template( '/lib/images.php' );
  * General Template functions
  */
 require locate_template( '/lib/general-functions.php' );
-
-/**
- * Add analytics script
- */
-require locate_template( '/lib/analytics.php' );
 
 /**
  * Activation options, added pointer for theme instructions.
@@ -295,8 +275,9 @@ if ( ! isset( $content_width ) ) $content_width = apply_filters( 'content_width'
 /**
  * If function exist init
  */
-if ( function_exists( 'register_widget' ) )
+if ( function_exists( 'register_widget' ) ) {
 	$italystrap_sidebars = new ItalyStrap_Sidebars;
+}
 
 /**
  * Initialize Customizer Class
@@ -317,17 +298,16 @@ add_action( 'customize_preview_init' , array( $italystrap_customizer, 'live_prev
 add_action( 'wp_head' , array( $italystrap_customizer, 'css_output' ), 11 );
 
 /**
+ * Add new voice to theme menu
+ */
+add_action( 'admin_menu', array( $italystrap_customizer, 'add_appearance_menu' ) );
+
+/**
  * Add link to Theme Options in case ItalyStrap plugin is active
  */
 if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
 	add_action( 'admin_menu', array( $italystrap_customizer, 'add_link_to_theme_option_page' ) );
 }
-
-/**
- * Add new voice to theme menu
- */
-add_action( 'admin_menu', array( $italystrap_customizer, 'add_appearance_menu' ) );
-
 
 
 /**

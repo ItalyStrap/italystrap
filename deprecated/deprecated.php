@@ -149,3 +149,134 @@ function roots_caption($output, $attr, $content) {
   return $output;
 }
 // add_filter('img_caption_shortcode', 'roots_caption', 10, 3);
+
+/**********************
+ * DEPRECATED FUNCTION
+ **********************/
+/**
+ * Retrieve HTML content for new cancel comment reply link with Twitter Botstrap style.
+ *
+ * @link /wp-includes/comment-template.php
+ * @since 1.9.1
+ *
+ * @param string $text Optional. Text to display for cancel reply link. Default empty.
+ * @param string $class Optional. Bootstrap button class. Default empty.
+ */
+function new_get_cancel_comment_reply_link( $text = '', $class = '' ) {
+
+  _deprecated_function( __FUNCTION__, 'ItalyStrap 3.1' );
+
+  if ( empty( $text ) )
+    $text = __('Click here to cancel reply.', 'ItalyStrap');
+
+  if ( empty( $class ) )
+    $class = 'btn btn-danger btn-xs';
+
+  $style = isset($_GET['replytocom']) ? '' : ' style="display:none;"';
+  $link = esc_html( remove_query_arg('replytocom') ) . '#respond';
+
+  $formatted_link = '<a rel="nofollow" id="cancel-comment-reply-link" href="' . $link . '"' . $style . ' class="' . $class . '">' . $text . '</a>';
+
+  /**
+   * Filter the new cancel comment reply link HTML.
+   *
+   * @since 1.9.1
+   *
+   * @param string $formatted_link The HTML-formatted cancel comment reply link.
+   * @param string $link           New Cancel comment reply link URL.
+   * @param string $class          New Cancel comment reply css class.
+   * @param string $text           New Cancel comment reply link text.
+   */
+  return apply_filters( 'new_cancel_comment_reply_link', $formatted_link, $link, $class, $text);
+}
+/**
+ * Display HTML content for new cancel comment reply link.
+ *
+ * @link /wp-includes/comment-template.php
+ * @since 1.9.1
+ *
+ * @param string $text Optional. Text to display for cancel reply link. Default empty.
+ * @param string $class Optional. Bootstrap button class. Default empty.
+ */
+function new_cancel_comment_reply_link($text = '', $class = '' ) {
+
+  echo new_get_cancel_comment_reply_link($text, $class);
+
+}
+
+
+/**
+ * ItalyStrap_custom_comment()
+ * @return
+ */
+function ItalyStrap_custom_comment($comment, $args, $depth){
+  $GLOBALS['comment'] = $comment;
+  switch ($comment->comment_type) :
+  case 'pingback' :
+  case 'trackback' : ?>
+
+  <li class="comment media" id="comment-<?php comment_ID(); ?>">
+    <div class="media-body">
+      <p>
+        Pingback: <?php comment_author_link(); ?>
+      </p>
+    </div><!--/.media-body -->
+    <?php
+    break;
+    default :
+                // Proceed with normal comments.
+    global $post; ?>
+
+
+    <div class="<?php if($depth == 1) echo 'col-md-12'; else echo 'col-md-11 col-md-offset-1'; ?>">
+      <div class="row <?php if ($comment->user_id === $post->post_author) { echo 'bg-color-author';} ?>"itemscope itemtype="http://schema.org/Comment">
+        <div class="col-md-2"><?php echo get_avatar($comment, '92') ?></div>
+        <div class="col-md-10">
+          <ul class="list-inline">
+            <li>
+              <h4 class="media-heading">
+                <a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php echo get_comment_author() ?><meta itemprop="image" content="<?php  $thumbnailUrl = get_avatar($comment); echo estraiUrlsGravatar($thumbnailUrl);?>"/></span></a>
+                <?php
+                /**
+                 * If current post author is also comment author,
+                 * make it known visually.
+                 * @var [type]
+                 */
+                printf(
+                ($comment->user_id === $post->post_author) ? '<span class="label label-danger"> ' . __('The Boss :-)', 'ItalyStrap') . '</span> ' : ''); ?>
+              </h4>
+
+            </li>
+            <li><time datetime="<?php comment_date('Y-m-d', $comment) ?>" itemprop="datePublished"><?php comment_date('j M Y', $comment) ?></time></li>
+            <?php edit_comment_link(__('Edit','ItalyStrap'),'<span class="btn btn-sm btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i> ','</span>') ?>
+          </ul>
+
+          <p itemprop="text"><?php echo get_comment_text($comment); ?></p>
+          <?php if ($comment->comment_approved == '0') : ?>
+          <span  class="alert alert-success">Il tuo commento &egrave; in attesa di moderazione.</span>
+        <?php endif; ?>
+
+        <p class="reply btn btn-small btn-success pull-right">
+          <?php 
+          comment_reply_link( 
+            array_merge(
+              $args, 
+              array(
+                'reply_text' => __('Reply <i class="glyphicon glyphicon-arrow-down"></i>', 'ItalyStrap'),
+                'depth'      => $depth,
+                'max_depth'  => $args['max_depth'],
+                'class'      => 'btn',
+                )
+              ),
+            $comment->comment_ID
+            );
+            ?>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <?php
+    break;
+    endswitch;
+}

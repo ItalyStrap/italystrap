@@ -91,7 +91,7 @@ if ( have_comments() && ! in_array( 'hide_comments', $layout_settings, true ) ) 
 	 * comment_form_after
 	 * comment_form_comments_closed
 	 */
-	comment_form( comment_form_args( $comment_author, $user_identity ) );
+	comment_form( \ItalyStrap\Core\comment_form_args( $comment_author, $user_identity ) );
 	?>
 </section>
-<?php endif; ?>
+<?php endif;

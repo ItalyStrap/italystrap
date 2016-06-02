@@ -69,5 +69,3 @@ class Admin_Text_editor{
 
 
 }
-if ( is_admin() )
-	new Admin_Text_editor;

@@ -148,5 +148,3 @@ class ItalyStrapAdminCategoryEditor{
 
 
 }
-if ( is_admin() )
-	new ItalyStrapAdminCategoryEditor;

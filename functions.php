@@ -129,6 +129,8 @@ if ( ! class_exists( 'Mobile_Detect' ) ) {
 
 }
 
+require( TEMPLATEPATH . '/vendor/autoload.php' );
+
 /*********************************************************************
  *
  * Start Admins functionality, don't touch that, extend the class instead
@@ -138,36 +140,40 @@ if ( ! class_exists( 'Mobile_Detect' ) ) {
 /**
  * Admin Options Theme
  */
-require( TEMPLATEPATH . '/admin/ItalyStrapOptionTheme.php' );
+// require( TEMPLATEPATH . '/admin/ItalyStrapOptionTheme.php' );
 
 /**
  * Admin functionality
  */
-require( TEMPLATEPATH . '/admin/class-admin-text-editor.php' );
-
+// require( TEMPLATEPATH . '/admin/class-admin-text-editor.php' );
+if ( is_admin() )
+	new \ItalyStrap\Admin\Admin_Text_editor;
 /**
  * Admin customizer
  */
-require( TEMPLATEPATH . '/admin/class-custom-meta-box.php' );
-
+// require( TEMPLATEPATH . '/admin/class-custom-meta-box.php' );
+$metabox = new \ItalyStrap\Admin\Custom_Meta_Box;
+add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );
 /**
  * Admin customizer
  */
-require( TEMPLATEPATH . '/admin/class-customizer.php' );
-require( TEMPLATEPATH . '/admin/textarea/textarea-custom-control.php' );
-require( TEMPLATEPATH . '/admin/class-customizer-check-control.php' );
-require( TEMPLATEPATH . '/admin/class-customizer-google-font-dropdown-control.php' );
+// require( TEMPLATEPATH . '/admin/class-customizer.php' );
+// require( TEMPLATEPATH . '/admin/textarea/textarea-custom-control.php' );
+// require( TEMPLATEPATH . '/admin/class-customizer-check-control.php' );
+// require( TEMPLATEPATH . '/admin/class-customizer-google-font-dropdown-control.php' );
 
 /**
  * Add field for adding glyphicon in menu
  */
-require( TEMPLATEPATH . '/admin/class-italystrap-admin-menu-custom-field.php' );
+// require( TEMPLATEPATH . '/admin/class-italystrap-admin-menu-custom-field.php' );
 	new ItalyStrap_Add_Admin_Menu_Custom_Field();
 
 /**
  * Wp Editor in Category description
  */
-require( TEMPLATEPATH . '/admin/class-italystrap-category-editor.php' );
+// require( TEMPLATEPATH . '/admin/class-italystrap-category-editor.php' );
+if ( is_admin() )
+	new \ItalyStrapAdminCategoryEditor;
 
 /*******************************************************************
  *

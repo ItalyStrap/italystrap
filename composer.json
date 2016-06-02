@@ -1,0 +1,18 @@
+{
+    "name": "overclokk/italystrap",
+    "description": "Framework theme for WordPress",
+    "authors": [
+        {
+            "name": "overclokk",
+            "email": "info@overclokk.net"
+        }
+    ],
+    "require": {
+    	"php": "^7"
+    },
+	"autoload": {
+		"classmap": [
+			"admin"
+		]
+	}
+}

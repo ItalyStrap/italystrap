@@ -49,7 +49,7 @@ class Custom_Meta_Box {
 	 */
 	public function register_layout_settings() {
 
-		$layout_settings_metabox_object_types = apply_filters( 'italystrap_layout_settings_metabox_object_types', array( 'page' ) );
+		$layout_settings_metabox_object_types = apply_filters( 'italystrap_layout_settings_metabox_object_types', array( 'page', 'post' ) );
 
 		/**
 		 * Sample metabox to demonstrate each field type included
@@ -91,6 +91,3 @@ class Custom_Meta_Box {
 		);
 	}
 }
-
-$metabox = new Custom_Meta_Box;
-add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );

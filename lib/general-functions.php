@@ -1,10 +1,16 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * General Template functions
  *
  * @package ItalyStrap
  * @since 4.0.0 ItalyStrap
  */
+
+namespace ItalyStrap\Core;
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
 
 /**
  * New get_search_form function

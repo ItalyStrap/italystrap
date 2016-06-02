@@ -8,11 +8,13 @@
         }
     ],
     "require": {
-    	"php": "^7"
+    	"php": "^7",
+        "tgmpa/tgm-plugin-activation": "^2.6"
     },
 	"autoload": {
 		"classmap": [
-			"admin"
+			"admin",
+			"core"
 		]
 	}
 }

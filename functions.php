@@ -106,6 +106,8 @@ $italystrap_options = get_option( 'italystrap_theme_settings' );
  */
 $italystrap_theme_mods = get_theme_mods();
 
+require( TEMPLATEPATH . '/vendor/autoload.php' );
+
 /*********************************************************************
  *
  * Required external class
@@ -129,8 +131,6 @@ if ( ! class_exists( 'Mobile_Detect' ) ) {
 
 }
 
-require( TEMPLATEPATH . '/vendor/autoload.php' );
-
 /*********************************************************************
  *
  * Start Admins functionality, don't touch that, extend the class instead
@@ -138,104 +138,48 @@ require( TEMPLATEPATH . '/vendor/autoload.php' );
  *********************************************************************/
 
 /**
- * Admin Options Theme
- */
-// require( TEMPLATEPATH . '/admin/ItalyStrapOptionTheme.php' );
-
-/**
  * Admin functionality
  */
-// require( TEMPLATEPATH . '/admin/class-admin-text-editor.php' );
 if ( is_admin() )
 	new \ItalyStrap\Admin\Admin_Text_editor;
+
 /**
  * Admin customizer
  */
-// require( TEMPLATEPATH . '/admin/class-custom-meta-box.php' );
 $metabox = new \ItalyStrap\Admin\Custom_Meta_Box;
 add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );
-/**
- * Admin customizer
- */
-// require( TEMPLATEPATH . '/admin/class-customizer.php' );
-// require( TEMPLATEPATH . '/admin/textarea/textarea-custom-control.php' );
-// require( TEMPLATEPATH . '/admin/class-customizer-check-control.php' );
-// require( TEMPLATEPATH . '/admin/class-customizer-google-font-dropdown-control.php' );
 
 /**
  * Add field for adding glyphicon in menu
  */
-// require( TEMPLATEPATH . '/admin/class-italystrap-admin-menu-custom-field.php' );
-	new ItalyStrap_Add_Admin_Menu_Custom_Field();
+new ItalyStrap_Add_Admin_Menu_Custom_Field();
 
 /**
  * Wp Editor in Category description
  */
-// require( TEMPLATEPATH . '/admin/class-italystrap-category-editor.php' );
 if ( is_admin() )
 	new \ItalyStrapAdminCategoryEditor;
-
-/*******************************************************************
- *
- * Start Core functionality, don't touch that, extend class instead
- *
- *******************************************************************/
-
-/**
- * General Template functions
- */
-require locate_template( 'core/general-functions.php' );
-
-/**
- * Load custom walker menu class file
- */
-require locate_template( 'core/class-bootstrap-nav-menu.php' );
-
-require( 'core/class-navbar.php' );
-
-/**
- * Add new Class for Breadcrumbs
- */
-require locate_template( '/core/ItalyStrapBreadcrumbs.php' );
-
-/**
- * Add analytics script
- */
-require locate_template( '/core/analytics.php' );
-
-/**
- * Custom function for images.
- */
-require locate_template( '/core/images.php' );
-
-/**
- * Class for template functions
- * Depend of images.php
- *
- * @todo Da mettere a posto, al momento non fa nulla
- */
-require locate_template( '/core/class-italystrap-template-functions.php' );
-
-/**
- * Class for Excerpt
- */
-require locate_template( '/core/class-italystrap-excerpt.php' );
-
-/**
- * Sidebar class.
- */
-require locate_template( '/core/class-italystrap-sidebars.php' );
-
-/**
- * New class for comments and comments form functionality
- */
-require locate_template( '/core/class-italystrap-comments.php' );
 
 /*************************************************************************
  *
  * Start custom functionality, you can touch that, please use child theme
  *
  *************************************************************************/
+
+/**
+ * Custom function for images.
+ */
+require locate_template( '/lib/images.php' );
+
+/**
+ * General Template functions
+ */
+require locate_template( '/lib/general-functions.php' );
+
+/**
+ * Add analytics script
+ */
+require locate_template( '/lib/analytics.php' );
 
 /**
  * Activation options, added pointer for theme instructions.

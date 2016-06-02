@@ -26,7 +26,6 @@
   ],
   "devDependencies": {
     "Mobile-Detect": "git://github.com/serbanghita/Mobile-Detect.git",
-    "TGM-Plugin-Activation": "git://github.com/thomasgriffin/TGM-Plugin-Activation.git",
     "bootstrap": "latest",
     "bootstrap-sass": "latest",
     "font-awesome": "latest",

@@ -1,7 +1,11 @@
-<?php namespace ItalyStrap\Admin;
+<?php
+
+namespace ItalyStrap\Admin;
 
 use ItalyStrap\Core as Core;
 
+use WP_Customize_Manager;
+use WP_Customize_Control;
 use WP_Customize_Color_Control;
 use	WP_Customize_Media_Control;
 use	Textarea_Custom_Control;
@@ -52,6 +56,45 @@ class Customizer{
 	function __construct() {
 
 		$this->colophon_default_text = apply_filters( 'italystrap_colophon_default_text', Core\colophon_default_text() );
+
+		$this->variants = array(
+			'100'		=> __( '100', 'italystrap' ),
+			'100italic'	=> __( '100italic', 'italystrap' ),
+			'200'		=> __( '200', 'italystrap' ),
+			'200italic'	=> __( '200italic', 'italystrap' ),
+			'300'		=> __( '300', 'italystrap' ),
+			'300italic'	=> __( '300italic', 'italystrap' ),
+			'regular'	=> __( 'regular', 'italystrap' ),
+			'italic'	=> __( 'italic', 'italystrap' ),
+			'500'		=> __( '500', 'italystrap' ),
+			'500italic'	=> __( '500italic', 'italystrap' ),
+			'600'		=> __( '600', 'italystrap' ),
+			'600italic'	=> __( '600italic', 'italystrap' ),
+			'700'		=> __( '700', 'italystrap' ),
+			'700italic'	=> __( '700italic', 'italystrap' ),
+			'800'		=> __( '800', 'italystrap' ),
+			'800italic'	=> __( '800italic', 'italystrap' ),
+			'900'		=> __( '900', 'italystrap' ),
+			'900italic'	=> __( '900italic', 'italystrap' ),
+		);
+
+		$this->subsets = array(
+			'bengali'		=> __( 'Bengali', 'italystrap' ),
+			'cyrillic'		=> __( 'Cyrillic', 'italystrap'),
+			'cyrillic-ext'	=> __( 'Cyrillic Extended', 'italystrap'),
+			'devanagari'	=> __( 'Devanagari', 'italystrap'),
+			'greek'			=> __( 'Greek', 'italystrap'),
+			'greek-ext'		=> __( 'Greek Extended', 'italystrap'),
+			'gujarati'		=> __( 'Gujarati', 'italystrap'),
+			'hebrew'		=> __( 'Hebrew', 'italystrap'),
+			'khmer'			=> __( 'Khmer', 'italystrap'),
+			'latin'			=> __( 'Latin', 'italystrap'),
+			'latin-ext'		=> __( 'Latin Extended', 'italystrap'),
+			'tamil'			=> __( 'Tamil', 'italystrap'),
+			'telugu'		=> __( 'Telugu', 'italystrap'),
+			'thai'			=> __( 'Thai', 'italystrap'),
+			'vietnamese'	=> __( 'Vietnamese', 'italystrap'),
+		);
 
 		// /**
 		//  * Setup the Theme Customizer settings and controls...
@@ -435,11 +478,12 @@ class Customizer{
 		/**
 		 * Define a new section for typography
 		 */
-		$wp_customize->add_section( 'typography',
+		$wp_customize->add_section(
+			'typography',
 			array(
 				'title' => __( 'Typography', 'ItalyStrap' ),
 				'description' => __( 'Chose typography style', 'ItalyStrap' ),
-				'panel' => $this->panel, // Not typically needed.
+				// 'panel' => $this->panel, // Not typically needed.
 				'priority' => 160,
 				'capability' => $this->capability,
 				'theme_supports' => '', // Rarely needed.
@@ -447,10 +491,10 @@ class Customizer{
 		);
 
 		/**
-		 * Add a textarea control for custom css
+		 * Add a textarea control for typography
 		 */
 		$wp_customize->add_setting(
-			'typography',
+			'body_font_family',
 			array(
 				'default'        => '',
 				'type' => 'theme_mod',
@@ -463,13 +507,163 @@ class Customizer{
 		$wp_customize->add_control(
 			new Google_Font_Dropdown_Custom_Control(
 				$wp_customize,
-				'typography',
+				'body_font_family',
 				array(
-					'label'   => __( 'Typography', 'ItalyStrap' ),
-					'description' => __( 'Chose typography style', 'ItalyStrap' ),
+					'label'   => __( 'Body font family', 'ItalyStrap' ),
+					'description' => __( 'Typography in all body', 'ItalyStrap' ),
 					'section' => 'typography',
-					'settings'   => 'typography',
+					'settings'   => 'body_font_family',
 					'priority' => 10,
+				)
+			)
+		);
+
+		/**
+		 * Add a textarea control for typography
+		 */
+		$wp_customize->add_setting(
+			'body_font_variants',
+			array(
+				'default'        => '',
+				'type' => 'theme_mod',
+				'capability' => $this->capability,
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+
+		$wp_customize->add_control(
+			new Customize_Select_Multiple_Control(
+				$wp_customize,
+				'body_font_variants',
+				array(
+					'label'   => __( 'Body font family variants', 'ItalyStrap' ),
+					'description' => __( 'Chose the weight of the font', 'ItalyStrap' ),
+					'section' => 'typography',
+					'settings'   => 'body_font_variants',
+					'priority' => 10,
+					'default'		=> 'regular',
+					'choices'		=> $this->variants,
+				)
+			)
+		);
+
+		/**
+		 * Add a textarea control for typography
+		 */
+		$wp_customize->add_setting(
+			'body_font_subsets',
+			array(
+				'default'		=> '',
+				'type' => 'theme_mod',
+				'capability' => $this->capability,
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+
+		$wp_customize->add_control(
+			new Customize_Select_Multiple_Control(
+				$wp_customize,
+				'body_font_subsets',
+				array(
+					'label'			=> __( 'Body font family subset', 'ItalyStrap' ),
+					'description'	=> __( 'Chose ', 'ItalyStrap' ),
+					'section'		=> 'typography',
+					'settings'		=> 'body_font_subsets',
+					'priority'		=> 10,
+					'default'		=> 'latin',
+					'choices'		=> $this->subsets,
+				)
+			)
+		);
+
+		/**
+		 * Add a textarea control for typography
+		 */
+		$wp_customize->add_setting(
+			'heading_font_family',
+			array(
+				'default'        => '',
+				'type' => 'theme_mod',
+				'capability' => $this->capability,
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+
+		$wp_customize->add_control(
+			new Google_Font_Dropdown_Custom_Control(
+				$wp_customize,
+				'heading_font_family',
+				array(
+					'label'   => __( 'Headings font family', 'ItalyStrap' ),
+					'description' => __( 'H1, H2, H3, H4, H5, H6', 'ItalyStrap' ),
+					'section' => 'typography',
+					'settings'   => 'heading_font_family',
+					'priority' => 10,
+				)
+			)
+		);
+
+		/**
+		 * Add a textarea control for typography
+		 */
+		$wp_customize->add_setting(
+			'heading_font_variants',
+			array(
+				'default'        => '',
+				'type' => 'theme_mod',
+				'capability' => $this->capability,
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Control(
+				$wp_customize,
+				'heading_font_variants',
+				array(
+					'label'   => __( 'Headings font family variants', 'ItalyStrap' ),
+					'description' => __( 'Chose the weight of the font', 'ItalyStrap' ),
+					'section' => 'typography',
+					'settings'   => 'heading_font_variants',
+					'priority' => 10,
+					'type'		=> 'select',
+					'default'		=> 'regular',
+					'choices'		=> $this->variants,
+				)
+			)
+		);
+
+		/**
+		 * Add a textarea control for typography
+		 */
+		$wp_customize->add_setting(
+			'heading_font_subsets',
+			array(
+				'default'        => '',
+				'type' => 'theme_mod',
+				'capability' => $this->capability,
+				'transport' => 'postMessage',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Control(
+				$wp_customize,
+				'heading_font_subsets',
+				array(
+					'label'   => __( 'Headings font family subsets', 'ItalyStrap' ),
+					'description' => __( 'Chose the weight of the font', 'ItalyStrap' ),
+					'section' => 'typography',
+					'settings'   => 'heading_font_subsets',
+					'priority' => 10,
+					'type'		=> 'select',
+					'default'		=> 'regular',
+					'choices'		=> $this->subsets,
 				)
 			)
 		);
@@ -528,6 +722,8 @@ class Customizer{
 		// $wp_customize->get_section( 'header_image' )->active_callback = 'is_front_page';
 		// $wp_customize->get_control( 'blogdescription' )->active_callback = 'is_front_page';
 		$this->set_theme_mod_from_options();
+
+		do_action( 'italystrap_after_register_customizer', $wp_customize );
 
 	}
 
@@ -604,16 +800,16 @@ class Customizer{
 	 *
 	 * Used by hook: 'customize_preview_init'
 	 *
-	 * @see add_action('customize_preview_init',$func)
+	 * @see add_action( 'customize_preview_init', $func )
 	 * @since ItalyStrap 1.0
 	 */
 	public function live_preview() {
 		wp_enqueue_script(
-			'italystrap-theme-customizer', // Give the script a unique ID
-			ITALYSTRAP_PARENT_PATH . '/admin/js/theme-customizer.min.js', // Define the path to the JS file
-			array( 'jquery', 'customize-preview' ), // Define dependencies.
-			null, // Define a version (optional).
-			true // Specify whether to put in footer (leave this true).
+			'italystrap-theme-customizer',
+			ITALYSTRAP_PARENT_PATH . '/admin/js/theme-customizer.min.js',
+			array( 'jquery', 'customize-preview' ),
+			null,
+			true
 		);
 	}
 

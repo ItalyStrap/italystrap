@@ -9,6 +9,7 @@
 namespace ItalyStrap\Admin;
 
 use WP_Customize_Control;
+use WP_Customize_Manager;
 
 if ( ! class_exists( 'WP_Customize_Control' ) ) {
 	return null;
@@ -18,6 +19,16 @@ if ( ! class_exists( 'WP_Customize_Control' ) ) {
  * A class to create a dropdown for all google fonts
  */
 class Google_Font_Dropdown_Custom_Control extends WP_Customize_Control {
+
+
+    /**
+     * The type of customize control being rendered.
+     *
+     * @since  1.0.0
+     * @access public
+     * @var    string
+     */
+    public $type = 'checkbox-multiple';
 
 	/**
 	 * Fonts container
@@ -29,13 +40,15 @@ class Google_Font_Dropdown_Custom_Control extends WP_Customize_Control {
 	/**
 	 * Init the constructor
 	 *
-	 * @param object $manager [description]
+	 * @param WP_Customize_Manager $manager [description]
 	 * @param [type] $id      [description]
 	 * @param array  $args    [description]
 	 * @param array  $options [description]
 	 */
-	public function __construct( $manager, $id, $args = array(), $options = array() ) {
+	public function __construct( WP_Customize_Manager $manager, $id, array $args = array() ) {
+
 		$this->fonts = $this->get_fonts();
+
 		parent::__construct( $manager, $id, $args );
 	}
 
@@ -45,18 +58,32 @@ class Google_Font_Dropdown_Custom_Control extends WP_Customize_Control {
 	public function render_content() {
 
 		if ( ! empty( $this->fonts ) ) {
+			// d( $this->fonts );
+			// d( $this->value() );
+			// d( get_theme_mods() );
 			?>
-                <label>
-                    <span class="customize-category-select-control"><?php echo esc_html( $this->label ); ?></span>
-                    <select <?php $this->link(); ?>>
-                        <?php
+				<label>
+					<span class="customize-category-select-control"><?php echo esc_html( $this->label ); ?></span>
+
+					<?php $multi_values = ! is_array( $this->value() ) ? explode( ',', $this->value() ) : $this->value(); ?>
+
+					<select class="widefat" <?php $this->link(); ?>>
+						<?php
 						foreach ( $this->fonts as $k => $v ) {
-							printf( '<option value="%s" %s>%s</option>', $k, selected( $this->value(), $k, false ), $v->family );
+							printf(
+								'<option value="%s" %s>%s</option>',
+								$k,
+								selected( $this->value(), $k, false ),
+								$v->family
+							);
 						}
 						?>
-                    </select>
-                </label>
-            <?php
+					</select>
+					<?php if ( ! empty( $this->description ) ) : ?>
+						<span class="description customize-control-description"><?php echo $this->description; ?></span>
+					<?php endif; ?>
+				</label>
+			<?php
 		}
 	}
 
@@ -69,35 +96,53 @@ class Google_Font_Dropdown_Custom_Control extends WP_Customize_Control {
 	 */
 	public function get_fonts( $amount = 30 ) {
 
-		$select_directory = STYLESHEETPATH . '/admin/';
+		// delete_transient( 'italystrap_google_fonts' );
 
-		$final_select_directory = '';
+		if ( false === ( $fonts = get_transient( 'italystrap_google_fonts' ) ) ) {
 
-		if ( is_dir( $select_directory ) ) {
-			$final_select_directory = $select_directory;
+			$font_content = wp_remote_get( $this->google_api, array( 'sslverify' => false ) );
+
+			$fonts = wp_remote_retrieve_body( $font_content );
+
+			$fonts = json_decode( $fonts );
+
+			set_transient( 'italystrap_google_fonts', $fonts, MONTH_IN_SECONDS );
+
 		}
 
-		$font_file = $final_select_directory . '/cache/google-web-fonts.txt';
+		return $fonts->items;
 
-		if ( file_exists( $font_file ) && WEEK_IN_SECONDS < filemtime( $font_file ) ) {
-			$content = json_decode( file_get_contents( $font_file ) );
-		} else {
+		// $select_directory = STYLESHEETPATH . '/admin/';
 
-			$google_api = 'https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyAukcQy3eDah9zhEKEwdBKnMbB1egGVpuM';
+		// $final_select_directory = '';
 
-			$font_content = wp_remote_get( $google_api, array( 'sslverify' => false ) );
+		// if ( is_dir( $select_directory ) ) {
+		// 	$final_select_directory = $select_directory;
+		// }
 
-			$fp = fopen( $font_file, 'w' );
-			fwrite( $fp, $font_content['body'] );
-			fclose( $fp );
+		// $font_file = $final_select_directory . '/cache/google-web-fonts.txt';
 
-			$content = json_decode( $font_content['body'] );
-		}
+		// if ( file_exists( $font_file ) && WEEK_IN_SECONDS < filemtime( $font_file ) ) {
+		// 	$content = json_decode( file_get_contents( $font_file ) );
+		// } else {
 
-		if ( 'all' === $amount ) {
-			return $content->items;
-		} else {
-			return array_slice( $content->items, 0, $amount );
-		}
+		// 	$google_api = 'https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyAukcQy3eDah9zhEKEwdBKnMbB1egGVpuM';
+
+		// 	$font_content = wp_remote_get( $google_api, array( 'sslverify' => false ) );
+
+		// 	$fp = fopen( $font_file, 'w' );
+		// 	fwrite( $fp, $font_content['body'] );
+		// 	fclose( $fp );
+
+		// 	$content = json_decode( $font_content['body'] );
+		// }
+
+		// // d( $content );
+
+		// if ( 'all' === $amount ) {
+		// 	return $content->items;
+		// } else {
+		// 	return array_slice( $content->items, 0, $amount );
+		// }
 	}
 }

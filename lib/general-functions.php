@@ -262,7 +262,7 @@ function add_class_button_to_cancel_reply( $formatted_link, $link, $text ){
 	return str_replace( '<a ', '<a class="btn btn-danger btn-xs" ', $formatted_link);
 
 }
-add_filter( 'cancel_comment_reply_link', 'add_class_button_to_cancel_reply', 10, 3 );
+add_filter( 'cancel_comment_reply_link', '\ItalyStrap\Core\add_class_button_to_cancel_reply', 10, 3 );
 
 /**
  * Add a rel="nofollow" and Bootstrap button class to the comment reply links
@@ -281,7 +281,7 @@ function add_nofollow_and_bootstrap_button_css_to_reply_link( $link ) {
 
 	return $link;
 }
-add_filter( 'comment_reply_link', 'add_nofollow_and_bootstrap_button_css_to_reply_link' );
+add_filter( 'comment_reply_link', '\ItalyStrap\Core\add_nofollow_and_bootstrap_button_css_to_reply_link' );
 
 /**
  * Display a message if comments are closed
@@ -350,7 +350,7 @@ function comment_form_args( $comment_author, $user_identity ){
  * @since ItalyStrap 3.1
  * @return string Return pagination
  */
-function italystrap_comment_pagination(){
+function comment_pagination(){
 
 	if ( get_comment_pages_count() > 1 && get_option('page_comments') ){ ?>
 

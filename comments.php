@@ -49,11 +49,11 @@ if ( have_comments() && ! in_array( 'hide_comments', $layout_settings, true ) ) 
 			)
 		);
 
-		italystrap_comment_pagination();
+		\ItalyStrap\Core\comment_pagination();
 			echo '<ol class="parent list-unstyled">';
 			wp_list_comments( $wp_list_comments_args );
 			echo '</ol>';
-		italystrap_comment_pagination();
+		\ItalyStrap\Core\comment_pagination();
 		?>
 	</section><!-- /#comments -->
 <?php elseif ( comments_open() ) : ?>

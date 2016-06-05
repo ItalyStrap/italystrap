@@ -152,14 +152,14 @@ if ( is_admin() ){
 }
 
 /**
- * Custom function for images.
- */
-require locate_template( '/lib/images.php' );
-
-/**
  * General Template functions
  */
 require locate_template( '/lib/general-functions.php' );
+
+/**
+ * Custom function for images.
+ */
+require locate_template( '/lib/images.php' );
 
 /**
  * Activation options, added pointer for theme instructions.

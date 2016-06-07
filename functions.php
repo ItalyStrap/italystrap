@@ -111,12 +111,6 @@ require( TEMPLATEPATH . '/vendor/autoload.php' );
 // $injector = new \Auryn\Injector;
 
 /**
- * TGM class for required plugin
- */
-if ( is_admin() )
-	require locate_template( '/includes/class-tgm-plugin-required.php' );
-
-/**
  * Mobile Detect CLass
  * Load only if class not exist
  */
@@ -127,12 +121,22 @@ if ( ! class_exists( 'Mobile_Detect' ) ) {
 
 }
 
-if ( is_admin() ){
+if ( is_admin() ) {
+
+	$required_plugins = new \ItalyStrap\Admin\Register_Required_Plugins;
+	add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
 
 	/**
 	 * Admin functionality
 	 */
-	new \ItalyStrap\Admin\Admin_Text_editor;
+	$admin_text_editor = new \ItalyStrap\Admin\Admin_Text_Editor;
+
+	add_filter( 'mce_buttons_2', array( $admin_text_editor, 'reveal_hidden_tinymce_buttons' ) );
+
+	/**
+	 * Add Next Page Button in First Row
+	 */
+	add_filter( 'mce_buttons', array( $admin_text_editor, 'break_page_button' ), 1, 2 );
 
 	/**
 	 * Admin customizer

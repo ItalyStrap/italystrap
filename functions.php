@@ -121,6 +121,21 @@ if ( ! class_exists( 'Mobile_Detect' ) ) {
 
 }
 
+/**
+ * Add field for adding glyphicon in menu
+ *
+ * @var Handle_Custom_Walker_Nav_Menu_Edit
+ */
+$custom_admin_walker_nav_menu = new \ItalyStrap\Admin\Handle_Custom_Walker_Nav_Menu_Edit();
+
+// add custom menu fields to menu
+add_filter( 'wp_setup_nav_menu_item', array( $custom_admin_walker_nav_menu, 'add_custom_nav_fields' ) );
+// save menu custom fields
+add_action( 'wp_update_nav_menu_item', array( $custom_admin_walker_nav_menu, 'update_custom_nav_fields'), 10, 3 );	
+// edit menu walker
+add_filter( 'wp_edit_nav_menu_walker', array( $custom_admin_walker_nav_menu, 'edit_nav_menu_walker'), 10, 2 );
+add_action( 'wp_fields_nav_menu_item', array( $custom_admin_walker_nav_menu, 'add_new_field' ), 10, 2 );
+
 if ( is_admin() ) {
 
 	$required_plugins = new \ItalyStrap\Admin\Register_Required_Plugins;
@@ -143,11 +158,6 @@ if ( is_admin() ) {
 	 */
 	$metabox = new \ItalyStrap\Admin\Custom_Meta_Box;
 	add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );
-
-	/**
-	 * Add field for adding glyphicon in menu
-	 */
-	new ItalyStrap_Add_Admin_Menu_Custom_Field();
 
 	/**
 	 * Wp Editor in Category description

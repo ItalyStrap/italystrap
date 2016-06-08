@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * Navigation Menu template functions for Bootstrap CSS
  *
@@ -7,6 +7,12 @@
  *
  * @since 4.0.0 New class definitions
  */
+
+namespace ItalyStrap\Core;
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
 
 use \Walker_Nav_Menu;
 
@@ -39,7 +45,13 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 	 */
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat( "\t", $depth );
-		$output .= "\n$indent<ul role=\"menu\" class=\" dropdown-menu sub-menu\">\n";
+
+		$atts = array(
+			'role'	=> 'menu',
+			'class'	=> 'dropdown-menu sub-menu',
+		);
+
+		$output .= "\n" . $indent . '<ul' . $this->get_attributes( $atts ) . '>' . "\n";
 	}
 
 	/**
@@ -73,6 +85,8 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 		 */
 		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
 
+		$_atts = array();
+
 		/**
 		 * Dividers, Headers or Disabled
 		 * =============================
@@ -88,15 +102,30 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 		 */
 		if ( 0 === strcasecmp( $classes[0], 'divider' ) && 1 === $depth ) {
 
-			$output .= $indent . '<li role="presentation" class="divider">';
+			$_atts = array(
+				'role'	=> 'presentation',
+				'class'	=> 'divider',
+			);
+
+			$output .= $indent . '<li' . $this->get_attributes( $_atts ) . '>';
 
 		} else if ( 0 === strcasecmp( $classes[0], 'dropdown-header' ) && 1 === $depth ) {
 
-			$output .= $indent . '<li role="presentation" class="dropdown-header">' . esc_attr( $item->title );
+			$_atts = array(
+				'role'	=> 'presentation',
+				'class'	=> 'dropdown-header',
+			);
+
+			$output .= $indent . '<li' . $this->get_attributes( $_atts ) . '>' . esc_attr( $item->title );
 
 		} else if ( strcasecmp( $classes[0], 'disabled' ) === 0 ) {
 
-			$output .= $indent . '<li role="presentation" class="disabled"><a href="#">' . esc_attr( $item->title ) . '</a>';
+			$_atts = array(
+				'role'	=> 'presentation',
+				'class'	=> 'disabled',
+			);
+
+			$output .= $indent . '<li' . $this->get_attributes( $_atts ) . '><a href="#">' . esc_attr( $item->title ) . '</a>';
 		} else {
 
 			$class_names = $value = '';
@@ -133,7 +162,9 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 				$class_names .= ' active';
 			}
 
-			$class_names = $class_names ? ' class="nav-item ' . esc_attr( $class_names ) . '"' : '';
+			if ( $class_names ) {
+				$_atts['class'] = 'nav-item ' . $class_names;
+			} 
 
 			/**
 			 * Filter the ID applied to a menu item's list item element.
@@ -146,13 +177,16 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 			 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
 			 * @param int    $depth   Depth of menu item. Used for padding.
 			 */
-			$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args, $depth );
-			$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+			$_atts['id'] = apply_filters( 'nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args, $depth );
 
-			$output .= $indent . '<li' . $id . $value . $class_names .' itemprop="name">';
+			$_atts['itemprop'] = 'name';
+
+			$output .= $indent . '<li' . $this->get_attributes( $_atts ) .'>';
+
+			unset( $_atts );
 
 			$atts = array();
-			$atts['title']  = ! empty( $item->title )	? $item->title	: '';
+			$atts['title']  = ! empty( $item->attr_title )	? $item->attr_title	: '';
 			$atts['target'] = ! empty( $item->target )	? $item->target	: '';
 			$atts['rel']    = ! empty( $item->xfn )		? $item->xfn	: '';
 
@@ -192,8 +226,6 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 			 */
 			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
 
-			$attributes = $this->get_attributes( $atts );
-
 			/** This filter is documented in wp-includes/post-template.php */
 			$title = apply_filters( 'the_title', $item->title, $item->ID );
 
@@ -211,6 +243,20 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 
 			$item_output = $args->before;
 
+			/**
+			 * This is the new custom field for this nav menu
+			 * You can also do this with hook 'wp_setup_nav_menu_item':
+			 * function my_custom_field( $menu_item ) {
+			 * 		$menu_item->glyphicon = get_post_meta( $menu_item->ID, '_menu_item_glyphicon', true );
+			 *
+			 * 	return $menu_item;
+			 * }
+			 * add_filter( 'wp_setup_nav_menu_item', 'my_custom_field' );
+			 *
+			 * @var string
+			 */
+			// $glyphicon = get_post_meta( $item->ID, '_menu_item_glyphicon', true );
+
 			/*
 			 * Glyphicons
 			 * ===========
@@ -220,16 +266,18 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 			 */
 			if ( ! empty( $item->glyphicon ) ) {
 
-				$item_output .= '<a'. $attributes .'><span class="' . esc_attr( $item->glyphicon ) . '"></span>&nbsp;';
+				$item_output .= '<a' . $this->get_attributes( $atts ) . '><span' . $this->get_attributes( array( 'class' => $item->glyphicon ) ) . '></span>&nbsp;';
 
 			} else {
 
-				$item_output .= '<a'. $attributes .' itemprop="url">';
+				$atts['itemprop'] = 'url';
+
+				$item_output .= '<a' . $this->get_attributes( $atts ) . '>';
 
 			}
 
 			$item_output .= $args->link_before . $title . $args->link_after;
-			$item_output .= ( $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
+			$item_output .= ( $args->has_children && 0 === $depth ) ? ' <span' . $this->get_attributes( array( 'class' => 'caret' ) ) . '></span></a>' : '</a>';
 			$item_output .= $args->after;
 
 			/**
@@ -294,7 +342,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 	 * @param  array $atts Array with html attribute.
 	 * @return string       Return the string with attribute
 	 */
-	protected static function get_attributes( $atts = array() ) {
+	protected static function get_attributes( array $atts = array() ) {
 
 		$attributes = '';
 		foreach ( $atts as $attr => $value ) {

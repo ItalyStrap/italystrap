@@ -337,11 +337,11 @@ class Navbar {
 
 		$output = '';
 
-		$output .= '<div' . $this->get_html_tag_attr( $a ) . '>';
+		$output .= '<nav' . $this->get_html_tag_attr( $a ) . '>';
 
 		$output .= $this->get_navbar_container();
 
-		$output .= '</div>';
+		$output .= '</nav>';
 
 		return apply_filters( 'italystrap_nav_container', $output, $this->navbar_id );
 

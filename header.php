@@ -26,8 +26,7 @@
 </head>
 <body <?php body_class(); ?>>
 	<?php do_action( 'body_open' ); ?>
-<div class="wrapper">
+<div <?php Core\get_attr( 'wrapper', array( 'class' => 'wrapper' ), true ); ?>>
 	<?php do_action( 'wrapper_open' );
-
 
 	do_action( 'italystrap_content_header' );

@@ -188,6 +188,50 @@ function get_the_colophon( $italystrap_theme_mods ) {
 }
 
 /**
+ * Build list of attributes into a string and apply contextual filter on string.
+ *
+ * The contextual filter is of the form `italystrap_attr_{context}_output`.
+ *
+ * @since 4.0.0
+ *
+ * @param  string $context    The context, to build filter name.
+ * @param  array  $attributes Optional. Extra attributes to merge with defaults.
+ *
+ * @return string String of HTML attributes and values.
+ */
+function get_attr( $context, array $attr = array(), $echo = false ) {
+
+	$html = '';
+
+	foreach ( $attr as $key => $value ) {
+
+		if ( empty( $value ) ) {
+			continue;
+		}
+
+		if ( true === $value ) {
+
+			$html .= esc_html( $key ) . ' ';
+		} else {
+
+			$html .= sprintf(
+				' %s="%s"',
+				esc_html( $key ),
+				( 'href' === $key ) ? esc_url( $value ) : esc_attr( $value )
+			);
+		}
+	}
+
+	$html = apply_filters( "italystrap_attr_{$context}_output", $html, $attr, $context );
+
+	if ( ! $echo ) {
+		return $html;
+	}
+
+	echo $html;
+}
+
+/**
  * Render the HTML tag attributes from an array
  *
  * @param  array $attr The HTML attributes with key value.

@@ -344,15 +344,17 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 	 */
 	protected static function get_attributes( array $atts = array() ) {
 
-		$attributes = '';
-		foreach ( $atts as $attr => $value ) {
-			if ( ! empty( $value ) ) {
-				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
-				$attributes .= ' ' . $attr . '="' . $value . '"';
-			}
-		}
+		// $attributes = '';
+		// foreach ( $atts as $attr => $value ) {
+		// 	if ( ! empty( $value ) ) {
+		// 		$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+		// 		$attributes .= ' ' . $attr . '="' . $value . '"';
+		// 	}
+		// }
 
-		return $attributes;
+		return get_attr( 'nav', $atts );
+
+		// return $attributes;
 	}
 
 	/**

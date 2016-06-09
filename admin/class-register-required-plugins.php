@@ -229,12 +229,12 @@ class Register_Required_Plugins {
 			/**
 			 * Default parent menu slug.
 			 */
-			'parent_menu_slug'	=> 'themes.php',
+			'parent_slug'	=> 'themes.php',
 
 			/**
 			 * Default parent URL slug.
 			 */
-			'parent_url_slug'	=> 'themes.php',
+			'parent_slug'	=> 'themes.php',
 
 			/**
 			 * Menu slug.

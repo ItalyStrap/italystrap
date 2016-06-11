@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap;
+<?php
 /**
  * The Header for Italystrap
  *
@@ -12,6 +12,8 @@
  * @package ItalyStrap
  * @since ItalyStrap 1.0
  */
+
+namespace ItalyStrap;
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" <?php language_attributes(); ?> prefix="og: http://ogp.me/ns#"> <![endif]-->
@@ -22,9 +24,9 @@
 	<meta charset="UTF-8" >
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<?php wp_head();?>
+	<?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php Core\get_attr( 'body', array( 'class' => join( ' ', get_body_class() ) ), true ); ?>>
 	<?php do_action( 'body_open' ); ?>
 <div <?php Core\get_attr( 'wrapper', array( 'class' => 'wrapper' ), true ); ?>>
 	<?php do_action( 'wrapper_open' );

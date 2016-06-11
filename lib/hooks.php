@@ -1,10 +1,16 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * ItalyStrap Hooks
  *
  * @since 4.0.0
  * @package ItalyStrap\Core
  */
+
+namespace ItalyStrap\Core;
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
 
 /**
  * Theme init

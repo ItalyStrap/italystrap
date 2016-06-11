@@ -1,4 +1,20 @@
-<?php namespace ItalyStrap;
+<?php
+/**
+ * Template file for Author Info Box
+ * s
+ *
+ * @link [URL]
+ * @since 1.0.0
+ *
+ * @package ItalyStrap
+ */
+
+namespace ItalyStrap;
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
 /**
  * Author object
  * @var object

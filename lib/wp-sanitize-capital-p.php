@@ -19,7 +19,7 @@ remove_filter( 'comment_text', 'capital_P_dangit', 31 );
  * @param string $text sanitize WordPress word.
  * @return string Return string sanitized
  */
-function ItaliStrap_capital_P_dangit( $text ) {
+function italyStrap_capital_P_dangit( $text ) {
 
 	return str_replace(
 		array( ' Wordpress', '&#8216;Wordpress', 'Wordpress', '>Wordpress', '(Wordpress', ' wordpress', '&#8216;wordpress', 'wordpress', '>wordpress', '(wordpress' ),
@@ -41,8 +41,8 @@ function ItaliStrap_capital_P_dangit( $text ) {
  */
 function ItalyStrap_P_dangit_sanitize_content( $data, $postarr ) {
 
-	$data['post_title'] = ItaliStrap_capital_P_dangit( $data['post_title'] );
-	$data['post_content'] = ItaliStrap_capital_P_dangit( $data['post_content'] );
+	$data['post_title'] = italyStrap_capital_P_dangit( $data['post_title'] );
+	$data['post_content'] = italyStrap_capital_P_dangit( $data['post_content'] );
 
 	return $data;
 }
@@ -60,7 +60,7 @@ add_filter( 'wp_insert_post_data' , 'ItalyStrap_P_dangit_sanitize_content' , '99
  */
 function ItalyStrap_P_dangit_sanitize_comments( $commentdata ) {
 
-	$commentdata['comment_content'] = ItaliStrap_capital_P_dangit( $commentdata['comment_content'] );
+	$commentdata['comment_content'] = italyStrap_capital_P_dangit( $commentdata['comment_content'] );
 
 	return $commentdata;
 }
@@ -78,7 +78,7 @@ add_filter( 'preprocess_comment' , 'ItalyStrap_P_dangit_sanitize_comments' );
  */
 function ItalyStrap_P_dangit_sanitize_comments_update( $comment_content ) {
 
-	$comment_content = ItaliStrap_capital_P_dangit( $comment_content );
+	$comment_content = italyStrap_capital_P_dangit( $comment_content );
 
 	return $comment_content;
 }

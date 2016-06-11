@@ -196,21 +196,6 @@ require locate_template( '/lib/cleanup.php' );
 require locate_template( '/lib/script.php' );
 
 /**
- * Register Custom Gallery:https://github.com/twittem/wp-bootstrap-gallery.
- */
-//require locate_template( '/lib/wp_bootstrap_gallery.php' );
-
-/**
- * New gallery.
- */
-require locate_template( '/lib/gallery.php' );
-
-/**
- * Relative URL's
- */
-require locate_template( '/lib/relative-urls.php' );
-
-/**
  * Add htaccess from HTML5 Boilerplate
  *
  * @link   [<description>]https://github.com/roots/wp-h5bp-htaccess.
@@ -223,11 +208,6 @@ require locate_template( '/lib/wp-h5bp-htaccess.php' );
 require locate_template( '/lib/pagination.php' );
 
 /**
- * Related Post.
- */
-require locate_template( '/lib/related_post.php' );
-
-/**
  * Users meta.
  */
 require locate_template( '/lib/users_meta.php' );
@@ -238,29 +218,14 @@ require locate_template( '/lib/users_meta.php' );
 require locate_template( '/lib/schema.php' );
 
 /**
- * Custom taxonomy.
- */
-require locate_template( '/lib/custom_taxonomy.php' );
-
-/**
  * New style for tag cloud
  */
 require locate_template( '/lib/tag_cloud.php' );
 
 /**
- * CSS above the fold
- */
-//require locate_template( '/lib/css-above-the-fold.php' );
-
-/**
  * Function for Post/page password protection Bootstrap style
  */
 require locate_template( '/lib/password_protection.php' );
-
-/**
- * Some function for make wordpress more secure
- */
-require locate_template( '/lib/security.php' );
 
 require locate_template( '/lib/wp-sanitize-capital-p.php' );
 

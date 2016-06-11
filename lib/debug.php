@@ -1,24 +1,20 @@
 <?php
-//Funzione per vedere dipendenze e script caricati nel WP-HEAD http://www.targetweb.it/eliminare-script-caricati-nel-wp-head-di-wordpress/
-
-    // add_action('wp_head', 'debug_scripts_queued');
-    // add_action('wp_head', 'debug_styles_queued');
-    // add_action('init', 'debug_styles_queued');
-
-    
-
+// Funzione per vedere dipendenze e script caricati nel WP-HEAD http://www.targetweb.it/eliminare-script-caricati-nel-wp-head-di-wordpress/
+	// add_action('wp_head', 'debug_scripts_queued');
+	// add_action('wp_head', 'debug_styles_queued');
+	// add_action('init', 'debug_styles_queued');
 function debug_scripts_queued() {
 	global $wp_scripts;
-	var_dump($wp_scripts->in_footer);
-    // echo "<style>pre{display:none;}</style>";
+	var_dump( $wp_scripts->in_footer );
+	// echo "<style>pre{display:none;}</style>";
 	echo '<pre> Script trovati in coda'."\r\n";
 	foreach ( $wp_scripts->queue as $script ) {
 		echo "\r\nScript: ".$script."\r\n";
-		$deps = $wp_scripts->registered[$script]->deps;
-		if ($deps) {
-			echo "Dipende da: ";
-			print_r($deps);
-		}else{
+		$deps = $wp_scripts->registered[ $script ]->deps;
+		if ( $deps ) {
+			echo 'Dipende da: ';
+			print_r( $deps );
+		} else {
 			echo "Non dipende da nessuno\r\n";
 		}
 	}
@@ -28,17 +24,17 @@ function debug_scripts_queued() {
 
 function debug_styles_queued() {
 	global $wp_styles;
-    // var_dump($wp_styles->in_footer);
-	var_dump($wp_styles);
-    // echo "<style>pre{display:none;}</style>";
+	// var_dump($wp_styles->in_footer);
+	var_dump( $wp_styles );
+	// echo "<style>pre{display:none;}</style>";
 	echo '<pre> Script trovati in coda'."\r\n";
 	foreach ( $wp_styles->queue as $script ) {
 		echo "\r\nScript: ".$script."\r\n";
-		$deps = $wp_styles->registered[$script]->deps;
-		if ($deps) {
-			echo "Dipende da: ";
-			print_r($deps);
-		}else{
+		$deps = $wp_styles->registered[ $script ]->deps;
+		if ( $deps ) {
+			echo 'Dipende da: ';
+			print_r( $deps );
+		} else {
 			echo "Non dipende da nessuno\r\n";
 		}
 	}
@@ -47,34 +43,30 @@ function debug_styles_queued() {
 
 
 // var_dump();
-
 // var_dump($wpdb->queries);
-
 // global $wp_filter;
 // var_dump($wp_filter);
-
 // http://www.wprecipes.com/list-all-hooked-wordpress-functions
-function list_hooked_functions( $tag = false ){
+function list_hooked_functions( $tag = false ) {
 
 	global $wp_filter;
-	if ($tag) {
-		$hook[$tag]=$wp_filter[$tag];
-		if (!is_array($hook[$tag])) {
-			trigger_error("Nothing found for '$tag' hook", E_USER_WARNING);
+	if ( $tag ) {
+		$hook[ $tag ] = $wp_filter[ $tag ];
+		if ( ! is_array( $hook[ $tag ] ) ) {
+			trigger_error( "Nothing found for '$tag' hook", E_USER_WARNING );
 			return;
 		}
-	}
-	else {
-		$hook=$wp_filter;
-		ksort($hook);
+	} else {
+		$hook = $wp_filter;
+		ksort( $hook );
 	}
 	echo '<pre>';
-	foreach($hook as $tag => $priority){
+	foreach ( $hook as $tag => $priority ) {
 		echo "<br />&gt;&gt;&gt;&gt;&gt;\t<strong>$tag</strong><br />";
-      // ksort($priority);
-		foreach($priority as $priority => $function){
+		// ksort($priority);
+		foreach ( $priority as $priority => $function ) {
 			echo $priority;
-			foreach($function as $name => $properties) echo "\t$name<br />";
+			foreach ( $function as $name => $properties ) { echo "\t$name<br />"; }
 		}
 	}
 	echo '</pre>';
@@ -84,6 +76,7 @@ function list_hooked_functions( $tag = false ){
 // list_hooked_functions('body_open');
 /**
  * An array with all theme action
+ *
  * @var array
  */
 $theme_action = array(
@@ -108,20 +101,20 @@ $theme_action = array(
 	'footer_container_closed',
 	'footer_closed',
 	'wrapper_closed',
-	'body_closed'
+	'body_closed',
 	);
 
 static $i = 0;
 
 // foreach ($theme_action as $value)
-// 	add_action( $value, 'italystrap_test_action_theme' );
-
+// add_action( $value, 'italystrap_test_action_theme' );
 /**
  * Display the hook in pages
+ *
  * @uses current_filter() https://codex.wordpress.org/Function_Reference/current_filter
  * @return string      Print an HTML tag with border and hooks name
  */
-function italystrap_test_action_theme(){
+function italystrap_test_action_theme() {
 
 	global $i;
 	echo '<div style="padding:10px 0 5px;width:100%;background-color:#777;border: 1px solid black;margin:10px 0"><p style="color:white;font-weight:bold;text-align:center">' . current_filter() . '</p></div>';
@@ -134,17 +127,17 @@ function italystrap_test_action_theme(){
 
 // var_dump($theme_action);
 // var_dump($i);
-
 // var_dump(get_option( 'stylesheet' ));
 // var_dump(get_option( "theme_mods_ItalyStrap" ));
 // var_dump(get_theme_mods());
-
 // add_action('wp','My_Test');
-function My_Test(){
-	var_dump(microtime(true));
-	for ($i=1; $i<100; $i++) { get_option('blogdescription'); }
-		var_dump(microtime(true));
-	for ($i=1; $i<100; $i++) { get_theme_mod('blogdescription'); }
-		var_dump(microtime(true));
+function My_Test() {
+	var_dump( microtime( true ) );
+	for ( $i = 1; $i < 100;
+	$i++ ) { get_option( 'blogdescription' ); }
+		var_dump( microtime( true ) );
+	for ( $i = 1; $i < 100;
+	$i++ ) { get_theme_mod( 'blogdescription' ); }
+		var_dump( microtime( true ) );
 	exit;
-}   
+}

@@ -15,6 +15,10 @@
 
 namespace ItalyStrap;
 
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
 $layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() );
 get_header(); ?>
 <!-- Main Content -->

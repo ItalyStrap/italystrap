@@ -20,11 +20,6 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 add_action( 'after_setup_theme', array( $init, 'theme_setup' ) );
 
 /**
- * General
- */
-add_filter( 'widget_text', 'do_shortcode' ); // Allow shortcode in widget text.
-
-/**
  * Header
  *
  * @see  add_top_menu() in general-functions.php

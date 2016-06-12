@@ -26,7 +26,7 @@
 	<?php endif; ?>
 	<section class="entry-content">
 		<?php if ( has_post_thumbnail() ) { ?>
-			<figure class="<?php echo esc_attr( apply_filters( 'italystrap-figure-thumb-class', 'thumbnail' ) ); ?>">
+			<figure <?php Core\get_attr( 'post_thumbnail', array( 'class' => 'thumbnail' ), true ); ?>>
 		  		<?php
 				the_post_thumbnail(
 					'article-thumb',

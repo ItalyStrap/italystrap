@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap;
+<?php
 /**
  * The template part for displaying a message that posts cannot be found
  *
@@ -7,6 +7,8 @@
  *
  * @todo Add to customizer custom 404 page
  */
+
+namespace ItalyStrap;
 
 ?>
 <section class="no-results not-found">

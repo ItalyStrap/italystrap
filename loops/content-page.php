@@ -25,9 +25,9 @@ $layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() 
 <?php endif; ?>
 
 <?php if ( ! in_array( 'hide_meta', $layout_settings, true ) ) : ?>
-	<footer class="entry-footer">
+
 		<?php get_template_part( 'template/meta' ); ?>
-	</footer>
+
 <?php endif; ?>
 
 <?php if ( is_preview() ) : ?>
@@ -36,56 +36,36 @@ $layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() 
 	</div>  
 <?php endif; ?>
 
-	<section class="entry-content">
+	<?php get_template_part( 'template/content', 'part-featured-image' ); ?>
 
-		<?php if ( has_post_thumbnail() && ! in_array( 'hide_thumb', $layout_settings, true )  ) { ?>
-			<figure class="<?php echo esc_attr( apply_filters( 'italystrap-figure-thumb-class', 'thumbnail' ) ); ?>">
-				<?php
-				if ( is_page_template( 'full-width.php' ) ) {
-					$thumb_size = 'full-width';
-				} else {
-					$thumb_size = 'article-thumb';
-				}
-				the_post_thumbnail(
-					$thumb_size,
-					array(
-						'class' => 'center-block img-responsive',
-						'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
-						'itemprop'	=> 'image',
-					)
-				);
-				?>
-			</figure>
-		<?php } ?>
+	<div class="entry-content" itemprop="articleBody"><?php the_content(); ?></div><!-- /.entry-content -->
 
-		<div  itemprop="articleBody"><?php the_content(); ?></div>
-		<span class="clearfix"></span>
-		<p class="sr-only"><?php esc_attr_e( 'Last edit:', 'ItalyStrap' ); ?> <time datetime="<?php the_modified_time( 'Y-m-d' ) ?>" itemprop="dateModified"><?php the_modified_time( 'd F Y' ) ?></time></p>
-		<span class="clearfix"></span>
-		<?php
-		/**
-		 * Arguments for edit_post_link()
-		 *
-		 * @var array
-		 */
-		$args = array(
-			/* translators: %s: Name of current post */
-			'link_text'	=> __( 'Edit<span class="screen-reader-text"> "%s"</span>', 'ItalyStrap' ),
-			'before'	=> '<span class="btn btn-sm btn-primary">',
-			'after'		=> '</span>',
-			);
-		$args = apply_filters( 'italystrap_edit_post_link_args', $args );
+	<p class="sr-only"><?php esc_attr_e( 'Last edit:', 'ItalyStrap' ); ?> <time datetime="<?php the_modified_time( 'Y-m-d' ) ?>" itemprop="dateModified"><?php the_modified_time( 'd F Y' ) ?></time></p>
+	<span class="clearfix"></span>
 
-		edit_post_link(
-			sprintf(
-				$args['link_text'],
-				get_the_title()
-			),
-			$args['before'],
-			$args['after']
+	<?php
+	/**
+	 * Arguments for edit_post_link()
+	 *
+	 * @var array
+	 */
+	$args = array(
+		/* translators: %s: Name of current post */
+		'link_text'	=> __( 'Edit<span class="screen-reader-text"> "%s"</span>', 'ItalyStrap' ),
+		'before'	=> '<span class="btn btn-sm btn-primary">',
+		'after'		=> '</span>',
 		);
-		?>
-	</section><!-- /.entry-content -->
+	$args = apply_filters( 'italystrap_edit_post_link_args', $args );
+
+	edit_post_link(
+		sprintf(
+			$args['link_text'],
+			get_the_title()
+		),
+		$args['before'],
+		$args['after']
+	);
+	?>
 
 	<?php echo italystrap_ttr_wc(); // XSS ok.?>
 	<span class="clearfix"></span>

@@ -24,11 +24,13 @@ class Init_Theme{
 	/**
 	 * Init some functionality
 	 */
-	// public function __construct() {
+	public function __construct( $content_width ) {
 
-	// 	add_action( 'after_setup_theme', array( $this, 'theme_setup' ) );
+		$this->content_width = $content_width;
 
-	// }
+		// add_action( 'after_setup_theme', array( $this, 'theme_setup' ) );
+
+	}
 
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -61,6 +63,10 @@ class Init_Theme{
 		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 		*/
 		add_theme_support( 'post-thumbnails' );
+		/**
+		 * 'post-thumbnails' is by default the size displayed for posts, pages and all archives.
+		 */
+		set_post_thumbnail_size( $this->content_width, 9999 );
 
 		/**
 		 * Switch default core markup for search form, comment form, and comments

@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 get_header(); ?> 
 	<!-- Main Content -->
-	<main id="single" role="main">
+	<main id="single">
 		<?php do_action( 'content_open' ); ?>
 		<div class="container">
 			<?php do_action( 'content_container_open' ); ?>

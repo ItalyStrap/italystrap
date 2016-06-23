@@ -22,32 +22,39 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 $layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() );
 get_header(); ?>
 <!-- Main Content -->
-	<main id="index" role="main">
+	<main id="index">
 		<?php do_action( 'content_open' ); ?>
 		<div class="container">
 			<?php do_action( 'content_container_open' ); ?>
 			<div class="row">
 				<div <?php Core\content_class( 'col-md-8' ) ?> itemscope itemtype="http://schema.org/CollectionPage">
 					<?php
-					do_action( 'content_col_open' );
+					// do_action( 'content_col_open' );
 
-					if ( have_posts() ) :
+					do_action( 'italystrap_before_loop' );
+					do_action( 'italystrap_loop' );
+					do_action( 'italystrap_after_loop' );
 
-						while ( have_posts() ) :
+					// get_template_part( 'loops/loop' );
+					// require locate_template( '/loops/loop.php' );
 
-							the_post();
+					// if ( have_posts() ) :
 
-							get_template_part( 'loops/content', get_post_type() );
+					// 	while ( have_posts() ) :
 
-						endwhile;
+					// 		the_post();
 
-						bootstrap_pagination();
+					// 		get_template_part( 'loops/content', get_post_type() );
 
-					else :
+					// 	endwhile;
 
-						get_template_part( 'loops/content', 'none' );
+					// 	bootstrap_pagination();
 
-					endif;
+					// else :
+
+					// 	get_template_part( 'loops/content', 'none' );
+
+					// endif;
 
 					do_action( 'content_col_closed' ); ?>
 				</div><!-- / .col-md-8 -->

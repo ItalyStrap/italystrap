@@ -47,7 +47,7 @@ get_header(); ?>
 
 							the_post();
 
-							get_template_part( 'loops/content', 'post' );
+							get_template_part( 'loops/content', get_post_type() );
 
 						endwhile;
 					else :

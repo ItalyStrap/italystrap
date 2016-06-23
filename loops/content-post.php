@@ -1,10 +1,12 @@
-<?php namespace ItalyStrap;
+<?php
 /**
  * The template part for displaying standard posts
  *
  * @package ItalyStrap
  * @since 1.0.0
  */
+
+namespace ItalyStrap;
 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -17,28 +19,14 @@
 			</a>
 		</h2>
 	</header>
-	<footer class="entry-footer">
-		<?php get_template_part( 'template/meta' ); ?>
-	</footer>
-	<section class="entry-content">
-		<?php if ( has_post_thumbnail() ) { ?>
-			<figure class="<?php echo esc_attr( apply_filters( 'italystrap-figure-thumb-class', 'thumbnail' ) ); ?>">
-				<?php
-				the_post_thumbnail(
-					'article-thumb',
-					array(
-						'class' => 'center-block img-responsive',
-						'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
-						'itemprop'	=> 'image',
-					)
-				);
-				?>
-			</figure>
-		<?php } ?>
-		<div  itemprop="text"><?php the_excerpt(); ?></div>
-		<p class="sr-only"><?php esc_attr_e( 'Last edit:', 'ItalyStrap' ); ?> <time datetime="<?php the_modified_time( 'Y-m-d' ) ?>" itemprop="dateModified"><?php the_modified_time( 'd F Y' ) ?></time></p>
-		<span class="clearfix"></span>
-	</section><!-- /.entry-content -->
+
+	<?php get_template_part( 'template/meta' ); ?>
+
+	<?php get_template_part( 'template/content', 'part-featured-image' ); ?>
+
+	<div class="entry-content" itemprop="text"><?php the_excerpt(); ?></div><!-- /.entry-content -->
+
+	<p class="sr-only"><?php esc_attr_e( 'Last edit:', 'ItalyStrap' ); ?> <time datetime="<?php the_modified_time( 'Y-m-d' ) ?>" itemprop="dateModified"><?php the_modified_time( 'd F Y' ) ?></time></p>
 	<?php echo italystrap_ttr_wc(); // XSS ok. ?>
 	<span class="clearfix"></span>
 </article>

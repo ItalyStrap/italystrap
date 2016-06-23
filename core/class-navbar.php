@@ -328,7 +328,7 @@ class Navbar {
 
 		$a = array(
 			'class'			=> 'container navbar-wrapper',
-			'role'			=> 'navigation',
+			// 'role'			=> 'navigation',
 			'itemscope'		=> '',
 			'itemtype'		=> 'http://schema.org/SiteNavigationElement',
 		);

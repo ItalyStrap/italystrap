@@ -37,7 +37,7 @@ get_header(); ?>
 
 							the_post();
 
-							get_template_part( 'loops/content', 'page' );
+							get_template_part( 'loops/content', get_post_type() );
 
 
 

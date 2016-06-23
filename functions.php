@@ -254,13 +254,14 @@ require locate_template( '/deprecated/deprecated.php' );
  * set $content_width = 620; so images and videos will not overflow.
  * Default: 848px is the default ItalyStrap container width.
  */
-if ( ! isset( $content_width ) ) $content_width = apply_filters( 'content_width', 848 );
+if ( ! isset( $content_width ) ) $content_width = apply_filters( 'content_width', 750 );
 
 /**
  * If function exist init
  */
 if ( function_exists( 'register_widget' ) ) {
 	$italystrap_sidebars = new ItalyStrap_Sidebars;
+	add_action( 'widgets_init', array( $italystrap_sidebars, 'register_sidebars' ) );
 }
 
 /**
@@ -299,32 +300,10 @@ if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
  * @see in hooks.php file
  * @var object The init obj.
  */
-$init = new Init_Theme;
+$init = new Init_Theme( $content_width );
 $navbar = new Navbar;
 
 /**
  * Functions for debugging porpuse
  */
 require locate_template( '/lib/hooks.php' );
-
-/**
- * Da leggere http://mikejolley.com/2013/12/15/deprecating-plugin-functions-hooks-woocommmerce/
- */
-function get_layout_settings() {
-
-	/**
-	 * Front page ID get_option( 'page_on_front' );
-	 * Home page ID get_option( 'page_for_posts' );
-	 */
-
-	$id = '';
-
-	if ( is_home() ) {
-		$id = get_option( 'page_for_posts' );
-	} else {
-		$id = get_the_ID();
-	}
-
-	return get_post_meta( $id, '_italystrap_layout_settings', true );
-}
-add_filter( 'italystrap_layout_settings', __NAMESPACE__ . '\get_layout_settings' );

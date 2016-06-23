@@ -26,8 +26,6 @@ class ItalyStrap_Sidebars{
 
 		$this->options = (array) apply_filters( 'italystrap-options-sidebars', require( 'options/options-sidebars.php' ) );
 
-		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
-
 		$this->footer_sidebars = apply_filters(
 			'footer_sidebars_widgets',
 			array(

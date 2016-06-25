@@ -19,7 +19,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 $layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() );
-get_header(); ?>
+get_header();
+do_action( 'italystrap_before_main' );
+?>
 <!-- Main Content -->
 	<main id="page" role="main">
 		<?php do_action( 'content_open' ); ?>
@@ -29,6 +31,7 @@ get_header(); ?>
 				<div <?php Core\content_class( 'col-md-8' ) ?> itemscope itemtype="http://schema.org/Article">
 					<?php
 					do_action( 'content_col_open' );
+					do_action( 'italystrap_before_loop' );
 
 					if ( have_posts() ) :
 
@@ -48,6 +51,7 @@ get_header(); ?>
 					endif;
 
 					comments_template();
+					do_action( 'italystrap_after_loop' );
 					do_action( 'content_col_closed' ); ?>
 				</div><!-- / .col-md-8 -->
 				<?php
@@ -61,4 +65,6 @@ get_header(); ?>
 		<?php do_action( 'content_closed' ); ?>
 	</main><!-- / #page -->
 
-<?php get_footer();
+<?php
+do_action( 'italystrap_after_main' );
+get_footer();

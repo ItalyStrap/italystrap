@@ -20,7 +20,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-get_header(); ?>
+get_header();
+do_action( 'italystrap_before_main' );
+?>
 <!-- Main Content -->
 	<main id="full-width" role="main">
 		<?php do_action( 'content_open' ); ?>
@@ -30,6 +32,7 @@ get_header(); ?>
 				<div class="col-md-12" itemscope itemtype="http://schema.org/Article">
 					<?php
 					do_action( 'content_col_open' );
+					do_action( 'italystrap_before_loop' );
 
 					if ( have_posts() ) :
 
@@ -49,6 +52,7 @@ get_header(); ?>
 					endif;
 
 					comments_template();
+					do_action( 'italystrap_after_loop' );
 					do_action( 'content_col_closed' ); ?>
 				</div><!-- / .col-md-8 -->
 
@@ -58,4 +62,6 @@ get_header(); ?>
 		<?php do_action( 'content_closed' ); ?>
 	</main><!-- / #full-width -->
    
-<?php get_footer();
+<?php
+do_action( 'italystrap_after_main' );
+get_footer();

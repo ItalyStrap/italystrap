@@ -14,7 +14,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-get_header(); ?>
+get_header();
+do_action( 'italystrap_before_main' );
+?>
 <!-- Main Content -->
 	<main id="error404" role="main">
 		<?php do_action( 'content_open' ); ?>
@@ -24,6 +26,7 @@ get_header(); ?>
 				<div class="col-md-8">
 					<?php
 					do_action( 'content_col_open' );
+					do_action( 'italystrap_before_loop' );
 
 					get_template_part( 'loops/content', 'none' );
 					get_template_part( 'template/sitemap_html' );
@@ -48,4 +51,6 @@ get_header(); ?>
 		<?php do_action( 'content_closed' ); ?>
 	</main><!-- / #error404 -->
 
-<?php get_footer();
+<?php
+do_action( 'italystrap_after_main' );
+get_footer();

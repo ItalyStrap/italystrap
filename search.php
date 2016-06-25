@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-get_header(); ?>
+get_header();
+do_action( 'italystrap_before_main' );
+?>
 <!-- Main Content -->
 	<main id="search" role="main">
 		<?php do_action( 'content_open' ); ?>
@@ -20,7 +22,9 @@ get_header(); ?>
 			<?php do_action( 'content_container_open' ); ?>
 			<div class="row">
 				<div class="col-md-8" itemscope itemtype="http://schema.org/SearchResultsPage">
-					<?php do_action( 'content_col_open' );
+					<?php
+					do_action( 'content_col_open' );
+					do_action( 'italystrap_before_loop' );
 
 					if ( have_posts() ) :
 
@@ -52,4 +56,6 @@ get_header(); ?>
 		</div><!-- / .container -->
 		<?php do_action( 'content_closed' ); ?>
 	</main>
-<?php get_footer();
+<?php
+do_action( 'italystrap_after_main' );
+get_footer();

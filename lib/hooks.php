@@ -35,7 +35,7 @@ add_action( 'italystrap_content_header', array( $navbar, 'output' ), 30 );
  *
  * @see display_breadcrumbs()
  */
-add_action( 'content_col_open', __NAMESPACE__ . '\display_breadcrumbs' );
+add_action( 'italystrap_before_loop', __NAMESPACE__ . '\display_breadcrumbs' );
 
 /**
  * Loop

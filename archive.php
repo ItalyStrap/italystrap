@@ -21,7 +21,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-get_header(); ?>
+get_header();
+do_action( 'italystrap_before_main' );
+?>
 <!-- Main Content -->
 	<main id="archive" role="main">
 		<?php do_action( 'content_open' ); ?>
@@ -29,7 +31,9 @@ get_header(); ?>
 			<?php do_action( 'content_container_open' ); ?>
 			<div class="row">
 				<div class="col-md-8" itemscope itemtype="http://schema.org/CollectionPage">
-					<?php do_action( 'content_col_open' );
+					<?php
+					do_action( 'content_col_open' );
+					do_action( 'italystrap_before_loop' );
 
 
 
@@ -84,4 +88,6 @@ get_header(); ?>
 		<?php do_action( 'content_closed' ); ?>
 	</main><!-- / #archive -->
 	
-<?php get_footer();
+<?php
+do_action( 'italystrap_after_main' );
+get_footer();

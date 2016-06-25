@@ -20,7 +20,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 $layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() );
-get_header(); ?>
+get_header();
+do_action( 'italystrap_before_main' );
+?>
 <!-- Main Content -->
 	<main id="index">
 		<?php do_action( 'content_open' ); ?>
@@ -69,4 +71,6 @@ get_header(); ?>
 		<?php do_action( 'content_closed' ); ?>
 	</main><!-- / #index -->
 
-<?php get_footer();
+<?php
+do_action( 'italystrap_after_main' );
+get_footer();

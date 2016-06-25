@@ -16,7 +16,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-get_header(); ?> 
+get_header();
+do_action( 'italystrap_before_main' );
+?> 
 	<!-- Main Content -->
 	<main id="single">
 		<?php do_action( 'content_open' ); ?>
@@ -26,6 +28,7 @@ get_header(); ?>
 				<div class="col-md-8" itemscope itemtype="http://schema.org/Article">
 					<?php
 					do_action( 'content_col_open' );
+					do_action( 'italystrap_before_loop' );
 
 					if ( have_posts() ) :
 
@@ -54,4 +57,6 @@ get_header(); ?>
 		<?php do_action( 'content_closed' ); ?>
 	</main><!-- / #single -->
    
-<?php get_footer();
+<?php
+do_action( 'italystrap_after_main' );
+get_footer();

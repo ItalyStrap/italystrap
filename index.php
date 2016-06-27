@@ -25,17 +25,15 @@ do_action( 'italystrap_before_main' );
 ?>
 <!-- Main Content -->
 	<main id="index">
-		<?php do_action( 'content_open' ); ?>
 		<div class="container">
-			<?php do_action( 'content_container_open' ); ?>
 			<div class="row">
-				<div <?php Core\content_class( 'col-md-8' ) ?> itemscope itemtype="http://schema.org/CollectionPage">
+				<?php do_action( 'italystrap_before_content' ); ?>
+				<div <?php Core\get_attr( 'content', array( 'class' => 'col-md-8', 'itemscope' => true, 'itemtype' => 'http://schema.org/CollectionPage' ), true ); ?>>
 					<?php
 					// do_action( 'content_col_open' );
 
 					do_action( 'italystrap_before_loop' );
 					do_action( 'italystrap_loop' );
-					do_action( 'italystrap_after_loop' );
 
 					// get_template_part( 'loops/loop' );
 					// require locate_template( '/loops/loop.php' );
@@ -58,17 +56,12 @@ do_action( 'italystrap_before_main' );
 
 					// endif;
 
-					do_action( 'content_col_closed' ); ?>
+					do_action( 'italystrap_after_loop' ); ?>
 				</div><!-- / .col-md-8 -->
-				<?php
-				if ( ! in_array( 'hide_sidebar', $layout_settings, true ) ) {
-					get_sidebar();
-				}
-				?>
+				<?php do_action( 'italystrap_after_content' ); ?>
+				<?php get_sidebar(); ?>
 			</div><!-- / .row -->
-			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->
-		<?php do_action( 'content_closed' ); ?>
 	</main><!-- / #index -->
 
 <?php

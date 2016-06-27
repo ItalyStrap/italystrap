@@ -24,14 +24,12 @@ get_header();
 do_action( 'italystrap_before_main' );
 ?>
 <!-- Main Content -->
-	<main id="author-page" role="main">
-		<?php do_action( 'content_open' ); ?>
+	<main id="author-page">
 		<div class="container">
-			<?php do_action( 'content_container_open' ); ?>
 			<div class="row">
-				<div class="col-md-8" itemscope itemtype="http://schema.org/CollectionPage">
+				<?php do_action( 'italystrap_before_content' ); ?>
+				<div <?php Core\get_attr( 'content', array( 'class' => 'col-md-8', 'itemscope' => true, 'itemtype' => 'http://schema.org/CollectionPage' ), true ); ?>>
 					<?php
-					do_action( 'content_col_open' );
 					do_action( 'italystrap_before_loop' );
 
 					get_template_part( 'template/content', 'author-info' );
@@ -61,13 +59,12 @@ do_action( 'italystrap_before_main' );
 					endif;
 
 					bootstrap_pagination();
-					do_action( 'content_col_closed' ); ?>
+					do_action( 'italystrap_after_loop' ); ?>
 				</div><!-- / .col-md-8 -->
+				<?php do_action( 'italystrap_after_content' ); ?>
 				<?php get_sidebar(); ?> 
 			</div><!-- / .row -->
-			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->
-		<?php do_action( 'content_closed' ); ?>
 	</main><!-- / #author-p role="main"age -->
 <?php
 do_action( 'italystrap_after_main' );

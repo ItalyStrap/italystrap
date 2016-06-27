@@ -23,14 +23,12 @@ get_header();
 do_action( 'italystrap_before_main' );
 ?>
 <!-- Main Content -->
-	<main id="page" role="main">
-		<?php do_action( 'content_open' ); ?>
+	<main id="page">
 		<div class="container">
-			<?php do_action( 'content_container_open' ); ?>
 			<div class="row">
-				<div <?php Core\content_class( 'col-md-8' ) ?> itemscope itemtype="http://schema.org/Article">
+				<?php do_action( 'italystrap_before_content' ); ?>
+				<div <?php Core\get_attr( 'content', array( 'class' => 'col-md-8', 'itemscope' => true, 'itemtype' => 'http://schema.org/Article' ), true ); ?>>
 					<?php
-					do_action( 'content_col_open' );
 					do_action( 'italystrap_before_loop' );
 
 					if ( have_posts() ) :
@@ -51,18 +49,12 @@ do_action( 'italystrap_before_main' );
 					endif;
 
 					comments_template();
-					do_action( 'italystrap_after_loop' );
-					do_action( 'content_col_closed' ); ?>
+					do_action( 'italystrap_after_loop' ); ?>
 				</div><!-- / .col-md-8 -->
-				<?php
-				if ( ! in_array( 'hide_sidebar', $layout_settings, true ) ) { 
-					get_sidebar();
-				}
-				?>
+				<?php do_action( 'italystrap_after_content' ); ?>
+				<?php get_sidebar(); ?>
 			</div><!-- / .row -->
-			<?php do_action( 'content_container_closed' ); ?>
 		</div><!-- / .container -->
-		<?php do_action( 'content_closed' ); ?>
 	</main><!-- / #page -->
 
 <?php

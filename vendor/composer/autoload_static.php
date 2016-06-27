@@ -23,6 +23,7 @@ class ComposerStaticInit9602fe9d5f2cd9e13a23070ae5d0fde8
         'ItalyStrap\\Admin\\Register_Required_Plugins' => __DIR__ . '/../..' . '/admin/class-register-required-plugins.php',
         'ItalyStrap\\Core\\Bootstrap_Nav_Menu' => __DIR__ . '/../..' . '/core/class-bootstrap-nav-menu.php',
         'ItalyStrap\\Core\\Init_Theme' => __DIR__ . '/../..' . '/core/class-init-theme.php',
+        'ItalyStrap\\Core\\Layout' => __DIR__ . '/../..' . '/core/class-layout.php',
         'ItalyStrap\\Core\\Navbar' => __DIR__ . '/../..' . '/core/class-navbar.php',
         'ItalyStrap_Excerpt' => __DIR__ . '/../..' . '/core/class-italystrap-excerpt.php',
         'ItalyStrap_Sidebars' => __DIR__ . '/../..' . '/core/class-italystrap-sidebars.php',

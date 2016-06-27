@@ -18,6 +18,7 @@ return array(
     'ItalyStrap\\Admin\\Register_Required_Plugins' => $baseDir . '/admin/class-register-required-plugins.php',
     'ItalyStrap\\Core\\Bootstrap_Nav_Menu' => $baseDir . '/core/class-bootstrap-nav-menu.php',
     'ItalyStrap\\Core\\Init_Theme' => $baseDir . '/core/class-init-theme.php',
+    'ItalyStrap\\Core\\Layout' => $baseDir . '/core/class-layout.php',
     'ItalyStrap\\Core\\Navbar' => $baseDir . '/core/class-navbar.php',
     'ItalyStrap_Excerpt' => $baseDir . '/core/class-italystrap-excerpt.php',
     'ItalyStrap_Sidebars' => $baseDir . '/core/class-italystrap-sidebars.php',

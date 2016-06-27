@@ -452,3 +452,15 @@ function comment_pagination(){
 	<?php }
 
 }
+
+/**
+ * Function for loading the template.
+ *
+ * @param  string $context The context on this function is called.
+ */
+function italystrap( $context = '' ) {
+
+	require locate_template( '/template/content.php' );
+	// require locate_template( '/template/' . $context . '.php' );
+
+}

@@ -5,7 +5,9 @@
  * @package ItalyStrap
  */
 
-if ( ! defined( 'ITALYSTRAP_THEME' ) or ! ITALYSTRAP_THEME ) {
+namespace ItalyStrap\Core;
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
@@ -16,49 +18,49 @@ if ( ! defined( 'ITALYSTRAP_THEME' ) or ! ITALYSTRAP_THEME ) {
 return array(
 
 	'sidebar-1'		=> array(
-		'name'				=> __( 'Sidebar', 'ItalyStrap' ),
+		'name'				=> __( 'Sidebar', 'italystrap' ),
 		'id'				=> 'sidebar-1',
-		'before_widget'		=> '<div id="%1$s" class="widget %2$s col-sm-6 col-md-12">',
+		'before_widget'		=> '<div ' . get_attr( 'sidebar_1', array( 'id' => '%1$s', 'class' => 'widget %2$s col-sm-6 col-md-12' ) ) . '>',
 		'after_widget'		=> '</div>',
 		'before_title'		=> '<h3 class="widget-title">',
 		'after_title'		=> '</h3>',
 	),
 
 	'footer-box-1'	=> array(
-		'name'				=> __( 'Footer Box 1', 'ItalyStrap' ),
+		'name'				=> __( 'Footer Box 1', 'italystrap' ),
 		'id'				=> 'footer-box-1',
-		'description'		=> __( 'Footer box 1 widget area.', 'ItalyStrap' ),
-		'before_widget'		=> '<div id="%1$s" class="widget %2$s">',
+		'description'		=> __( 'Footer box 1 widget area.', 'italystrap' ),
+		'before_widget'		=> '<div ' . get_attr( 'footer_box_1', array( 'id' => '%1$s', 'class' => 'widget %2$s' ) ) . '>',
 		'after_widget' 		=> '</div>',
 		'before_title'		=> '<h3 class="widget-title">',
 		'after_title'		=> '</h3>',
 	),
 
 	'footer-box-2'	=> array(
-		'name'				=> __( 'Footer Box 2', 'ItalyStrap' ),
+		'name'				=> __( 'Footer Box 2', 'italystrap' ),
 		'id'				=> 'footer-box-2',
-		'description'		=> __( 'Footer box 2 widget area.', 'ItalyStrap' ),
-		'before_widget'		=> '<div id="%1$s" class="widget %2$s">',
+		'description'		=> __( 'Footer box 2 widget area.', 'italystrap' ),
+		'before_widget'		=> '<div ' . get_attr( 'footer_box_2', array( 'id' => '%1$s', 'class' => 'widget %2$s' ) ) . '>',
 		'after_widget' 		=> '</div>',
 		'before_title'		=> '<h3 class="widget-title">',
 		'after_title'		=> '</h3>',
 	),
 
 	'footer-box-3'	=> array(
-		'name'				=> __( 'Footer Box 3', 'ItalyStrap' ),
+		'name'				=> __( 'Footer Box 3', 'italystrap' ),
 		'id'				=> 'footer-box-3',
-		'description'		=> __( 'Footer box 3 widget area.', 'ItalyStrap' ),
-		'before_widget'		=> '<div id="%1$s" class="widget %2$s">',
+		'description'		=> __( 'Footer box 3 widget area.', 'italystrap' ),
+		'before_widget'		=> '<div ' . get_attr( 'footer_box_3', array( 'id' => '%1$s', 'class' => 'widget %2$s' ) ) . '>',
 		'after_widget' 		=> '</div>',
 		'before_title'		=> '<h3 class="widget-title">',
 		'after_title'		=> '</h3>',
 	),
 
 	'footer-box-4'	=> array(
-		'name'				=> __( 'Footer Box 4', 'ItalyStrap' ),
+		'name'				=> __( 'Footer Box 4', 'italystrap' ),
 		'id'				=> 'footer-box-4',
-		'description'		=> __( 'Footer box 4 widget area.', 'ItalyStrap' ),
-		'before_widget'		=> '<div id="%1$s" class="widget %2$s">',
+		'description'		=> __( 'Footer box 4 widget area.', 'italystrap' ),
+		'before_widget'		=> '<div ' . get_attr( 'footer_box_4', array( 'id' => '%1$s', 'class' => 'widget %2$s' ) ) . '>',
 		'after_widget' 		=> '</div>',
 		'before_title'		=> '<h3 class="widget-title">',
 		'after_title'		=> '</h3>',

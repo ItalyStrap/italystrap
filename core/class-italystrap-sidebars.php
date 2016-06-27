@@ -10,7 +10,7 @@ class ItalyStrap_Sidebars{
 	 *
 	 * @var array
 	 */
-	private $options = array();
+	private $sidebars = array();
 
 	/**
 	 * The footer sidebars options
@@ -24,7 +24,7 @@ class ItalyStrap_Sidebars{
 	 */
 	function __construct() {
 
-		$this->options = (array) apply_filters( 'italystrap-options-sidebars', require( 'options/options-sidebars.php' ) );
+		$this->sidebars = (array) apply_filters( 'italystrap_sidebars_registered', require( 'options/options-sidebars.php' ) );
 
 		$this->footer_sidebars = apply_filters(
 			'footer_sidebars_widgets',
@@ -42,7 +42,7 @@ class ItalyStrap_Sidebars{
 	 */
 	public function register_sidebars() {
 
-		foreach ( $this->options as $key => $value ) {
+		foreach ( $this->sidebars as $key => $value ) {
 			register_sidebar( $value );
 		}
 

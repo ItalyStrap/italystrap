@@ -35,19 +35,31 @@ do_action( 'italystrap_before_main' );
 
 					if ( have_posts() ) :
 
+						do_action( 'italystrap_before_while' );
+
 						while ( have_posts() ) :
 
 							the_post();
 
-							get_template_part( 'loops/content', get_post_type() );
+							$file_type = get_post_type();
+
+							if ( 'single' === CURRENT_TEMPLATE_SLUG ) {
+								$file_type = 'single';
+							}
+
+							if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
+								$file_type = 'post';
+							}
+
+							get_template_part( 'loops/content', $file_type );
 
 						endwhile;
 
-						bootstrap_pagination();
+						do_action( 'italystrap_after_while' );
 
 					else :
 
-						get_template_part( 'loops/content', 'none' );
+						do_action( 'italystrap_content_none' );
 
 					endif;
 

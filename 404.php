@@ -43,7 +43,7 @@ do_action( 'italystrap_before_main' );
 					do_action( 'italystrap_after_loop' ); ?>
 				</div><!-- / .col-md-8 -->
 				<?php do_action( 'italystrap_after_content' ); ?>
-				<?php get_sidebar(); ?> 
+				<?php //get_sidebar(); ?> 
 			</div><!-- / .row -->
 		</div><!-- / .container -->
 	</main><!-- / #error404 -->

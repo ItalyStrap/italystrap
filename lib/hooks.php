@@ -150,8 +150,21 @@ add_action( 'italystrap_after_footer', __NAMESPACE__ . '\footer_close_markup', 1
 // }
 // add_filter( 'italystrap_layout_settings', __NAMESPACE__ . '\get_layout_settings' );
 
-$layout = new Layout();
+$layout = new Layout( $italystrap_theme_mods );
+
 add_filter( 'italystrap_layout_settings', array( $layout, 'get_template_settings' ) );
+
+add_action( 'italystrap_before_while', array( $layout, 'archive_headline' ) );
+
+add_action( 'italystrap_after_content', array( $layout, 'get_sidebar' ) );
+
+add_action( 'italystrap_before_loop', array( $layout, 'author_info' ) );
+
+add_action( 'italystrap_after_loop', array( $layout, 'pagination' ) );
+
+add_action( 'italystrap_content_none', array( $layout, 'content_none' ) );
+
+add_action( 'italystrap_after_loop', array( $layout, 'comments_template' ) );
 
 $templates_page = array(
 	// 'italystrap_{$context}_attr',

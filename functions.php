@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-require( '/lib/bootstrap.php' );
+require( TEMPLATEPATH . '/lib/bootstrap.php' );
 
 /**
  * Function for loading the template.

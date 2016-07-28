@@ -49,9 +49,10 @@ if ( has_post_thumbnail() && ! in_array( 'hide_thumb', (array) $layout_settings,
 		 *
 		 * @var array
 		 */
-		$attr = apply_filters( 'italystrap_post_thumbnail_attr', array(
-				'class' => 'attachment-' . $size . ' size-' . $size . ' center-block img-responsive ' . $size,
-				'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
+		$attr = apply_filters( 'italystrap_post_thumbnail_attr',
+			array(
+				'class'		=> 'attachment-' . $size . ' size-' . $size . ' center-block img-responsive ' . $size,
+				'alt'		=> trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
 				'itemprop'	=> 'image',
 			),
 			$context,
@@ -61,4 +62,10 @@ if ( has_post_thumbnail() && ! in_array( 'hide_thumb', (array) $layout_settings,
 		the_post_thumbnail( $size, $attr );
   		?>
 	</figure>
-<?php } ?>
+<?php } else {
+
+	/**
+	 * This action fire in case no thumbnail is loaded
+	 */
+	do_action( 'italystrap_no_post_thumbnail' );
+} ?>

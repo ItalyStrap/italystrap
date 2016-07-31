@@ -21,6 +21,13 @@ function italystrap_add_style_and_script() {
 	// $min = ( WP_DEBUG ) ? '' : '.min';
 	$min = '.min';
 
+	// echo "<pre>";
+	// var_dump( CURRENT_TEMPLATE_SLUG );
+	// var_dump( ITALYSTRAP_PARENT_PATH . '/css/home.css' );
+	// var_dump( file_exists( STYLESHEETPATH . '/css/home.css' ) );
+	// var_dump( file_exists( STYLESHEETPATH . '/css/' . CURRENT_TEMPLATE_SLUG . '.css' ) );
+	// echo "</pre>";
+
 	/**
 	 * Only for
 	 * @link http://www.bootstrapcdn.com/alpha/
@@ -31,7 +38,7 @@ function italystrap_add_style_and_script() {
 	/**
 	 * Load Bootstrap styles
 	 */
-	wp_enqueue_style( 'bootstrap',  ITALYSTRAP_PARENT_PATH . '/css/bootstrap.min.css', null, $ver, null );
+	// wp_enqueue_style( 'bootstrap',  ITALYSTRAP_PARENT_PATH . '/css/bootstrap.min.css', null, $ver, null );
 
 	/**
 	 * Deregister jquery from WP
@@ -52,33 +59,62 @@ function italystrap_add_style_and_script() {
 	/**
 	 * Load script JS and CSS with conditional tags
 	 */
-	if ( is_home() || is_front_page() ) {
+	// if ( is_home() || is_front_page() ) {
 
-		wp_enqueue_style( 'home',  ITALYSTRAP_PARENT_PATH . '/css/home.css', array( 'bootstrap' ), $ver, null );
-		wp_enqueue_script( 'home', ITALYSTRAP_PARENT_PATH . '/js/home' . $min . '.js', array( 'jquery' ), $ver,  true );
+	// 	wp_enqueue_style( 'home',  ITALYSTRAP_PARENT_PATH . '/css/home.css', array( 'bootstrap' ), $ver, null );
+	// 	wp_enqueue_script( 'home', ITALYSTRAP_PARENT_PATH . '/js/home' . $min . '.js', array( 'jquery' ), $ver,  true );
 
-	} elseif ( is_singular() ) {
+	// } elseif ( is_singular() ) {
 
-		wp_enqueue_style( 'singular',  ITALYSTRAP_PARENT_PATH . '/css/singular.css', array( 'bootstrap' ), $ver, null );
-		wp_enqueue_script( 'singular', ITALYSTRAP_PARENT_PATH . '/js/singular' . $min . '.js', array( 'jquery' ), $ver,  true );
+	// 	wp_enqueue_style( 'singular',  ITALYSTRAP_PARENT_PATH . '/css/singular.css', array( 'bootstrap' ), $ver, null );
+	// 	wp_enqueue_script( 'singular', ITALYSTRAP_PARENT_PATH . '/js/singular' . $min . '.js', array( 'jquery' ), $ver,  true );
 
-	} elseif ( is_archive() ) {
+	// } elseif ( is_archive() ) {
 
-		wp_enqueue_style( 'archive',  ITALYSTRAP_PARENT_PATH . '/css/archive.css', array( 'bootstrap' ), $ver, null );
-		wp_enqueue_script( 'archive', ITALYSTRAP_PARENT_PATH . '/js/archive' . $min . '.js', array( 'jquery' ), $ver,  true );
+	// 	wp_enqueue_style( 'archive',  ITALYSTRAP_PARENT_PATH . '/css/archive.css', array( 'bootstrap' ), $ver, null );
+	// 	wp_enqueue_script( 'archive', ITALYSTRAP_PARENT_PATH . '/js/archive' . $min . '.js', array( 'jquery' ), $ver,  true );
 
-	} else {
+	// } else {
 
-		wp_enqueue_style( 'custom',  ITALYSTRAP_PARENT_PATH . '/css/custom.css', array( 'bootstrap' ), $ver, null );
-		wp_enqueue_script( 'custom', ITALYSTRAP_PARENT_PATH . '/js/custom' . $min . '.js', array( 'jquery' ), $ver,  true );
+	// 	wp_enqueue_style( 'custom',  ITALYSTRAP_PARENT_PATH . '/css/custom.css', array( 'bootstrap' ), $ver, null );
+	// 	wp_enqueue_script( 'custom', ITALYSTRAP_PARENT_PATH . '/js/custom' . $min . '.js', array( 'jquery' ), $ver,  true );
 
-	}
+	// }
 
 	/**
 	 * Load comment-reply script
 	 */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );
+
+
+	$config_styles = array(
+		array(
+			'handle'	=> 'bootstrap',
+			// 'file'		=> STYLESHEETPATH . '/css/bootstrap.min.css',
+			'file'		=> ITALYSTRAP_PARENT_PATH . '/css/bootstrap.min.css',
+			'deps'		=> null,
+			'version'	=> $ver,
+			'media'		=> null,
+			// 'load_on'	=> 'is_single',
+		),
+		array(
+			'handle'	=> CURRENT_TEMPLATE_SLUG,
+			'file'		=> file_exists( STYLESHEETPATH . '/css/' . CURRENT_TEMPLATE_SLUG . '.css' ) ? ITALYSTRAP_PARENT_PATH . '/css/' . CURRENT_TEMPLATE_SLUG . '.css' : ITALYSTRAP_PARENT_PATH . '/css/custom.css',
+			'deps'		=> array( 'bootstrap' ),
+			'version'	=> $ver,
+			'media'		=> null,
+			// 'load_on'	=> 'is_single',
+		),
+	);
+
+	$style = new ItalyStrap\Core\Style( $config_styles );
+	$style->register();
+
+	// echo "<pre>";
+	// var_dump( $style );
+	// var_dump( call_user_func( 'is_page', null ) );
+	// echo "</pre>";
 }
 
 /**

@@ -70,6 +70,14 @@ module.exports = function(grunt) {
         },
 
         uglify: { // https://github.com/gruntjs/grunt-contrib-uglify
+            admin: {
+              files: [{
+                  expand: true,
+                  cwd: 'admin/js/src',
+                  src: '*.js',
+                  dest: 'admin/js'
+              }]
+            },
             dist: {
                 options: {
                     sourceMap: true

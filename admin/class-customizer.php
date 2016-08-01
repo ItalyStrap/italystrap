@@ -238,13 +238,15 @@ class Customizer{
 	 * @since ItalyStrap 1.0
 	 */
 	public function live_preview() {
+
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
-			ITALYSTRAP_PARENT_PATH . '/admin/js/theme-customizer.min.js',
+			ITALYSTRAP_PARENT_PATH . '/admin/js/theme-customizer.js',
 			array( 'jquery', 'customize-preview' ),
 			null,
 			true
 		);
+
 	}
 
 	/**

@@ -5,10 +5,11 @@
 node_modules
 
 #Sass directory
-css/src/sass/.sass-cache
+sass/.sass-cache
+sass
 .sass-cache
 
-#Bower update
+#Bower
 bower
 
 #Files
@@ -18,7 +19,6 @@ lang/ItalyStrap.mo
 
 #Temp file
 .gitattributes
-#.gitignore
 
 #bower.json
 lib/roadmap.php

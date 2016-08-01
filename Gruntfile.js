@@ -156,9 +156,10 @@ module.exports = function(grunt) {
         compass:{ // https://github.com/gruntjs/grunt-contrib-compass
             src:{
                 options: {
-                    sassDir:['css/src/sass'],
+                    sassDir:['sass'],
                     cssDir:['css'],
-                    outputStyle: 'compressed'
+                    outputStyle: 'compressed',
+                    importPath: 'bower/bootstrap-sass/assets/stylesheets'
                 }
             },
         },

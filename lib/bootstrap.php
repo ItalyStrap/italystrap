@@ -127,6 +127,8 @@ add_action( 'wp_fields_nav_menu_item', array( $custom_admin_walker_nav_menu, 'ad
 
 if ( is_admin() ) {
 
+	require( TEMPLATEPATH . '/admin/functions.php' );
+
 	$required_plugins = new \ItalyStrap\Admin\Register_Required_Plugins;
 	add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
 

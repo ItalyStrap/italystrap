@@ -87,7 +87,6 @@ function italystrap_add_style_and_script() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply', null, null, null, true );
 
-
 	$config_styles = array(
 		// array(
 		// 	'handle'	=> 'bootstrap',

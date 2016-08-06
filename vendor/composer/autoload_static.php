@@ -12,7 +12,6 @@ class ComposerStaticInit9602fe9d5f2cd9e13a23070ae5d0fde8
 
     public static $classMap = array (
         'ItalyStrapAdminCategoryEditor' => __DIR__ . '/../..' . '/admin/class-italystrap-category-editor.php',
-        'ItalyStrapBreadcrumbs' => __DIR__ . '/../..' . '/core/ItalyStrapBreadcrumbs.php',
         'ItalyStrapOptionTheme' => __DIR__ . '/../..' . '/admin/ItalyStrapOptionTheme.php',
         'ItalyStrap\\Admin\\Admin_Text_Editor' => __DIR__ . '/../..' . '/admin/class-admin-text-editor.php',
         'ItalyStrap\\Admin\\Custom_Meta_Box' => __DIR__ . '/../..' . '/admin/class-custom-meta-box.php',

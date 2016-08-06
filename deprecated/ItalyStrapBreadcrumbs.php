@@ -56,7 +56,11 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 		 */
 		function __construct( $args = array() ){
 
-			$this->ItalyStrap_the_breadcrumbs( $args );
+			_deprecated_function( __CLASS__, '4.0', 'ItalyStrap\\\Core\\\breadcrumbs()' );
+
+			if ( function_exists( 'ItalyStrap\core\breadcrumbs' ) ) {
+				ItalyStrap\core\breadcrumbs( $args );
+			}
 		}
 
 		/**

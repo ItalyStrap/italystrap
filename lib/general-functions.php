@@ -150,14 +150,15 @@ function print_search_form_in_menu( $nav_menu, $args ) {
  */
 function display_breadcrumbs( $defaults = array() ) {
 
-	if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) )
+	if ( ! function_exists( 'ItalyStrap\Core\breadcrumbs' ) ) {
 		return;
+	}
 
-		$defaults = array(
-			'home'	=> '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>',
-			);
+	$args = array(
+		'home'	=> '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>',
+	);
 
-		new \ItalyStrapBreadcrumbs( $defaults );
+	breadcrumbs( $args );
 }
 
 /**

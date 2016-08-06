@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ItalyStrapAdminCategoryEditor' => $baseDir . '/admin/class-italystrap-category-editor.php',
-    'ItalyStrapBreadcrumbs' => $baseDir . '/core/ItalyStrapBreadcrumbs.php',
     'ItalyStrapOptionTheme' => $baseDir . '/admin/ItalyStrapOptionTheme.php',
     'ItalyStrap\\Admin\\Admin_Text_Editor' => $baseDir . '/admin/class-admin-text-editor.php',
     'ItalyStrap\\Admin\\Custom_Meta_Box' => $baseDir . '/admin/class-custom-meta-box.php',

@@ -52,6 +52,13 @@ If you want to keep it updated please also install github-updater from your admi
 
 ## Changelog ##
 
+### 4.0.0 ###
+**Release Date:** May 8th, 2015  
+
+(Dev time 2h)
+
+* Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead. The breadcrumbs functionality is moved to the plugin.
+
 ### 3.0.5 ###
 **Release Date:** May 8th, 2015  
 

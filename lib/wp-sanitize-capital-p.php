@@ -42,7 +42,10 @@ function italyStrap_capital_P_dangit( $text ) {
 function ItalyStrap_P_dangit_sanitize_content( $data, $postarr ) {
 
 	$data['post_title'] = italyStrap_capital_P_dangit( $data['post_title'] );
-	$data['post_content'] = italyStrap_capital_P_dangit( $data['post_content'] );
+	/**
+	 * Disattivato momentaneamente perché mi sostituiva anche la scritta wordpress in caso fosse in una url
+	 */
+	// $data['post_content'] = italyStrap_capital_P_dangit( $data['post_content'] );
 
 	return $data;
 }

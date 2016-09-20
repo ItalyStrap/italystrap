@@ -183,7 +183,7 @@ function colophon_default_text() {
  */
 function get_the_colophon( $italystrap_theme_mods ) {
 
-	$output = ( isset( $value['colophon'] ) ) ? $value['colophon'] : colophon_default_text();
+	$output = ( isset( $italystrap_theme_mods['colophon'] ) ) ? $italystrap_theme_mods['colophon'] : colophon_default_text();
 
 	return apply_filters( 'italystrap_colophon_output', wp_kses_post( $output ) );
 }

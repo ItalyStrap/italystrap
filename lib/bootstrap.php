@@ -127,6 +127,14 @@ add_action( 'wp_fields_nav_menu_item', array( $custom_admin_walker_nav_menu, 'ad
 
 if ( is_admin() ) {
 
+	/**
+	 * Add fields to widget areas
+	 * The $register_metabox is declared in plugin
+	 */
+	if ( isset( $register_metabox ) ) {
+		add_action( 'cmb2_admin_init', array( $register_metabox, 'register_widget_areas_fields' ) );
+	}
+
 	require( TEMPLATEPATH . '/admin/functions.php' );
 
 	$required_plugins = new \ItalyStrap\Admin\Register_Required_Plugins;

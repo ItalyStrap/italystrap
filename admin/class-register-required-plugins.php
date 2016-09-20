@@ -99,12 +99,12 @@ class Register_Required_Plugins {
 				/**
 				 * The plugin name
 				 */
-				'name'                     => 'ItalyStrap plugin',
+				'name'                     => 'ItalyStrap',
 
 				/**
 				 * The plugin slug (typically the folder name)
 				 */
-				'slug'                     => 'italystrap',
+				// 'slug'                     => 'italystrap',
 
 				/**
 				 * If false, the plugin is only 'recommended' instead of required

@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 /**
  * Class description
+ * @todo http://wordpress.stackexchange.com/questions/195864/most-elegant-way-to-enqueue-scripts-in-function-php-with-foreach-loop
  */
 abstract class Asset {
 
@@ -47,6 +48,8 @@ abstract class Asset {
 	public function register() {
 
 		foreach ( $this->config as $config ) {
+
+			$config = wp_parse_args( $config, $this->get_default_structure() );
 
 			if ( isset( $config['deregister'] ) ) {
 				$this->deregister( $config['handle'] );

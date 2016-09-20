@@ -19,6 +19,7 @@ use WP_Customize_Control;
 use WP_Customize_Color_Control;
 use	WP_Customize_Media_Control;
 use	Textarea_Custom_Control;
+use	ItalyStrapAdminMediaSettings;
 
 /**
  * Changing Customizer Color Sections Titles
@@ -160,6 +161,37 @@ $wp_customize->add_control(
 			'settings' => 'navbar_logo_image',
 			'priority' => 10,
 		)
+	)
+);
+
+		/**
+		 * Instance of list of image sizes
+		 * @var ItalyStrapAdminMediaSettings
+		 */
+		$image_size_media = new ItalyStrapAdminMediaSettings;
+		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
+
+/**
+ * Display navbar logo image size list
+ */
+$wp_customize->add_setting(
+	'navbar_logo_image_size',
+	array(
+		'default' => 'navbar-brand-image',
+		'type' => 'theme_mod',
+		'capability' => $this->capability,
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+$wp_customize->add_control(
+	'italystrap_navbar_logo_image_size',
+	array(
+		'settings'	=> 'navbar_logo_image_size',
+		'label'		=> __( 'Logo image size', 'ItalyStrap' ),
+		'section'	=> 'italystrap_image_options',
+		'type'		=> 'select',
+		'choices'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
 	)
 );
 

@@ -17,6 +17,8 @@ use	Textarea_Custom_Control;
 /**
  * Contains methods for customizing the theme customization screen.
  *
+ * https://paulund.co.uk/custom-wordpress-controls
+ *
  * @todo https://codex.wordpress.org/Function_Reference/header_textcolor
  * @todo https://github.com/overclokk/wordpress-theme-customizer-custom-controls
  *

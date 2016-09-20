@@ -35,11 +35,10 @@ require( TEMPLATEPATH . '/lib/bootstrap.php' );
 /**
  * Function for loading the template.
  *
- * @param  string $context The context on this function is called.
+ * @param  string $file_name The file_name on this function is called.
  */
-function italystrap( $context = '' ) {
+function italystrap( $file_name = 'content' ) {
 
-	require locate_template( '/template/content.php' );
-	// require locate_template( '/template/' . $context . '.php' );
+	require locate_template( '/template/' . $file_name . '.php' );
 
 }

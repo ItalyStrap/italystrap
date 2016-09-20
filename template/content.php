@@ -25,7 +25,7 @@ get_header();
 do_action( 'italystrap_before_main' );
 ?>
 <!-- Main Content -->
-	<main id="<?php echo esc_attr( $context ); ?>">
+	<main id="<?php echo esc_attr( $file_name ); ?>">
 		<div class="container">
 			<div class="row">
 				<?php do_action( 'italystrap_before_content' ); ?>

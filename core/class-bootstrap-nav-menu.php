@@ -48,7 +48,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 
 		$atts = array(
 			'role'	=> 'menu',
-			'class'	=> 'dropdown-menu sub-menu',
+			'class'	=> ( 0 === $depth ) ? 'dropdown-menu sub-menu' : 'sub-sub-menu',
 		);
 
 		$output .= "\n" . $indent . '<ul' . $this->get_attributes( $atts ) . '>' . "\n";
@@ -344,17 +344,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 	 */
 	protected static function get_attributes( array $atts = array() ) {
 
-		// $attributes = '';
-		// foreach ( $atts as $attr => $value ) {
-		// 	if ( ! empty( $value ) ) {
-		// 		$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
-		// 		$attributes .= ' ' . $attr . '="' . $value . '"';
-		// 	}
-		// }
-
 		return get_attr( 'nav', $atts );
-
-		// return $attributes;
 	}
 
 	/**

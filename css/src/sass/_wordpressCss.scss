@@ -148,3 +148,5 @@ a img.aligncenter {
 	width: auto;
 	z-index: 100000; /* Above WP toolbar. */
 }
+
+.sub-sub-menu { list-style: outside none none; padding-left: 0; } .sub-sub-menu > li > a:hover, .dropdown-menu > li > a:focus { background-color: #f5f5f5; color: #262626; text-decoration: none; } .sub-sub-menu > li > a { clear: both; color: #333; display: block; font-weight: normal; line-height: 1.42857; padding: 3px 30px; white-space: nowrap; }

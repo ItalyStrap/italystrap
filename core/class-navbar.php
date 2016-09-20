@@ -37,7 +37,7 @@ class Navbar {
 	/**
 	 * Init the constructor
 	 */
-	public function __construct() {
+	public function __construct( array $theme_mods = array() ) {
 
 		self::$instance_count++;
 
@@ -97,7 +97,7 @@ class Navbar {
 			'link_before'		=> '<span class="item-title" itemprop="name">',
 			'link_after'		=> '</span>',
 			'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
-			'depth'				=> 2,
+			'depth'				=> 10,
 			'walker'			=> new Bootstrap_Nav_Menu(),
 			'theme_location'	=> 'main-menu',
 			'search'			=> false,
@@ -210,7 +210,10 @@ class Navbar {
 				'itemprop'		=> 'image',
 			);
 
-			$output .= wp_get_attachment_image( $attachment_id, 'navbar-brand-image', false, $attr );
+			/**
+			 * Size default: navbar-brand-image
+			 */
+			$output .= wp_get_attachment_image( $attachment_id, $theme_mods['navbar_logo_image_size'], false, $attr );
 
 			$output .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
 
@@ -222,8 +225,10 @@ class Navbar {
 				'itemprop'		=> 'image',
 				'style'			=> 'display:inline;margin-right:15px;',
 			);
-
-			$output .= wp_get_attachment_image( $attachment_id, 'navbar-brand-image', false, $attr );
+			/**
+			 * Size default: navbar-brand-image
+			 */
+			$output .= wp_get_attachment_image( $attachment_id, $theme_mods['navbar_logo_image_size'], false, $attr );
 
 			$output .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
 

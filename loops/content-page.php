@@ -8,7 +8,7 @@
 
 namespace ItalyStrap;
 
-$layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() );
+$layout_settings = (array) apply_filters( 'italystrap_template_settings', array() );
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 

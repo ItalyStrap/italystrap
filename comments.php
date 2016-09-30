@@ -18,11 +18,11 @@ if ( post_password_required() ) {
 	return;
 }
 
-$layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() );
+$template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
 /**
  * If there are comments
  */
-if ( have_comments() && ! in_array( 'hide_comments', $layout_settings, true ) ) : ?>
+if ( have_comments() && ! in_array( 'hide_comments', $template_settings, true ) ) : ?>
 	<section id="comments" class="comments-area">
 		<h3 class="comments-title"><?php printf( _n( 'One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'ItalyStrap' ), number_format_i18n( get_comments_number() ), get_the_title() ); // XSS ok. ?></h3>
 
@@ -62,7 +62,7 @@ if ( have_comments() && ! in_array( 'hide_comments', $layout_settings, true ) ) 
 	</section>
 <?php endif;  // End have_comments(). ?>
 
-<?php if ( ! in_array( 'hide_comments_form', $layout_settings, true )  ) : ?>
+<?php if ( ! in_array( 'hide_comments_form', $template_settings, true )  ) : ?>
 <section class="form-actions">
 	<?php
 	/**

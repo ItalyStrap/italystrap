@@ -47,24 +47,24 @@ class Custom_Meta_Box {
 	/**
 	 * Hook in and add a demo metabox. Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
 	 */
-	public function register_layout_settings() {
+	public function register_template_settings() {
 
-		$layout_settings_metabox_object_types = apply_filters( 'italystrap_layout_settings_metabox_object_types', array( 'page', 'post' ) );
+		$template_settings_metabox_object_types = apply_filters( 'italystrap_template_settings_metabox_object_types', array( 'page', 'post' ) );
 
 		/**
 		 * Sample metabox to demonstrate each field type included
 		 */
 		$cmb = new_cmb2_box(
 			array(
-				'id'            => $this->prefix . '-layout-settings-metabox',
+				'id'            => $this->prefix . '-template-settings-metabox',
 				'title'         => __( 'Advanced settings', 'ItalyStrap' ),
-				'object_types'  => $layout_settings_metabox_object_types,
+				'object_types'  => $template_settings_metabox_object_types,
 				'context'    => 'side',
 				'priority'   => 'low',
 			)
 		);
 
-		$layout_settings_metabox_options = apply_filters( 'italystrap_layout_settings_metabox_options',
+		$template_settings_metabox_options = apply_filters( 'italystrap_template_settings_metabox_options',
 			array(
 				'hide_breadcrumbs'	=> __( 'Hide breadcrumbs', 'ItalyStrap' ),
 				'hide_title'		=> __( 'Hide title', 'ItalyStrap' ),
@@ -76,17 +76,17 @@ class Custom_Meta_Box {
 				'hide_social'		=> __( 'Hide builtin social sharing', 'ItalyStrap' ),
 				'hide_comments'		=> __( 'Hide comments', 'ItalyStrap' ),
 				'hide_comments_form'=> __( 'Hide comments form', 'ItalyStrap' ),
-				'hide_sidebar'		=> __( 'Hide sidebar', 'ItalyStrap' ),
+				// 'hide_sidebar'		=> __( 'Hide sidebar', 'ItalyStrap' ),
 			)
 		);
 
 		$cmb->add_field(
 			array(
-				'name'		=> __( 'Layout settings', 'ItalyStrap' ),
-				'desc'		=> __( 'Advance layout setting for this page/post', 'ItalyStrap' ),
-				'id'		=> $this->_prefix . '_layout_settings',
+				'name'		=> __( 'Template settings', 'ItalyStrap' ),
+				'desc'		=> __( 'Advance template setting for this page/post', 'ItalyStrap' ),
+				'id'		=> $this->_prefix . '_template_settings',
 				'type'		=> 'multicheck',
-				'options'	=> $layout_settings_metabox_options,
+				'options'	=> $template_settings_metabox_options,
 			)
 		);
 	}

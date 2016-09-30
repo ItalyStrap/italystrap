@@ -18,7 +18,7 @@ if ( post_password_required() ) {
 	return;
 }
 
-$layout_settings = (array) apply_filters( 'italystrap_layout_settings', array() );
+$layout_settings = (array) apply_filters( 'italystrap_template_settings', array() );
 /**
  * If there are comments
  */

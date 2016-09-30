@@ -56,7 +56,7 @@ class Layout {
 			$id = get_the_ID();
 		}
 
-		return get_post_meta( $id, '_italystrap_layout_settings', true );
+		return get_post_meta( $id, '_italystrap_template_settings', true );
 	}
 
 	/**

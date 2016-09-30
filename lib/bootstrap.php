@@ -54,14 +54,22 @@ define( '_PREFIX', '_' . strtolower( ITALYSTRAP_CURRENT_THEME_NAME ) );
  * Define ITALYSTRAP_CHILD_PATH in your child theme functions.php file
  * define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
  */
-define( 'ITALYSTRAP_PARENT_PATH', get_template_directory_uri() );
+// define( 'ITALYSTRAP_PARENT_PATH', get_template_directory_uri() );
 // Var deprecated from 4.0.0.
-$path = ITALYSTRAP_PARENT_PATH;
+// $path = ITALYSTRAP_PARENT_PATH;
+
+if ( ! defined( 'TEMPLATEURL' ) ) {
+	define( 'TEMPLATEURL', get_template_directory_uri() );
+}
 
 /**
  * Define child path directory if is active child theme
  */
-define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
+// define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
+
+if ( ! defined( 'STYLESHEETURL' ) ) {
+	define( 'STYLESHEETURL', get_stylesheet_directory_uri() );
+}
 
 /**
  * Define Bog Name constant
@@ -156,7 +164,7 @@ if ( is_admin() ) {
 	 * Admin customizer
 	 */
 	$metabox = new \ItalyStrap\Admin\Custom_Meta_Box;
-	add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );
+	add_action( 'cmb2_admin_init', array( $metabox, 'register_template_settings' ) );
 
 	/**
 	 * Wp Editor in Category description
@@ -187,7 +195,7 @@ require locate_template( '/lib/cleanup.php' );
 /**
  * Load all Js and CSS script in theme.
  */
-require locate_template( '/lib/script.php' );
+require( TEMPLATEPATH . '/lib/script.php' );
 
 /**
  * Add htaccess from HTML5 Boilerplate

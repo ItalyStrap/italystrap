@@ -65,7 +65,7 @@ function italystrap_get_default_image() {
 	if ( is_int( $italystrap_theme_mods['default_image'] ) ) {
 		$default_image = wp_get_attachment_url( $italystrap_theme_mods['default_image'] ); } elseif ( $italystrap_theme_mods['default_image'] ) {
 		$default_image = $italystrap_theme_mods['default_image'];
-		} else { $default_image = ITALYSTRAP_PARENT_PATH . '/img/italystrap-default-image.png'; }
+		} else { $default_image = TEMPLATEURL . '/img/italystrap-default-image.png'; }
 
 		return esc_url( $default_image );
 
@@ -106,11 +106,11 @@ function italystrap_logo() {
 	// elseif ( $italystrap_theme_mods['logo'] )
 	// $logo = $italystrap_theme_mods['logo'];
 	// else
-	// $logo = ITALYSTRAP_PARENT_PATH . '/img/italystrap-logo.jpg';
+	// $logo = TEMPLATEURL . '/img/italystrap-logo.jpg';
 	// return esc_url( $logo );
 	//
 	//
-	echo italystrap_get_the_custom_image_url( 'logo', ITALYSTRAP_PARENT_PATH . '/img/italystrap-logo.jpg' );
+	echo italystrap_get_the_custom_image_url( 'logo', TEMPLATEURL . '/img/italystrap-logo.jpg' );
 
 }
 
@@ -203,7 +203,7 @@ function ri_wp_favicon() {
 
 		} else {
 
-			$favicon = ITALYSTRAP_PARENT_PATH . '/img/favicon.ico';
+			$favicon = TEMPLATEURL . '/img/favicon.ico';
 
 		}
 
@@ -226,7 +226,7 @@ function italystrap_get_404_image( $class = '' ) {
 	if ( empty( $italystrap_theme_mods['default_404'] ) ) {
 		return; }
 
-	// $image_404_url = ITALYSTRAP_PARENT_PATH . '/img/404.jpg';
+	// $image_404_url = TEMPLATEURL . '/img/404.jpg';
 	$image_404_url = $italystrap_theme_mods['default_404'];
 	$width = 848;
 	$height = 477;

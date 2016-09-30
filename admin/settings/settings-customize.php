@@ -113,7 +113,7 @@ $wp_customize->add_section(
 $wp_customize->add_setting(
 	'logo',
 	array(
-		'default' => ITALYSTRAP_PARENT_PATH . '/img/italystrap-logo.jpg',
+		'default' => TEMPLATEURL . '/img/italystrap-logo.jpg',
 		'type' => 'theme_mod',
 		'capability' => $this->capability,
 		'transport' => 'postMessage',
@@ -141,7 +141,7 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'navbar_logo_image',
 	array(
-		// 'default' => ITALYSTRAP_PARENT_PATH . '/img/italystrap-navbar_logo_image.jpg',
+		// 'default' => TEMPLATEURL . '/img/italystrap-navbar_logo_image.jpg',
 		'default' => '',
 		'type' => 'theme_mod',
 		'capability' => $this->capability,
@@ -225,7 +225,7 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'default_image',
 	array(
-		'default' => ITALYSTRAP_PARENT_PATH . '/img/italystrap-default-image.png',
+		'default' => TEMPLATEURL . '/img/italystrap-default-image.png',
 		'type' => 'theme_mod',
 		'capability' => $this->capability,
 		'transport' => 'postMessage',
@@ -250,7 +250,7 @@ $wp_customize->add_control(
 $wp_customize->add_setting(
 	'default_404',
 	array(
-		'default' => ITALYSTRAP_PARENT_PATH . '/img/404.jpg',
+		'default' => TEMPLATEURL . '/img/404.jpg',
 		'type' => 'theme_mod',
 		'capability' => $this->capability,
 		'transport' => 'postMessage',

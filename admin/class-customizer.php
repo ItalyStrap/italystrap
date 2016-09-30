@@ -243,7 +243,7 @@ class Customizer{
 
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
-			ITALYSTRAP_PARENT_PATH . '/admin/js/theme-customizer.js',
+			TEMPLATEURL . '/admin/js/theme-customizer.js',
 			array( 'jquery', 'customize-preview' ),
 			null,
 			true

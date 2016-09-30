@@ -10,7 +10,7 @@
  * @package [Plugin/Theme/Etc]
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Init;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();

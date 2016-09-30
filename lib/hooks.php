@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Core\Layout\Layout;
+
 /**
  * Theme init
  *

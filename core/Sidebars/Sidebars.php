@@ -1,9 +1,22 @@
 <?php
 /**
+ * [Short Description (no period for file headers)]
+ *
+ * [Long Description.]
+ *
+ * @link [URL]
+ * @since [x.x.x (if available)]
+ *
+ * @package [Plugin/Theme/Etc]
+ */
+
+namespace ItalyStrap\Core\Sidebars;
+
+/**
 * Class for registering sidebars in template
 * There are a standard sidebar and 4 footer dynamic sidebars
 */
-class ItalyStrap_Sidebars{
+class Sidebars{
 
 	/**
 	 * This is a variable with options for registering sidebars
@@ -24,7 +37,7 @@ class ItalyStrap_Sidebars{
 	 */
 	function __construct() {
 
-		$this->sidebars = (array) apply_filters( 'italystrap_sidebars_registered', require( 'options/options-sidebars.php' ) );
+		$this->sidebars = (array) apply_filters( 'italystrap_sidebars_registered', require( TEMPLATEPATH . '/config/sidebars.php' ) );
 
 		$this->footer_sidebars = apply_filters(
 			'footer_sidebars_widgets',

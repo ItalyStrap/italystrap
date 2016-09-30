@@ -63,11 +63,12 @@ wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
 
 == Changelog ==
 
-= 3.1.0 =
+= 4.0.0 =
 Release Date: Sep 10th, 2015
 
-(Dev time 100h)
+(Dev time 1 year)
 
+* Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead. The breadcrumbs functionality is moved to the plugin.
 * Added [AnonymizeIP](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#anonymizeIp) for cookie law
 * Fixed regex in italystrap_embed_wrap cleanup.php
 * [Fixed Warning: Illegal string offset](https://github.com/overclokk/ItalyStrap/commit/4c2e4f9afc48e123dbebfa85509774d155b6adf8)
@@ -88,6 +89,7 @@ Release Date: Sep 10th, 2015
 * Page template HTML sitemaps and Blog moved to child theme
 * Added namespace PHP 5.3 to all files
 * wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
+* PSR-4 ready
 
 
 = 3.0.5 =

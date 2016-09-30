@@ -15,9 +15,15 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use \ItalyStrap\Admin\Customizer;
-use \ItalyStrap_Sidebars;
-use \ItalyStrapBreadcrumbs;
+
+// use \ItalyStrapBreadcrumbs;
 use \Mobile_Detect;
+
+
+use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
+use ItalyStrap\Core\Navbar\Navbar as Navbar;
+use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
+use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
 
 /**
  * Define ITALYSTRAP_THEME constant for internal use
@@ -262,8 +268,8 @@ if ( ! isset( $content_width ) ) $content_width = apply_filters( 'content_width'
  * If function exist init
  */
 if ( function_exists( 'register_widget' ) ) {
-	$italystrap_sidebars = new ItalyStrap_Sidebars;
-	add_action( 'widgets_init', array( $italystrap_sidebars, 'register_sidebars' ) );
+	$sidebars = new Sidebars();
+	add_action( 'widgets_init', array( $sidebars, 'register_sidebars' ) );
 }
 
 /**
@@ -304,6 +310,8 @@ if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
  */
 $init = new Init_Theme( $content_width );
 $navbar = new Navbar;
+
+$italystrap_excerpt = new Excerpt;
 
 /**
  * Functions for debugging porpuse

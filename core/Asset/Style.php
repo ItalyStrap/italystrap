@@ -1,6 +1,6 @@
 <?php
 /**
- * Script Class API
+ * Style Class API
  *
  * Handle the JS regiter and enque
  *
@@ -9,57 +9,55 @@
  * @package ItalyStrap\Core
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Asset;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
 /**
- * Child class API for Script
+ * Child class API for Style
  */
-class Script extends Asset {
+class Style extends Asset {
 
 	/**
-	 * De-register the script
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return null
-	 */
-	public function deregister( $handle ) {
-		wp_deregister_script( $handle );
-	}
-
-	/**
-	 * Pre register the script
+	 * De-register the style
 	 *
 	 * @since 2.0.0
 	 */
-	protected function pre_register( array $config = array()  ) {
+	public function deregister( $handle ) {
+		wp_deregister_style( $handle );
+	}
 
-		wp_register_script(
+	/**
+	 * Pre register the style
+	 *
+	 * @since 2.0.0
+	 */
+	protected function pre_register( array $config = array() ) {
+
+		wp_register_style(
 			$config['handle'],
 			$config['file'],
 			$config['deps'],
 			$config['version'],
-			$config['in_footer']
+			$config['media']
 		);
 	}
 
 	/**
-	 * Enqueue the script
+	 * Enqueue the style
 	 *
 	 * @since 2.0.0
 	 */
-	protected function enqueue(  array $config = array()  ) {
+	protected function enqueue( array $config = array() ) {
 
-		wp_enqueue_script(
+		wp_enqueue_style(
 			$config['handle'],
 			$config['file'],
 			$config['deps'],
 			$config['version'],
-			$config['in_footer']
+			$config['media']
 		);
 	}
 
@@ -77,7 +75,7 @@ class Script extends Asset {
 			'file'		=> null,
 			'deps'		=> null,
 			'version'	=> null,
-			'in_footer'	=> true,
+			'media'		=> null,
 		);
 	}
 }

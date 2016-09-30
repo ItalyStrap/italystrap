@@ -8,7 +8,7 @@
  * @since 4.0.0 New class definitions
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Layout;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();

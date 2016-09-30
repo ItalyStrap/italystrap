@@ -8,6 +8,9 @@
 
 namespace ItalyStrap\Core;
 
+use ItalyStrap\Core\Asset\Style as Style;
+use ItalyStrap\Core\Asset\Script as Script;
+
 /**
  * Init script and style
  */

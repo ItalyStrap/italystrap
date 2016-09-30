@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * Navbar Menu template Class
  *
@@ -7,6 +7,8 @@
  * @package ItalyStrap\Core
  * @since 4.0.0
  */
+
+namespace ItalyStrap\Core\Navbar;
 
 /**
  * Template for Navbar like Botstrap CSS

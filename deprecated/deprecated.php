@@ -7,7 +7,7 @@
  */
 
 use \ItalyStrap\Core;
-use \ItalyStrap\Core\Bootstrap_Nav_Menu;
+use \ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu;
 
 /**
  * Breadcrumb.

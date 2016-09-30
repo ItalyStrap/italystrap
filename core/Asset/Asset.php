@@ -9,7 +9,7 @@
  * @package ItalyStrap\Core
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Asset;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();

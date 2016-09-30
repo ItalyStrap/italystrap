@@ -16,10 +16,14 @@
  * @since 3.1.0
  */
 
+namespace ItalyStrap\Core\Comments;
+
+
+use Walker_Comment;
 /**
  * ItalyStrap Walker Class
  */
-class ItalyStrap_Walker_Comment extends Walker_Comment {
+class Comments extends Walker_Comment {
 
 	/**
 	 * Start the list before the elements are added.

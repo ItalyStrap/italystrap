@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Global variable for col-x bootstrap class in footer sidebars
  */
-global $italystrap_sidebars;
-$col = ( isset( $col ) ) ? $col : $italystrap_sidebars->set_col();
+global $sidebars;
+$col = ( isset( $col ) ) ? $col : $sidebars->set_col();
 ?>
 <div class="container">
 	<div class="row" itemscope itemtype="http://schema.org/WPSideBar">

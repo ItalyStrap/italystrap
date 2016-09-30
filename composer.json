@@ -14,7 +14,10 @@
 	"autoload": {
 		"classmap": [
 			"admin",
-			"core"
-		]
+			"core_old"
+		],
+        "psr-4": {
+            "ItalyStrap\\Core\\": "core/"
+        }
 	}
 }

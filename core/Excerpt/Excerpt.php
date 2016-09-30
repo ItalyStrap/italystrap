@@ -1,5 +1,18 @@
 <?php
 /**
+ * [Short Description (no period for file headers)]
+ *
+ * [Long Description.]
+ *
+ * @link [URL]
+ * @since [x.x.x (if available)]
+ *
+ * @package [Plugin/Theme/Etc]
+ */
+
+namespace ItalyStrap\Core\Excerpt;
+
+/**
  * New Class to set excerpt lenght and show "more link"
  * @link http://stackoverflow.com/questions/10081129/why-cant-i-override-wps-excerpt-more-filter-via-my-child-theme-functions
  *
@@ -11,7 +24,7 @@
  * it works only with the_content and get_the_content
  * Use the box excerpt inside admin panel
  */
-class ItalyStrap_Excerpt
+class Excerpt
 {
 	
 	function __construct(){
@@ -79,4 +92,3 @@ class ItalyStrap_Excerpt
 	}
 
 }
-$italystrap_excerpt = new ItalyStrap_Excerpt;

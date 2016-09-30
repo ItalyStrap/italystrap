@@ -8,7 +8,7 @@
  * @since 4.0.0 New class definitions
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Navbar;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -345,7 +345,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 	 */
 	protected static function get_attributes( array $atts = array() ) {
 
-		return get_attr( 'nav', $atts );
+		return \ItalyStrap\Core\get_attr( 'nav', $atts );
 	}
 
 	/**

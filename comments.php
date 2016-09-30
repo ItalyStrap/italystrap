@@ -10,6 +10,8 @@
 
 namespace ItalyStrap;
 
+use ItalyStrap\Core\Comments\Comments;
+
 /*
  * If the current post is protected by a password and the visitor has not yet
  * entered the password we will return early without loading the comments.
@@ -33,7 +35,7 @@ if ( have_comments() && ! in_array( 'hide_comments', $template_settings, true ) 
 		 *
 		 * @var string
 		 */
-		$comment_walker = apply_filters( 'comment_walker', 'ItalyStrap_Walker_Comment' );
+		$comment_walker = apply_filters( 'comment_walker', 'ItalyStrap\Core\Comments\Comments' );
 
 		/**
 		 * Arguments for wp_list_comments()

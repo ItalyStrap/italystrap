@@ -29,13 +29,34 @@ abstract class Asset {
 	private $config = array();
 
 	/**
-	 * [__construct description]
+	 * The Class name without namespace
+	 *
+	 * @var string
+	 */
+	private $class_name = '';
+
+	/**
+	 * Init the constructor
 	 *
 	 * @param array $config Configuration array.
 	 */
 	function __construct( array $config = array() ) {
-		$this->config = apply_filters( 'italystrap_config_enqueue_style', $config );
-		// var_dump( get_class( $this ) );
+
+		/**
+		 * Credits:
+		 * @link https://coderwall.com/p/cpxxxw/php-get-class-name-without-namespace
+		 */
+		$this->class_name =  ( new \ReflectionClass( $this ) )->getShortName();
+
+		/**
+		 * With this hook you can filter the enqueue script and style config
+		 * Filters name:
+		 * 'italystrap_config_enqueue_style'
+		 * 'italystrap_config_enqueue_script'
+		 *
+		 * @var array
+		 */
+		$this->config = apply_filters( 'italystrap_config_enqueue_' . strtolower( $this->class_name ) , $config );
 	}
 
 	/**

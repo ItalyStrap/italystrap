@@ -48,7 +48,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 
 		$atts = array(
 			'role'	=> 'menu',
-			'class'	=> ( 0 === $depth ) ? 'dropdown-menu sub-menu' : 'sub-sub-menu',
+			'class'	=> ( 0 === $depth ) ? 'dropdown-menu sub-menu depth-lvl-' . $depth : 'sub-sub-menu depth-lvl-' . $depth,
 		);
 
 		$output .= "\n" . $indent . '<ul' . $this->get_attributes( $atts ) . '>' . "\n";
@@ -73,6 +73,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 		$classes[] = 'menu-item-' . $item->ID;
+		$classes[] = 'depth-el-' . $depth;
 
 		/**
 		 * Filter the arguments for a single nav menu item.

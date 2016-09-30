@@ -453,3 +453,13 @@ function comment_pagination(){
 	<?php }
 
 }
+
+/**
+ * Is comment reply
+ *
+ * @return bool Return true if the comment is open.
+ */
+function is_comment_reply() {
+
+	return (bool) is_singular() && comments_open() && get_option( 'thread_comments' );
+}

@@ -23,7 +23,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
  */
 function add_editor_styles() {
 
-	$arg = apply_filters( 'italystrap_visual_editor_style', array( ITALYSTRAP_PARENT_PATH . '/css/visual_editor.css' ) );
+	$style_url = file_exists( STYLESHEETPATH . '/css/visual_editor.css' ) ? STYLESHEETURL . '/css/visual_editor.css' : TEMPLATEURL . '/css/visual_editor.css';
+
+	$arg = apply_filters( 'italystrap_visual_editor_style', array( $style_url ) );
 
 	add_editor_style( $arg );
 

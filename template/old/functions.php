@@ -70,9 +70,9 @@ define( '_PREFIX', '_' . strtolower( ITALYSTRAP_CURRENT_THEME_NAME ) );
  * Define ITALYSTRAP_CHILD_PATH in your child theme functions.php file
  * define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
  */
-define( 'ITALYSTRAP_PARENT_PATH', get_template_directory_uri() );
+define( 'TEMPLATEURL', get_template_directory_uri() );
 // Var deprecated from 4.0.0.
-$path = ITALYSTRAP_PARENT_PATH;
+$path = TEMPLATEURL;
 
 /**
  * Define child path directory if is active child theme

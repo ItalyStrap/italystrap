@@ -34,17 +34,6 @@ class ComposerStaticInit9602fe9d5f2cd9e13a23070ae5d0fde8
         'ItalyStrap\\Admin\\Customizer' => __DIR__ . '/../..' . '/admin/class-customizer.php',
         'ItalyStrap\\Admin\\Handle_Custom_Walker_Nav_Menu_Edit' => __DIR__ . '/../..' . '/admin/class-handle-custom-walker-nav-menu-edit.php',
         'ItalyStrap\\Admin\\Register_Required_Plugins' => __DIR__ . '/../..' . '/admin/class-register-required-plugins.php',
-        'ItalyStrap\\Core\\Asset' => __DIR__ . '/../..' . '/core_old/class-abstract-asset.php',
-        'ItalyStrap\\Core\\Bootstrap_Nav_Menu' => __DIR__ . '/../..' . '/core_old/class-bootstrap-nav-menu.php',
-        'ItalyStrap\\Core\\Init_Theme' => __DIR__ . '/../..' . '/core_old/class-init-theme.php',
-        'ItalyStrap\\Core\\Layout' => __DIR__ . '/../..' . '/core_old/class-layout.php',
-        'ItalyStrap\\Core\\Navbar' => __DIR__ . '/../..' . '/core_old/class-navbar.php',
-        'ItalyStrap\\Core\\Script' => __DIR__ . '/../..' . '/core_old/class-script.php',
-        'ItalyStrap\\Core\\Style' => __DIR__ . '/../..' . '/core_old/class-style.php',
-        'ItalyStrap_Excerpt' => __DIR__ . '/../..' . '/core_old/class-italystrap-excerpt.php',
-        'ItalyStrap_Sidebars' => __DIR__ . '/../..' . '/core_old/class-italystrap-sidebars.php',
-        'ItalyStrap_Walker_Comment' => __DIR__ . '/../..' . '/core_old/class-italystrap-comments.php',
-        'ItalyStrap_template_functions' => __DIR__ . '/../..' . '/core_old/class-italystrap-template-functions.php',
         'Textarea_Custom_Control' => __DIR__ . '/../..' . '/admin/textarea/textarea-custom-control.php',
     );
 

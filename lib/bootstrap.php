@@ -28,92 +28,63 @@ use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
 use ItalyStrap\Customizer\Customizer;
 
 /**
- * Define ITALYSTRAP_THEME constant for internal use
+ * Load some static files.
+ * Bate version.
+ *
+ * @var array
  */
-define( 'ITALYSTRAP_THEME', true );
+$files = array(
+	'/vendor/autoload.php',
+	'/lib/default-constants.php',
+	'/lib/general-functions.php',
+	'/lib/images.php',
+	'/lib/pointer.php',
+	'/lib/cleanup.php', // Cleanup Headers.
+	'/lib/script.php',
+	'/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
+	'/lib/pagination.php',
+	'/lib/users_meta.php',
+	'/lib/schema.php',
+	'/lib/tag_cloud.php',
+	'/lib/password_protection.php', // Function for Post/page password protection Bootstrap style.
+	'/lib/wp-sanitize-capital-p.php',
+	'/lib/woocommerce.php',
+	'/lib/debug.php',
+	'/deprecated/deprecated.php', // Deprecated files and functions.
+);
 
-/**
- * Define the name of parent theme
- */
-define( 'ITALYSTRAP_THEME_NAME', 'ItalyStrap' );
-
-/**
- * The version of the theme
- */
-define( 'ITALYSTRAP_THEME_VERSION', wp_get_theme()->display( 'Version' ) );
-
-/**
- * The name of active theme
- */
-define( 'ITALYSTRAP_CURRENT_THEME_NAME', wp_get_theme()->get( 'Name' ) );
-
-/**
- * Define the prefix for internal use
- */
-define( 'PREFIX', strtolower( ITALYSTRAP_CURRENT_THEME_NAME ) );
-
-/**
- * Define the prefix for internal use with underscore
- */
-define( '_PREFIX', '_' . strtolower( ITALYSTRAP_CURRENT_THEME_NAME ) );
-
-/**
- * Define parent path directory
- * Define ITALYSTRAP_CHILD_PATH in your child theme functions.php file
- * define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
- */
-// define( 'ITALYSTRAP_PARENT_PATH', get_template_directory_uri() );
-// Var deprecated from 4.0.0.
-// $path = ITALYSTRAP_PARENT_PATH;
-
-if ( ! defined( 'TEMPLATEURL' ) ) {
-	define( 'TEMPLATEURL', get_template_directory_uri() );
+foreach ( $files as $file ) {
+	require( TEMPLATEPATH . $file );
 }
 
 /**
- * Define child path directory if is active child theme
+ * Set the default theme constant
+ *
+ * @see /lib/default-constant.php
  */
-// define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
-
-if ( ! defined( 'STYLESHEETURL' ) ) {
-	define( 'STYLESHEETURL', get_stylesheet_directory_uri() );
-}
+set_default_constant();
 
 /**
- * Define Bog Name constant
+ * Set the default theme config value
+ *
+ * @var array
  */
-if ( ! defined( 'GET_BLOGINFO_NAME' ) )
-	define( 'GET_BLOGINFO_NAME', get_option( 'blogname' ) );
-
-/**
- * Define Blog Description Constant
- */
-if ( ! defined( 'GET_BLOGINFO_DESCRIPTION' ) )
-	define( 'GET_BLOGINFO_DESCRIPTION', get_option( 'blogdescription' ) );
-
-/**
- * Define HOME_URL
- */
-if ( ! defined( 'HOME_URL' ) )
-	define( 'HOME_URL', get_home_url( null, '/' ) );
+$defaults = apply_filters( 'italystrap_default_theme_config', require( TEMPLATEPATH . '/config/default.php' ) );
 
 /**
  * Define theme otpion array
+ * DEPRECATED
  *
  * @var array
  */
 $italystrap_options = get_option( 'italystrap_theme_settings' );
 
 /**
- * The customiser optionr of ItalyStrap
+ * Get the customiser settings and merge with defaults
  *
  * @var array
  */
-$italystrap_theme_mods = get_theme_mods();
-
-require( TEMPLATEPATH . '/vendor/autoload.php' );
-
-// $injector = new \Auryn\Injector;
+$italystrap_theme_mods = wp_parse_args( get_theme_mods(), $defaults );
 
 /**
  * Add field for adding glyphicon in menu
@@ -129,12 +100,12 @@ add_filter( 'wp_setup_nav_menu_item', array( $register_nav_menu_edit, 'add_custo
 /**
  * Save menu custom fields
  */
-add_action( 'wp_update_nav_menu_item', array( $register_nav_menu_edit, 'update_custom_nav_fields'), 10, 3 );	
+add_action( 'wp_update_nav_menu_item', array( $register_nav_menu_edit, 'update_custom_nav_fields' ), 10, 3 );
 
 /**
- * edit menu walker
+ * Edit menu walker.
  */
-add_filter( 'wp_edit_nav_menu_walker', array( $register_nav_menu_edit, 'register'), 10, 2 );
+add_filter( 'wp_edit_nav_menu_walker', array( $register_nav_menu_edit, 'register' ), 10, 2 );
 add_action( 'wp_fields_nav_menu_item', array( $register_nav_menu_edit, 'add_new_field' ), 10, 2 );
 
 if ( is_admin() ) {
@@ -176,30 +147,6 @@ if ( is_admin() ) {
 	add_action( 'cmb2_admin_init', array( $metabox, 'register_template_settings' ) );
 }
 
-$files = array(
-	// '/vendor/autoload.php',
-	'/lib/general-functions.php',
-	// '/lib/hooks.php',
-	'/lib/images.php',
-	'/lib/pointer.php',
-	'/lib/cleanup.php', // Cleanup Headers.
-	'/lib/script.php',
-	'/lib/wp-h5bp-htaccess.php', // https://github.com/roots/wp-h5bp-htaccess.
-	'/lib/pagination.php',
-	'/lib/users_meta.php',
-	'/lib/schema.php',
-	'/lib/tag_cloud.php',
-	'/lib/password_protection.php', // Function for Post/page password protection Bootstrap style.
-	'/lib/wp-sanitize-capital-p.php',
-	'/lib/woocommerce.php',
-	'/lib/debug.php',
-	'/deprecated/deprecated.php', // Deprecated files and functions.
-);
-
-foreach ( $files as $file ) {
-	require( TEMPLATEPATH . $file );
-}
-
 /********************
  * Set content width
  ********************/
@@ -210,9 +157,12 @@ foreach ( $files as $file ) {
  *
  * Example: If the content area is 640px wide,
  * set $content_width = 620; so images and videos will not overflow.
- * Default: 848px is the default ItalyStrap container width.
+ * Default: 750px is the default ItalyStrap container width.
  */
-if ( ! isset( $content_width ) ) $content_width = apply_filters( 'content_width', 750 );
+if ( ! isset( $content_width ) ) {
+
+	$content_width = apply_filters( 'content_width', $italystrap_theme_mods['content_width'] );
+}
 
 /**
  * If function exist init
@@ -227,7 +177,7 @@ if ( function_exists( 'register_widget' ) ) {
  *
  * @var ItalyStrap_Theme_Customizer
  */
-$italystrap_customizer = new Customizer;
+$italystrap_customizer = new Customizer( $italystrap_theme_mods );
 
 /**
  * Setup the Theme Customizer settings and controls...

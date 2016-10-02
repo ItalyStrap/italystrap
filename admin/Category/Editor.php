@@ -1,5 +1,19 @@
 <?php
 /**
+ * Handle the category editor
+ *
+ * [Long Description.]
+ *
+ * @link [URL]
+ * @since 4.0.0
+ *
+ * @package ItalyStrap\Admin
+ */
+
+namespace ItalyStrap\Admin\Category;
+
+
+/**
  * Display the TinyMCE wp_editor in taxonomy description page
  * This is an idea from:
  * @link http://www.paulund.co.uk/add-tinymce-editor-category-description
@@ -8,20 +22,23 @@
  * 
  * I have improved the code found in those page because it wasn't much clean and powerfull, now it is (os I hope so) :-)
  */
-class ItalyStrapAdminCategoryEditor{
-	
+class Editor{
+
+	/**
+	 * Init the constructor
+	 */
 	function __construct(){
 
 		global $pagenow;
 
-		if ( $pagenow === 'edit-tags.php' )
+		if ( $pagenow === 'edit-tags.php' ) {
 			$this->init();
+		}
 
 	}
 
 	/**
 	 * Initialize class
-	 * @return void Initialize class
 	 */
 	public function init(){
 
@@ -30,12 +47,14 @@ class ItalyStrapAdminCategoryEditor{
 
 		/**
 		 * Get the taxonomy array
+		 *
 		 * @var array
 		 */
 		$taxonomies = get_taxonomies();
 
 		/**
-		 * Unset some default value in which there isn't needed to display TinyMCE editor
+		 * Unset some default value in which there
+		 * isn't needed to display TinyMCE editor
 		 */
 		unset($taxonomies['nav_menu']);
 		unset($taxonomies['link_category']);
@@ -46,10 +65,11 @@ class ItalyStrapAdminCategoryEditor{
 			add_filter( $taxonomy . '_edit_form_fields', array( $this, 'taxonomy_description' ) );
 			add_filter( $taxonomy . '_add_form_fields', array( $this, 'taxonomies_description' ) );
 
-		}// end foreach
+		}
 
 		/**
-		 * Because the TinyMce editors allow freeform HTML we should remove these filters from the term description element.
+		 * Because the TinyMce editors allow freeform HTML we should
+		 * remove these filters from the term description element.
 		 */
 		remove_filter( 'pre_term_description', 'wp_filter_kses' );
 		remove_filter( 'term_description', 'wp_kses_data' );
@@ -58,7 +78,9 @@ class ItalyStrapAdminCategoryEditor{
 
 	/**
 	 * Print the WordPress TinyMCE editor
-	 * @param  object $tax Object of taxonomy informations
+	 *
+	 * @param  object $tax Object of taxonomy informations.
+	 *
 	 * @return string      Return the WP Editor
 	 */
 	public function print_wp_editor( $tax = '' ){
@@ -79,7 +101,9 @@ class ItalyStrapAdminCategoryEditor{
 
 	/**
 	 * Display new filed in list page of taxonomy
-	 * @param  object $tax Taxonomy object
+	 *
+	 * @param  object $tax Taxonomy object.
+	 *
 	 * @return string      Return new field
 	 */
 	public function taxonomies_description( $tax ){
@@ -97,7 +121,9 @@ class ItalyStrapAdminCategoryEditor{
 
 	/**
 	 * Display new filed in single taxonomy page
-	 * @param  object $tax Taxonomy object
+	 *
+	 * @param  object $tax Taxonomy object.
+	 *
 	 * @return string      Return new field
 	 */
 	public function taxonomy_description( $tax ){
@@ -131,7 +157,8 @@ class ItalyStrapAdminCategoryEditor{
 
 	/**
 	 * Remove the default taxonomy description field
-	 * @return string Add jQuery snipet for removing old description field
+	 *
+	 * @return string Add jQuery snipet for removing old description field.
 	 */
 	public function remove_default_taxonomy_description(){
 

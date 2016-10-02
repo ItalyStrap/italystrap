@@ -7,7 +7,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Admin\Required_Plugins;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Register_Required_Plugins
  */
-class Register_Required_Plugins {
+class Register {
 
 	/**
 	 * The plugin options
@@ -25,116 +25,29 @@ class Register_Required_Plugins {
 	 */
 	private $options = array();
 
+	private $strings = array();
+
+	private $config = array();
+
+	private $plugins = array();
+
 	/**
 	 * Init the constructor
 	 *
 	 * @param array $options The options plugin.
 	 */
 	function __construct( array $options = array() ) {
+
 		$this->options = $options;
-	}
 
-	/**
-	 * Init the required plugins
-	 */
-	public function init() {
-
-		/**
-		 * Array of plugin arrays. Required keys are name and slug.
-		 * If the source is NOT from the .org repo, then source is also required.
-		 */
-		$plugins = array(
-
-			/**
-			 * Require GitHub Updater
-			 */
-			array(
-
-				/**
-				 * The plugin name.
-				 */
-				'name'                     => 'GitHub Updater',
-
-				/**
-				 * The plugin slug (typically the folder name).
-				 */
-				'slug'                     => 'github-updater',
-
-				/**
-				 * The plugin source.
-				 */
-				'source'                   => 'http://www.overclokk.net/TGM/github-updater.zip',
-
-				/**
-				 * If false, the plugin is only 'recommended' instead of required.
-				 */
-				'required'                 => false,
-
-				/**
-				 * E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-				 */
-				'version'                 => '',
-
-				/**
-				 * If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-				 */
-				'force_activation'         => false,
-
-				/**
-				 * If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-				 */
-				'force_deactivation'     => false,
-
-				/**
-				 * If set, overrides default API URL and points to an external URL
-				 */
-				'external_url'             => 'https://github.com/afragen/github-updater',
-			),
-
-			/**
-			 * Require ItalyStrap Plugin
-			 */
-			array(
-
-				/**
-				 * The plugin name
-				 */
-				'name'                     => 'ItalyStrap',
-
-				/**
-				 * The plugin slug (typically the folder name)
-				 */
-				// 'slug'                     => 'italystrap',
-
-				/**
-				 * If false, the plugin is only 'recommended' instead of required
-				 */
-				'required'                 => true,
-
-				/**
-				 * E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-				 */
-				'version'                 => '',
-
-				/**
-				 * If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-				 */
-				'force_activation'         => true,
-
-				/**
-				 * If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-				 */
-				'force_deactivation'     => false,
-			),
-
-		);
+		$this->plugins = require( TEMPLATEPATH . '/config/required-plugins.php' );
 
 		/**
 		 * Strings to display for required plugins
 		 *
 		 * @var array
 		 */
-		$strings = array(
+		$this->strings = array(
 
 			'page_title'						=> __( 'Install Required Plugins', 'italystrap' ),
 
@@ -214,7 +127,7 @@ class Register_Required_Plugins {
 		 *
 		 * @var array
 		 */
-		$config = array(
+		$this->config = array(
 
 			/**
 			 * Text domain - likely want to be the same as your theme.
@@ -255,22 +168,28 @@ class Register_Required_Plugins {
 			 * Message to output right before the plugins table.
 			 */
 			'message'			=> '',
-			'strings'			=> $strings,
+			'strings'			=> $this->strings,
 		);
+	}
+
+	/**
+	 * Init the required plugins
+	 */
+	public function init() {
 
 		/**
 		 * Filters the required plugins in case child theme needs another one.
 		 *
 		 * @var array
 		 */
-		$plugins = apply_filters( 'italystrap_required_plugins', $plugins );
+		$plugins = apply_filters( 'italystrap_required_plugins', $this->plugins );
 
 		/**
 		 * Filters the required plugins config in case child theme needs another one.
 		 *
 		 * @var array
 		 */
-		$config = apply_filters( 'italystrap_required_plugins_config', $config );
+		$config = apply_filters( 'italystrap_required_plugins_config', $this->config );
 
 		tgmpa( $plugins, $config );
 	}

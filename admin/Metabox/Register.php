@@ -7,12 +7,12 @@
  * @since   4.0.0
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Admin\Metabox;
 
 /**
  * Add some custom meta box in many areas of WordPress
  */
-class Custom_Meta_Box {
+class Register {
 
 	/**
 	 * CMB prefix

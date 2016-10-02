@@ -8,7 +8,7 @@
  * @since   4.0.0
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Admin\Tinymce;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Improve WordPress text editor
  */
-class Admin_Text_Editor {
+class Editor {
 
 	/**
 	 * The following snippet will reveal the hidden

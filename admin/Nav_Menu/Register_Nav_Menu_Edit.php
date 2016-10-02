@@ -8,7 +8,7 @@
  * @since 3.0.0
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Admin\Nav_Menu;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
  *
  * @link http://www.wpexplorer.com/adding-custom-attributes-to-wordpress-menus/
  */
-class Handle_Custom_Walker_Nav_Menu_Edit {
+class Register_Nav_Menu_Edit {
 
 	/**
 	 * Init the constructor
@@ -96,9 +96,9 @@ class Handle_Custom_Walker_Nav_Menu_Edit {
 	 *
 	 * @return string          The new walker class to use.
 	 */
-	function edit_nav_menu_walker( $class, $menu_id ) {
+	function register( $class, $menu_id ) {
 
-		return '\ItalyStrap\Admin\Custom_Walker_Nav_Menu_Edit';
+		return '\ItalyStrap\Admin\Nav_Menu\Nav_Menu_Edit';
 
 	}
 }

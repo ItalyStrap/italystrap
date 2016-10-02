@@ -8,7 +8,7 @@
  * @since 3.0.0
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Admin\Nav_Menu;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -24,7 +24,7 @@ use \Walker_Nav_Menu_Edit;
  * @since 4.0.0
  * @uses Walker_Nav_Menu_Edit
  */
-class Custom_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
+class Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 
 	/**
 	 * Start the element output.

@@ -33,7 +33,7 @@ class ItalyStrapOptionTheme{
 		/**
 		 * Enqueue script for upload image functions
 		 */
-		add_action('admin_enqueue_scripts', array( $this, 'options_enqueue_scripts') );
+		// add_action('admin_enqueue_scripts', array( $this, 'options_enqueue_scripts') );
 
 		/**
 		 * Add link to Theme Options in case ItalyStrap plugin is active

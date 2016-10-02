@@ -146,7 +146,7 @@ class Init_Theme{
 		 * @see class-italystrap-theme-customizer.php
 		 */
 		$custom_background = array(
-			'wp-head-callback' => 'ItalyStrap\Admin\italystrap_custom_background_cb',
+			'wp-head-callback' => '\ItalyStrap\Core\_custom_background_cb',
 		);
 		add_theme_support( 'custom-background', apply_filters( 'custom_background_support', $custom_background ) );
 

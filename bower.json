@@ -16,7 +16,7 @@
     "opengraph",
     "mobile"
   ],
-  "license": "MIT",
+  "license": "GPLv2",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -25,10 +25,12 @@
     "tests"
   ],
   "devDependencies": {
-    "Mobile-Detect": "git://github.com/serbanghita/Mobile-Detect.git",
     "bootstrap": "latest",
     "bootstrap-sass": "latest",
     "font-awesome": "latest",
-    "jquery": "latest"
+    "jquery": "latest",
+    "susy": "latest"
+  },
+  "dependencies": {
   }
 }

@@ -14,16 +14,18 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use \ItalyStrap\Admin\Customizer;
+use ItalyStrap\Admin\Category\Editor	as Category_Editor;
+use ItalyStrap\Admin\Tinymce\Editor		as Text_Editor;
+use ItalyStrap\Admin\Metabox\Register	as Register_Meta;
+use ItalyStrap\Admin\Required_Plugins\Register	as Required_Plugins;
+use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
 
-// use \ItalyStrapBreadcrumbs;
-use \Mobile_Detect;
+use ItalyStrap\Core\Init\Init_Theme		as Init_Theme;
+use ItalyStrap\Core\Navbar\Navbar		as Navbar;
+use ItalyStrap\Core\Sidebars\Sidebars	as Sidebars;
+use ItalyStrap\Core\Excerpt\Excerpt		as Excerpt;
 
-
-use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
-use ItalyStrap\Core\Navbar\Navbar as Navbar;
-use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
-use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
+use ItalyStrap\Customizer\Customizer;
 
 /**
  * Define ITALYSTRAP_THEME constant for internal use
@@ -114,50 +116,38 @@ require( TEMPLATEPATH . '/vendor/autoload.php' );
 // $injector = new \Auryn\Injector;
 
 /**
- * Mobile Detect CLass
- * Load only if class not exist
- */
-if ( ! class_exists( 'Mobile_Detect' ) ) {
-
-	require locate_template( '/includes/Mobile_Detect.php' );
-	$detect = new Mobile_Detect;
-
-}
-
-/**
  * Add field for adding glyphicon in menu
  *
- * @var Handle_Custom_Walker_Nav_Menu_Edit
+ * @var Register_Nav_Menu_Edit
  */
-$custom_admin_walker_nav_menu = new \ItalyStrap\Admin\Handle_Custom_Walker_Nav_Menu_Edit();
+$register_nav_menu_edit = new Register_Nav_Menu_Edit();
 
-// add custom menu fields to menu
-add_filter( 'wp_setup_nav_menu_item', array( $custom_admin_walker_nav_menu, 'add_custom_nav_fields' ) );
-// save menu custom fields
-add_action( 'wp_update_nav_menu_item', array( $custom_admin_walker_nav_menu, 'update_custom_nav_fields'), 10, 3 );	
-// edit menu walker
-add_filter( 'wp_edit_nav_menu_walker', array( $custom_admin_walker_nav_menu, 'edit_nav_menu_walker'), 10, 2 );
-add_action( 'wp_fields_nav_menu_item', array( $custom_admin_walker_nav_menu, 'add_new_field' ), 10, 2 );
+/**
+ * Add custom menu fields to menu
+ */
+add_filter( 'wp_setup_nav_menu_item', array( $register_nav_menu_edit, 'add_custom_nav_fields' ) );
+/**
+ * Save menu custom fields
+ */
+add_action( 'wp_update_nav_menu_item', array( $register_nav_menu_edit, 'update_custom_nav_fields'), 10, 3 );	
+
+/**
+ * edit menu walker
+ */
+add_filter( 'wp_edit_nav_menu_walker', array( $register_nav_menu_edit, 'register'), 10, 2 );
+add_action( 'wp_fields_nav_menu_item', array( $register_nav_menu_edit, 'add_new_field' ), 10, 2 );
 
 if ( is_admin() ) {
 
-	/**
-	 * Add fields to widget areas
-	 * The $register_metabox is declared in plugin
-	 */
-	if ( isset( $register_metabox ) ) {
-		add_action( 'cmb2_admin_init', array( $register_metabox, 'register_widget_areas_fields' ) );
-	}
-
 	require( TEMPLATEPATH . '/admin/functions.php' );
 
-	$required_plugins = new \ItalyStrap\Admin\Register_Required_Plugins;
+	$required_plugins = new Required_Plugins;
 	add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
 
 	/**
 	 * Admin functionality
 	 */
-	$admin_text_editor = new \ItalyStrap\Admin\Admin_Text_Editor;
+	$admin_text_editor = new Text_Editor;
 
 	add_filter( 'mce_buttons_2', array( $admin_text_editor, 'reveal_hidden_tinymce_buttons' ) );
 
@@ -167,88 +157,48 @@ if ( is_admin() ) {
 	add_filter( 'mce_buttons', array( $admin_text_editor, 'break_page_button' ), 1, 2 );
 
 	/**
-	 * Admin customizer
+	 * TinyMCE Editor in Category description
 	 */
-	$metabox = new \ItalyStrap\Admin\Custom_Meta_Box;
-	add_action( 'cmb2_admin_init', array( $metabox, 'register_template_settings' ) );
+	$editor = new Category_Editor;
 
 	/**
-	 * Wp Editor in Category description
+	 * Add fields to widget areas
+	 * The $register_metabox is declared in plugin
 	 */
-	new \ItalyStrapAdminCategoryEditor;
+	if ( isset( $register_metabox ) ) {
+		add_action( 'cmb2_admin_init', array( $register_metabox, 'register_widget_areas_fields' ) );
+	}
+
+	/**
+	 * Admin customizer
+	 */
+	$metabox = new Register_Meta;
+	add_action( 'cmb2_admin_init', array( $metabox, 'register_template_settings' ) );
 }
 
-/**
- * General Template functions
- */
-require locate_template( '/lib/general-functions.php' );
+$files = array(
+	// '/vendor/autoload.php',
+	'/lib/general-functions.php',
+	// '/lib/hooks.php',
+	'/lib/images.php',
+	'/lib/pointer.php',
+	'/lib/cleanup.php', // Cleanup Headers.
+	'/lib/script.php',
+	'/lib/wp-h5bp-htaccess.php', // https://github.com/roots/wp-h5bp-htaccess.
+	'/lib/pagination.php',
+	'/lib/users_meta.php',
+	'/lib/schema.php',
+	'/lib/tag_cloud.php',
+	'/lib/password_protection.php', // Function for Post/page password protection Bootstrap style.
+	'/lib/wp-sanitize-capital-p.php',
+	'/lib/woocommerce.php',
+	'/lib/debug.php',
+	'/deprecated/deprecated.php', // Deprecated files and functions.
+);
 
-/**
- * Custom function for images.
- */
-require locate_template( '/lib/images.php' );
-
-/**
- * Activation options, added pointer for theme instructions.
- */
-require locate_template( '/lib/pointer.php' );
-
-/**
- * Cleanup Headers.
- */
-require locate_template( '/lib/cleanup.php' );
-
-/**
- * Load all Js and CSS script in theme.
- */
-require( TEMPLATEPATH . '/lib/script.php' );
-
-/**
- * Add htaccess from HTML5 Boilerplate
- *
- * @link   [<description>]https://github.com/roots/wp-h5bp-htaccess.
- */
-require locate_template( '/lib/wp-h5bp-htaccess.php' );
-
-/**
- * Pagination.
- */
-require locate_template( '/lib/pagination.php' );
-
-/**
- * Users meta.
- */
-require locate_template( '/lib/users_meta.php' );
-
-/**
- * Function for Schema.org and OG.
- */
-require locate_template( '/lib/schema.php' );
-
-/**
- * New style for tag cloud
- */
-require locate_template( '/lib/tag_cloud.php' );
-
-/**
- * Function for Post/page password protection Bootstrap style
- */
-require locate_template( '/lib/password_protection.php' );
-
-require locate_template( '/lib/wp-sanitize-capital-p.php' );
-
-require locate_template( '/lib/woocommerce.php' );
-
-/**
- * Functions for debugging porpuse
- */
-require locate_template( '/lib/debug.php' );
-
-/** *******************************************************************
- * Deprecated files and functions
- ******************************************************************** */
-
-require locate_template( '/deprecated/deprecated.php' );
+foreach ( $files as $file ) {
+	require( TEMPLATEPATH . $file );
+}
 
 /********************
  * Set content width
@@ -291,14 +241,13 @@ add_action( 'customize_preview_init' , array( $italystrap_customizer, 'live_prev
 add_action( 'wp_head' , array( $italystrap_customizer, 'css_output' ), 11 );
 
 /**
- * Add new voice to theme menu
- */
-add_action( 'admin_menu', array( $italystrap_customizer, 'add_appearance_menu' ) );
-
-/**
  * Add link to Theme Options in case ItalyStrap plugin is active
  */
 if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
+	/**
+	 * Add new voice to theme menu
+	 */
+	add_action( 'admin_menu', array( $italystrap_customizer, 'add_appearance_menu' ) );
 	add_action( 'admin_menu', array( $italystrap_customizer, 'add_link_to_theme_option_page' ) );
 }
 

@@ -6,14 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'ItalyStrapAdminCategoryEditor' => $baseDir . '/admin/class-italystrap-category-editor.php',
-    'ItalyStrapOptionTheme' => $baseDir . '/admin/ItalyStrapOptionTheme.php',
-    'ItalyStrap\\Admin\\Admin_Text_Editor' => $baseDir . '/admin/class-admin-text-editor.php',
-    'ItalyStrap\\Admin\\Custom_Meta_Box' => $baseDir . '/admin/class-custom-meta-box.php',
-    'ItalyStrap\\Admin\\Custom_Walker_Nav_Menu_Edit' => $baseDir . '/admin/class-custom-walker-nav-menu-edit.php',
-    'ItalyStrap\\Admin\\Customize_Check_Control' => $baseDir . '/admin/class-customize-checkbox-control.php',
-    'ItalyStrap\\Admin\\Customizer' => $baseDir . '/admin/class-customizer.php',
-    'ItalyStrap\\Admin\\Handle_Custom_Walker_Nav_Menu_Edit' => $baseDir . '/admin/class-handle-custom-walker-nav-menu-edit.php',
-    'ItalyStrap\\Admin\\Register_Required_Plugins' => $baseDir . '/admin/class-register-required-plugins.php',
-    'Textarea_Custom_Control' => $baseDir . '/admin/textarea/textarea-custom-control.php',
 );

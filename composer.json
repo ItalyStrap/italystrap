@@ -9,14 +9,16 @@
     ],
     "require": {
     	"php": "^7",
-        "tgmpa/tgm-plugin-activation": "^2.6"
+        "tgmpa/tgm-plugin-activation": "^2.6",
+        "overclokk/minimum-requirements": "dev-master"
     },
 	"autoload": {
 		"classmap": [
-			"admin"
 		],
         "psr-4": {
-            "ItalyStrap\\Core\\": "core/"
+            "ItalyStrap\\Admin\\": "admin/",
+            "ItalyStrap\\Core\\": "core/",
+            "ItalyStrap\\Customizer\\": "customizer/"
         }
 	}
 }

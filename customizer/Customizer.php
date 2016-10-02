@@ -56,18 +56,18 @@ class Customizer{
 	private $panel = 'italystrap_options_page';
 
 	/**
-	 * The default text for colophon
+	 * Theme mods settings
 	 *
-	 * @var string
+	 * @var array
 	 */
-	private $colophon_default_text = '';
+	private $theme_mods = array();
 
 	/**
 	 * Init the class
 	 */
-	function __construct() {
+	function __construct( array $theme_mods = array() ) {
 
-		$this->colophon_default_text = apply_filters( 'italystrap_colophon_default_text', Core\colophon_default_text() );
+		$this->theme_mods = $theme_mods;
 	}
 
 	/**
@@ -423,17 +423,15 @@ class Customizer{
 	 */
 	public function generate_css( $selector, $property, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
 
-		global $italystrap_theme_mods;
-
 		/**
 		 * Get theme mod by mod_name
 		 *
 		 * @var string
 		 */
 		// $mod = get_theme_mod( $mod_name );
-		$mod = $italystrap_theme_mods[ $mod_name ];
+		$mod = $this->theme_mods[ $mod_name ];
 
-// var_dump( $italystrap_theme_mods[$mod_name] );
+// var_dump( $this->theme_mods[$mod_name] );
 // var_dump( $mod );
 
 		/**
@@ -465,14 +463,12 @@ class Customizer{
 	 */
 	public function css_output() {
 
-		global $italystrap_theme_mods;
-
 		/**
 		 * Custom CSS section on customizer page
 		 *
 		 * @var string
 		 */
-		$custom_css = ( isset( $italystrap_theme_mods['custom_css'] ) ) ? $italystrap_theme_mods['custom_css'] : '' ;
+		$custom_css = ( isset( $this->theme_mods['custom_css'] ) ) ? $this->theme_mods['custom_css'] : '' ;
 
 		$this->style .= $this->generate_css( '#site-title a', 'color', 'header_textcolor', '#' );
 

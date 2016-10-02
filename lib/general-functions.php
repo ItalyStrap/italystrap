@@ -463,3 +463,18 @@ function is_comment_reply() {
 
 	return (bool) is_singular() && comments_open() && get_option( 'thread_comments' );
 }
+
+/**
+ * Fallback function for custom background.
+ */
+function _custom_background_cb() {
+
+	global $italystrap_customizer;
+
+	if ( ! $italystrap_customizer ) {
+		$italystrap_customizer = new \ItalyStrap\Customizer\Customizer;
+	}
+
+	$italystrap_customizer->custom_background_cb();
+
+}

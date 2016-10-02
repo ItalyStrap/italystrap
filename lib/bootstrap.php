@@ -14,16 +14,16 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Admin\Category\Editor	as Category_Editor;
-use ItalyStrap\Admin\Tinymce\Editor		as Text_Editor;
-use ItalyStrap\Admin\Metabox\Register	as Register_Meta;
-use ItalyStrap\Admin\Required_Plugins\Register	as Required_Plugins;
+use ItalyStrap\Admin\Category\Editor as Category_Editor;
+use ItalyStrap\Admin\Tinymce\Editor as Text_Editor;
+use ItalyStrap\Admin\Metabox\Register as Register_Meta;
+use ItalyStrap\Admin\Required_Plugins\Register as Required_Plugins;
 use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
 
-use ItalyStrap\Core\Init\Init_Theme		as Init_Theme;
-use ItalyStrap\Core\Navbar\Navbar		as Navbar;
-use ItalyStrap\Core\Sidebars\Sidebars	as Sidebars;
-use ItalyStrap\Core\Excerpt\Excerpt		as Excerpt;
+use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
+use ItalyStrap\Core\Navbar\Navbar as Navbar;
+use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
+use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
 
 use ItalyStrap\Customizer\Customizer;
 

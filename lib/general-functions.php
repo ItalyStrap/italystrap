@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu;
+
 /**
  * New get_search_form function
  *

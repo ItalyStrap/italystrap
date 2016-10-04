@@ -208,7 +208,7 @@ if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
  * @var object The init obj.
  */
 $init = new Init_Theme( $content_width );
-$navbar = new Navbar;
+$navbar = new Navbar( $italystrap_theme_mods );
 
 $italystrap_excerpt = new Excerpt;
 

@@ -30,6 +30,13 @@ class Navbar {
 	private $number;
 
 	/**
+	 * Array with theme options
+	 *
+	 * @var array
+	 */
+	private $theme_mods = array();
+
+	/**
 	 * The ID of the Navbar instance
 	 *
 	 * @var string
@@ -46,6 +53,8 @@ class Navbar {
 		$this->number = self::$instance_count;
 
 		$this->navbar_id = apply_filters( 'italystrap_navbar_id', 'italystrap-menu-' . $this->number );
+
+		$this->theme_mods = $theme_mods;
 	}
 
 	/**
@@ -175,20 +184,12 @@ class Navbar {
 	public function get_navbar_brand() {
 
 		/**
-		 * Theme options
-		 *
-		 * @todo Da mettere a posto.
-		 * @var array
-		 */
-		$theme_mods = get_theme_mods();
-// var_dump($theme_mods);
-		/**
 		 * The ID of the logo image for navbar
 		 * By default in the customizer is set a url for the image instead an integer
-		 * When it is choices an image than it will set an integer for $theme_mods['navbar_logo']
+		 * When it is choices an image than it will set an integer for $this->theme_mods['navbar_logo']
 		 * @var integer
 		 */
-		$attachment_id = absint( isset( $theme_mods['navbar_logo_image'] ) ? $theme_mods['navbar_logo_image'] : null );
+		$attachment_id = absint( isset( $this->theme_mods['navbar_logo_image'] ) ? $this->theme_mods['navbar_logo_image'] : null );
 
 		$output = '';
 
@@ -204,7 +205,7 @@ class Navbar {
 
 		$output .= '<a' . $this->get_html_tag_attr( $a ) . '>';
 
-		if ( $attachment_id && empty( $theme_mods['display_navbar_logo_image'] ) ) {
+		if ( $attachment_id && empty( $this->theme_mods['display_navbar_logo_image'] ) ) {
 
 			$attr = array(
 				'class'			=> 'img-brand img-responsive center-block',
@@ -215,11 +216,11 @@ class Navbar {
 			/**
 			 * Size default: navbar-brand-image
 			 */
-			$output .= wp_get_attachment_image( $attachment_id, $theme_mods['navbar_logo_image_size'], false, $attr );
+			$output .= wp_get_attachment_image( $attachment_id, $this->theme_mods['navbar_logo_image_size'], false, $attr );
 
 			$output .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
 
-		} elseif ( $attachment_id && ! empty( $theme_mods['display_navbar_logo_image'] ) ) {
+		} elseif ( $attachment_id && ! empty( $this->theme_mods['display_navbar_logo_image'] ) ) {
 
 			$attr = array(
 				'class'			=> 'img-brand',
@@ -230,7 +231,7 @@ class Navbar {
 			/**
 			 * Size default: navbar-brand-image
 			 */
-			$output .= wp_get_attachment_image( $attachment_id, $theme_mods['navbar_logo_image_size'], false, $attr );
+			$output .= wp_get_attachment_image( $attachment_id, $this->theme_mods['navbar_logo_image_size'], false, $attr );
 
 			$output .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
 

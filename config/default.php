@@ -51,7 +51,14 @@ return array(
 	 */
 	'colophon'						=> apply_filters( 'italystrap_colophon_default_text', Core\colophon_default_text() ),
 
-	'content_width'					=> 750,
+	'site_layout'					=> 'content_sidebar',
+
+	'content_width'					=> Core\get_content_width( 1170, 12, 8, 30 ),
+	'container_class'				=> 'container', // container-fluid
+	'content_class'					=> 'col-md-8', // 7 - 6
+	'sidebar_class'					=> 'col-md-4', // 3 - 3
+	'sidebar_secondary_class'		=> '', // 2 - 3
+	'full_width'					=> 'col-md-12',
 
 	/**
 	 * Set by plugin

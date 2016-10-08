@@ -20,20 +20,34 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 class Layout {
 
 	/**
-	 * [$var description]
+	 * Theme mods
 	 *
 	 * @var array
 	 */
-	private $theme_mod = array();
+	private $theme_mods = array();
 
 	/**
-	 * [__construct description]
+	 * Init the constructor
 	 *
-	 * @param [type] $argument [description].
+	 * @param array $theme_mod Theme mods array.
 	 */
 	function __construct( array $theme_mod = array() ) {
-		$this->theme_mod = $theme_mod;
-		$this->theme_mod['site-layout'] = '$theme_mod';
+		$this->theme_mods = $theme_mod;
+	}
+
+	/**
+	 * Get the ID
+	 *
+	 * @return int        The current content ID
+	 */
+	public function get_the_ID() {
+	
+		if ( is_home() ) {
+			return PAGE_FOR_POSTS;
+		}
+
+		return get_the_ID();
+	
 	}
 
 	/**
@@ -41,22 +55,25 @@ class Layout {
 	 *
 	 * @return array Return the array with template part settings.
 	 */
-	public function get_template_settings() {
+	public function get_layout_settings() {
 
 		/**
-		 * Front page ID get_option( 'page_on_front' );
-		 * Home page ID get_option( 'page_for_posts' );
+		 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
+		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
 		 */
 
-		$id = '';
+		// var_dump( PAGE_ON_FRONT );
+		// var_dump( get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true ) );
+		// delete_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
+		// delete_post_meta_by_key( '_italystrap_layout_settings' );
+		// 
+		$setting = get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
 
-		if ( is_home() ) {
-			$id = get_option( 'page_for_posts' );
-		} else {
-			$id = get_the_ID();
+		if ( PAGE_ON_FRONT !== 0 && PAGE_ON_FRONT === $this->get_the_ID() && empty( $setting ) ) {
+			$setting = 'full_width';
 		}
 
-		return get_post_meta( $id, '_italystrap_template_settings', true );
+		return $setting;
 	}
 
 	/**
@@ -65,45 +82,38 @@ class Layout {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	public function get_site_layout( $attr, $context, $args ) {
+	public function set_content_class( $attr, $context, $args ) {
 
-		// $italystrap_theme_mods['site-layout']
-
-		// add_action( 'italystrap_after_content', array( $this, 'get_sidebar' ) );
-		// add_action( 'italystrap_before_content', array( $this, 'get_sidebar' ) );
-		// add_action( 'italystrap_before_content', array( $this, 'get_sidebar' ) );
+		$attr['class'] = $this->theme_mods['content_class'];
+		
+		if ( 'full_width' === $this->get_layout_settings() ) {
+			$attr['class'] = $this->theme_mods['full_width'];
+		}
 
 		if ( 'front-page' === CURRENT_TEMPLATE_SLUG && is_home() === false ) {
-			$attr['class'] = 'col-md-12';
 			$attr['itemtype'] = 'http://schema.org/Article';
-			remove_action( 'italystrap_after_content', array( $this, 'get_sidebar' ) );
 			return $attr;
 		}
 
 		if ( 'home' === CURRENT_TEMPLATE_SLUG ) {
-			$attr['class'] = 'col-md-8';
 			return $attr;
 		}
 
 		if ( 'index' === CURRENT_TEMPLATE_SLUG ) {
-			// $attr['class'] = 'col-md-8';
 			return $attr;
 		}
 
 		if ( 'page' === CURRENT_TEMPLATE_SLUG ) {
-			// $attr['class'] = 'col-md-8';
 			$attr['itemtype'] = 'http://schema.org/Article';
 			return $attr;
 		}
 
 		if ( 'single' === CURRENT_TEMPLATE_SLUG ) {
-			// $attr['class'] = 'col-md-8';
 			$attr['itemtype'] = 'http://schema.org/Article';
 			return $attr;
 		}
 
 		if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
-			// $attr['class'] = 'col-md-8';
 			$attr['itemtype'] = 'http://schema.org/SearchResultsPage';
 			return $attr;
 		}
@@ -112,7 +122,6 @@ class Layout {
 	
 	}
 
-	// add_action( 'genesis_after_content', 'genesis_get_sidebar' );
 	/**
 	 * Output the sidebar.php file if layout allows for it.
 	 *
@@ -120,14 +129,15 @@ class Layout {
 	 */
 	function get_sidebar() {
 
-		$site_layout = 'content-sidebar';
-
-		//* Don't load sidebar on pages that don't need it
-		if ( 'full-width' === $site_layout )
+		//* Don't load sidebar on pages that doesn't need it
+		if ( 'full_width' === $this->get_layout_settings() ) {
 			return;
+		}
 
 		get_sidebar();
 
+		// get_sidebar( 'secondary' );
+
 	}
 
 	/**
@@ -136,118 +146,10 @@ class Layout {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	public function pagination() {
+	public function set_sidebar_class( $attr ) {
 
-		// if ( 'page' !== CURRENT_TEMPLATE_SLUG && 'single' !== CURRENT_TEMPLATE_SLUG ) {
-		// 	return null;
-		// }
+		$attr['class'] = $this->theme_mods['sidebar_class'];
+		return $attr;
 	
-		bootstrap_pagination();
-	
-	}
-
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function content_none() {
-	
-		get_template_part( 'loops/content', 'none' );
-	
-	}
-
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function comments_template() {
-
-		if ( 'page' !== CURRENT_TEMPLATE_SLUG && 'single' !== CURRENT_TEMPLATE_SLUG ) {
-			return null;
-		}
-	
-		comments_template();
-	
-	}
-
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function author_info() {
-
-		if ( 'author' !== CURRENT_TEMPLATE_SLUG ) {
-			return null;
-		}
-	
-		get_template_part( 'template/content', 'author-info' );
-	
-	}
-
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function archive_headline() {
-
-		if ( 'archive' !== CURRENT_TEMPLATE_SLUG && 'author' !== CURRENT_TEMPLATE_SLUG && 'search' !== CURRENT_TEMPLATE_SLUG ) {
-			return null;
-		}
-	
-		?>
-		<header class="page-header">
-			<?php 
-
-			if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
-				?>
-				<h1 itemprop="headline"><?php printf( esc_html__( 'Search result of: %s', 'ItalyStrap' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-				<?php
-				return null;
-			}
-
-			?>
-			<?php
-			the_archive_title( '<h1 class="page-title" itemprop="name">', '</h1>' );
-			the_archive_description( '<div class="well taxonomy-description" role="alert" itemprop="description">', '</div>' );
-
-			/**
-			 * Display or retrieve title for a Custom Post Type archive.
-			 * This is optimized for archive.php and archive-{posttype}.php template files for displaying the title of the CPT.
-			 */
-			if ( is_post_type_archive() ) {
-
-				$cpt_description = get_post_type_object( get_post_type() );
-
-				if ( $cpt_description ) { ?>
-
-				<div class="well" role="alert" itemprop="description"><p>
-					<?php echo esc_attr( $cpt_description->description ); ?>
-				</p></div>
-
-				<?php }
-			} ?>
-		</header>
-		<?php
-	
-	}
-
-	/**
-	 * Page Layout
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function page_layout( $value = '' ) {
-	
-		
-		return;
 	}
 }

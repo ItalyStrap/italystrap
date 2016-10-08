@@ -90,4 +90,30 @@ function set_default_constant() {
 		define( 'HOME_URL', get_home_url( null, '/' ) );
 	}
 
+	/**
+	 * Front page ID get_option( 'page_on_front' );
+	 * Home page ID get_option( 'page_for_posts' );
+	 */
+	if ( ! defined( 'PAGE_ON_FRONT' ) ) {
+		define( 'PAGE_ON_FRONT', absint( get_option( 'page_on_front' ) ) );
+	}
+	if ( ! defined( 'PAGE_FOR_POSTS' ) ) {
+		define( 'PAGE_FOR_POSTS', absint( get_option( 'page_for_posts' ) ) );
+	}
+
 }
+
+/**
+ * Set Current Template Constant
+ * Call this constant from after the 'get_header' action.
+ *
+ * @param string $current_template Return the current temlate
+ */
+function set_current_template( $current_template ) {
+
+	define( 'CURRENT_TEMPLATE', basename( $current_template ) );
+	define( 'CURRENT_TEMPLATE_SLUG', str_replace( '.php', '', CURRENT_TEMPLATE ) );
+
+	return $current_template;
+}
+add_filter( 'template_include', __NAMESPACE__ . '\set_current_template', 9999 );

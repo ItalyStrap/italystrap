@@ -84,7 +84,7 @@ $italystrap_options = get_option( 'italystrap_theme_settings' );
  *
  * @var array
  */
-$italystrap_theme_mods = wp_parse_args( get_theme_mods(), $defaults );
+$theme_mods = wp_parse_args( get_theme_mods(), $defaults );
 
 /**
  * Add field for adding glyphicon in menu
@@ -145,6 +145,7 @@ if ( is_admin() ) {
 	 */
 	$metabox = new Register_Meta;
 	add_action( 'cmb2_admin_init', array( $metabox, 'register_template_settings' ) );
+	add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );
 }
 
 /********************
@@ -161,7 +162,7 @@ if ( is_admin() ) {
  */
 if ( ! isset( $content_width ) ) {
 
-	$content_width = apply_filters( 'content_width', $italystrap_theme_mods['content_width'] );
+	$content_width = apply_filters( 'content_width', $theme_mods['content_width'] );
 }
 
 /**
@@ -177,7 +178,7 @@ if ( function_exists( 'register_widget' ) ) {
  *
  * @var ItalyStrap_Theme_Customizer
  */
-$italystrap_customizer = new Customizer( $italystrap_theme_mods );
+$italystrap_customizer = new Customizer( $theme_mods );
 
 /**
  * Setup the Theme Customizer settings and controls...
@@ -208,7 +209,7 @@ if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
  * @var object The init obj.
  */
 $init = new Init_Theme( $content_width );
-$navbar = new Navbar( $italystrap_theme_mods );
+$navbar = new Navbar( $theme_mods );
 
 $italystrap_excerpt = new Excerpt;
 

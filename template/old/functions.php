@@ -109,7 +109,7 @@ $italystrap_options = get_option( 'italystrap_theme_settings' );
  *
  * @var array
  */
-$italystrap_theme_mods = get_theme_mods();
+$theme_mods = get_theme_mods();
 
 require( TEMPLATEPATH . '/vendor/autoload.php' );
 

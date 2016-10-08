@@ -2,7 +2,7 @@
 /**
  * The template part for displaying Colophon
  *
- * @uses get_the_colophon( $italystrap_theme_mods )
+ * @uses get_the_colophon( $theme_mods )
  *
  * @package ItalyStrap
  * @since 4.0.0
@@ -23,8 +23,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 				echo apply_filters( 'italystrap_colophon', false );
 
-				global $italystrap_theme_mods;
-				echo Core\get_the_colophon( $italystrap_theme_mods ); // XSS ok.
+				global $theme_mods;
+				echo Core\get_the_colophon( $theme_mods ); // XSS ok.
 				?>
 			</div>
 		</div>

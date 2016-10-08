@@ -181,11 +181,11 @@ function colophon_default_text() {
  *
  * @since 4.0.0 ItalyStrap
  *
- * @param  string $italystrap_theme_mods The theme mods array.
+ * @param  string $theme_mods The theme mods array.
  */
-function get_the_colophon( $italystrap_theme_mods ) {
+function get_the_colophon( $theme_mods ) {
 
-	$output = ( isset( $italystrap_theme_mods['colophon'] ) ) ? $italystrap_theme_mods['colophon'] : colophon_default_text();
+	$output = ( isset( $theme_mods['colophon'] ) ) ? $theme_mods['colophon'] : colophon_default_text();
 
 	return apply_filters( 'italystrap_colophon_output', wp_kses_post( $output ) );
 }
@@ -478,5 +478,17 @@ function _custom_background_cb() {
 	}
 
 	$italystrap_customizer->custom_background_cb();
+
+}
+
+/**
+ * Get the content width
+ *
+ * @param  string $value [description]
+ * @return string        [description]
+ */
+function get_content_width( $container_width, $column, $content_column_width, $gutter ) {
+
+	return $container_width / $column * $content_column_width - $gutter;
 
 }

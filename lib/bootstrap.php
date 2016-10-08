@@ -216,4 +216,5 @@ $italystrap_excerpt = new Excerpt;
 /**
  * Functions for debugging porpuse
  */
-require locate_template( '/lib/hooks.php' );
+// require locate_template( '/lib/hooks.php' );
+require( TEMPLATEPATH . '/lib/hooks.php' );

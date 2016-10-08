@@ -27,6 +27,13 @@ class Layout {
 	private $theme_mods = array();
 
 	/**
+	 * Layout classes for page elements.
+	 *
+	 * @var array
+	 */
+	private $classes = array();
+
+	/**
 	 * Init the constructor
 	 *
 	 * @param array $theme_mod Theme mods array.
@@ -38,7 +45,7 @@ class Layout {
 	/**
 	 * Get the ID
 	 *
-	 * @return int        The current content ID
+	 * @return int The current content ID
 	 */
 	public function get_the_ID() {
 	
@@ -51,7 +58,47 @@ class Layout {
 	}
 
 	/**
-	 * [get_layout_settings description]
+	 * Init
+	 */
+	public function init() {
+
+		$this->classes = array(
+			'full_width'				=> array(
+				'content'			=> $this->theme_mods['full_width'],
+				'sidebar'			=> '',
+				'sidebar_secondary'	=> '',
+			),
+			'content_sidebar'			=> array(
+				'content'			=> $this->theme_mods['content_class'],
+				'sidebar'			=> $this->theme_mods['sidebar_class'],
+				'sidebar_secondary'	=> '',
+			),
+			'content_sidebar_sidebar'	=> array(
+				'content'			=> 'col-md-7',
+				'sidebar'			=> 'col-md-3',
+				'sidebar_secondary'	=> 'col-md-2',
+			),
+			'sidebar_content_sidebar'	=> array(
+				'content'			=> 'col-md-7 col-md-push-3',
+				'sidebar'			=> 'col-md-3 col-md-pull-7',
+				'sidebar_secondary'	=> 'col-md-2',
+			),
+			'sidebar_sidebar_content'	=> array(
+				'content'			=> 'col-md-7 col-md-push-5',
+				'sidebar'			=> 'col-md-3 col-md-pull-7',
+				'sidebar_secondary'	=> 'col-md-2 col-md-pull-10',
+			),
+			'sidebar_content'			=> array(
+				'content'			=> $this->theme_mods['content_class'] . '  col-md-push-4',
+				'sidebar'			=> $this->theme_mods['sidebar_class'] . '  col-md-pull-8',
+				'sidebar_secondary'	=> '',
+			),
+		);
+
+	}
+
+	/**
+	 * Get the layout settings
 	 *
 	 * @return array Return the array with template part settings.
 	 */
@@ -62,15 +109,22 @@ class Layout {
 		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
 		 */
 
-		// var_dump( PAGE_ON_FRONT );
+		// var_dump( $this->classes );
 		// var_dump( get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true ) );
 		// delete_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
 		// delete_post_meta_by_key( '_italystrap_layout_settings' );
 		// 
 		$setting = get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
 
-		if ( PAGE_ON_FRONT !== 0 && PAGE_ON_FRONT === $this->get_the_ID() && empty( $setting ) ) {
-			$setting = 'full_width';
+		/**
+		 * Backward compatibility with the front-page template
+		 */
+		if ( PAGE_ON_FRONT === $this->get_the_ID() && empty( $setting ) ) {
+			return 'full_width';
+		}
+
+		if ( empty( $setting ) ) {
+			return 'content_sidebar';
 		}
 
 		return $setting;
@@ -84,11 +138,13 @@ class Layout {
 	 */
 	public function set_content_class( $attr, $context, $args ) {
 
-		$attr['class'] = $this->theme_mods['content_class'];
+		// $attr['class'] = $this->theme_mods['content_class'];
 		
-		if ( 'full_width' === $this->get_layout_settings() ) {
-			$attr['class'] = $this->theme_mods['full_width'];
-		}
+		// if ( 'full_width' === $this->get_layout_settings() ) {
+		// 	$attr['class'] = $this->theme_mods['full_width'];
+		// }
+
+		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['content'];
 
 		if ( 'front-page' === CURRENT_TEMPLATE_SLUG && is_home() === false ) {
 			$attr['itemtype'] = 'http://schema.org/Article';
@@ -134,21 +190,40 @@ class Layout {
 			return;
 		}
 
+		// var_dump( $this->get_layout_settings() );
+
 		get_sidebar();
 
-		// get_sidebar( 'secondary' );
+		if ( in_array( $this->get_layout_settings(), array(), true ) ) {
+			get_sidebar( 'secondary' );
+		}
 
 	}
 
 	/**
-	 * Function description
+	 * Set sidebar class
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param  array $attr The sidebar attribute.
+	 * @return array       Return the new array
 	 */
 	public function set_sidebar_class( $attr ) {
 
-		$attr['class'] = $this->theme_mods['sidebar_class'];
+		// $attr['class'] = $this->theme_mods['sidebar_class'];
+		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['sidebar'];
+		return $attr;
+	
+	}
+
+	/**
+	 * Set sidebar class
+	 *
+	 * @param  array $attr The sidebar attribute.
+	 * @return array       Return the new array
+	 */
+	public function set_sidebar_secondary_class( $attr ) {
+
+		// $attr['class'] = $this->theme_mods['sidebar_class'];
+		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['sidebar_secondary'];
 		return $attr;
 	
 	}

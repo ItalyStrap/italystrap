@@ -21,8 +21,8 @@ return array(
 	 */
 	'background_color'				=> '', // Set by WordPress.
 	'header_textcolor'				=> '', // Set by WordPress.
-	'link_textcolor'				=> '#337ab7',
-	'hx_textcolor'					=> '#333',
+	'link_textcolor'				=> '',
+	'hx_textcolor'					=> '',
 
 	/**
 	 * Header image
@@ -51,8 +51,11 @@ return array(
 	 */
 	'colophon'						=> apply_filters( 'italystrap_colophon_default_text', Core\colophon_default_text() ),
 
+	/**
+	 * Layout configuration
+	 * It's still in alpha version
+	 */
 	'site_layout'					=> 'content_sidebar',
-
 	'content_width'					=> Core\get_content_width( 1170, 12, 8, 30 ),
 	'container_class'				=> 'container', // container-fluid
 	'content_class'					=> 'col-md-8', // 7 - 6

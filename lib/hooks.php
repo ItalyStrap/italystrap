@@ -127,24 +127,28 @@ add_action( 'italystrap_after_footer', __NAMESPACE__ . '\footer_close_markup', 1
  *
  * @var Layout
  */
-$layout = new Layout( (array) $theme_mods );
-add_action( 'italystrap_after_content', array( $layout, 'get_sidebar' ) );
-add_filter( 'italystrap_content_attr', array( $layout, 'set_content_class' ), 10, 3 );
-add_filter( 'italystrap_sidebar_attr', array( $layout, 'set_sidebar_class' ), 10, 3 );
+$site_layout = new Layout( (array) $theme_mods );
+add_action( 'italystrap_theme_loaded', array( $site_layout, 'init' ) );
+
+add_action( 'italystrap_after_content', array( $site_layout, 'get_sidebar' ) );
+
+add_filter( 'italystrap_content_attr', array( $site_layout, 'set_content_class' ), 10, 3 );
+add_filter( 'italystrap_sidebar_attr', array( $site_layout, 'set_sidebar_class' ), 10, 3 );
+add_filter( 'italystrap_sidebar_secondary_attr', array( $site_layout, 'set_sidebar_secondary_class' ), 10, 3 );
 
 /**
  * Template object
  *
  * @var Template
  */
-$template = new Template( (array) $theme_mods );
+$template_settings = new Template( (array) $theme_mods );
 
 /**
  * Questo filtro si trova nei file template per gestire commenti e altro
  */
-add_filter( 'italystrap_template_settings', array( $template, 'get_template_settings' ) );
-add_action( 'italystrap_before_while', array( $template, 'archive_headline' ) );
-add_action( 'italystrap_before_loop', array( $template, 'author_info' ) );
-add_action( 'italystrap_after_loop', array( $template, 'pagination' ) );
-add_action( 'italystrap_content_none', array( $template, 'content_none' ) );
-add_action( 'italystrap_after_loop', array( $template, 'comments_template' ) );
+add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
+add_action( 'italystrap_before_while', array( $template_settings, 'archive_headline' ) );
+add_action( 'italystrap_before_loop', array( $template_settings, 'author_info' ) );
+add_action( 'italystrap_after_loop', array( $template_settings, 'pagination' ) );
+add_action( 'italystrap_content_none', array( $template_settings, 'content_none' ) );
+add_action( 'italystrap_after_loop', array( $template_settings, 'comments_template' ) );

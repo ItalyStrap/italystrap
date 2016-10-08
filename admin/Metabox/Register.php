@@ -122,7 +122,7 @@ class Register {
 			)
 		);
 
-		$post_id = absint( $_GET['post'] );
+		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : null;
 
 		$cmb->add_field(
 			array(
@@ -131,7 +131,7 @@ class Register {
 				'id'		=> $this->_prefix . '_layout_settings',
 				'type'		=> 'radio',
 				'options'	=> $layout_settings_metabox_options,
-				'default'	=> PAGE_ON_FRONT !== 0 && PAGE_ON_FRONT === $post_id ? 'full_width' : 'content_sidebar',
+				'default'	=> PAGE_ON_FRONT === $post_id ? 'full_width' : 'content_sidebar',
 			)
 		);
 	

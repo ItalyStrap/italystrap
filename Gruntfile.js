@@ -139,14 +139,23 @@ module.exports = function(grunt) {
         },
 
         compass:{ // https://github.com/gruntjs/grunt-contrib-compass
-            src:{
+            dev:{
+                options: {
+                    sassDir:['sass'],
+                    cssDir:['css/src'],
+                    environment: 'development',
+                    // sourcemap: true,
+                    importPath: 'bower/bootstrap-sass/assets/stylesheets'
+                }
+            },
+            dist:{
                 options: {
                     sassDir:['sass'],
                     cssDir:['css'],
                     outputStyle: 'compressed',
                     importPath: 'bower/bootstrap-sass/assets/stylesheets'
                 }
-            },
+            }
         },
 
         less: { // https://github.com/gruntjs/grunt-contrib-less
@@ -165,7 +174,7 @@ module.exports = function(grunt) {
         },
 
         csslint: { // http://astainforth.com/blogs/grunt-part-2
-            files: ['css/*.css', '!css/bootstrap.min.css',],
+            files: ['css/src/*.css', '!css/bootstrap.min.css',],
             options: {
                 csslintrc: '.csslintrc'
             }

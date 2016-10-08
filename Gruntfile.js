@@ -1,4 +1,8 @@
-var bootstrap_path = 'bower/bootstrap-sass/assets/javascripts/bootstrap/';
+var bower_path = 'bower/';
+var bootstrap_path = bower_path + 'bootstrap-sass/assets/';
+var bootstrap_js_path = bootstrap_path + 'javascripts/bootstrap/';
+var bootstrap_fonts_path = bootstrap_path + 'fonts/bootstrap/';
+
 module.exports = function(grunt) {
     'use strict';
     grunt.initConfig({
@@ -25,30 +29,16 @@ module.exports = function(grunt) {
          * $ grunt copy
          */
         copy: { // https://github.com/gruntjs/grunt-contrib-copy
-            bootstrapcss: {
-                expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
-                cwd: 'bower/bootstrap/less/',
-                src: ['**'],
-                dest: 'css/src/less/',
-                filter: 'isFile',
-            },
-            bootstrapjs: {
-                expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
-                cwd: 'bower/bootstrap/js/',
-                src: ['**'],
-                dest: bootstrap_path + '',
-                filter: 'isFile',
-            },
             bootstrapfonts: {
                 expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
-                cwd: 'bower/bootstrap/fonts/',
+                cwd: bootstrap_fonts_path,
                 src: ['**'],
                 dest: 'fonts/',
                 filter: 'isFile',
             },
             jquery: {
                 expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
-                cwd: 'bower/jquery/dist/',
+                cwd: bower_path + 'jquery/dist/',
                 src: ['jquery.min.js'],
                 dest: 'js/',
                 filter: 'isFile',
@@ -349,7 +339,7 @@ module.exports = function(grunt) {
     grunt.registerTask('update', [
                                 'bower',
                                 'copy',
-                                'less',
+                                'compass',
                                 'uglify'
                                 ]);
 
@@ -394,15 +384,15 @@ module.exports = function(grunt) {
                                 'github-release',
                                 ]);
     
-    grunt.registerTask('testcssbuild', ['less', 'compass', 'csslint']);
+    grunt.registerTask('testcssbuild', ['compass', 'csslint']);
     grunt.registerTask('testjsbuild', ['jshint', 'uglify']);
 
     // After botstrap update execute "grunt bootstrap"
-    grunt.registerTask('bootstrap', ['uglify:bootstrapJS', 'less']);
+    grunt.registerTask('bootstrap', ['uglify:bootstrapJS', 'compass']);
 
 
     grunt.registerTask('test', ['jshint', 'csslint']);
-    grunt.registerTask('build', ['uglify', 'less', 'compass']);
+    grunt.registerTask('build', ['uglify', 'compass']);
 
     grunt.registerTask('php', 'A sample task that logs stuff.', function() {
         return null;

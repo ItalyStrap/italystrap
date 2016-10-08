@@ -25,7 +25,6 @@
     "tests"
   ],
   "devDependencies": {
-    "bootstrap": "latest",
     "bootstrap-sass": "latest",
     "font-awesome": "latest",
     "jquery": "latest",

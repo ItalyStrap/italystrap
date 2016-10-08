@@ -90,6 +90,7 @@ Release Date: Sep 10th, 2015
 * Added namespace PHP 5.3 to all files
 * wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
 * PSR-4 ready
+* New layout API
 
 
 = 3.0.5 =

@@ -57,7 +57,7 @@ class Register {
 		$cmb = new_cmb2_box(
 			array(
 				'id'            => $this->prefix . '-template-settings-metabox',
-				'title'         => __( 'Advanced settings', 'ItalyStrap' ),
+				'title'         => __( 'Advanced settings', 'italystrap' ),
 				'object_types'  => $template_settings_metabox_object_types,
 				'context'    => 'side',
 				'priority'   => 'low',
@@ -66,28 +66,74 @@ class Register {
 
 		$template_settings_metabox_options = apply_filters( 'italystrap_template_settings_metabox_options',
 			array(
-				'hide_breadcrumbs'	=> __( 'Hide breadcrumbs', 'ItalyStrap' ),
-				'hide_title'		=> __( 'Hide title', 'ItalyStrap' ),
-				'hide_meta'			=> __( 'Hide meta info', 'ItalyStrap' ),
-				'hide_thumb'		=> __( 'Hide feautured image', 'ItalyStrap' ),
-				'hide_figcaption'	=> __( 'Hide figure caption', 'ItalyStrap' ),
-				'hide_content'		=> __( 'Hide the content', 'ItalyStrap' ),
-				'hide_author'		=> __( 'Hide author box', 'ItalyStrap' ),
-				'hide_social'		=> __( 'Hide builtin social sharing', 'ItalyStrap' ),
-				'hide_comments'		=> __( 'Hide comments', 'ItalyStrap' ),
-				'hide_comments_form'=> __( 'Hide comments form', 'ItalyStrap' ),
-				// 'hide_sidebar'		=> __( 'Hide sidebar', 'ItalyStrap' ),
+				'hide_breadcrumbs'	=> __( 'Hide breadcrumbs', 'italystrap' ),
+				'hide_title'		=> __( 'Hide title', 'italystrap' ),
+				'hide_meta'			=> __( 'Hide meta info', 'italystrap' ),
+				'hide_thumb'		=> __( 'Hide feautured image', 'italystrap' ),
+				'hide_figcaption'	=> __( 'Hide figure caption', 'italystrap' ),
+				'hide_content'		=> __( 'Hide the content', 'italystrap' ),
+				'hide_author'		=> __( 'Hide author box', 'italystrap' ),
+				'hide_social'		=> __( 'Hide builtin social sharing', 'italystrap' ),
+				'hide_comments'		=> __( 'Hide comments', 'italystrap' ),
+				'hide_comments_form'=> __( 'Hide comments form', 'italystrap' ),
+				// 'hide_sidebar'		=> __( 'Hide sidebar', 'italystrap' ),
 			)
 		);
 
 		$cmb->add_field(
 			array(
-				'name'		=> __( 'Template settings', 'ItalyStrap' ),
-				'desc'		=> __( 'Advance template setting for this page/post', 'ItalyStrap' ),
+				'name'		=> __( 'Template settings', 'italystrap' ),
+				'desc'		=> __( 'Advance template setting for this page/post', 'italystrap' ),
 				'id'		=> $this->_prefix . '_template_settings',
 				'type'		=> 'multicheck',
 				'options'	=> $template_settings_metabox_options,
 			)
 		);
+	}
+
+	/**
+	 * Register layout settings
+	 */
+	public function register_layout_settings() {
+	
+		$layout_settings_metabox_object_types = apply_filters( 'italystrap_layout_settings_metabox_object_types', array( 'page', 'post' ) );
+
+		/**
+		 * Sample metabox to demonstrate each field type included
+		 */
+		$cmb = new_cmb2_box(
+			array(
+				'id'            => $this->prefix . '-layout-settings-metabox',
+				'title'         => __( 'Advanced settings', 'italystrap' ),
+				'object_types'  => $layout_settings_metabox_object_types,
+				'context'    => 'side',
+				'priority'   => 'low',
+			)
+		);
+
+		$layout_settings_metabox_options = apply_filters( 'italystrap_layout_settings_metabox_options',
+			array(
+				'full_width'				=> __( 'Full width, no sidebar', 'italystrap' ),
+				'content_sidebar'			=> __( 'Content Sidebar', 'italystrap' ),
+				'content_sidebar_sidebar'	=> __( 'Content Sidebar Sidebar', 'italystrap' ),
+				'sidebar_content_sidebar'	=> __( 'Sidebar Content Sidebar', 'italystrap' ),
+				'sidebar_sidebar_content'	=> __( 'Sidebar Sidebar content', 'italystrap' ),
+				'sidebar_content'			=> __( 'Sidebar Content', 'italystrap' ),
+			)
+		);
+
+		$post_id = absint( $_GET['post'] );
+
+		$cmb->add_field(
+			array(
+				'name'		=> __( 'Layout settings', 'italystrap' ),
+				'desc'		=> __( 'Advance layout setting for this page/post', 'italystrap' ),
+				'id'		=> $this->_prefix . '_layout_settings',
+				'type'		=> 'radio',
+				'options'	=> $layout_settings_metabox_options,
+				'default'	=> PAGE_ON_FRONT !== 0 && PAGE_ON_FRONT === $post_id ? 'full_width' : 'content_sidebar',
+			)
+		);
+	
 	}
 }

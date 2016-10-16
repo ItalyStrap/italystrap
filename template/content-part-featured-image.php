@@ -21,11 +21,11 @@
 
 namespace ItalyStrap;
 
-global $layout_settings;
+global $template_settings;
 
 $context = null;
 
-if ( has_post_thumbnail() && ! in_array( 'hide_thumb', (array) $layout_settings, true ) ) { ?>
+if ( has_post_thumbnail() && ! in_array( 'hide_thumb', (array) $template_settings, true ) ) { ?>
 	<figure <?php Core\get_attr( 'featured_image', array( 'class' => 'featured-image' ), true ); ?>>
 		<?php
 

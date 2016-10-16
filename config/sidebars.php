@@ -1,6 +1,7 @@
 <?php
 /**
- * Array definition for Thema parent sidebar registration
+ * Array definition for Theme parent sidebar registration.
+ * This will be mantained for backward compatibility.
  *
  * @package ItalyStrap
  */

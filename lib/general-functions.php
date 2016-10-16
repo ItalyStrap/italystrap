@@ -492,3 +492,14 @@ function get_content_width( $container_width, $column, $content_column_width, $g
 	return $container_width / $column * $content_column_width - $gutter;
 
 }
+
+/**
+ * Is static front page
+ *
+ * @return bool Return true if it is a static page selected for front page, not blog
+ */
+function is_static_front_page() {
+
+	return (bool) is_front_page() && ! is_home();
+
+}

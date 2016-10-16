@@ -48,7 +48,7 @@ class Layout {
 	 * @return int The current content ID
 	 */
 	public function get_the_ID() {
-	
+
 		if ( is_home() ) {
 			return PAGE_FOR_POSTS;
 		}
@@ -118,8 +118,9 @@ class Layout {
 
 		/**
 		 * Backward compatibility with the front-page template
+		 * old PAGE_ON_FRONT === $this->get_the_ID() && empty( $setting ) 
 		 */
-		if ( PAGE_ON_FRONT === $this->get_the_ID() && empty( $setting ) ) {
+		if ( \ItalyStrap\Core\is_static_front_page() && empty( $setting ) ) {
 			return 'full_width';
 		}
 

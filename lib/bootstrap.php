@@ -20,6 +20,7 @@ use ItalyStrap\Admin\Metabox\Register as Register_Meta;
 use ItalyStrap\Admin\Required_Plugins\Register as Required_Plugins;
 use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
 
+use ItalyStrap\Core\Image\Size as Size;
 use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
 use ItalyStrap\Core\Navbar\Navbar as Navbar;
 use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
@@ -29,7 +30,7 @@ use ItalyStrap\Customizer\Customizer;
 
 /**
  * Load some static files.
- * Bate version.
+ * Beta version.
  *
  * @var array
  */
@@ -85,6 +86,16 @@ $italystrap_options = get_option( 'italystrap_theme_settings' );
  * @var array
  */
 $theme_mods = wp_parse_args( get_theme_mods(), $defaults );
+
+/**
+ * Register image site
+ * BETA VERSION
+ *
+ * @var ItalyStrap
+ */
+$image_size = new Size( $theme_mods );
+// $image_size->register();
+add_action( 'after_setup_theme', array( $image_size, 'register' ) );
 
 /**
  * Add field for adding glyphicon in menu

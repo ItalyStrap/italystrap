@@ -182,6 +182,15 @@ class Navbar {
 	 * @return string Return the HTML for description
 	 */
 	public function get_navbar_brand() {
+// var_dump( get_theme_mods() );
+// var_dump( $this->theme_mods['display_navbar_brand-test'] );
+// var_dump( $this->theme_mods['display_header_text'] );
+		// if ( empty( $this->theme_mods['display_header_text'] ) ) {
+		// 	return '';
+		// }
+		// if ( empty( $this->theme_mods['display_navbar_brand'] ) ) {
+		// 	return '';
+		// }
 
 		/**
 		 * The ID of the logo image for navbar

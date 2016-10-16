@@ -199,6 +199,53 @@ $manager->add_control(
  * Display navbar brand name with navbar logo image
  */
 $manager->add_setting(
+	'display_navbar_brand-test[test1]',
+	array(
+		// 'default'			=> $this->theme_mods['display_navbar_brand-test'],
+		// 'default'			=> ,
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_display_navbar_brand-test',
+	array(
+		'settings' => 'display_navbar_brand-test[test1]',
+		'label'    => __( 'Display the navbar brand test', 'italystrap' ),
+		'section'  => 'italystrap_image_options',
+		'type'     => 'checkbox',
+	)
+);
+
+/**
+ * Display navbar brand name with navbar logo image
+ */
+$manager->add_setting(
+	'display_navbar_brand',
+	array(
+		'default'			=> $this->theme_mods['display_navbar_brand'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_display_navbar_brand',
+	array(
+		'settings' => 'display_navbar_brand',
+		'label'    => __( 'Display the navbar brand', 'italystrap' ),
+		'section'  => 'italystrap_image_options',
+		'type'     => 'checkbox',
+	)
+);
+
+/**
+ * Display navbar brand name with navbar logo image
+ */
+$manager->add_setting(
 	'display_navbar_logo_image',
 	array(
 		'default'			=> $this->theme_mods['display_navbar_logo_image'],

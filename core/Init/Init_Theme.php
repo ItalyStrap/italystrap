@@ -1,13 +1,14 @@
 <?php
 /**
- * [Short Description (no period for file headers)]
+ * Theme Init Class
  *
- * [Long Description.]
+ * This class is under development, consider this an ALPHA version,
+ * some functionality can be changed in future, especially the filter name.
  *
  * @link [URL]
- * @since [x.x.x (if available)]
+ * @since 3.0.5
  *
- * @package [Plugin/Theme/Etc]
+ * @package ItalyStrap
  */
 
 namespace ItalyStrap\Core\Init;
@@ -171,7 +172,7 @@ class Init_Theme{
 		/**
 		 * Size for default template image
 		 */
-		require locate_template( 'lib/image_size.php' );
+		// require locate_template( 'lib/image_size.php' );
 
 		/**
 		 * Add support to WooCommerce

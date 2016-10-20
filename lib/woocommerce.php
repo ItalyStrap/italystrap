@@ -130,3 +130,22 @@ function add_woocommerce_menu_to_navbrand( $output, $navbar_id ) {
 }
 
 // add_filter( 'italystrap_navbar_brand', __NAMESPACE__ . '\add_woocommerce_menu_to_navbrand', 10, 2 );
+
+/**
+ * Function description
+ *
+ * @param mixed  $args  Form elements arguments.
+ * @param string $key   Form elements key for ID attribute.
+ * @param string $value The value of the form elements (default: null).
+ *
+ * @return string        [description]
+ */
+function form_field_args( array $args, $key, $value ) {
+
+	$args['class'][] = 'form-group';
+	$args['input_class'][] = 'form-control';
+
+	return $args;
+
+}
+add_filter( 'woocommerce_form_field_args', __NAMESPACE__ . '\form_field_args', 10, 3 );

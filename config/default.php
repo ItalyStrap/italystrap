@@ -65,6 +65,29 @@ return array(
 	'full_width'					=> 'col-md-12',
 
 	/**
+	 * Set the default image
+	 */
+	'default_image_size'			=> array(
+		'navbar-brand-image'	=> array(
+			'width'		=> 45,
+			'height'	=> 45,
+			'crop'		=> true,
+		),
+		'full-width'			=> array(
+			'width'		=> 1140,
+			'height'	=> 9999,
+			'crop'		=> false,
+		),
+	),
+
+	'breakpoint'					=> array(
+		'xs'	=> 480,
+		'sm'	=> 768,
+		'md'	=> 992,
+		'lg'	=> 1200,
+	),
+
+	/**
 	 * Set by plugin
 	 */
 	// 'custom_css'					=> '',

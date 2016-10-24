@@ -18,11 +18,11 @@ namespace ItalyStrap\Core\Image;
 class Size {
 
 	/**
-	 * Default image size definitions
+	 * Image size
 	 *
 	 * @var array
 	 */
-	private $default_image = array();
+	private $image_sizes = array();
 
 	/**
 	 * Init the class
@@ -32,26 +32,48 @@ class Size {
 	function __construct( array $theme_mods = array() ) {
 		$this->theme_mods = $theme_mods;
 
-		$this->default_image = array(
-			'navbar-brand-image'	=> array(
-				'width'		=> 45,
-				'height'	=> 45,
-				'crop'		=> true,
-			),
-			'full-width'			=> array(
-				'width'		=> 1140,
-				'height'	=> 9999,
-				'crop'		=> false,
-			),
-		);
+		$this->image_sizes = $this->theme_mods['default_image_size'];
 	}
 
 	/**
-	 * Register image size
+	 * Generate image size from breakpoint
 	 */
-	public function register() {
+	public function get_image_size_from_breakpoint() {
+
+		if ( empty( $this->theme_mods['breakpoint'] ) ) {
+			return array();
+		}
+
+		foreach ( $this->theme_mods['breakpoint'] as $key => $width ) {
+			$this->image_sizes[ $key ]['width'] = (int) $width;
+			$this->image_sizes[ $key ]['height'] = 9999;
+			$this->image_sizes[ $key ]['crop'] = true;
+		}
 	
-		foreach ( $this->default_image as $name => $params ) {
+	}
+
+	/**
+	 * Add image sizes
+	 *
+	 * @param  array $image_sizes [description]
+	 * @return string        [description]
+	 */
+	private function add_image_sizes( array $image_sizes ) {
+
+		foreach ( $image_sizes as $name => $params ) {
+
+			if ( ! is_array( $params ) ) {
+				continue;
+			}
+
+			if ( ! isset( $params['width'] ) || ! isset( $params['height'] ) ) {
+				continue;
+			}
+
+			$width  = (int) $params['width'];
+			$height = (int) $params['height'];
+			$crop   = isset( $params['crop'] ) ? $params['crop'] : false;
+
 			add_image_size(
 				$name,
 				$params['width'],
@@ -59,6 +81,15 @@ class Size {
 				$params['crop']
 			);
 		}
-	
+	}
+
+	/**
+	 * Register image size
+	 */
+	public function register() {
+
+		$this->get_image_size_from_breakpoint();
+
+		$this->add_image_sizes( $this->image_sizes );
 	}
 }

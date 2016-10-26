@@ -40,10 +40,10 @@ return array(
 	 * Default images
 	 */
 	'logo'							=> TEMPLATEURL . '/img/italystrap-logo.jpg',
-	'display_navbar_brand'			=> '1',
+	'display_navbar_brand'			=> 'display_name',
 	'navbar_logo_image'				=> '',
 	'navbar_logo_image_size'		=> 'navbar-brand-image',
-	'display_navbar_logo_image'		=> '',
+	// 'display_navbar_logo_image'		=> '',
 	'default_image'					=> TEMPLATEURL . '/img/italystrap-default-image.png',
 	'default_404'					=> TEMPLATEURL . '/img/404.jpg',
 

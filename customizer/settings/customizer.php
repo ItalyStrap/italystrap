@@ -199,33 +199,11 @@ $manager->add_control(
  * Display navbar brand name with navbar logo image
  */
 $manager->add_setting(
-	'display_navbar_brand-test[test1]',
-	array(
-		// 'default'			=> $this->theme_mods['display_navbar_brand-test'],
-		// 'default'			=> ,
-		'type'				=> 'theme_mod',
-		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
-		'sanitize_callback'	=> 'sanitize_text_field',
-	)
-);
-$manager->add_control(
-	'italystrap_display_navbar_brand-test',
-	array(
-		'settings' => 'display_navbar_brand-test[test1]',
-		'label'    => __( 'Display the navbar brand test', 'italystrap' ),
-		'section'  => 'italystrap_image_options',
-		'type'     => 'checkbox',
-	)
-);
-
-/**
- * Display navbar brand name with navbar logo image
- */
-$manager->add_setting(
+	// 'display_navbar_brand[test1]',
 	'display_navbar_brand',
 	array(
 		'default'			=> $this->theme_mods['display_navbar_brand'],
+		// 'default'			=> 'display_name',
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'postMessage',
@@ -235,33 +213,18 @@ $manager->add_setting(
 $manager->add_control(
 	'italystrap_display_navbar_brand',
 	array(
-		'settings' => 'display_navbar_brand',
-		'label'    => __( 'Display the navbar brand', 'italystrap' ),
-		'section'  => 'italystrap_image_options',
-		'type'     => 'checkbox',
-	)
-);
-
-/**
- * Display navbar brand name with navbar logo image
- */
-$manager->add_setting(
-	'display_navbar_logo_image',
-	array(
-		'default'			=> $this->theme_mods['display_navbar_logo_image'],
-		'type'				=> 'theme_mod',
-		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
-		'sanitize_callback'	=> 'sanitize_text_field',
-	)
-);
-$manager->add_control(
-	'italystrap_display_navbar_logo_image',
-	array(
-		'settings' => 'display_navbar_logo_image',
-		'label'    => __( 'Display navbar brand name with navbar logo image', 'italystrap' ),
-		'section'  => 'italystrap_image_options',
-		'type'     => 'checkbox',
+		// 'settings'	=> 'display_navbar_brand[test1]',
+		'settings'		=> 'display_navbar_brand',
+		'label'			=> __( 'Display the navbar brand', 'italystrap' ),
+		'description'	=> __( 'Select the type of navbar brand to visualize or select to hide navbar brand, if you select to visualize navbar with image you also have to select the image and the size of the image to visualize in the above controls.', 'italystrap' ),
+		'section'		=> 'italystrap_image_options',
+		'type'			=> 'radio',
+		'choices'		=> array(
+			'none'			=> __( 'Hide navbar brand', 'italystrap' ),
+			'display_image'	=> __( 'Display navbar brand image', 'italystrap' ),
+			'display_name'	=> __( 'Display navbar brand name', 'italystrap' ),
+			'display_all'	=> __( 'Display navbar brand image and name', 'italystrap' ),
+		),
 	)
 );
 

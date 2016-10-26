@@ -91,6 +91,8 @@ Release Date: Sep 10th, 2015
 * wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
 * PSR-4 ready
 * New layout API
+* Better selection of nabar brand image or name
+* Added Upgrade Class API
 
 
 = 3.0.5 =

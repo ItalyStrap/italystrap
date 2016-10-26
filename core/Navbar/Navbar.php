@@ -182,15 +182,10 @@ class Navbar {
 	 * @return string Return the HTML for description
 	 */
 	public function get_navbar_brand() {
-// var_dump( get_theme_mods() );
-// var_dump( $this->theme_mods['display_navbar_brand-test'] );
-// var_dump( $this->theme_mods['display_header_text'] );
-		// if ( empty( $this->theme_mods['display_header_text'] ) ) {
-		// 	return '';
-		// }
-		// if ( empty( $this->theme_mods['display_navbar_brand'] ) ) {
-		// 	return '';
-		// }
+
+		if ( 'none' === $this->theme_mods['display_navbar_brand'] ) {
+			return apply_filters( 'italystrap_navbar_brand', '', $this->navbar_id );
+		}
 
 		/**
 		 * The ID of the logo image for navbar
@@ -198,7 +193,7 @@ class Navbar {
 		 * When it is choices an image than it will set an integer for $this->theme_mods['navbar_logo']
 		 * @var integer
 		 */
-		$attachment_id = absint( isset( $this->theme_mods['navbar_logo_image'] ) ? $this->theme_mods['navbar_logo_image'] : null );
+		$attachment_id = isset( $this->theme_mods['navbar_logo_image'] ) ? absint( $this->theme_mods['navbar_logo_image'] ) : null;
 
 		$output = '';
 
@@ -214,7 +209,7 @@ class Navbar {
 
 		$output .= '<a' . $this->get_html_tag_attr( $a ) . '>';
 
-		if ( $attachment_id && empty( $this->theme_mods['display_navbar_logo_image'] ) ) {
+		if ( $attachment_id && 'display_image' === $this->theme_mods['display_navbar_brand'] ) {
 
 			$attr = array(
 				'class'			=> 'img-brand img-responsive center-block',
@@ -229,7 +224,7 @@ class Navbar {
 
 			$output .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
 
-		} elseif ( $attachment_id && ! empty( $this->theme_mods['display_navbar_logo_image'] ) ) {
+		} elseif ( $attachment_id && 'display_all' === $this->theme_mods['display_navbar_brand'] ) {
 
 			$attr = array(
 				'class'			=> 'img-brand',

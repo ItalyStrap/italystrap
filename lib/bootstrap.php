@@ -28,6 +28,8 @@ use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
 
 use ItalyStrap\Customizer\Customizer;
 
+use ItalyStrap\Admin\Upgrade\Update;
+
 /**
  * Load some static files.
  * Beta version.
@@ -86,6 +88,9 @@ $italystrap_options = get_option( 'italystrap_theme_settings' );
  * @var array
  */
 $theme_mods = wp_parse_args( get_theme_mods(), $defaults );
+
+$update = new Update( $theme_mods );
+$update->register();
 
 /**
  * Register image site

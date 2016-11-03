@@ -67,7 +67,7 @@ return array(
 	/**
 	 * Set the default image
 	 */
-	'default_image_size'			=> array(
+	'image_size'			=> array(
 		'navbar-brand-image'	=> array(
 			'width'		=> 45,
 			'height'	=> 45,

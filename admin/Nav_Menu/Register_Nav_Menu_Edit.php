@@ -77,7 +77,7 @@ class Register_Nav_Menu_Edit {
 	function update_custom_nav_fields( $menu_id, $menu_item_db_id, $menu_item_data ) {
 
 		$glyphicon = ( isset( $_REQUEST['menu-item-glyphicon'] ) ) ? $_REQUEST['menu-item-glyphicon'] : null;
-
+// Notice: Undefined offset: 104 in /home/overclok/public_html/romelovetrotter/wp-content/themes/italystrap/admin/Nav_Menu/Register_Nav_Menu_Edit.php on line 85
 		/**
 		 * Check if element is properly sent
 		 */

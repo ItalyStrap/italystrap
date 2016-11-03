@@ -68,4 +68,4 @@ if ( has_post_thumbnail() && ! in_array( 'hide_thumb', (array) $template_setting
 	 * This action fire in case no thumbnail is loaded
 	 */
 	do_action( 'italystrap_no_post_thumbnail' );
-} ?>
+}

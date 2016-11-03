@@ -158,7 +158,7 @@ function display_breadcrumbs( $defaults = array() ) {
 
 	$template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
 
-	if ( ! in_array( 'hide_breadcrumbs', $template_settings, true ) ) {
+	if ( in_array( 'hide_breadcrumbs', $template_settings, true ) ) {
 		return;
 	}
 

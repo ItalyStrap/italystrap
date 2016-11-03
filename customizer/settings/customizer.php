@@ -2,6 +2,8 @@
 /**
  * Settings for Customizer
  *
+ * @link https://github.com/WPTRT/code-examples
+ *
  * @package ItalyStrap
  * @since 4.0.0
  */

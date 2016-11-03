@@ -141,3 +141,13 @@ function My_Test() {
 		var_dump( microtime( true ) );
 	exit;
 }
+
+
+// http://php.net/manual/en/function.get-defined-vars.php
+// get_defined_vars();
+// 
+// http://php.net/manual/en/function.get-defined-functions.php
+// get_defined_functions();
+// 
+// http://php.net/manual/en/function.get-defined-constants.php
+// get_defined_constants();

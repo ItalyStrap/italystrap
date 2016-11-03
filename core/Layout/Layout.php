@@ -152,13 +152,13 @@ class Layout {
 			return $attr;
 		}
 
-		if ( 'home' === CURRENT_TEMPLATE_SLUG ) {
-			return $attr;
-		}
+		// if ( 'home' === CURRENT_TEMPLATE_SLUG ) {
+		// 	return $attr;
+		// }
 
-		if ( 'index' === CURRENT_TEMPLATE_SLUG ) {
-			return $attr;
-		}
+		// if ( 'index' === CURRENT_TEMPLATE_SLUG ) {
+		// 	return $attr;
+		// }
 
 		if ( 'page' === CURRENT_TEMPLATE_SLUG ) {
 			$attr['itemtype'] = 'http://schema.org/Article';

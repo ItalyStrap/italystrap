@@ -8,11 +8,11 @@
 
 namespace ItalyStrap;
 
-$layout_settings = (array) apply_filters( 'italystrap_template_settings', array() );
+$template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-<?php if ( ! in_array( 'hide_title', $layout_settings, true ) ) : ?>
+<?php if ( ! in_array( 'hide_title', $template_settings, true ) ) : ?>
 	<header class="page-header entry-header">
 		<h1 class="entry-title">
 			<a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark">
@@ -24,7 +24,7 @@ $layout_settings = (array) apply_filters( 'italystrap_template_settings', array(
 	</header>
 <?php endif; ?>
 
-<?php if ( ! in_array( 'hide_meta', $layout_settings, true ) ) : ?>
+<?php if ( ! in_array( 'hide_meta', $template_settings, true ) ) : ?>
 
 		<?php get_template_part( 'template/meta' ); ?>
 
@@ -74,7 +74,7 @@ $layout_settings = (array) apply_filters( 'italystrap_template_settings', array(
 	/**
 	 * Display author info box
 	 */
-	if ( ! in_array( 'hide_author', $layout_settings, true ) ) {
+	if ( ! in_array( 'hide_author', $template_settings, true ) ) {
 		get_template_part( 'template/content', 'author-info' );
 	}
 	?>

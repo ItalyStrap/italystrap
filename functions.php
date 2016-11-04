@@ -39,8 +39,11 @@ require( TEMPLATEPATH . '/lib/bootstrap.php' );
  */
 function italystrap( $file_name = 'content' ) {
 
-	require locate_template( '/template/' . $file_name . '.php' );
+	$template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
 
+	require locate_template(
+		DIRECTORY_SEPARATOR . $template_dir . DIRECTORY_SEPARATOR . $file_name . '.php'
+	);
 }
 
 /**

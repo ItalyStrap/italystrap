@@ -30,41 +30,9 @@ do_action( 'italystrap_before_main' );
 			<div class="row">
 				<?php do_action( 'italystrap_before_content' ); ?>
 				<div <?php Core\get_attr( 'content', array( 'itemscope' => true, 'itemtype' => 'http://schema.org/CollectionPage' ), true ); ?>>
-					<?php
-					do_action( 'italystrap_before_loop' );
 
-					if ( have_posts() ) :
+					<?php get_template_part( 'templates/loops/loop' ); ?>
 
-						do_action( 'italystrap_before_while' );
-
-						while ( have_posts() ) :
-
-							the_post();
-
-							$file_type = get_post_type();
-
-							if ( 'single' === CURRENT_TEMPLATE_SLUG ) {
-								$file_type = 'single';
-							}
-
-							if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
-								$file_type = 'post';
-							}
-
-							get_template_part( 'loops/content', $file_type );
-
-						endwhile;
-
-						do_action( 'italystrap_after_while' );
-
-					else :
-
-						do_action( 'italystrap_content_none' );
-
-					endif;
-
-					do_action( 'italystrap_after_loop' );
-					?>
 				</div><!-- / .col-md-8 -->
 				<?php do_action( 'italystrap_after_content' ); ?>
 			</div><!-- / .row -->

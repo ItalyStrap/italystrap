@@ -94,6 +94,7 @@ Release Date: Sep 10th, 2015
 * Better selection of nabar brand image or name
 * Added Upgrade Class API
 * New Router API
+* New files template structure
 
 
 = 3.0.5 =

@@ -20,6 +20,8 @@ use ItalyStrap\Admin\Metabox\Register as Register_Meta;
 use ItalyStrap\Admin\Required_Plugins\Register as Required_Plugins;
 use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
 
+use ItalyStrap\Core\Router\Router;
+
 use ItalyStrap\Core\Image\Size as Size;
 use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
 use ItalyStrap\Core\Navbar\Navbar as Navbar;
@@ -91,6 +93,13 @@ $theme_mods = wp_parse_args( get_theme_mods(), $defaults );
 
 $update = new Update( $theme_mods );
 $update->register();
+
+/**
+ * Router
+ *
+ * @see ItalyStrap\Core\Router\Router::route
+ */
+add_filter( 'template_include', array( new Router(), 'route' ), 99999, 1 );
 
 /**
  * Register image site

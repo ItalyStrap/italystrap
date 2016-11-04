@@ -116,4 +116,4 @@ function set_current_template( $current_template ) {
 
 	return $current_template;
 }
-add_filter( 'template_include', __NAMESPACE__ . '\set_current_template', 9999 );
+add_filter( 'template_include', __NAMESPACE__ . '\set_current_template', 1 );

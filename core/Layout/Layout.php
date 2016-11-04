@@ -95,6 +95,13 @@ class Layout {
 			),
 		);
 
+		$this->schema = array(
+			'front-page'	=> is_home() ? 'http://schema.org/WebSite' : 'http://schema.org/Article',
+			'page'			=> 'http://schema.org/Article',
+			'single'		=> 'http://schema.org/Article',
+			'search'		=> 'http://schema.org/SearchResultsPage',
+		);
+
 	}
 
 	/**
@@ -139,66 +146,16 @@ class Layout {
 	 */
 	public function set_content_class( $attr, $context, $args ) {
 
-		// $attr['class'] = $this->theme_mods['content_class'];
-		
-		// if ( 'full_width' === $this->get_layout_settings() ) {
-		// 	$attr['class'] = $this->theme_mods['full_width'];
-		// }
-
 		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['content'];
 
-		if ( 'front-page' === CURRENT_TEMPLATE_SLUG && is_home() === false ) {
-			$attr['itemtype'] = 'http://schema.org/Article';
-			return $attr;
-		}
-
-		// if ( 'home' === CURRENT_TEMPLATE_SLUG ) {
-		// 	return $attr;
-		// }
-
-		// if ( 'index' === CURRENT_TEMPLATE_SLUG ) {
-		// 	return $attr;
-		// }
-
-		if ( 'page' === CURRENT_TEMPLATE_SLUG ) {
-			$attr['itemtype'] = 'http://schema.org/Article';
-			return $attr;
-		}
-
-		if ( 'single' === CURRENT_TEMPLATE_SLUG ) {
-			$attr['itemtype'] = 'http://schema.org/Article';
-			return $attr;
-		}
-
-		if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
-			$attr['itemtype'] = 'http://schema.org/SearchResultsPage';
-			return $attr;
+		if ( isset( $this->schema[ CURRENT_TEMPLATE_SLUG ] ) ) {
+			$attr['itemtype'] = $this->schema[ CURRENT_TEMPLATE_SLUG ];
+		} else {
+			$attr['itemtype'] = 'http://schema.org/WebSite';
 		}
 
 		return $attr;
 	
-	}
-
-	/**
-	 * Output the sidebar.php file if layout allows for it.
-	 *
-	 * @since 4.0.0
-	 */
-	function get_sidebar() {
-
-		//* Don't load sidebar on pages that doesn't need it
-		if ( 'full_width' === $this->get_layout_settings() ) {
-			return;
-		}
-
-		// var_dump( $this->get_layout_settings() );
-
-		get_sidebar();
-
-		if ( in_array( $this->get_layout_settings(), array(), true ) ) {
-			get_sidebar( 'secondary' );
-		}
-
 	}
 
 	/**
@@ -209,7 +166,6 @@ class Layout {
 	 */
 	public function set_sidebar_class( $attr ) {
 
-		// $attr['class'] = $this->theme_mods['sidebar_class'];
 		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['sidebar'];
 		return $attr;
 	
@@ -223,9 +179,30 @@ class Layout {
 	 */
 	public function set_sidebar_secondary_class( $attr ) {
 
-		// $attr['class'] = $this->theme_mods['sidebar_class'];
 		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['sidebar_secondary'];
 		return $attr;
 	
+	}
+
+	/**
+	 * Output the sidebar.php file if layout allows for it.
+	 *
+	 * @since 4.0.0
+	 */
+	function get_sidebar() {
+
+		/**
+		 * Don't load sidebar on pages that doesn't need it
+		 */
+		if ( 'full_width' === $this->get_layout_settings() ) {
+			return;
+		}
+
+		get_sidebar();
+
+		if ( in_array( $this->get_layout_settings(), array(), true ) ) {
+			get_sidebar( 'secondary' );
+		}
+
 	}
 }

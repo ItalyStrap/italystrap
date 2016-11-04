@@ -93,6 +93,7 @@ Release Date: Sep 10th, 2015
 * New layout API
 * Better selection of nabar brand image or name
 * Added Upgrade Class API
+* New Router API
 
 
 = 3.0.5 =

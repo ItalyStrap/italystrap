@@ -38,7 +38,8 @@
  * 	}
  * }
  *
- * @link [URL]
+ * @credits Luca Tumedei
+ * @link https://github.com/lucatume
  * @since 4.0.0
  *
  * @package ItalyStrap

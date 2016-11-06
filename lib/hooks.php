@@ -55,7 +55,7 @@ function standard_loop( $context = '' ) {
 	return require locate_template( '/loops/loop.php' );
 
 }
-add_action( 'italystrap_loop', __NAMESPACE__ . '\standard_loop' );
+// add_action( 'italystrap_loop', __NAMESPACE__ . '\standard_loop' );
 
 /**
  * Function description
@@ -142,13 +142,18 @@ add_filter( 'italystrap_sidebar_secondary_attr', array( $site_layout, 'set_sideb
  * @var Template
  */
 $template_settings = new Template( (array) $theme_mods );
-
+// add_filter(
+// 	'italystrap_template_include',
+// 	array( $template_settings, 'filter_template_include' )
+// );
 /**
  * Questo filtro si trova nei file template per gestire commenti e altro
  */
 add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
 add_action( 'italystrap_before_while', array( $template_settings, 'archive_headline' ) );
 add_action( 'italystrap_before_loop', array( $template_settings, 'author_info' ) );
+add_action( 'italystrap_loop', array( $template_settings, 'do_loop' ) );
+add_action( 'italystrap_entry', array( $template_settings, 'do_entry' ) );
 add_action( 'italystrap_after_loop', array( $template_settings, 'pagination' ) );
 add_action( 'italystrap_content_none', array( $template_settings, 'content_none' ) );
 add_action( 'italystrap_after_loop', array( $template_settings, 'comments_template' ) );

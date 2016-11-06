@@ -84,7 +84,7 @@ class Router{
 					TEMPLATEPATH . DIRECTORY_SEPARATOR . CURRENT_TEMPLATE,
 					$this
 				)
-				: $callback;
+				: TEMPLATEPATH . DIRECTORY_SEPARATOR . $callback;
 		}
 
 		return $template;

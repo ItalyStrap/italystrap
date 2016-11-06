@@ -66,10 +66,51 @@ class Template {
 	}
 
 	/**
-	 * Function description
+	 * filter_template_include
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param  array $map Array with .
+	 * @return array      Return the template path
+	 */
+	public function filter_template_include( $map ) {
+	// 	$new_map = array(
+	// 		// 'single.php'	=> 'full-width.php',
+	// 		'single.php'	=> array( $this, 'do_loop' ),
+	// 	);
+	// d( $map, CURRENT_TEMPLATE );
+	// 	return $new_map;
+		return $map;
+	}
+
+	/**
+	 * Do Loop
+	 */
+	public function do_loop() {
+	
+		get_template_part( 'templates/loops/loop' );
+	
+	}
+
+	/**
+	 * Do Entry
+	 */
+	public function do_entry() {
+	
+		$file_type = get_post_type();
+		// d( $file_type, CURRENT_TEMPLATE_SLUG );
+		if ( 'single' === CURRENT_TEMPLATE_SLUG ) {
+			$file_type = 'single';
+		}
+
+		if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
+			$file_type = 'post';
+		}
+
+		get_template_part( 'templates/loops/type/'. $file_type );
+	
+	}
+
+	/**
+	 * Function description
 	 */
 	public function pagination() {
 
@@ -133,8 +174,8 @@ class Template {
 	 */
 	public function archive_headline() {
 
-		if ( 'archive' !== CURRENT_TEMPLATE_SLUG && 'author' !== CURRENT_TEMPLATE_SLUG && 'search' !== CURRENT_TEMPLATE_SLUG ) {
-			return null;
+		if ( ! in_array( CURRENT_TEMPLATE_SLUG, array( 'archive', 'author', 'search' ), true ) ) {
+			return;
 		}
 	
 		?>
@@ -143,7 +184,7 @@ class Template {
 
 			if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
 				?>
-				<h1 itemprop="headline"><?php printf( esc_html__( 'Search result of: %s', 'ItalyStrap' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				<h1 itemprop="headline"><?php printf( esc_html__( 'Search result of: %s', 'italystrap' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 				<?php
 				return null;
 			}

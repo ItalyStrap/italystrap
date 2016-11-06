@@ -15,6 +15,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ReflectionClass;
+
 /**
  * Class description
  * @todo http://wordpress.stackexchange.com/questions/195864/most-elegant-way-to-enqueue-scripts-in-function-php-with-foreach-loop
@@ -45,8 +47,11 @@ abstract class Asset {
 		/**
 		 * Credits:
 		 * @link https://coderwall.com/p/cpxxxw/php-get-class-name-without-namespace
+		 * @php54
+		 * $this->class_name =  ( new \ReflectionClass( $this ) )->getShortName();
 		 */
-		$this->class_name =  ( new \ReflectionClass( $this ) )->getShortName();
+		$class_name = new ReflectionClass( $this );
+		$this->class_name =  $class_name->getShortName();
 
 		/**
 		 * With this hook you can filter the enqueue script and style config

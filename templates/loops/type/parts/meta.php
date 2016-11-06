@@ -30,7 +30,7 @@ if ( in_array( 'hide_meta', $template_settings, true ) ) {
 		<li><span class="glyphicon glyphicon-user"></span> <span itemprop="author"><?php the_author_posts_link(); ?></span></li>
 
 		<?php if ( comments_open() ) : ?>
-			<li><span class="glyphicon glyphicon-comment"></span> <?php comments_number( __( 'No Responses', 'ItalyStrap' ), __( 'One Response', 'ItalyStrap' ), __( '% Responses', 'ItalyStrap' ) ); ?></li>
+			<li><span class="glyphicon glyphicon-comment"></span> <?php comments_number( __( 'No Responses', 'italystrap' ), __( 'One Response', 'italystrap' ), __( '% Responses', 'italystrap' ) ); ?></li>
 		<?php endif; ?>
 		
 		<?php

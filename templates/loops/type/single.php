@@ -12,15 +12,15 @@ $template_settings = (array) apply_filters( 'italystrap_template_settings', arra
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<?php get_template_part( 'templates/loops/parts/title' ); ?>
+	<?php get_template_part( 'templates/loops/type/parts/title' ); ?>
 
-	<?php get_template_part( 'templates/loops/parts/meta' ); ?>
+	<?php get_template_part( 'templates/loops/type/parts/meta' ); ?>
 
-	<?php get_template_part( 'templates/loops/parts/preview' ); ?>
+	<?php get_template_part( 'templates/loops/type/parts/preview' ); ?>
 
-	<?php get_template_part( 'templates/loops/parts/featured', 'image' ); ?>
+	<?php get_template_part( 'templates/loops/type/parts/featured', 'image' ); ?>
 
-	<?php get_template_part( 'templates/loops/parts/content' ); ?>
+	<?php get_template_part( 'templates/loops/type/parts/content' ); ?>
 
 	<?php
 	/**

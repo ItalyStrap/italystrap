@@ -20,9 +20,9 @@ namespace ItalyStrap;
 		</h2>
 	</header>
 
-	<?php get_template_part( 'templates/loops/parts/meta' ); ?>
+	<?php get_template_part( 'templates/loops/type/parts/meta' ); ?>
 
-	<?php get_template_part( 'templates/loops/parts/featured', 'image' ); ?>
+	<?php get_template_part( 'templates/loops/type/parts/featured', 'image' ); ?>
 
 	<div class="entry-content" itemprop="text"><?php the_excerpt(); ?></div><!-- /.entry-content -->
 

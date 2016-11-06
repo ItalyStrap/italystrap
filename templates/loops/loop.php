@@ -8,8 +8,6 @@
 
 namespace ItalyStrap;
 
-do_action( 'italystrap_before_loop' );
-
 if ( have_posts() ) :
 
 	do_action( 'italystrap_before_while' );
@@ -18,17 +16,11 @@ if ( have_posts() ) :
 
 		the_post();
 
-		$file_type = get_post_type();
+		do_action( 'italystrap_before_entry' );
 
-		if ( 'single' === CURRENT_TEMPLATE_SLUG ) {
-			$file_type = 'single';
-		}
+		do_action( 'italystrap_entry' );
 
-		if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
-			$file_type = 'post';
-		}
-
-		get_template_part( 'templates/loops/'. $file_type );
+		do_action( 'italystrap_after_entry' );
 
 	endwhile;
 
@@ -39,5 +31,3 @@ else :
 	do_action( 'italystrap_content_none' );
 
 endif;
-
-do_action( 'italystrap_after_loop' );

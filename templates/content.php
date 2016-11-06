@@ -31,7 +31,11 @@ do_action( 'italystrap_before_main' );
 				<?php do_action( 'italystrap_before_content' ); ?>
 				<div <?php Core\get_attr( 'content', array( 'itemscope' => true, 'itemtype' => 'http://schema.org/CollectionPage' ), true ); ?>>
 
-					<?php get_template_part( 'templates/loops/loop' ); ?>
+					<?php do_action( 'italystrap_before_loop' ); ?>
+
+					<?php do_action( 'italystrap_loop' ); ?>
+
+					<?php do_action( 'italystrap_after_loop' ); ?>
 
 				</div><!-- / .col-md-8 -->
 				<?php do_action( 'italystrap_after_content' ); ?>

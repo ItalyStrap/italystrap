@@ -89,7 +89,7 @@ function add_style_and_script() {
 	/**
 	 * If CDN is down load from callback
 	 */
-	add_filter( 'script_loader_src', 'ItalyStrap\Core\jquery_local_fallback', 10, 2 );
+	add_filter( 'script_loader_src', __NAMESPACE__ . '\jquery_local_fallback', 10, 2 );
 
 	/**
 	 * Load comment-reply script
@@ -131,5 +131,5 @@ function jquery_local_fallback( $src, $handle = null ) {
 /**
  * Hook into the 'wp_enqueue_scripts' action
  */
-add_action( 'wp_enqueue_scripts', 'ItalyStrap\Core\add_style_and_script' );
-add_action( 'wp_footer', 'ItalyStrap\Core\jquery_local_fallback' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\add_style_and_script' );
+add_action( 'wp_footer', __NAMESPACE__ . '\jquery_local_fallback' );

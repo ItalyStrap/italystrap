@@ -12,17 +12,17 @@ module.exports = function(grunt) {
          * Update all bower dependency
          * $ grunt bower
          */
-        bower: { // https://www.npmjs.com/package/grunt-bower-installer
-            install: {
-                options: {
-                    copy: false,
-                bowerOptions: {
-                    forceLatest: true,
-                    //production: true
-                    }      
-                } 
-            }
-        },
+        // bower: { // https://www.npmjs.com/package/grunt-bower-installer
+        //     install: {
+        //         options: {
+        //             copy: false,
+        //         bowerOptions: {
+        //             forceLatest: true,
+        //             //production: true
+        //             }      
+        //         } 
+        //     }
+        // },
 
         /**
          * Copy updated dependency
@@ -43,7 +43,6 @@ module.exports = function(grunt) {
                 dest: 'js/',
                 filter: 'isFile',
             },
-
         },
 
         uglify: { // https://github.com/gruntjs/grunt-contrib-uglify
@@ -158,6 +157,11 @@ module.exports = function(grunt) {
             }
         },
 
+        /**
+         * LESS IS DEPRECATED, USE COMPASS
+         *
+         * @type {Object}
+         */
         less: { // https://github.com/gruntjs/grunt-contrib-less
             development: {
                 options: {
@@ -345,12 +349,12 @@ module.exports = function(grunt) {
     /**
      * Update and copy bower dependency
      */
-    grunt.registerTask('update', [
-                                'bower',
-                                'copy',
-                                'compass',
-                                'uglify'
-                                ]);
+    // grunt.registerTask('update', [
+    //                             'bower',
+    //                             'copy',
+    //                             'compass',
+    //                             'uglify'
+    //                             ]);
 
     /**
      * Verify new line in pot file

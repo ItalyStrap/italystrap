@@ -89,6 +89,25 @@ class Register {
 				'options'	=> $template_settings_metabox_options,
 			)
 		);
+
+		/**
+		 *
+		 * @example https://github.com/WebDevStudios/CMB2/wiki/Field-Types#oembed
+		 * $url = esc_url( get_post_meta( get_the_ID(), 'wiki_test_embed', 1 ) );
+		 * echo wp_oembed_get( $url );
+		 */
+		// $cmb->add_field(
+		// 	array(
+		// 		'name'		=> __( 'Video URL', 'italystrap' ),
+		// 		'desc'		=> sprintf(
+		// 			'Enter a youtube, twitter, or instagram URL. Supports services listed at %s. This will be shown instead of feature image.',
+		// 			'<a href="http://codex.wordpress.org/Embeds">http://codex.wordpress.org/Embeds</a>'
+		// 			),
+		// 		'default'	=> '',
+		// 		'id'		=> $this->_prefix . '_oEmbed_url',
+		// 		'type'		=> 'oembed',
+		// 	) 
+		// );
 	}
 
 	/**

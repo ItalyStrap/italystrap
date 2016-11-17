@@ -331,7 +331,7 @@ class Customizer{
 
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
-			TEMPLATEURL . '/customizer/js/theme-customizer.js',
+			TEMPLATEURL . '/customizer/js/src/theme-customizer.js',
 			array( 'jquery', 'customize-preview' ),
 			null,
 			true

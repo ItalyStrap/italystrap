@@ -31,7 +31,7 @@ class Editor {
 	 *
 	 * @return array          Array with new buttons.
 	 */
-	public function reveal_hidden_tinymce_buttons( $buttons ) {
+	public function reveal_hidden_tinymce_buttons( array $buttons ) {
 
 		/**
 		 * Add style selector to the beginning of the toolbar
@@ -55,7 +55,7 @@ class Editor {
 	 *
 	 * @return array             Array with new buttons.
 	 */
-	public function break_page_button( $buttons, $editor_id ) {
+	public function break_page_button( array $buttons, $editor_id ) {
 
 		/**
 		 * Only add this for content editor
@@ -70,5 +70,165 @@ class Editor {
 		array_splice( $buttons, 13, 0, 'wp_page' );
 
 		return $buttons;
+	}
+
+	/**
+	 * Insert new mce format.
+	 *
+	 * @link http://wordpress.stackexchange.com/questions/128931/tinymce-adding-css-to-format-dropdown
+	 * @link http://wordpress.stackexchange.com/questions/3882/can-i-add-a-custom-format-to-the-format-option-in-the-text-panel
+	 *
+	 * @param  array  $mceInit   An array with TinyMCE config.
+	 * @param  string $editor_id Unique editor identifier, e.g. 'content'.
+	 *
+	 * @return array             The new array.
+	 */
+	public function add_new_format_to_mce( array $mceInit, $editor_id ) {
+
+		/**
+		 * Only add this for content editor
+		 */
+		if ( 'content' !== $editor_id ) {
+			return $mceInit;
+		}
+
+		// $defaultStyleFormats = array(
+			// array(
+			// 	'title'	=> __( 'Headers', 'italystrap' ),
+			// 	'items'	=> array(
+			// 		array(
+			// 			'title'		=> __( 'Header 1', 'italystrap' ),
+			// 			'format'	=> 'h1',
+			// 		),
+			// 		array(
+			// 			'title'		=> __( 'Header 2', 'italystrap' ),
+			// 			'format'	=> 'h2',
+			// 		),
+			// 		array(
+			// 			'title'		=> __( 'Header 3', 'italystrap' ),
+			// 			'format'	=> 'h3',
+			// 		),
+			// 		array(
+			// 			'title'		=> __( 'Header 4', 'italystrap' ),
+			// 			'format'	=> 'h4',
+			// 		),
+			// 		array(
+			// 			'title'		=> __( 'Header 5', 'italystrap' ),
+			// 			'format'	=> 'h5',
+			// 		),
+			// 		array(
+			// 			'title'		=> __( 'Header 6', 'italystrap' ),
+			// 			'format'	=> 'h6',
+			// 		),
+			// 	),
+			// ),
+			// array(
+			// 	'title'	=> __( 'Inline' ),
+			// 	'items'	=> array(
+			// 		array(
+			// 			'title'		=> 'Bold',
+			// 			'icon'		=> 'bold',
+			// 			'format'	=> 'bold',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Italic',
+			// 			'icon'		=> 'italic',
+			// 			'format'	=> 'italic',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Underline',
+			// 			'icon'		=> 'underline',
+			// 			'format'	=> 'underline',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Strikethrough',
+			// 			'icon'		=> 'strikethrough',
+			// 			'format'	=> 'strikethrough',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Superscript',
+			// 			'icon'		=> 'superscript',
+			// 			'format'	=> 'superscript',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Subscript',
+			// 			'icon'		=> 'subscript',
+			// 			'format'	=> 'subscript',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Code',
+			// 			'icon'		=> 'code',
+			// 			'format'	=> 'code',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Small',
+			// 			// 'icon'		=> 'small',
+			// 			'format'	=> 'small',
+			// 			'wrapper'	=> true,
+			// 		),
+			// 	),
+			// ),
+			// array(
+			// 	'title'	=> __( 'Blocks' ),
+			// 	'items'	=> array(
+			// 		array(
+			// 			'title'		=> 'Paragraph',
+			// 			'format'	=> 'p',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Blockquote',
+			// 			'format'	=> 'blockquote',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Div',
+			// 			'format'	=> 'div',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Pre',
+			// 			'format'	=> 'pre',
+			// 		),
+			// 	),
+			// ),
+			// array(
+			// 	'title'	=> __( 'Alignment' ),
+			// 	'items'	=> array(
+			// 		array(
+			// 			'title'		=> 'Left',
+			// 			'icon'		=> 'alignleft',
+			// 			'format'	=> 'alignleft',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Center',
+			// 			'icon'		=> 'aligncenter',
+			// 			'format'	=> 'aligncenter',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Right',
+			// 			'icon'		=> 'alignright',
+			// 			'format'	=> 'alignright',
+			// 		),
+			// 		array(
+			// 			'title'		=> 'Justify',
+			// 			'icon'		=> 'alignjustify',
+			// 			'format'	=> 'alignjustify',
+			// 		),
+			// 	),
+			// ),
+		// );
+
+		$mceInit['style_formats_merge'] = true;
+
+		$defaultStyleFormats = array(
+			array(
+				'title' => 'Small',
+				'block' => 'small',
+				// 'classes' => 'small',
+				'wrapper' => true,
+			),
+		);
+
+		$mceInit['style_formats'] = json_encode( $defaultStyleFormats );
+
+		return $mceInit;
 	}
 }

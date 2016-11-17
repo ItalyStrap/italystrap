@@ -4,6 +4,9 @@
  *
  * This is the bootstrap file for all core and admin Class and Functions.
  *
+ * Da leggere:
+ * http://mikejolley.com/2013/12/15/deprecating-plugin-functions-hooks-woocommmerce/
+ *
  * @package ItalyStrap
  * @since 4.0.0
  */
@@ -27,6 +30,8 @@ use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
 use ItalyStrap\Core\Navbar\Navbar as Navbar;
 use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
 use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
+use ItalyStrap\Core\Layout\Layout;
+use ItalyStrap\Core\Template\Template;
 
 use ItalyStrap\Customizer\Customizer;
 
@@ -44,7 +49,7 @@ $files = array(
 	'/lib/general-functions.php',
 	'/lib/images.php',
 	'/lib/pointer.php',
-	'/lib/cleanup.php', // Cleanup Headers.
+	// '/lib/cleanup.php', // Cleanup Headers.
 	'/lib/script.php',
 	'/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
 	'/lib/pagination.php',
@@ -68,6 +73,8 @@ foreach ( $files as $file ) {
  * @see /lib/default-constant.php
  */
 set_default_constant();
+
+add_filter( 'italystrap_has_bootstrap', '__return_true' );
 
 /**
  * Set the default theme config value
@@ -108,7 +115,6 @@ add_filter( 'template_include', array( new Router(), 'route' ), 99999, 1 );
  * @var ItalyStrap
  */
 $image_size = new Size( $theme_mods );
-// $image_size->register();
 add_action( 'after_setup_theme', array( $image_size, 'register' ) );
 
 /**
@@ -151,6 +157,10 @@ if ( is_admin() ) {
 	 * Add Next Page Button in First Row
 	 */
 	add_filter( 'mce_buttons', array( $admin_text_editor, 'break_page_button' ), 1, 2 );
+	/**
+	 * @see ItalyStrap\Admin\Tinymce\Editor::add_new_format_to_mce()
+	 */
+	add_filter( 'tiny_mce_before_init', array( $admin_text_editor, 'add_new_format_to_mce' ), 9999, 2 );
 
 	/**
 	 * TinyMCE Editor in Category description
@@ -171,11 +181,8 @@ if ( is_admin() ) {
 	$metabox = new Register_Meta;
 	add_action( 'cmb2_admin_init', array( $metabox, 'register_template_settings' ) );
 	add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );
-}
 
-/********************
- * Set content width
- ********************/
+}
 
 /**
  * $content_width is a global variable used by WordPress for max image upload sizes
@@ -239,7 +246,125 @@ $navbar = new Navbar( $theme_mods );
 $italystrap_excerpt = new Excerpt;
 
 /**
- * Functions for debugging porpuse
+ * Theme init
+ *
+ * @see Class Init()
  */
-// require locate_template( '/lib/hooks.php' );
-require( TEMPLATEPATH . '/lib/hooks.php' );
+add_action( 'after_setup_theme', array( $init, 'theme_setup' ) );
+
+/**
+ * Layout object
+ *
+ * @var Layout
+ */
+$site_layout = new Layout( (array) $theme_mods );
+add_action( 'italystrap_theme_loaded', array( $site_layout, 'init' ) );
+
+add_action( 'italystrap_after_content', array( $site_layout, 'get_sidebar' ) );
+
+add_filter( 'italystrap_content_attr', array( $site_layout, 'set_content_class' ), 10, 3 );
+add_filter( 'italystrap_sidebar_attr', array( $site_layout, 'set_sidebar_class' ), 10, 3 );
+add_filter( 'italystrap_sidebar_secondary_attr', array( $site_layout, 'set_sidebar_secondary_class' ), 10, 3 );
+
+/**
+ * Template object
+ *
+ * @var Template
+ */
+$template_settings = new Template( (array) $theme_mods );
+// add_filter(
+// 	'italystrap_template_include',
+// 	array( $template_settings, 'filter_template_include' )
+// );
+/**
+ * Questo filtro si trova nei file template per gestire commenti e altro
+ */
+add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
+add_action( 'italystrap_before_while', array( $template_settings, 'archive_headline' ) );
+add_action( 'italystrap_before_loop', array( $template_settings, 'author_info' ) );
+add_action( 'italystrap_loop', array( $template_settings, 'do_loop' ) );
+add_action( 'italystrap_entry', array( $template_settings, 'do_entry' ) );
+add_action( 'italystrap_after_loop', array( $template_settings, 'pagination' ) );
+add_action( 'italystrap_content_none', array( $template_settings, 'content_none' ) );
+add_action( 'italystrap_after_loop', array( $template_settings, 'comments_template' ) );
+
+
+/**
+ * Header
+ *
+ * @see  add_top_menu() in general-functions.php
+ * @see  get_template_content_header() in general-functions.php
+ * @see  Class Navbar in class-navbar.php
+ */
+add_action( 'italystrap_content_header', __NAMESPACE__ . '\add_top_menu', 10 );
+add_action( 'italystrap_content_header', __NAMESPACE__ . '\get_template_content_header', 20 );
+add_action( 'italystrap_content_header', array( $navbar, 'output' ), 30 );
+
+/**
+ * Content
+ *
+ * @see display_breadcrumbs()
+ */
+add_action( 'italystrap_before_loop', __NAMESPACE__ . '\display_breadcrumbs' );
+
+
+/**
+ * Function description
+ *
+ * @param  string $value [description]
+ * @return string        [description]
+ */
+function post_thumbnail_size( $size, $context ) {
+
+	if ( is_page_template( 'full-width.php' ) ) {
+		return 'full-width';
+	}
+
+	return $size;
+
+}
+add_action( 'italystrap_post_thumbnail_size', __NAMESPACE__ . '\post_thumbnail_size', 10, 2 );
+
+/**
+ * FOOTER
+ */
+
+/**
+ * Footer open markup
+ *
+ * @param  string $value [description]
+ * @return string        [description]
+ */
+function footer_open_markup( $value = '' ) {
+
+	?><!-- Footer --><footer class="site-footer" itemscope itemtype="http://schema.org/WPFooter"><?php
+
+}
+add_action( 'italystrap_before_footer', __NAMESPACE__ . '\footer_open_markup', 9 );
+
+/**
+ * Do Footer
+ *
+ * @param  string $value [description]
+ * @return string        [description]
+ */
+function do_footer( $value = '' ) {
+
+	get_template_part( 'template/part', 'content-footer-widget-area' );
+	get_template_part( 'template/part', 'content-footer-colophon' );
+
+}
+add_action( 'italystrap_footer', __NAMESPACE__ . '\do_footer' );
+
+/**
+ * Footer Close markup
+ *
+ * @param  string $value [description]
+ * @return string        [description]
+ */
+function footer_close_markup( $value = '' ) {
+
+	?></footer><!-- #footer --><?php
+
+}
+add_action( 'italystrap_after_footer', __NAMESPACE__ . '\footer_close_markup', 11 );

@@ -40,7 +40,7 @@ if ( ! $author_info )
 			endif;?>
 		</div><!-- / .col-sm-2 -->
 		<div class="col-sm-10">
-			<h4 class="author-nick"><?php echo esc_attr( $author_info->nickname ); ?></h4>
+			<h4 class="author-nick" itemprop="name"><?php echo esc_attr( $author_info->nickname ); ?></h4>
 			<?php if ( $author_info->description ) { ?>
 				<p itemprop="description"><?php echo esc_attr( $author_info->description ); ?></a></p>
 			<?php } ?>

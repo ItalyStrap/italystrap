@@ -7263,6 +7263,55 @@ a img.aligncenter {
 /**
  * Snippet example:
  */
+/* line 5, ../../sass/header/_menu.scss */
+.dropdown-submenu {
+  position: relative;
+}
+/* line 8, ../../sass/header/_menu.scss */
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+/* line 11, ../../sass/header/_menu.scss */
+.dropdown-submenu:hover > a:after {
+  border-left-color: #fff;
+}
+/* line 15, ../../sass/header/_menu.scss */
+.dropdown-submenu.pull-left {
+  float: none;
+}
+/* line 17, ../../sass/header/_menu.scss */
+.dropdown-submenu.pull-left > .dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  -webkit-border-radius: 6px 0 6px 6px;
+  -moz-border-radius: 6px 0 6px 6px;
+  border-radius: 6px 0 6px 6px;
+}
+/* line 26, ../../sass/header/_menu.scss */
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px;
+  border-radius: 0 6px 6px 6px;
+}
+/* line 36, ../../sass/header/_menu.scss */
+.dropdown-submenu > a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #ccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+
 /* line 3, ../../sass/_content.scss */
 .author-nick {
   margin-top: 0;

@@ -111,16 +111,14 @@ class Layout {
 	 */
 	public function get_layout_settings() {
 
+		// delete_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
+		// delete_post_meta_by_key( '_italystrap_layout_settings' );
+
 		/**
 		 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
 		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
 		 */
 
-		// var_dump( $this->classes );
-		// var_dump( get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true ) );
-		// delete_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
-		// delete_post_meta_by_key( '_italystrap_layout_settings' );
-		// 
 		$setting = get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
 
 		/**

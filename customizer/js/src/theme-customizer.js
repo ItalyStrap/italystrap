@@ -102,8 +102,11 @@
 //             $( this ).parents( '.customize-control' ).find( 'select' ).val( checkbox_values ).trigger( 'change' );
 //         }
 //     );
+	wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+		// logic to refresh
+	} );
 } )( jQuery );
-
+console.log("hola datevid");
 // jQuery( document ).ready( function() {
 // 	console.log("hola datevid");
 // 	jQuery( '.customize-control-checkbox input[type="checkbox"]' ).on(

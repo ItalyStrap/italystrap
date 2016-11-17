@@ -78,6 +78,8 @@ class Editor {
 	 * @link http://wordpress.stackexchange.com/questions/128931/tinymce-adding-css-to-format-dropdown
 	 * @link http://wordpress.stackexchange.com/questions/3882/can-i-add-a-custom-format-to-the-format-option-in-the-text-panel
 	 *
+	 * @see bootstrap/_type.scss for more HTML tags.
+	 *
 	 * @param  array  $mceInit   An array with TinyMCE config.
 	 * @param  string $editor_id Unique editor identifier, e.g. 'content'.
 	 *

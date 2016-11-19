@@ -193,6 +193,16 @@ class Layout {
 		 * Don't load sidebar on pages that doesn't need it
 		 */
 		if ( 'full_width' === $this->get_layout_settings() ) {
+			/**
+			 * This hook is usefull for example when you need to remove the
+			 * WooCommerce sidebar on full width page.
+			 *
+			 * @example
+			 * add_action( 'italystrap_full_width_layout', function () {
+			 *     remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+			 * }, 10 );
+			 */
+			do_action( 'italystrap_full_width_layout' );
 			return;
 		}
 

@@ -107,6 +107,8 @@ function set_default_constant() {
  * Set Current Template Constant
  * Call this constant from after the 'get_header' action.
  *
+ * @hooked template_include - 99998
+ *
  * @param string $current_template Return the current temlate
  */
 function set_current_template( $current_template ) {
@@ -116,4 +118,3 @@ function set_current_template( $current_template ) {
 
 	return $current_template;
 }
-add_filter( 'template_include', __NAMESPACE__ . '\set_current_template', 1 );

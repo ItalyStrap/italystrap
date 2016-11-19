@@ -102,6 +102,13 @@ $update = new Update( $theme_mods );
 $update->register();
 
 /**
+ * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
+ * Make shure Router runs after 99998.
+ *
+ * @see ItalyStrap\Core\set_current_template()
+ */
+add_filter( 'template_include', __NAMESPACE__ . '\set_current_template', 99998 );
+/**
  * Router
  *
  * @see ItalyStrap\Core\Router\Router::route

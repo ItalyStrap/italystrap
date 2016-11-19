@@ -1,13 +1,13 @@
 <?php
 /**
- * [Short Description (no period for file headers)]
+ * Excerpt API class.
  *
- * [Long Description.]
+ * This class manage the output of the excerpt and read more link.
  *
- * @link [URL]
- * @since [x.x.x (if available)]
+ * @link www.italystrap-com
+ * @since 3.x.x
  *
- * @package [Plugin/Theme/Etc]
+ * @package ItalyStrap\Core\Excerpt
  */
 
 namespace ItalyStrap\Core\Excerpt;
@@ -24,18 +24,27 @@ namespace ItalyStrap\Core\Excerpt;
  * it works only with the_content and get_the_content
  * Use the box excerpt inside admin panel
  */
-class Excerpt
-{
-	
-	function __construct(){
+class Excerpt {
 
-		add_action( 'after_setup_theme', array( $this, 'excerpt_more_function' ) );
+	/**
+	 * Theme settings
+	 *
+	 * @var array
+	 */
+	private $theme_mods = array();
 
+	/**
+	 * Init the class
+	 *
+	 * @param $theme_mods $argument [description].
+	 */
+	function __construct( array $theme_mods = array() ) {
+
+		$this->theme_mods = $theme_mods;
 	}
 
 	/**
 	 * Init the add filters
-	 * @return void Init
 	 */
 	public function excerpt_more_function(){
 
@@ -47,48 +56,65 @@ class Excerpt
 
 	/**
 	 * Escerpt read more link function
+	 *
+	 * @hoocked excerpt_more - 10
+	 *
 	 * @return string Return link to post in read more.
 	 */
 	public function read_more_link() {
 
-	    	global $post;
+			global $post;
 
-	    	/**
-	    	 * CSS class for read more link
-	    	 * @var string
-	    	 */
-	    	$class = apply_filters( 'read_more_class', 'none' );
+			/**
+			 * CSS class for read more link. Default 'none'.
+			 *
+			 * @var string
+			 */
+			$class = apply_filters( 'italystrap_read_more_class', $this->theme_mods['read_more_class'] );
 
-			return ' <a href="'. get_permalink( $post->ID ) . '" class="' . $class . '">... ' . __( 'Read more', 'ItalyStrap' ) . '</a>';
-
+			return sprintf(
+				/**
+				 * Default ' <a href="%1$s" class="%2$s">... %3$s</a>'.
+				 */
+				$this->theme_mods['read_more_link'],
+				get_permalink( $post->ID ),
+				$class,
+				__( 'Read more', 'italystrap' )
+			);
 	}
 
 	/**
 	 * Function to override
-	 * @param  string $output Get excerpt output
+	 * @param  string $output Get excerpt output.
+	 *
+	 * @hoocked get_the_excerpt - 10
+	 * @see ItalyStrap\Core\Excerpt\Excerpt::read_more_link()
+	 *
 	 * @return string         Return output with read more link
 	 */
 	public function custom_excerpt_more( $output ) {
 
-	        if ( has_excerpt() && !is_attachment() )
-	            $output .= $this->read_more_link();
+			if ( has_excerpt() && ! is_attachment() ) {
+				$output .= $this->read_more_link();
+			}
 
-	        return $output;
-
+			return $output;
 	}
 
 	/**
 	 * Excerpt lenght function
-	 * @param  int $length Get the defautl words number
+	 * @param  int $length Get the defautl words number.
+	 *
+	 * @hoocked excerpt_length - 10
+	 *
 	 * @return int         Return words numer for excerpt
 	 */
 	public function excerpt_length( $length ) {
 
-			if ( is_home() || is_front_page() || is_archive() )
-				$length = 25;
+			if ( is_home() || is_front_page() || is_archive() ) {
+				$length = $this->theme_mods['excerpt_length'];
+			}
 
 			return $length;
-
 	}
-
 }

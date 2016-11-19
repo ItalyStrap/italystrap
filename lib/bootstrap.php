@@ -250,7 +250,11 @@ if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
 $init = new Init_Theme( $content_width );
 $navbar = new Navbar( $theme_mods );
 
-$italystrap_excerpt = new Excerpt;
+$italystrap_excerpt = new Excerpt( $theme_mods );
+// add_action( 'after_setup_theme', array( $italystrap_excerpt, 'excerpt_more_function' ) );
+add_filter( 'get_the_excerpt', array( $italystrap_excerpt, 'custom_excerpt_more') );
+add_filter( 'excerpt_more', array( $italystrap_excerpt, 'read_more_link') );
+add_filter( 'excerpt_length', array( $italystrap_excerpt, 'excerpt_length') );
 
 /**
  * Theme init

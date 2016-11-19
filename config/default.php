@@ -67,7 +67,7 @@ return array(
 	/**
 	 * Set the default image
 	 */
-	'image_size'			=> array(
+	'image_size'					=> array(
 		'navbar-brand-image'	=> array(
 			'width'		=> 45,
 			'height'	=> 45,
@@ -86,6 +86,13 @@ return array(
 		// 'md'	=> 992,
 		// 'lg'	=> 1200,
 	),
+
+	/**
+	 * Content
+	 */
+	'excerpt_length'				=> 25,
+	'read_more_class'				=> 'none',
+	'read_more_link'				=> ' <a href="%1$s" class="%2$s">... %3$s</a>',
 
 	/**
 	 * Set by plugin

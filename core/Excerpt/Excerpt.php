@@ -112,7 +112,7 @@ class Excerpt {
 	public function excerpt_length( $length ) {
 
 			if ( is_home() || is_front_page() || is_archive() ) {
-				$length = $this->theme_mods['excerpt_length'];
+				$length = (int) $this->theme_mods['excerpt_length'];
 			}
 
 			return $length;

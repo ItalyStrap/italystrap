@@ -91,7 +91,7 @@ return array(
 	 * Content
 	 */
 	'excerpt_length'				=> 25,
-	'read_more_class'				=> 'none',
+	'read_more_class'				=> 'read-more',
 	'read_more_link'				=> ' <a href="%1$s" class="%2$s">... %3$s</a>',
 
 	/**

@@ -10,6 +10,8 @@
 
 namespace ItalyStrap\Core\Navbar;
 
+use ItalyStrap\Core;
+
 /**
  * Template for Navbar like Botstrap CSS
  */
@@ -63,16 +65,21 @@ class Navbar {
 	 * @param  array $attr The HTML attributes with key value.
 	 * @return string      Return a string with HTML attributes
 	 */
-	public function get_html_tag_attr( $attr = array() ) {
+	public function get_html_tag_attr( $attr = array(), $context = '' ) {
 
-		$html = '';
+		// d( Core\get_attr( $context, $attr, false, null ) );
 
-		$attr = array_map( 'esc_attr', $attr );
-		foreach ( $attr as $name => $value ) {
-			$html .= " $name=" . '"' . $value . '"';
-		}
+		// get_attr( $context, array $attr = array(), $echo = false, $args = null )
 
-		return $html;
+		// $html = '';
+
+		// $attr = array_map( 'esc_attr', $attr );
+		// foreach ( $attr as $name => $value ) {
+		// 	$html .= " $name=" . '"' . $value . '"';
+		// }
+
+		// return $html;
+		return Core\get_attr( $context, $attr, false, $this->navbar_id );
 
 	}
 
@@ -80,9 +87,10 @@ class Navbar {
 	 * Get the wp_nav_menu with default parameters for Bootstrap CSS style
 	 *
 	 * @param  array $args The wp_nav_menu arguments.
+	 *
 	 * @return string      Return the wp_nav_menu HTML
 	 */
-	public function get_wp_nav_menu( $args = array() ) {
+	public function get_wp_nav_menu( array $args = array() ) {
 
 		/**
 		 * Arguments for wp_nav_menu()
@@ -123,6 +131,28 @@ class Navbar {
 	}
 
 	/**
+	 * Get secondary wp-nav-menu
+	 *
+	 * @return string      Return the secondary wp_nav_menu HTML
+	 */
+	public function get_secondary_wp_nav_menu() {
+
+		if ( ! has_nav_menu( 'secondary-menu' ) ) {
+			return '';
+		}
+
+		$args = array(
+			'menu_class'		=> 'nav navbar-nav navbar-right',
+			'menu_id'			=> 'secondary-menu',
+			'fallback_cb'		=> false,
+			'theme_location'	=> 'secondary-menu',
+		);
+
+		return $this->get_wp_nav_menu( $args );
+	
+	}
+
+	/**
 	 * Get the HTML for Navbar Header
 	 *
 	 * @return string Return the HTML for Navbar Header
@@ -136,14 +166,12 @@ class Navbar {
 			'itemtype'		=> 'http://schema.org/Organization',
 		);
 
-		$a = apply_filters( 'italystrap_navbar_header_attr', $a, $this->navbar_id );
-
-		$output = '';
-
-		$output .= '<div' . $this->get_html_tag_attr( $a ) . '>';
-		$output .= $this->get_toggle_button();
-		$output .= $this->get_navbar_brand();
-		$output .= '</div>';
+		$output = sprintf(
+			'<div %s>%s%s</div>',
+			$this->get_html_tag_attr( $a, 'navbar_header' ),
+			$this->get_toggle_button(),
+			$this->get_navbar_brand()
+		);
 
 		return apply_filters( 'italystrap_navbar_header', $output, $this->navbar_id );
 
@@ -158,22 +186,79 @@ class Navbar {
 
 		$icon_bar = apply_filters( 'italystrap_icon_bar', '<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>' );
 
-		$output = '';
-
 		$a = array(
-			'type'			=> 'button',
+			// 'type'			=> 'button',
 			'class'			=> 'navbar-toggle',
 			'data-toggle'	=> 'collapse',
 			'data-target'	=> '#' . $this->navbar_id,
 		);
 
-		$a = apply_filters( 'italystrap_toggle_button_attr', $a, $this->navbar_id );
-
-		$output .= '<button';
-		$output .= $this->get_html_tag_attr( $a ) . '>';
-		$output .= '<span class="sr-only">' . esc_attr__( 'Toggle navigation', 'ItalyStrap' ) . '</span>' . $icon_bar . '</button>';
+		$output = sprintf(
+			'<button %s><span class="sr-only">%s</span>%s</button>',
+			$this->get_html_tag_attr( $a, 'toggle_button' ),
+			esc_attr__( 'Toggle navigation', 'italystrap' ),
+			$icon_bar
+		);
 
 		return apply_filters( 'italystrap_toggle_button', $output, $this->navbar_id );
+	}
+
+	/**
+	 * Get Brand
+	 *
+	 * @return string Return the HTML for brand name and/or image.
+	 */
+	public function get_brand() {
+	
+		/**
+		 * The ID of the logo image for navbar
+		 * By default in the customizer is set a url for the image instead an integer
+		 * When it is choices an image than it will set an integer for $this->theme_mods['navbar_logo']
+		 *
+		 * @var integer
+		 */
+		$attachment_id = isset( $this->theme_mods['navbar_logo_image'] ) ? absint( $this->theme_mods['navbar_logo_image'] ) : null;
+
+		$brand = '';
+
+		if ( $attachment_id && 'display_image' === $this->theme_mods['display_navbar_brand'] ) {
+
+			$attr = array(
+				'class'			=> 'img-brand img-responsive center-block',
+				'alt'			=> esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
+				'itemprop'		=> 'image',
+			);
+
+			/**
+			 * Size default: navbar-brand-image
+			 */
+			$brand .= wp_get_attachment_image( $attachment_id, $this->theme_mods['navbar_logo_image_size'], false, $attr );
+
+			$brand .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
+
+		} elseif ( $attachment_id && 'display_all' === $this->theme_mods['display_navbar_brand'] ) {
+
+			$attr = array(
+				'class'			=> 'img-brand img-responsive center-block',
+				'alt'			=> esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
+				'itemprop'		=> 'image',
+				'style'			=> 'display:inline;margin-right:15px;',
+			);
+			/**
+			 * Size default: navbar-brand-image
+			 */
+			$brand .= wp_get_attachment_image( $attachment_id, $this->theme_mods['navbar_logo_image_size'], false, $attr );
+
+			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
+
+		} else {
+
+			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span><meta  itemprop="image" content="' . \italystrap_get_the_custom_image_url( 'logo', TEMPLATEURL . '/img/italystrap-logo.jpg' ) . '"/>';
+
+		}
+
+		return $brand;
+	
 	}
 
 	/**
@@ -187,16 +272,6 @@ class Navbar {
 			return apply_filters( 'italystrap_navbar_brand', '', $this->navbar_id );
 		}
 
-		/**
-		 * The ID of the logo image for navbar
-		 * By default in the customizer is set a url for the image instead an integer
-		 * When it is choices an image than it will set an integer for $this->theme_mods['navbar_logo']
-		 * @var integer
-		 */
-		$attachment_id = isset( $this->theme_mods['navbar_logo_image'] ) ? absint( $this->theme_mods['navbar_logo_image'] ) : null;
-
-		$output = '';
-
 		$a = array(
 			'class'			=> 'navbar-brand',
 			'href'			=> esc_attr( HOME_URL ),
@@ -205,47 +280,11 @@ class Navbar {
 			'itemprop'		=> 'url',
 		);
 
-		$a = apply_filters( 'italystrap_navbar_brand_attr', $a, $this->navbar_id );
-
-		$output .= '<a' . $this->get_html_tag_attr( $a ) . '>';
-
-		if ( $attachment_id && 'display_image' === $this->theme_mods['display_navbar_brand'] ) {
-
-			$attr = array(
-				'class'			=> 'img-brand img-responsive center-block',
-				'alt'			=> esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
-				'itemprop'		=> 'image',
-			);
-
-			/**
-			 * Size default: navbar-brand-image
-			 */
-			$output .= wp_get_attachment_image( $attachment_id, $this->theme_mods['navbar_logo_image_size'], false, $attr );
-
-			$output .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
-
-		} elseif ( $attachment_id && 'display_all' === $this->theme_mods['display_navbar_brand'] ) {
-
-			$attr = array(
-				'class'			=> 'img-brand',
-				'alt'			=> esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
-				'itemprop'		=> 'image',
-				'style'			=> 'display:inline;margin-right:15px;',
-			);
-			/**
-			 * Size default: navbar-brand-image
-			 */
-			$output .= wp_get_attachment_image( $attachment_id, $this->theme_mods['navbar_logo_image_size'], false, $attr );
-
-			$output .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
-
-		} else {
-
-			$output .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span><meta  itemprop="image" content="' . \italystrap_get_the_custom_image_url( 'logo', TEMPLATEURL . '/img/italystrap-logo.jpg' ) . '"/>';
-
-		}
-
-		$output .= '</a>';
+		$output = sprintf(
+			'<a %s>%s</a>',
+			$this->get_html_tag_attr( $a, 'navbar_brand' ),
+			$this->get_brand()
+		);
 
 		return apply_filters( 'italystrap_navbar_brand', $output, $this->navbar_id );
 
@@ -263,79 +302,84 @@ class Navbar {
 			'class'			=> 'navbar-collapse collapse',
 		);
 
-		$a = apply_filters( 'italystrap_collapsable_menu_attr', $a, $this->navbar_id );
-
-		$output = '';
-
-		$output .= '<div' . $this->get_html_tag_attr( $a ) . '>';
-		$output .= $this->get_wp_nav_menu();
-
 		/**
 		 * http://bootsnipp.com/snippets/featured/expanding-search-button-in-css
 		 */
-		if ( false ) {
-			$output .= get_search_form();
-		}
+		// if ( false ) {
+		// 	$output .= get_search_form();
+		// }
 
-		if ( has_nav_menu( 'secondary-menu' ) ) :
-
-			$args = array(
-				'menu_class'		=> 'nav navbar-nav navbar-right',
-				'menu_id'			=> 'secondary-menu',
-				'fallback_cb'		=> false,
-				'theme_location'	=> 'secondary-menu',
-			);
-
-			$output .= $this->get_wp_nav_menu( $args );
-
-		endif;
-
-		$output .= '</div>';
+		$output = sprintf(
+			'<div %s>%s%s</div>',
+			$this->get_html_tag_attr( $a, 'collapsable_menu' ),
+			$this->get_wp_nav_menu(),
+			$this->get_secondary_wp_nav_menu()
+		);
 
 		return apply_filters( 'italystrap_collapsable_menu', $output, $this->navbar_id );
 	}
 
+	/**
+	 * A container inside the navbar-default/revers
+	 *
+	 * @return string The html output.
+	 */
 	public function get_last_container() {
 
 		$a = array(
 			'class'			=> 'container-fluid',
 		);
 
-		$a = apply_filters( 'italystrap_last_container_attr', $a, $this->navbar_id );
-
-		$output = '';
-
-		$output .= '<div' . $this->get_html_tag_attr( $a ) . '>';
-
-		$output .= $this->get_navbar_header();
-		$output .= $this->get_collapsable_menu();
-
-		$output .= '</div>';
+		$output = sprintf(
+			'<div %s>%s%s</div>',
+			$this->get_html_tag_attr( $a, 'last_container' ),
+			$this->get_navbar_header(),
+			$this->get_collapsable_menu()
+		);
 
 		return apply_filters( 'italystrap_last_container', $output, $this->navbar_id );
 
 	}
 
+	/**
+	 * The regulare navbar container,
+	 * this manage the type of navabr available from Twitter Bootstrap
+	 *
+	 * @see http://getbootstrap.com/components/#navbar
+	 *
+	 * navbar-default
+	 * navbar-inverse
+	 *
+	 * navbar navbar-default navbar-relative-top
+	 *
+	 * navbar navbar-default navbar-fixed-top // body { padding-top: 70px; }
+	 * navbar navbar-default navbar-fixed-bottom // body { padding-bottom: 70px; }
+	 *
+	 * navbar navbar-default navbar-static-top
+	 *
+	 * @return string The navbar string.
+	 */
 	public function get_navbar_container() {
 
 		$a = array(
 			'class'			=> 'navbar navbar-inverse navbar-relative-top',
 		);
 
-		$a = apply_filters( 'italystrap_navbar_container_attr', $a, $this->navbar_id );
-
-		$output = '';
-
-		$output .= '<div' . $this->get_html_tag_attr( $a ) . '>';
-
-		$output .= $this->get_last_container();
-
-		$output .= '</div>';
+		$output = sprintf(
+			'<div %s>%s</div>',
+			$this->get_html_tag_attr( $a, 'navbar_container' ),
+			$this->get_last_container()
+		);
 
 		return apply_filters( 'italystrap_navbar_container', $output, $this->navbar_id );
 
 	}
 
+	/**
+	 * Generate the nav tag container of entire navbar
+	 *
+	 * @return string Return the entire navbar.
+	 */
 	public function get_nav_container() {
 
 		$a = array(
@@ -345,15 +389,11 @@ class Navbar {
 			'itemtype'		=> 'http://schema.org/SiteNavigationElement',
 		);
 
-		$a = apply_filters( 'italystrap_nav_container_attr', $a, $this->navbar_id );
-
-		$output = '';
-
-		$output .= '<nav' . $this->get_html_tag_attr( $a ) . '>';
-
-		$output .= $this->get_navbar_container();
-
-		$output .= '</nav>';
+		$output = sprintf(
+			'<nav %s>%s</nav>',
+			$this->get_html_tag_attr( $a, 'nav_container' ),
+			$this->get_navbar_container()
+		);
 
 		return apply_filters( 'italystrap_nav_container', $output, $this->navbar_id );
 

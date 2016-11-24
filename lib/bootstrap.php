@@ -24,6 +24,7 @@ use ItalyStrap\Admin\Required_Plugins\Register as Required_Plugins;
 use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
 
 use ItalyStrap\Core\Router\Router;
+use ItalyStrap\Core\Router\Controller;
 
 use ItalyStrap\Core\Image\Size as Size;
 use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
@@ -114,7 +115,10 @@ add_filter( 'template_include', __NAMESPACE__ . '\set_current_template', 99998 )
  * @see ItalyStrap\Core\Router\Router::route
  */
 add_filter( 'template_include', array( new Router(), 'route' ), 99999, 1 );
-
+/**
+ * This filter is in beta version
+ */
+add_filter( 'italystrap_template_include', array( new Controller(), 'filter' ), 10, 1 );
 /**
  * Register image site
  * BETA VERSION
@@ -248,7 +252,6 @@ if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
  * @var object The init obj.
  */
 $init = new Init_Theme( $content_width );
-$navbar = new Navbar( $theme_mods );
 
 $italystrap_excerpt = new Excerpt( $theme_mods );
 // add_action( 'after_setup_theme', array( $italystrap_excerpt, 'excerpt_more_function' ) );
@@ -299,7 +302,7 @@ add_action( 'italystrap_after_loop', array( $template_settings, 'pagination' ) )
 add_action( 'italystrap_content_none', array( $template_settings, 'content_none' ) );
 add_action( 'italystrap_after_loop', array( $template_settings, 'comments_template' ) );
 
-
+$navbar = new Navbar( $theme_mods );
 /**
  * Header
  *

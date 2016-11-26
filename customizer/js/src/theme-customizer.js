@@ -52,21 +52,37 @@
 	 */
 	wp.customize( 'navbar[type]', function( value ) {
 		value.bind( function( newval ) {
-			$('div.navbar').removeClass( 'navbar-inverse' ).addClass( newval );
+			$('div.navbar').removeClass( 'navbar-inverse navbar-default' ).addClass( newval );
 		} );
 	} );
 
 	wp.customize( 'navbar[position]', function( value ) {
 		value.bind( function( newval ) {
-			$('div.navbar').removeClass( 'navbar-relative-top' ).addClass( newval );
+			$('div.navbar').removeClass( 'navbar-relative-top navbar-fixed-top navbar-fixed-bottom navbar-static-top' ).addClass( newval );
+		} );
+	} );
+
+	wp.customize( 'navbar[nav_width]', function( value ) {
+		value.bind( function( newval ) {
+			$('nav').removeClass( 'container' ).addClass( newval );
+		} );
+	} );
+
+	wp.customize( 'navbar[menus_width]', function( value ) {
+		value.bind( function( newval ) {
+			$('div.navbar > div').removeClass( 'container-fluid container' ).addClass( newval );
 		} );
 	} );
 
 	wp.customize( 'display_navbar_brand', function( value ) {
-		console.log( 'display_navbar_brand', value );
 		value.bind( function( newval ) {
-			console.log( 'display_navbar_brand', newval );
 			// $('.navbar').css('color', newval );
+		} );
+	} );
+
+	wp.customize( 'colophon', function( value ) {
+		value.bind( function( newval ) {
+			$( '#colophon > .col-md-12' ).html( newval );
 		} );
 	} );
 

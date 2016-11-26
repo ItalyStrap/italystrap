@@ -314,7 +314,8 @@ class Navbar {
 	public function get_last_container() {
 
 		$a = array(
-			'class'			=> 'container-fluid',
+			'id'			=> 'menus-container-' . $this->number,
+			'class'			=> esc_attr( $this->theme_mods['navbar']['menus_width'] ),
 		);
 
 		$output = sprintf(
@@ -348,14 +349,11 @@ class Navbar {
 	 */
 	public function get_navbar_container() {
 
-		$type = esc_attr( $this->theme_mods['navbar']['type'] );
-		$position = esc_attr( $this->theme_mods['navbar']['position'] );
-
 		$a = array(
 			'class'			=> sprintf(
 				'navbar %s %s',
-				$type,
-				$position
+				esc_attr( $this->theme_mods['navbar']['type'] ),
+				esc_attr( $this->theme_mods['navbar']['position'] )
 			),
 		);
 
@@ -372,13 +370,19 @@ class Navbar {
 	/**
 	 * Generate the nav tag container of entire navbar
 	 *
+	 * @see http://getbootstrap.com/components/#navbar
+	 *
+	 * This manage the full width or boxed width (.conainer or null)
+	 *
 	 * @return string Return the entire navbar.
 	 */
 	public function get_nav_container() {
 
 		$a = array(
-			'class'			=> 'container navbar-wrapper',
-			// 'role'			=> 'navigation',
+			'class'			=> sprintf(
+				'navbar-wrapper %s',
+				esc_attr( $this->theme_mods['navbar']['nav_width'] )
+			),
 			'itemscope'		=> '',
 			'itemtype'		=> 'http://schema.org/SiteNavigationElement',
 		);

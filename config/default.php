@@ -52,9 +52,10 @@ return array(
 	// 'display_navbar_logo_image'		=> '',
 	// 'display_navbar_logo_image'		=> '',
 	'navbar'						=> array(
-		'type'		=> 'navbar-inverse',
-		'position'	=> 'navbar-relative-top',
-		'ciao'		=> 'ciao',
+		'type'			=> 'navbar-default',
+		'position'		=> 'navbar-relative-top',
+		'nav_width'		=> 'container', // This is the container of entire navbar.
+		'menus_width'	=> 'container-fluid', // This is the container of the 2 menus inside the nav container and the navbar_header brand and toggle.
 	),
 
 	/**

@@ -206,7 +206,121 @@ $manager->add_section(
 		'title'			=> __( 'Navbar Settings', 'italystrap' ), // Visible title of section.
 		'panel'			=> $this->panel,
 		'capability'	=> $this->capability,
-		'description'	=> __( 'Allows you to customize settings for the main navbar.', 'italystrap' ),
+		'description'	=> __( 'Allows you to customize settings for the main navbar. Remember that this uses the Twitter Bootstrap Navbar style, if you want more info read the <a href="http://getbootstrap.com/components/#navbar" target="_blank">documentation</a>.', 'italystrap' ),
+	)
+);
+
+/**
+ * Select default or inverse navbar
+ */
+$manager->add_setting(
+	'navbar[type]',
+	array(
+		'default'			=> $this->theme_mods['navbar']['type'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_navbar[type]',
+	array(
+		'settings'	=> 'navbar[type]',
+		'label'			=> __( 'Navbar type', 'italystrap' ),
+		'description'	=> __( 'Select the type of navbar. By default is the <code>navbar-default</code> (light grey).', 'italystrap' ),
+		'section'		=> 'italystrap_navbar_options',
+		'type'			=> 'radio',
+		'choices'		=> array(
+			'navbar-default'	=> __( 'Default navbar', 'italystrap' ),
+			'navbar-inverse'	=> __( 'Inverse navbar', 'italystrap' ),
+		),
+	)
+);
+
+/**
+ * Select the position of navbar
+ */
+$manager->add_setting(
+	'navbar[position]',
+	array(
+		'default'			=> $this->theme_mods['navbar']['position'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_navbar[position]',
+	array(
+		'settings'	=> 'navbar[position]',
+		'label'			=> __( 'Navbar position', 'italystrap' ),
+		'description'	=> __( 'Select the position of the navbar. By default is set to <code>relative top</code>, you can chose <code>fixed top</code>, <code>fixed bottom</code> or <code>static top</code>, with the <code>static top</code> you also have to set the navbar <code>full width</code> for fixing the correct padding.', 'italystrap' ),
+		'section'		=> 'italystrap_navbar_options',
+		'type'			=> 'radio',
+		'choices'		=> array(
+			'navbar-relative-top'	=> __( 'Default relative top', 'italystrap' ),
+			'navbar-fixed-top'		=> __( 'Fixed Top', 'italystrap' ),
+			'navbar-fixed-bottom'	=> __( 'Fixed Bottom', 'italystrap' ),
+			'navbar-static-top'		=> __( 'Static Top', 'italystrap' ),
+		),
+	)
+);
+
+/**
+ * Select the nav_width of navbar
+ */
+$manager->add_setting(
+	'navbar[nav_width]',
+	array(
+		'default'			=> $this->theme_mods['navbar']['nav_width'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_navbar[nav_width]',
+	array(
+		'settings'	=> 'navbar[nav_width]',
+		'label'			=> __( 'Navbar width', 'italystrap' ),
+		'description'	=> __( 'Select the nav_width of navbar, this enlarges the navbar to the windows size (use it also width Static Top option).', 'italystrap' ),
+		'section'		=> 'italystrap_navbar_options',
+		'type'			=> 'radio',
+		'choices'		=> array(
+			'container'	=> __( 'Default boxed width', 'italystrap' ),
+			'none'		=> __( 'Full width', 'italystrap' ),
+		),
+	)
+);
+
+/**
+ * Select the menus_width of navbar
+ */
+$manager->add_setting(
+	'navbar[menus_width]',
+	array(
+		'default'			=> $this->theme_mods['navbar']['menus_width'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_navbar[menus_width]',
+	array(
+		'settings'	=> 'navbar[menus_width]',
+		'label'			=> __( 'Navbar menus width', 'italystrap' ),
+		'description'	=> __( 'Select the menus_width, this is the width of the container of the 2 menu, main-menu and secondary-menu, with the full width the menus will enlarge to the widnows size, with the "width of the content" they will sized like the size of the content. If you have select the "default boxed width" leave the default value.', 'italystrap' ),
+		'section'		=> 'italystrap_navbar_options',
+		'type'			=> 'radio',
+		'choices'		=> array(
+			'container-fluid'	=> __( 'The width of navbar wrapper', 'italystrap' ),
+			'container'			=> __( 'The width of the content', 'italystrap' ),
+		),
 	)
 );
 
@@ -301,67 +415,6 @@ $manager->add_control(
 		),
 	)
 );
-// d( $this->theme_mods['navbar'] );
-// d( get_theme_mod( 'navbar', '' ) );
-/**
- * Select default or inverse navbar
- */
-$manager->add_setting(
-	'navbar[type]',
-	array(
-		'default'			=> $this->theme_mods['navbar']['type'],
-		'type'				=> 'theme_mod',
-		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
-		'sanitize_callback'	=> 'sanitize_text_field',
-	)
-);
-$manager->add_control(
-	'italystrap_navbar[type]',
-	array(
-		'settings'	=> 'navbar[type]',
-		// 'settings'		=> 'navbar',
-		'label'			=> __( 'Select the navbar type', 'italystrap' ),
-		'description'	=> __( 'Select the type of navbar type.', 'italystrap' ),
-		'section'		=> 'italystrap_navbar_options',
-		'type'			=> 'radio',
-		'choices'		=> array(
-			'navbar-default'	=> __( 'Default navbar', 'italystrap' ),
-			'navbar-inverse'	=> __( 'Inverse navbar', 'italystrap' ),
-		),
-	)
-);
-
-/**
- * Select the position of navbar
- */
-$manager->add_setting(
-	'navbar[position]',
-	array(
-		'default'			=> $this->theme_mods['navbar']['position'],
-		'type'				=> 'theme_mod',
-		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
-		'sanitize_callback'	=> 'sanitize_text_field',
-	)
-);
-$manager->add_control(
-	'italystrap_navbar[position]',
-	array(
-		'settings'	=> 'navbar[position]',
-		'label'			=> __( 'Select the navbar position', 'italystrap' ),
-		'description'	=> __( 'Select the position of navbar position.', 'italystrap' ),
-		'section'		=> 'italystrap_navbar_options',
-		'type'			=> 'radio',
-		'choices'		=> array(
-			'navbar-relative-top'	=> __( 'Default relative top', 'italystrap' ),
-			'navbar-fixed-top'		=> __( 'Fixed Top', 'italystrap' ),
-			'navbar-fixed-bottom'	=> __( 'Fixed Bottom', 'italystrap' ),
-			'navbar-static-top'		=> __( 'Static Top', 'italystrap' ),
-		),
-	)
-);
-
 
 /**
  * Define a new section for cusom CSS

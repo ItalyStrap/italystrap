@@ -34,6 +34,8 @@ use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
 use ItalyStrap\Core\Layout\Layout;
 use ItalyStrap\Core\Template\Template;
 
+use ItalyStrap\Core\Css\Css;
+
 use ItalyStrap\Customizer\Customizer;
 
 use ItalyStrap\Admin\Upgrade\Update;
@@ -92,12 +94,14 @@ $defaults = apply_filters( 'italystrap_default_theme_config', require( TEMPLATEP
  */
 $italystrap_options = get_option( 'italystrap_theme_settings' );
 
+$get_theme_mods = get_theme_mods();
 /**
  * Get the customiser settings and merge with defaults
  *
  * @var array
  */
-$theme_mods = wp_parse_args( get_theme_mods(), $defaults );
+// $theme_mods = wp_parse_args( get_theme_mods(), $defaults );
+$theme_mods = wp_parse_args_recursive( $get_theme_mods, $defaults );
 
 $update = new Update( $theme_mods );
 $update->register();
@@ -117,8 +121,9 @@ add_filter( 'template_include', __NAMESPACE__ . '\set_current_template', 99998 )
 add_filter( 'template_include', array( new Router(), 'route' ), 99999, 1 );
 /**
  * This filter is in beta version
+ * Da testare meglio, avuto problemi con WC + Child e template file mancante in parent
  */
-add_filter( 'italystrap_template_include', array( new Controller(), 'filter' ), 10, 1 );
+// add_filter( 'italystrap_template_include', array( new Controller(), 'filter' ), 10, 1 );
 /**
  * Register image site
  * BETA VERSION
@@ -187,7 +192,9 @@ if ( is_admin() ) {
 	}
 
 	/**
-	 * Admin customizer
+	 * Register the metabox
+	 *
+	 * @var Register_Meta
 	 */
 	$metabox = new Register_Meta;
 	add_action( 'cmb2_admin_init', array( $metabox, 'register_template_settings' ) );
@@ -217,6 +224,17 @@ if ( function_exists( 'register_widget' ) ) {
 }
 
 /**
+ * CSS manager.
+ *
+ * @var Css
+ */
+$css_manager = new Css( $theme_mods );
+/**
+ * Output custom CSS to live site.
+ */
+add_action( 'wp_head' , array( $css_manager, 'css_output' ), 11 );
+
+/**
  * Initialize Customizer Class
  *
  * @var ItalyStrap_Theme_Customizer
@@ -226,32 +244,18 @@ $italystrap_customizer = new Customizer( $theme_mods );
 /**
  * Setup the Theme Customizer settings and controls...
  */
-add_action( 'customize_register' , array( $italystrap_customizer, 'register_init' ) );
+add_action( 'customize_register' , array( $italystrap_customizer, 'register_init' ), 99 );
 
 // Enqueue live preview javascript in Theme Customizer admin screen.
 add_action( 'customize_preview_init' , array( $italystrap_customizer, 'live_preview' ) );
 
-// Output custom CSS to live site.
-add_action( 'wp_head' , array( $italystrap_customizer, 'css_output' ), 11 );
-
 /**
- * Add link to Theme Options in case ItalyStrap plugin is active
- */
-if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
-	/**
-	 * Add new voice to theme menu
-	 */
-	add_action( 'admin_menu', array( $italystrap_customizer, 'add_appearance_menu' ) );
-	add_action( 'admin_menu', array( $italystrap_customizer, 'add_link_to_theme_option_page' ) );
-}
-
-/**
- * Init theme functions
+ * Init theme
  *
  * @see in hooks.php file
  * @var object The init obj.
  */
-$init = new Init_Theme( $content_width );
+$init = new Init_Theme( $css_manager, $content_width );
 
 $italystrap_excerpt = new Excerpt( $theme_mods );
 // add_action( 'after_setup_theme', array( $italystrap_excerpt, 'excerpt_more_function' ) );
@@ -265,6 +269,16 @@ add_filter( 'excerpt_length', array( $italystrap_excerpt, 'excerpt_length') );
  * @see Class Init()
  */
 add_action( 'after_setup_theme', array( $init, 'theme_setup' ) );
+/**
+ * Add link to Theme Options in case ItalyStrap plugin is active
+ */
+if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
+	/**
+	 * Add new voice to theme menu
+	 */
+	add_action( 'admin_menu', array( $init, 'add_appearance_menu' ) );
+	add_action( 'admin_menu', array( $init, 'add_link_to_theme_option_page' ) );
+}
 
 /**
  * Layout object

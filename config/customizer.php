@@ -10,6 +10,22 @@
  * @package ItalyStrap\Customizer
  */
 
+namespace ItalyStrap\Customizer;
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
+use WP_Customize_Manager;
+use WP_Customize_Control;
+use WP_Customize_Color_Control;
+use	WP_Customize_Media_Control;
+
+use ItalyStrap\Core as Core;
+use	ItalyStrap\Customizer\Control\Textarea;
+
+use	ItalyStrapAdminMediaSettings;
+
 return array(
 
 	/**
@@ -18,7 +34,7 @@ return array(
 	'italystrap_options_page' => array(
 		'type'		=> 'panel',
 		'args'		=> array(
-			'priority'			=> 160,
+			'priority'			=> 10,
 			'capability'		=> $this->capability,
 			'theme_supports'	=> '',
 			'title'				=> __( 'Theme settings', 'italystrap' ),
@@ -39,13 +55,14 @@ return array(
 					'description'	=> __( 'Allows you to customize settings for ItalyStrap.', 'italystrap' ),
 				),
 				'config' => array(
+
 					'logo' => array(
 						'setting'	=> 	array(
 							'default' => TEMPLATEURL . '/img/italystrap-logo.jpg',
-							'type' => 'theme_mod',
-							'capability' => $this->capability,
-							'transport' => 'postMessage',
-							'sanitize_callback' => 'sanitize_text_field',
+							// 'type' => 'theme_mod',
+							// 'capability' => $this->capability,
+							// 'transport' => 'postMessage',
+							// 'sanitize_callback' => 'sanitize_text_field',
 						),
 						'control'	=> 	new WP_Customize_Media_Control(
 							$manager,
@@ -60,28 +77,29 @@ return array(
 						),
 
 					),
-					'navbar_logo_image'	=> array(
-						'setting'	=> 		array(
-							// 'default' => TEMPLATEURL . '/img/italystrap-navbar_logo_image.jpg',
-							'default' => '',
-							'type' => 'theme_mod',
-							'capability' => $this->capability,
-							'transport' => 'postMessage',
-							'sanitize_callback' => 'sanitize_text_field',
-						),
-						'control'	=> new WP_Customize_Media_Control(
-							$manager,
-							'italystrap_navbar_logo_image',
-							array(
-								'label' => __( 'Your logo brand for nav menu', 'italystrap' ),
-								'description' => __( 'Insert here your logo brand for nav menu', 'italystrap' ),
-								'section' => 'italystrap_image_options',
-								'settings' => 'navbar_logo_image',
-								'priority' => 10,
-							)
-						),
 
-					),
+					// 'navbar_logo_image'	=> array(
+					// 	'setting'	=> 		array(
+					// 		// 'default' => TEMPLATEURL . '/img/italystrap-navbar_logo_image.jpg',
+					// 		'default' => '',
+					// 		// 'type' => 'theme_mod',
+					// 		// 'capability' => $this->capability,
+					// 		// 'transport' => 'postMessage',
+					// 		// 'sanitize_callback' => 'sanitize_text_field',
+					// 	),
+					// 	'control'	=> new WP_Customize_Media_Control(
+					// 		$manager,
+					// 		'italystrap_navbar_logo_image',
+					// 		array(
+					// 			'label' => __( 'Your logo brand for nav menu', 'italystrap' ),
+					// 			'description' => __( 'Insert here your logo brand for nav menu', 'italystrap' ),
+					// 			'section' => 'italystrap_image_options',
+					// 			'settings' => 'navbar_logo_image',
+					// 			'priority' => 10,
+					// 		)
+					// 	),
+
+					// ),
 
 				),
 			), // End 'italystrap_image_options'
@@ -91,12 +109,12 @@ return array(
 	/**
 	 * The section name
 	 */
-	'color'	=> array(
-		'type'	=> 'section',
-		'args'	=> array(
+	// 'color'	=> array(
+	// 	'type'	=> 'section',
+	// 	'args'	=> array(
 
-		),
-	),
+	// 	),
+	// ),
 
 	/**
 	 * Section for image option

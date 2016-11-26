@@ -93,7 +93,8 @@ $manager->add_panel( $this->panel,
 	array(
 		'title'			=> __( 'Theme Options', 'italystrap' ),
 		'description'	=> 'add_panel', // Include html tags such as <p>.
-		'priority'		=> 160, // Mixed with top-level-section hierarchy.
+		// 'priority'		=> 160, // Mixed with top-level-section hierarchy.
+		'priority'		=> 10, // Mixed with top-level-section hierarchy.
 	)
 );
 
@@ -135,98 +136,6 @@ $manager->add_control(
 			'settings'		=> 'logo',
 			'priority'		=> 10,
 		)
-	)
-);
-
-/**
- * Setting for navbar logo image
- */
-$manager->add_setting(
-	'navbar_logo_image',
-	array(
-		'default'			=> $this->theme_mods['navbar_logo_image'],
-		'type'				=> 'theme_mod',
-		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
-		'sanitize_callback'	=> 'sanitize_text_field',
-	)
-);
-
-$manager->add_control(
-	new WP_Customize_Media_Control(
-		$manager,
-		'italystrap_navbar_logo_image',
-		array(
-			'label'			=> __( 'Your logo brand for nav menu', 'italystrap' ),
-			'description'	=> __( 'Insert here your logo brand for nav menu', 'italystrap' ),
-			'section'		=> 'italystrap_image_options',
-			'settings'		=> 'navbar_logo_image',
-			'priority'		=> 10,
-		)
-	)
-);
-
-		/**
-		 * Instance of list of image sizes
-		 * @var ItalyStrapAdminMediaSettings
-		 */
-		$image_size_media = new ItalyStrapAdminMediaSettings;
-		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
-
-/**
- * Display navbar logo image size list
- */
-$manager->add_setting(
-	'navbar_logo_image_size',
-	array(
-		'default'			=> $this->theme_mods['navbar_logo_image_size'],
-		'type'				=> 'theme_mod',
-		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
-		'sanitize_callback'	=> 'sanitize_text_field',
-	)
-);
-$manager->add_control(
-	'italystrap_navbar_logo_image_size',
-	array(
-		'settings'	=> 'navbar_logo_image_size',
-		'label'		=> __( 'Logo image size', 'italystrap' ),
-		'section'	=> 'italystrap_image_options',
-		'type'		=> 'select',
-		'choices'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
-	)
-);
-
-/**
- * Display navbar brand name with navbar logo image
- */
-$manager->add_setting(
-	// 'display_navbar_brand[test1]',
-	'display_navbar_brand',
-	array(
-		'default'			=> $this->theme_mods['display_navbar_brand'],
-		// 'default'			=> 'display_name',
-		'type'				=> 'theme_mod',
-		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
-		'sanitize_callback'	=> 'sanitize_text_field',
-	)
-);
-$manager->add_control(
-	'italystrap_display_navbar_brand',
-	array(
-		// 'settings'	=> 'display_navbar_brand[test1]',
-		'settings'		=> 'display_navbar_brand',
-		'label'			=> __( 'Display the navbar brand', 'italystrap' ),
-		'description'	=> __( 'Select the type of navbar brand to visualize or select to hide navbar brand, if you select to visualize navbar with image you also have to select the image and the size of the image to visualize in the above controls.', 'italystrap' ),
-		'section'		=> 'italystrap_image_options',
-		'type'			=> 'radio',
-		'choices'		=> array(
-			'none'			=> __( 'Hide navbar brand', 'italystrap' ),
-			'display_image'	=> __( 'Display navbar brand image', 'italystrap' ),
-			'display_name'	=> __( 'Display navbar brand name', 'italystrap' ),
-			'display_all'	=> __( 'Display navbar brand image and name', 'italystrap' ),
-		),
 	)
 );
 
@@ -289,12 +198,178 @@ $manager->add_control(
  */
 
 /**
+ * Define a new section for theme image options
+ */
+$manager->add_section(
+	'italystrap_navbar_options',
+	array(
+		'title'			=> __( 'Navbar Settings', 'italystrap' ), // Visible title of section.
+		'panel'			=> $this->panel,
+		'capability'	=> $this->capability,
+		'description'	=> __( 'Allows you to customize settings for the main navbar.', 'italystrap' ),
+	)
+);
+
+/**
+ * Setting for navbar logo image
+ */
+$manager->add_setting(
+	'navbar_logo_image',
+	array(
+		'default'			=> $this->theme_mods['navbar_logo_image'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+
+$manager->add_control(
+	new WP_Customize_Media_Control(
+		$manager,
+		'italystrap_navbar_logo_image',
+		array(
+			'label'			=> __( 'Your logo brand for nav menu', 'italystrap' ),
+			'description'	=> __( 'Insert here your logo brand for nav menu', 'italystrap' ),
+			'section'		=> 'italystrap_navbar_options',
+			'settings'		=> 'navbar_logo_image',
+			'priority'		=> 10,
+		)
+	)
+);
+
+/**
+ * Instance of list of image sizes
+ * @var ItalyStrapAdminMediaSettings
+ */
+$image_size_media = new ItalyStrapAdminMediaSettings;
+$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
+
+/**
+ * Display navbar logo image size list
+ */
+$manager->add_setting(
+	'navbar_logo_image_size',
+	array(
+		'default'			=> $this->theme_mods['navbar_logo_image_size'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_navbar_logo_image_size',
+	array(
+		'settings'	=> 'navbar_logo_image_size',
+		'label'		=> __( 'Logo image size', 'italystrap' ),
+		'section'	=> 'italystrap_navbar_options',
+		'type'		=> 'select',
+		'choices'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
+	)
+);
+
+/**
+ * Display navbar brand name with navbar logo image
+ */
+$manager->add_setting(
+	// 'display_navbar_brand[test1]',
+	'display_navbar_brand',
+	array(
+		'default'			=> $this->theme_mods['display_navbar_brand'],
+		// 'default'			=> 'display_name',
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'display_navbar_brand',
+	array(
+		// 'settings'	=> 'display_navbar_brand[test1]',
+		'settings'		=> 'display_navbar_brand',
+		'label'			=> __( 'Display the navbar brand', 'italystrap' ),
+		'description'	=> __( 'Select the type of navbar brand to visualize or select to hide navbar brand, if you select to visualize navbar with image you also have to select the image and the size of the image to visualize in the above controls.', 'italystrap' ),
+		'section'		=> 'italystrap_navbar_options',
+		'type'			=> 'radio',
+		'choices'		=> array(
+			'none'			=> __( 'Hide navbar brand', 'italystrap' ),
+			'display_image'	=> __( 'Display navbar brand image', 'italystrap' ),
+			'display_name'	=> __( 'Display navbar brand name', 'italystrap' ),
+			'display_all'	=> __( 'Display navbar brand image and name', 'italystrap' ),
+		),
+	)
+);
+// d( $this->theme_mods['navbar'] );
+// d( get_theme_mod( 'navbar', '' ) );
+/**
+ * Select default or inverse navbar
+ */
+$manager->add_setting(
+	'navbar[type]',
+	array(
+		'default'			=> $this->theme_mods['navbar']['type'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_navbar[type]',
+	array(
+		'settings'	=> 'navbar[type]',
+		// 'settings'		=> 'navbar',
+		'label'			=> __( 'Select the navbar type', 'italystrap' ),
+		'description'	=> __( 'Select the type of navbar type.', 'italystrap' ),
+		'section'		=> 'italystrap_navbar_options',
+		'type'			=> 'radio',
+		'choices'		=> array(
+			'navbar-default'	=> __( 'Default navbar', 'italystrap' ),
+			'navbar-inverse'	=> __( 'Inverse navbar', 'italystrap' ),
+		),
+	)
+);
+
+/**
+ * Select the position of navbar
+ */
+$manager->add_setting(
+	'navbar[position]',
+	array(
+		'default'			=> $this->theme_mods['navbar']['position'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_navbar[position]',
+	array(
+		'settings'	=> 'navbar[position]',
+		'label'			=> __( 'Select the navbar position', 'italystrap' ),
+		'description'	=> __( 'Select the position of navbar position.', 'italystrap' ),
+		'section'		=> 'italystrap_navbar_options',
+		'type'			=> 'radio',
+		'choices'		=> array(
+			'navbar-relative-top'	=> __( 'Default relative top', 'italystrap' ),
+			'navbar-fixed-top'		=> __( 'Fixed Top', 'italystrap' ),
+			'navbar-fixed-bottom'	=> __( 'Fixed Bottom', 'italystrap' ),
+			'navbar-static-top'		=> __( 'Static Top', 'italystrap' ),
+		),
+	)
+);
+
+
+/**
  * Define a new section for cusom CSS
  */
 $manager->add_section(
 	'custom_css',
 	array(
-		'title'				=> __( 'Custom CSS' ),
+		'title'				=> __( 'Additional CSS' ),
 		'description'		=> __( 'Add custom CSS here' ),
 		'panel'				=> $this->panel, // Not typically needed.
 		'priority'			=> 160,

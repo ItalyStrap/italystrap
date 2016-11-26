@@ -67,20 +67,7 @@ class Navbar {
 	 */
 	public function get_html_tag_attr( $attr = array(), $context = '' ) {
 
-		// d( Core\get_attr( $context, $attr, false, null ) );
-
-		// get_attr( $context, array $attr = array(), $echo = false, $args = null )
-
-		// $html = '';
-
-		// $attr = array_map( 'esc_attr', $attr );
-		// foreach ( $attr as $name => $value ) {
-		// 	$html .= " $name=" . '"' . $value . '"';
-		// }
-
-		// return $html;
 		return Core\get_attr( $context, $attr, false, $this->navbar_id );
-
 	}
 
 	/**
@@ -361,8 +348,15 @@ class Navbar {
 	 */
 	public function get_navbar_container() {
 
+		$type = esc_attr( $this->theme_mods['navbar']['type'] );
+		$position = esc_attr( $this->theme_mods['navbar']['position'] );
+
 		$a = array(
-			'class'			=> 'navbar navbar-inverse navbar-relative-top',
+			'class'			=> sprintf(
+				'navbar %s %s',
+				$type,
+				$position
+			),
 		);
 
 		$output = sprintf(

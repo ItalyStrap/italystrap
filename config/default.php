@@ -40,12 +40,22 @@ return array(
 	 * Default images
 	 */
 	'logo'							=> TEMPLATEURL . '/img/italystrap-logo.jpg',
+	'default_image'					=> TEMPLATEURL . '/img/italystrap-default-image.png',
+	'default_404'					=> TEMPLATEURL . '/img/404.jpg',
+
+	/**
+	 * Navbar
+	 */
 	'display_navbar_brand'			=> 'display_name',
 	'navbar_logo_image'				=> '',
 	'navbar_logo_image_size'		=> 'navbar-brand-image',
 	// 'display_navbar_logo_image'		=> '',
-	'default_image'					=> TEMPLATEURL . '/img/italystrap-default-image.png',
-	'default_404'					=> TEMPLATEURL . '/img/404.jpg',
+	// 'display_navbar_logo_image'		=> '',
+	'navbar'						=> array(
+		'type'		=> 'navbar-inverse',
+		'position'	=> 'navbar-relative-top',
+		'ciao'		=> 'ciao',
+	),
 
 	/**
 	 * Default text for colophon

@@ -78,6 +78,7 @@ Release Date: Sep 10th, 2015
 * Deprecated file sitemap-html.php
 * Deprecated file globals.php
 * Deprecated file init.php
+* Deprecated function get_html_tag_attr()
 * Now the index.php is only a simple loop, [more info](https://developer.wordpress.org/themes/basics/template-hierarchy/)
 * Added Theme customizer (with: logo image, custom image, 404 image, custom css, analytics ID)
 * Added support to [custom-header](https://codex.wordpress.org/Custom_Headers)
@@ -94,6 +95,7 @@ Release Date: Sep 10th, 2015
 * Better selection of nabar brand image or name
 * Added Upgrade Class API
 * New Router API
+* New Customizer API
 * New files template structure
 
 

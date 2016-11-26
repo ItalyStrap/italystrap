@@ -17,20 +17,30 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Core\Css\Css;
+
 /**
  * Theme init
  */
 class Init_Theme{
 
 	/**
+	 * $capability
+	 *
+	 * @var string
+	 */
+	private $capability = 'edit_theme_options';
+
+	/**
 	 * Init some functionality
 	 */
-	public function __construct( $content_width ) {
+	public function __construct( Css $css_manager, $content_width ) {
+
+		$this->css_manager = $css_manager;
 
 		$this->content_width = $content_width;
 
-		// add_action( 'after_setup_theme', array( $this, 'theme_setup' ) );
-
+		// $this->set_theme_mod_from_options();
 	}
 
 	/**
@@ -144,10 +154,10 @@ class Init_Theme{
 		 * );
 		 *
 		 * 'wp-head-callback' => null In case is printed from Theme customizer
-		 * @see class-italystrap-theme-customizer.php
+		 * @see ItalyStrap\Core\Css\Css::custom_background_cb()
 		 */
 		$custom_background = array(
-			'wp-head-callback' => '\ItalyStrap\Core\_custom_background_cb',
+			'wp-head-callback' => array( $this->css_manager, 'custom_background_cb' ),
 		);
 		add_theme_support( 'custom-background', apply_filters( 'custom_background_support', $custom_background ) );
 
@@ -180,6 +190,144 @@ class Init_Theme{
 		 * @since 4.0.0
 		 */
 		add_theme_support( 'woocommerce' );
+
+	}
+
+	/**
+	 * Function for adding link to Theme Options in case ItalyStrap plugin is active
+	 *
+	 * @link http://snippets.webaware.com.au/snippets/add-an-external-link-to-the-wordpress-admin-menu/
+	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#focusing
+	 * autofocus[panel|section|control]=ID
+	 */
+	public function add_link_to_theme_option_page() {
+
+		global $submenu;
+		/**
+		 * Link to customizer
+		 *
+		 * @link http://wptheming.com/2015/01/link-to-customizer-sections/
+		 * @var string
+		 */
+		$url = admin_url( 'customize.php?autofocus[panel]=italystrap_options_page' );
+		$submenu['italystrap-dashboard'][] = array(
+			__( 'Theme Options', 'italystrap' ),
+			$this->capability,
+			$url,
+		);
+	}
+
+	/**
+	 * Add new menu in theme.php
+	 */
+	public function add_appearance_menu() {
+
+		/**
+		 * Add theme page
+		 *
+		 * @link https://codex.wordpress.org/Function_Reference/add_theme_page
+		 */
+		add_theme_page(
+			__( 'ItalyStrap Theme Info', 'italystrap' ),// $page_title <title></title>
+			__( 'ItalyStrap Theme Info', 'italystrap' ),// $menu_title.
+			$this->capability,							// $capability.
+			'italystrap-theme-info',					// $menu_slug.
+			array( $this, 'callback_function' )			// $function.
+		);
+
+	}
+
+	/**
+	 * Add WordPress standard form for options page
+	 */
+	public function callback_function() {
+
+		if ( ! current_user_can( $this->capability ) ) {
+			wp_die( esc_attr__( 'You do not have sufficient permissions to access this page.', 'italystrap' ) );
+		}
+
+		?>
+
+			<div class="wrap">
+				<h2>
+					<span class="dashicons dashicons-admin-settings" style="font-size:32px;margin-right:15px"></span> ItalyStrap panel
+				</h2>
+				<form action='options.php' method='post'>
+					
+					<?php
+					settings_fields( 'italystrap_theme_options_group' );
+					do_settings_sections( 'italystrap_theme_options_group' );
+					submit_button();
+					?>
+					
+				</form>
+			</div>
+
+		<?php
+
+	}
+
+	/**
+	 * Esporto le opzioni precedentemente registrate in options e le carico nelle opzioni del tema
+	 */
+	public function set_theme_mod_from_options() {
+
+		/**
+		 * Rendo globale la variabile delle opzioni
+		 */
+		global $italystrap_options;
+
+		if ( ! $italystrap_options ) {
+			return;
+		}
+
+		foreach ( $italystrap_options as $key => $value ) {
+
+			if ( ! get_theme_mod( $key ) && preg_match( '#png|jpg|gif#is', $italystrap_options[ $key ] ) ) {
+
+				set_theme_mod( $key, $this->get_image_id_from_url( $italystrap_options[ $key ] ) );
+			} elseif ( ! get_theme_mod( $key ) ) {
+
+				set_theme_mod( $key, $italystrap_options[ $key ] );
+
+			}
+
+			/**
+			 * Test
+			 * var_dump( $key . ' => ' . get_theme_mod( $key ) );
+			 * remove_theme_mod( $key );
+			 */
+
+		}
+
+		/**
+		 * Test
+		 * remove_theme_mod( 'colophon' );
+		 * var_dump(get_theme_mods());
+		 */
+	}
+
+	/**
+	 * Retrieves the attachment ID from the file URL
+	 *
+	 * @link https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
+	 * @param  string $image_url The src of the image.
+	 * @return int               Return the ID of the image
+	 */
+	private function get_image_id_from_url( $image_url ) {
+
+		$attachment = wp_cache_get( 'get_image_id' . $image_url );
+
+		if ( false === $attachment ) {
+
+			global $wpdb;
+			$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ) );
+			wp_cache_set( 'get_image_id' . $image_url, $attachment );
+		}
+
+		$attachment[0] = ( isset( $attachment[0] ) ) ? $attachment[0] : null;
+
+		return absint( $attachment[0] );
 
 	}
 }

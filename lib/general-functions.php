@@ -266,17 +266,18 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
  * @param  array $attr The HTML attributes with key value.
  * @return string      Return a string with HTML attributes
  */
-function get_html_tag_attr( $attr = array() ) {
+function get_html_tag_attr( array $attr = array(), $context = '' ) {
 
-	$html = '';
+	_deprecated_function( __FUNCTION__, '4.0.0', 'ItalyStrap\Core\get_attr()' );
 
-	$attr = array_map( 'esc_attr', $attr );
-	foreach ( $attr as $name => $value ) {
-		$html .= " $name=" . '"' . $value . '"';
-	}
+	// $html = '';
 
-	return $html;
+	// $attr = array_map( 'esc_attr', $attr );
+	// foreach ( $attr as $name => $value ) {
+	// 	$html .= " $name=" . '"' . $value . '"';
+	// }
 
+	return get_attr( $context, $attr, false, null );
 }
 
 /**
@@ -348,9 +349,9 @@ add_filter( 'cancel_comment_reply_link', '\ItalyStrap\Core\add_class_button_to_c
  */
 function add_nofollow_and_bootstrap_button_css_to_reply_link( $link ) {
 
-	$search = array( '")\'>', 'comment-reply-link');
-	$replace = array( '")\' rel=\'nofollow\'>', 'btn btn-primary btn-sm pull-right');
-	$link = str_replace($search, $replace, $link);
+	$search = array( '")\'>', 'comment-reply-link' );
+	$replace = array( '")\' rel=\'nofollow\'>', 'btn btn-primary btn-sm pull-right' );
+	$link = str_replace( $search, $replace, $link );
 
 	return $link;
 }
@@ -481,6 +482,8 @@ function is_comment_reply() {
  */
 function _custom_background_cb() {
 
+	_deprecated_function( __FUNCTION__, '4.0.0', 'ItalyStrap\Core\Css\Css::custom_background_cb()' );
+
 	global $italystrap_customizer;
 
 	if ( ! $italystrap_customizer ) {
@@ -512,4 +515,28 @@ function is_static_front_page() {
 
 	return (bool) is_front_page() && ! is_home();
 
+}
+
+/**
+ * WP Parse Args recusrive
+ *
+ * @link http://mekshq.com/recursive-wp-parse-args-wordpress-function/
+ *
+ * @param  array &$args    The array.
+ * @param  array $defaults The default array.
+ *
+ * @return array           The array merged.
+ */
+function wp_parse_args_recursive( &$args, $defaults ) {
+	$args = (array) $args;
+	$defaults = (array) $defaults;
+	$result = $defaults;
+	foreach ( $args as $k => &$v ) {
+		if ( is_array( $v ) && isset( $result[ $k ] ) ) {
+			$result[ $k ] = wp_parse_args_recursive( $v, $result[ $k ] );
+		} else {
+			$result[ $k ] = $v;
+		}
+	}
+	return $result;
 }

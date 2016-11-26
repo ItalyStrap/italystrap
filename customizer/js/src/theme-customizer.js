@@ -7,11 +7,11 @@
 ( function( $ ) {
 
 	// Update the site title in real time...
-	// wp.customize( 'blogname', function( value ) {
-	// 	value.bind( function( newval ) {
-	// 		$( '#site-title a' ).html( newval );
-	// 	} );
-	// } );
+	wp.customize( 'blogname', function( value ) {
+		value.bind( function( newval ) {
+			$( '.brand-name' ).html( newval );
+		} );
+	} );
 	
 	// //Update the site description in real time...
 	// wp.customize( 'blogdescription', function( value ) {
@@ -46,6 +46,37 @@
 			$('h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading').css('color', newval );
 		} );
 	} );
+
+	/**
+	 * Navbar
+	 */
+	wp.customize( 'navbar[type]', function( value ) {
+		value.bind( function( newval ) {
+			$('div.navbar').removeClass( 'navbar-inverse' ).addClass( newval );
+		} );
+	} );
+
+	wp.customize( 'navbar[position]', function( value ) {
+		value.bind( function( newval ) {
+			$('div.navbar').removeClass( 'navbar-relative-top' ).addClass( newval );
+		} );
+	} );
+
+	wp.customize( 'display_navbar_brand', function( value ) {
+		console.log( 'display_navbar_brand', value );
+		value.bind( function( newval ) {
+			console.log( 'display_navbar_brand', newval );
+			// $('.navbar').css('color', newval );
+		} );
+	} );
+
+	// wp.customize( 'italystrap_display_navbar_brand', function( value ) {
+	// 	console.log( 'italystrap_display_navbar_brand', value );
+	// 	value.bind( function( newval ) {
+	// 		console.log( 'italystrap_display_navbar_brand', newval );
+	// 		// $('.navbar').css('color', newval );
+	// 	} );
+	// } );
 
 	// wp.customize( 'heading', function( value ) {
 	// 	value.bind( function( newval ) {
@@ -102,11 +133,14 @@
 //             $( this ).parents( '.customize-control' ).find( 'select' ).val( checkbox_values ).trigger( 'change' );
 //         }
 //     );
-	wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
-		// logic to refresh
-	} );
+
+	// wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+	// 	// logic to refresh
+	// } );
+
 } )( jQuery );
-console.log("hola datevid");
+
+// console.log("hola datevid");
 // jQuery( document ).ready( function() {
 // 	console.log("hola datevid");
 // 	jQuery( '.customize-control-checkbox input[type="checkbox"]' ).on(

@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 <div id="colophon" class="colophon"><!-- #copyright -->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 colophon-entry-content">
 				<?php
 
 				echo apply_filters( 'italystrap_colophon', false );

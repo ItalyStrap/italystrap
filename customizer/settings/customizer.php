@@ -333,7 +333,7 @@ $manager->add_setting(
 		'default'			=> $this->theme_mods['navbar_logo_image'],
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
+		'transport'			=> 'refresh',
 		'sanitize_callback'	=> 'sanitize_text_field',
 	)
 );
@@ -368,7 +368,7 @@ $manager->add_setting(
 		'default'			=> $this->theme_mods['navbar_logo_image_size'],
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
+		'transport'			=> 'refresh',
 		'sanitize_callback'	=> 'sanitize_text_field',
 	)
 );
@@ -394,7 +394,7 @@ $manager->add_setting(
 		// 'default'			=> 'display_name',
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
+		'transport'			=> 'refresh',
 		'sanitize_callback'	=> 'sanitize_text_field',
 	)
 );
@@ -440,7 +440,7 @@ $manager->add_setting(
 		'default'			=> $this->theme_mods['custom_css'],
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
+		'transport'			=> 'refresh',
 		'sanitize_callback'	=> 'sanitize_text_field',
 	)
 );

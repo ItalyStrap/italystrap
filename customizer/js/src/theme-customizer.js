@@ -82,7 +82,7 @@
 
 	wp.customize( 'colophon', function( value ) {
 		value.bind( function( newval ) {
-			$( '#colophon > .col-md-12' ).html( newval );
+			$( '.colophon-entry-content' ).html( newval );
 		} );
 	} );
 

@@ -62,8 +62,6 @@ $template_settings = (array) apply_filters( 'italystrap_template_settings', arra
 		$args['after']
 	);
 	?>
-	<!-- <h3><?php esc_attr_e( 'Share this with your friends:', 'ItalyStrap' ); ?></h3> -->
-	<!-- <textarea class="form-control" tabindex="4" rows="2"><?php the_permalink(); ?></textarea> -->
 
 	<?php echo italystrap_ttr_wc(); // XSS ok.?>
 	<span class="clearfix"></span>

@@ -80,6 +80,12 @@
 		} );
 	} );
 
+	wp.customize( 'boxed', function( value ) {
+		value.bind( function( newval ) {
+			$('.wrapper').removeClass( 'boxed' ).addClass( newval );
+		} );
+	} );
+
 	wp.customize( 'colophon', function( value ) {
 		value.bind( function( newval ) {
 			$( '.colophon-entry-content' ).html( newval );

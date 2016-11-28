@@ -13,12 +13,9 @@ do_action( 'italystrap_before_footer' );
 do_action( 'italystrap_footer' );
 do_action( 'italystrap_after_footer' );
 ?>
-
-<?php do_action( 'wrapper_closed' ); ?>
-</div><!-- Wrapper -->
+	</div><!-- Wrapper -->
 <?php
-wp_footer();
-do_action( 'body_closed' );
-?>
+do_action( 'italystrap_after' );
+wp_footer(); ?>
 </body>
 </html>

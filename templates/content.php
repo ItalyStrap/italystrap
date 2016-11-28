@@ -25,22 +25,20 @@ get_header();
 do_action( 'italystrap_before_main' );
 ?>
 <!-- Main Content -->
-	<main id="<?php echo esc_attr( $file_name ); ?>">
-		<div class="container">
-			<div class="row">
-				<?php do_action( 'italystrap_before_content' ); ?>
-				<div <?php Core\get_attr( 'content', array( 'itemscope' => true, 'itemtype' => 'http://schema.org/CollectionPage' ), true ); ?>>
+	<main id="<?php echo esc_attr( $file_name ); ?>" class="container">
+		<div class="row">
+			<?php do_action( 'italystrap_before_content' ); ?>
+			<div <?php Core\get_attr( 'content', array( 'itemscope' => true, 'itemtype' => 'http://schema.org/CollectionPage' ), true ); ?>>
 
-					<?php do_action( 'italystrap_before_loop' ); ?>
+				<?php do_action( 'italystrap_before_loop' ); ?>
 
-					<?php do_action( 'italystrap_loop' ); ?>
+				<?php do_action( 'italystrap_loop' ); ?>
 
-					<?php do_action( 'italystrap_after_loop' ); ?>
+				<?php do_action( 'italystrap_after_loop' ); ?>
 
-				</div><!-- / .col-md-8 -->
-				<?php do_action( 'italystrap_after_content' ); ?>
-			</div><!-- / .row -->
-		</div><!-- / .container -->
+			</div><!-- / .col-md-8 -->
+			<?php do_action( 'italystrap_after_content' ); ?>
+		</div><!-- / .row -->
 	</main><!-- / main -->
 <?php
 do_action( 'italystrap_after_main' );

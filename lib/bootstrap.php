@@ -258,10 +258,10 @@ add_action( 'customize_preview_init' , array( $italystrap_customizer, 'live_prev
 $init = new Init_Theme( $css_manager, $content_width );
 
 $italystrap_excerpt = new Excerpt( $theme_mods );
-// add_action( 'after_setup_theme', array( $italystrap_excerpt, 'excerpt_more_function' ) );
 add_filter( 'get_the_excerpt', array( $italystrap_excerpt, 'custom_excerpt_more') );
 add_filter( 'excerpt_more', array( $italystrap_excerpt, 'read_more_link') );
 add_filter( 'excerpt_length', array( $italystrap_excerpt, 'excerpt_length') );
+add_filter( 'wp_trim_words', array( $italystrap_excerpt, 'excerpt_end_with_punctuation' ), 10, 4 );
 
 /**
  * Theme init
@@ -335,6 +335,19 @@ add_action( 'italystrap_content_header', array( $navbar, 'output' ), 30 );
  */
 add_action( 'italystrap_before_loop', __NAMESPACE__ . '\display_breadcrumbs' );
 
+/**
+ * Do Footer
+ *
+ * @param  string $value [description]
+ * @return string        [description]
+ */
+function do_footer( $value = '' ) {
+
+	get_template_part( 'templates/parts/footer-widget-area' );
+	get_template_part( 'templates/parts/footer-colophon' );
+
+}
+add_action( 'italystrap_footer', __NAMESPACE__ . '\do_footer' );
 
 /**
  * Function description
@@ -352,47 +365,3 @@ function post_thumbnail_size( $size, $context ) {
 
 }
 add_action( 'italystrap_post_thumbnail_size', __NAMESPACE__ . '\post_thumbnail_size', 10, 2 );
-
-/**
- * FOOTER
- */
-
-/**
- * Footer open markup
- *
- * @param  string $value [description]
- * @return string        [description]
- */
-function footer_open_markup( $value = '' ) {
-
-	?><!-- Footer --><footer class="site-footer" itemscope itemtype="http://schema.org/WPFooter"><?php
-
-}
-add_action( 'italystrap_before_footer', __NAMESPACE__ . '\footer_open_markup', 9 );
-
-/**
- * Do Footer
- *
- * @param  string $value [description]
- * @return string        [description]
- */
-function do_footer( $value = '' ) {
-
-	get_template_part( 'template/part', 'content-footer-widget-area' );
-	get_template_part( 'template/part', 'content-footer-colophon' );
-
-}
-add_action( 'italystrap_footer', __NAMESPACE__ . '\do_footer' );
-
-/**
- * Footer Close markup
- *
- * @param  string $value [description]
- * @return string        [description]
- */
-function footer_close_markup( $value = '' ) {
-
-	?></footer><!-- #footer --><?php
-
-}
-add_action( 'italystrap_after_footer', __NAMESPACE__ . '\footer_close_markup', 11 );

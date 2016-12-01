@@ -57,7 +57,7 @@ $template_settings = (array) apply_filters( 'italystrap_template_settings', arra
 	 * Display author info box
 	 */
 	if ( ! in_array( 'hide_author', $template_settings, true ) ) {
-		get_template_part( 'template/content', 'author-info' );
+		get_template_part( 'templates/parts/author', 'info' );
 	}
 	?>
 

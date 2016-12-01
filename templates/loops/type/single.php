@@ -65,7 +65,14 @@ $template_settings = (array) apply_filters( 'italystrap_template_settings', arra
 
 	<?php echo italystrap_ttr_wc(); // XSS ok.?>
 	<span class="clearfix"></span>
-	<?php get_template_part( 'template/content', 'author-info' );?>
+	<?php
+	/**
+	 * Display author info box
+	 */
+	if ( ! in_array( 'hide_author', $template_settings, true ) ) {
+		get_template_part( 'templates/parts/author', 'info' );
+	}
+	?>
 	<meta itemprop="interactionCount" content="UserComments:<?php comments_number( 0, 1, '%' );?>" />
 </article>
 <?php

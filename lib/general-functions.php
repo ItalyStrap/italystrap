@@ -31,7 +31,7 @@ function get_search_form() {
 	 *
 	 * @var string
 	 */
-	$get_search_query = ( is_search() ) ? get_search_query() : '' ;
+	$get_search_query = is_search() ? get_search_query() : '' ;
 
 	$form = '<div itemscope itemtype="http://schema.org/WebSite"><meta itemprop="url" content="' . esc_attr( HOME_URL ) . '"/><form class="navbar-form navbar-right" role="search" method="get" action="' . esc_attr( HOME_URL ) . '" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction"><meta itemprop="target" content="' . esc_attr( HOME_URL ) . '?s={s}"/><div class="input-group input-group-sm"><input type="search" placeholder="' . __( 'Search now', 'ItalyStrap' ) . '" value="' . $get_search_query . '" name="s" class="form-control" itemprop="query-input"><span class="input-group-btn"><button type="submit" class="btn btn-default" value="' . __( 'Search', 'ItalyStrap' ) . '"><i class="glyphicon glyphicon-search"></i></button></span></div></form></div>';
 
@@ -42,7 +42,7 @@ function get_search_form() {
 /**
  * Get the custom header image
  * f
- * @param  obj    $get_header_image The header image array object.
+ * @param obj     $get_header_image The header image array object.
  *
  * @return string                   The img output
  */
@@ -71,67 +71,6 @@ function get_the_custom_header_image( $get_header_image ) {
 	$output = wp_get_attachment_image( $id , false, false, $attr );
 
 	return apply_filters( 'italystrap_custom_header_image', $output );
-}
-
-/**
- * Function for test top menu
- */
-function add_top_menu() {
-/**
- * @todo Menù top da sistemare
- */
-if ( has_nav_menu( 'info-menu' ) || has_nav_menu( 'social-menu' ) ) : ?>
-<nav id="top-nav" class="top-nav">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 pt-sm vertical-align">
-				<?php
-				/**
-				 * Menù per i contatti
-				 */
-				wp_nav_menu(
-					array(
-						'theme_location'	=> 'info-menu',
-						'depth'				=> 1,
-						'container'			=> 'div',
-						'container_class'	=> 'item-left',
-						'fallback_cb'       => false,
-						'menu_class'		=> 'list-inline social',
-						'walker'			=> new Bootstrap_Nav_Menu(),
-					)
-				);
-				/**
-				 * Menù per i link sociali
-				 */
-				wp_nav_menu(
-					array(
-						'theme_location'	=> 'social-menu',
-						'depth'				=> 1,
-						'container'			=> 'div',
-						'container_class'	=> 'item-right',
-						'fallback_cb'       => false,
-						'menu_class'		=> 'list-inline social',
-						'link_before'		=> '<span class="item-title">',
-						'link_after'		=> '</span>',
-						'walker'			=> new Bootstrap_Nav_Menu(),
-					)
-				);
-				?>
-			</div>
-		</div>
-	</div>
-</nav>
-<?php endif;
-}
-
-/**
- * Append template for content header
- */
-function get_template_content_header() {
-	/**
-	 * Get the template for displaing the header's contents (header and nav tags)
-	 */
-	get_template_part( 'template/content', 'header' );
 }
 
 /**
@@ -165,10 +104,6 @@ function print_search_form_in_menu( $nav_menu, $args ) {
  */
 function display_breadcrumbs( $defaults = array() ) {
 
-	if ( ! function_exists( 'ItalyStrap\Core\breadcrumbs' ) ) {
-		return;
-	}
-
 	$template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
 
 	if ( in_array( 'hide_breadcrumbs', $template_settings, true ) ) {
@@ -179,7 +114,7 @@ function display_breadcrumbs( $defaults = array() ) {
 		'home'	=> '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>',
 	);
 
-	breadcrumbs( $args );
+	do_action( 'do_breadcrumbs', $args );
 }
 
 /**
@@ -191,7 +126,15 @@ function display_breadcrumbs( $defaults = array() ) {
  */
 function colophon_default_text() {
 
-	return '<p class="text-muted small">&copy; <span itemprop="copyrightYear">' . esc_attr( date( 'Y' ) ) . '</span> ' . esc_attr( GET_BLOGINFO_NAME ) . ' | This website uses ' . esc_attr( ITALYSTRAP_CURRENT_THEME_NAME ) . ' powered by <a href="http://www.italystrap.it" rel="nofollow" itemprop="url">ItalyStrap</a> developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> ' . ( ( ! is_child_theme() ) ? '| Theme version: <span class="badge" itemprop="version">' . esc_attr( ITALYSTRAP_THEME_VERSION ) . '</span>' : '' ) . '</p>';
+	// return '<p class="text-muted small">&copy; <span itemprop="copyrightYear">' . esc_attr( date( 'Y' ) ) . '</span> ' . esc_attr( GET_BLOGINFO_NAME ) . ' | This website uses ' . esc_attr( ITALYSTRAP_CURRENT_THEME_NAME ) . ' powered by <a href="http://www.italystrap.it" rel="nofollow" itemprop="url">ItalyStrap</a> developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> ' . ( ( ! is_child_theme() ) ? '| Theme version: <span class="badge" itemprop="version">' . esc_attr( ITALYSTRAP_THEME_VERSION ) . '</span>' : '' ) . '</p>';
+
+	return sprintf(
+		'<p class="text-muted small">&copy; <span itemprop="copyrightYear">%1$d</span> %2$s | This website uses %3$s powered by <a href="http://www.italystrap.it" rel="nofollow" itemprop="url">ItalyStrap</a> developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> %4$s</p>',
+		esc_attr( date( 'Y' ) ),
+		esc_attr( GET_BLOGINFO_NAME ),
+		esc_attr( ITALYSTRAP_CURRENT_THEME_NAME ),
+		! is_child_theme() ? '| Theme version: <span itemprop="version">' . esc_attr( ITALYSTRAP_THEME_VERSION ) . '</span>' : ''
+	);
 
 }
 
@@ -376,7 +319,7 @@ add_filter( 'comment_reply_link', '\ItalyStrap\Core\add_nofollow_and_bootstrap_b
  */
 function display_message_if_comments_are_closed(){
 
-    echo '<div class="alert alert-warning">' . __('Comments are closed.', 'ItalyStrap') . '</div>';
+    echo '<div class="alert alert-warning">' . __( 'Comments are closed.', 'italystrap' ) . '</div>';
 
 }
 add_action( 'comment_form_comments_closed', '\ItalyStrap\Core\display_message_if_comments_are_closed' );

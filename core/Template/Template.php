@@ -130,7 +130,7 @@ class Template {
 	 */
 	public function content_none() {
 	
-		get_template_part( 'loops/content', 'none' );
+		get_template_part( 'templates/loops/type/none' );
 	
 	}
 
@@ -162,56 +162,54 @@ class Template {
 			return null;
 		}
 	
-		get_template_part( 'template/content', 'author-info' );
+		get_template_part( 'templates/parts/author', 'info' );
 	
 	}
 
 	/**
 	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
 	 */
 	public function archive_headline() {
 
 		if ( ! in_array( CURRENT_TEMPLATE_SLUG, array( 'archive', 'author', 'search' ), true ) ) {
 			return;
 		}
-	
-		?>
-		<header class="page-header">
-			<?php 
 
-			if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
-				?>
-				<h1 itemprop="headline"><?php printf( esc_html__( 'Search result of: %s', 'italystrap' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-				<?php
-				return null;
-			}
+		get_template_part( 'templates/parts/archive', 'headline' );
+	}
 
-			?>
-			<?php
-			the_archive_title( '<h1 class="page-title" itemprop="name">', '</h1>' );
-			the_archive_description( '<div class="well taxonomy-description" role="alert" itemprop="description">', '</div>' );
+	/**
+	 * Append template for content header
+	 */
+	public function content_header() {
+		/**
+		 * Get the template for displaing the header's contents (header and nav tags)
+		 */
+		get_template_part( 'templates/parts/header', 'image' );
+	}
 
-			/**
-			 * Display or retrieve title for a Custom Post Type archive.
-			 * This is optimized for archive.php and archive-{posttype}.php template files for displaying the title of the CPT.
-			 */
-			if ( is_post_type_archive() ) {
+	/**
+	 * Append template for content header
+	 * This is in test version.
+	 */
+	public function navbar_top() {
 
-				$cpt_description = get_post_type_object( get_post_type() );
+		if ( ! has_nav_menu( 'info-menu' ) || ! has_nav_menu( 'social-menu' ) ) {
+			return;
+		}
+		/**
+		 * Get the template for displaing the header's contents (header and nav tags)
+		 */
+		get_template_part( 'templates/parts/navbar', 'top' );
+	}
 
-				if ( $cpt_description ) { ?>
+	/**
+	 * Do Footer
+	 */
+	public function do_footer( $value = '' ) {
 
-				<div class="well" role="alert" itemprop="description"><p>
-					<?php echo esc_attr( $cpt_description->description ); ?>
-				</p></div>
+		get_template_part( 'templates/parts/footer-widget-area' );
+		get_template_part( 'templates/parts/footer-colophon' );
 
-				<?php }
-			} ?>
-		</header>
-		<?php
-	
 	}
 }

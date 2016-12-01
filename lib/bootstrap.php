@@ -308,6 +308,7 @@ $template_settings = new Template( (array) $theme_mods );
  * Questo filtro si trova nei file template per gestire commenti e altro
  */
 add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
+
 add_action( 'italystrap_before_while', array( $template_settings, 'archive_headline' ) );
 add_action( 'italystrap_before_loop', array( $template_settings, 'author_info' ) );
 add_action( 'italystrap_loop', array( $template_settings, 'do_loop' ) );
@@ -324,8 +325,8 @@ $navbar = new Navbar( $theme_mods );
  * @see  get_template_content_header() in general-functions.php
  * @see  Class Navbar in class-navbar.php
  */
-add_action( 'italystrap_content_header', __NAMESPACE__ . '\add_top_menu', 10 );
-add_action( 'italystrap_content_header', __NAMESPACE__ . '\get_template_content_header', 20 );
+add_action( 'italystrap_content_header', array( $template_settings, 'navbar_top' ), 10 );
+add_action( 'italystrap_content_header', array( $template_settings, 'content_header' ), 20 );
 add_action( 'italystrap_content_header', array( $navbar, 'output' ), 30 );
 
 /**
@@ -335,19 +336,7 @@ add_action( 'italystrap_content_header', array( $navbar, 'output' ), 30 );
  */
 add_action( 'italystrap_before_loop', __NAMESPACE__ . '\display_breadcrumbs' );
 
-/**
- * Do Footer
- *
- * @param  string $value [description]
- * @return string        [description]
- */
-function do_footer( $value = '' ) {
-
-	get_template_part( 'templates/parts/footer-widget-area' );
-	get_template_part( 'templates/parts/footer-colophon' );
-
-}
-add_action( 'italystrap_footer', __NAMESPACE__ . '\do_footer' );
+add_action( 'italystrap_footer', array( $template_settings, 'do_footer' ) );
 
 /**
  * Function description

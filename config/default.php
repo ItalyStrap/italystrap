@@ -103,7 +103,7 @@ return array(
 	 */
 	'excerpt_length'				=> 25,
 	'read_more_class'				=> 'read-more',
-	'read_more_link'				=> ' <a href="%1$s" class="%2$s">... %3$s</a>',
+	'read_more_link'				=> ' <a href="%1$s" class="%2$s"> &hellip; %3$s</a>',
 
 	/**
 	 * Set by plugin

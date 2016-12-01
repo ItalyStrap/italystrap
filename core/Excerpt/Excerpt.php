@@ -44,17 +44,6 @@ class Excerpt {
 	}
 
 	/**
-	 * Init the add filters
-	 */
-	public function excerpt_more_function(){
-
-		add_filter( 'get_the_excerpt', array( $this, 'custom_excerpt_more') );
-		add_filter( 'excerpt_more', array( $this, 'read_more_link') );
-		add_filter( 'excerpt_length', array( $this, 'excerpt_length') );
-
-	}
-
-	/**
 	 * Escerpt read more link function
 	 *
 	 * @hoocked excerpt_more - 10
@@ -88,6 +77,7 @@ class Excerpt {
 	 * @param  string $output Get excerpt output.
 	 *
 	 * @hoocked get_the_excerpt - 10
+	 *
 	 * @see ItalyStrap\Core\Excerpt\Excerpt::read_more_link()
 	 *
 	 * @return string         Return output with read more link
@@ -103,6 +93,7 @@ class Excerpt {
 
 	/**
 	 * Excerpt lenght function
+	 *
 	 * @param  int $length Get the defautl words number.
 	 *
 	 * @hoocked excerpt_length - 10
@@ -116,5 +107,55 @@ class Excerpt {
 			}
 
 			return $length;
+	}
+
+	/**
+	 * Filters the text content and trim it at the last punctuation.
+	 *
+	 * @param string  $text          The trimmed text.
+	 * @param int     $num_words     The number of words to trim the text to.
+	 *                               Default 5.
+	 * @param string  $more          An optional string to append to the end of
+	 *                               the trimmed text, e.g. &hellip;.
+	 * @param string  $original_text The text before it was trimmed.
+	 *
+	 * @return string                Trimmed text.
+	 */
+	public function excerpt_end_with_punctuation( $text, $num_words, $more, $original_text ) {
+
+		/**
+		 * If text is empty exit.
+		 */
+		if ( empty( $text ) ) {
+			return $text;
+		}
+
+		/**
+		 * First trim the "more" tags
+		 *
+		 * @var string
+		 */
+		$text = str_replace( $more, '', $text );
+
+		/**
+		 * Paragraphs often end with space ' '.
+		 * The space at the end of the punctuation prevents that links like www.mysite.com it will be trimmed.
+		 *
+		 * @var array
+		 */
+		$needles = apply_filters( 'italystrap_excerpt_end_punctuation', array( '. ', '? ', '! ' ) );
+
+		$found = false;
+
+		foreach ( $needles as $punctuation ) {
+			/**
+			 * Return early
+			 */
+			if ( $found = strrpos( $text, $punctuation ) ) {
+				return substr( $text, 0, $found + 1 ) . $more;
+			}
+		}
+
+		return $text . $more;
 	}
 }

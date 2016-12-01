@@ -17,6 +17,11 @@ use ItalyStrap\Core;
 return array(
 
 	/**
+	 * Future improvement
+	 */
+	'add_theme_support'				=> array(),
+
+	/**
 	 * Color section
 	 */
 	'background_color'				=> '', // Set by WordPress.

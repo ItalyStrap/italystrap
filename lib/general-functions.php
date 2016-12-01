@@ -496,3 +496,39 @@ function wp_parse_args_recursive( &$args, $defaults ) {
 	}
 	return $result;
 }
+
+/**
+ * Register theme position
+ *
+ * @param  string $position The position registered.
+ * @return array            Array with theme position.
+ */
+function register_theme_positions( array $position ) {
+
+	$new_position = array(
+		'italystrap_before'			=> __( 'After the &lt;body&gt;', 'italystrap' ),
+
+		'italystrap_before_header'	=> __( 'Before the header', 'italystrap' ),
+		'italystrap_content_header'	=> __( 'The content header', 'italystrap' ),
+		'italystrap_after_header'	=> __( 'After the header', 'italystrap' ),
+
+		'italystrap_before_main'	=> __( 'Before the Main Content', 'italystrap' ),
+		'italystrap_before_content'	=> __( 'Before the Content', 'italystrap' ),
+
+		'italystrap_before_loop'	=> __( 'Before the Loop', 'italystrap' ),
+		'italystrap_loop'			=> __( 'The Loop', 'italystrap' ),
+		'italystrap_after_loop'		=> __( 'After the Loop', 'italystrap' ),
+
+		'italystrap_after_content'	=> __( 'After the Content', 'italystrap' ),
+
+		'italystrap_after_main'		=> __( 'After the Main Content', 'italystrap' ),
+		'italystrap_before_footer'	=> __( 'In the footer open', 'italystrap' ),
+		'italystrap_footer'			=> __( 'In the footer', 'italystrap' ),
+		'italystrap_after_footer'	=> __( 'In the footer closed', 'italystrap' ),
+
+		'italystrap_after'			=> __( 'At the end of the page before the <code>&lt;/body&gt;</code>', 'italystrap' ),
+	);
+
+	return array_merge( $position, $new_position );
+}
+add_filter( 'italystrap_widget_area_position', __NAMESPACE__ . '\register_theme_positions' );

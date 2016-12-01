@@ -55,7 +55,7 @@ class Init_Theme{
 		/**
 		 * Make theme available for translation.
 		 */
-		load_theme_textdomain( 'ItalyStrap', TEMPLATEPATH . '/lang' );
+		load_theme_textdomain( 'italystrap', TEMPLATEPATH . '/lang' );
 
 		/**
 		 * Add theme support functionality
@@ -69,15 +69,13 @@ class Init_Theme{
 		add_theme_support( 'automatic-feed-links' );
 
 		/**
-		 * Enable support for Post Thumbnails on posts and pages.
+		 * Enable support for Post Thumbnails on posts, pages and archives template.
+		 *
+		 * @see ItalyStrap\Core\Image\Size() for set_post_thumbnail_size()
 		 *
 		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 		*/
 		add_theme_support( 'post-thumbnails' );
-		/**
-		 * 'post-thumbnails' is by default the size displayed for posts, pages and all archives.
-		 */
-		set_post_thumbnail_size( $this->content_width, 9999 );
 
 		/**
 		 * Switch default core markup for search form, comment form, and comments
@@ -118,6 +116,7 @@ class Init_Theme{
 
 		/**
 		 * Custom header value array
+		 * Some ideas for default images https://unsplash.it/
 		 *
 		 * @var array
 		 */

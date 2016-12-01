@@ -91,5 +91,27 @@ class Size {
 		$this->get_image_size_from_breakpoint();
 
 		$this->add_image_sizes( $this->image_sizes );
+
+		/**
+		 * 'post-thumbnails' is by default the size displayed for posts, pages and all archives.
+		 */
+		set_post_thumbnail_size( $this->theme_mods['content_width'], 9999 );
+
+		/**
+		 * thumbnail_size_w
+		 * thumbnail_size_h
+		 * thumbnail_crop
+		 * medium_size_h: The medium size height.
+		 * medium_size_w: The medium size width.
+		 * large_size_h: The large size height.
+		 * large_size_w: The large size width.
+		 *
+		 * @example update_option( 'large_size_h', 700 );
+		 * @link https://developer.wordpress.org/reference/functions/add_image_size/
+		 *
+		 * @example add_image_size('medium', get_option( 'medium_size_w' ), get_option( 'medium_size_h' ), true ); // For cropping the default image size.
+		 * Maybe first remove_image_size and then add_image_size it's better
+		 * @link http://wordpress.stackexchange.com/questions/30965/set-default-image-sizes-in-wordpress-to-hard-crop
+		 */
 	}
 }

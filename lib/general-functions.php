@@ -42,10 +42,23 @@ function get_search_form() {
 /**
  * Get the custom header image
  * f
- * @param  int    $id The id of header image
- * @return string     The img output
+ * @param  obj    $get_header_image The header image array object.
+ *
+ * @return string                   The img output
  */
-function get_the_custom_header_image( $id ) {
+function get_the_custom_header_image( $get_header_image ) {
+
+	if ( ! isset( $get_header_image->attachment_id ) ) {
+		return sprintf(
+			'<img src="%s" width="%s" height="%s" alt="%s">',
+			$get_header_image->url,
+			$get_header_image->width,
+			$get_header_image->height,
+			GET_BLOGINFO_NAME
+		);
+	}
+
+	$id = $get_header_image->attachment_id;
 
 	$attr = array(
 		'class'		=> "center-block img-responsive attachment-$id attachment-header size-header",

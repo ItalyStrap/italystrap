@@ -1,8 +1,10 @@
-<?php namespace ItalyStrap;
+<?php
 /**
  * The template part for header.php
  * This file is for display the HTML tags header and nav
  */
+
+namespace ItalyStrap;
 
 /**
  * Get the header object
@@ -21,7 +23,7 @@ if ( $get_header_image->url ) :?>
 			<div class="row">
 				<div class="col-md-12">
 					<a href="<?php echo esc_url( HOME_URL ); ?>" rel="home">
-						<?php echo Core\get_the_custom_header_image( $get_header_image->attachment_id ); ?>
+						<?php echo Core\get_the_custom_header_image( $get_header_image ); ?>
 					</a>
 				</div>
 			</div>

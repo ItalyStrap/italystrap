@@ -21,3 +21,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 echo '</section>';
+do_action( 'italystrap_after_content' );

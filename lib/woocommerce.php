@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
  */
 function main_container_end() {
 	echo '</div></main>';
+	do_action( 'italystrap_after_main' );
 }
 add_action( 'woocommerce_sidebar', __NAMESPACE__ . '\main_container_end', 10 );
 

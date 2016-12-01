@@ -22,7 +22,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+do_action( 'italystrap_before_main' );
+
+echo '<main class="container"><div class="row">';
+
+do_action( 'italystrap_before_content' );
+
 echo sprintf(
-	'<main class="container"><div class="row"><section %s>',
+	'<section %s>',
 	Core\get_attr( 'content', array( 'class' => 'col-md-8' ), false )
 );

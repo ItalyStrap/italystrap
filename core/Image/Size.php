@@ -92,10 +92,12 @@ class Size {
 
 		$this->add_image_sizes( $this->image_sizes );
 
+		$height = round( $this->theme_mods['content_width'] * 3 / 4 );
+
 		/**
 		 * 'post-thumbnails' is by default the size displayed for posts, pages and all archives.
 		 */
-		set_post_thumbnail_size( $this->theme_mods['content_width'], 9999 );
+		set_post_thumbnail_size( $this->theme_mods['content_width'], $height );
 
 		/**
 		 * thumbnail_size_w

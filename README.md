@@ -3,8 +3,8 @@
 **Donate link:** http://www.italystrap.it/  
 **Tags:** breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant  
 **Requires at least:** 3.8  
-**Tested up to:** 4.2  
-**Stable tag:** 3.0.5  
+**Tested up to:** 4.7  
+**Stable tag:** 4.0.0-beta.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -14,7 +14,7 @@ Make your web site more powerfull.
 
 **[ItalyStrap Theme](http://www.italystrap.it/)** will add powerful features to your WordPRess site.
 
-ItalyStrap is a Wordpress starter theme based on [HTML5 Boilerplate](http://html5boilerplate.com/), [Bootstrap](http://getbootstrap.com/), [Schema.org](http://schema.org/), [Open Graph](https://developers.facebook.com/docs/opengraph/), [Twitter cards](https://dev.twitter.com/docs/cards)
+ItalyStrap is a Wordpress framework theme based on [HTML5 Boilerplate](http://html5boilerplate.com/), [Bootstrap](http://getbootstrap.com/), [Schema.org](http://schema.org/), [Open Graph](https://developers.facebook.com/docs/opengraph/), [Twitter cards](https://dev.twitter.com/docs/cards)
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
@@ -43,6 +43,17 @@ Then [download Italystrap Child Theme](https://github.com/overclokk/ItalyStrap-c
 
 If you want to keep it updated please also install github-updater from your admin dashboard and use the child theme for your customizations.
 
+## How to migrate from older version of 4.0.0 ##
+
+### In file functions.php add this constant ###
+```define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );```
+
+### In file script.php ###
+Change all $pathchild variable to ITALYSTRAP_CHILD_PATH constant
+
+### Deprecated Class ###
+wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
+
 
 ## Frequently Asked Questions ##
 
@@ -53,11 +64,40 @@ If you want to keep it updated please also install github-updater from your admi
 ## Changelog ##
 
 ### 4.0.0 ###
-**Release Date:** May 8th, 2015  
+**Release Date:** Sep 10th, 2015  
 
-(Dev time 2h)
+(Dev time 1 year)
 
 * Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead. The breadcrumbs functionality is moved to the plugin.
+* Added [AnonymizeIP](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#anonymizeIp) for cookie law
+* Fixed regex in italystrap_embed_wrap cleanup.php
+* [Fixed Warning: Illegal string offset](https://github.com/overclokk/ItalyStrap/commit/4c2e4f9afc48e123dbebfa85509774d155b6adf8)
+* Fixed do_action hook name in comments.php
+* Added new class for sidebars and made dynamic the footer's sidebars
+* Deprecated breadcrumbs.php and sidebar.php
+* Deprecated file sitemap-html.php
+* Deprecated file globals.php
+* Deprecated file init.php
+* Deprecated function get_html_tag_attr()
+* Now the index.php is only a simple loop, [more info](https://developer.wordpress.org/themes/basics/template-hierarchy/)
+* Added Theme customizer (with: logo image, custom image, 404 image, custom css, analytics ID)
+* Added support to [custom-header](https://codex.wordpress.org/Custom_Headers)
+* Added support to [custom-background](https://codex.wordpress.org/Custom_Backgrounds)
+* Improved performance with new constant for home url `HOME_URL`, blog name `GET_BLOGINFO_NAME`, and blog description `GET_BLOGINFO_DESCRIPTION`, use it with `esc_attr()` and `echo`
+* Added new hooks in template files
+* Moved breadcrumbs functions to hook
+* Added new Author info file
+* Page template HTML sitemaps and Blog moved to child theme
+* Added namespace PHP 5.3 to all files
+* wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
+* PSR-4 ready
+* New layout API
+* Better selection of nabar brand image or name
+* Added Upgrade Class API
+* New Router API
+* New Customizer API
+* New files template structure
+
 
 ### 3.0.5 ###
 **Release Date:** May 8th, 2015  

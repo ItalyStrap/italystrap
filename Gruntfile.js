@@ -222,13 +222,13 @@ module.exports = function(grunt) {
                 files: {
                     // Specify the files you want to commit
                     src: [
-                        'bower.json', //For now bower it is not uploaded
-                        'style.css',
-                        'readme.txt',
-                        'README.md',
-                        'package.json',
-                        // 'functions.php'
-                        ]
+                        '*.json',
+                        '*.txt',
+                        '*.md',
+                        '*.css',
+                        // '*.php',
+                        // '*.js',
+                    ]
                 }
             }
         },
@@ -392,6 +392,8 @@ module.exports = function(grunt) {
                                 ]);
 
     grunt.registerTask('release', [
+                                // 'version',
+                                // 'wp_readme_to_markdown',
                                 'prompt',
                                 'compress',
                                 'github-release',

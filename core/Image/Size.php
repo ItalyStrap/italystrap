@@ -32,7 +32,7 @@ class Size {
 	function __construct( array $theme_mods = array() ) {
 		$this->theme_mods = $theme_mods;
 
-		$this->image_sizes = $this->theme_mods['image_size'];
+		$this->image_sizes = (array) $this->theme_mods['image_size'];
 	}
 
 	/**

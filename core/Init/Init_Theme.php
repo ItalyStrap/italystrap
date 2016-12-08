@@ -179,11 +179,6 @@ class Init_Theme{
 		register_nav_menus( apply_filters( 'register_nav_menu_locations', $nav_menus_locations ) );
 
 		/**
-		 * Size for default template image
-		 */
-		// require locate_template( 'lib/image_size.php' );
-
-		/**
 		 * Add support to WooCommerce
 		 *
 		 * @since 4.0.0

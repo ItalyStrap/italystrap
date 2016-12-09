@@ -257,12 +257,6 @@ add_action( 'customize_preview_init' , array( $italystrap_customizer, 'live_prev
  */
 $init = new Init_Theme( $css_manager, $content_width );
 
-$italystrap_excerpt = new Excerpt( $theme_mods );
-add_filter( 'get_the_excerpt', array( $italystrap_excerpt, 'custom_excerpt_more') );
-add_filter( 'excerpt_more', array( $italystrap_excerpt, 'read_more_link') );
-add_filter( 'excerpt_length', array( $italystrap_excerpt, 'excerpt_length') );
-add_filter( 'wp_trim_words', array( $italystrap_excerpt, 'excerpt_end_with_punctuation' ), 10, 4 );
-
 /**
  * Theme init
  *

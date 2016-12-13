@@ -26,8 +26,5 @@ namespace ItalyStrap;
 
 	<div class="entry-content" itemprop="text"><?php the_excerpt(); ?></div><!-- /.entry-content -->
 
-	<p class="sr-only"><?php esc_attr_e( 'Last edit:', 'ItalyStrap' ); ?> <time datetime="<?php the_modified_time( 'Y-m-d' ) ?>" itemprop="dateModified"><?php the_modified_time( 'd F Y' ) ?></time></p>
-	<?php echo italystrap_ttr_wc(); // XSS ok. ?>
-	<span class="clearfix"></span>
+	<?php do_action( 'italystrap_after_entry_content' ); ?>
 </article>
-<hr>

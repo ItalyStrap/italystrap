@@ -307,9 +307,25 @@ add_action( 'italystrap_before_while', array( $template_settings, 'archive_headl
 add_action( 'italystrap_before_loop', array( $template_settings, 'author_info' ) );
 add_action( 'italystrap_loop', array( $template_settings, 'do_loop' ) );
 add_action( 'italystrap_entry', array( $template_settings, 'do_entry' ) );
+add_action( 'italystrap_after_entry', array( $template_settings, 'pager' ) );
 add_action( 'italystrap_after_loop', array( $template_settings, 'pagination' ) );
 add_action( 'italystrap_content_none', array( $template_settings, 'content_none' ) );
 add_action( 'italystrap_after_loop', array( $template_settings, 'comments_template' ) );
+
+/**
+ * Entry
+ */
+add_action( 'italystrap_before_entry_content', array( $template_settings, 'title' ), 10 );
+add_action( 'italystrap_before_entry_content', array( $template_settings, 'meta' ), 20 );
+add_action( 'italystrap_before_entry_content', array( $template_settings, 'preview' ), 30 );
+add_action( 'italystrap_before_entry_content', array( $template_settings, 'featured' ), 40 );
+
+add_action( 'italystrap_entry_content', array( $template_settings, 'content' ), 10 );
+add_action( 'italystrap_entry_content', array( $template_settings, 'link_pages' ), 20 );
+
+add_action( 'italystrap_after_entry_content', array( $template_settings, 'modified' ), 10 );
+add_action( 'italystrap_after_entry_content', array( $template_settings, 'edit_post_link' ), 20 );
+add_action( 'italystrap_after_entry_content', array( $template_settings, 'author_info_content' ), 30 );
 
 $navbar = new Navbar( $theme_mods );
 /**

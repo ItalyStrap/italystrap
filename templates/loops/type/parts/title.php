@@ -14,8 +14,7 @@ if ( in_array( 'hide_title', $template_settings, true ) ) {
 	return;
 }
 
-?>
-<header class="page-header entry-header">
+?><header class="page-header entry-header">
 	<h1 class="entry-title">
 		<a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark">
 			<span itemprop="headline">

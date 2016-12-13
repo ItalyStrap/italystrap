@@ -90,6 +90,7 @@ function list_hooked_functions( $tag = false, $echo = true ) {
 }
 
 // list_hooked_functions('body_open');
+// list_hooked_functions('the_content');
 /**
  * An array with all theme action
  *
@@ -188,6 +189,10 @@ function My_Test() {
 /**
  * Test column in 'the_content'
  * https://digwp.com/2010/03/wordpress-post-content-multiple-columns/
+ *
+ * Vedere la funzione get_the_content per prendere spunto sul rendering delle colonne.
+ * @see https://developer.wordpress.org/reference/functions/get_the_content/
+ *
  * @param  string $value [description]
  * @return string        [description]
  */
@@ -223,8 +228,8 @@ function render_column( $content ) {
 	// return $content;
 
 }
-add_action( 'the_content', __NAMESPACE__ . '\render_column', 10, 1 );
-remove_filter( 'the_content', 'wpautop', 10 );
+// add_action( 'the_content', __NAMESPACE__ . '\render_column', 10, 1 );
+// remove_filter( 'the_content', 'wpautop', 10 );
 
 
 // http://php.net/manual/en/function.get-defined-vars.php

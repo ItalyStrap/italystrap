@@ -110,15 +110,150 @@ class Template {
 	}
 
 	/**
-	 * Function description
+	 * Title
+	 *
+	 * @hoocked 'italystrap_before_entry_content' - 10
 	 */
-	public function pagination() {
-
-		// if ( 'page' !== CURRENT_TEMPLATE_SLUG && 'single' !== CURRENT_TEMPLATE_SLUG ) {
-		// 	return null;
-		// }
+	public function title() {
 	
-		bootstrap_pagination();
+		get_template_part( 'templates/loops/type/parts/title' );
+	}
+
+	/**
+	 * Meta
+	 *
+	 * @hoocked 'italystrap_before_entry_content' - 20
+	 */
+	public function meta() {
+	
+		get_template_part( 'templates/loops/type/parts/meta' );
+	}
+
+	/**
+	 * Preview
+	 *
+	 * @hoocked 'italystrap_before_entry_content' - 30
+	 */
+	public function preview() {
+	
+		get_template_part( 'templates/loops/type/parts/preview' );
+	}
+
+	/**
+	 * Featured
+	 *
+	 * @hoocked 'italystrap_before_entry_content' - 40
+	 */
+	public function featured() {
+	
+		get_template_part( 'templates/loops/type/parts/featured', 'image' );
+	}
+
+	/**
+	 * Content
+	 *
+	 * @hoocked 'italystrap_entry_content' - 10
+	 */
+	public function content() {
+	
+		get_template_part( 'templates/loops/type/parts/content' );
+	}
+
+	/**
+	 * link_pages
+	 *
+	 * @hoocked 'italystrap_entry_content' - 20
+	 */
+	public function link_pages() {
+
+		if ( 'single' !== CURRENT_TEMPLATE_SLUG ) {
+			return;
+		}
+
+		/**
+		 * Arguments for wp_link_pages
+		 *
+		 * @link https://developer.wordpress.org/reference/functions/wp_link_pages/
+		 * @var array
+		 */
+		$args = array(
+			'before'	=> '<p class="text-muted lead"><b>' . __( 'Pages:', 'ItalyStrap' ) . '</b>',
+			'after'		=> '</p>',
+		);
+		$args = apply_filters( 'italystrap_wp_link_pages_args', $args );
+
+		wp_link_pages( $args );
+	}
+
+	/**
+	 * modified
+	 *
+	 * @hoocked 'italystrap_after_entry_content' - 10
+	 */
+	public function modified() {
+	
+		get_template_part( 'templates/loops/type/parts/modified' );
+	}
+
+	/**
+	 * Edit_post_link
+	 *
+	 * @hoocked 'italystrap_after_entry_content' - 20
+	 */
+	public function edit_post_link() {
+
+		/**
+		 * Arguments for edit_post_link()
+		 *
+		 * @var array
+		 */
+		$args = array(
+			/* translators: %s: Name of current post */
+			'link_text'	=> __( 'Edit<span class="screen-reader-text"> "%s"</span>', 'ItalyStrap' ),
+			'before'	=> '<span class="btn btn-sm btn-primary">',
+			'after'		=> '</span>',
+			);
+		$args = apply_filters( 'italystrap_edit_post_link_args', $args );
+
+		edit_post_link(
+			sprintf(
+				$args['link_text'],
+				get_the_title()
+			),
+			$args['before'],
+			$args['after']
+		);
+	}
+
+	/**
+	 * Pager for single.php
+	 *
+	 * @hocked 'italystrap_after_entry' - 10
+	 */
+	public function pager() {
+
+		if ( 'single' !== CURRENT_TEMPLATE_SLUG ) {
+			return;
+		}
+	
+		/**
+		 * Arguments for previous_post_link() and next_post_link()
+		 *
+		 * @var array
+		 */
+		$args = array(
+			'previous_format'	=> '<li class="previous pager-prev"> %link',
+			'previous_link'		=> '<i class="glyphicon glyphicon-arrow-left"></i> %title</li>',
+			'next_format'		=> '<li class="next pager-next"> %link',
+			'next_link'			=> '%title <i class="glyphicon glyphicon-arrow-right"></i></li>',
+			);
+		$args = apply_filters( 'italystrap_previous_next_post_link_args', $args );
+		?>
+		<ul class="pager">
+			<?php previous_post_link( $args['previous_format'], $args['previous_link'] );
+			next_post_link( $args['next_format'], $args['next_link'] ); ?>
+		</ul>
+		<span class="clearfix"></span><?php
 	
 	}
 
@@ -136,9 +271,6 @@ class Template {
 
 	/**
 	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
 	 */
 	public function comments_template() {
 
@@ -151,12 +283,27 @@ class Template {
 	}
 
 	/**
-	 * Function description
+	 * author_info
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @hocked 'italystrap_after_entry_content' - 30
+	 */
+	public function author_info_content() {
+
+		if ( 'single' !== CURRENT_TEMPLATE_SLUG && 'page' !== CURRENT_TEMPLATE_SLUG ) {
+			return;
+		}
+	
+		get_template_part( 'templates/parts/author', 'info' );
+	}
+
+	/**
+	 * Function description
 	 */
 	public function author_info() {
+
+		// if ( ! in_array( CURRENT_TEMPLATE_SLUG, array( 'author', 'single', 'page' ), true ) ) {
+		// 	return;
+		// }
 
 		if ( 'author' !== CURRENT_TEMPLATE_SLUG ) {
 			return null;
@@ -201,6 +348,18 @@ class Template {
 		 * Get the template for displaing the header's contents (header and nav tags)
 		 */
 		get_template_part( 'templates/parts/navbar', 'top' );
+	}
+
+	/**
+	 * Function description
+	 */
+	public function pagination() {
+
+		// if ( 'page' !== CURRENT_TEMPLATE_SLUG && 'single' !== CURRENT_TEMPLATE_SLUG ) {
+		// 	return null;
+		// }
+	
+		bootstrap_pagination();
 	}
 
 	/**

@@ -15,6 +15,12 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+$template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
+
+if ( in_array( 'hide_author', $template_settings, true ) ) {
+	return;
+}
+
 /**
  * Author object
  * @var object
@@ -24,8 +30,9 @@ $author_info = ( isset( $_GET['author_name'] ) ) ? get_user_by( 'slug', $author_
 /**
  * Check if $author_info exist
  */
-if ( ! $author_info )
+if ( ! $author_info ) {
 	return;
+}
 ?>
 <section class="author-info well" itemprop="author" itemscope itemtype="http://schema.org/Person">
 	<div class="row">

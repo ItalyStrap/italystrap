@@ -103,15 +103,14 @@ class Sidebars{
 	public function set_col() {
 
 		global $sidebars_widgets, $wp_registered_widgets, $wp_registered_widget_controls;
-// d($sidebars_widgets, $wp_registered_widgets, $wp_registered_widget_controls);
+
 		$count = 0;
 
 		foreach ( $this->footer_sidebars as $value ) {
 
 			if ( ! empty( $sidebars_widgets[ $value ][0] ) ) {
-// d( $sidebars_widgets[ $value ] );
-				$count++;
 
+				$count++;
 			}
 		}
 

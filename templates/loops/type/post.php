@@ -4,27 +4,22 @@
  *
  * @package ItalyStrap
  * @since 1.0.0
+ * @since 4.0.0 Code refactoring.
  */
 
 namespace ItalyStrap;
 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<h2 class="entry-title">
-			<a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark">
-				<span itemprop="name">
-					<?php the_title(); ?>
-				</span>
-			</a>
-		</h2>
-	</header>
+<?php
+	do_action( 'italystrap_before_entry_content' ); ?>
+	<div class="entry-content" itemprop="text"><?php the_excerpt(); ?></div>
+<?php
 
-	<?php get_template_part( 'templates/loops/type/parts/meta' ); ?>
+	do_action( 'italystrap_after_entry_content' );
 
-	<?php get_template_part( 'templates/loops/type/parts/featured', 'image' ); ?>
-
-	<div class="entry-content" itemprop="text"><?php the_excerpt(); ?></div><!-- /.entry-content -->
-
-	<?php do_action( 'italystrap_after_entry_content' ); ?>
+	echo italystrap_ttr_wc(); // XSS ok.
+?>
+	<span class="clearfix"></span>
+	<meta itemprop="interactionCount" content="UserComments:<?php comments_number( 0, 1, '%' );?>" />
 </article>

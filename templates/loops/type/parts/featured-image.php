@@ -16,7 +16,8 @@
  * @see get_the_post_thumbnail() wp-includes/post-thumbnail-template.php
  *
  * @package ItalyStrap
- * @since 4.0.0
+ * @since 1.0.0
+ * @since 4.0.0 Code refactoring.
  */
 
 namespace ItalyStrap;

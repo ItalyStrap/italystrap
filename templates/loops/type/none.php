@@ -4,6 +4,7 @@
  *
  * @package ItalyStrap
  * @since 1.0.0
+ * @since 4.0.0 Code refactoring.
  *
  * @todo Add to customizer custom 404 page
  */

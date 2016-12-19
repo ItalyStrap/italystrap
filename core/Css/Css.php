@@ -115,15 +115,18 @@ class Css {
 	 *
 	 * @since ItalyStrap 1.0
 	 *
-	 * @uses get_theme_mod()
-	 * @param string $selector CSS selector.
-	 * @param string $property The name of the CSS *property* to modify.
-	 * @param string $mod_name The name of the 'theme_mod' option to fetch.
-	 * @param string $prefix Optional. Anything that needs to be output before the CSS property.
-	 * @param string $postfix Optional. Anything that needs to be output after the CSS property.
-	 * @param bool   $echo Optional. Whether to print directly to the page (default: true).
+	 * @param  string $selector CSS selector.
+	 * @param  string $property The name of the CSS *property* to modify.
+	 * @param  string $mod_name The name of the 'theme_mod' option to fetch.
+	 * @param  string $prefix   Optional. Anything that needs to be output
+	 *                          before the CSS property. Example '#'.
+	 * @param  string $postfix  Optional. Anything that needs to be output
+	 *                          after the CSS property. Example 'px'.
+	 * @param  bool   $echo     Optional. Whether to print directly to the page
+	 *                          (default: true).
 	 *
-	 * @return string Returns a single line of CSS with selectors, property and value.
+	 * @return string           Returns a single line of CSS with selectors,
+	 *                          property and value.
 	 */
 	public function generate_css( $selector, $property, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
 
@@ -167,9 +170,12 @@ class Css {
 		/**
 		 * Custom CSS section on customizer page
 		 *
+		 * Il custom_css è gestito dal plugin, valutare una falback in caso il plugin è disattivato.
+		 *
 		 * @var string
 		 */
-		$custom_css = ( isset( $this->theme_mods['custom_css'] ) ) ? $this->theme_mods['custom_css'] : '' ;
+		// $custom_css = isset( $this->theme_mods['custom_css'] ) ? $this->theme_mods['custom_css'] : '' ;
+		$custom_css = '' ;
 
 		$this->style .= $this->generate_css( '#site-title a', 'color', 'header_textcolor', '#' );
 
@@ -186,7 +192,14 @@ class Css {
 
 		$this->style .= apply_filters( 'italystrap_css_output', $this->style );
 
-		echo '<style type="text/css" id="custom-background-css">' . esc_attr( $this->minify_output( $this->style ) ) . '</style>';
+		add_filter( 'italystrap_custom_inline_style', function ( $css ) {
+			return $this->style . $css;
+		}, 999999999, 1 );
+
+		// printf(
+		// 	'<style type="text/css" id="custom-background-css">%s</style>',
+		// 	wp_strip_all_tags( $this->minify_output( $this->style ) )
+		// );
 
 	}
 

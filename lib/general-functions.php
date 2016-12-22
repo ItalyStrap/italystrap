@@ -532,3 +532,40 @@ function register_theme_positions( array $position ) {
 	return array_merge( $position, $new_position );
 }
 add_filter( 'italystrap_widget_area_position', __NAMESPACE__ . '\register_theme_positions' );
+
+/**
+ * Wrap embedded media as suggested by Readability
+ * Add code to Oembed media
+ *
+ * @link https://gist.github.com/965956
+ * @link http://www.readability.com/publishers/guidelines#publisher
+ * Rootstheme function
+ * Renamed and modify for new bootstrap class for video embed
+ *
+ * @since 1.0.0
+ * @since 4.0.0 (Refactored)
+ *
+ * @see WP_Embed::shortcode()
+ *
+ * @param mixed   $cache   The cached HTML result, stored in post meta.
+ * @param string  $url     The attempted embed URL.
+ * @param array   $attr    An array of shortcode attributes.
+ * @param int     $post_ID Post ID.
+ *
+ * @return string          Return the new HTML.
+ */
+function embed_wrap( $cache, $url, $attr, $post_ID ) {
+
+	if ( strpos( $cache, 'class="twitter-tweet"' ) ) {
+		return $cache;
+	}
+
+	$container_attr = get_attr( 'embed-responsive', array( 'class' => 'entry-content-asset embed-responsive embed-responsive-16by9' ) );
+	
+	return sprintf(
+		'<div %s>%s</div>',
+		$container_attr,
+		str_replace( '<iframe' , '<iframe class="embed-responsive-item"', $cache )
+	);
+}
+add_filter( 'embed_oembed_html', __NAMESPACE__ . '\embed_wrap', 10, 4 );

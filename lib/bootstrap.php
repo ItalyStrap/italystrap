@@ -335,9 +335,9 @@ $navbar = new Navbar( $theme_mods );
  * @see  get_template_content_header() in general-functions.php
  * @see  Class Navbar in class-navbar.php
  */
-add_action( 'italystrap_content_header', array( $template_settings, 'navbar_top' ), 10 );
-add_action( 'italystrap_content_header', array( $template_settings, 'content_header' ), 20 );
-add_action( 'italystrap_content_header', array( $navbar, 'output' ), 30 );
+add_action( 'italystrap_before_header', array( $template_settings, 'navbar_top' ), 10 );
+add_action( 'italystrap_content_header', array( $template_settings, 'content_header' ), 10 );
+add_action( 'italystrap_after_header', array( $navbar, 'output' ), 10 );
 
 /**
  * Content

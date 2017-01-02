@@ -209,10 +209,12 @@ class Template {
 		 */
 		$args = array(
 			/* translators: %s: Name of current post */
-			'link_text'	=> __( 'Edit<span class="screen-reader-text"> "%s"</span>', 'ItalyStrap' ),
-			'before'	=> '<span class="btn btn-sm btn-primary">',
-			'after'		=> '</span>',
-			);
+			'link_text'	=> __( 'Edit<span class="screen-reader-text"> "%s"</span>', 'italystrap' ),
+			'before'	=> '<p>',
+			'after'		=> '</p>',
+			'class'		=> 'btn btn-sm btn-primary', // 4.4.0
+		);
+
 		$args = apply_filters( 'italystrap_edit_post_link_args', $args );
 
 		edit_post_link(
@@ -221,7 +223,9 @@ class Template {
 				get_the_title()
 			),
 			$args['before'],
-			$args['after']
+			$args['after'],
+			null,
+			$args['class']
 		);
 	}
 

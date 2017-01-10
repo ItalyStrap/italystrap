@@ -30,6 +30,10 @@ if ( in_array( 'hide_thumb', (array) $template_settings, true ) ) {
 	return;
 }
 
+if ( empty( $post ) ) {
+	global $post;
+}
+
 if ( has_post_thumbnail() ) { ?>
 	<figure <?php Core\get_attr( 'featured_image', array( 'class' => 'featured-image' ), true ); ?>>
 		<?php

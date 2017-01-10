@@ -26,13 +26,19 @@ use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
 use ItalyStrap\Core\Router\Router;
 use ItalyStrap\Core\Router\Controller;
 
+use ItalyStrap\Core\Event\Manager as Event_Manager;
+
 use ItalyStrap\Core\Image\Size as Size;
 use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
 use ItalyStrap\Core\Navbar\Navbar as Navbar;
 use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
 use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
 use ItalyStrap\Core\Layout\Layout;
-use ItalyStrap\Core\Template\Template;
+use ItalyStrap\Core\Template\Template_Base as Template;
+use ItalyStrap\Core\Template\Nav_Menu;
+use ItalyStrap\Core\Template\Title;
+use ItalyStrap\Core\Template\Meta;
+use ItalyStrap\Core\Template\Preview;
 
 use ItalyStrap\Core\Css\Css;
 
@@ -298,6 +304,36 @@ $template_settings = new Template( (array) $theme_mods );
 // 	'italystrap_template_include',
 // 	array( $template_settings, 'filter_template_include' )
 // );
+
+// $events = array(
+
+// 	// 'italystrap_before_entry_content' => 'the_content',
+// 	// 'italystrap_before_entry_content' => array( $template_settings, 'title' ),
+
+// 	// $tag - event name
+// 	// 'italystrap_before_entry_content'	=> array(
+// 	// 	'function_to_add'	=> array( $template_settings, 'title' ),
+// 	// 	// 'priority'			=> 10,
+// 	// 	// 'accepted_args'		=> null,
+// 	// ),
+// 	'italystrap_after_entry_content'	=> array(
+// 		array(
+// 			'function_to_add'	=> array( $template_settings, 'title' ),
+// 			// 'priority'			=> 10,
+// 			// 'accepted_args'		=> null,
+// 		),
+// 		array(
+// 			'function_to_add'	=> array( $template_settings, 'content' ),
+// 			// 'priority'			=> 10,
+// 			// 'accepted_args'		=> null,
+// 		),
+// 	),
+
+// );
+
+// $events_manager = new Event_Manager();
+// $events_manager->add_events( $events );
+
 /**
  * Questo filtro si trova nei file template per gestire commenti e altro
  */
@@ -315,9 +351,16 @@ add_action( 'italystrap_after_loop', array( $template_settings, 'comments_templa
 /**
  * Entry
  */
-add_action( 'italystrap_before_entry_content', array( $template_settings, 'title' ), 10 );
-add_action( 'italystrap_before_entry_content', array( $template_settings, 'meta' ), 20 );
-add_action( 'italystrap_before_entry_content', array( $template_settings, 'preview' ), 30 );
+$title = new Title( (array) $theme_mods );
+add_action( 'italystrap_before_entry_content', array( $title, 'render' ), 10 );
+// add_action( 'italystrap_before_entry_content', array( $template_settings, 'title' ), 10 );
+$meta = new Meta( (array) $theme_mods );
+add_action( 'italystrap_before_entry_content', array( $meta, 'render' ), 20 );
+// add_action( 'italystrap_before_entry_content', array( $template_settings, 'meta' ), 20 );
+$preview = new Preview( (array) $theme_mods );
+add_action( 'italystrap_before_entry_content', array( $preview, 'render' ), 30 );
+// add_action( 'italystrap_before_entry_content', array( $template_settings, 'preview' ), 30 );
+
 add_action( 'italystrap_before_entry_content', array( $template_settings, 'featured' ), 40 );
 
 add_action( 'italystrap_entry_content', array( $template_settings, 'content' ), 10 );
@@ -327,7 +370,6 @@ add_action( 'italystrap_after_entry_content', array( $template_settings, 'modifi
 add_action( 'italystrap_after_entry_content', array( $template_settings, 'edit_post_link' ), 20 );
 add_action( 'italystrap_after_entry_content', array( $template_settings, 'author_info_content' ), 30 );
 
-$navbar = new Navbar( $theme_mods );
 /**
  * Header
  *
@@ -337,7 +379,11 @@ $navbar = new Navbar( $theme_mods );
  */
 add_action( 'italystrap_before_header', array( $template_settings, 'navbar_top' ), 10 );
 add_action( 'italystrap_content_header', array( $template_settings, 'content_header' ), 10 );
-add_action( 'italystrap_after_header', array( $navbar, 'output' ), 10 );
+
+// $navbar = new Navbar( (array) $theme_mods );
+$navbar = new Nav_Menu( (array) $theme_mods );
+add_action( 'italystrap_after_header', array( $navbar, 'render' ), 10 );
+// add_action( 'italystrap_after_header', array( $navbar, 'output' ), 10 );
 
 /**
  * Content

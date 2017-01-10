@@ -24,7 +24,14 @@ class Template {
 	 *
 	 * @var array
 	 */
-	private $theme_mod = array();
+	protected $theme_mod = array();
+
+	protected $registered_path = array(
+		'templates',
+		'loops',
+		'type',
+		'parts',
+	);
 
 	/**
 	 * [__construct description]
@@ -66,6 +73,59 @@ class Template {
 	}
 
 	/**
+	 * Load a template part into a template
+	 *
+	 * Makes it easy for a theme to reuse sections of code in a easy to overload way
+	 * for child themes.
+	 *
+	 * Includes the named template part for a theme or if a name is specified then a
+	 * specialised part will be included. If the theme contains no {slug}.php file
+	 * then no template will be included.
+	 *
+	 * The template is included using require, not require_once, so you may include the
+	 * same template part multiple times.
+	 *
+	 * For the $name parameter, if the file is called "{slug}-special.php" then specify
+	 * "special".
+	 *
+	 * @since 4.0.0
+	 *
+	 * @see get_template_part() - wp-includes/general-template.php
+	 *
+	 * @param string $slug The slug name for the generic template.
+	 * @param string $name The name of the specialised template.
+	 */
+	function get_template_part( $slug, $name = null, $load = false ) {
+		/**
+		 * Fires before the specified template part file is loaded.
+		 *
+		 * The dynamic portion of the hook name, `$slug`, refers to the slug name
+		 * for the generic template part.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string      $slug The slug name for the generic template.
+		 * @param string|null $name The name of the specialized template.
+		 */
+		do_action( "italystrap_get_template_part_{$slug}", $slug, $name );
+
+		$templates = array();
+		$name = (string) $name;
+		if ( '' !== $name )
+			$templates[] = "{$slug}-{$name}.php";
+
+		$templates[] = "{$slug}.php";
+
+		if ( $load ) {
+			d( $load );
+			locate_template($templates, $load, false);
+			return;
+		}
+
+		require( locate_template($templates, $load, false) );
+	}
+
+	/**
 	 * filter_template_include
 	 *
 	 * @param  array $map Array with .
@@ -76,18 +136,35 @@ class Template {
 	// 		// 'single.php'	=> 'full-width.php',
 	// 		'single.php'	=> array( $this, 'do_loop' ),
 	// 	);
-	// d( $map, CURRENT_TEMPLATE );
+	// var_dump( $map, CURRENT_TEMPLATE );
+		$map = array(
+			'bbpress.php'	=> [ $this, 'test' ],
+			// 'bbpress.php'	=> 'bbpress.php',
+		);
+	// var_dump( $map );
 	// 	return $new_map;
 		return $map;
 	}
 
 	/**
+	 * Function description
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function test( $template ) {
+		remove_action( 'italystrap_before_entry_content', array( $this, 'meta' ), 20 );
+
+		return $template;
+	}
+
+
+	/**
 	 * Do Loop
 	 */
 	public function do_loop() {
-	
-		get_template_part( 'templates/loops/loop' );
-	
+
+		$this->get_template_part( 'templates/loops/loop' );
 	}
 
 	/**
@@ -95,17 +172,19 @@ class Template {
 	 */
 	public function do_entry() {
 	
-		$file_type = get_post_type();
+		// $file_type = get_post_type();
 		// d( $file_type, CURRENT_TEMPLATE_SLUG );
-		if ( 'single' === CURRENT_TEMPLATE_SLUG ) {
-			$file_type = 'single';
-		}
+		// if ( 'single' === CURRENT_TEMPLATE_SLUG ) {
+		// 	$file_type = 'single';
+		// }
 
-		if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
-			$file_type = 'post';
-		}
+		// if ( 'search' === CURRENT_TEMPLATE_SLUG ) {
+		// 	$file_type = 'post';
+		// }
 
-		get_template_part( 'templates/loops/type/'. $file_type );
+		$file_type = 'post';
+
+		$this->get_template_part( 'templates/loops/type/'. $file_type );
 	
 	}
 
@@ -116,7 +195,7 @@ class Template {
 	 */
 	public function title() {
 	
-		get_template_part( 'templates/loops/type/parts/title' );
+		$this->get_template_part( 'templates/loops/type/parts/title' );
 	}
 
 	/**
@@ -126,7 +205,7 @@ class Template {
 	 */
 	public function meta() {
 	
-		get_template_part( 'templates/loops/type/parts/meta' );
+		$this->get_template_part( 'templates/loops/type/parts/meta' );
 	}
 
 	/**
@@ -136,7 +215,7 @@ class Template {
 	 */
 	public function preview() {
 	
-		get_template_part( 'templates/loops/type/parts/preview' );
+		$this->get_template_part( 'templates/loops/type/parts/preview' );
 	}
 
 	/**
@@ -146,7 +225,7 @@ class Template {
 	 */
 	public function featured() {
 	
-		get_template_part( 'templates/loops/type/parts/featured', 'image' );
+		$this->get_template_part( 'templates/loops/type/parts/featured', 'image' );
 	}
 
 	/**
@@ -156,7 +235,7 @@ class Template {
 	 */
 	public function content() {
 	
-		get_template_part( 'templates/loops/type/parts/content' );
+		$this->get_template_part( 'templates/loops/type/parts/content' );
 	}
 
 	/**
@@ -192,7 +271,7 @@ class Template {
 	 */
 	public function modified() {
 	
-		get_template_part( 'templates/loops/type/parts/modified' );
+		$this->get_template_part( 'templates/loops/type/parts/modified' );
 	}
 
 	/**
@@ -258,7 +337,6 @@ class Template {
 			next_post_link( $args['next_format'], $args['next_link'] ); ?>
 		</ul>
 		<span class="clearfix"></span><?php
-	
 	}
 
 	/**
@@ -269,8 +347,7 @@ class Template {
 	 */
 	public function content_none() {
 	
-		get_template_part( 'templates/loops/type/none' );
-	
+		$this->get_template_part( 'templates/loops/type/none' );
 	}
 
 	/**
@@ -283,7 +360,6 @@ class Template {
 		}
 	
 		comments_template();
-	
 	}
 
 	/**
@@ -297,7 +373,7 @@ class Template {
 			return;
 		}
 	
-		get_template_part( 'templates/parts/author', 'info' );
+		$this->get_template_part( 'templates/parts/author', 'info' );
 	}
 
 	/**
@@ -313,7 +389,7 @@ class Template {
 			return null;
 		}
 	
-		get_template_part( 'templates/parts/author', 'info' );
+		$this->get_template_part( 'templates/parts/author', 'info' );
 	
 	}
 
@@ -326,7 +402,7 @@ class Template {
 			return;
 		}
 
-		get_template_part( 'templates/parts/archive', 'headline' );
+		$this->get_template_part( 'templates/parts/archive', 'headline' );
 	}
 
 	/**
@@ -336,7 +412,7 @@ class Template {
 		/**
 		 * Get the template for displaing the header's contents (header and nav tags)
 		 */
-		get_template_part( 'templates/parts/header', 'image' );
+		$this->get_template_part( 'templates/parts/header', 'image' );
 	}
 
 	/**
@@ -351,7 +427,7 @@ class Template {
 		/**
 		 * Get the template for displaing the header's contents (header and nav tags)
 		 */
-		get_template_part( 'templates/parts/navbar', 'top' );
+		$this->get_template_part( 'templates/parts/navbar', 'top' );
 	}
 
 	/**
@@ -371,8 +447,13 @@ class Template {
 	 */
 	public function do_footer( $value = '' ) {
 
-		get_template_part( 'templates/parts/footer-widget-area' );
-		get_template_part( 'templates/parts/footer-colophon' );
+		$this->get_template_part( 'templates/parts/footer-widget-area' );
+		$this->get_template_part( 'templates/parts/footer-colophon' );
 
 	}
+
+	/**
+	 * Render the output.
+	 */
+	// abstract public function render();
 }

@@ -81,10 +81,10 @@ class Router{
 			$template = is_callable( $callback ) ?
 				call_user_func(
 					$callback,
-					TEMPLATEPATH . DIRECTORY_SEPARATOR . CURRENT_TEMPLATE,
+					locate_template( CURRENT_TEMPLATE ),
 					$this
 				)
-				: TEMPLATEPATH . DIRECTORY_SEPARATOR . $callback;
+				: locate_template( $callback );
 		}
 
 		return $template;

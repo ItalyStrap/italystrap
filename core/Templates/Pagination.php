@@ -1,8 +1,8 @@
 <?php
 /**
- * Title Controller API
+ * Pagination Controller API
  *
- * [Long Description.]
+ * This class renders the pagination output on the registered position.
  *
  * @link www.italystrap.com
  * @since 4.0.0
@@ -10,18 +10,16 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core\Template;
+namespace ItalyStrap\Core\Templates;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Core\Navbar\Navbar as Nav_Menu;
-
 /**
- * Class description
+ * The pagination controller class
  */
-class Nav_Menu extends Template_Base implements Subscriber_Interface  {
+class Pagination extends Template_Base implements Subscriber_Interface  {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -33,15 +31,14 @@ class Nav_Menu extends Template_Base implements Subscriber_Interface  {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_after_header'	=> 'render',
+			'italystrap_after_loop'	=> 'render',
 		);
 	}
 
 	/**
-	 * Function description
+	 * Render the output of the controller.
 	 */
 	public function render() {
-		$navbar = new Nav_Menu( $this->theme_mod );
-		$navbar->output();
+		bootstrap_pagination();
 	}
 }

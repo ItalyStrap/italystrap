@@ -1,6 +1,6 @@
 <?php
 /**
- * Preview Controller API
+ * Meta Controller API
  *
  * [Long Description.]
  *
@@ -10,7 +10,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core\Template;
+namespace ItalyStrap\Core\Templates;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Class description
  */
-class Preview extends Template_Base implements Subscriber_Interface {
+class Meta extends Template_Base implements Subscriber_Interface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -31,17 +31,17 @@ class Preview extends Template_Base implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_before_entry_content'	=> array( 'render', 30 ),
+			'italystrap_before_entry_content'	=> array( 'render', 20 ),
 		);
 	}
 
 	/**
-	 * Render the Preview template part
+	 * Render the Meta template part
 	 *
-	 * @hoocked 'italystrap_before_entry_content' - 30
+	 * @hoocked 'italystrap_before_entry_content' - 20
 	 */
 	// public function render() {
 
-	// 	$this->get_template_part( $this->registered_files_path['preview'] );
+	// 	$this->get_template_part( $this->registered_files_path['meta'] );
 	// }
 }

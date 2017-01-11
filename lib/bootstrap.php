@@ -34,11 +34,14 @@ use ItalyStrap\Core\Navbar\Navbar as Navbar;
 use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
 use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
 use ItalyStrap\Core\Layout\Layout;
-use ItalyStrap\Core\Template\Template_Base as Template;
-use ItalyStrap\Core\Template\Nav_Menu;
-use ItalyStrap\Core\Template\Title;
-use ItalyStrap\Core\Template\Meta;
-use ItalyStrap\Core\Template\Preview;
+use ItalyStrap\Core\Templates\Template_Base as Template;
+use ItalyStrap\Core\Templates\Nav_Menu;
+use ItalyStrap\Core\Templates\Title;
+use ItalyStrap\Core\Templates\Meta;
+use ItalyStrap\Core\Templates\Preview;
+
+use ItalyStrap\Core\Templates\Content;
+use ItalyStrap\Core\Templates\Pagination;
 
 use ItalyStrap\Core\Css\Css;
 
@@ -339,36 +342,52 @@ $template_settings = new Template( (array) $theme_mods );
  */
 add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
 
-add_action( 'italystrap_before_while', array( $template_settings, 'archive_headline' ) );
-add_action( 'italystrap_before_loop', array( $template_settings, 'author_info' ) );
+$archive_headline = new \ItalyStrap\Core\Templates\Archive_Headline( (array) $theme_mods  );
+add_action( 'italystrap_before_loop', array( $archive_headline, 'render' ), 20 );
+// add_action( 'italystrap_before_while', array( $template_settings, 'archive_headline' ) );
+
+$author_info = new \ItalyStrap\Core\Templates\Author_Info( (array) $theme_mods  );
+add_action( 'italystrap_before_loop', array( $author_info, 'render' ), 20 );
+add_action( 'italystrap_after_entry_content', array( $author_info, 'render_after_content' ), 30 );
+// add_action( 'italystrap_before_loop', array( $template_settings, 'author_info' ), 20 );
+
 add_action( 'italystrap_loop', array( $template_settings, 'do_loop' ) );
 add_action( 'italystrap_entry', array( $template_settings, 'do_entry' ) );
 add_action( 'italystrap_after_entry', array( $template_settings, 'pager' ) );
-add_action( 'italystrap_after_loop', array( $template_settings, 'pagination' ) );
+
+$pagination = new \ItalyStrap\Core\Templates\Pagination( (array) $theme_mods );
+add_action( 'italystrap_after_loop', array( $pagination, 'render' ) );
+// add_action( 'italystrap_after_loop', array( $template_settings, 'pagination' ) );
+
 add_action( 'italystrap_content_none', array( $template_settings, 'content_none' ) );
 add_action( 'italystrap_after_loop', array( $template_settings, 'comments_template' ) );
 
 /**
  * Entry
  */
-$title = new Title( (array) $theme_mods );
-add_action( 'italystrap_before_entry_content', array( $title, 'render' ), 10 );
+$the_title = new \ItalyStrap\Core\Templates\Title( (array) $theme_mods );
+add_action( 'italystrap_before_entry_content', array( $the_title, 'render' ), 10 );
 // add_action( 'italystrap_before_entry_content', array( $template_settings, 'title' ), 10 );
-$meta = new Meta( (array) $theme_mods );
+
+$meta = new \ItalyStrap\Core\Templates\Meta( (array) $theme_mods );
 add_action( 'italystrap_before_entry_content', array( $meta, 'render' ), 20 );
 // add_action( 'italystrap_before_entry_content', array( $template_settings, 'meta' ), 20 );
-$preview = new Preview( (array) $theme_mods );
+
+$preview = new \ItalyStrap\Core\Templates\Preview( (array) $theme_mods );
 add_action( 'italystrap_before_entry_content', array( $preview, 'render' ), 30 );
 // add_action( 'italystrap_before_entry_content', array( $template_settings, 'preview' ), 30 );
 
 add_action( 'italystrap_before_entry_content', array( $template_settings, 'featured' ), 40 );
 
-add_action( 'italystrap_entry_content', array( $template_settings, 'content' ), 10 );
+$content = new \ItalyStrap\Core\Templates\Content( (array) $theme_mods );
+add_action( 'italystrap_entry_content', array( $content, 'render' ), 10 );
+// add_action( 'italystrap_entry_content', array( $template_settings, 'content' ), 10 );
+
 add_action( 'italystrap_entry_content', array( $template_settings, 'link_pages' ), 20 );
 
 add_action( 'italystrap_after_entry_content', array( $template_settings, 'modified' ), 10 );
 add_action( 'italystrap_after_entry_content', array( $template_settings, 'edit_post_link' ), 20 );
-add_action( 'italystrap_after_entry_content', array( $template_settings, 'author_info_content' ), 30 );
+// add_action( 'italystrap_after_entry_content', array( $template_settings, 'author_info_content' ), 30 );
 
 /**
  * Header
@@ -377,11 +396,14 @@ add_action( 'italystrap_after_entry_content', array( $template_settings, 'author
  * @see  get_template_content_header() in general-functions.php
  * @see  Class Navbar in class-navbar.php
  */
-add_action( 'italystrap_before_header', array( $template_settings, 'navbar_top' ), 10 );
-add_action( 'italystrap_content_header', array( $template_settings, 'content_header' ), 10 );
+$navbar_top = new \ItalyStrap\Core\Templates\Navbar_Top( (array) $theme_mods  );
+add_action( 'italystrap_before_header', array( $navbar_top, 'render' ), 10 );
+
+$header_image = new \ItalyStrap\Core\Templates\Header_Image( (array) $theme_mods  );
+add_action( 'italystrap_content_header', array( $header_image, 'render' ), 10 );
 
 // $navbar = new Navbar( (array) $theme_mods );
-$navbar = new Nav_Menu( (array) $theme_mods );
+$navbar = new \ItalyStrap\Core\Templates\Nav_Menu( (array) $theme_mods );
 add_action( 'italystrap_after_header', array( $navbar, 'render' ), 10 );
 // add_action( 'italystrap_after_header', array( $navbar, 'output' ), 10 );
 

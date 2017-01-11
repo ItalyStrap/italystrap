@@ -8,7 +8,7 @@
  * @since 4.0.0 New class definitions
  */
 
-namespace ItalyStrap\Core\Template;
+namespace ItalyStrap\Core\Templates;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -34,9 +34,14 @@ class Template_Base implements Template_Interface {
 	);
 
 	protected $registered_files_path = array(
-		'title'		=> 'templates/loops/type/parts/title',
-		'meta'		=> 'templates/loops/type/parts/meta',
-		'preview'	=> 'templates/loops/type/parts/preview',
+		'navbar_top'		=> 'templates/parts/navbar-top',
+		'header_image'		=> 'templates/parts/header-image',
+		'archive_headline'	=> 'templates/parts/archive-headline',
+		'author_info'		=> 'templates/parts/author-info',
+		'title'				=> 'templates/loops/type/parts/title',
+		'meta'				=> 'templates/loops/type/parts/meta',
+		'preview'			=> 'templates/loops/type/parts/preview',
+		'content'			=> 'templates/loops/type/parts/content',
 	);
 
 	/**
@@ -202,26 +207,6 @@ class Template_Base implements Template_Interface {
 		$this->get_template_part( 'templates/loops/type/'. $file_type );
 	}
 
-	// /**
-	//  * Meta
-	//  *
-	//  * @hoocked 'italystrap_before_entry_content' - 20
-	//  */
-	// public function meta() {
-	
-	// 	$this->get_template_part( 'templates/loops/type/parts/meta' );
-	// }
-
-	/**
-	 * Preview
-	 *
-	 * @hoocked 'italystrap_before_entry_content' - 30
-	 */
-	// public function preview() {
-	
-	// 	$this->get_template_part( 'templates/loops/type/parts/preview' );
-	// }
-
 	/**
 	 * Featured
 	 *
@@ -230,16 +215,6 @@ class Template_Base implements Template_Interface {
 	public function featured() {
 	
 		$this->get_template_part( 'templates/loops/type/parts/featured', 'image' );
-	}
-
-	/**
-	 * Content
-	 *
-	 * @hoocked 'italystrap_entry_content' - 10
-	 */
-	public function content() {
-	
-		$this->get_template_part( 'templates/loops/type/parts/content' );
 	}
 
 	/**
@@ -367,86 +342,6 @@ class Template_Base implements Template_Interface {
 	}
 
 	/**
-	 * author_info
-	 *
-	 * @hocked 'italystrap_after_entry_content' - 30
-	 */
-	public function author_info_content() {
-
-		if ( 'single' !== CURRENT_TEMPLATE_SLUG && 'page' !== CURRENT_TEMPLATE_SLUG ) {
-			return;
-		}
-	
-		$this->get_template_part( 'templates/parts/author', 'info' );
-	}
-
-	/**
-	 * Function description
-	 */
-	public function author_info() {
-
-		// if ( ! in_array( CURRENT_TEMPLATE_SLUG, array( 'author', 'single', 'page' ), true ) ) {
-		// 	return;
-		// }
-
-		if ( 'author' !== CURRENT_TEMPLATE_SLUG ) {
-			return null;
-		}
-	
-		$this->get_template_part( 'templates/parts/author', 'info' );
-	
-	}
-
-	/**
-	 * Function description
-	 */
-	public function archive_headline() {
-
-		if ( ! in_array( CURRENT_TEMPLATE_SLUG, array( 'archive', 'author', 'search' ), true ) ) {
-			return;
-		}
-
-		$this->get_template_part( 'templates/parts/archive', 'headline' );
-	}
-
-	/**
-	 * Append template for content header
-	 */
-	public function content_header() {
-		/**
-		 * Get the template for displaing the header's contents (header and nav tags)
-		 */
-		$this->get_template_part( 'templates/parts/header', 'image' );
-	}
-
-	/**
-	 * Append template for content header
-	 * This is in test version.
-	 */
-	public function navbar_top() {
-
-		if ( ! has_nav_menu( 'info-menu' ) || ! has_nav_menu( 'social-menu' ) ) {
-			return;
-		}
-		/**
-		 * Get the template for displaing the header's contents (header and nav tags)
-		 */
-		$this->get_template_part( 'templates/parts/navbar', 'top' );
-	}
-
-	/**
-	 * Function description
-	 */
-	public function pagination() {
-
-		// if ( 'page' !== CURRENT_TEMPLATE_SLUG && 'single' !== CURRENT_TEMPLATE_SLUG ) {
-		// 	return null;
-		// }
-	
-		bootstrap_pagination();
-	}
-
-	/**
 	 * Do Footer
 	 */
 	public function do_footer( $value = '' ) {
@@ -457,9 +352,10 @@ class Template_Base implements Template_Interface {
 	}
 
 	/**
-	 * Render the output.
+	 * Render the output of the controller.
 	 */
 	public function render() {
+
 		if ( empty( $this->registered_files_path[ $this->class_name ] ) ) {
 			throw new \Exception('You have to register the path of the file.');
 		}

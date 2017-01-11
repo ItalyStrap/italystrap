@@ -10,16 +10,18 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core\Template;
+namespace ItalyStrap\Core\Templates;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Core\Navbar\Navbar as Nav_Menu;
+
 /**
  * Class description
  */
-class Title extends Template_Base implements Subscriber_Interface {
+class Nav_Menu extends Template_Base implements Subscriber_Interface  {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -31,18 +33,15 @@ class Title extends Template_Base implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_before_entry_content'	=> 'render',
+			'italystrap_after_header'	=> 'render',
 		);
 	}
 
 	/**
 	 * Function description
-	 *
-	 * @hoocked 'italystrap_before_entry_content' - 10
 	 */
-	// public function render() {
-
-	// 	// $this->get_template_part( $this->registered_files_path['title'] );
-	// 	$this->get_template_part( $this->registered_files_path[ $this->class_name ] );
-	// }
+	public function render() {
+		$navbar = new Nav_Menu( $this->theme_mod );
+		$navbar->output();
+	}
 }

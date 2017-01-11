@@ -15,6 +15,8 @@
 
 namespace ItalyStrap;
 
+use ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu;
+
 ?><nav id="top-nav" class="top-nav">
 	<div class="container">
 		<div class="row">

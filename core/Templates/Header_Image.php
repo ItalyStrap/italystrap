@@ -25,13 +25,15 @@ class Header_Image extends Template_Base implements Subscriber_Interface  {
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
 	 *
+	 * @hooked 'italystrap_content_header' - 10
+	 *
 	 * @return array
 	 */
 	public static function get_subscribed_hooks() {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_after_loop'	=> 'render',
+			'italystrap_content_header'	=> 'render',
 		);
 	}
 }

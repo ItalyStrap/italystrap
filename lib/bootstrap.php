@@ -35,13 +35,13 @@ use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
 use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
 use ItalyStrap\Core\Layout\Layout;
 use ItalyStrap\Core\Templates\Template_Base as Template;
-use ItalyStrap\Core\Templates\Nav_Menu;
-use ItalyStrap\Core\Templates\Title;
-use ItalyStrap\Core\Templates\Meta;
-use ItalyStrap\Core\Templates\Preview;
+// use ItalyStrap\Core\Templates\Nav_Menu;
+// use ItalyStrap\Core\Templates\Title;
+// use ItalyStrap\Core\Templates\Meta;
+// use ItalyStrap\Core\Templates\Preview;
 
-use ItalyStrap\Core\Templates\Content;
-use ItalyStrap\Core\Templates\Pagination;
+// use ItalyStrap\Core\Templates\Content;
+// use ItalyStrap\Core\Templates\Pagination;
 
 use ItalyStrap\Core\Css\Css;
 
@@ -334,13 +334,49 @@ $template_settings = new Template( (array) $theme_mods );
 
 // );
 
-// $events_manager = new Event_Manager();
+$events_manager = new Event_Manager();
 // $events_manager->add_events( $events );
 
 /**
  * Questo filtro si trova nei file template per gestire commenti e altro
  */
 add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
+// var_dump( $injector );
+
+$registered_template_classes = array(
+	'\ItalyStrap\Core\Templates\Navbar_Top',
+	'\ItalyStrap\Core\Templates\Header_Image',
+	'\ItalyStrap\Core\Templates\Nav_Menu',
+	// '\ItalyStrap\Core\Templates\Archive_Headline',
+);
+
+foreach ( $registered_template_classes as $value ) {
+	// $events_manager->add_events_test( new $value );
+	$events_manager->add_events_test( $injector->make( $value ) );
+}
+
+// echo "<pre>";
+// print_r(\ItalyStrap\Core\Templates\Navbar_Top::get_subscribed_hooks());
+// echo "</pre>";
+// var_dump( \ItalyStrap\Core\Templates\Navbar_Top::get_subscribed_hooks() );
+/**
+ * Header
+ *
+ * @see  add_top_menu() in general-functions.php
+ * @see  get_template_content_header() in general-functions.php
+ * @see  Class Navbar in class-navbar.php
+ */
+// $navbar_top = new \ItalyStrap\Core\Templates\Navbar_Top( (array) $theme_mods );
+// add_action( 'italystrap_before_header', array( $navbar_top, 'render' ), 10 );
+
+// $header_image = new \ItalyStrap\Core\Templates\Header_Image( (array) $theme_mods  );
+// add_action( 'italystrap_content_header', array( $header_image, 'render' ), 10 );
+
+// $navbar = new Navbar( (array) $theme_mods );
+// $navbar = new \ItalyStrap\Core\Templates\Nav_Menu( (array) $theme_mods );
+// add_action( 'italystrap_after_header', array( $navbar, 'render' ), 10 );
+// add_action( 'italystrap_after_header', array( $navbar, 'output' ), 10 );
+
 
 $archive_headline = new \ItalyStrap\Core\Templates\Archive_Headline( (array) $theme_mods  );
 add_action( 'italystrap_before_loop', array( $archive_headline, 'render' ), 20 );
@@ -351,16 +387,28 @@ add_action( 'italystrap_before_loop', array( $author_info, 'render' ), 20 );
 add_action( 'italystrap_after_entry_content', array( $author_info, 'render_after_content' ), 30 );
 // add_action( 'italystrap_before_loop', array( $template_settings, 'author_info' ), 20 );
 
-add_action( 'italystrap_loop', array( $template_settings, 'do_loop' ) );
-add_action( 'italystrap_entry', array( $template_settings, 'do_entry' ) );
-add_action( 'italystrap_after_entry', array( $template_settings, 'pager' ) );
+$loop = new \ItalyStrap\Core\Templates\Loop( (array) $theme_mods  );
+add_action( 'italystrap_loop', array( $loop, 'render' ) );
+// add_action( 'italystrap_loop', array( $template_settings, 'do_loop' ) );
+$entry = new \ItalyStrap\Core\Templates\Entry( (array) $theme_mods  );
+add_action( 'italystrap_entry', array( $entry, 'render' ) );
+// add_action( 'italystrap_entry', array( $template_settings, 'do_entry' ) );
+
+$pager = new \ItalyStrap\Core\Templates\Pager( (array) $theme_mods );
+add_action( 'italystrap_after_entry', array( $pager, 'render' ) );
+// add_action( 'italystrap_after_entry', array( $template_settings, 'pager' ) );
 
 $pagination = new \ItalyStrap\Core\Templates\Pagination( (array) $theme_mods );
 add_action( 'italystrap_after_loop', array( $pagination, 'render' ) );
 // add_action( 'italystrap_after_loop', array( $template_settings, 'pagination' ) );
 
-add_action( 'italystrap_content_none', array( $template_settings, 'content_none' ) );
-add_action( 'italystrap_after_loop', array( $template_settings, 'comments_template' ) );
+$none = new \ItalyStrap\Core\Templates\None( (array) $theme_mods );
+add_action( 'italystrap_content_none', array( $none, 'render' ) );
+// add_action( 'italystrap_content_none', array( $template_settings, 'content_none' ) );
+
+$comments = new \ItalyStrap\Core\Templates\Comments( (array) $theme_mods );
+add_action( 'italystrap_after_loop', array( $comments, 'render' ) );
+// add_action( 'italystrap_after_loop', array( $template_settings, 'comments_template' ) );
 
 /**
  * Entry
@@ -377,42 +425,35 @@ $preview = new \ItalyStrap\Core\Templates\Preview( (array) $theme_mods );
 add_action( 'italystrap_before_entry_content', array( $preview, 'render' ), 30 );
 // add_action( 'italystrap_before_entry_content', array( $template_settings, 'preview' ), 30 );
 
-add_action( 'italystrap_before_entry_content', array( $template_settings, 'featured' ), 40 );
+$featured_image = new \ItalyStrap\Core\Templates\Featured_Image( (array) $theme_mods );
+add_action( 'italystrap_before_entry_content', array( $featured_image, 'render' ), 40 );
+// add_action( 'italystrap_before_entry_content', array( $template_settings, 'featured' ), 40 );
 
 $content = new \ItalyStrap\Core\Templates\Content( (array) $theme_mods );
 add_action( 'italystrap_entry_content', array( $content, 'render' ), 10 );
 // add_action( 'italystrap_entry_content', array( $template_settings, 'content' ), 10 );
 
-add_action( 'italystrap_entry_content', array( $template_settings, 'link_pages' ), 20 );
+$link_pages = new \ItalyStrap\Core\Templates\Link_Pages( (array) $theme_mods );
+add_action( 'italystrap_after_entry_content', array( $link_pages, 'render' ), 20 );
+// add_action( 'italystrap_entry_content', array( $template_settings, 'link_pages' ), 20 );
 
-add_action( 'italystrap_after_entry_content', array( $template_settings, 'modified' ), 10 );
-add_action( 'italystrap_after_entry_content', array( $template_settings, 'edit_post_link' ), 20 );
+$modified = new \ItalyStrap\Core\Templates\Modified( (array) $theme_mods );
+add_action( 'italystrap_after_entry_content', array( $modified, 'render' ) );
+// add_action( 'italystrap_after_entry_content', array( $template_settings, 'modified' ), 10 );
+
+$edit_post_link = new \ItalyStrap\Core\Templates\Edit_Post_Link( (array) $theme_mods );
+add_action( 'italystrap_after_entry_content', array( $edit_post_link, 'render' ), 20 );
+// add_action( 'italystrap_after_entry_content', array( $template_settings, 'edit_post_link' ), 20 );
 // add_action( 'italystrap_after_entry_content', array( $template_settings, 'author_info_content' ), 30 );
-
-/**
- * Header
- *
- * @see  add_top_menu() in general-functions.php
- * @see  get_template_content_header() in general-functions.php
- * @see  Class Navbar in class-navbar.php
- */
-$navbar_top = new \ItalyStrap\Core\Templates\Navbar_Top( (array) $theme_mods  );
-add_action( 'italystrap_before_header', array( $navbar_top, 'render' ), 10 );
-
-$header_image = new \ItalyStrap\Core\Templates\Header_Image( (array) $theme_mods  );
-add_action( 'italystrap_content_header', array( $header_image, 'render' ), 10 );
-
-// $navbar = new Navbar( (array) $theme_mods );
-$navbar = new \ItalyStrap\Core\Templates\Nav_Menu( (array) $theme_mods );
-add_action( 'italystrap_after_header', array( $navbar, 'render' ), 10 );
-// add_action( 'italystrap_after_header', array( $navbar, 'output' ), 10 );
 
 /**
  * Content
  *
  * @see display_breadcrumbs()
  */
-add_action( 'italystrap_before_loop', __NAMESPACE__ . '\display_breadcrumbs' );
+$breadcrumbs = new \ItalyStrap\Core\Templates\Breadcrumbs( (array) $theme_mods );
+add_action( 'italystrap_before_loop', array( $breadcrumbs, 'render' ) );
+// add_action( 'italystrap_before_loop', __NAMESPACE__ . '\display_breadcrumbs' );
 
 add_action( 'italystrap_footer', array( $template_settings, 'do_footer' ) );
 

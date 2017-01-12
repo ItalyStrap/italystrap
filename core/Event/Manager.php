@@ -45,7 +45,7 @@ class Manager {
 	 * @return string        [description]
 	 */
 	public function add_events( array $events ) {
-	
+
 		foreach ( $events as $tag => $controller ) {
 
 			if ( is_array( $controller[0] ) ) {
@@ -56,6 +56,27 @@ class Manager {
 			}
 
 			$this->add_event( $tag, $controller );
+		}
+	}
+
+	/**
+	 * Add events
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function add_events_test( $class ) {
+
+		foreach ( $class::get_subscribed_hooks() as $tag => $controller ) {
+
+			if ( is_array( $controller[0] ) ) {
+				foreach ( $controller as $value ) {
+					$this->add_event( $tag, array( $class, $value ) );
+				}
+				continue;
+			}
+
+			$this->add_event( $tag, array( $class, $controller ) );
 		}
 	}
 }

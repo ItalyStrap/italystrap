@@ -1,8 +1,8 @@
 <?php
 /**
- * Title Controller API
+ * Featured_Image Controller API
  *
- * [Long Description.]
+ * This class renders the Featured_Image output on the registered position.
  *
  * @link www.italystrap.com
  * @since 4.0.0
@@ -16,16 +16,16 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Core\Navbar\Navbar as Nav_Menu;
-
 /**
  * Class description
  */
-class Nav_Menu extends Template_Base implements Subscriber_Interface  {
+class Featured_Image extends Template_Base implements Subscriber_Interface  {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
+	 *
+	 * @hoocked 'italystrap_before_entry_content' - 40
 	 *
 	 * @return array
 	 */
@@ -33,16 +33,7 @@ class Nav_Menu extends Template_Base implements Subscriber_Interface  {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_after_header'	=> 'render',
+			'italystrap_before_entry_content'	=> array( 'render', 40 ),
 		);
-	}
-
-	/**
-	 * Function description
-	 */
-	public function render() {
-		// $navbar = new Nav_Menu( $this->theme_mod );
-		$navbar = new Nav_Menu( self::$mods );
-		$navbar->output();
 	}
 }

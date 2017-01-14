@@ -41,14 +41,4 @@ class Meta extends Template_Base implements Subscriber_Interface {
 			),
 		);
 	}
-
-	/**
-	 * Render the Meta template part
-	 *
-	 * @hoocked 'italystrap_before_entry_content' - 20
-	 */
-	// public function render() {
-
-	// 	$this->get_template_part( $this->registered_files_path['meta'] );
-	// }
 }

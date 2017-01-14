@@ -58,7 +58,6 @@ $autoload_files = array(
 	// '/lib/cleanup.php', // Cleanup Headers.
 	'/lib/script.php',
 	'/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
-	'/lib/users_meta.php',
 	'/lib/schema.php',
 	'/lib/tag_cloud.php',
 	'/lib/password_protection.php', // Function for Post/page password protection Bootstrap style.
@@ -67,6 +66,7 @@ $autoload_files = array(
 	'/lib/debug.php',
 	'/deprecated/deprecated.php', // Deprecated files and functions.
 	'/deprecated/pagination.php', // Deprecated
+	// '/deprecated/users_meta.php', // Deprecated
 );
 
 foreach ( $autoload_files as $file ) {
@@ -208,6 +208,9 @@ if ( is_admin() ) {
 	$metabox = new Register_Meta;
 	add_action( 'cmb2_admin_init', array( $metabox, 'register_template_settings' ) );
 	add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );
+
+	$contactmethods = new \ItalyStrap\Core\User\Contact_Methods();
+	add_filter( 'user_contactmethods', array( $contactmethods, 'run' ), 10, 1 );
 
 }
 

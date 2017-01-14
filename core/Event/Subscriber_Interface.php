@@ -9,7 +9,7 @@
  * @author Carl Alexander <contact@carlalexander.ca>
  */
 
-namespace ItalyStrap\Core\Templates;
+namespace ItalyStrap\Core\Event;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();

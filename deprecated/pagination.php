@@ -6,40 +6,72 @@
  *
  * @link http://codex.wordpress.org/Function_Reference/paginate_links
  * 
- * @param  Query $query A query for loop. Default NULL.
+ * @param  Query $wp_query A query for loop. Default NULL.
  * @return string       Boostrap navigation for WordPress
  */
-function bootstrap_pagination( $query = NULL ){
-	global $wp_query;
+function bootstrap_pagination( $wp_query = NULL ) {
 
-	if ( !isset( $query ) )
-		$query = $wp_query;
+	_deprecated_function( __FUNCTION__, '4.0.0', __( 'Use \ItalyStrap\Core\Pagination\Pagination::render instead.', 'italystrap' ) );
 
-	$big = 999999999; // need an unlikely integer
-	$translated = __( 'Page: ', 'ItalyStrap' ); // Supply translatable string
+	if ( ! isset( $wp_query ) ) {
+		global $wp_query;
+	}
+
+	/**
+	 * Need an unlikely integer.
+	 *
+	 * @var int
+	 */
+	$big = 999999999;
+
+	/**
+	 * Supply translatable string.
+	 *
+	 * @var string
+	 */
+	$translated = __( 'Page: ', 'italystrap' );
 
 	$paginate = paginate_links( 
 		array(
-			'base'				=>	str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-			'format'			=>	'?paged=%#%',
-			'current'			=>	max( 1, get_query_var('paged') ),
-			'total'				=>	$query->max_num_pages,
-			'type'				=>	'list',
-			'before_page_number'=>	'<span class="sr-only">'.$translated.' </span>',
-			)
-		);
+			'base'					=>	str_replace(
+				$big,
+				'%#%',
+				esc_url( get_pagenum_link( $big ) )
+			),
+			'format'				=>	'?paged=%#%',
+			'current'				=>	max( 1, get_query_var( 'paged' ) ),
+			'total'					=>	$wp_query->max_num_pages,
+			'type'					=>	'list',
+			'before_page_number'	=>	sprintf(
+				'<span class="sr-only">%s</span>',
+				$translated
+			),
+		)
+	);
 
-	$paginate = str_replace("<ul class='page-numbers'", "<ul class='pagination'", $paginate);
-	$paginate = str_replace("<li><span class='page-numbers current'", "<li class='active'><span class='page-numbers current'", $paginate);
+	$paginate = str_replace(
+		"<ul class='page-numbers'",
+		'<ul class="pagination"',
+		$paginate
+	);
 
-	echo '<span class="clearfix"></span><div class="text-center">' . $paginate . '</div>';
+	$paginate = str_replace(
+		"<li><span class='page-numbers current'",
+		'<li class="active"><span class="page-numbers current"',
+		$paginate
+	);
+
+	printf(
+		'<span class="clearfix"></span><div class="text-center">%s</div>',
+		$paginate
+	);
 
 }
 
 /**
  * @todo New function for pagination
  */
-// function ItalyStrap_get_bootstrap_pagination( $query = NULL ){
+// function ItalyStrap_get_bootstrap_pagination( $wp_query = NULL ){
 
 // 	# code...
 // }

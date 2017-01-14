@@ -12,6 +12,8 @@
 
 namespace ItalyStrap\Core\Templates;
 
+use ItalyStrap\Core\Event\Subscriber_Interface;
+
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }

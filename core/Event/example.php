@@ -49,3 +49,32 @@ $events = array(
 
 $events_manager = new Event_Manager();
 $events_manager->add_events( $events );
+
+// $events = array(
+
+// 	// 'italystrap_before_entry_content' => 'the_content',
+// 	// 'italystrap_before_entry_content' => array( $template_settings, 'title' ),
+
+// 	// $tag - event name
+// 	// 'italystrap_before_entry_content'	=> array(
+// 	// 	'function_to_add'	=> array( $template_settings, 'title' ),
+// 	// 	// 'priority'			=> 10,
+// 	// 	// 'accepted_args'		=> null,
+// 	// ),
+// 	'italystrap_after_entry_content'	=> array(
+// 		array(
+// 			'function_to_add'	=> array( $template_settings, 'title' ),
+// 			// 'priority'			=> 10,
+// 			// 'accepted_args'		=> null,
+// 		),
+// 		array(
+// 			'function_to_add'	=> array( $template_settings, 'content' ),
+// 			// 'priority'			=> 10,
+// 			// 'accepted_args'		=> null,
+// 		),
+// 	),
+
+// );
+
+$events_manager = new Event_Manager();
+// $events_manager->add_events( $events );

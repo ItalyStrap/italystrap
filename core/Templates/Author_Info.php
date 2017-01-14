@@ -12,6 +12,8 @@
 
 namespace ItalyStrap\Core\Templates;
 
+use ItalyStrap\Core\Event\Subscriber_Interface;
+
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
@@ -31,8 +33,14 @@ class Author_Info extends Template_Base implements Subscriber_Interface  {
 
 		return array(
 			// 'hook_name'				=> 'method_name',
-			'italystrap_before_loop'			=> array( 'render', 20 ),
-			'italystrap_after_entry_content'	=> array( 'render_after_content', 30 ),
+			'italystrap_before_loop'			=> array(
+				'function_to_add'	=> 'render',
+				'priority'			=> 20,
+			),
+			'italystrap_after_entry_content'	=> array(
+				'function_to_add'	=> 'render_after_content',
+				'priority'			=> 30,
+			),
 		);
 	}
 

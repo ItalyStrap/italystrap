@@ -12,6 +12,8 @@
 
 namespace ItalyStrap\Core\Templates;
 
+use ItalyStrap\Core\Event\Subscriber_Interface;
+
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
@@ -24,6 +26,8 @@ class Content extends Template_Base implements Subscriber_Interface {
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
+	 *
+	 * @hooked italystrap_entry_content - 10
 	 *
 	 * @return array
 	 */

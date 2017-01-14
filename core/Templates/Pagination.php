@@ -12,6 +12,9 @@
 
 namespace ItalyStrap\Core\Templates;
 
+use ItalyStrap\Core\Event\Subscriber_Interface;
+use ItalyStrap\Core\Pagination\Pagination;
+
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
@@ -24,6 +27,8 @@ class Pagination extends Template_Base implements Subscriber_Interface  {
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
+	 *
+	 * @hooked italystrap_after_loop - 10
 	 *
 	 * @return array
 	 */
@@ -39,6 +44,7 @@ class Pagination extends Template_Base implements Subscriber_Interface  {
 	 * Render the output of the controller.
 	 */
 	public function render() {
-		bootstrap_pagination();
+		$pagination = new Pagination( $this->theme_mod );
+		$pagination->render();
 	}
 }

@@ -12,6 +12,8 @@
 
 namespace ItalyStrap\Core\Templates;
 
+use ItalyStrap\Core\Event\Subscriber_Interface;
+
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
@@ -33,7 +35,10 @@ class Link_Pages extends Template_Base implements Subscriber_Interface  {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_entry_content'	=> array( 'render', 20 ),
+			'italystrap_entry_content'	=> array(
+				'function_to_add'	=> 'render',
+				'priority'			=> 20,
+			),
 		);
 	}
 

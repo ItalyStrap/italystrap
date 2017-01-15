@@ -49,8 +49,8 @@ use ItalyStrap\Customizer\Customizer;
  */
 $autoload_files = array(
 	'/vendor/autoload.php',
-	'/lib/default-constants.php',
-	'/lib/general-functions.php',
+	'/functions/default-constants.php',
+	'/functions/general-functions.php',
 
 	'/lib/images.php',
 	'/lib/pointer.php',

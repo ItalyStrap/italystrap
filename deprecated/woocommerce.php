@@ -20,7 +20,7 @@ function main_container_end() {
 	echo '</div></main>';
 	do_action( 'italystrap_after_main' );
 }
-add_action( 'woocommerce_sidebar', __NAMESPACE__ . '\main_container_end', 10 );
+// add_action( 'woocommerce_sidebar', __NAMESPACE__ . '\main_container_end', 10 );
 
 /**
  * Add edit button to single product post
@@ -36,11 +36,8 @@ function add_edit_post_to_product_single() {
 		);
 
 	edit_post_link( __( 'Edit', 'ItalyStrap' ), $button['open'], $button['close'] );
-
 }
-add_action( 'woocommerce_after_single_product', __NAMESPACE__ . '\add_edit_post_to_product_single', 11 );
-
-
+// add_action( 'woocommerce_after_single_product', __NAMESPACE__ . '\add_edit_post_to_product_single', 11 );
 
 /**
  * Aggiungo la classe form-control agli input di checkupy
@@ -57,6 +54,24 @@ function add_new_css_class_to_form_field_check_out( $args ) {
 }
 // add_filter( 'woocommerce_form_field_args', __NAMESPACE__ . '\add_new_css_class_to_form_field_check_out' );
 
+/**
+ * Function description
+ *
+ * @param mixed  $args  Form elements arguments.
+ * @param string $key   Form elements key for ID attribute.
+ * @param string $value The value of the form elements (default: null).
+ *
+ * @return string        [description]
+ */
+function form_field_args( array $args, $key, $value ) {
+
+	$args['class'][] = 'form-group';
+	$args['input_class'][] = 'form-control';
+
+	return $args;
+
+}
+// add_filter( 'woocommerce_form_field_args', __NAMESPACE__ . '\form_field_args', 10, 3 );
 
 
 function add_qta_number_to_chart_icon( $item_output, $item, $depth, $args ) {
@@ -131,22 +146,3 @@ function add_woocommerce_menu_to_navbrand( $output, $navbar_id ) {
 }
 
 // add_filter( 'italystrap_navbar_brand', __NAMESPACE__ . '\add_woocommerce_menu_to_navbrand', 10, 2 );
-
-/**
- * Function description
- *
- * @param mixed  $args  Form elements arguments.
- * @param string $key   Form elements key for ID attribute.
- * @param string $value The value of the form elements (default: null).
- *
- * @return string        [description]
- */
-function form_field_args( array $args, $key, $value ) {
-
-	$args['class'][] = 'form-group';
-	$args['input_class'][] = 'form-control';
-
-	return $args;
-
-}
-add_filter( 'woocommerce_form_field_args', __NAMESPACE__ . '\form_field_args', 10, 3 );

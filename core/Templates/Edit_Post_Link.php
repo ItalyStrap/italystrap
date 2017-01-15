@@ -39,6 +39,10 @@ class Edit_Post_Link extends Template_Base implements Subscriber_Interface  {
 				'function_to_add'	=> 'render',
 				'priority'			=> 20,
 			),
+			'woocommerce_after_single_product'	=> array(
+				'function_to_add'	=> 'render',
+				'priority'			=> 20,
+			),
 		);
 	}
 

@@ -84,6 +84,12 @@ $events_manager = new Event_Manager();
 $events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\Asset\Asset_Factory' ) );
 $events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\Tag_Cloud\Tag_Cloud' ) );
 
+/**
+ * WooCommerce
+ */
+$events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\WooCommerce\WooCommerce' ) );
+$events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\WooCommerce\Form_Field' ) );
+
 add_filter( 'italystrap_has_bootstrap', '__return_true' );
 
 /**

@@ -18,7 +18,6 @@ namespace ItalyStrap;
 
 	do_action( 'italystrap_after_entry_content' );
 
-	echo italystrap_ttr_wc(); // XSS ok.
 ?>
 	<span class="clearfix"></span>
 	<meta itemprop="interactionCount" content="UserComments:<?php comments_number( 0, 1, '%' );?>" />

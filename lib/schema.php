@@ -41,6 +41,17 @@ function italystrap_get_words_count() {
  */
 function italystrap_ttr_wc( $words_per_minute = null ) {
 
+	_deprecated_function( __FUNCTION__, '4.0.0', __( 'Use: \ItalyStrap\Core\Schema\Word_Count::render() or \ItalyStrap\Core\Schema\Time_Required::render() instead', 'italystrap' ) );
+
+	if ( class_exists( '\ItalyStrap\Core\Schema\Schema_Base' ) ) {
+		$output = '';
+		$word_count = new \ItalyStrap\Core\Schema\Word_Count();
+		$output .= $word_count->render();
+		$time_required = new \ItalyStrap\Core\Schema\Time_Required();
+		$output .= $time_required->render();
+		return $output;
+	}
+
 	/**
 	 * Number of total words in content
 	 *

@@ -78,6 +78,8 @@ $registered_template_classes = array(
 	'\ItalyStrap\Core\Templates\None',
 	'\ItalyStrap\Core\Templates\Comments',
 	'\ItalyStrap\Core\Templates\Password_Form',
+	'\ItalyStrap\Core\Schema\Word_Count',
+	'\ItalyStrap\Core\Schema\Time_Required',
 );
 
 foreach ( $registered_template_classes as $value ) {

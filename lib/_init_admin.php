@@ -18,9 +18,25 @@ use ItalyStrap\Admin\Category\Editor as Category_Editor;
 use ItalyStrap\Admin\Tinymce\Editor as Text_Editor;
 use ItalyStrap\Admin\Metabox\Register as Register_Meta;
 use ItalyStrap\Admin\Required_Plugins\Register as Required_Plugins;
-use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
+// use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
+
+use ItalyStrap\Admin\Upgrade\Update;
 
 require( TEMPLATEPATH . '/admin/functions.php' );
+
+/**
+ * Add link to Theme Options in case ItalyStrap plugin is active
+ */
+if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
+	/**
+	 * Add new voice to theme menu
+	 */
+	add_action( 'admin_menu', array( $init, 'add_appearance_menu' ) );
+	add_action( 'admin_menu', array( $init, 'add_link_to_theme_option_page' ) );
+}
+
+$update = new Update( $theme_mods );
+$update->register();
 
 $required_plugins = new Required_Plugins;
 add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );

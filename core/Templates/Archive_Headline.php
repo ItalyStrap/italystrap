@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * The pagination controller class
  */
-class Archive_Headline extends Template_Base implements Subscriber_Interface  {
+class Archive_Headline extends Template_Base implements Subscriber_Interface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with

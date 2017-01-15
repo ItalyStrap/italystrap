@@ -56,7 +56,6 @@ $autoload_files = array(
 	'/lib/images.php',
 	'/lib/pointer.php',
 	// '/lib/cleanup.php', // Cleanup Headers.
-	'/lib/script.php',
 	'/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
 	'/lib/schema.php',
 	'/lib/tag_cloud.php',
@@ -67,6 +66,7 @@ $autoload_files = array(
 	'/deprecated/deprecated.php', // Deprecated files and functions.
 	'/deprecated/pagination.php', // Deprecated
 	// '/deprecated/users_meta.php', // Deprecated
+	// '/deprecated/script.php',// Deprecated file
 );
 
 foreach ( $autoload_files as $file ) {
@@ -79,6 +79,9 @@ foreach ( $autoload_files as $file ) {
  * @see /lib/default-constant.php
  */
 set_default_constant();
+
+$events_manager = new Event_Manager();
+$events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\Asset\Asset_Factory' ) );
 
 add_filter( 'italystrap_has_bootstrap', '__return_true' );
 
@@ -164,55 +167,7 @@ add_action( 'wp_update_nav_menu_item', array( $register_nav_menu_edit, 'update_c
 add_filter( 'wp_edit_nav_menu_walker', array( $register_nav_menu_edit, 'register' ), 10, 2 );
 add_action( 'wp_fields_nav_menu_item', array( $register_nav_menu_edit, 'add_new_field' ), 10, 2 );
 
-if ( is_admin() ) {
-
-	require( TEMPLATEPATH . '/admin/functions.php' );
-
-	$required_plugins = new Required_Plugins;
-	add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
-
-	/**
-	 * Admin functionality
-	 */
-	$admin_text_editor = new Text_Editor;
-
-	add_filter( 'mce_buttons_2', array( $admin_text_editor, 'reveal_hidden_tinymce_buttons' ) );
-
-	/**
-	 * Add Next Page Button in First Row
-	 */
-	add_filter( 'mce_buttons', array( $admin_text_editor, 'break_page_button' ), 1, 2 );
-	/**
-	 * @see ItalyStrap\Admin\Tinymce\Editor::add_new_format_to_mce()
-	 */
-	add_filter( 'tiny_mce_before_init', array( $admin_text_editor, 'add_new_format_to_mce' ), 9999, 2 );
-
-	/**
-	 * TinyMCE Editor in Category description
-	 */
-	$editor = new Category_Editor;
-
-	/**
-	 * Add fields to widget areas
-	 * The $register_metabox is declared in plugin
-	 */
-	if ( isset( $register_metabox ) ) {
-		add_action( 'cmb2_admin_init', array( $register_metabox, 'register_widget_areas_fields' ) );
-	}
-
-	/**
-	 * Register the metabox
-	 *
-	 * @var Register_Meta
-	 */
-	$metabox = new Register_Meta;
-	add_action( 'cmb2_admin_init', array( $metabox, 'register_template_settings' ) );
-	add_action( 'cmb2_admin_init', array( $metabox, 'register_layout_settings' ) );
-
-	$contactmethods = new \ItalyStrap\Core\User\Contact_Methods();
-	add_filter( 'user_contactmethods', array( $contactmethods, 'run' ), 10, 1 );
-
-}
+require( TEMPLATEPATH . '/lib/_init_admin.php' );
 
 /**
  * $content_width is a global variable used by WordPress for max image upload sizes
@@ -310,8 +265,6 @@ $template_settings = new Template( (array) $theme_mods );
 // 	'italystrap_template_include',
 // 	array( $template_settings, 'filter_template_include' )
 // );
-
-$events_manager = new Event_Manager();
 
 /**
  * Questo filtro si trova nei file template per gestire commenti e altro

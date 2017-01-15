@@ -45,7 +45,7 @@ class Password_Form extends Template_Base implements Subscriber_Interface {
 	}
 
 	/**
-	 * [get_the_password_form description]
+	 * Get a form for content password protection 
 	 *
 	 * @param  string $output The password form HTML output.
 	 *
@@ -69,7 +69,7 @@ class Password_Form extends Template_Base implements Subscriber_Interface {
 	}
 
 	/**
-	 * [excerpt_password_form description]
+	 * Filtre the excerpt password form.
 	 *
 	 * @param  string $excerpt The post excerpt.
 	 *

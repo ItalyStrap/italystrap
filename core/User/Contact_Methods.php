@@ -16,45 +16,7 @@ namespace ItalyStrap\Core\User;
 /**
  * Contact Method Class
  */
-class Contact_Methods {
-
-	/**
-	 * New contact methods to add.
-	 *
-	 * @var array
-	 */
-	private $new_contact_methods = array();
-
-	/**
-	 * Contact methods to remove.
-	 *
-	 * @var array
-	 */
-	private $contact_methods_to_remove = array();
-
-	/**
-	 * Init the Class
-	 */
-	function __construct() {
-
-		$this->new_contact_methods = array(
-			'avatar'			=> __( 'Url avatar', 'italystrap' ),
-			'skype'				=> __( 'Skype', 'italystrap' ),
-			'twitter'			=> __( 'Twitter', 'italystrap' ),
-			'google_profile'	=> __( 'Google Profile URL', 'italystrap' ),
-			'google_page'		=> __( 'Google Page URL', 'italystrap' ),
-			'fb_profile'		=> __( 'Facebook Profile URL', 'italystrap' ),
-			'fb_page'			=> __( 'Facebook Page URL', 'italystrap' ),
-			'linkedIn'			=> __( 'LinkedIn', 'italystrap' ),
-			'pinterest'			=> __( 'Pinterest', 'italystrap' ),
-		);
-
-		$this->contact_methods_to_remove = array(
-			'yim',
-			'jabber',
-			'aim',
-		);
-	}
+class Contact_Methods extends Contact_Methods_Base {
 
 	/**
 	 * Add user contact method

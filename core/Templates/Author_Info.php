@@ -65,6 +65,8 @@ class Author_Info extends Template_Base implements Subscriber_Interface  {
 			return;
 		}
 
+		$this->user_list = new \ItalyStrap\Core\User\Contact_Method_List();
+
 		parent::render();
 	}
 }

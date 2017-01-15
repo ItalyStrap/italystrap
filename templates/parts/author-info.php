@@ -55,6 +55,8 @@ if ( ! $author_info ) {
 				<p itemprop="url"><strong><?php esc_attr_e( 'Web site:', 'ItalyStrap' ); ?></strong> <a href="<?php echo esc_html( $author_info->user_url ); ?>"><?php echo esc_html( $author_info->user_url ); ?></a></p>
 			<?php } ?>
 
+			<?php // $this->user_list->render(); ?>
+
 			<ul class="list-inline">
 				<?php
 				if ( $author_info->twitter ) { ?>

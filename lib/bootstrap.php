@@ -58,7 +58,6 @@ $autoload_files = array(
 	// '/lib/cleanup.php', // Cleanup Headers.
 	'/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
 	'/lib/schema.php',
-	'/lib/tag_cloud.php',
 	'/lib/password_protection.php', // Function for Post/page password protection Bootstrap style.
 	'/lib/wp-sanitize-capital-p.php',
 	'/lib/woocommerce.php',
@@ -67,6 +66,7 @@ $autoload_files = array(
 	'/deprecated/pagination.php', // Deprecated
 	// '/deprecated/users_meta.php', // Deprecated
 	// '/deprecated/script.php',// Deprecated file
+	// '/deprecated/tag_cloud.php',
 );
 
 foreach ( $autoload_files as $file ) {
@@ -82,6 +82,7 @@ set_default_constant();
 
 $events_manager = new Event_Manager();
 $events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\Asset\Asset_Factory' ) );
+$events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\Tag_Cloud\Tag_Cloud' ) );
 
 add_filter( 'italystrap_has_bootstrap', '__return_true' );
 

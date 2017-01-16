@@ -55,8 +55,7 @@ $autoload_files = array(
 	'/lib/images.php',
 	'/lib/pointer.php',
 	'/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
-	// '/lib/wp-sanitize-capital-p.php', // Moved to the plugin
-	// '/lib/debug.php', // Moved to the plugin
+
 	'/deprecated/deprecated.php', // Deprecated files and functions.
 	'/deprecated/pagination.php', // Deprecated
 	// '/deprecated/users_meta.php', // Deprecated
@@ -66,6 +65,8 @@ $autoload_files = array(
 	// '/deprecated/password_protection.php', // Function for Post/page password protection Bootstrap style.
 	// '/deprecated/cleanup.php', // Cleanup Headers. Moved to the plugin.
 	// '/deprecated/schema.php', // Deprecated
+	// '/lib/wp-sanitize-capital-p.php', // Moved to the plugin
+	// '/lib/debug.php', // Moved to the plugin
 );
 
 foreach ( $autoload_files as $file ) {

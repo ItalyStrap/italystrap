@@ -28,6 +28,8 @@ class Register {
 	 */
 	private $_prefix;
 
+	private $object_types = array();
+
 	/**
 	 * Init the constructor
 	 */
@@ -42,6 +44,12 @@ class Register {
 
 		$this->_prefix = '_' . $this->prefix;
 
+		$this->object_types = array(
+			 'page',
+			 'post',
+			 'download',
+		);
+
 	}
 
 	/**
@@ -49,7 +57,7 @@ class Register {
 	 */
 	public function register_template_settings() {
 
-		$template_settings_metabox_object_types = apply_filters( 'italystrap_template_settings_metabox_object_types', array( 'page', 'post' ) );
+		$template_settings_metabox_object_types = apply_filters( 'italystrap_template_settings_metabox_object_types', $this->object_types );
 
 		/**
 		 * Sample metabox to demonstrate each field type included
@@ -115,7 +123,7 @@ class Register {
 	 */
 	public function register_layout_settings() {
 	
-		$layout_settings_metabox_object_types = apply_filters( 'italystrap_layout_settings_metabox_object_types', array( 'page', 'post' ) );
+		$layout_settings_metabox_object_types = apply_filters( 'italystrap_layout_settings_metabox_object_types', $this->object_types );
 
 		/**
 		 * Sample metabox to demonstrate each field type included

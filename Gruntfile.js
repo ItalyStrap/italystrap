@@ -269,6 +269,7 @@ module.exports = function(grunt) {
                             '!.sass-cache/**',
                             '!bower/**',
                             '!node_modules/**',
+                            '!tests/**',
                             '!.gitattributes',
                             '!.gitignore',
                             // '!bower.json',

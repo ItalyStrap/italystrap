@@ -4,6 +4,10 @@
  *
  * Handle the JS regiter and enque
  *
+ * @author      hellofromTonya
+ * @link        http://hellofromtonya.github.io/Fulcrum/
+ * @license     GPL-2.0+
+ *
  * @since 2.0.0
  *
  * @package ItalyStrap\Core

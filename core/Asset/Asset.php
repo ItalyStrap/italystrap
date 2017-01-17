@@ -4,6 +4,10 @@
  *
  * Handle the CSS and JS regiter and enque
  *
+ * @author      hellofromTonya
+ * @link        http://hellofromtonya.github.io/Fulcrum/
+ * @license     GPL-2.0+
+ *
  * @since 2.0.0
  *
  * @package ItalyStrap\Core
@@ -83,11 +87,19 @@ abstract class Asset {
 
 			if ( isset( $config['pre_register'] ) ) {
 				$this->pre_register( $config );
-				continue;
+				continue; // <- This will continue and it wont load the localize object.
 			}
 
 			if ( $this->is_load_on( $config ) ) {
 				$this->enqueue( $config );
+			}
+
+			if ( empty( $config['localize'] ) ) {
+				continue;
+			}
+
+			if ( is_array( $config['localize'] ) ) {
+				$this->localize_script( $config );
 			}
 		}
 	}
@@ -112,6 +124,16 @@ abstract class Asset {
 
 		if ( ! isset( $config['load_on'] ) ) {
 			return true;
+		}
+
+		/**
+		 * Example:
+		 * 'load_on'		=> false,
+		 * 'load_on'		=> true,
+		 * 'load_on'		=> is_my_function:return_bool(),
+		 */
+		if ( is_bool( $config['load_on'] ) ) {
+			return $config['load_on'];
 		}
 
 		if ( ! is_string( $config['load_on'] ) ) {

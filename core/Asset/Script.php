@@ -4,7 +4,11 @@
  *
  * Handle the JS regiter and enque
  *
- * @since 2.0.0
+ * @author      hellofromTonya
+ * @link        http://hellofromtonya.github.io/Fulcrum/
+ * @license     GPL-2.0+
+ *
+ * @since 4.0.0
  *
  * @package ItalyStrap\Core
  */
@@ -23,7 +27,7 @@ class Script extends Asset {
 	/**
 	 * De-register the script
 	 *
-	 * @since 1.0.0
+	 * @since 4.0.0
 	 *
 	 * @return null
 	 */
@@ -34,7 +38,7 @@ class Script extends Asset {
 	/**
 	 * Pre register the script
 	 *
-	 * @since 2.0.0
+	 * @since 4.0.0
 	 */
 	protected function pre_register( array $config = array()  ) {
 
@@ -50,9 +54,9 @@ class Script extends Asset {
 	/**
 	 * Enqueue the script
 	 *
-	 * @since 2.0.0
+	 * @since 4.0.0
 	 */
-	protected function enqueue(  array $config = array()  ) {
+	protected function enqueue( array $config = array() ) {
 
 		wp_enqueue_script(
 			$config['handle'],
@@ -64,9 +68,27 @@ class Script extends Asset {
 	}
 
 	/**
+	 * Localize the script
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/wp_localize_script/
+	 *
+	 * @since 4.0.0
+	 *
+	 * @return null
+	 */
+	protected function localize_script( array $config = array() ) {
+		var_dump( $config['handle'] );
+		wp_localize_script(
+			$config['handle'],
+			$config['localize']['object_name'],
+			$config['localize']['params']
+		);
+	}
+
+	/**
 	 * Get the default structure.
 	 *
-	 * @since 2.0.0
+	 * @since 4.0.0
 	 *
 	 * @return array
 	 */
@@ -78,6 +100,7 @@ class Script extends Asset {
 			'deps'		=> null,
 			'version'	=> null,
 			'in_footer'	=> true,
+			'localize'  => '',
 		);
 	}
 }

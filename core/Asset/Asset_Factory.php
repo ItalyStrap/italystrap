@@ -4,6 +4,9 @@
  *
  * This class load all theme assets enqueued.
  *
+ * @author      Enea Overclokk
+ * @license     GPL-2.0+
+ *
  * @link www.italystrap.com
  * @since 4.0.0
  *
@@ -32,7 +35,7 @@ class Asset_Factory implements Subscriber_Interface {
 		return array(
 			// 'hook_name'				=> 'method_name',
 			'wp_enqueue_scripts'	=> 'add_style_and_script',
-			'script_loader_src'	=> array(
+			'script_loader_src'		=> array(
 				'function_to_add'	=> 'jquery_local_fallback',
 				'priority'			=> 10,
 				'accepted_args'		=> 2,
@@ -126,6 +129,16 @@ class Asset_Factory implements Subscriber_Interface {
 				'deps'			=> array( 'jquery' ),
 				'version'		=> $ver,
 				'in_footer'		=> true,
+				/**
+				 * For now the localize object is set only if the script is not deregister
+				 * and if is appendend to the config array of the script to load.
+				 */
+				'localize'		=> array(
+					'object_name'	=> 'pluginParams',
+					'params'		=> array(
+						'ajaxurl'		=> admin_url( '/admin-ajax.php' ),
+					),
+				),
 			),
 			array(
 				'handle'		=> 'comment-reply',

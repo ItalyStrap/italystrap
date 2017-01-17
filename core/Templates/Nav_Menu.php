@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Core\Navbar\Navbar as Nav_Menu;
+use ItalyStrap\Core\Navbar\Navbar;
 
 /**
  * Class description
@@ -44,7 +44,7 @@ class Nav_Menu extends Template_Base implements Subscriber_Interface  {
 	 */
 	public function render() {
 		// $navbar = new Nav_Menu( $this->theme_mod );
-		$navbar = new Nav_Menu( self::$mods );
+		$navbar = new Navbar( self::$mods );
 		$navbar->output();
 	}
 }

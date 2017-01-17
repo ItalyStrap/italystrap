@@ -13,7 +13,7 @@
 namespace ItalyStrap\Core\Templates;
 
 use ItalyStrap\Core\Event\Subscriber_Interface;
-use ItalyStrap\Core\Pagination\Pagination;
+use ItalyStrap\Core\Pagination\Pagination as BT_Pagination;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -44,7 +44,7 @@ class Pagination extends Template_Base implements Subscriber_Interface  {
 	 * Render the output of the controller.
 	 */
 	public function render() {
-		$pagination = new Pagination( $this->theme_mod );
+		$pagination = new  BT_Pagination( $this->theme_mod );
 		$pagination->render();
 	}
 }

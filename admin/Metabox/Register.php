@@ -48,6 +48,7 @@ class Register {
 			 'page',
 			 'post',
 			 'download',
+			 'product',
 		);
 
 	}

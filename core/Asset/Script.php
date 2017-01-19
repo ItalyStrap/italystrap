@@ -77,7 +77,7 @@ class Script extends Asset {
 	 * @return null
 	 */
 	protected function localize_script( array $config = array() ) {
-		var_dump( $config['handle'] );
+
 		wp_localize_script(
 			$config['handle'],
 			$config['localize']['object_name'],

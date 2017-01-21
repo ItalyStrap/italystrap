@@ -114,7 +114,9 @@ $theme_mods = wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
  *
  * @var Event_Manager
  */
-$events_manager = new Event_Manager();
+if ( ! isset( $events_manager ) ) {
+	$events_manager = new Event_Manager();
+}
 
 /**
  * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.

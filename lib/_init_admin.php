@@ -20,8 +20,6 @@ use ItalyStrap\Admin\Metabox\Register as Register_Meta;
 use ItalyStrap\Admin\Required_Plugins\Register as Required_Plugins;
 // use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
 
-use ItalyStrap\Admin\Upgrade\Update;
-
 require( TEMPLATEPATH . '/admin/functions.php' );
 
 /**
@@ -34,9 +32,6 @@ if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
 	add_action( 'admin_menu', array( $init, 'add_appearance_menu' ) );
 	add_action( 'admin_menu', array( $init, 'add_link_to_theme_option_page' ) );
 }
-
-$update = new Update( $theme_mods );
-$update->register();
 
 $required_plugins = new Required_Plugins;
 add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );

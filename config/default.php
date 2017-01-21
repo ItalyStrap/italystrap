@@ -41,6 +41,8 @@ return array(
 	'background_repeat'				=> 'no-repeat', // Set by WordPress.
 	'background_position_x'			=> 'center', // Set by WordPress.
 
+	'custom_css'					=> '',
+
 	/**
 	 * Default images
 	 */

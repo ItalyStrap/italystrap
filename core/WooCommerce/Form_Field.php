@@ -12,7 +12,7 @@
 
 namespace ItalyStrap\Core\WooCommerce;
 
-use ItalyStrap\Core\Event\Subscriber_Interface;
+use ItalyStrap\Events\Subscriber_Interface;
 
 /**
  * Form_Field

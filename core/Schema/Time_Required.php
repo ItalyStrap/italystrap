@@ -12,7 +12,7 @@
 
 namespace ItalyStrap\Core\Schema;
 
-use ItalyStrap\Core\Event\Subscriber_Interface;
+use ItalyStrap\Events\Subscriber_Interface;
 
 /**
  * Time_Required

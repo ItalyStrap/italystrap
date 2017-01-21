@@ -17,14 +17,14 @@ if ( is_admin() ) {
 	return;
 }
 
-$events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\Asset\Asset_Factory' ) );
-$events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\Tag_Cloud\Tag_Cloud' ) );
+$events_manager->add_events( $injector->make( '\ItalyStrap\Core\Asset\Asset_Factory' ) );
+$events_manager->add_events( $injector->make( '\ItalyStrap\Core\Tag_Cloud\Tag_Cloud' ) );
 
 /**
  * WooCommerce
  */
-$events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\WooCommerce\WooCommerce' ) );
-$events_manager->add_events_test( $injector->make( '\ItalyStrap\Core\WooCommerce\Form_Field' ) );
+$events_manager->add_events( $injector->make( '\ItalyStrap\Core\WooCommerce\WooCommerce' ) );
+$events_manager->add_events( $injector->make( '\ItalyStrap\Core\WooCommerce\Form_Field' ) );
 
 /**
  * Layout object
@@ -83,8 +83,8 @@ $registered_template_classes = array(
 );
 
 foreach ( $registered_template_classes as $value ) {
-	// $events_manager->add_events_test( new $value );
-	$events_manager->add_events_test( $injector->make( $value ) );
+	// $events_manager->add_events( new $value );
+	$events_manager->add_events( $injector->make( $value ) );
 }
 
 add_action( 'italystrap_footer', array( $template_settings, 'do_footer' ) );

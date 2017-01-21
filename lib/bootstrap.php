@@ -26,8 +26,6 @@ use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
 use ItalyStrap\Core\Router\Router;
 use ItalyStrap\Core\Router\Controller;
 
-use ItalyStrap\Core\Event\Manager as Event_Manager;
-
 use ItalyStrap\Core\Image\Size as Size;
 use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
 // use ItalyStrap\Core\Navbar\Navbar as Navbar;
@@ -108,15 +106,6 @@ if ( ! isset( $theme_mods ) ) {
  */
 // $theme_mods = wp_parse_args( get_theme_mods(), $italystrap_defaults );
 $theme_mods = wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
-
-/**
- * The new events manager in ALPHA vesrion.
- *
- * @var Event_Manager
- */
-if ( ! isset( $events_manager ) ) {
-	$events_manager = new Event_Manager();
-}
 
 /**
  * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.

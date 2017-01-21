@@ -12,7 +12,7 @@
 
 namespace ItalyStrap\Core\Templates;
 
-use ItalyStrap\Core\Event\Subscriber_Interface;
+use ItalyStrap\Events\Subscriber_Interface;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();

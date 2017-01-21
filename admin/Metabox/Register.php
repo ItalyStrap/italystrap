@@ -66,7 +66,7 @@ class Register {
 		$cmb = new_cmb2_box(
 			array(
 				'id'            => $this->prefix . '-template-settings-metabox',
-				'title'         => __( 'Advanced settings', 'italystrap' ),
+				'title'         => __( 'Template settings', 'italystrap' ),
 				'object_types'  => $template_settings_metabox_object_types,
 				'context'    => 'side',
 				'priority'   => 'low',
@@ -132,7 +132,7 @@ class Register {
 		$cmb = new_cmb2_box(
 			array(
 				'id'            => $this->prefix . '-layout-settings-metabox',
-				'title'         => __( 'Advanced settings', 'italystrap' ),
+				'title'         => __( 'Layout settings', 'italystrap' ),
 				'object_types'  => $layout_settings_metabox_object_types,
 				'context'    => 'side',
 				'priority'   => 'low',

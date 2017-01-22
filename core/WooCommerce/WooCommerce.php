@@ -27,7 +27,7 @@ class WooCommerce implements Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_hooks() {
+	public static function get_subscribed_events() {
 
 		return array(
 			// 'hook_name'				=> 'method_name',

@@ -83,7 +83,6 @@ $registered_template_classes = array(
 );
 
 foreach ( $registered_template_classes as $value ) {
-	// $events_manager->add_events( new $value );
 	$events_manager->add_events( $injector->make( $value ) );
 }
 

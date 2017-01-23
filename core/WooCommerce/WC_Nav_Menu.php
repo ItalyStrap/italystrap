@@ -12,7 +12,7 @@
 
 namespace ItalyStrap\Core\WooCommerce;
 
-use ItalyStrap\Core\Event\Subscriber_Interface;
+use ItalyStrap\Event\Subscriber_Interface;
 
 /**
  * WC_Nav_Menu

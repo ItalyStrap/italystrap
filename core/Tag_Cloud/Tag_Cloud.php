@@ -16,7 +16,7 @@
 
 namespace ItalyStrap\Core\Tag_Cloud;
 
-use ItalyStrap\Events\Subscriber_Interface;
+use ItalyStrap\Event\Subscriber_Interface;
 
 /**
  * Tag_Cloud

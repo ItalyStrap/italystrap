@@ -12,7 +12,7 @@
 
 namespace ItalyStrap\Core\Schema;
 
-use ItalyStrap\Events\Subscriber_Interface;
+use ItalyStrap\Event\Subscriber_Interface;
 
 /**
  * Word_Count

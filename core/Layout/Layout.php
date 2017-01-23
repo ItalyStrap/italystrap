@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Events\Subscriber_Interface;
+use ItalyStrap\Event\Subscriber_Interface;
 
 /**
  * Layout Class
@@ -212,37 +212,5 @@ class Layout implements Subscriber_Interface {
 		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['sidebar_secondary'];
 		return $attr;
 	
-	}
-
-	/**
-	 * Output the sidebar.php file if layout allows for it.
-	 *
-	 * @since 4.0.0
-	 */
-	function get_sidebar() {
-
-		/**
-		 * Don't load sidebar on pages that doesn't need it
-		 */
-		if ( 'full_width' === $this->get_layout_settings() ) {
-			/**
-			 * This hook is usefull for example when you need to remove the
-			 * WooCommerce sidebar on full width page.
-			 *
-			 * @example
-			 * add_action( 'italystrap_full_width_layout', function () {
-			 *     remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
-			 * }, 10 );
-			 */
-			do_action( 'italystrap_full_width_layout' );
-			return;
-		}
-
-		get_sidebar();
-
-		if ( in_array( $this->get_layout_settings(), array(), true ) ) {
-			get_sidebar( 'secondary' );
-		}
-
 	}
 }

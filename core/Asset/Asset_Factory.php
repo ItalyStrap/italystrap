@@ -15,7 +15,7 @@
 
 namespace ItalyStrap\Core\Asset;
 
-use ItalyStrap\Events\Subscriber_Interface;
+use ItalyStrap\Event\Subscriber_Interface;
 
 /**
  * Asset_Loader

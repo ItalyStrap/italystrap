@@ -17,6 +17,16 @@ if ( is_admin() ) {
 	return;
 }
 
+/**
+ * Added for back-compatibility with old hooks
+ *
+ * @since 4.0.0
+ *
+ * @var Old_Hooks
+ */
+$hooks_migrations = new \ItalyStrap\Migrations\Old_Hooks();
+$hooks_migrations->convert();
+
 $events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\Asset\Asset_Factory' ) );
 $events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\Tag_Cloud\Tag_Cloud' ) );
 
@@ -33,8 +43,6 @@ $events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\WooCommerce\
  */
 $site_layout = new Layout( (array) $theme_mods );
 add_action( 'italystrap_theme_loaded', array( $site_layout, 'init' ) );
-
-add_action( 'italystrap_after_content', array( $site_layout, 'get_sidebar' ) );
 
 $events_manager->add_subscriber( $site_layout );
 
@@ -74,6 +82,7 @@ $registered_template_classes = array(
 	'\ItalyStrap\Core\Templates\Pager',
 	'\ItalyStrap\Core\Templates\Pagination',
 	'\ItalyStrap\Core\Templates\None',
+	'\ItalyStrap\Core\Templates\Sidebar',
 	'\ItalyStrap\Core\Templates\Comments',
 	'\ItalyStrap\Core\Templates\Password_Form',
 	'\ItalyStrap\Core\Schema\Word_Count',

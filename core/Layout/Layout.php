@@ -14,10 +14,42 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Events\Subscriber_Interface;
+
 /**
  * Layout Class
  */
-class Layout {
+class Layout implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked 'italystrap_before_loop' - 20
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'				=> 'method_name',
+			'italystrap_content_attr'	=> array(
+				'function_to_add'	=> 'set_content_class',
+				'priority'			=> 10,
+				'accepted_args'		=> 3
+			),
+			'italystrap_sidebar_attr'	=> array(
+				'function_to_add'	=> 'set_sidebar_class',
+				'priority'			=> 10,
+				'accepted_args'		=> 3
+			),
+			'italystrap_sidebar_secondary_attr'	=> array(
+				'function_to_add'	=> 'set_sidebar_secondary_class',
+				'priority'			=> 10,
+				'accepted_args'		=> 3
+			),
+		);
+	}
 
 	/**
 	 * Theme mods

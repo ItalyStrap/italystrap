@@ -17,14 +17,14 @@ if ( is_admin() ) {
 	return;
 }
 
-$events_manager->add_events( $injector->make( '\ItalyStrap\Core\Asset\Asset_Factory' ) );
-$events_manager->add_events( $injector->make( '\ItalyStrap\Core\Tag_Cloud\Tag_Cloud' ) );
+$events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\Asset\Asset_Factory' ) );
+$events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\Tag_Cloud\Tag_Cloud' ) );
 
 /**
  * WooCommerce
  */
-$events_manager->add_events( $injector->make( '\ItalyStrap\Core\WooCommerce\WooCommerce' ) );
-$events_manager->add_events( $injector->make( '\ItalyStrap\Core\WooCommerce\Form_Field' ) );
+$events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\WooCommerce\WooCommerce' ) );
+$events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\WooCommerce\Form_Field' ) );
 
 /**
  * Layout object
@@ -36,9 +36,7 @@ add_action( 'italystrap_theme_loaded', array( $site_layout, 'init' ) );
 
 add_action( 'italystrap_after_content', array( $site_layout, 'get_sidebar' ) );
 
-add_filter( 'italystrap_content_attr', array( $site_layout, 'set_content_class' ), 10, 3 );
-add_filter( 'italystrap_sidebar_attr', array( $site_layout, 'set_sidebar_class' ), 10, 3 );
-add_filter( 'italystrap_sidebar_secondary_attr', array( $site_layout, 'set_sidebar_secondary_class' ), 10, 3 );
+$events_manager->add_subscriber( $site_layout );
 
 /**
  * Template object
@@ -83,7 +81,7 @@ $registered_template_classes = array(
 );
 
 foreach ( $registered_template_classes as $value ) {
-	$events_manager->add_events( $injector->make( $value ) );
+	$events_manager->add_subscriber( $injector->make( $value ) );
 }
 
 add_action( 'italystrap_footer', array( $template_settings, 'do_footer' ) );

@@ -76,8 +76,8 @@ class Tag_Cloud implements Subscriber_Interface {
 	public function widget_tag_cloud_args( $args ) {
 
 		$args['number'] = 20; // show less tags
-		$args['largest'] = 0.6; // make largest and smallest the same - i don't like the varying font-size look
-		$args['smallest'] = 0.6;
+		$args['largest'] = 0.7; // make largest and smallest the same - i don't like the varying font-size look
+		$args['smallest'] = 0.7;
 		$args['unit'] = 'em';
 
 		return $args;

@@ -34,10 +34,14 @@ class Asset_Factory implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'				=> 'method_name',
-			'wp_enqueue_scripts'	=> 'add_style_and_script',
+			'wp_enqueue_scripts'	=> array(
+				'function_to_add'	=> 'add_style_and_script',
+				'priority'			=> 100, // Priorità da testare
+				// 'accepted_args'		=> 2,
+			),
 			'script_loader_src'		=> array(
 				'function_to_add'	=> 'jquery_local_fallback',
-				'priority'			=> 10,
+				'priority'			=> 100, // Priorità da testare
 				'accepted_args'		=> 2,
 			),
 			'wp_footer'	=> 'jquery_local_fallback',

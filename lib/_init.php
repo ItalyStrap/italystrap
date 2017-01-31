@@ -27,14 +27,14 @@ if ( is_admin() ) {
 $hooks_migrations = new \ItalyStrap\Migrations\Old_Hooks();
 $hooks_migrations->convert();
 
-$events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\Asset\Asset_Factory' ) );
-$events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\Tag_Cloud\Tag_Cloud' ) );
+$event_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\Asset\Asset_Factory' ) );
+$event_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\Tag_Cloud\Tag_Cloud' ) );
 
 /**
  * WooCommerce
  */
-$events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\WooCommerce\WooCommerce' ) );
-$events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\WooCommerce\Form_Field' ) );
+$event_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\WooCommerce\WooCommerce' ) );
+$event_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\WooCommerce\Form_Field' ) );
 
 /**
  * Layout object
@@ -44,7 +44,7 @@ $events_manager->add_subscriber( $injector->make( '\ItalyStrap\Core\WooCommerce\
 $site_layout = new Layout( (array) $theme_mods );
 add_action( 'italystrap_theme_loaded', array( $site_layout, 'init' ) );
 
-$events_manager->add_subscriber( $site_layout );
+$event_manager->add_subscriber( $site_layout );
 
 /**
  * Template object
@@ -90,7 +90,7 @@ $registered_template_classes = array(
 );
 
 foreach ( $registered_template_classes as $value ) {
-	$events_manager->add_subscriber( $injector->make( $value ) );
+	$event_manager->add_subscriber( $injector->make( $value ) );
 }
 
 add_action( 'italystrap_footer', array( $template_settings, 'do_footer' ) );

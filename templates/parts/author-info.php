@@ -49,7 +49,7 @@ if ( ! $author_info ) {
 		<div class="col-sm-10">
 			<h4 class="author-nick" itemprop="name"><?php echo esc_attr( $author_info->nickname ); ?></h4>
 			<?php if ( $author_info->description ) { ?>
-				<p itemprop="description"><?php echo esc_attr( $author_info->description ); ?></a></p>
+				<p itemprop="description"><?php echo wp_kses_post( $author_info->description ); ?></a></p>
 			<?php } ?>
 			<?php if ( $author_info->user_url ) { ?>
 				<p itemprop="url"><strong><?php esc_attr_e( 'Web site:', 'ItalyStrap' ); ?></strong> <a href="<?php echo esc_html( $author_info->user_url ); ?>"><?php echo esc_html( $author_info->user_url ); ?></a></p>

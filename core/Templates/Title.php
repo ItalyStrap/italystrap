@@ -40,13 +40,14 @@ class Title extends Template_Base implements Subscriber_Interface {
 	}
 
 	/**
-	 * Function description
-	 *
-	 * @hoocked 'italystrap_before_entry_content' - 10
+	 * Render the output of the controller.
 	 */
-	// public function render() {
+	public function render() {
 
-	// 	// $this->get_template_part( $this->registered_files_path['title'] );
-	// 	$this->get_template_part( $this->registered_files_path[ $this->class_name ] );
-	// }
+		if ( in_array( 'hide_title', $this->get_template_settings(), true ) ) {
+			return;
+		}
+
+		parent::render();
+	}
 }

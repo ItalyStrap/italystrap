@@ -61,7 +61,11 @@ class Author_Info extends Template_Base implements Subscriber_Interface  {
 	 */
 	public function render_after_content() {
 
-		if ( 'single' !== CURRENT_TEMPLATE_SLUG && 'page' !== CURRENT_TEMPLATE_SLUG ) {
+		if ( ! is_singular() ) {
+			return;
+		}
+
+		if ( in_array( 'hide_author', $this->get_template_settings(), true ) ) {
 			return;
 		}
 

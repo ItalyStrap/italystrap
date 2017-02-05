@@ -44,7 +44,7 @@ class Comments extends Template_Base implements Subscriber_Interface  {
 	 */
 	public function render() {
 
-		if ( 'page' !== CURRENT_TEMPLATE_SLUG && 'single' !== CURRENT_TEMPLATE_SLUG ) {
+		if ( ! is_singular() ) {
 			return null;
 		}
 	

@@ -85,11 +85,11 @@ class Template_Base implements Template_Interface {
 		}
 
 		return get_the_ID();
-	
 	}
 
 	/**
-	 * [get_template_settings description]
+	 * Get the template parts settings.
+	 * This methos has to be called inside a loop.
 	 *
 	 * @return array Return the array with template part settings.
 	 */
@@ -100,8 +100,16 @@ class Template_Base implements Template_Interface {
 		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
 		 */
 
-		return get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
+		return (array) get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
 	}
+
+	/**
+	 * Set the template parts settings.
+	 */
+	// public function set_template_settings() {
+
+	// 	return $this->template_settings = (array) apply_filters( 'italystrap_template_settings', $this->get_template_settings() );
+	// }
 
 	/**
 	 * Load a template part into a template

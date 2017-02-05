@@ -44,7 +44,7 @@ class Pager extends Template_Base implements Subscriber_Interface  {
 	 */
 	public function render() {
 
-		if ( 'single' !== CURRENT_TEMPLATE_SLUG ) {
+		if (  ! is_single()  ) {
 			return;
 		}
 	

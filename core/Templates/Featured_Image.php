@@ -41,4 +41,16 @@ class Featured_Image extends Template_Base implements Subscriber_Interface  {
 			),
 		);
 	}
+
+	/**
+	 * Render the output of the controller.
+	 */
+	public function render() {
+
+		if ( in_array( 'hide_thumb', $this->get_template_settings(), true ) ) {
+			return;
+		}
+
+		parent::render();
+	}
 }

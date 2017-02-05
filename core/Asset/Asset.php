@@ -87,7 +87,7 @@ abstract class Asset {
 
 			if ( isset( $config['pre_register'] ) ) {
 				$this->pre_register( $config );
-				continue; // <- This will continue and it wont load the localize object.
+				continue; // <- This will continue and it wont load the localized object.
 			}
 
 			if ( $this->is_load_on( $config ) ) {
@@ -130,7 +130,7 @@ abstract class Asset {
 		 * Example:
 		 * 'load_on'		=> false,
 		 * 'load_on'		=> true,
-		 * 'load_on'		=> is_my_function:return_bool(),
+		 * 'load_on'		=> is_my_function\return_bool(),
 		 */
 		if ( is_bool( $config['load_on'] ) ) {
 			return $config['load_on'];

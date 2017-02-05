@@ -32,6 +32,7 @@ class Script extends Asset {
 	 * @return null
 	 */
 	public function deregister( $handle ) {
+		wp_dequeue_script( $handle );
 		wp_deregister_script( $handle );
 	}
 

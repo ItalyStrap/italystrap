@@ -34,10 +34,13 @@ class Asset_Factory implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'				=> 'method_name',
+			// 'wp_print_styles'		=> array( // This action fires after 'wp_enqueue_scripts' useful for deregistering assets added in a wrong place like jetpacl does.
+			// 	'function_to_add'	=> 'maybe_deregister_styles_on_wp_print_styles',
+			// 	'priority'			=> 9999999999, // Priorità da testare
+			// ),
 			'wp_enqueue_scripts'	=> array(
 				'function_to_add'	=> 'add_style_and_script',
-				'priority'			=> 100, // Priorità da testare
-				// 'accepted_args'		=> 2,
+				'priority'			=> 9999999999, // Priorità da testare
 			),
 			'script_loader_src'		=> array(
 				'function_to_add'	=> 'jquery_local_fallback',
@@ -157,6 +160,12 @@ class Asset_Factory implements Subscriber_Interface {
 		 * If CDN is down load from callback
 		 */
 		// add_filter( 'script_loader_src', __NAMESPACE__ . '\jquery_local_fallback', 10, 2 );
+	}
+
+	/**
+	 *
+	 */
+	public function maybe_deregister_styles_on_wp_print_styles( $value = '' ) {
 	}
 
 	/**

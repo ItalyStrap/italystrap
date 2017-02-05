@@ -30,6 +30,7 @@ class Style extends Asset {
 	 * @since 2.0.0
 	 */
 	public function deregister( $handle ) {
+		wp_dequeue_style( $handle );
 		wp_deregister_style( $handle );
 	}
 

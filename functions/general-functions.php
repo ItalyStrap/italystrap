@@ -190,7 +190,7 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 
 			if ( true === $value ) {
 
-				$html .= esc_html( $key ) . ' ';
+				$html .= ' ' . esc_html( $key );
 			} else {
 
 				$html .= sprintf(

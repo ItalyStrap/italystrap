@@ -22,13 +22,7 @@
 
 namespace ItalyStrap;
 
-$template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
-
 $context = null;
-
-if ( in_array( 'hide_thumb', (array) $template_settings, true ) ) {
-	return;
-}
 
 if ( empty( $post ) ) {
 	global $post;

@@ -9,10 +9,4 @@
 
 namespace ItalyStrap;
 
-$template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
-
-if ( in_array( 'hide_content', $template_settings, true ) ) {
-	return;
-}
-
 ?><div <?php Core\get_attr( 'entry_content', array( 'class' => 'entry-content', 'itemprop' => 'articleBody' ), true ); ?>><?php if ( is_singular() ) { the_content(); } else { the_excerpt(); } ?></div>

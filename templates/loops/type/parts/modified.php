@@ -9,8 +9,4 @@
 
 namespace ItalyStrap;
 
-if ( ! is_preview() ) {
-	return;
-}
-
 ?><p class="sr-only"><?php esc_attr_e( 'Last edit:', 'italystrap' ); ?> <time datetime="<?php the_modified_time( 'Y-m-d' ) ?>" itemprop="dateModified"><?php the_modified_time( 'd F Y' ) ?></time></p><span class="clearfix"></span>

@@ -11,12 +11,6 @@
 
 namespace ItalyStrap;
 
-$template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
-
-if ( in_array( 'hide_title', $template_settings, true ) ) {
-	return;
-}
-
 $tag = is_singular() ? 'h1' : 'h2';
 $title_prop = is_singular() ? 'headline' : 'name';
 $args = array(

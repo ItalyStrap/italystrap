@@ -60,33 +60,33 @@ $template_settings = new Template( (array) $theme_mods );
 /**
  * Questo filtro si trova nei file template per gestire commenti e altro
  */
-add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
+// add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
 
 $registered_template_classes = array(
-	'\ItalyStrap\Core\Templates\Navbar_Top',
-	'\ItalyStrap\Core\Templates\Header_Image',
-	'\ItalyStrap\Core\Templates\Nav_Menu',
-	'\ItalyStrap\Core\Templates\Breadcrumbs',
-	'\ItalyStrap\Core\Templates\Archive_Headline',
-	'\ItalyStrap\Core\Templates\Author_Info',
-	'\ItalyStrap\Core\Templates\Loop',
-	'\ItalyStrap\Core\Templates\Entry',
-	'\ItalyStrap\Core\Templates\Title',
-	'\ItalyStrap\Core\Templates\Meta',
-	'\ItalyStrap\Core\Templates\Preview',
-	'\ItalyStrap\Core\Templates\Featured_Image',
-	'\ItalyStrap\Core\Templates\Content',
-	'\ItalyStrap\Core\Templates\Link_Pages',
-	'\ItalyStrap\Core\Templates\Modified',
-	'\ItalyStrap\Core\Templates\Edit_Post_Link',
-	'\ItalyStrap\Core\Templates\Pager',
-	'\ItalyStrap\Core\Templates\Pagination',
-	'\ItalyStrap\Core\Templates\None',
-	'\ItalyStrap\Core\Templates\Sidebar',
-	'\ItalyStrap\Core\Templates\Comments',
-	'\ItalyStrap\Core\Templates\Password_Form',
-	'\ItalyStrap\Core\Schema\Word_Count',
-	'\ItalyStrap\Core\Schema\Time_Required',
+	'Navbar_Top'		=> '\ItalyStrap\Core\Templates\Navbar_Top',
+	'Header_Image'		=> '\ItalyStrap\Core\Templates\Header_Image',
+	'Nav_Menu'			=> '\ItalyStrap\Core\Templates\Nav_Menu',
+	'Breadcrumbs'		=> '\ItalyStrap\Core\Templates\Breadcrumbs',
+	'Archive_Headline'	=> '\ItalyStrap\Core\Templates\Archive_Headline',
+	'Author_Info'		=> '\ItalyStrap\Core\Templates\Author_Info',
+	'Loop'				=> '\ItalyStrap\Core\Templates\Loop',
+	'Entry'				=> '\ItalyStrap\Core\Templates\Entry',
+	'Title'				=> '\ItalyStrap\Core\Templates\Title',
+	'Meta'				=> '\ItalyStrap\Core\Templates\Meta',
+	'Preview'			=> '\ItalyStrap\Core\Templates\Preview',
+	'Featured_Image'	=> '\ItalyStrap\Core\Templates\Featured_Image',
+	'Content'			=> '\ItalyStrap\Core\Templates\Content',
+	'Link_Pages'		=> '\ItalyStrap\Core\Templates\Link_Pages',
+	'Modified'			=> '\ItalyStrap\Core\Templates\Modified',
+	'Edit_Post_Link'	=> '\ItalyStrap\Core\Templates\Edit_Post_Link',
+	'Pager'				=> '\ItalyStrap\Core\Templates\Pager',
+	'Pagination'		=> '\ItalyStrap\Core\Templates\Pagination',
+	'None'				=> '\ItalyStrap\Core\Templates\None',
+	'Sidebar'			=> '\ItalyStrap\Core\Templates\Sidebar',
+	'Comments'			=> '\ItalyStrap\Core\Templates\Comments',
+	'Password_Form'		=> '\ItalyStrap\Core\Templates\Password_Form',
+	'Word_Count'		=> '\ItalyStrap\Core\Schema\Word_Count',
+	'Time_Required'		=> '\ItalyStrap\Core\Schema\Time_Required',
 );
 
 foreach ( $registered_template_classes as $value ) {
@@ -94,3 +94,9 @@ foreach ( $registered_template_classes as $value ) {
 }
 
 add_action( 'italystrap_footer', array( $template_settings, 'do_footer' ) );
+
+// add_action( 'wp_footer', function () {
+// 	$debug_asset = new \ItalyStrap\Debug\Asset_Queued();
+// 	$debug_asset->debug_styles();
+// 	$debug_asset->debug_scripts();
+// }, 100000 );

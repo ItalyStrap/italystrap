@@ -149,7 +149,7 @@ class Navbar {
 		$a = array(
 			'class'			=> 'navbar-header',
 			'itemprop'		=> 'publisher',
-			'itemscope'		=> '',
+			'itemscope'		=> true,
 			'itemtype'		=> 'http://schema.org/Organization',
 		);
 
@@ -383,7 +383,7 @@ class Navbar {
 				'navbar-wrapper %s',
 				esc_attr( $this->theme_mods['navbar']['nav_width'] )
 			),
-			'itemscope'		=> '',
+			'itemscope'		=> true,
 			'itemtype'		=> 'http://schema.org/SiteNavigationElement',
 		);
 

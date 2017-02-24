@@ -1,8 +1,8 @@
 <?php
 /**
- * Modified Controller API
+ * Footer_Widget_Area Controller API
  *
- * This class renders the Modified output on the registered position.
+ * [Long Description.]
  *
  * @link www.italystrap.com
  * @since 4.0.0
@@ -21,13 +21,13 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Class description
  */
-class Modified extends Template_Base implements Subscriber_Interface  {
+class Footer_Widget_Area extends Template_Base implements Subscriber_Interface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
 	 *
-	 * @hoocked 'italystrap_entry_content' - 60
+	 * @hooked 'italystrap_footer' - 10
 	 *
 	 * @return array
 	 */
@@ -35,9 +35,9 @@ class Modified extends Template_Base implements Subscriber_Interface  {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_entry_content'	=> array(
+			'italystrap_footer'	=> array(
 				'function_to_add'	=> 'render',
-				'priority'			=> apply_filters( 'italystrap_modified_priority', 60 ),
+				'priority'			=> 10,
 			),
 		);
 	}

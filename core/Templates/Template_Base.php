@@ -38,22 +38,24 @@ class Template_Base implements Template_Interface {
 		'author_info'		=> 'templates/parts/author-info',
 		'loop'				=> 'templates/loops/loop',
 		'entry'				=> 'templates/loops/type/post',
-		'featured_image'	=> 'templates/loops/type/parts/featured-image',
 		'title'				=> 'templates/loops/type/parts/title',
 		'meta'				=> 'templates/loops/type/parts/meta',
 		'preview'			=> 'templates/loops/type/parts/preview',
+		'featured_image'	=> 'templates/loops/type/parts/featured-image',
 		'content'			=> 'templates/loops/type/parts/content',
 		'modified'			=> 'templates/loops/type/parts/modified',
 		'none'				=> 'templates/loops/type/none',
+		'footer_widget_area'=> 'templates/footers/widget-area',
+		'colophon'			=> 'templates/footers/colophon',
 	);
 
 	protected static $mods = array();
 	protected static $count = 0;
 
 	/**
-	 * [__construct description]
+	 * Init the class
 	 *
-	 * @param [type] $argument [description].
+	 * @param array $theme_mod Class configuration array.
 	 */
 	function __construct( array $theme_mod = array() ) {
 
@@ -84,6 +86,11 @@ class Template_Base implements Template_Interface {
 			return PAGE_FOR_POSTS;
 		}
 
+		/**
+		 * Using get_queried_object_id() here since the $post global may not be set before a call to the_post(). twentyseventeen
+		 * get_queried_object_id()
+		 */
+
 		return get_the_ID();
 	}
 
@@ -102,14 +109,6 @@ class Template_Base implements Template_Interface {
 
 		return (array) get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
 	}
-
-	/**
-	 * Set the template parts settings.
-	 */
-	// public function set_template_settings() {
-
-	// 	return $this->template_settings = (array) apply_filters( 'italystrap_template_settings', $this->get_template_settings() );
-	// }
 
 	/**
 	 * Load a template part into a template
@@ -194,16 +193,6 @@ class Template_Base implements Template_Interface {
 		remove_action( 'italystrap_before_entry_content', array( $this, 'meta' ), 20 );
 
 		return $template;
-	}
-
-	/**
-	 * Do Footer
-	 */
-	public function do_footer( $value = '' ) {
-
-		$this->get_template_part( 'templates/parts/footer-widget-area' );
-		$this->get_template_part( 'templates/parts/footer-colophon' );
-
 	}
 
 	/**

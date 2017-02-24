@@ -27,7 +27,7 @@ class Title extends Template_Base implements Subscriber_Interface {
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
 	 *
-	 * @hooked italystrap_before_entry_content - 10
+	 * @hooked italystrap_entry_content - 10
 	 *
 	 * @return array
 	 */
@@ -35,7 +35,10 @@ class Title extends Template_Base implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_before_entry_content'	=> 'render',
+			'italystrap_entry_content'	=> array(
+				'function_to_add'	=> 'render',
+				'priority'			=> apply_filters( 'italystrap_title_priority', 10 ),
+			),
 		);
 	}
 

@@ -27,7 +27,7 @@ class Meta extends Template_Base implements Subscriber_Interface {
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
 	 *
-	 * @hooked italystrap_before_entry_content - 20
+	 * @hooked italystrap_entry_content - 20
 	 *
 	 * @return array
 	 */
@@ -35,9 +35,9 @@ class Meta extends Template_Base implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_before_entry_content'	=> array(
+			'italystrap_entry_content'	=> array(
 				'function_to_add'	=> 'render',
-				'priority'			=> 20,
+				'priority'			=> apply_filters( 'italystrap_meta_priority', 20 ),
 			),
 		);
 	}

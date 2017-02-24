@@ -30,6 +30,9 @@ namespace ItalyStrap;
 <?php do_action( 'italystrap_before' ); ?>
 	<div <?php Core\get_attr( 'wrapper', array( 'class' => 'wrapper' ), true ); ?>>
 <?php
+
 do_action( 'italystrap_before_header' );
+
 do_action( 'italystrap_content_header' );
+
 do_action( 'italystrap_after_header' );

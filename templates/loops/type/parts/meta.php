@@ -22,7 +22,7 @@
 namespace ItalyStrap;
 
 ?><footer class="entry-footer">
-	<ul class="list-inline small">
+	<ul class="entry-meta list-inline small">
 		<li class="datePublished"><span class="glyphicon glyphicon-calendar"></span> <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><time datetime="<?php the_time( 'Y-m-d' ) ?>" itemprop="datePublished"><?php the_time( get_option( 'date_format' ) ); ?></time></a></li>
 
 		<li class="author"><span class="glyphicon glyphicon-user"></span> <span itemprop="author"><?php the_author_posts_link(); ?></span></li>

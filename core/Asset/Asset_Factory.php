@@ -120,7 +120,7 @@ class Asset_Factory implements Subscriber_Interface {
 		$config_scripts = array(
 			array(
 				'handle'		=> 'jquery',
-				'file'			=> 'http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
+				'file'			=> '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
 				'deps'			=> false,
 				'version'		=> $ver,
 				'in_footer'		=> true,

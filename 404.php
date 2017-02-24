@@ -27,7 +27,7 @@ do_action( 'italystrap_before_main' );
 					do_action( 'italystrap_before_loop' );
 
 					get_template_part( 'loops/content', 'none' );
-					get_template_part( 'template/sitemap_html' );
+					// get_template_part( 'template/sitemap_html' );
 
 
 

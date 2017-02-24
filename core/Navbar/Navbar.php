@@ -150,7 +150,7 @@ class Navbar {
 			'class'			=> 'navbar-header',
 			'itemprop'		=> 'publisher',
 			'itemscope'		=> true,
-			'itemtype'		=> 'http://schema.org/Organization',
+			'itemtype'		=> 'https://schema.org/Organization',
 		);
 
 		$output = sprintf(
@@ -385,7 +385,7 @@ class Navbar {
 				esc_attr( $this->theme_mods['navbar']['nav_width'] )
 			),
 			'itemscope'		=> true,
-			'itemtype'		=> 'http://schema.org/SiteNavigationElement',
+			'itemtype'		=> 'https://schema.org/SiteNavigationElement',
 		);
 
 		$output = sprintf(

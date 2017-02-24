@@ -77,7 +77,7 @@ function roots_gallery($attr) {
     return $output;
   }
 
-  $output = '<div class="row gallery" itemscope itemtype="http://schema.org/ImageObject">';
+  $output = '<div class="row gallery" itemscope itemtype="https://schema.org/ImageObject">';
 
   $i = 0;
   foreach ($attachments as $id => $attachment) {

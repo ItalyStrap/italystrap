@@ -10,7 +10,7 @@ namespace ItalyStrap;
  *       Vedere content-sidebar.php
  */
 ?>
-<aside <?php Core\get_attr( 'sidebar', array( 'itemscope' => true, 'itemtype' => 'http://schema.org/WPSideBar' ), true ); ?>>
+<aside <?php Core\get_attr( 'sidebar', array( 'itemscope' => true, 'itemtype' => 'https://schema.org/WPSideBar' ), true ); ?>>
 <?php do_action( 'italystrap_before_sidebar_widget_area' ); ?>
 	<?php do_action( 'italystrap_sidebar' ); ?>
 	<div class="row">

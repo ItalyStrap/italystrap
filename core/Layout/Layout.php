@@ -128,10 +128,10 @@ class Layout implements Subscriber_Interface {
 		);
 
 		$this->schema = array(
-			'front-page'	=> is_home() ? 'http://schema.org/WebSite' : 'http://schema.org/Article',
-			'page'			=> 'http://schema.org/Article',
-			'single'		=> 'http://schema.org/Article',
-			'search'		=> 'http://schema.org/SearchResultsPage',
+			'front-page'	=> is_home() ? 'https://schema.org/WebSite' : 'https://schema.org/Article',
+			'page'			=> 'https://schema.org/Article',
+			'single'		=> 'https://schema.org/Article',
+			'search'		=> 'https://schema.org/SearchResultsPage',
 		);
 
 	}
@@ -181,7 +181,7 @@ class Layout implements Subscriber_Interface {
 		if ( isset( $this->schema[ CURRENT_TEMPLATE_SLUG ] ) ) {
 			$attr['itemtype'] = $this->schema[ CURRENT_TEMPLATE_SLUG ];
 		} else {
-			$attr['itemtype'] = 'http://schema.org/WebSite';
+			$attr['itemtype'] = 'https://schema.org/WebSite';
 		}
 
 		return $attr;

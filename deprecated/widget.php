@@ -66,10 +66,10 @@ class ItalyStrap_Vcard_Widget extends WP_Widget {
       echo $before_title, $title, $after_title;
     }
   ?>
-	<ul itemscope itemtype="http://schema.org/Organization" class="list-unstyled">
+	<ul itemscope itemtype="https://schema.org/Organization" class="list-unstyled">
 		<meta  itemprop="logo" content="<?php echo italystrap_logo();?>"/>
 		<li><strong><a itemprop="url" href="<?php echo esc_attr( HOME_URL ); ?>"><span itemprop="name"><?php echo esc_attr( GET_BLOGINFO_NAME ); ?></span></a></strong></li>
-			<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+			<div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
 				<li itemprop="streetAddress"><?php echo $instance['street_address']; ?></li>
 				<li itemprop="addressLocality"><?php echo $instance['locality']; ?></li>
 				<li itemprop="addressRegion"><?php echo $instance['region']; ?></li>

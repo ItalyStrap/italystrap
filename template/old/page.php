@@ -26,7 +26,7 @@ do_action( 'italystrap_before_main' );
 		<div class="container">
 			<div class="row">
 				<?php do_action( 'italystrap_before_content' ); ?>
-				<div <?php Core\get_attr( 'content', array( 'class' => 'col-md-8', 'itemscope' => true, 'itemtype' => 'http://schema.org/Article' ), true ); ?>>
+				<div <?php Core\get_attr( 'content', array( 'class' => 'col-md-8', 'itemscope' => true, 'itemtype' => 'https://schema.org/Article' ), true ); ?>>
 					<?php
 					do_action( 'italystrap_before_loop' );
 

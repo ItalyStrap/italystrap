@@ -3,7 +3,7 @@ _deprecated_file( basename(__FILE__), 'ItalyStrap 3.1.0', 'template/content-auth
 get_template_part( 'template/content', 'author-info' );
 ?>
 <!-- AUTHOR -->
-<section class="well" itemprop="author" itemscope itemtype="http://schema.org/Person">
+<section class="well" itemprop="author" itemscope itemtype="https://schema.org/Person">
 	<div class="row">
 		<div class="col-md-2">
 			<a href="<?php the_author_meta('url') ?>" rel="author" itemprop="url"><?php echo italystrap_get_avatar( get_the_author_meta('ID'), NULL, NULL, get_the_author(), 'img-circle img-responsive' ); ?></a>

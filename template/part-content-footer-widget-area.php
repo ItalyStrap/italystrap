@@ -21,7 +21,7 @@ global $sidebars;
 $col = ( isset( $col ) ) ? $col : $sidebars->set_col();
 ?>
 <div class="container">
-	<div class="row" itemscope itemtype="http://schema.org/WPSideBar">
+	<div class="row" itemscope itemtype="https://schema.org/WPSideBar">
 		<?php foreach ( array( 'footer-box-1', 'footer-box-2', 'footer-box-3', 'footer-box-4' ) as $value ) : ?>
 
 			<?php if ( is_active_sidebar( $value ) ) : ?>

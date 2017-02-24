@@ -103,7 +103,7 @@ function wp_bootstrap_gallery( $content, $attr ) {
 	
 	$selector	=	"gallery-{$instance}";
 	$size_class	=	sanitize_html_class( $size );
-	$output		=	"<div class='row' id='$selector' itemscope itemtype='http://schema.org/ImageObject'>";
+	$output		=	"<div class='row' id='$selector' itemscope itemtype='https://schema.org/ImageObject'>";
 
 	/**
  	 * Count number of items in $attachments array, and assign a colum layout to $span_array

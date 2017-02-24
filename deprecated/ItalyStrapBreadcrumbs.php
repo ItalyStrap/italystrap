@@ -10,13 +10,13 @@
  *
  * 		@type string 'home' BC home. Default '$bloginfo_name'. Accepts 'string', 'HTML tags'.
  * 		
- * 		@type string 'open_wrapper' Open wrapper tag of BC. Default '<ol class="breadcrumb"  itemscope itemtype="http://schema.org/BreadcrumbList">'. Accepts 'string', 'HTML tags'.
+ * 		@type string 'open_wrapper' Open wrapper tag of BC. Default '<ol class="breadcrumb"  itemscope itemtype="https://schema.org/BreadcrumbList">'. Accepts 'string', 'HTML tags'.
  * 		
  * 		@type string 'closed_wrapper' Close wrapper tag of BC. Default '</ol>'. Accepts 'string', 'HTML tags'.
  * 		
- * 		@type string 'before_element' Tag before single element. Default '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">'. Accepts 'string', 'HTML tags'.
+ * 		@type string 'before_element' Tag before single element. Default '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">'. Accepts 'string', 'HTML tags'.
  * 		
- * 		@type string 'before_element_active' Tag before single element active. Default '<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">'. Accepts 'string', 'HTML tags'.
+ * 		@type string 'before_element_active' Tag before single element active. Default '<li class="active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">'. Accepts 'string', 'HTML tags'.
  * 		
  * 		@type string 'after_element' Tag after single element. Default '</li>'. Accepts 'string', 'HTML tags'.
  * 		
@@ -88,10 +88,10 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 			$args = wp_parse_args( $args, array(
 
 				'home'					=>	$bloginfo_name,
-				'open_wrapper'			=>	'<ol class="breadcrumb"  itemscope itemtype="http://schema.org/BreadcrumbList">',
+				'open_wrapper'			=>	'<ol class="breadcrumb"  itemscope itemtype="https://schema.org/BreadcrumbList">',
 				'closed_wrapper'		=>	'</ol>',
-				'before_element'		=>  '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">',
-				'before_element_active'	=>  '<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">',
+				'before_element'		=>  '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">',
+				'before_element_active'	=>  '<li class="active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">',
 				'after_element'			=>	'</li>',
 				'wrapper_name'			=>	'<span itemprop="name">',
 				'close_wrapper_name'	=>	'</span>'

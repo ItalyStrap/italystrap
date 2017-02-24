@@ -23,13 +23,13 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
 				
 				
                 <div class="<?php if($depth == 1) echo 'col-md-12'; else echo 'col-md-11 col-md-offset-1'; ?>">
-					<div class="row <?php if ($comment->user_id === $post->post_author) { echo 'bg-color-author';} ?>"itemscope itemtype="http://schema.org/Comment">
+					<div class="row <?php if ($comment->user_id === $post->post_author) { echo 'bg-color-author';} ?>"itemscope itemtype="https://schema.org/Comment">
                         <div class="col-md-2"><?php echo get_avatar($comment, '92') ?></div>
                         <div class="col-md-10">
 							<ul class="list-inline">
 								<li>
 								<h4 class="media-heading">
-									<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php echo get_comment_author() ?><meta itemprop="image" content="<?php  $thumbnailUrl = get_avatar($comment); echo estraiUrlsGravatar($thumbnailUrl);?>"/></span></a>
+									<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="https://schema.org/Person"><?php echo get_comment_author() ?><meta itemprop="image" content="<?php  $thumbnailUrl = get_avatar($comment); echo estraiUrlsGravatar($thumbnailUrl);?>"/></span></a>
 									<?php
 									printf(
 									// If current post author is also comment author, make it known visually.
@@ -117,7 +117,7 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 			 * http://codex.wordpress.org/Function_Reference/comment_class
 			 */
 			?>
-			<li id="comment-<?php comment_ID(); ?>" <?php comment_class('media comment-' . get_comment_ID()); ?> itemscope itemtype="http://schema.org/Comment">
+			<li id="comment-<?php comment_ID(); ?>" <?php comment_class('media comment-' . get_comment_ID()); ?> itemscope itemtype="https://schema.org/Comment">
 
 				<span class="pull-left">
 					<?php echo italystrap_get_avatar( $comment, NULL, NULL, get_comment_author(), 'img-circle img-responsive' );?>
@@ -129,11 +129,11 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 
 							<?php if ( get_comment_author_url() ) { ?>
 
-								<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name"><?php echo get_comment_author() ?></span><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span></a>
+								<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><?php echo get_comment_author() ?></span><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span></a>
 
 							<?php } else { ?>
 
-								<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name"><?php echo get_comment_author() ?></span><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span>
+								<span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><?php echo get_comment_author() ?></span><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span>
 
 							<?php	}
 

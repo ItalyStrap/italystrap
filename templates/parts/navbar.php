@@ -16,7 +16,7 @@
 namespace ItalyStrap;
 
 ?>
-<nav class="container navbar-wrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+<nav class="container navbar-wrapper" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
 	<?php
 	do_action( 'nav_open' );
 	/**
@@ -39,7 +39,7 @@ namespace ItalyStrap;
 						<img alt="<?php echo esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ); ?>" src="<?php echo esc_html( $logo_url ); ?>" width="214px" height="45px" class="img-responsive">
 					</a>
 				<?php else : ?>
-					<span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+					<span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
 						<a class="navbar-brand" href="<?php echo esc_attr( HOME_URL ); ?>" title="<?php echo esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ); ?>" rel="home" itemprop="url"><span itemprop="name"><?php echo esc_attr( GET_BLOGINFO_NAME ); ?></span></a>
 						<meta  itemprop="image" content="<?php echo italystrap_logo();?>"/>
 					</span>

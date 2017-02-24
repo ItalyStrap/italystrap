@@ -6,9 +6,9 @@
  * @link https://developers.google.com/structured-data/slsb-overview
  */
 ?>
-<div itemscope itemtype="http://schema.org/WebSite">
+<div itemscope itemtype="https://schema.org/WebSite">
 	<meta itemprop="url" content="<?php echo esc_attr( HOME_URL ); ?>"/>
-	<form  role="search" method="get" id="searchform" class="search-form" action="<?php echo esc_attr( HOME_URL ); ?>" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction">
+	<form  role="search" method="get" id="searchform" class="search-form" action="<?php echo esc_attr( HOME_URL ); ?>" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
 		<meta itemprop="target" content="<?php echo esc_attr( HOME_URL ); ?>?s={s}"/>
 		<div class="input-group input-group-sm">
 			<span class="screen-reader-text sr-only"><?php esc_attr_e( 'Search now', 'ItalyStrap' ); ?></span>

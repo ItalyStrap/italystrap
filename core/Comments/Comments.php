@@ -147,7 +147,7 @@ class Comments extends Walker_Comment {
 		 * @link http://codex.wordpress.org/Function_Reference/comment_class
 		 */
 		?>
-		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( 'media comment-' . get_comment_ID() ); ?> itemscope itemtype="http://schema.org/Comment">
+		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( 'media comment-' . get_comment_ID() ); ?> itemscope itemtype="https://schema.org/Comment">
 
 			<span class="pull-left">
 				<?php echo italystrap_get_avatar( $comment, null, null, get_comment_author(), 'img-circle img-responsive' );?>
@@ -159,11 +159,11 @@ class Comments extends Walker_Comment {
 
 						<?php if ( get_comment_author_url() ) { ?>
 
-							<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name"><?php echo get_comment_author() ?></span><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span></a>
+							<a class="url" rel="external nofollow" href="<?php comment_author_url(); ?>" itemprop="url"><span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><?php echo get_comment_author() ?></span><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span></a>
 
 						<?php } else { ?>
 
-							<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name"><?php echo get_comment_author() ?></span><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span>
+							<span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><?php echo get_comment_author() ?></span><meta itemprop="image" content="<?php echo italystrap_get_avatar_url(get_comment_author_email()); ?>"/></span>
 
 						<?php }
 							/**
@@ -240,7 +240,7 @@ class Comments extends Walker_Comment {
 		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
 ?>
 		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $this->has_children ? 'parent' : '' ); ?>>
-			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body row" itemscope itemtype="http://schema.org/Comment">
+			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body row" itemscope itemtype="https://schema.org/Comment">
 				<section class="col-sm-2">
 					<?php
 					/**

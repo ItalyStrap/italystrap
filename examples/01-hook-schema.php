@@ -18,7 +18,7 @@
 
 		</header>
 
-		<nav class="container navbar-wrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+		<nav class="container navbar-wrapper" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
 
 			<?php do_action( 'nav_open' ); ?>
 
@@ -61,7 +61,7 @@
 						<?php do_action( 'content_col_closed' ); ?>
 					</div><!-- / .col-md-8 -->
 
-					<aside class="col-md-4" itemscope itemtype="http://schema.org/WPSideBar">
+					<aside class="col-md-4" itemscope itemtype="https://schema.org/WPSideBar">
 
 						<?php do_action( 'sidebar_col_open' ); ?>
 
@@ -78,7 +78,7 @@
 			</div><!-- / .container -->
 		</section><!-- / #page -->
 
-		<footer itemscope itemtype="http://schema.org/WPFooter">
+		<footer itemscope itemtype="https://schema.org/WPFooter">
 
 			<?php do_action( 'footer_open' ); ?>
 

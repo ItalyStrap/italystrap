@@ -33,7 +33,7 @@ function italystrap_get_words_count() {
 /**
  * Add metatag for Schema.org itemprops timeRequired and wordCount
  *
- * @link http://schema.org/Article
+ * @link https://schema.org/Article
  *
  * @since 1.0.0
  *

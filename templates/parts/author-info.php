@@ -28,7 +28,7 @@ if ( ! $author_info ) {
 	return;
 }
 ?>
-<section <?php Core\get_attr( 'author_info', array( 'class' => 'author-info well', 'itemprop' => 'author', 'itemscope' => true, 'itemtype' => 'http://schema.org/Person' ), true ); ?>>
+<section <?php Core\get_attr( 'author_info', array( 'class' => 'author-info well', 'itemprop' => 'author', 'itemscope' => true, 'itemtype' => 'https://schema.org/Person' ), true ); ?>>
 	<div class="row">
 		<div class="col-sm-2">
 			<?php

@@ -27,7 +27,7 @@ function create_breadcrumbs() {
   // var_dump($categories);
   if(!is_home() || !is_front_page()) {
 
-    echo '<div itemscope itemtype="http://schema.org/WebPage"><ol class="breadcrumb" itemprop="breadcrumb">';
+    echo '<div itemscope itemtype="https://schema.org/WebPage"><ol class="breadcrumb" itemprop="breadcrumb">';
     echo '<li><a href="' . home_url() . '">' . __('Home', 'ItalyStrap') . '</a></li>';
 
     if (is_single()) {

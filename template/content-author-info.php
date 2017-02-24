@@ -27,7 +27,7 @@ $author_info = ( isset( $_GET['author_name'] ) ) ? get_user_by( 'slug', $author_
 if ( ! $author_info )
 	return;
 ?>
-<section class="author-info well" itemprop="author" itemscope itemtype="http://schema.org/Person">
+<section class="author-info well" itemprop="author" itemscope itemtype="https://schema.org/Person">
 	<div class="row">
 		<div class="col-sm-2">
 			<?php

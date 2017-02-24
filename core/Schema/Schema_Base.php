@@ -4,7 +4,7 @@
  *
  * Class base for some schema.org itemprop
  *
- * @link http://schema.org/Article
+ * @link https://schema.org/Article
  *
  * @link www.italystrap.com
  * @since 1.0.0

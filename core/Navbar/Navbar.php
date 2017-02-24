@@ -199,12 +199,14 @@ class Navbar {
 	
 		/**
 		 * The ID of the logo image for navbar
-		 * By default in the customizer is set a url for the image instead an integer
+		 * By default in the customizer is set a url for the image instead of an integer
 		 * When it is choices an image than it will set an integer for $this->theme_mods['navbar_logo']
 		 *
 		 * @var integer
 		 */
 		$attachment_id = isset( $this->theme_mods['navbar_logo_image'] ) ? absint( $this->theme_mods['navbar_logo_image'] ) : null;
+
+		$attachment_id = apply_filters( 'italystrap_navbar_logo_image_id', $attachment_id );
 
 		$brand = '';
 
@@ -245,7 +247,6 @@ class Navbar {
 		}
 
 		return $brand;
-	
 	}
 
 	/**

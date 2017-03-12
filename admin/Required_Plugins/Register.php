@@ -63,7 +63,7 @@ class Register {
 			/**
 			 * %1$s = plugin name(s)
 			 */
-			'notice_can_install_required'		=> _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.' ),
+			'notice_can_install_required'		=> _n_noop( 'This theme requires the following plugin: %1$s. Please, install it now', 'This theme requires the following plugins: %1$s. Please, install they now' ),
 
 			/**
 			 * %1$s = plugin name(s)

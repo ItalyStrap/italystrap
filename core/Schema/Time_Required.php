@@ -73,6 +73,8 @@ class Time_Required extends Schema_Base implements Subscriber_Interface {
 		$minutes = floor( $word_count / $words_per_minute );
 		$seconds = floor( ( $word_count / ( $words_per_minute / 60 ) ) - ( $minutes * 60 ) );
 
+		$estimated_time = '';
+
 		/**
 		 * If less than a minute
 		 */

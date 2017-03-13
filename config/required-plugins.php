@@ -75,7 +75,7 @@ return array(
 		/**
 		 * The plugin slug (typically the folder name)
 		 */
-		// 'slug'                     => 'italystrap',
+		'slug'                     => 'italystrap',
 
 		/**
 		 * If false, the plugin is only 'recommended' instead of required

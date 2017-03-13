@@ -1,6 +1,6 @@
 <?php
 /**
- * Layout API: Layout Class
+ * Layout API: This class handle the layout of the theme, by default the theme uses Twitter Bootstrap for the layout but you can use the CSS framework you want simply change the value of 
  *
  * @package ItalyStrap\Core
  * @since 1.0.0
@@ -25,7 +25,9 @@ class Layout implements Subscriber_Interface {
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
 	 *
-	 * @hooked 'italystrap_before_loop' - 20
+	 * @hooked 'italystrap_content_attr'           - 10
+	 * @hooked 'italystrap_sidebar_attr'           - 10
+	 * @hooked 'italystrap_sidebar_secondary_attr' - 10
 	 *
 	 * @return array
 	 */
@@ -35,17 +37,14 @@ class Layout implements Subscriber_Interface {
 			// 'hook_name'				=> 'method_name',
 			'italystrap_content_attr'	=> array(
 				'function_to_add'	=> 'set_content_class',
-				'priority'			=> 10,
 				'accepted_args'		=> 3
 			),
 			'italystrap_sidebar_attr'	=> array(
 				'function_to_add'	=> 'set_sidebar_class',
-				'priority'			=> 10,
 				'accepted_args'		=> 3
 			),
 			'italystrap_sidebar_secondary_attr'	=> array(
 				'function_to_add'	=> 'set_sidebar_secondary_class',
-				'priority'			=> 10,
 				'accepted_args'		=> 3
 			),
 		);
@@ -143,6 +142,8 @@ class Layout implements Subscriber_Interface {
 	 */
 	public function get_layout_settings() {
 
+		static $setting = null;
+
 		// delete_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
 		// delete_post_meta_by_key( '_italystrap_layout_settings' );
 
@@ -150,8 +151,10 @@ class Layout implements Subscriber_Interface {
 		 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
 		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
 		 */
-
-		$setting = get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
+		
+		if ( ! $setting ) {
+			$setting = get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
+		}
 
 		/**
 		 * Backward compatibility with the front-page template
@@ -169,12 +172,15 @@ class Layout implements Subscriber_Interface {
 	}
 
 	/**
-	 * Function description
+	 * Set the content CSS class for layout.
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param  array  $attr    The array with all HTML attributes to render.
+	 * @param  string $context The context in wich this functionis called.
+	 * @param  null   $args    Optional. Extra arguments in case is needed.
+	 *
+	 * @return string        Return the new array
 	 */
-	public function set_content_class( $attr, $context, $args ) {
+	public function set_content_class( array $attr, $context, $args ) {
 
 		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['content'];
 
@@ -189,12 +195,15 @@ class Layout implements Subscriber_Interface {
 	}
 
 	/**
-	 * Set sidebar class
+	 * Set sidebar CSS class
 	 *
-	 * @param  array $attr The sidebar attribute.
-	 * @return array       Return the new array
+	 * @param  array  $attr    The array with all HTML attributes to render.
+	 * @param  string $context The context in wich this functionis called.
+	 * @param  null   $args    Optional. Extra arguments in case is needed.
+	 *
+	 * @return string        Return the new array
 	 */
-	public function set_sidebar_class( $attr ) {
+	public function set_sidebar_class( array $attr, $context, $args ) {
 
 		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['sidebar'];
 		return $attr;
@@ -202,12 +211,15 @@ class Layout implements Subscriber_Interface {
 	}
 
 	/**
-	 * Set sidebar class
+	 * Set sidebar CSS class
 	 *
-	 * @param  array $attr The sidebar attribute.
-	 * @return array       Return the new array
+	 * @param  array  $attr    The array with all HTML attributes to render.
+	 * @param  string $context The context in wich this functionis called.
+	 * @param  null   $args    Optional. Extra arguments in case is needed.
+	 *
+	 * @return string        Return the new array
 	 */
-	public function set_sidebar_secondary_class( $attr ) {
+	public function set_sidebar_secondary_class( array $attr, $context, $args ) {
 
 		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['sidebar_secondary'];
 		return $attr;

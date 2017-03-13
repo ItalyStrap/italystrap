@@ -87,6 +87,63 @@ $manager->add_control(
 );
 
 /**
+ * Container Width of the header
+ */
+$manager->add_setting(
+	'custom_header[container_width]',
+	array(
+		'default'			=> $this->theme_mods['custom_header']['container_width'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'refresh',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+
+$manager->add_control(
+	'italystrap_custom_header[container_width]',
+	array(
+		'label'		=> __( 'Container Width of the header', 'italystrap' ),
+		'section'	=> 'header_image',
+		'type'		=> 'select',
+		'settings'	=> 'custom_header[container_width]',
+		'choices'	=> array(
+			// 'none'				=> __( 'None', 'italystrap' ),
+			'container-fluid'	=> __( 'Full witdh', 'italystrap' ),
+			'container'			=> __( 'Standard width', 'italystrap' ),
+		),
+	)
+);
+
+/**
+ * Select the nav_width of navbar
+ */
+// $manager->add_setting(
+// 	'navbar[nav_width]',
+// 	array(
+// 		'default'			=> $this->theme_mods['navbar']['nav_width'],
+// 		'type'				=> 'theme_mod',
+// 		'capability'		=> $this->capability,
+// 		'transport'			=> 'postMessage',
+// 		'sanitize_callback'	=> 'sanitize_text_field',
+// 	)
+// );
+// $manager->add_control(
+// 	'italystrap_navbar[nav_width]',
+// 	array(
+// 		'settings'	=> 'navbar[nav_width]',
+// 		'label'			=> __( 'Navbar width', 'italystrap' ),
+// 		'description'	=> __( 'Select the nav_width of navbar, this enlarges the navbar to the windows size (use it also width Static Top option).', 'italystrap' ),
+// 		'section'		=> 'italystrap_navbar_options',
+// 		'type'			=> 'radio',
+// 		'choices'		=> array(
+// 			'container'	=> __( 'Default boxed width', 'italystrap' ),
+// 			'none'		=> __( 'Full width', 'italystrap' ),
+// 		),
+// 	)
+// );
+
+/**
  * Add new panel for ItalyStrap theme options
  */
 $manager->add_panel( $this->panel,

@@ -59,6 +59,10 @@
 	wp.customize( 'navbar[position]', function( value ) {
 		value.bind( function( newval ) {
 			$('div.navbar').removeClass( 'navbar-relative-top navbar-fixed-top navbar-fixed-bottom navbar-static-top' ).addClass( newval );
+			// console.log(newval);
+			// if ( 'navbar-fixed-top' === newval ) {
+			// 	console.log("hola datevid");
+			// }
 		} );
 	} );
 

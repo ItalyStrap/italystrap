@@ -128,7 +128,7 @@ class Css {
 	 * @return string           Returns a single line of CSS with selectors,
 	 *                          property and value.
 	 */
-	public function generate_css( $selector, $property, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
+	protected function generate_css( $selector, $property, $mod_name, $prefix = '', $postfix = '', $echo = false ) {
 
 		/**
 		 * Get theme mod by mod_name
@@ -149,9 +149,17 @@ class Css {
 		 *
 		 * @var string
 		 */
-		$return = $selector . '{' . $property . ':' . $prefix . $mod . $postfix . ';}';
+		// $return = $selector . '{' . $property . ':' . $prefix . $mod . $postfix . ';}';
 
-		return $return;
+		// return $return;
+		return sprintf(
+			'%1$s{%2$s:%3$s%4$s%5$s;}',
+			$selector,
+			$property,
+			$prefix,
+			$mod,
+			$postfix
+		);
 
 	}
 
@@ -167,6 +175,16 @@ class Css {
 	 */
 	public function css_output() {
 
+		$test_style = array(
+			'selector'	=> '',
+			'property'	=> '',
+			'value'		=> '',
+		);
+
+		// echo "<pre>";
+		// print_r('navbar-fixed-top' === $this->theme_mods['navbar']['position'] );
+		// echo "</pre>";
+
 		/**
 		 * Custom CSS section on customizer page
 		 *
@@ -175,7 +193,7 @@ class Css {
 		 * @var string
 		 */
 		// $custom_css = isset( $this->theme_mods['custom_css'] ) ? $this->theme_mods['custom_css'] : '' ;
-		$custom_css = '' ;
+		$custom_css = '';
 
 		$this->style .= $this->generate_css( '#site-title a', 'color', 'header_textcolor', '#' );
 
@@ -192,8 +210,10 @@ class Css {
 
 		$this->style .= apply_filters( 'italystrap_css_output', $this->style );
 
-		add_filter( 'italystrap_custom_inline_style', function ( $css ) {
-			return $this->style . $css;
+		$style = $this->style;
+
+		add_filter( 'italystrap_custom_inline_style', function ( $css ) use ( $style ) {
+			return $style . $css;
 		}, 999999999, 1 );
 
 		// printf(

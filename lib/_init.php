@@ -60,7 +60,7 @@ $template_settings = new Template( (array) $theme_mods );
 /**
  * Questo filtro si trova nei file template per gestire commenti e altro
  */
-// add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
+add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
 
 $registered_template_classes = array(
 	'Navbar_Top'		=> '\ItalyStrap\Core\Templates\Navbar_Top',
@@ -71,7 +71,10 @@ $registered_template_classes = array(
 	'Author_Info'		=> '\ItalyStrap\Core\Templates\Author_Info',
 	'Loop'				=> '\ItalyStrap\Core\Templates\Loop',
 	'Entry'				=> '\ItalyStrap\Core\Templates\Entry',
-	'Title'				=> '\ItalyStrap\Core\Templates\Title',
+	'Title'				=> array(
+		'\ItalyStrap\Core\Templates\Title',
+		// 35,
+	),
 	'Meta'				=> '\ItalyStrap\Core\Templates\Meta',
 	'Preview'			=> '\ItalyStrap\Core\Templates\Preview',
 	'Featured_Image'	=> '\ItalyStrap\Core\Templates\Featured_Image',
@@ -87,16 +90,76 @@ $registered_template_classes = array(
 	'Password_Form'		=> '\ItalyStrap\Core\Templates\Password_Form',
 	'Word_Count'		=> '\ItalyStrap\Core\Schema\Word_Count',
 	'Time_Required'		=> '\ItalyStrap\Core\Schema\Time_Required',
+	'Footer_Widget_Area'=> '\ItalyStrap\Core\Templates\Footer_Widget_Area',
+	'Colophon'			=> '\ItalyStrap\Core\Templates\Colophon',
 );
 
-foreach ( $registered_template_classes as $value ) {
-	$event_manager->add_subscriber( $injector->make( $value ) );
+foreach ( $registered_template_classes as $class_name => $value ) {
+
+	$class_name = strtolower( $class_name );
+	$prefixed_classname = "italystrap_{$class_name}";
+
+	if ( is_array( $value ) ) {
+		add_filter( "italystrap_{$class_name}_priority", function ( $priority ) use ( $value ) {
+			if ( ! isset( $value[1] ) ) {
+				return $priority;
+			}
+			return $value[1];
+		});
+
+		$value = $value[0];
+	}
+
+	$$prefixed_classname = $injector->make( $value );
+	$event_manager->add_subscriber( $$prefixed_classname );
 }
 
-add_action( 'italystrap_footer', array( $template_settings, 'do_footer' ) );
 
+$test_registered_template = array(
+
+	'Title'	=> array(
+		'\ItalyStrap\Core\Templates\Title'	=> array(
+			'italystrap_entry_content'	=> array(
+				'function_to_add'	=> 'render',
+				'priority'			=> 10,
+			),
+		),
+	),
+);
+// foreach ( $test_registered_template as $class_name => $value ) {
+
+	// d( $value[1][0] );
+
+	// $class_name = strtolower( $class_name );
+	// $prefixed_classname = "italystrap_{$class_name}";
+
+
+
+	// $$prefixed_classname = $injector->make( $value[0] );
+
+	// add_action(
+	// 	$value[1][0],
+	// 	array( $$prefixed_classname, $value[1]['function_to_add'] ),
+	// 	isset( $value[1]['priority'] ) ? $value[1]['priority'] : 10,
+	// 	isset( $value[1]['accepted_args'] ) ? $value[1]['accepted_args'] : 1
+	// );
+	// $event_manager->add_subscriber( $$prefixed_classname );
+// }
+
+// add_action( 'wp_enqueue_scripts', function () {
+// 	global $wp_filter;
+// 	d( $wp_filter['wp_head'] );
+// 	remove_action( 'wp_head', 'wp_print_styles', 8 );
+// 	remove_action( 'wp_head', 'wp_print_scripts' );
+// 	remove_action( 'wp_head', 'wp_print_head_scripts', 9 );
+// 	remove_action( 'wp_head', 'wp_enqueue_scripts', 1 );
+// 	d( $wp_filter['wp_head'] );
+// });
+
+// $event_manager->remove_subscriber( $italystrap_title );
+// $injector->execute(function( $args ) use ( $injector ) { d( $injector ); } );
 // add_action( 'wp_footer', function () {
 // 	$debug_asset = new \ItalyStrap\Debug\Asset_Queued();
-// 	$debug_asset->debug_styles();
-// 	$debug_asset->debug_scripts();
+// 	$debug_asset->styles();
+// 	$debug_asset->scripts();
 // }, 100000 );

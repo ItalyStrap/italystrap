@@ -34,6 +34,10 @@ return array(
 	 */
 	'header_image'					=> '', // Set by WordPress.
 
+	'custom_header'					=> array(
+		'container_width'	=> 'container',
+	),
+
 	/**
 	 * Background image
 	 */
@@ -81,6 +85,14 @@ return array(
 	'sidebar_class'					=> 'col-md-4', // 3 - 3.
 	'sidebar_secondary_class'		=> '', // 2 - 3.
 	'full_width'					=> 'col-md-12',
+
+	'layout'						=> array(
+		'choices'	=> array(
+			// 'none'				=> __( 'None', 'italystrap' ),
+			'container-fluid'	=> __( 'Full witdh', 'italystrap' ),
+			'container'			=> __( 'Standard width', 'italystrap' ),
+		)
+	),
 
 	/**
 	 * Display image size 740x370 in single and page
@@ -145,10 +157,10 @@ return array(
 	 * Content
 	 * @deprecated Moved to the plugin
 	 */
-	'excerpt_length'				=> 25,
-	'read_more_class'				=> 'read-more',
-	'read_more_link'				=> ' <a href="%1$s" class="%2$s"> &hellip; %3$s</a>',
-	'read_more_link_text'			=> __( '&hellip; Read more', 'italystrap' ),
+	// 'excerpt_length'				=> 25,
+	// 'read_more_class'				=> 'read-more',
+	// 'read_more_link'				=> ' <a href="%1$s" class="%2$s"> &hellip; %3$s</a>',
+	// 'read_more_link_text'			=> __( '&hellip; Read more', 'italystrap' ),
 
 	/**
 	 * Set by plugin

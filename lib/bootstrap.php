@@ -72,6 +72,14 @@ foreach ( $autoload_files as $file ) {
 }
 
 /**
+ * This class has to be loaded before the init of all classes.
+ *
+ * @var \ItalyStrap\Admin\Required_Plugins\Register
+ */
+$required_plugins = new \ItalyStrap\Admin\Required_Plugins\Register;
+add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
+
+/**
  * Set the default theme constant
  *
  * @see /lib/default-constant.php
@@ -106,6 +114,11 @@ if ( ! isset( $theme_mods ) ) {
  */
 // $theme_mods = wp_parse_args( get_theme_mods(), $italystrap_defaults );
 $theme_mods = wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
+
+/**
+ * Define theme_mods parmeter
+ */
+$injector->defineParam( 'theme_mods', $theme_mods );
 
 /**
  * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.

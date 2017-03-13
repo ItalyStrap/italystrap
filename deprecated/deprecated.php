@@ -280,3 +280,39 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
     break;
     endswitch;
 }
+
+/**
+ * Get the custom header image
+ * f
+ * @param obj     $get_header_image The header image array object.
+ *
+ * @return string                   The img output
+ */
+function get_the_custom_header_image( $get_header_image ) {
+
+  _deprecated_function( __FUNCTION__, '4.0.0', 'Header_Image::custom_header()' );
+
+  if ( ! isset( $get_header_image->attachment_id ) ) {
+    return sprintf(
+      '<img src="%s" width="%s" height="%s" alt="%s">',
+      $get_header_image->url,
+      $get_header_image->width,
+      $get_header_image->height,
+      GET_BLOGINFO_NAME
+    );
+  }
+
+  $id = $get_header_image->attachment_id;
+
+  $attr = array(
+    'class'   => "center-block img-responsive attachment-$id attachment-header size-header",
+    'alt'   => esc_attr( GET_BLOGINFO_NAME ),
+    'itemprop'  => 'image',
+        );
+
+  $attr = apply_filters( 'italystrap_custom_header_image_attr', $attr );
+
+  $output = wp_get_attachment_image( $id , false, false, $attr );
+
+  return apply_filters( 'italystrap_custom_header_image', $output );
+}

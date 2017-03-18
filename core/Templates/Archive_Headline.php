@@ -35,7 +35,7 @@ class Archive_Headline extends Template_Base implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'				=> 'method_name',
-			'italystrap_before_loop'	=> array(
+			'italystrap_before_while'	=> array(
 				'function_to_add'	=> 'render',
 				'priority'			=> 20,
 			),

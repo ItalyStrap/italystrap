@@ -27,7 +27,7 @@ class Featured_Image extends Template_Base implements Subscriber_Interface  {
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
 	 *
-	 * @hoocked 'italystrap_entry_content' - 40
+	 * @hoocked 'italystrap_entry_content' - 10
 	 *
 	 * @return array
 	 */
@@ -37,7 +37,7 @@ class Featured_Image extends Template_Base implements Subscriber_Interface  {
 			// 'hook_name'							=> 'method_name',
 			'italystrap_entry_content'	=> array(
 				'function_to_add'	=> 'render',
-				'priority'			=> apply_filters( 'italystrap_featured_image_priority', 40 ),
+				'priority'			=> apply_filters( 'italystrap_featured_image_priority', 10 ),
 			),
 		);
 	}

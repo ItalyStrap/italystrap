@@ -102,6 +102,10 @@ class Template_Base implements Template_Interface {
 	 */
 	public function get_template_settings() {
 
+		if ( ! is_singular() ) {
+			return array();
+		}
+
 		/**
 		 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
 		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS

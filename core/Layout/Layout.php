@@ -164,6 +164,17 @@ class Layout implements Subscriber_Interface {
 			return 'full_width';
 		}
 
+		/**
+		 * Momentaneamente nella pagina di ricerca ritorno il layout con sidebar
+		 * perché se il risultato è un solo articolo mi prendeva l'ID
+		 * dell'articolo cercato e mi ritornava il layout assegnato ad esso.
+		 * Fare ulteriori test in futuro e appena creo i settings globali
+		 * anche per questa pagina allora dovrà bypassare questo problema.
+		 */
+		if ( is_search() ) {
+			return 'content_sidebar';
+		}
+
 		if ( empty( $setting ) ) {
 			return 'content_sidebar';
 		}

@@ -46,11 +46,12 @@ class Register {
 
 		$this->_prefix = '_' . $this->prefix;
 
-		$this->object_types = array(
+		$this->object_types = apply_filters( 'italystrap_post_types_layout_support', array(
 			 'page',
 			 'post',
 			 'download',
 			 'product',
+			)
 		);
 
 	}

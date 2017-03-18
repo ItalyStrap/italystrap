@@ -102,7 +102,7 @@ class Editor{
 	public function taxonomies_description( $tax ) {
 
 		?><div class="form-field">
-			<label for="description"><?php esc_html_ex( 'Description', 'Taxonomy Description' ); ?></label>
+			<label for="description"><?php echo esc_html_x( 'Description', 'Taxonomy Description' ); ?></label>
 			<?php $this->print_wp_editor( $tax ); ?>
 			<br />
 			<span class="description"><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.' ); ?></span>
@@ -118,7 +118,7 @@ class Editor{
 
 		?><table class="form-table">
 			<tr class="form-field">
-				<th scope="row" valign="top"><label for="description"><?php esc_html_ex( 'Description', 'Taxonomy Description' ); ?></label></th>
+				<th scope="row" valign="top"><label for="description"><?php echo esc_html_x( 'Description', 'Taxonomy Description' ); ?></label></th>
 				<td>
 					<?php $this->print_wp_editor( $tax ); ?>
 					<br />

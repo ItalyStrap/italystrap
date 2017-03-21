@@ -22,8 +22,6 @@ use	WP_Customize_Media_Control;
 use ItalyStrap\Core as Core;
 use	ItalyStrap\Customizer\Control\Textarea;
 
-use	ItalyStrapAdminMediaSettings;
-
 /**
  * Changing Customizer Color Sections Titles
  */
@@ -413,8 +411,9 @@ $manager->add_control(
  * Instance of list of image sizes
  * @var ItalyStrapAdminMediaSettings
  */
-$image_size_media = new ItalyStrapAdminMediaSettings;
-$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
+// $image_size_media = new ItalyStrapAdminMediaSettings;
+$image_size_media = new \ItalyStrap\Image\Size;
+$image_size_media_array = $image_size_media->get_image_sizes();
 
 /**
  * Display navbar logo image size list

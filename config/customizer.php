@@ -24,8 +24,6 @@ use	WP_Customize_Media_Control;
 use ItalyStrap\Core as Core;
 use	ItalyStrap\Customizer\Control\Textarea;
 
-use	ItalyStrapAdminMediaSettings;
-
 return array(
 
 	/**

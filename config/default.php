@@ -97,6 +97,8 @@ return array(
 		)
 	),
 
+	'post_content_template'			=> '',
+
 	/**
 	 * Display image size 740x370 in single and page
 	 */

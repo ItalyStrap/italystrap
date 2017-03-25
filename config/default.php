@@ -54,6 +54,9 @@ return array(
 	'default_image'					=> TEMPLATEURL . '/img/italystrap-default-image.png',
 	'default_404'					=> TEMPLATEURL . '/img/404.jpg',
 
+	'post_thumbnail_size'			=> 'post-thumbnail',
+	'post_thumbnail_alignment'		=> 'alignnone',
+
 	/**
 	 * Navbar
 	 */

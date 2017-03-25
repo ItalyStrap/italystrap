@@ -156,6 +156,10 @@ class Layout implements Subscriber_Interface {
 			$setting = get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
 		}
 
+		if ( empty( $setting ) ) {
+			$setting = $this->theme_mods['site_layout'];
+		}
+
 		/**
 		 * Backward compatibility with the front-page template
 		 * old PAGE_ON_FRONT === $this->get_the_ID() && empty( $setting ) 

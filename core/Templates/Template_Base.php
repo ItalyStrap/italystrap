@@ -50,6 +50,7 @@ class Template_Base implements Template_Interface {
 	);
 
 	protected static $mods = array();
+	protected static $post_content_template = array();
 	protected static $count = 0;
 
 	/**
@@ -63,6 +64,10 @@ class Template_Base implements Template_Interface {
 			self::$mods = $theme_mod;
 		}
 		$this->theme_mod = self::$mods;
+
+		if ( empty( self::$post_content_template ) ) {
+			self::$post_content_template = explode( ',', $this->theme_mod['post_content_template'] );
+		}
 
 		/**
 		 * Credits:
@@ -103,7 +108,7 @@ class Template_Base implements Template_Interface {
 	public function get_template_settings() {
 
 		if ( ! is_singular() ) {
-			return array();
+			return (array) self::$post_content_template;
 		}
 
 		/**

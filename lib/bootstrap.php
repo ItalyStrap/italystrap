@@ -17,10 +17,6 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-// use ItalyStrap\Admin\Category\Editor as Category_Editor;
-// use ItalyStrap\Admin\Tinymce\Editor as Text_Editor;
-// use ItalyStrap\Admin\Metabox\Register as Register_Meta;
-// use ItalyStrap\Admin\Required_Plugins\Register as Required_Plugins;
 use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
 
 use ItalyStrap\Core\Router\Router;
@@ -28,12 +24,8 @@ use ItalyStrap\Core\Router\Controller;
 
 use ItalyStrap\Core\Image\Size as Size;
 use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
-// use ItalyStrap\Core\Navbar\Navbar as Navbar;
-use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
-// use ItalyStrap\Core\Excerpt\Excerpt as Excerpt;
 
-// use ItalyStrap\Core\Layout\Layout;
-// use ItalyStrap\Core\Templates\Template_Base as Template;
+use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
 
 use ItalyStrap\Core\Css\Css;
 
@@ -210,7 +202,8 @@ add_action( 'wp_head' , array( $css_manager, 'css_output' ), 11 );
  *
  * @var ItalyStrap_Theme_Customizer
  */
-$italystrap_customizer = new Customizer( $theme_mods );
+// $italystrap_customizer = new Customizer( $theme_mods );
+$italystrap_customizer = $injector->make( '\ItalyStrap\Customizer\Customizer' );
 
 /**
  * Setup the Theme Customizer settings and controls...

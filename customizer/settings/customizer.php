@@ -147,7 +147,7 @@ $manager->add_control(
 $manager->add_panel( $this->panel,
 	array(
 		'title'			=> __( 'Theme Options', 'italystrap' ),
-		'description'	=> 'add_panel', // Include html tags such as <p>.
+		// 'description'	=> 'add_panel', // Include html tags such as <p>.
 		// 'priority'		=> 160, // Mixed with top-level-section hierarchy.
 		'priority'		=> 10, // Mixed with top-level-section hierarchy.
 	)
@@ -157,9 +157,56 @@ $manager->add_panel( $this->panel,
  * Define a new section for theme image options
  */
 $manager->add_section(
+	'italystrap_layout_options',
+	array(
+		'title'			=> __( 'Layout', 'italystrap' ), // Visible title of section.
+		'panel'			=> $this->panel,
+		'capability'	=> $this->capability,
+		'description'	=> __( 'Allows you to customize the layout for ItalyStrap.', 'italystrap' ),
+	)
+);
+
+/**
+ * Container Width of the header
+ */
+$manager->add_setting(
+	'site_layout',
+	array(
+		// 'default'			=> $this->theme_mods['_site_layout_header']['container_width'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'refresh',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+
+$manager->add_control(
+	'italystrap_site_layout',
+	array(
+		'label'		=> __( 'Layout', 'italystrap' ),
+		'section'	=> 'italystrap_layout_options',
+		'type'		=> 'radio',
+		'settings'	=> 'site_layout',
+		'choices'	=> array(
+			'full_width'				=> __( 'Full width, no sidebar', 'italystrap' ),
+			'content_sidebar'			=> __( 'Content Sidebar', 'italystrap' ),
+			'content_sidebar_sidebar'	=> __( 'Content Sidebar Sidebar', 'italystrap' ),
+			'sidebar_content_sidebar'	=> __( 'Sidebar Content Sidebar', 'italystrap' ),
+			'sidebar_sidebar_content'	=> __( 'Sidebar Sidebar content', 'italystrap' ),
+			'sidebar_content'			=> __( 'Sidebar Content', 'italystrap' ),
+		),
+	)
+);
+
+include( 'post-content-template.php' );
+
+/**
+ * Define a new section for theme image options
+ */
+$manager->add_section(
 	'italystrap_image_options',
 	array(
-		'title'			=> __( 'Theme Image Options', 'italystrap' ), // Visible title of section.
+		'title'			=> __( 'Image Options', 'italystrap' ),
 		'panel'			=> $this->panel,
 		'capability'	=> $this->capability,
 		'description'	=> __( 'Allows you to customize settings for ItalyStrap.', 'italystrap' ),
@@ -245,6 +292,61 @@ $manager->add_control(
 			'settings'		=> 'default_404',
 			'priority'		=> 10,
 		)
+	)
+);
+
+/**
+ * Change image size of post thumbnail in archive, author, blog, category, search, and tag pages. 
+ */
+$manager->add_setting(
+	'post_thumbnail_size',
+	array(
+		'default'			=> $this->theme_mods['post_thumbnail_size'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'refresh',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_post_thumbnail_size',
+	array(
+		'settings'		=> 'post_thumbnail_size',
+		'label'			=> __( 'Archive post thumbnail size', 'italystrap' ),
+		'description'	=> __( 'Change image size of post thumbnail in archive, author, blog, category, search, and tag pages.', 'italystrap' ),
+		'section'		=> 'italystrap_image_options',
+		'type'			=> 'select',
+		'choices'		=> $this->size->get_image_sizes(),
+	)
+);
+
+/**
+ * Change image alignment of post thumbnail in archive, author, blog, category, search, and tag pages.
+ */
+$manager->add_setting(
+	'post_thumbnail_alignment',
+	array(
+		'default'			=> $this->theme_mods['post_thumbnail_alignment'],
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'refresh',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_post_thumbnail_alignment',
+	array(
+		'settings'		=> 'post_thumbnail_alignment',
+		'label'			=> __( 'Archive post thumbnail alignment', 'italystrap' ),
+		'description'	=> __( 'Change image alignment of post thumbnail in archive, author, blog, category, search, and tag pages.', 'italystrap' ),
+		'section'		=> 'italystrap_image_options',
+		'type'			=> 'select',
+		'choices'		=> array(
+			'alignnone'		=> __( 'None', 'italystrap' ),
+			'aligncenter'	=> __( 'Center', 'italystrap' ),
+			'alignleft'		=> __( 'Left', 'italystrap' ),
+			'alignright'	=> __( 'Right', 'italystrap' ),
+		),
 	)
 );
 
@@ -408,14 +510,6 @@ $manager->add_control(
 );
 
 /**
- * Instance of list of image sizes
- * @var ItalyStrapAdminMediaSettings
- */
-// $image_size_media = new ItalyStrapAdminMediaSettings;
-$image_size_media = new \ItalyStrap\Image\Size;
-$image_size_media_array = $image_size_media->get_image_sizes();
-
-/**
  * Display navbar logo image size list
  */
 $manager->add_setting(
@@ -435,7 +529,7 @@ $manager->add_control(
 		'label'		=> __( 'Logo image size', 'italystrap' ),
 		'section'	=> 'italystrap_navbar_options',
 		'type'		=> 'select',
-		'choices'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
+		'choices'	=> $this->size->get_image_sizes(),
 	)
 );
 
@@ -545,18 +639,30 @@ $manager->add_setting(
 );
 
 $manager->add_control(
-	new Textarea(
-		$manager,
-		'colophon',
+	'colophon',
 		array(
 			'label'			=> __( 'Footer\'s Colophon', 'italystrap' ),
 			'description'	=> __( '', 'italystrap' ),
 			'section'		=> 'colophon',
 			'settings'		=> 'colophon',
 			'priority'		=> 10,
+			'type'			=> 'textarea',
 		)
-	)
 );
+
+// $manager->add_control(
+// 	new Textarea(
+// 		$manager,
+// 		'colophon',
+// 		array(
+// 			'label'			=> __( 'Footer\'s Colophon', 'italystrap' ),
+// 			'description'	=> __( '', 'italystrap' ),
+// 			'section'		=> 'colophon',
+// 			'settings'		=> 'colophon',
+// 			'priority'		=> 10,
+// 		)
+// 	)
+// );
 
 /**
  * Let's make some stuff use live preview JS...

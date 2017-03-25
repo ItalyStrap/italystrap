@@ -36,12 +36,12 @@ if ( has_post_thumbnail() ) { ?>
 		 * Filter the post thumbnail size with context
 		 * You ca use the built in 'post_thumbnail_size' filter as well but without the context
 		 *
-		 * @param string $size    The size of the post_thumbnail.
+		 * @param string $size    The size of the post_thumbnail. (Default: 'post-thumbnail')
 		 * @param string $context The context in wich this function is called.
 		 *
 		 * @var string
 		 */
-		$size = apply_filters( 'italystrap_post_thumbnail_size', 'post-thumbnail', $context );
+		$size = apply_filters( 'italystrap_post_thumbnail_size', $this->theme_mod['post_thumbnail_size'], $context );
 
 		/**
 		 * Filter the post thumbnail attributes with context
@@ -55,8 +55,9 @@ if ( has_post_thumbnail() ) { ?>
 		$attr = apply_filters( 'italystrap_post_thumbnail_attr',
 			array(
 				'class'		=> sprintf(
-					'attachment-%1$s size-%1$s center-block img-responsive %1$s',
-					$size
+					'attachment-%1$s size-%1$s %1$s %2$s img-responsive',
+					$size,
+					$this->theme_mod['post_thumbnail_alignment']
 				),
 				'alt'		=> trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
 				'itemprop'	=> 'image',

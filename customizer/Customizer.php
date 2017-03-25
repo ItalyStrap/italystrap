@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Core as Core;
+use ItalyStrap\Image\Size;
 
 use WP_Customize_Manager;
 
@@ -64,11 +65,19 @@ class Customizer {
 	private $theme_mods = array();
 
 	/**
+	 * Instance of Size Class
+	 *
+	 * @var Size
+	 */
+	private $size;
+
+	/**
 	 * Init the class
 	 */
-	function __construct( array $theme_mods = array() ) {
+	function __construct( array $theme_mods = array(), Size $size ) {
 
 		$this->theme_mods = $theme_mods;
+		$this->size = $size;
 	}
 
 	/**
@@ -105,7 +114,6 @@ class Customizer {
 		do_action( 'italystrap_after_customize_register', $manager, $this );
 
 		// return $manager;
-
 	}
 
 	/**

@@ -130,6 +130,11 @@ class Register {
 
 		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : null;
 
+		/**
+		 * Get default layout
+		 */
+		$default = $this->config['site_layout'];
+
 		$cmb->add_field(
 			array(
 				'name'		=> __( 'Layout settings', 'italystrap' ),
@@ -137,7 +142,8 @@ class Register {
 				'id'		=> $this->_prefix . '_layout_settings',
 				'type'		=> 'radio',
 				'options'	=> $layout_settings_metabox_options,
-				'default'	=> PAGE_ON_FRONT === $post_id ? 'full_width' : 'content_sidebar',
+				// 'default'	=> PAGE_ON_FRONT === $post_id ? 'full_width' : 'content_sidebar',
+				'default'	=> $default,
 			)
 		);
 

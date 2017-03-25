@@ -51,6 +51,11 @@ class Featured_Image extends Template_Base implements Subscriber_Interface  {
 			return;
 		}
 
+		if ( is_singular() ) {
+			$this->theme_mod['post_thumbnail_size'] = 'post-thumbnail';
+			$this->theme_mod['post_thumbnail_alignment'] = 'aligncenter';
+		}
+
 		parent::render();
 	}
 }

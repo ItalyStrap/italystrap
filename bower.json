@@ -30,6 +30,7 @@
     "jquery": "latest",
     "susy": "~2.2.12",
     "breakpoint-sass": "~2.7.0",
-    "bourbon": "~4.2.7"
+    "bourbon": "~4.2.7",
+    "bootstrap": "https://github.com/twbs/bootstrap.git#v4.0.0-alpha.6"
   }
 }

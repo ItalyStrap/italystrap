@@ -138,6 +138,8 @@ class Layout implements Subscriber_Interface {
 	/**
 	 * Get the layout settings
 	 *
+	 * @todo Need more tests
+	 *
 	 * @return array Return the array with template part settings.
 	 */
 	public function get_layout_settings() {
@@ -151,14 +153,18 @@ class Layout implements Subscriber_Interface {
 		 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
 		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
 		 */
-		
+
 		if ( ! $setting ) {
+			$setting = $this->theme_mods['site_layout'];
+		}
+
+		if ( ! $setting && is_singular() ) {
 			$setting = get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
 		}
 
-		if ( empty( $setting ) ) {
-			$setting = $this->theme_mods['site_layout'];
-		}
+		// if ( empty( $setting ) ) {
+		// 	$setting = $this->theme_mods['site_layout'];
+		// }
 
 		/**
 		 * Backward compatibility with the front-page template
@@ -175,13 +181,13 @@ class Layout implements Subscriber_Interface {
 		 * Fare ulteriori test in futuro e appena creo i settings globali
 		 * anche per questa pagina allora dovrà bypassare questo problema.
 		 */
-		if ( is_search() ) {
-			return 'content_sidebar';
-		}
+		// if ( is_search() ) {
+		// 	return 'content_sidebar';
+		// }
 
-		if ( empty( $setting ) ) {
-			return 'content_sidebar';
-		}
+		// if ( empty( $setting ) ) {
+		// 	return 'content_sidebar';
+		// }
 
 		return $setting;
 	}

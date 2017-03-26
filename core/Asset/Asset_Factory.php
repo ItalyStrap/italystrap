@@ -109,6 +109,7 @@ class Asset_Factory implements Subscriber_Interface {
 					file_exists( STYLESHEETPATH . '/css/' . $dev_dir . CURRENT_TEMPLATE_SLUG . '.css' )
 					? STYLESHEETURL . '/css/' . $dev_dir . CURRENT_TEMPLATE_SLUG . '.css'
 					: STYLESHEETURL . '/css/' . $dev_dir . 'custom.css',
+				// 'file'			=> 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css',
 				'version'	=> $ver,
 				'media'		=> null,
 			),

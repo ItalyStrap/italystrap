@@ -35,17 +35,20 @@ class Layout implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'				=> 'method_name',
-			'italystrap_content_attr'	=> array(
+			'italystrap_content_attr'			=> array(
 				'function_to_add'	=> 'set_content_class',
 				'accepted_args'		=> 3
 			),
-			'italystrap_sidebar_attr'	=> array(
+			'italystrap_sidebar_attr'			=> array(
 				'function_to_add'	=> 'set_sidebar_class',
 				'accepted_args'		=> 3
 			),
 			'italystrap_sidebar_secondary_attr'	=> array(
 				'function_to_add'	=> 'set_sidebar_secondary_class',
 				'accepted_args'		=> 3
+			),
+			'italystrap_theme_loaded'			=> array(
+				'function_to_add'	=> 'init',
 			),
 		);
 	}
@@ -69,12 +72,13 @@ class Layout implements Subscriber_Interface {
 	 *
 	 * @param array $theme_mod Theme mods array.
 	 */
-	function __construct( array $theme_mod = array() ) {
-		$this->theme_mods = $theme_mod;
+	function __construct( array $theme_mods = array() ) {
+		$this->theme_mods = $theme_mods;
 	}
 
 	/**
 	 * Get the ID
+	 * @see Template::get_the_ID()
 	 *
 	 * @return int The current content ID
 	 */
@@ -84,8 +88,26 @@ class Layout implements Subscriber_Interface {
 			return PAGE_FOR_POSTS;
 		}
 
+		/**
+		 * Using get_queried_object_id() here since the $post global may not be set before a call to the_post(). twentyseventeen
+		 * get_queried_object_id()
+		 */
+
 		return get_the_ID();
-	
+	}
+
+	/**
+	 * Get the post type
+	 *
+	 * @param int|WP_Post|null $post Post ID or post object. (Optional)
+	 *                               Default is global $post.
+	 *                               Default value: null
+	 *
+	 * @return string|false           Post type on success, false on failure.
+	 */
+	public function get_post_type( $post = null ) {
+
+		return get_post_type( $post );
 	}
 
 	/**
@@ -144,7 +166,8 @@ class Layout implements Subscriber_Interface {
 	 */
 	public function get_layout_settings() {
 
-		static $setting = null;
+		static $setting;
+		$setting = $this->theme_mods['site_layout'];
 
 		// delete_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
 		// delete_post_meta_by_key( '_italystrap_layout_settings' );
@@ -154,12 +177,13 @@ class Layout implements Subscriber_Interface {
 		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
 		 */
 
-		if ( ! $setting ) {
-			$setting = $this->theme_mods['site_layout'];
-		}
+		// if ( ! $setting ) {
+		// 	$setting = $this->theme_mods['site_layout'];
+		// }
 
-		if ( ! $setting && is_singular() ) {
-			$setting = get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
+		if ( is_singular() ) {
+			$page_layout = get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
+			$setting = $page_layout ? $page_layout : 'content_sidebar';
 		}
 
 		// if ( empty( $setting ) ) {
@@ -170,9 +194,9 @@ class Layout implements Subscriber_Interface {
 		 * Backward compatibility with the front-page template
 		 * old PAGE_ON_FRONT === $this->get_the_ID() && empty( $setting ) 
 		 */
-		if ( \ItalyStrap\Core\is_static_front_page() && empty( $setting ) ) {
-			return 'full_width';
-		}
+		// if ( \ItalyStrap\Core\is_static_front_page() && empty( $setting ) ) {
+		// 	return 'full_width';
+		// }
 
 		/**
 		 * Momentaneamente nella pagina di ricerca ritorno il layout con sidebar

@@ -42,6 +42,9 @@ class Pagination extends Template_Base implements Subscriber_Interface  {
 
 	/**
 	 * Render the output of the controller.
+	 *
+	 * @todo wp-includes\link-template.php 2563
+	 *       the_posts_pagination();
 	 */
 	public function render() {
 		if ( is_404() ) {

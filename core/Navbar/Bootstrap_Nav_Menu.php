@@ -30,7 +30,7 @@ use \Walker_Nav_Menu;
  * @todo Sarebbe interessante aggiunger un autocomplete con le classi Bootstrap
  *       nel menù admin
  */
-class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
+class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 
 	/**
 	 * Starts the list before the elements are added.
@@ -358,35 +358,38 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu{
 	 *
 	 * @param array $args passed from the wp_nav_menu function.
 	 */
-	public static function fallback( $args ) {
+	public static function fallback( $wp_nav_menu_args ) {
 
-		if ( current_user_can( 'manage_options' ) ) {
-
-			$output = null;
-
-			if ( $args['container'] ) {
-
-				$attributes = self::get_attributes( array( 'id' => $args['container_id'], 'class' => $args['container_class'] ) );
-
-				$output = '<' . $args['container'] . $attributes . '>';
-
-			}
-
-			$attributes = self::get_attributes( array( 'id' => $args['menu_id'], 'class' => $args['menu_class'] ) );
-
-			$output .= '<ul' . $attributes . '>';
-
-			$output .= '<li><a href="' . admin_url( 'nav-menus.php' ) . '">' . __( 'Add a menu', 'ItalyStrap' ) . '</a></li>';
-
-			$output .= '</ul>';
-
-			if ( $args['container'] ) {
-
-				$output .= '</' . $args['container'] . '>';
-
-			}
-
-			echo $output; // XSS ok.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
 		}
+
+		$output = '';
+
+		if ( $wp_nav_menu_args['container'] ) {
+
+			$output = sprintf(
+				'<%s%s>',
+				$wp_nav_menu_args['container'],
+				self::get_attributes( array( 'id' => $wp_nav_menu_args['container_id'], 'class' => $wp_nav_menu_args['container_class'] ) )
+			);
+		}
+
+		$output .= sprintf(
+			'<ul%s><li><a href="%s">%s</a></li></ul>',
+			self::get_attributes( array( 'id' => $wp_nav_menu_args['menu_id'], 'class' => $wp_nav_menu_args['menu_class'] ) ),
+			admin_url( 'nav-menus.php' ),
+			__( 'Add a menu', 'italystrap' )
+		);
+
+		if ( $wp_nav_menu_args['container'] ) {
+
+			$output .= sprintf(
+				'</%s>',
+				$wp_nav_menu_args['container']
+			);
+		}
+
+		echo $output; // XSS ok.
 	}
 }

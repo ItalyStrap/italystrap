@@ -40,11 +40,21 @@ class Nav_Menu extends Template_Base implements Subscriber_Interface  {
 	}
 
 	/**
+	 * Init the class
+	 *
+	 * @param array $theme_mod Class configuration array.
+	 */
+	function __construct( array $theme_mod = array(), Navbar $navbar  ) {
+
+		$this->navbar = $navbar;
+
+		parent::__construct( $theme_mod );
+	}
+
+	/**
 	 * Function description
 	 */
 	public function render() {
-		// $navbar = new Nav_Menu( $this->theme_mod );
-		$navbar = new Navbar( self::$mods );
-		$navbar->output();
+		$this->navbar->output();
 	}
 }

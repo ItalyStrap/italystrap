@@ -11,6 +11,7 @@
 namespace ItalyStrap\Core\Navbar;
 
 use ItalyStrap\Core;
+use Walker_Nav_Menu;
 
 /**
  * Template for Navbar like Botstrap CSS
@@ -46,9 +47,18 @@ class Navbar {
 	private $navbar_id;
 
 	/**
+	 * Walker instance
+	 *
+	 * @var Walker_Nav_Menu
+	 */
+	protected $walker = null;
+
+	/**
 	 * Init the constructor
 	 */
-	public function __construct( array $theme_mods = array() ) {
+	public function __construct( array $theme_mods = array(), Walker_Nav_Menu $walker ) {
+
+		$this->walker = $walker;
 
 		self::$instance_count++;
 
@@ -104,10 +114,12 @@ class Navbar {
 			'link_after'		=> '</span>',
 			'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
 			'depth'				=> 10,
-			'walker'			=> new Bootstrap_Nav_Menu(),
+			'walker'			=> $this->walker,
 			'theme_location'	=> 'main-menu',
 			'search'			=> false,
 		);
+
+		// $defaults['fallback_cb'] = $this->walker->fallback( $defaults );
 
 		$args = wp_parse_args( $args, $defaults );
 

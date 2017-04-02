@@ -356,7 +356,12 @@ function comment_form_args( $comment_author, $user_identity ){
 
 /**
  * Pagination for comment
+ *
+ * @todo wp-includes\link-template.php 2894
+ *       the_comments_pagination( $args = array() );
+ *
  * @since ItalyStrap 3.1
+ *
  * @return string Return pagination
  */
 function comment_pagination(){
@@ -395,7 +400,6 @@ function comment_pagination(){
 		</nav>
 
 	<?php }
-
 }
 
 /**

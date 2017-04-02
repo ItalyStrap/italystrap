@@ -85,6 +85,13 @@ class Comments extends Walker_Comment {
 
 		}
 
+		/**
+		 * There are a few ways to list 'pingback'.
+		 * 		Above the comments
+		 * 		Below the comments
+		 * 		Included within the normal flow of comments
+		 */
+
 		if ( ( 'pingback' === $comment->comment_type || 'trackback' === $comment->comment_type ) && $args['short_ping'] ) {
 			ob_start();
 			$this->ping( $comment, $depth, $args );
@@ -252,7 +259,7 @@ class Comments extends Walker_Comment {
 				<section class="col-sm-10">
 					<footer class="comment-meta">
 					
-							<?php if ( is_user_logged_in() && current_user_can( 'manage_options' ) ): ?>
+							<?php if ( is_user_logged_in() && current_user_can( 'manage_options' ) && 'pingback'!== $comment->comment_type ): ?>
 								<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit', 'ItalyStrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
 							<?php endif ?>
 							<?php
@@ -289,19 +296,21 @@ class Comments extends Walker_Comment {
 					</div><!-- .comment-content -->
 					
 					<?php
-					
-					$comment_reply_link_args = apply_filters( 'comment_reply_link_args', array(
-						'reply_text' => __('Reply to ', 'ItalyStrap') . $comment->comment_author . ' <i class="glyphicon glyphicon-arrow-down"></i>',
-						'add_below' => 'div-comment',
-						'depth'     => $depth,
-						'max_depth' => 1000,
-						'before'    => '<div class="reply">',
-						'after'     => '</div>'
-					) );
-					
-					comment_reply_link( array_merge( $args, $comment_reply_link_args ) );
-					
-					?>
+					if ( 'pingback'!== $comment->comment_type ) {
+						$comment_reply_link_args = apply_filters( 'comment_reply_link_args', array(
+							'reply_text' => sprintf(
+								__('Reply to %s %s', 'ItalyStrap'),
+								$comment->comment_author,
+								'<i class="glyphicon glyphicon-arrow-down"></i>'
+							),
+							'add_below' => 'div-comment',
+							'depth'     => $depth,
+							'max_depth' => 1000,
+							'before'    => '<div class="reply">',
+							'after'     => '</div>'
+						) );
+						comment_reply_link( array_merge( $args, $comment_reply_link_args ) );
+					} ?>
 				</section>
 			</article><!-- .comment-body -->
 <?php

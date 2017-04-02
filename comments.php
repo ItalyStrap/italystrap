@@ -20,6 +20,13 @@ if ( post_password_required() ) {
 	return;
 }
 
+/**
+ * @link https://codex.wordpress.org/Function_Reference/post_type_supports
+ */
+if ( ! post_type_supports( get_post_type(), 'comments' ) ) {
+	return;
+}
+
 $template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
 /**
  * If there are comments
@@ -58,7 +65,7 @@ if ( have_comments() && ! in_array( 'hide_comments', $template_settings, true ) 
 		\ItalyStrap\Core\comment_pagination();
 		?>
 	</section><!-- /#comments -->
-<?php elseif ( comments_open() ) : ?>
+<?php elseif ( comments_open() && ! in_array( 'hide_comments', $template_settings, true ) ) : ?>
 	<section id="comments" class="comments-area">
 		<h3 id="comments-title"><?php esc_html_e( 'There are no comments yet, why not be the first', 'ItalyStrap' ); ?></h3>
 	</section>

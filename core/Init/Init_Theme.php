@@ -102,16 +102,16 @@ class Init_Theme{
 		 * @var array
 		 */
 		$post_formats = array(
-				'aside',
-				'image',
-				'gallery',
-				'link',
-				'quote',
-				'status',
-				'video',
-				'audio',
-				'chat',
-				);
+			'aside',
+			'image',
+			'gallery',
+			'link',
+			'quote',
+			'status',
+			'video',
+			'audio',
+			'chat',
+		);
 		add_theme_support( 'post-formats', apply_filters( 'post_formats_support', $post_formats ) );
 
 		/**

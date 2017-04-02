@@ -19,7 +19,23 @@ return array(
 	/**
 	 * Future improvement
 	 */
-	'add_theme_support'				=> array(),
+	'theme_support'				=> array(
+		'supported_post_type'	=> array(
+			 'page',
+			 'post',
+			 'download',
+			 'product',
+			 'forum',
+			 'topic',
+			 'reply',
+		)
+	),
+	'post_type_support'			=> array(
+		'post'		=> array( 'post_navigation', 'entry-meta' ),
+		'page'		=> array( 'post_navigation', 'entry-meta' ),
+		// 'product'	=> array( 'post_navigation', 'entry-meta' ), // WOO usa i suoi template quindi forse non è necessario.
+		'download'	=> array( 'post_navigation', 'entry-meta' ),
+	),
 
 	/**
 	 * Color section
@@ -82,6 +98,7 @@ return array(
 	 * It's still in alpha version
 	 */
 	'site_layout'					=> 'content_sidebar',
+	'singular_layout'				=> 'content_sidebar',
 	'content_width'					=> Core\get_content_width( 1170, 12, 8, 30 ),
 	'container_class'				=> 'container', // container-fluid.
 	'content_class'					=> 'col-md-8', // 7 - 6.

@@ -48,15 +48,6 @@ $autoload_files = array(
 
 	'/deprecated/deprecated.php', // Deprecated files and functions.
 	'/deprecated/pagination.php', // Deprecated
-	// '/deprecated/users_meta.php', // Deprecated
-	// '/deprecated/script.php',// Deprecated file
-	// '/deprecated/tag_cloud.php',
-	// '/deprecated/woocommerce.php',
-	// '/deprecated/password_protection.php', // Function for Post/page password protection Bootstrap style.
-	// '/deprecated/cleanup.php', // Cleanup Headers. Moved to the plugin.
-	// '/deprecated/schema.php', // Deprecated
-	// '/lib/wp-sanitize-capital-p.php', // Moved to the plugin
-	// '/lib/debug.php', // Moved to the plugin
 );
 
 foreach ( $autoload_files as $file ) {
@@ -227,6 +218,12 @@ $init = new Init_Theme( $css_manager, $content_width );
  * @see Class Init()
  */
 add_action( 'after_setup_theme', array( $init, 'theme_setup' ) );
+
+add_action( 'init', function() use ( $theme_mods ) {
+	foreach ( $theme_mods['post_type_support'] as $post_type => $features ) {
+		add_post_type_support( $post_type, $features );
+	}
+});
 
 require( TEMPLATEPATH . '/lib/_init_admin.php' );
 require( TEMPLATEPATH . '/lib/_init.php' );

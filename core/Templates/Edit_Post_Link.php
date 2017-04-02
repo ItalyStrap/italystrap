@@ -35,13 +35,17 @@ class Edit_Post_Link extends Template_Base implements Subscriber_Interface  {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_after_entry_content'	=> array(
-				'function_to_add'	=> 'render',
-				'priority'			=> 20,
-			),
-			'woocommerce_after_single_product'	=> array(
-				'function_to_add'	=> 'render',
-				'priority'			=> 20,
+			// 'italystrap_after_entry_content'	=> array(
+			// 	'function_to_add'	=> 'render',
+			// 	'priority'			=> 20,
+			// ),
+			// 'woocommerce_after_single_product'	=> array(
+			// 	'function_to_add'	=> 'render',
+			// 	'priority'			=> 20,
+			// ),
+			'the_content'	=> array(
+				'function_to_add'	=> 'append_to_content',
+				'priority'			=> 99999999,
 			),
 		);
 	}
@@ -76,5 +80,40 @@ class Edit_Post_Link extends Template_Base implements Subscriber_Interface  {
 			null,
 			$args['class']
 		);
+
+		// printf(
+		// 	'<a class="%s" href="%s">%s</a>',
+		// 	'btn btn-sm btn-danger',
+		// 	get_delete_post_link(),
+		// 	'Delete'
+		// );
+	}
+
+	/**
+	 * Add edit and delete post link to the content.
+	 *
+	 * @param  string $content The post content.
+	 *
+	 * @return string          The post content with the links.
+	 */
+	public function append_to_content( $content = '' ) {
+
+		$edit_post = get_edit_post_link();
+
+		if ( ! $edit_post ) {
+			return $content;
+		}
+
+		$delete_post = get_delete_post_link();
+
+		$content .= sprintf(
+			'<p><small><a class="" href="%s">%s</a> - <a class="" href="%s">%s</a></small></p>',
+			esc_url( $edit_post ),
+			__( 'Edit This' ),
+			esc_url( $delete_post ),
+			__( 'Delete post' )
+		);
+	
+		return $content;
 	}
 }

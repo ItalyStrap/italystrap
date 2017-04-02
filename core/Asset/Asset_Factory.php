@@ -134,6 +134,7 @@ class Asset_Factory implements Subscriber_Interface {
 					file_exists( STYLESHEETPATH . '/js/' . CURRENT_TEMPLATE_SLUG . $min . '.js' )
 					? STYLESHEETURL . '/js/' . CURRENT_TEMPLATE_SLUG . $min . '.js'
 					: STYLESHEETURL . '/js/custom' . $min . '.js',
+				// 'file'			=> 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js',
 				'deps'			=> array( 'jquery' ),
 				'version'		=> $ver,
 				'in_footer'		=> true,

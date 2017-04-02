@@ -50,7 +50,7 @@ class Title extends Template_Base implements Subscriber_Interface {
 		/**
 		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
 		 */
-		if ( ! post_type_supports( get_post_type(), 'title' ) ) {
+		if ( ! post_type_supports( $this->get_post_type(), 'title' ) ) {
 			return;
 		}
 

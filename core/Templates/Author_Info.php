@@ -61,6 +61,13 @@ class Author_Info extends Template_Base implements Subscriber_Interface  {
 	 */
 	public function render_after_content() {
 
+		/**
+		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
+		 */
+		if ( ! post_type_supports( $this->get_post_type(), 'author' ) ) {
+			return;
+		}
+
 		if ( ! is_singular() ) {
 			return;
 		}

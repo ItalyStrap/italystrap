@@ -78,10 +78,11 @@ class Template_Base implements Template_Interface {
 		$class_name = new \ReflectionClass( $this );
 		$this->class_name =  $class_name->getShortName();
 		$this->class_name = strtolower( $this->class_name );
-	}
+	}	
 
 	/**
 	 * Get the ID
+	 * @see Layout::get_the_ID()
 	 *
 	 * @return int        The current content ID
 	 */
@@ -97,6 +98,20 @@ class Template_Base implements Template_Interface {
 		 */
 
 		return get_the_ID();
+	}
+
+	/**
+	 * Get the post type
+	 *
+	 * @param int|WP_Post|null $post Post ID or post object. (Optional)
+	 *                               Default is global $post.
+	 *                               Default value: null
+	 *
+	 * @return string|false           Post type on success, false on failure.
+	 */
+	public function get_post_type( $post = null ) {
+
+		return get_post_type( $post );
 	}
 
 	/**

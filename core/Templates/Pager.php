@@ -41,8 +41,15 @@ class Pager extends Template_Base implements Subscriber_Interface  {
 
 	/**
 	 * Render the output of the controller.
+	 *
+	 * @todo E:\xampp\htdocs\italystrap\wp-includes\link-template.php
+	 *       the_post_navigation( array() );
 	 */
 	public function render() {
+		
+		if ( ! post_type_supports( $this->get_post_type(), 'post_navigation' ) ) {
+			return;
+		}
 
 		if (  ! is_single()  ) {
 			return;

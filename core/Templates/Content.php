@@ -47,6 +47,17 @@ class Content extends Template_Base implements Subscriber_Interface {
 	 */
 	public function render() {
 
+		/**
+		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
+		 * || ! post_type_supports( $post_type, 'excerpt' )
+		 * @todo Vadere di fare un controllo sulle pagine perchè ovviamente non hanno il riassunto
+		 *       e con il controllo sopra sparisce il contenuto e non va bene.
+		 */
+		$post_type = $this->get_post_type();
+		if ( ! post_type_supports( $post_type, 'editor' ) ) {
+			return;
+		}
+
 		if ( in_array( 'hide_content', $this->get_template_settings(), true ) ) {
 			return;
 		}

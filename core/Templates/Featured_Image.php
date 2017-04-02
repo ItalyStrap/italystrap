@@ -47,6 +47,13 @@ class Featured_Image extends Template_Base implements Subscriber_Interface  {
 	 */
 	public function render() {
 
+		/**
+		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
+		 */
+		if ( ! post_type_supports( $this->get_post_type(), 'thumbnail' ) ) {
+			return;
+		}
+
 		if ( in_array( 'hide_thumb', $this->get_template_settings(), true ) ) {
 			return;
 		}

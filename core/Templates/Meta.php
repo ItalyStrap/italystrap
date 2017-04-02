@@ -46,6 +46,10 @@ class Meta extends Template_Base implements Subscriber_Interface {
 	 * Render the output of the controller.
 	 */
 	public function render() {
+		
+		if ( ! post_type_supports( $this->get_post_type(), 'entry-meta' ) ) {
+			return;
+		}
 
 		if ( in_array( 'hide_meta', $this->get_template_settings(), true ) ) {
 			return;

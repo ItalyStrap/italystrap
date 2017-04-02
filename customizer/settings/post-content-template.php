@@ -21,7 +21,7 @@ $manager->add_section(
 		'title'			=> __( 'Post content template', 'italystrap' ),
 		'panel'			=> $this->panel,
 		'capability'	=> $this->capability,
-		'description'	=> __( 'Allows you to customize the layout for ItalyStrap.', 'italystrap' ),
+		'description'	=> __( 'Allows you to customize the post content template for all archive type pages. (Not page and post).', 'italystrap' ),
 	)
 );
 

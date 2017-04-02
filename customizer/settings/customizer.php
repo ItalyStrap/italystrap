@@ -162,7 +162,7 @@ $manager->add_section(
 		'title'			=> __( 'Layout', 'italystrap' ), // Visible title of section.
 		'panel'			=> $this->panel,
 		'capability'	=> $this->capability,
-		'description'	=> __( 'Allows you to customize the layout for ItalyStrap.', 'italystrap' ),
+		'description'	=> __( 'Allows you to customize the layout for all archive type pages. (Not page and post).', 'italystrap' ),
 	)
 );
 
@@ -173,6 +173,7 @@ $manager->add_setting(
 	'site_layout',
 	array(
 		// 'default'			=> $this->theme_mods['_site_layout_header']['container_width'],
+		'default'			=> 'content_sidebar',
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'refresh',

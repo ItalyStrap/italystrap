@@ -40,6 +40,26 @@ class Size {
 	 */
 	public function get_image_size_from_breakpoint() {
 
+		/**
+		 * Ho un'idea migliore
+		 * Più che generare una larghezza in base al breackpoint
+		 * generare invece una larghezza in base alla colonna contenitore
+		 * di misure accettabili: esempio add_image_size( 'one_fourth', 263, 238, true );
+		 * Il nome della dimensione usare le frazioni:
+		 * 1/2
+		 * 1/3
+		 * 1/4
+		 * 1/6
+		 * Non scenderei oltre
+		 * Queste dimensioni sono utilizzabili eventualmente nei widget o
+		 * nelle pagine archive (quelle per la lista degli articoli)
+		 * Creare una funzione che:
+		 * Ritorni la larghezza
+		 * Calcoli e ritorni l'altezza in base alla proporzione che sarà
+		 * inserita come parametro in modo da avere tutti i tagli con le stesse proporzioni.
+		 * Deve essere calcolata in base anche al gutter.
+		 */
+
 		if ( empty( $this->theme_mods['breakpoint'] ) ) {
 			return array();
 		}
@@ -50,6 +70,16 @@ class Size {
 			$this->image_sizes[ $key ]['crop'] = true;
 		}
 	
+	}
+
+	/**
+	 * Get height
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function get_height( $width, $prop ) {
+		return (int) $width / $prop;
 	}
 
 	/**

@@ -16,6 +16,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
  * Add Custom CSS in visual editor
  *
  * @link http://codex.wordpress.org/Function_Reference/add_editor_style
+ * @link https://developer.wordpress.org/reference/functions/add_editor_style/
+ *
+ * @todo Cambiare nome al file in 'editor-style.css'
  *
  * Leggere qui perché forse c'è un problema con i font, non prende il path giusto
  * @link http://codeboxr.com/blogs/adding-twitter-bootstrap-support-in-wordpress-visual-editor
@@ -23,7 +26,10 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
  */
 function add_editor_styles() {
 
-	$style_url = file_exists( STYLESHEETPATH . '/css/visual_editor.css' ) ? STYLESHEETURL . '/css/visual_editor.css' : TEMPLATEURL . '/css/visual_editor.css';
+	/**
+	 * @todo Cambiare nome al file in 'editor-style.css'
+	 */
+	$style_url = file_exists( STYLESHEETPATH . '/css/editor-style.css' ) ? STYLESHEETURL . '/css/editor-style.css' : TEMPLATEURL . '/css/editor-style.css';
 
 	$arg = apply_filters( 'italystrap_visual_editor_style', array( $style_url ) );
 

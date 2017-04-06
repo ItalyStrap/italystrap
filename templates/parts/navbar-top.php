@@ -20,7 +20,7 @@ use ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu;
 ?><nav id="top-nav" class="top-nav">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12 pt-sm vertical-align">
+			<div class="col-md-12">
 				<?php
 				/**
 				 * Menù per i contatti
@@ -30,9 +30,9 @@ use ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu;
 						'theme_location'	=> 'info-menu',
 						'depth'				=> 1,
 						'container'			=> 'div',
-						'container_class'	=> 'item-left',
+						'container_class'	=> 'pull-left',
 						'fallback_cb'       => false,
-						'menu_class'		=> 'list-inline social',
+						'menu_class'		=> 'list-inline info-menu',
 						'walker'			=> new Bootstrap_Nav_Menu(),
 					)
 				);
@@ -44,9 +44,9 @@ use ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu;
 						'theme_location'	=> 'social-menu',
 						'depth'				=> 1,
 						'container'			=> 'div',
-						'container_class'	=> 'item-right',
+						'container_class'	=> 'pull-right',
 						'fallback_cb'       => false,
-						'menu_class'		=> 'list-inline social',
+						'menu_class'		=> 'list-inline social-menu',
 						'link_before'		=> '<span class="item-title">',
 						'link_after'		=> '</span>',
 						'walker'			=> new Bootstrap_Nav_Menu(),

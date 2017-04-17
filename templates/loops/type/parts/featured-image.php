@@ -34,7 +34,7 @@ if ( has_post_thumbnail() ) { ?>
 
 		/**
 		 * Filter the post thumbnail size with context
-		 * You ca use the built in 'post_thumbnail_size' filter as well but without the context
+		 * You can use the built in 'post_thumbnail_size' filter as well but without the context
 		 *
 		 * @param string $size    The size of the post_thumbnail. (Default: 'post-thumbnail')
 		 * @param string $context The context in wich this function is called.

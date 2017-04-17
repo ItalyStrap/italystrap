@@ -45,7 +45,7 @@ class Template_Factory {
 	/**
 	 * Fire the construct
 	 */
-	public function __construct( array $options = array(), $injector = null, $event_manager = null ) {
+	public function __construct( array $options = array(), $injector, $event_manager ) {
 		$this->options = $options;
 		$this->injector = $injector;
 		$this->event_manager = $event_manager;

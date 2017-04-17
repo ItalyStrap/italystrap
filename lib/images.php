@@ -439,6 +439,21 @@ function italystrap_the_post_thumbnail( $size = 'post-thumbnail', $attr = '', $d
  *
  * @link http://justintadlock.com/archives/2011/07/01/captions-in-wordpress
  */
+
+/**
+ * Filters the default caption shortcode output.
+ *
+ * If the filtered output isn't empty, it will be used instead of generating
+ * the default caption template.
+ *
+ * @since 2.6.0
+ *
+ * @see img_caption_shortcode()
+ *
+ * @param string $output  The caption output. Default empty.
+ * @param array  $attr    Attributes of the caption shortcode.
+ * @param string $content The image element, possibly wrapped in a hyperlink.
+ */
 function italystrap_new_caption_style( $output, array $attr, $content ) {
 
 	if ( is_feed() ) {
@@ -469,42 +484,78 @@ function italystrap_new_caption_style( $output, array $attr, $content ) {
 	}
 
 	$figure_attr = array(
-		'class'	=> 'img-responsive wp-caption ' . esc_attr( $attr['align'] ),
-		'style'	=> 'width: ' . esc_attr( $attr['width'] ) . 'px',
-		);
+		'class'	=> sprintf(
+			'img-responsive wp-caption %s %s',
+			esc_attr( $attr['align'] ),
+			esc_attr( $attr['class'] )
+		),
+		'style'	=> sprintf(
+			'width: %spx',
+			$attr['width']
+		),
+	);
 
 	if ( ! empty( $attr['id'] ) ) {
-		$figure_attr['id'] = 'id="' . esc_attr( $attr['id'] ) . '"';
+		$figure_attr['id'] = sprintf(
+			'id="%s"',
+			esc_attr( $attr['id'] )
+		);
 	}
 
-	/**
-	 * Filter the figure attribute
-	 *
-	 * @var array
-	 */
-	$figure_attr = apply_filters( 'italystrap_img_caption_shortcode_figure_attr', $figure_attr );
-
-	$html_figure_attributes = ItalyStrap\Core\get_html_tag_attr( $figure_attr );
+	$html_figure_attributes = ItalyStrap\Core\get_attr( 'figure_img_caption_shortcode', $figure_attr );
 
 	$output  = '<figure ' . $html_figure_attributes .'>';
 	$output .= do_shortcode( $content );
 
 	$figcaption_attr = array(
 		'class'	=> 'caption wp-caption-text',
-		);
+	);
 
-	/**
-	 * Filter the figcaption attribute
-	 *
-	 * @var array
-	 */
-	$figcaption_attr = apply_filters( 'italystrap_img_caption_shortcode_figcaption_attr', $figcaption_attr );
-
-	$html_figcaption_attributes = ItalyStrap\Core\get_html_tag_attr( $figcaption_attr );
+	$html_figcaption_attributes = ItalyStrap\Core\get_attr( 'figcaption_img_caption_shortcode', $figcaption_attr );
 
 	$output .= '<figcaption ' . $html_figcaption_attributes . '>' . $attr['caption'] . '</figcaption></figure>';
 
 	return $output;
 
+
+
+
+	$html5 = current_theme_supports( 'html5', 'caption' );
+	// HTML5 captions never added the extra 10px to the image width
+	$width = $html5 ? $atts['width'] : ( 10 + $atts['width'] );
+
+	/**
+	 * Filters the width of an image's caption.
+	 *
+	 * By default, the caption is 10 pixels greater than the width of the image,
+	 * to prevent post content from running up against a floated image.
+	 *
+	 * @since 3.7.0
+	 *
+	 * @see img_caption_shortcode()
+	 *
+	 * @param int    $width    Width of the caption in pixels. To remove this inline style,
+	 *                         return zero.
+	 * @param array  $atts     Attributes of the caption shortcode.
+	 * @param string $content  The image element, possibly wrapped in a hyperlink.
+	 */
+	$caption_width = apply_filters( 'img_caption_shortcode_width', $width, $atts, $content );
+
+	$style = '';
+	if ( $caption_width ) {
+		$style = 'style="width: ' . (int) $caption_width . 'px" ';
+	}
+
+	if ( $html5 ) {
+		$html = '<figure ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
+		. do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
+	} else {
+		$html = '<div ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
+		. do_shortcode( $content ) . '<p class="wp-caption-text">' . $atts['caption'] . '</p></div>';
+	}
+
+	return $html;
+
+
 }
-add_filter( 'img_caption_shortcode', 'italystrap_new_caption_style', 10, 3 );
+// add_filter( 'img_caption_shortcode', 'italystrap_new_caption_style', 10, 3 );

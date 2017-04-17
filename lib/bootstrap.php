@@ -97,11 +97,6 @@ if ( ! isset( $theme_mods ) ) {
 $theme_mods = wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
 
 /**
- * Define theme_mods parmeter
- */
-$injector->defineParam( 'theme_mods', $theme_mods );
-
-/**
  * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
  * Make shure Router runs after 99998.
  *
@@ -185,6 +180,15 @@ $css_manager = new Css( $theme_mods );
  * Output custom CSS to live site.
  */
 add_action( 'wp_head' , array( $css_manager, 'css_output' ), 11 );
+
+if ( ! isset( $injector ) ) {
+	return;
+}
+
+/**
+ * Define theme_mods parmeter
+ */
+$injector->defineParam( 'theme_mods', $theme_mods );
 
 /**
  * Initialize Customizer Class

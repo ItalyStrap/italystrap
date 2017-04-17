@@ -37,7 +37,7 @@ class Content extends Template_Base implements Subscriber_Interface {
 			// 'hook_name'							=> 'method_name',
 			'italystrap_entry_content'	=> array(
 				'function_to_add'	=> 'render',
-				'priority'			=> apply_filters( 'italystrap_content_priority', 50 ),
+				'priority'			=> 50,
 			),
 		);
 	}

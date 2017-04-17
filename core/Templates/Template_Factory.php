@@ -50,36 +50,40 @@ class Template_Factory {
 		$this->injector = $injector;
 		$this->event_manager = $event_manager;
 
-		$this->registered_template_classes = array(
-			'Navbar_Top'		=> '\ItalyStrap\Core\Templates\Navbar_Top',
-			'Header_Image'		=> '\ItalyStrap\Core\Templates\Header_Image',
-			'Nav_Menu'			=> '\ItalyStrap\Core\Templates\Nav_Menu',
-			'Breadcrumbs'		=> '\ItalyStrap\Core\Templates\Breadcrumbs',
-			'Archive_Headline'	=> '\ItalyStrap\Core\Templates\Archive_Headline',
-			'Author_Info'		=> '\ItalyStrap\Core\Templates\Author_Info',
-			'Loop'				=> '\ItalyStrap\Core\Templates\Loop',
-			'Entry'				=> '\ItalyStrap\Core\Templates\Entry',
+		$this->autoload_concrete = array(
+			'Navbar_Top'		=> 'ItalyStrap\Core\Templates\Navbar_Top',
+			'Header_Image'		=> 'ItalyStrap\Core\Templates\Header_Image',
+			'Nav_Menu'			=> 'ItalyStrap\Core\Templates\Nav_Menu',
+			'Breadcrumbs'		=> 'ItalyStrap\Core\Templates\Breadcrumbs',
+			'Archive_Headline'	=> 'ItalyStrap\Core\Templates\Archive_Headline',
+			'Author_Info'		=> 'ItalyStrap\Core\Templates\Author_Info',
+			'Loop'				=> 'ItalyStrap\Core\Templates\Loop',
+			'Entry'				=> 'ItalyStrap\Core\Templates\Entry',
 			'Title'				=> array(
-				'\ItalyStrap\Core\Templates\Title',
+				'ItalyStrap\Core\Templates\Title',
 				// 35,
 			),
-			'Meta'				=> '\ItalyStrap\Core\Templates\Meta',
-			'Preview'			=> '\ItalyStrap\Core\Templates\Preview',
-			'Featured_Image'	=> '\ItalyStrap\Core\Templates\Featured_Image',
-			'Content'			=> '\ItalyStrap\Core\Templates\Content',
-			'Link_Pages'		=> '\ItalyStrap\Core\Templates\Link_Pages',
-			'Modified'			=> '\ItalyStrap\Core\Templates\Modified',
-			'Edit_Post_Link'	=> '\ItalyStrap\Core\Templates\Edit_Post_Link',
-			'Pager'				=> '\ItalyStrap\Core\Templates\Pager',
-			'Pagination'		=> '\ItalyStrap\Core\Templates\Pagination',
-			'None'				=> '\ItalyStrap\Core\Templates\None',
-			'Sidebar'			=> '\ItalyStrap\Core\Templates\Sidebar',
-			'Comments'			=> '\ItalyStrap\Core\Templates\Comments',
-			'Password_Form'		=> '\ItalyStrap\Core\Templates\Password_Form',
-			'Word_Count'		=> '\ItalyStrap\Core\Schema\Word_Count',
-			'Time_Required'		=> '\ItalyStrap\Core\Schema\Time_Required',
-			'Footer_Widget_Area'=> '\ItalyStrap\Core\Templates\Footer_Widget_Area',
-			'Colophon'			=> '\ItalyStrap\Core\Templates\Colophon',
+			'Meta'				=> 'ItalyStrap\Core\Templates\Meta',
+			'Preview'			=> 'ItalyStrap\Core\Templates\Preview',
+			'Featured_Image'	=> 'ItalyStrap\Core\Templates\Featured_Image',
+			'Content'			=> 'ItalyStrap\Core\Templates\Content',
+			'Link_Pages'		=> 'ItalyStrap\Core\Templates\Link_Pages',
+			'Modified'			=> 'ItalyStrap\Core\Templates\Modified',
+			'Edit_Post_Link'	=> 'ItalyStrap\Core\Templates\Edit_Post_Link',
+			'Pager'				=> 'ItalyStrap\Core\Templates\Pager',
+			'Pagination'		=> 'ItalyStrap\Core\Templates\Pagination',
+			'None'				=> 'ItalyStrap\Core\Templates\None',
+			'Sidebar'			=> 'ItalyStrap\Core\Templates\Sidebar',
+			'Comments'			=> 'ItalyStrap\Core\Templates\Comments',
+			'Password_Form'		=> 'ItalyStrap\Core\Templates\Password_Form',
+			'Word_Count'		=> 'ItalyStrap\Core\Schema\Word_Count',
+			'Time_Required'		=> 'ItalyStrap\Core\Schema\Time_Required',
+			'Footer_Widget_Area'=> 'ItalyStrap\Core\Templates\Footer_Widget_Area',
+			'Colophon'			=> 'ItalyStrap\Core\Templates\Colophon',
+		);
+
+		$this->autoload_definitions = array(
+			'ItalyStrap\Core\Navbar\Navbar'	=> array( 'walker' => 'ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu' ),
 		);
 	}
 
@@ -91,30 +95,19 @@ class Template_Factory {
 
 		$container = array();
 
-		$this->injector->define(
-			'\ItalyStrap\Core\Navbar\Navbar',
-			array( 'walker' => '\ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu' )
-		);
+		foreach ( $this->autoload_definitions as $class_name => $class_args ) {
+			$this->injector->define( $class_name, $class_args );
+		}
+		foreach ( $this->autoload_concrete as $class_name => $implementation ) {
 
-		foreach ( $this->registered_template_classes as $class_name => $value ) {
+			$prefixed_classname = strtolower( $class_name );
 
-			$class_name = strtolower( $class_name );
-			$prefixed_classname = "italystrap_{$class_name}";
-
-			if ( is_array( $value ) ) {
-				add_filter( "italystrap_{$class_name}_priority", function ( $priority ) use ( $value ) {
-					if ( ! isset( $value[1] ) ) {
-						return $priority;
-					}
-					return $value[1];
-				});
-
-				$value = $value[0];
+			if ( is_array( $implementation ) ) {
+				$implementation = $implementation[0];
 			}
 
-			$$prefixed_classname = $this->injector->make( $value );
-			$this->event_manager->add_subscriber( $$prefixed_classname );
-			// $container[ $prefixed_classname ] = $$prefixed_classname;
+			$container[ $prefixed_classname ] = $this->injector->make( $implementation );
+			$this->event_manager->add_subscriber( $container[ $prefixed_classname ] );
 		}
 
 		// return $container;
@@ -159,6 +152,24 @@ class Template_Factory {
 			// );
 			// $event_manager->add_subscriber( $$prefixed_classname );
 		// }
-	
+		foreach ( $this->autoload_concrete as $class_name => $implementation ) {
+
+			$class_name = strtolower( $class_name );
+			$prefixed_classname = "italystrap_{$class_name}";
+
+			if ( is_array( $implementation ) ) {
+				add_filter( "italystrap_{$class_name}_priority", function ( $priority ) use ( $implementation ) {
+					if ( ! isset( $implementation[1] ) ) {
+						return $priority;
+					}
+					return $implementation[1];
+				});
+
+				$implementation = $implementation[0];
+			}
+
+			$container[ $prefixed_classname ] = $this->injector->make( $implementation );
+			$this->event_manager->add_subscriber( $$prefixed_classname );
+		}
 	}
 }

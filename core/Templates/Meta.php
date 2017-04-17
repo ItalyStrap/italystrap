@@ -37,7 +37,7 @@ class Meta extends Template_Base implements Subscriber_Interface {
 			// 'hook_name'							=> 'method_name',
 			'italystrap_entry_content'	=> array(
 				'function_to_add'	=> 'render',
-				'priority'			=> apply_filters( 'italystrap_meta_priority', 30 ),
+				'priority'			=> 30,
 			),
 		);
 	}

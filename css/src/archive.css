@@ -2243,7 +2243,8 @@ blockquote .small:before {
 
 /* line 274, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_type.scss */
 .blockquote-reverse,
-blockquote.pull-right {
+blockquote.pull-right,
+blockquote.alignright {
   padding-right: 15px;
   padding-left: 0;
   border-right: 5px solid #eeeeee;
@@ -2255,8 +2256,11 @@ blockquote.pull-right {
 .blockquote-reverse small:before,
 .blockquote-reverse .small:before,
 blockquote.pull-right footer:before,
+blockquote.alignright footer:before,
 blockquote.pull-right small:before,
-blockquote.pull-right .small:before {
+blockquote.alignright small:before,
+blockquote.pull-right .small:before,
+blockquote.alignright .small:before {
   content: '';
 }
 /* line 287, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_type.scss */
@@ -2264,8 +2268,11 @@ blockquote.pull-right .small:before {
 .blockquote-reverse small:after,
 .blockquote-reverse .small:after,
 blockquote.pull-right footer:after,
+blockquote.alignright footer:after,
 blockquote.pull-right small:after,
-blockquote.pull-right .small:after {
+blockquote.alignright small:after,
+blockquote.pull-right .small:after,
+blockquote.alignright .small:after {
   content: '\00A0 \2014';
 }
 
@@ -4620,7 +4627,7 @@ tbody.collapse.in {
   background-clip: padding-box;
 }
 /* line 54, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_dropdowns.scss */
-.dropdown-menu.pull-right {
+.dropdown-menu.pull-right, .dropdown-menu.alignright {
   right: 0;
   left: auto;
 }
@@ -4712,7 +4719,8 @@ tbody.collapse.in {
 }
 
 /* line 173, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_dropdowns.scss */
-.pull-right > .dropdown-menu {
+.pull-right > .dropdown-menu, .alignright > .dropdown-menu,
+a img.alignright > .dropdown-menu {
   right: 0;
   left: auto;
 }
@@ -6362,13 +6370,17 @@ a.thumbnail.active {
 
 /* line 29, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_media.scss */
 .media-right,
-.media > .pull-right {
+.media > .pull-right,
+.media > .alignright,
+a .media > img.alignright {
   padding-left: 10px;
 }
 
 /* line 34, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_media.scss */
 .media-left,
-.media > .pull-left {
+.media > .pull-left,
+.media > .alignleft,
+a .media > img.alignleft {
   padding-right: 10px;
 }
 
@@ -6718,12 +6730,14 @@ a.thumbnail.active {
 }
 
 /* line 15, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_utilities.scss */
-.pull-right {
+.pull-right, .alignright,
+a img.alignright {
   float: right !important;
 }
 
 /* line 18, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_utilities.scss */
-.pull-left {
+.pull-left, .alignleft,
+a img.alignleft {
   float: left !important;
 }
 
@@ -7132,123 +7146,102 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, a, p, li {
   }
 }
 
-/* line 11, ../../sass/global/_wordpressCss.scss */
-.alignright {
-  float: right !important;
-  margin-left: 15px;
+/* line 1, ../../sass/global/_wordpressCss.scss */
+#wp-calendar {
+  width: 100%;
 }
 
-/* line 15, ../../sass/global/_wordpressCss.scss */
-.alignleft {
-  float: left !important;
-  margin-right: 20px;
-}
-
-/* line 22, ../../sass/global/_wordpressCss.scss */
-.aligncenter {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* line 28, ../../sass/global/_wordpressCss.scss */
+/* line 6, ../../sass/global/_wordpressCss.scss */
 .mejs-container {
-  margin-bottom: 25px;
+  margin-bottom: 1.5em;
 }
 
 /**
  * Class for Figure tag and figure caption tag
+ * https://codex.wordpress.org/CSS
  */
 /* =WordPress Core
 -------------------------------------------------------------- */
-/* line 51, ../../sass/global/_wordpressCss.scss */
+/* line 26, ../../sass/global/_wordpressCss.scss */
 .aligncenter,
-div.aligncenter {
-  display: block;
-  margin: 5px auto 5px auto;
-}
-
-/* line 57, ../../sass/global/_wordpressCss.scss */
-.alignright {
-  float: right;
-  margin: 5px 0 20px 20px;
-}
-
-/* line 62, ../../sass/global/_wordpressCss.scss */
-.alignleft {
-  float: left;
-  margin: 5px 20px 20px 0;
-}
-
-/* line 67, ../../sass/global/_wordpressCss.scss */
-a img.alignright {
-  float: right;
-  margin: 5px 0 20px 20px;
-}
-
-/* line 72, ../../sass/global/_wordpressCss.scss */
-a img.alignnone {
-  margin: 5px 20px 20px 0;
-}
-
-/* line 76, ../../sass/global/_wordpressCss.scss */
-a img.alignleft {
-  float: left;
-  margin: 5px 20px 20px 0;
-}
-
-/* line 81, ../../sass/global/_wordpressCss.scss */
+div.aligncenter,
 a img.aligncenter {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 87, ../../sass/global/_wordpressCss.scss */
-.wp-caption {
-  background: #fff;
-  border: 1px solid #f0f0f0;
-  max-width: 96%;
-  /* Image does not overflow the content area */
-  padding: 5px 3px 10px;
+/* line 33, ../../sass/global/_wordpressCss.scss */
+.alignright,
+a img.alignright {
+  margin: 0 0 1em 1em;
+}
+
+/* line 40, ../../sass/global/_wordpressCss.scss */
+.alignleft,
+a img.alignleft {
+  margin: 0 1em 1em 0;
+}
+
+/* line 49, ../../sass/global/_wordpressCss.scss */
+.alignnone,
+a img.alignnone {
+  display: inline;
+  margin-bottom: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+}
+
+/**
+ * Featured Image archive and singular
+ */
+/* line 61, ../../sass/global/_wordpressCss.scss */
+.wp-post-image {
+  margin-bottom: 1em;
+}
+
+/* line 71, ../../sass/global/_wordpressCss.scss */
+.wp-caption.alignnone {
+  margin: 0.3em 1.25em 1.25em 0;
+}
+/* line 74, ../../sass/global/_wordpressCss.scss */
+.wp-caption.alignleft {
+  margin: 0.3em 1.25em 1.25em 0;
+}
+/* line 76, ../../sass/global/_wordpressCss.scss */
+.wp-caption.alignleft .wp-caption-text {
+  text-align: left;
+}
+/* line 80, ../../sass/global/_wordpressCss.scss */
+.wp-caption.alignright {
+  margin: 0.3em 0 1.25em 1.25em;
+}
+/* line 82, ../../sass/global/_wordpressCss.scss */
+.wp-caption.alignright .wp-caption-text {
+  text-align: right;
+}
+/* line 86, ../../sass/global/_wordpressCss.scss */
+.wp-caption.aligncenter {
+  margin: 0.3em 1.25em;
+}
+/* line 88, ../../sass/global/_wordpressCss.scss */
+.wp-caption.aligncenter .wp-caption-text {
   text-align: center;
 }
-
-/* line 95, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignnone {
-  margin: 5px 20px 20px 0;
-}
-
-/* line 99, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignleft {
-  margin: 5px 20px 20px 0;
-}
-
-/* line 103, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignright {
-  margin: 5px 0 20px 20px;
-}
-
-/* line 107, ../../sass/global/_wordpressCss.scss */
-.wp-caption img {
-  border: 0 none;
-  height: auto;
+/* line 100, ../../sass/global/_wordpressCss.scss */
+.wp-caption p.wp-caption-text,
+.wp-caption .wp-caption-text {
+  border: 1px solid #eeeeee;
+  border-top: none;
+  color: #777777;
+  font-size: 0.85em;
+  line-height: 1em;
   margin: 0;
-  max-width: 98.5%;
-  padding: 0;
-  width: auto;
-}
-
-/* line 116, ../../sass/global/_wordpressCss.scss */
-.wp-caption p.wp-caption-text {
-  font-size: 11px;
-  line-height: 17px;
-  margin: 0;
-  padding: 0 4px 5px;
+  padding: 0.5em;
 }
 
 /* Text meant only for screen readers. */
-/* line 124, ../../sass/global/_wordpressCss.scss */
+/* line 114, ../../sass/global/_wordpressCss.scss */
 .screen-reader-text {
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
@@ -7256,8 +7249,7 @@ a img.aligncenter {
   width: 1px;
   overflow: hidden;
 }
-
-/* line 132, ../../sass/global/_wordpressCss.scss */
+/* line 120, ../../sass/global/_wordpressCss.scss */
 .screen-reader-text:focus {
   background-color: #f1f1f1;
   border-radius: 3px;
@@ -7277,11 +7269,6 @@ a img.aligncenter {
   width: auto;
   z-index: 100000;
   /* Above WP toolbar. */
-}
-
-/* line 152, ../../sass/global/_wordpressCss.scss */
-#wp-calendar {
-  width: 100%;
 }
 
 /**
@@ -7306,11 +7293,12 @@ a img.aligncenter {
   border-left-color: #fff;
 }
 /* line 21, ../../sass/header/_menu.scss */
-.dropdown-submenu.pull-left {
+.dropdown-submenu.pull-left, .dropdown-submenu.alignleft {
   float: none;
 }
 /* line 23, ../../sass/header/_menu.scss */
-.dropdown-submenu.pull-left > .dropdown-menu {
+.dropdown-submenu.pull-left > .dropdown-menu, .dropdown-submenu.alignleft > .dropdown-menu,
+a img.dropdown-submenu.alignleft > .dropdown-menu {
   left: -100%;
   margin-left: 10px;
   -webkit-border-radius: 6px 0 6px 6px;

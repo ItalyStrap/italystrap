@@ -81,8 +81,6 @@ $italystrap_defaults = apply_filters( 'italystrap_default_theme_config', require
 /**
  * Define theme otpion array
  * DEPRECATED
- *
- * @var array
  */
 $italystrap_options = get_option( 'italystrap_theme_settings' );
 

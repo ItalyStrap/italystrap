@@ -113,6 +113,7 @@ class Register {
 
 		$layout_settings_metabox_options = apply_filters( 'italystrap_layout_settings_metabox_options',
 			array(
+				// 'default_site_layout'		=> __( 'Default layout set in', 'italystrap' ),
 				'full_width'				=> __( 'Full width, no sidebar', 'italystrap' ),
 				'content_sidebar'			=> __( 'Content Sidebar', 'italystrap' ),
 				'content_sidebar_sidebar'	=> __( 'Content Sidebar Sidebar', 'italystrap' ),
@@ -124,11 +125,6 @@ class Register {
 
 		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : null;
 
-		/**
-		 * Get default layout
-		 */
-		$default = $this->config['site_layout'];
-
 		$cmb->add_field(
 			array(
 				'name'		=> __( 'Layout settings', 'italystrap' ),
@@ -137,7 +133,7 @@ class Register {
 				'type'		=> 'radio',
 				'options'	=> $layout_settings_metabox_options,
 				// 'default'	=> PAGE_ON_FRONT === $post_id ? 'full_width' : 'content_sidebar',
-				'default'	=> $default,
+				'default'	=> $this->config['singular_layout'],
 			)
 		);
 
@@ -163,7 +159,8 @@ class Register {
 				'options' => array(
 					'url' => false, // Hide the text input for the url
 				),
-				'default'	=> isset( get_custom_header()->attachment_id ) ? wp_get_attachment_url( get_custom_header()->attachment_id ) : null,
+				// 'default'	=> isset( get_custom_header()->attachment_id ) ? wp_get_attachment_url( get_custom_header()->attachment_id ) : null,
+				'default'	=> null,
 				'text'    => array(
 					'add_upload_file_text' => __( 'Add or upload image', 'italystrap' )
 				),

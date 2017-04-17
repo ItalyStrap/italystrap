@@ -25,7 +25,7 @@ use	ItalyStrap\Customizer\Control\Textarea;
 /**
  * Changing Customizer Color Sections Titles
  */
-$manager->get_section( 'colors' )->title = __( 'Theme Colors', 'italystrap' );
+// $manager->get_section( 'colors' )->title = __( 'Theme Colors', 'italystrap' );
 
 /**
  * 2. Register new settings to the WP database...
@@ -146,7 +146,10 @@ $manager->add_control(
  */
 $manager->add_panel( $this->panel,
 	array(
-		'title'			=> __( 'Theme Options', 'italystrap' ),
+		'title'			=> sprintf(
+			__( '%s Options', 'italystrap' ),
+			ITALYSTRAP_CURRENT_THEME_NAME
+		),
 		// 'description'	=> 'add_panel', // Include html tags such as <p>.
 		// 'priority'		=> 160, // Mixed with top-level-section hierarchy.
 		'priority'		=> 10, // Mixed with top-level-section hierarchy.

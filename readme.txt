@@ -2,8 +2,8 @@
 Contributors: overclokk
 Donate link: http://www.italystrap.it/
 Tags: breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant
-Requires at least: 3.8
-Tested up to: 4.7
+Requires at least: 4.6
+Tested up to: 4.8
 Stable tag: 4.0.0-beta.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -11,6 +11,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Make your web site more powerfull.
 
 == Description ==
+
+**This is a complete rebuild of the theme, it is a breaking changes, always do a backup first**
+
+= Docs coming soon =
 
 **[ItalyStrap Theme](http://www.italystrap.it/)** will add powerful features to your WordPRess site.
 
@@ -63,12 +67,14 @@ wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
 
 == Changelog ==
 
-= 4.0.0 =
-Release Date: Sep 10th, 2015
+= 4.0.0-beta.3 =
+Release Date: April 18th, 2017
 
-(Dev time 1 year)
+(Dev time 2 year)
 
-* Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead. The breadcrumbs functionality is moved to the plugin.
+**This is a complete rebuild of the theme, it is a breaking changes, always do a backup first**
+
+* Deprecated class `ItalyStrapBreadcrumbs()`. The breadcrumbs functionality is moved to the plugin.
 * Added [AnonymizeIP](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#anonymizeIp) for cookie law
 * Fixed regex in italystrap_embed_wrap cleanup.php
 * [Fixed Warning: Illegal string offset](https://github.com/overclokk/ItalyStrap/commit/4c2e4f9afc48e123dbebfa85509774d155b6adf8)

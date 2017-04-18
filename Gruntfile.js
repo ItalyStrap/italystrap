@@ -187,6 +187,33 @@ module.exports = function(grunt) {
         /**
          * Workflow for deploy
          */
+        
+        gitcheckout: {
+            devtomaster: { // Mi sposto da Dev a master
+                options: {
+                    branch: 'master'
+                }
+            },
+            mastertodev: { // Mi sposto da master a Dev
+                options: {
+                    branch: 'Dev'
+                }
+            }
+        },
+
+        gitmerge: {
+            fromdev: { // Prima devo essere in master e poi fare il merge da Dev
+                options: {
+                    branch: 'Dev'
+                }
+            },
+            frommaster: { // Prima devo essere in dev e poi fare il merge sa master
+                options: {
+                    branch: 'master'
+                }
+            }
+        },
+
         version: {  // https://www.npmjs.com/package/grunt-version
                     // http://jayj.dk/using-grunt-automate-theme-releases/
             bower: {
@@ -222,13 +249,28 @@ module.exports = function(grunt) {
                 files: {
                     // Specify the files you want to commit
                     src: [
-                        '*.json',
+                        '*.json', //For now bower it is not uploaded
                         '*.txt',
                         '*.md',
-                        '*.css',
-                        // '*.php',
-                        // '*.js',
+                        '*.php',
+                        '*.js',
+                        '*.css'
                     ]
+                }
+            },
+            first:{
+                options: {
+                    message: 'Commit before deploy of new version'
+                },
+                files: {
+                    src: [
+                        '*.json', //For now bower it is not uploaded
+                        '*.txt',
+                        '*.md',
+                        '*.php',
+                        '*.js',
+                        '*.css'
+                        ]
                 }
             }
         },
@@ -275,6 +317,62 @@ module.exports = function(grunt) {
                             // '!bower.json',
                             // '!Gruntfile.js',
                             // '!package.json',
+                            '!*.zip'], // What should be included in the zip
+                        dest: 'italystrap/',        // Where the zipfile should go
+                        filter: 'isFile',
+                    },
+                ]
+            },
+            backup: {
+                options: {
+                    archive: '../<%= pkg.name %> <%= pkg.version %> backup.zip' // Create zip file in theme directory
+                },
+                files: [
+                    {
+                        src: [
+                            '**' ,
+                            '!.git/**',
+                            '!.sass-cache/**',
+                            '!bower_components/**',
+                            '!node_modules/**',
+                            '!.gitattributes',
+                            '!.gitignore',
+                            // '!bower.json',
+                            // '!Gruntfile.js',
+                            // '!package.json',
+                            '!*.zip'], // What should be included in the zip
+                        dest: 'italystrap/',        // Where the zipfile should go
+                        // dest: 'italystrap/',        // Where the zipfile should go
+                        filter: 'isFile',
+                    },
+                ]
+            },
+            test: {
+                options: {
+                    archive: '../<%= pkg.name %> <%= pkg.version %> test.zip' // Create zip file in theme directory
+                },
+                files: [
+                    {
+                        src: [
+                            '**' ,
+                            '!.git/**',
+                            '!.sass-cache/**',
+                            '!bower_components/**',
+                            '!node_modules/**',
+                            '!.gitattributes',
+                            '!.gitignore',
+                            '!bower.json',
+                            '!Gruntfile.js',
+                            '!package.json',
+                            '!codeception.yml',
+                            '!composer.json',
+                            '!composer.lock',
+                            '!phpunit.xml',
+                            '!test_italystrap.php',
+                            '!wp-tests-config.php',
+                            '!snippets.md',
+                            '!tests/**',
+                            '!future-inclusions/**',
                             '!*.zip'], // What should be included in the zip
                         dest: 'italystrap/',        // Where the zipfile should go
                         filter: 'isFile',
@@ -382,23 +480,48 @@ module.exports = function(grunt) {
      * $ grunt deploy
      * Merge Master to Dev
      */
-    grunt.registerTask('deploy', [
-                                'version',
-                                'wp_readme_to_markdown',
-                                'gitcommit',
-                                'gitpush',
-                                'prompt',
-                                'compress',
-                                'github-release',
-                                ]);
+    // grunt.registerTask('deploy',
+    //     [
+    //     'version',
+    //     'wp_readme_to_markdown',
+    //     'gitcommit',
+    //     'gitpush',
+    //     'prompt',
+    //     'compress',
+    //     'github-release',
+    //     ]
+    // );
 
-    grunt.registerTask('release', [
-                                // 'version',
-                                // 'wp_readme_to_markdown',
-                                'prompt',
-                                'compress',
-                                'github-release',
-                                ]);
+    grunt.registerTask('deploy',
+        [
+        'gitcommit:first',
+        'gitcheckout:devtomaster',
+        'gitmerge:fromdev',
+        'version',
+        'wp_readme_to_markdown',
+        'gitcommit:version',
+        'gitpush',
+        'prompt',
+        'compress:main',
+        'github-release',
+        // 'clean',
+        // 'copy',
+        'gitcheckout:mastertodev',
+        'gitmerge:frommaster',
+        'gitpush',
+        // 'update-no-dev',
+        ]
+    );
+
+    grunt.registerTask('release',
+        [
+        // 'version',
+        // 'wp_readme_to_markdown',
+        'prompt',
+        'compress',
+        'github-release',
+        ]
+    );
     
     grunt.registerTask('testcssbuild', ['compass', 'csslint']);
     grunt.registerTask('testjsbuild', ['jshint', 'uglify']);

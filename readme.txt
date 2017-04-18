@@ -4,7 +4,7 @@ Donate link: http://www.italystrap.it/
 Tags: breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant
 Requires at least: 4.6
 Tested up to: 4.8
-Stable tag: 4.0.0-beta.2
+Stable tag: 4.0.0-beta.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

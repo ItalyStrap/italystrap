@@ -19,48 +19,48 @@ return array(
 	/**
 	 * Require GitHub Updater
 	 */
-	array(
+	// array(
 
-		/**
-		 * The plugin name.
-		 */
-		'name'                     => 'GitHub Updater',
+	// 	/**
+	// 	 * The plugin name.
+	// 	 */
+	// 	'name'                     => 'GitHub Updater',
 
-		/**
-		 * The plugin slug (typically the folder name).
-		 */
-		'slug'                     => 'github-updater',
+	// 	/**
+	// 	 * The plugin slug (typically the folder name).
+	// 	 */
+	// 	'slug'                     => 'github-updater',
 
-		/**
-		 * The plugin source.
-		 */
-		'source'                   => 'http://www.overclokk.net/TGM/github-updater.zip',
+	// 	/**
+	// 	 * The plugin source.
+	// 	 */
+	// 	'source'                   => 'http://www.overclokk.net/TGM/github-updater.zip',
 
-		/**
-		 * If false, the plugin is only 'recommended' instead of required.
-		 */
-		'required'                 => false,
+	// 	/**
+	// 	 * If false, the plugin is only 'recommended' instead of required.
+	// 	 */
+	// 	'required'                 => false,
 
-		/**
-		 * E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-		 */
-		'version'                 => '',
+	// 	*
+	// 	 * E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+		 
+	// 	'version'                 => '',
 
-		/**
-		 * If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-		 */
-		'force_activation'         => false,
+	// 	/**
+	// 	 * If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
+	// 	 */
+	// 	'force_activation'         => false,
 
-		/**
-		 * If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-		 */
-		'force_deactivation'     => false,
+	// 	/**
+	// 	 * If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+	// 	 */
+	// 	'force_deactivation'     => false,
 
-		/**
-		 * If set, overrides default API URL and points to an external URL
-		 */
-		'external_url'             => 'https://github.com/afragen/github-updater',
-	),
+	// 	/**
+	// 	 * If set, overrides default API URL and points to an external URL
+	// 	 */
+	// 	'external_url'             => 'https://github.com/afragen/github-updater',
+	// ),
 
 	/**
 	 * Require ItalyStrap Plugin

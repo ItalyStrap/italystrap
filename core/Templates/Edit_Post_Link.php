@@ -98,6 +98,10 @@ class Edit_Post_Link extends Template_Base implements Subscriber_Interface  {
 	 */
 	public function append_to_content( $content = '' ) {
 
+		if ( is_archive() ) {
+			return $content;
+		}
+
 		$edit_post = get_edit_post_link();
 
 		if ( ! $edit_post ) {

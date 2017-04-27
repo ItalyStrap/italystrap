@@ -236,7 +236,6 @@ class Layout implements Subscriber_Interface {
 		}
 
 		return $attr;
-	
 	}
 
 	/**

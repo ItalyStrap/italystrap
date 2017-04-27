@@ -12,11 +12,11 @@
 
 namespace ItalyStrap\Core\Templates;
 
-use ItalyStrap\Event\Subscriber_Interface;
-
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
+
+use ItalyStrap\Event\Subscriber_Interface;
 
 /**
  * Class description
@@ -40,5 +40,47 @@ class Footer_Widget_Area extends Template_Base implements Subscriber_Interface {
 				'priority'			=> 10,
 			),
 		);
+	}
+
+	/**
+	 * Render the output of the controller.
+	 */
+	public function render() {
+
+		$this->footer_sidebars = apply_filters(
+			'footer_sidebars_widgets',
+			array(
+			'footer-box-1',
+			'footer-box-2',
+			'footer-box-3',
+			'footer-box-4',
+			)
+		);
+
+		parent::render();
+	}
+
+	/**
+	 * Set col-x number for sidebars style
+	 *
+	 * @see footer.php The file to display footer
+	 */
+	public function set_col() {
+
+		global $sidebars_widgets, $wp_registered_widgets, $wp_registered_widget_controls;
+
+		$count = 0;
+
+		foreach ( $this->footer_sidebars as $value ) {
+
+			if ( ! empty( $sidebars_widgets[ $value ][0] ) ) {
+
+				$count++;
+			}
+		}
+
+		$count = ( 0 === $count ) ? 1 : $count ;
+
+		return $col = floor( 12 / $count );
 	}
 }

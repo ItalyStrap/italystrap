@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 use ItalyStrap\Core as Core;
 use ItalyStrap\Image\Size;
 
@@ -33,7 +35,29 @@ use WP_Customize_Manager;
  * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/
  * @since ItalyStrap 1.0
  */
-class Customizer {
+class Customizer implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked customize_register - 99
+	 * @hooked customize_preview_init - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'customize_register'		=> array(
+				'function_to_add'		=> 'register_init',
+				'priority'				=> 99,
+			),
+			'customize_preview_init'	=> 'live_preview',
+			'admin_menu'				=> 'add_link_to_theme_option_page',
+		);
+	}
 
 	/**
 	 * $capability
@@ -235,5 +259,29 @@ class Customizer {
 			true
 		);
 
+	}
+
+	/**
+	 * Function for adding link to Theme Options in case ItalyStrap plugin is active
+	 *
+	 * @link http://snippets.webaware.com.au/snippets/add-an-external-link-to-the-wordpress-admin-menu/
+	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#focusing
+	 * autofocus[panel|section|control]=ID
+	 */
+	public function add_link_to_theme_option_page() {
+
+		global $submenu;
+		/**
+		 * Link to customizer
+		 *
+		 * @link http://wptheming.com/2015/01/link-to-customizer-sections/
+		 * @var string
+		 */
+		$url = admin_url( 'customize.php?autofocus[panel]=italystrap_options_page' );
+		$submenu['italystrap-dashboard'][] = array(
+			__( 'Theme Options', 'italystrap' ),
+			$this->capability,
+			$url,
+		);
 	}
 }

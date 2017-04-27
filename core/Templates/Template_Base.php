@@ -44,7 +44,7 @@ class Template_Base implements Template_Interface {
 		'featured_image'	=> 'templates/loops/type/parts/featured-image',
 		'content'			=> 'templates/loops/type/parts/content',
 		'modified'			=> 'templates/loops/type/parts/modified',
-		'none'				=> 'templates/loops/type/none',
+		'none'				=> 'templates/loops/none',
 		'footer_widget_area'=> 'templates/footers/widget-area',
 		'colophon'			=> 'templates/footers/colophon',
 	);
@@ -58,10 +58,10 @@ class Template_Base implements Template_Interface {
 	 *
 	 * @param array $theme_mod Class configuration array.
 	 */
-	function __construct( array $theme_mod = array() ) {
+	function __construct( array $theme_mods = array() ) {
 
 		if ( empty( self::$mods ) ) {
-			self::$mods = $theme_mod;
+			self::$mods = $theme_mods;
 		}
 		$this->theme_mod = self::$mods;
 
@@ -206,6 +206,10 @@ class Template_Base implements Template_Interface {
 	// 	return $new_map;
 		return $map;
 	}
+// add_filter(
+// 	'italystrap_template_include',
+// 	array( $template_settings, 'filter_template_include' )
+// );
 
 	/**
 	 * Function description

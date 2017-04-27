@@ -14,12 +14,48 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * Add possibility to adding glyphicon directly in new custom field in menu
  *
  * @link http://www.wpexplorer.com/adding-custom-attributes-to-wordpress-menus/
  */
-class Register_Nav_Menu_Edit {
+class Register_Nav_Menu_Edit implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked wp_setup_nav_menu_item - 10
+	 * @hooked wp_update_nav_menu_item - 10
+	 * @hooked wp_edit_nav_menu_walker - 10
+	 * @hooked wp_fields_nav_menu_item - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'wp_setup_nav_menu_item'	=> 'add_custom_nav_fields',
+			'wp_update_nav_menu_item'	=> array(
+				'function_to_add'	=> 'update_custom_nav_fields',
+				'priority'			=> 10,
+				'accepted_args'		=> 3,
+			),
+			'wp_fields_nav_menu_item'	=> array(
+				'function_to_add'	=> 'add_new_field',
+				'priority'			=> 10,
+				'accepted_args'		=> 2,
+			),
+			'wp_edit_nav_menu_walker'	=> array(
+				'function_to_add'	=> 'register',
+				'priority'			=> 10,
+				'accepted_args'		=> 2,
+			),
+		);
+	}
 
 	/**
 	 * Init the constructor
@@ -108,6 +144,5 @@ class Register_Nav_Menu_Edit {
 	function register( $class, $menu_id ) {
 
 		return '\ItalyStrap\Admin\Nav_Menu\Nav_Menu_Edit';
-
 	}
 }

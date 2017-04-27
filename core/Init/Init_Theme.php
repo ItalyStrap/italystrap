@@ -17,12 +17,30 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 use ItalyStrap\Core\Css\Css;
 
 /**
  * Theme init
  */
-class Init_Theme{
+class Init_Theme implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked wp_head - 11
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'after_setup_theme'	=> 'theme_setup',
+		);
+	}
 
 	/**
 	 * $capability
@@ -34,11 +52,11 @@ class Init_Theme{
 	/**
 	 * Init some functionality
 	 */
-	public function __construct( Css $css_manager, $content_width ) {
+	public function __construct( Css $css_manager, $theme_mods ) {
 
 		$this->css_manager = $css_manager;
 
-		$this->content_width = $content_width;
+		$this->content_width = $theme_mods['content_width'];
 
 		// $this->set_theme_mod_from_options();
 	}
@@ -298,80 +316,6 @@ class Init_Theme{
 			'footer-menu'		=> __( 'Footer Menu', 'ItalyStrap' ),
 			);
 		register_nav_menus( apply_filters( 'register_nav_menu_locations', $nav_menus_locations ) );
-
-	}
-
-	/**
-	 * Function for adding link to Theme Options in case ItalyStrap plugin is active
-	 *
-	 * @link http://snippets.webaware.com.au/snippets/add-an-external-link-to-the-wordpress-admin-menu/
-	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#focusing
-	 * autofocus[panel|section|control]=ID
-	 */
-	public function add_link_to_theme_option_page() {
-
-		global $submenu;
-		/**
-		 * Link to customizer
-		 *
-		 * @link http://wptheming.com/2015/01/link-to-customizer-sections/
-		 * @var string
-		 */
-		$url = admin_url( 'customize.php?autofocus[panel]=italystrap_options_page' );
-		$submenu['italystrap-dashboard'][] = array(
-			__( 'Theme Options', 'italystrap' ),
-			$this->capability,
-			$url,
-		);
-	}
-
-	/**
-	 * Add new menu in theme.php
-	 */
-	public function add_appearance_menu() {
-
-		/**
-		 * Add theme page
-		 *
-		 * @link https://codex.wordpress.org/Function_Reference/add_theme_page
-		 */
-		add_theme_page(
-			__( 'ItalyStrap Theme Info', 'italystrap' ),// $page_title <title></title>
-			__( 'ItalyStrap Theme Info', 'italystrap' ),// $menu_title.
-			$this->capability,							// $capability.
-			'italystrap-theme-info',					// $menu_slug.
-			array( $this, 'callback_function' )			// $function.
-		);
-
-	}
-
-	/**
-	 * Add WordPress standard form for options page
-	 */
-	public function callback_function() {
-
-		if ( ! current_user_can( $this->capability ) ) {
-			wp_die( esc_attr__( 'You do not have sufficient permissions to access this page.', 'italystrap' ) );
-		}
-
-		?>
-
-			<div class="wrap">
-				<h2>
-					<span class="dashicons dashicons-admin-settings" style="font-size:32px;margin-right:15px"></span> ItalyStrap panel
-				</h2>
-				<form action='options.php' method='post'>
-					
-					<?php
-					settings_fields( 'italystrap_theme_options_group' );
-					do_settings_sections( 'italystrap_theme_options_group' );
-					submit_button();
-					?>
-					
-				</form>
-			</div>
-
-		<?php
 
 	}
 }

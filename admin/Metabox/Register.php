@@ -9,10 +9,35 @@
 
 namespace ItalyStrap\Admin\Metabox;
 
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * Add some custom meta box in many areas of WordPress
  */
-class Register {
+class Register implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked cmb2_admin_init - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'cmb2_admin_init'	=> array(
+				'function_to_add'	=> 'register_metaboxes',
+			),
+		);
+	}
+// add_action( 'cmb2_admin_init', array( $metabox, 'register_metaboxes' ) );
 
 	/**
 	 * CMB prefix

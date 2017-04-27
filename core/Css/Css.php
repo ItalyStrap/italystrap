@@ -12,10 +12,35 @@
 
 namespace ItalyStrap\Core\Css;
 
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * CSS API Class
  */
-class Css {
+class Css implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked wp_head - 11
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'wp_head'	=> array(
+				'function_to_add'	=> 'css_output',
+				'priority'			=> 11,
+			),
+		);
+	}
 
 	/**
 	 * The style output.

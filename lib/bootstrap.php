@@ -17,19 +17,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit as Register_Nav_Menu_Edit;
-
 use ItalyStrap\Core\Router\Router;
 use ItalyStrap\Core\Router\Controller;
-
-use ItalyStrap\Core\Image\Size as Size;
-use ItalyStrap\Core\Init\Init_Theme as Init_Theme;
-
-use ItalyStrap\Core\Sidebars\Sidebars as Sidebars;
-
-use ItalyStrap\Core\Css\Css;
-
-use ItalyStrap\Customizer\Customizer;
 
 /**
  * Load some static files.
@@ -117,36 +106,72 @@ add_filter( 'template_include', array( new Router(), 'route' ), 99999, 1 );
  */
 // add_filter( 'italystrap_template_include', array( new Controller(), 'filter' ), 10, 1 );
 
-/**
- * Register image site
- * BETA VERSION
- *
- * @var ItalyStrap
- */
-$image_size = new Size( $theme_mods );
-add_action( 'after_setup_theme', array( $image_size, 'register' ) );
+if ( ! isset( $injector ) ) {
+	return;
+}
 
 /**
- * Add field for adding glyphicon in menu
- *
- * @var Register_Nav_Menu_Edit
+ * Define theme_mods parmeter
  */
-$register_nav_menu_edit = new Register_Nav_Menu_Edit();
+$injector->defineParam( 'theme_mods', $theme_mods );
 
-/**
- * Add custom menu fields to menu
- */
-add_filter( 'wp_setup_nav_menu_item', array( $register_nav_menu_edit, 'add_custom_nav_fields' ) );
-/**
- * Save menu custom fields
- */
-add_action( 'wp_update_nav_menu_item', array( $register_nav_menu_edit, 'update_custom_nav_fields' ), 10, 3 );
+/**=======================
+ * Autoload Shared Classes
+ *======================*/
+$autoload_sharing = array(
+	'ItalyStrap\Core\Css\Css',
+);
 
-/**
- * Edit menu walker.
- */
-add_filter( 'wp_edit_nav_menu_walker', array( $register_nav_menu_edit, 'register' ), 10, 2 );
-add_action( 'wp_fields_nav_menu_item', array( $register_nav_menu_edit, 'add_new_field' ), 10, 2 );
+/**=============================
+ * Autoload Classes definitions
+ *============================*/
+// $fields_type = array( 'fields_type' => 'ItalyStrap\Fields\Fields' );
+$autoload_definitions = array(
+	// 'ItalyStrap\Widgets\Attributes\Attributes'	=> $fields_type,
+);
+
+/**======================
+ * Autoload Aliases Class
+ *=====================*/
+$autoload_aliases = array(
+	// 'ItalyStrap\Config\Config_Interface'	=> 'ItalyStrap\Config\Config',
+);
+
+/**=============================
+ * Autoload Concrete Classes
+ * @see _init & _init_admin
+ =============================*/
+$autoload_concrete = array(
+	'customizer'	=> 'ItalyStrap\Customizer\Customizer',
+	'css'			=> 'ItalyStrap\Core\Css\Css',
+	'init_theme'	=> 'ItalyStrap\Core\Init\Init_Theme',
+	'sidebars'		=> 'ItalyStrap\Core\Sidebars\Sidebars',
+	'menu'			=> 'ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit',
+	'size'			=> 'ItalyStrap\Core\Image\Size',
+);
+
+require( TEMPLATEPATH . '/lib/_init_admin.php' );
+require( TEMPLATEPATH . '/lib/_init.php' );
+
+foreach ( $autoload_sharing as $class ) {
+	$injector->share( $class );
+}
+foreach ( $autoload_definitions as $class_name => $class_args ) {
+	$injector->define( $class_name, $class_args );
+}
+foreach ( $autoload_aliases as $interface => $implementation ) {
+	$injector->alias( $interface, $implementation );
+}
+
+foreach ( $autoload_concrete as $option_name => $concrete ) {
+	$event_manager->add_subscriber( $injector->make( $concrete ) );
+}
+
+add_action( 'init', function() use ( $theme_mods ) {
+	foreach ( $theme_mods['post_type_support'] as $post_type => $features ) {
+		add_post_type_support( $post_type, $features );
+	}
+});
 
 /**
  * $content_width is a global variable used by WordPress for max image upload sizes
@@ -157,75 +182,5 @@ add_action( 'wp_fields_nav_menu_item', array( $register_nav_menu_edit, 'add_new_
  * Default: 750px is the default ItalyStrap container width.
  */
 if ( ! isset( $content_width ) ) {
-
-	$content_width = apply_filters( 'content_width', $theme_mods['content_width'] );
+	$content_width = apply_filters( 'italystrap_content_width', $theme_mods['content_width'] );
 }
-
-/**
- * If function exist init
- */
-if ( function_exists( 'register_widget' ) ) {
-	$sidebars = new Sidebars();
-	add_action( 'widgets_init', array( $sidebars, 'register_sidebars' ) );
-}
-
-/**
- * CSS manager.
- *
- * @var Css
- */
-$css_manager = new Css( $theme_mods );
-
-/**
- * Output custom CSS to live site.
- */
-add_action( 'wp_head' , array( $css_manager, 'css_output' ), 11 );
-
-if ( ! isset( $injector ) ) {
-	return;
-}
-
-/**
- * Define theme_mods parmeter
- */
-$injector->defineParam( 'theme_mods', $theme_mods );
-
-/**
- * Initialize Customizer Class
- *
- * @var ItalyStrap_Theme_Customizer
- */
-// $italystrap_customizer = new Customizer( $theme_mods );
-$italystrap_customizer = $injector->make( '\ItalyStrap\Customizer\Customizer' );
-
-/**
- * Setup the Theme Customizer settings and controls...
- */
-add_action( 'customize_register' , array( $italystrap_customizer, 'register_init' ), 99 );
-
-// Enqueue live preview javascript in Theme Customizer admin screen.
-add_action( 'customize_preview_init' , array( $italystrap_customizer, 'live_preview' ) );
-
-/**
- * Init theme
- *
- * @see in hooks.php file
- * @var object The init obj.
- */
-$init = new Init_Theme( $css_manager, $content_width );
-
-/**
- * Theme init
- *
- * @see Class Init()
- */
-add_action( 'after_setup_theme', array( $init, 'theme_setup' ) );
-
-add_action( 'init', function() use ( $theme_mods ) {
-	foreach ( $theme_mods['post_type_support'] as $post_type => $features ) {
-		add_post_type_support( $post_type, $features );
-	}
-});
-
-require( TEMPLATEPATH . '/lib/_init_admin.php' );
-require( TEMPLATEPATH . '/lib/_init.php' );

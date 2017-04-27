@@ -14,10 +14,40 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * Improve WordPress text editor
  */
-class Editor {
+class Editor implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked mce_buttons_2 - 10
+	 * @hooked mce_buttons   - 1
+	 * @hooked tiny_mce_before_init   - 9999
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'mce_buttons_2'	=> 'reveal_hidden_tinymce_buttons',
+			'mce_buttons'	=> array(
+				'function_to_add'	=> 'break_page_button',
+				'priority'			=> 1,
+				'accepted_args'		=> 2,
+			),
+			'tiny_mce_before_init'	=> array(
+				'function_to_add'	=> 'add_new_format_to_mce',
+				'priority'			=> 9999,
+				'accepted_args'		=> 2,
+			),
+		);
+	}
 
 	/**
 	 * The following snippet will reveal the hidden

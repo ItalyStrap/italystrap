@@ -29,6 +29,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	/**
 	 * Display or retrieve title for a Custom Post Type archive.
 	 * This is optimized for archive.php and archive-{posttype}.php template files for displaying the title of the CPT.
+	 *
+	 * @todo Use 'get_the_archive_description' filter instead the snippets below
+	 * https://developer.wordpress.org/reference/functions/get_the_archive_description/
 	 */
 	if ( is_post_type_archive() ) {
 

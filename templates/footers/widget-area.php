@@ -14,15 +14,11 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-/**
- * Global variable for col-x bootstrap class in footer sidebars
- */
-global $sidebars;
-$col = ( isset( $col ) ) ? $col : $sidebars->set_col();
-?>
-<div class="container">
+$col = $this->set_col();
+
+?><div class="container">
 	<div class="row" itemscope itemtype="https://schema.org/WPSideBar">
-		<?php foreach ( array( 'footer-box-1', 'footer-box-2', 'footer-box-3', 'footer-box-4' ) as $value ) : ?>
+		<?php foreach ( $this->footer_sidebars as $value ) : ?>
 
 			<?php if ( is_active_sidebar( $value ) ) : ?>
 				<div class="col-md-<?php echo $col; // XSS ok. ?>">

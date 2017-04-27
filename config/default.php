@@ -161,6 +161,11 @@ return array(
 			'height'	=> 45,
 			'crop'		=> true,
 		),
+		/**
+		 * La full-width serve solo per la pagina omonima
+		 * Si potrebbe invece settare "large" a 1140 (verificare se 1170 va bene) e risparmiare spazio avendo una immagine di meno poichè entrambe non vengono croppate
+		 * "large" può essere settata anche con altezza a 9999
+		 */
 		'full-width'			=> array(
 			'width'		=> 1140,
 			'height'	=> 9999,
@@ -168,6 +173,19 @@ return array(
 		),
 	),
 
+
+	/**
+	 * @todo Valutare l'utilizzo delle frazioni e creare:
+	 * un_mezzo
+	 * un_terzo
+	 * un_quarto
+	 * un_sesto
+	 * direi che queste siano più che sufficienti
+	 * Il calcolo si può fare:
+	 * 1170 / 4 - gutter(30) e ottengo un_quarto
+	 * 
+	 * add_image_size( 'one_fourth', 263, 238, true );
+	 */
 	'breakpoint'					=> array(
 		// 'xs'	=> 480,
 		// 'sm'	=> 768,

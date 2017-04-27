@@ -43,7 +43,9 @@ namespace ItalyStrap;
 			</p>
 			<?php
 			get_search_form();
-			echo italystrap_get_404_image( 'img-responsive center-block' );
+			if ( is_404() ) {
+				echo italystrap_get_404_image( 'img-responsive center-block' );
+			}
 
 		endif; ?>
 

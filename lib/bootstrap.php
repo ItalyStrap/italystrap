@@ -17,16 +17,10 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Core\Router\Router;
-use ItalyStrap\Core\Router\Controller;
-
 /**
- * Load some static files.
- * Beta version.
- *
- * @var array
+ * Autoload theme core files.
  */
-$autoload_files = array(
+$autoload_theme_files = array(
 	'/vendor/autoload.php',
 	'/functions/default-constants.php',
 	'/functions/general-functions.php',
@@ -36,10 +30,9 @@ $autoload_files = array(
 	'/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
 
 	'/deprecated/deprecated.php', // Deprecated files and functions.
-	'/deprecated/pagination.php', // Deprecated
 );
 
-foreach ( $autoload_files as $file ) {
+foreach ( $autoload_theme_files as $file ) {
 	require( TEMPLATEPATH . $file );
 }
 
@@ -58,31 +51,13 @@ add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
  */
 set_default_constant();
 
-add_filter( 'italystrap_has_bootstrap', '__return_true' );
-
-/**
- * Set the default theme config value
- *
- * @var array
- */
+// $italystrap_options = get_option( 'italystrap_theme_settings' ); // DEPRECATED
 $italystrap_defaults = apply_filters( 'italystrap_default_theme_config', require( TEMPLATEPATH . '/config/default.php' ) );
-
-/**
- * Define theme otpion array
- * DEPRECATED
- */
-$italystrap_options = get_option( 'italystrap_theme_settings' );
 
 if ( ! isset( $theme_mods ) ) {
 	$theme_mods = (array) get_theme_mods();
 }
 
-/**
- * Get the customiser settings and merge with defaults
- *
- * @var array
- */
-// $theme_mods = wp_parse_args( get_theme_mods(), $italystrap_defaults );
 $theme_mods = wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
 
 /**
@@ -92,19 +67,6 @@ $theme_mods = wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
  * @see ItalyStrap\Core\set_current_template()
  */
 add_filter( 'template_include', __NAMESPACE__ . '\set_current_template', 99998 );
-
-/**
- * Router
- *
- * @see ItalyStrap\Core\Router\Router::route
- */
-add_filter( 'template_include', array( new Router(), 'route' ), 99999, 1 );
-
-/**
- * This filter is in beta version
- * Da testare meglio, avuto problemi con WC + Child e template file mancante in parent
- */
-// add_filter( 'italystrap_template_include', array( new Controller(), 'filter' ), 10, 1 );
 
 if ( ! isset( $injector ) ) {
 	return;
@@ -142,6 +104,8 @@ $autoload_aliases = array(
  * @see _init & _init_admin
  =============================*/
 $autoload_concrete = array(
+	'router'		=> 'ItalyStrap\Core\Router\Router',
+	// 'controller'	=> 'ItalyStrap\Core\Router\Controller', // Da testare meglio
 	'customizer'	=> 'ItalyStrap\Customizer\Customizer',
 	'css'			=> 'ItalyStrap\Core\Css\Css',
 	'init_theme'	=> 'ItalyStrap\Core\Init\Init_Theme',

@@ -316,3 +316,5 @@ function get_the_custom_header_image( $get_header_image ) {
 
   return apply_filters( 'italystrap_custom_header_image', $output );
 }
+
+require( TEMPLATEPATH . '/deprecated/pagination.php' );

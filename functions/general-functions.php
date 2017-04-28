@@ -568,6 +568,13 @@ function post_thumbnail_size( $size, $context ) {
 add_action( 'italystrap_post_thumbnail_size', __NAMESPACE__ . '\post_thumbnail_size', 10, 2 );
 
 add_filter( 'post_class', function ( $classes ) use ( $theme_mods ) {
+
+	foreach ( $classes as $key => $class ) {
+		if( 'hentry' === $class ) {
+			unset( $classes[ $key ] );
+		}
+	}
+
 	if ( ! has_post_thumbnail() ) {
 		return $classes;
 	}

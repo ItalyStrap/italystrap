@@ -47,10 +47,35 @@
 
 namespace ItalyStrap\Core\Router;
 
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * Router Class API
  */
-class Router{
+class Router implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked template_include - 99999
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'template_include'	=> array(
+				'function_to_add'	=> 'route',
+				'priority'			=> 99999,
+			),
+		);
+	}
 
 	/**
 	 * Get an array with template name.

@@ -14,17 +14,13 @@ if ( is_admin() ) {
 	return;
 }
 
-$autoload_classes = array(
+$autoload_concrete = array_merge( $autoload_concrete, array(
 	'ItalyStrap\Core\Asset\Asset_Factory',
 	'ItalyStrap\Core\Tag_Cloud\Tag_Cloud',
 	'ItalyStrap\Core\WooCommerce\WooCommerce',
 	'ItalyStrap\Core\WooCommerce\Form_Field',
 	'ItalyStrap\Core\Layout\Layout',
-);
-
-foreach ( $autoload_classes as $class_name ) {
-	$event_manager->add_subscriber( $injector->make( $class_name ) );
-}
+) );
 
 /**
  * Template object

@@ -191,6 +191,8 @@ class Init_Theme implements Subscriber_Interface {
 		 */
 		add_theme_support( 'woocommerce' );
 
+		add_theme_support( 'bootstrap3' );
+
 		/**
 		 * Define and register starter content to showcase the theme on new sites.
 		 * @see twentyseventeen

@@ -14,15 +14,11 @@ if ( ! is_admin() ) {
 	return;
 }
 
-$autoload_classes = array(
+$autoload_concrete = array_merge( $autoload_concrete, array(
 	'ItalyStrap\Admin\Tinymce\Editor',
 	'ItalyStrap\Admin\Metabox\Register',
 	'ItalyStrap\Core\User\Contact_Methods',
-);
-
-foreach ( $autoload_classes as $class_name ) {
-	$event_manager->add_subscriber( $injector->make( $class_name ) );
-}
+) );
 
 require( TEMPLATEPATH . '/admin/functions.php' );
 

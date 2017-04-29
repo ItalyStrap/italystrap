@@ -22,17 +22,13 @@ $autoload_concrete = array_merge( $autoload_concrete, array(
 	'ItalyStrap\Core\Layout\Layout',
 ) );
 
-/**
- * Template object
- *
- * @var Template
- */
-$template_settings = $injector->make( 'ItalyStrap\Core\Templates\Template_Base' );
-//Questo filtro si trova nei file template per gestire commenti e altro
-add_filter( 'italystrap_template_settings', array( $template_settings, 'get_template_settings' ) );
+/* Questo filtro si trova nei file template per gestire commenti e breadcrumbs */
+add_filter( 'italystrap_template_settings', function ( $array ) {
+	return (array) get_post_meta( get_queried_object_id(), '_italystrap_template_settings', true );
+} );
 
 $template_factory = new \ItalyStrap\Core\Templates\Template_Factory( $theme_mods, $injector, $event_manager );
-$registered_classes = $template_factory->register();
+$template_factory->register();
 
 /**
  * Added for back-compatibility with old hooks
@@ -44,3 +40,22 @@ $registered_classes = $template_factory->register();
 // $hooks_migrations = new \ItalyStrap\Migrations\Old_Hooks();
 $hooks_migrations = $injector->make( 'ItalyStrap\Migrations\Old_Hooks' );
 $hooks_migrations->convert();
+
+use ItalyStrap\Core\Templates\Title;
+
+/**
+ * Class description
+ */
+// class Test_Title {
+
+// 	function __construct( Title $title ) {
+// 		$this->title = $title;
+// 	}
+// }
+
+// $test_title = $injector->make( 'ItalyStrap\Core\Test_Title' );
+// $event_manager->remove_subscriber( $test_title->title );
+// $event_manager->remove_subscriber( $registered_classes['title'] );
+// var_dump( $test_title->title );
+// var_dump( $event_manager );
+// var_dump( $registered_classes['title'] === $test_title->title );

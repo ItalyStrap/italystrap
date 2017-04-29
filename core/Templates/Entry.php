@@ -51,4 +51,11 @@ class Entry extends Template_Base implements Subscriber_Interface  {
 			'italystrap_entry'	=> 'render',
 		);
 	}
+
+	/**
+	 * File name for the view
+	 *
+	 * @var string
+	 */
+	protected $file_name = 'loops/type/post';
 }

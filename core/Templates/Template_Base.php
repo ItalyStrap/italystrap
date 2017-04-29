@@ -27,28 +27,24 @@ class Template_Base implements Template_Interface {
 	protected $theme_mod = array();
 
 	/**
-	 * The view files path array.
+	 * Default template directory
+	 *
+	 * @var string
+	 */
+	protected $template_dir = '';
+
+	/**
+	 *File name for the view
+	 *
+	 * @var string
+	 */
+	protected $file_name = '';
+
+	/**
+	 * Theme mods
 	 *
 	 * @var array
 	 */
-	protected $registered_files_path = array(
-		'navbar_top'		=> 'templates/parts/navbar-top',
-		'header_image'		=> 'templates/parts/header-image',
-		'archive_headline'	=> 'templates/parts/archive-headline',
-		'author_info'		=> 'templates/parts/author-info',
-		'loop'				=> 'templates/loops/loop',
-		'entry'				=> 'templates/loops/type/post',
-		'title'				=> 'templates/loops/type/parts/title',
-		'meta'				=> 'templates/loops/type/parts/meta',
-		'preview'			=> 'templates/loops/type/parts/preview',
-		'featured_image'	=> 'templates/loops/type/parts/featured-image',
-		'content'			=> 'templates/loops/type/parts/content',
-		'modified'			=> 'templates/loops/type/parts/modified',
-		'none'				=> 'templates/loops/none',
-		'footer_widget_area'=> 'templates/footers/widget-area',
-		'colophon'			=> 'templates/footers/colophon',
-	);
-
 	protected static $mods = array();
 	protected static $post_content_template = array();
 	protected static $count = 0;
@@ -58,7 +54,7 @@ class Template_Base implements Template_Interface {
 	 *
 	 * @param array $theme_mod Class configuration array.
 	 */
-	function __construct( array $theme_mods = array() ) {
+	public function __construct( array $theme_mods = array() ) {
 
 		if ( empty( self::$mods ) ) {
 			self::$mods = $theme_mods;
@@ -78,7 +74,21 @@ class Template_Base implements Template_Interface {
 		$class_name = new \ReflectionClass( $this );
 		$this->class_name =  $class_name->getShortName();
 		$this->class_name = strtolower( $this->class_name );
-	}	
+
+		$this->template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
+	}
+
+	/**
+	 * Render the output of the controller.
+	 */
+	public function render() {
+
+		if ( empty( $this->file_name ) ) {
+			throw new \Exception('You have to register the file name of the view.');
+		}
+
+		$this->get_template_part( $this->template_dir . DIRECTORY_SEPARATOR . $this->file_name );
+	}
 
 	/**
 	 * Get the ID
@@ -86,11 +96,16 @@ class Template_Base implements Template_Interface {
 	 *
 	 * @return int        The current content ID
 	 */
-	public function get_the_ID() {
-	
+	protected function get_the_ID() {
+
 		if ( is_home() ) {
 			return PAGE_FOR_POSTS;
 		}
+
+		/**
+		 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
+		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
+		 */
 
 		/**
 		 * Using get_queried_object_id() here since the $post global may not be set before a call to the_post(). twentyseventeen
@@ -109,7 +124,7 @@ class Template_Base implements Template_Interface {
 	 *
 	 * @return string|false           Post type on success, false on failure.
 	 */
-	public function get_post_type( $post = null ) {
+	protected function get_post_type( $post = null ) {
 
 		return get_post_type( $post );
 	}
@@ -120,16 +135,11 @@ class Template_Base implements Template_Interface {
 	 *
 	 * @return array Return the array with template part settings.
 	 */
-	public function get_template_settings() {
+	protected function get_template_settings() {
 
 		if ( ! is_singular() ) {
 			return (array) self::$post_content_template;
 		}
-
-		/**
-		 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
-		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
-		 */
 
 		return (array) get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
 	}
@@ -157,7 +167,7 @@ class Template_Base implements Template_Interface {
 	 * @param string $slug The slug name for the generic template.
 	 * @param string $name The name of the specialised template.
 	 */
-	function get_template_part( $slug, $name = null, $load = false ) {
+	protected function get_template_part( $slug, $name = null, $load = false ) {
 		/**
 		 * Fires before the specified template part file is loaded.
 		 *
@@ -179,58 +189,10 @@ class Template_Base implements Template_Interface {
 		$templates[] = "{$slug}.php";
 
 		if ( $load ) {
-			locate_template($templates, $load, false);
+			locate_template( $templates, $load, false );
 			return;
 		}
 
-		require( locate_template($templates, $load, false) );
-	}
-
-	/**
-	 * filter_template_include
-	 *
-	 * @param  array $map Array with .
-	 * @return array      Return the template path
-	 */
-	public function filter_template_include( $map ) {
-	// 	$new_map = array(
-	// 		// 'single.php'	=> 'full-width.php',
-	// 		'single.php'	=> array( $this, 'do_loop' ),
-	// 	);
-	// var_dump( $map, CURRENT_TEMPLATE );
-		$map = array(
-			'bbpress.php'	=> array( $this, 'test' ),
-			// 'bbpress.php'	=> 'bbpress.php',
-		);
-	// var_dump( $map );
-	// 	return $new_map;
-		return $map;
-	}
-// add_filter(
-// 	'italystrap_template_include',
-// 	array( $template_settings, 'filter_template_include' )
-// );
-
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function test( $template ) {
-		remove_action( 'italystrap_before_entry_content', array( $this, 'meta' ), 20 );
-
-		return $template;
-	}
-
-	/**
-	 * Render the output of the controller.
-	 */
-	public function render() {
-
-		if ( empty( $this->registered_files_path[ $this->class_name ] ) ) {
-			throw new \Exception('You have to register the path of the file.');
-		}
-		$this->get_template_part( $this->registered_files_path[ $this->class_name ] );
+		require( locate_template( $templates, $load, false ) );
 	}
 }

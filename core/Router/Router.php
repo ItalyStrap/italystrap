@@ -2,6 +2,8 @@
 /**
  * Router API
  *
+ * ALPHA Version
+ *
  * @example
  *
  * In Child Theme
@@ -103,8 +105,8 @@ class Router implements Subscriber_Interface {
 
 			$callback = $map[ CURRENT_TEMPLATE ];
 
-			$template = is_callable( $callback ) ?
-				call_user_func(
+			$template = is_callable( $callback )
+				? call_user_func(
 					$callback,
 					locate_template( CURRENT_TEMPLATE ),
 					$this

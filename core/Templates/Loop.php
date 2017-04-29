@@ -38,4 +38,11 @@ class Loop extends Template_Base implements Subscriber_Interface  {
 			'italystrap_loop'	=> 'render',
 		);
 	}
+
+	/**
+	 * File name for the view
+	 *
+	 * @var string
+	 */
+	protected $file_name = 'loops/loop';
 }

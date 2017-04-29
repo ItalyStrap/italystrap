@@ -41,4 +41,11 @@ class Preview extends Template_Base implements Subscriber_Interface {
 			),
 		);
 	}
+
+	/**
+	 * File name for the view
+	 *
+	 * @var string
+	 */
+	protected $file_name = 'loops/type/parts/preview';
 }

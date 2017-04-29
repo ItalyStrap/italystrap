@@ -16,6 +16,7 @@ class ComposerStaticInit9602fe9d5f2cd9e13a23070ae5d0fde8
             'ItalyStrap\\Customizer\\' => 22,
             'ItalyStrap\\Core\\' => 16,
             'ItalyStrap\\Admin\\' => 17,
+            'ItalyStrap\\' => 11,
         ),
     );
 
@@ -31,6 +32,10 @@ class ComposerStaticInit9602fe9d5f2cd9e13a23070ae5d0fde8
         'ItalyStrap\\Admin\\' => 
         array (
             0 => __DIR__ . '/../..' . '/admin',
+        ),
+        'ItalyStrap\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 

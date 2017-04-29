@@ -38,4 +38,11 @@ class None extends Template_Base implements Subscriber_Interface  {
 			'italystrap_content_none'	=> 'render',
 		);
 	}
+
+	/**
+	 * File name for the view
+	 *
+	 * @var string
+	 */
+	protected $file_name = 'loops/none';
 }

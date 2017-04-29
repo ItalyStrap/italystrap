@@ -55,6 +55,7 @@ class Nav_Menu extends Template_Base implements Subscriber_Interface  {
 	 * Function description
 	 */
 	public function render() {
+		// $this->get_template_part( 'templates/headers/navbar4' );
 		$this->navbar->output();
 	}
 }

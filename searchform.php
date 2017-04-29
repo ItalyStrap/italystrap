@@ -1,10 +1,12 @@
-<?php namespace ItalyStrap;
+<?php
 /**
  * Form for search in WordPress site
  * @link https://codex.wordpress.org/Function_Reference/get_search_form
  * Add markup for Sitelinks Search Box, @see link below for more informations
  * @link https://developers.google.com/structured-data/slsb-overview
  */
+
+namespace ItalyStrap;
 ?>
 <div itemscope itemtype="https://schema.org/WebSite">
 	<meta itemprop="url" content="<?php echo esc_attr( HOME_URL ); ?>"/>

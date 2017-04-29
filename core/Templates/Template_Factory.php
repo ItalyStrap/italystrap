@@ -59,10 +59,7 @@ class Template_Factory {
 			'Author_Info'		=> 'ItalyStrap\Core\Templates\Author_Info',
 			'Loop'				=> 'ItalyStrap\Core\Templates\Loop',
 			'Entry'				=> 'ItalyStrap\Core\Templates\Entry',
-			'Title'				=> array(
-				'ItalyStrap\Core\Templates\Title',
-				// 35,
-			),
+			'Title'				=> 'ItalyStrap\Core\Templates\Title',
 			'Meta'				=> 'ItalyStrap\Core\Templates\Meta',
 			'Preview'			=> 'ItalyStrap\Core\Templates\Preview',
 			'Featured_Image'	=> 'ItalyStrap\Core\Templates\Featured_Image',
@@ -93,24 +90,19 @@ class Template_Factory {
 	 */
 	public function register() {
 
-		$container = array();
-
 		foreach ( $this->autoload_definitions as $class_name => $class_args ) {
 			$this->injector->define( $class_name, $class_args );
 		}
-		foreach ( $this->autoload_concrete as $class_name => $implementation ) {
+		foreach ( $this->autoload_concrete as $implementation ) {
 
-			$prefixed_classname = strtolower( $class_name );
+			// if ( is_array( $implementation ) ) {
+			// 	$implementation = $implementation[0];
+			// }
 
-			if ( is_array( $implementation ) ) {
-				$implementation = $implementation[0];
-			}
-
-			$container[ $prefixed_classname ] = $this->injector->make( $implementation );
-			$this->event_manager->add_subscriber( $container[ $prefixed_classname ] );
+			$this->injector->share( $implementation );
+			$this->event_manager->add_subscriber( $this->injector->make( $implementation ) );
 		}
 
-		// return $container;
 		return null;
 	}
 

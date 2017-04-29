@@ -40,6 +40,13 @@ class Header_Image extends Template_Base implements Subscriber_Interface  {
 	}
 
 	/**
+	 * File name for the view
+	 *
+	 * @var string
+	 */
+	protected $file_name = 'parts/header-image';
+
+	/**
 	 * Store the custom header settings
 	 *
 	 * @var null

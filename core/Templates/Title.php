@@ -43,6 +43,13 @@ class Title extends Template_Base implements Subscriber_Interface {
 	}
 
 	/**
+	 * File name for the view
+	 *
+	 * @var string
+	 */
+	protected $file_name = 'loops/type/parts/title';
+
+	/**
 	 * Render the output of the controller.
 	 */
 	public function render() {

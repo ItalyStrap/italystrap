@@ -43,6 +43,13 @@ class Featured_Image extends Template_Base implements Subscriber_Interface  {
 	}
 
 	/**
+	 * File name for the view
+	 *
+	 * @var string
+	 */
+	protected $file_name = 'loops/type/parts/featured-image';
+
+	/**
 	 * Render the output of the controller.
 	 */
 	public function render() {

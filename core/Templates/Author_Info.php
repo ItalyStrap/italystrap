@@ -45,6 +45,13 @@ class Author_Info extends Template_Base implements Subscriber_Interface  {
 	}
 
 	/**
+	 * File name for the view
+	 *
+	 * @var string
+	 */
+	protected $file_name = 'parts/author-info';
+
+	/**
 	 * Render the output of the controller.
 	 */
 	public function render() {

@@ -99,10 +99,13 @@ $autoload_aliases = array(
 	// 'ItalyStrap\Config\Config_Interface'	=> 'ItalyStrap\Config\Config',
 );
 
-/**=============================
+/**
+ * ========================================================================
  * Autoload Concrete Classes
+ * ========================================================================
+ *
  * @see _init & _init_admin
- =============================*/
+ */
 $autoload_concrete = array(
 	'router'		=> 'ItalyStrap\Core\Router\Router',
 	// 'controller'	=> 'ItalyStrap\Core\Router\Controller', // Da testare meglio

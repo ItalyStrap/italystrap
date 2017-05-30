@@ -113,29 +113,31 @@ class Size implements Subscriber_Interface {
 	 * @param  array $image_sizes [description]
 	 * @return string        [description]
 	 */
-	private function add_image_sizes( array $image_sizes ) {
+	protected function add( array $image_sizes ) {
 
 		foreach ( $image_sizes as $name => $params ) {
-
-			if ( ! is_array( $params ) ) {
-				continue;
-			}
-
-			if ( ! isset( $params['width'] ) || ! isset( $params['height'] ) ) {
-				continue;
-			}
-
-			$width  = (int) $params['width'];
-			$height = (int) $params['height'];
-			$crop   = isset( $params['crop'] ) ? $params['crop'] : false;
-
-			add_image_size(
-				$name,
-				$params['width'],
-				$params['height'],
-				$params['crop']
-			);
+			$this->add_image_size( $name, (array) $params );
 		}
+	}
+
+	/**
+	 * Add image sizes
+	 *
+	 * @param  array $image_sizes [description]
+	 * @return string        [description]
+	 */
+	protected function add_image_size( $name, array $params ) {
+
+		if ( ! isset( $params['width'] ) || ! isset( $params['height'] ) ) {
+			return;
+		}
+
+		add_image_size(
+			$name,
+			(int) $params['width'],
+			(int) $params['height'],
+			isset( $params['crop'] ) ? (bool) $params['crop'] : false
+		);
 	}
 
 	/**
@@ -145,7 +147,7 @@ class Size implements Subscriber_Interface {
 
 		$this->get_image_size_from_breakpoint();
 
-		$this->add_image_sizes( $this->image_sizes );
+		$this->add( $this->image_sizes );
 
 		$height = round( $this->theme_mods['content_width'] * 3 / 4 );
 

@@ -14,6 +14,16 @@ namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Core;
 
+$theme_elements_config = array(
+	'container'	=> 1170,
+	'col'		=> 12,
+	'gutter'	=> 30,
+);
+
+$container = 1170;
+$gutter = 30;
+$col = 12;
+
 return array(
 
 	/**
@@ -167,9 +177,29 @@ return array(
 		 * "large" può essere settata anche con altezza a 9999
 		 */
 		'full-width'			=> array(
-			'width'		=> 1140,
+			'width'		=> $container - $gutter,
 			'height'	=> 9999,
 			'crop'		=> false,
+		),
+		'one_half'			=> array(
+			'width'		=> $container / 2 - $gutter,
+			'height'	=> ($container / 2 - $gutter) * 3 / 4,
+			'crop'		=> true,
+		),
+		'one_third'			=> array(
+			'width'		=> $container / 3 - $gutter,
+			'height'	=> ($container / 3 - $gutter) * 3 / 4,
+			'crop'		=> true,
+		),
+		'one_fourth'			=> array(
+			'width'		=> $container / 4 - $gutter,
+			'height'	=> ($container / 4 - $gutter) * 3 / 4,
+			'crop'		=> true,
+		),
+		'one_six'			=> array(
+			'width'		=> $container / 6 - $gutter,
+			'height'	=> ($container / 6 - $gutter) * 3 / 4,
+			'crop'		=> true,
 		),
 	),
 
@@ -185,6 +215,11 @@ return array(
 	 * 1170 / 4 - gutter(30) e ottengo un_quarto
 	 * 
 	 * add_image_size( 'one_fourth', 263, 238, true );
+	 *
+	 * l'altezza proporzionata si calcola:
+	 * 4/3
+	 * $width : 4 = $height : 3
+	 * $width * 3 / 4;
 	 */
 	'breakpoint'					=> array(
 		// 'xs'	=> 480,

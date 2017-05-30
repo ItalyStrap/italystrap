@@ -47,15 +47,14 @@ if ( have_comments() && ! in_array( 'hide_comments', $template_settings, true ) 
 		/**
 		 * Arguments for wp_list_comments()
 		 *
+		 * filter 'wp_list_comments_args' since WP 4.0.0
+		 *
 		 * @var array
 		 */
-		$wp_list_comments_args = apply_filters(
-			'wp_list_comments_args',
-			array(
-				'walker'		=> new $comment_walker,
-				'max_depth'		=> 3, // See in WordPress option.
-				'avatar_size'	=> 100,
-			)
+		$wp_list_comments_args = array(
+			'walker'		=> new $comment_walker,
+			'max_depth'		=> 3, // See in WordPress option.
+			'avatar_size'	=> 100,
 		);
 
 		\ItalyStrap\Core\comment_pagination();

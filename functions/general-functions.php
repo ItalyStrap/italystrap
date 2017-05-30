@@ -579,6 +579,8 @@ add_filter( 'post_class', function ( $classes ) use ( $theme_mods ) {
 		return $classes;
 	}
 
+	$theme_mods['post_thumbnail_alignment'] = isset( $theme_mods['post_thumbnail_alignment'] ) ? $theme_mods['post_thumbnail_alignment'] : '';
+
 	$classes[] = 'post-thumbnail-' . $theme_mods['post_thumbnail_alignment'];
 
 	return  $classes ;

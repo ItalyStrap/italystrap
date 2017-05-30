@@ -263,7 +263,7 @@ class Css implements Subscriber_Interface {
 				"\r",
 				"\t",
 				'&amp;nbsp;',
-				),
+			),
 			'',
 			$css
 		);

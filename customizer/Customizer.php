@@ -270,6 +270,10 @@ class Customizer implements Subscriber_Interface {
 	 */
 	public function add_link_to_theme_option_page() {
 
+		if ( ! current_user_can( $this->capability ) ) {
+			return;
+		}
+
 		global $submenu;
 		/**
 		 * Link to customizer

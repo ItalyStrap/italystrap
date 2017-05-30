@@ -18,7 +18,7 @@ Make your web site more powerfull.
 
 **[ItalyStrap Theme](http://www.italystrap.it/)** will add powerful features to your WordPRess site.
 
-ItalyStrap is a Wordpress framework theme based on [HTML5 Boilerplate](http://html5boilerplate.com/), [Bootstrap](http://getbootstrap.com/), [Schema.org](https://schema.org/), [Open Graph](https://developers.facebook.com/docs/opengraph/), [Twitter cards](https://dev.twitter.com/docs/cards)
+ItalyStrap is a WordPress framework theme based on [HTML5 Boilerplate](http://html5boilerplate.com/), [Bootstrap](http://getbootstrap.com/), [Schema.org](https://schema.org/), [Open Graph](https://developers.facebook.com/docs/opengraph/), [Twitter cards](https://dev.twitter.com/docs/cards)
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
@@ -536,4 +536,4 @@ Release Date:
 == Credits ==
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/overclokk/italystrap/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Analytics](https://ga-beacon.appspot.com/UA-75347190-2/readme)](https://github.com/igrigorik/ga-beacon)

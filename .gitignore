@@ -30,4 +30,4 @@ tests
 #map files
 *.map
 
-_vendor
+vendor

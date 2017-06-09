@@ -15,11 +15,12 @@ if ( is_admin() ) {
 }
 
 $autoload_concrete = array_merge( $autoload_concrete, array(
-	'ItalyStrap\Core\Asset\Asset_Factory',
-	'ItalyStrap\Core\Tag_Cloud\Tag_Cloud',
-	'ItalyStrap\Core\WooCommerce\WooCommerce',
-	'ItalyStrap\Core\WooCommerce\Form_Field',
-	'ItalyStrap\Core\Layout\Layout',
+	'ItalyStrap\Asset\Asset_Factory',
+	'ItalyStrap\Tag_Cloud\Tag_Cloud',
+	'ItalyStrap\WooCommerce\WooCommerce',
+	'ItalyStrap\WooCommerce\Form_Field',
+	'ItalyStrap\Layout\Layout',
+	'ItalyStrap\Migrations\Old_Hooks'
 ) );
 
 /* Questo filtro si trova nei file template per gestire commenti e breadcrumbs */
@@ -27,7 +28,7 @@ add_filter( 'italystrap_template_settings', function ( $array ) {
 	return (array) get_post_meta( get_queried_object_id(), '_italystrap_template_settings', true );
 } );
 
-$template_factory = new \ItalyStrap\Core\Templates\Template_Factory( $theme_mods, $injector, $event_manager );
+$template_factory = new \ItalyStrap\Controllers\Factory( $theme_mods, $injector, $event_manager );
 $template_factory->register();
 
 /**
@@ -38,10 +39,10 @@ $template_factory->register();
  * @var Old_Hooks
  */
 // $hooks_migrations = new \ItalyStrap\Migrations\Old_Hooks();
-$hooks_migrations = $injector->make( 'ItalyStrap\Migrations\Old_Hooks' );
-$hooks_migrations->convert();
+// $hooks_migrations = $injector->make( 'ItalyStrap\Migrations\Old_Hooks' );
+// $hooks_migrations->convert();
 
-use ItalyStrap\Core\Templates\Title;
+// use ItalyStrap\Core\Templates\Title;
 
 /**
  * Class description

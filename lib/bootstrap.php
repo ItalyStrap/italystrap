@@ -41,7 +41,7 @@ foreach ( $autoload_theme_files as $file ) {
  *
  * @var \ItalyStrap\Admin\Required_Plugins\Register
  */
-$required_plugins = new \ItalyStrap\Admin\Required_Plugins\Register;
+$required_plugins = new \ItalyStrap\Required_Plugins\Register;
 add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
 
 /**
@@ -81,7 +81,7 @@ $injector->defineParam( 'theme_mods', $theme_mods );
  * Autoload Shared Classes
  *======================*/
 $autoload_sharing = array(
-	'ItalyStrap\Core\Css\Css',
+	'ItalyStrap\Css\Css',
 );
 
 /**=============================
@@ -107,14 +107,14 @@ $autoload_aliases = array(
  * @see _init & _init_admin
  */
 $autoload_concrete = array(
-	'router'		=> 'ItalyStrap\Core\Router\Router',
+	'router'		=> 'ItalyStrap\Router\Router',
 	// 'controller'	=> 'ItalyStrap\Core\Router\Controller', // Da testare meglio
-	'customizer'	=> 'ItalyStrap\Customizer\Customizer',
-	'css'			=> 'ItalyStrap\Core\Css\Css',
-	'init_theme'	=> 'ItalyStrap\Core\Init\Init_Theme',
-	'sidebars'		=> 'ItalyStrap\Core\Sidebars\Sidebars',
-	'menu'			=> 'ItalyStrap\Admin\Nav_Menu\Register_Nav_Menu_Edit',
-	'size'			=> 'ItalyStrap\Core\Image\Size',
+	'customizer'	=> 'ItalyStrap\Customizer\Theme_Customizer',
+	'css'			=> 'ItalyStrap\Css\Css',
+	'init_theme'	=> 'ItalyStrap\Init\Init_Theme',
+	'sidebars'		=> 'ItalyStrap\Custom\Sidebars\Sidebars',
+	'menu'			=> 'ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
+	'size'			=> 'ItalyStrap\Custom\Image\Size',
 );
 
 require( TEMPLATEPATH . '/lib/_init_admin.php' );

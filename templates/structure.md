@@ -1,6 +1,8 @@
-main.php
+template/
+index.php
 ├── misc/
 |	└── author-info.php {after_post|after_main}
+|	└── archive-headline.php
 |
 ├── headers/
 |	├── navbar-top.php
@@ -10,15 +12,10 @@ main.php
 ├── Sidebars/
 |	└── {sidebar-secondary.php}
 |
-├── Loops/
+├── Posts/
 |	├── loop.php
-|	|	└── Misc/
-|	|		└── archive-headline.php
-|	|
-|	└── Type/
-|		├── none.php
-|		├── post.php
-|		|
+|	├── none.php
+|	└── post.php
 |		└── Parts/
 |			├── meta.php
 |			├── featured.php

@@ -13,7 +13,7 @@
  * @package Italystrap
  */
 
-namespace ItalyStrap;
+namespace ItalyStrap\Headers;
 
 ?>
 <nav class="container navbar-wrapper" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">

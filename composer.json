@@ -16,9 +16,6 @@
 		"classmap": [
 		],
         "psr-4": {
-            "ItalyStrap\\Admin\\": "admin/",
-            "ItalyStrap\\Core\\": "core/",
-            "ItalyStrap\\Customizer\\": "customizer/",
             "ItalyStrap\\": "src/"
         }
 	}

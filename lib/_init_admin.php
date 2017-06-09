@@ -15,17 +15,20 @@ if ( ! is_admin() ) {
 }
 
 $autoload_concrete = array_merge( $autoload_concrete, array(
-	'ItalyStrap\Admin\Tinymce\Editor',
-	'ItalyStrap\Admin\Metabox\Register',
-	'ItalyStrap\Core\User\Contact_Methods',
+	'ItalyStrap\Editors\TinyMCE',
+	'ItalyStrap\Custom\Metabox\Register',
+	'ItalyStrap\User\Contact_Methods',
 ) );
 
-require( TEMPLATEPATH . '/admin/functions.php' );
+require( TEMPLATEPATH . '/functions/admin-functions.php' );
 
 /**
  * TinyMCE Editor in Category description
  */
-$editor = $injector->make( '\ItalyStrap\Admin\Category\Editor' );
+$editor = $injector->make( '\ItalyStrap\Editors\Category' );
+if ( 'edit-tags.php' === $pagenow || 'term.php' === $pagenow ) {
+	$editor->init();
+}
 
 /**
  * Add fields to widget areas

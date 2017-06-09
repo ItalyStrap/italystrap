@@ -10,7 +10,7 @@
 
 namespace ItalyStrap;
 
-use ItalyStrap\Core\Comments\Comments;
+use ItalyStrap\Comments\Comments;
 
 /**
  * @link https://codex.wordpress.org/Function_Reference/post_type_supports
@@ -42,7 +42,7 @@ if ( have_comments() && ! in_array( 'hide_comments', $template_settings, true ) 
 		 *
 		 * @var string
 		 */
-		$comment_walker = apply_filters( 'comment_walker', 'ItalyStrap\Core\Comments\Comments' );
+		$comment_walker = apply_filters( 'comment_walker', 'ItalyStrap\Comments\Comments' );
 
 		/**
 		 * Arguments for wp_list_comments()

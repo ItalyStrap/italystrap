@@ -1,0 +1,54 @@
+<?php
+/**
+ * Comments Controller API
+ *
+ * This class renders the Comments output on the registered position.
+ *
+ * @link www.italystrap.com
+ * @since 4.0.0
+ *
+ * @package ItalyStrap
+ */
+
+namespace ItalyStrap\Controllers\Comments;
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
+use ItalyStrap\Controllers\Controller;
+use ItalyStrap\Event\Subscriber_Interface;
+
+/**
+ * Class description
+ */
+class Comments extends Controller implements Subscriber_Interface  {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked italystrap_after_loop - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'italystrap_after_loop'	=> 'render',
+		);
+	}
+
+	/**
+	 * Render the output of the controller.
+	 */
+	public function render() {
+
+		if ( ! is_singular() ) {
+			return null;
+		}
+	
+		comments_template();
+	}
+}

@@ -49,7 +49,7 @@ class ItalyStrap {
 	 * @param  string   $file_name The name of the file to load in the template directory.
 	 * @param  callable $callback  [description]
 	 */
-	public function render( $file_name = 'main', $callback = null ) {
+	public function render( $file_name = 'index', $callback = null ) {
 
 		if ( is_callable( $callback ) ) {
 			call_user_func( $callback, $this );

@@ -37,7 +37,7 @@ require( TEMPLATEPATH . '/lib/bootstrap.php' );
  *
  * @param  string $file_name The file_name on this function is called.
  */
-function italystrap( $file_name = 'main' ) {
+function italystrap( $file_name = 'index' ) {
 
 	$template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
 

@@ -4,30 +4,18 @@
  * This file is for display the HTML tags header and nav
  */
 
-namespace ItalyStrap;
+namespace ItalyStrap\Headers;
 
-/**
- * Get the header object
- *
- * @var object
- */
-$get_header_image = get_custom_header();
-
-/**
- * If header image is set then load header
- */
-if ( $get_header_image->url ) :?>
-	<header class="header-wrapper">
-		<?php do_action( 'header_open' ); ?>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<a href="<?php echo esc_url( HOME_URL ); ?>" rel="home">
-						<?php echo Core\get_the_custom_header_image( $get_header_image ); ?>
-					</a>
-				</div>
+?><header class="header-wrapper">
+	<?php do_action( 'header_open' ); ?>
+	<div class="<?php echo esc_attr( $this->theme_mod['custom_header']['container_width'] ); ?>">
+		<div class="row">
+			<div class="col-md-12">
+				<a href="<?php echo esc_url( HOME_URL ); ?>" rel="home">
+					<?php $this->custom_header(); ?>
+				</a>
 			</div>
 		</div>
-		<?php do_action( 'header_closed' ); ?>
-	</header>
-<?php endif; ?>
+	</div>
+	<?php do_action( 'header_closed' ); ?>
+</header>

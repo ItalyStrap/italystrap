@@ -70,12 +70,12 @@ return array(
 		/**
 		 * The plugin name
 		 */
-		'name'                     => 'ItalyStrap',
+		'name'                     => 'Advanced Control Manager for WordPress by ItalyStrap',
 
 		/**
 		 * The plugin slug (typically the folder name)
 		 */
-		'slug'                     => 'italystrap',
+		'slug'                     => 'advanced-control-manager',
 
 		/**
 		 * If false, the plugin is only 'recommended' instead of required

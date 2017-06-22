@@ -108,9 +108,9 @@ return array(
 		 * 'wp-head-callback' => null In case is printed from Theme customizer
 		 * @see ItalyStrap\Core\Css\Css::custom_background_cb()
 		 */
-		'custom-background'	=> array(
-			'wp-head-callback' => array( $this->css_manager, 'custom_background_cb' ),
-		),
+		// 'custom-background'	=> array(
+		// 	'wp-head-callback' => array( $this->css_manager, 'custom_background_cb' ),
+		// ),
 
 		/**
 		 * @since 4.5 WordPress Core
@@ -119,9 +119,24 @@ return array(
 		'customize-selective-refresh-widgets',
 
 		/**
+		 * Add support to WooCommerce
+		 *
+		 * @since 4.0.0
+		 */
+		'woocommerce',
+
+		/**
+		 * Beta 4.0.0
+		 */
+		'bootstrap3',
+
+		/**
 		 * Define and register starter content to showcase the theme on new sites.
 		 * @see twentyseventeen
 		 * @link https://make.wordpress.org/core/2016/11/30/starter-content-for-themes-in-4-7/
+		 * @link https://roots.io/using-and-customizing-wordpress-starter-content/
+		 *
+		 * @link https://gist.github.com/igorbenic/10d22c620fc264aac674f17fbfd07750
 		 *
 		 * @var array
 		 */
@@ -132,15 +147,21 @@ return array(
 					'text_business_info',
 					'search',
 					'text_about',
+					'italystrap_posts',
+					// 'text_test'	=> array(
+					// 	'text'	=> array(
+					// 		'title'	=> 'Title test'
+					// 	),
+					// ),
 				),
 
 				// Add the core-defined business info widget to the footer 1 area.
-				'sidebar-2' => array(
+				'footer-box-1' => array(
 					'text_business_info',
 				),
 
 				// Put two core-defined widgets in the footer 2 area.
-				'sidebar-3' => array(
+				'footer-box-2' => array(
 					'text_about',
 					'search',
 				),
@@ -153,29 +174,33 @@ return array(
 					'thumbnail' => '{{image-sandwich}}',
 				),
 				'contact' => array(
-					'thumbnail' => '{{image-espresso}}',
+					'thumbnail' => '{{image-default}}',
+				),
+				'test' => array(
+					'thumbnail' => '{{image-default}}',
+					'post_content'	=> 'pOST CONTENT',
 				),
 				'blog' => array(
 					'thumbnail' => '{{image-coffee}}',
 				),
 				'homepage-section' => array(
-					'thumbnail' => '{{image-espresso}}',
+					'thumbnail' => '{{image-default}}',
 				),
 			),
 
 			// Create the custom image attachments used as post thumbnails for pages.
 			'attachments' => array(
-				'image-espresso' => array(
-					'post_title' => _x( 'Espresso', 'Theme starter content', 'twentyseventeen' ),
-					'file' => 'assets/images/espresso.jpg', // URL relative to the template directory.
+				'image-default' => array(
+					'post_title' => _x( 'Default', 'Theme starter content', 'italystrap' ),
+					'file' => 'img/italystrap-default-image.png', // URL relative to the template directory.
 				),
 				'image-sandwich' => array(
-					'post_title' => _x( 'Sandwich', 'Theme starter content', 'twentyseventeen' ),
-					'file' => 'assets/images/sandwich.jpg',
+					'post_title' => _x( 'Sandwich', 'Theme starter content', 'italystrap' ),
+					'file' => 'img/images/sandwich.jpg',
 				),
 				'image-coffee' => array(
-					'post_title' => _x( 'Coffee', 'Theme starter content', 'twentyseventeen' ),
-					'file' => 'assets/images/coffee.jpg',
+					'post_title' => _x( 'Coffee', 'Theme starter content', 'italystrap' ),
+					'file' => 'img/images/coffee.jpg',
 				),
 			),
 
@@ -197,8 +222,8 @@ return array(
 			// Set up nav menus for each of the two areas registered in the theme.
 			'nav_menus' => array(
 				// Assign a menu to the "top" location.
-				'top' => array(
-					'name' => __( 'Top Menu', 'twentyseventeen' ),
+				'info-menu' => array(
+					'name' => __( 'Info Menu', 'italystrap' ),
 					'items' => array(
 						'link_home', // Note that the core "home" page is actually a link in case a static front page is not used.
 						'page_about',
@@ -208,14 +233,27 @@ return array(
 				),
 
 				// Assign a menu to the "social" location.
-				'social' => array(
-					'name' => __( 'Social Links Menu', 'twentyseventeen' ),
+				'social-menu' => array(
+					'name' => __( 'Social Links Menu', 'italystrap' ),
 					'items' => array(
 						'link_yelp',
 						'link_facebook',
 						'link_twitter',
 						'link_instagram',
 						'link_email',
+						'link_test',
+					),
+				),
+
+				// Assign a menu to the "social" location.
+				'main-menu' => array(
+					'name' => __( 'Main Menu', 'italystrap' ),
+					'items' => array(
+						'link_home', // Note that the core "home" page is actually a link in case a static front page is not used.
+						'page_about',
+						'page_blog',
+						'page_contact',
+						'page_test',
 					),
 				),
 			),

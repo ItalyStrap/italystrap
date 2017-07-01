@@ -1,6 +1,6 @@
 === ItalyStrap ===
 Contributors: overclokk
-Donate link: http://www.italystrap.it/
+Donate link: https://italystrap.com
 Tags: breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant
 Requires at least: 4.6
 Tested up to: 4.8
@@ -16,7 +16,7 @@ Make your web site more powerfull.
 
 = Docs coming soon =
 
-**[ItalyStrap Theme](http://www.italystrap.it/)** will add powerful features to your WordPRess site.
+**[ItalyStrap WordPress Theme Framework](https://italystrap.com)** will add powerful features to your WordPRess site.
 
 ItalyStrap is a WordPress framework theme based on [HTML5 Boilerplate](http://html5boilerplate.com/), [Bootstrap](http://getbootstrap.com/), [Schema.org](https://schema.org/), [Open Graph](https://developers.facebook.com/docs/opengraph/), [Twitter cards](https://dev.twitter.com/docs/cards)
 
@@ -24,30 +24,31 @@ ItalyStrap is a WordPress framework theme based on [HTML5 Boilerplate](http://ht
 
 **Features include:**
 
+* WPO Friendly
+* SEO Friendly
 * HTML5 Bolierplate
 * CSS3
 * Twitter Bootstrap 3
 * Schema.org
-* Facebook opengraph
-* Twitter cards
 * **Breadcrumbs.**
-* SEO Friendly (che vuol dire tutto e niente :-))
-* WPO Friendly ;-)
-* E chi più ne ha più ne metta :-P
 
 == Installation ==
 
-Clone the git repo
+First of all you have to install the core plugin [Advanced Control Manager](https://wordpress.org/plugins/advanced-control-manager/)
 
-```git clone git://github.com/overclokk/ItalyStrap.git```
+Now you can clone the git repo:
 
-or [download it](https://github.com/overclokk/ItalyStrap/releases/latest) unzip and place it in your folder themes (/wp-content/themes/) directory, rename folder to ItalyStrap and activate it via Admin - Appearance - Themes
+```git clone git://github.com/overclokk/italystrap.git```
 
-Then [download Italystrap Child Theme](https://github.com/overclokk/ItalyStrap-child/archive/master.zip) and use it for your customizations
+or [download the zip file](https://github.com/overclokk/italystrap/releases/latest), unzip it, place it in your folder themes `/wp-content/themes/` directory and activate it via Admin > Appearance > Themes
 
-If you want to keep it updated please also install github-updater from your admin dashboard and use the child theme for your customizations.
+Then [download the child cheme](https://github.com/overclokk/ItalyStrap-child/archive/master.zip) and use it for your customizations.
 
 == How to migrate from older version of 4.0.0 ==
+
+Remember! This is a full refactoring of the theme, consider it like a new theme, if you have the old version you have to do a migration to the new version.
+
+**Do always a backup first**
 
 = In file functions.php add this constant =
 ```define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );```
@@ -67,7 +68,27 @@ wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
 
 == Changelog ==
 
-= 4.0.0-beta.3 =
+= 4.0.0-beta.4 =
+
+Release Date: July 1st, 2017
+
+(Dev time 3 month)
+
+**This is a complete rebuild of the theme, it is a breaking changes, always do a backup first**
+
+* New template files structure
+* Improved classes file structure
+* Improved classes autoload
+* Better theme_supports autoload
+* Added new image size
+* Removed Github Updater dependency
+* Removed old template parts
+* Removed vendor dir from repo
+* Fixed image in 404.php
+* Updated plugin requirements
+
+= 4.0.0-beta.1|2|3 =
+
 Release Date: April 18th, 2017
 
 (Dev time 2 year)

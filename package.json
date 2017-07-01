@@ -4,11 +4,11 @@
   "description": "",
   "author": "Enea Overclokk",
   "homepage": "http://www.overclokk.net/italystrap",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.0-beta.4",
   "license": "GPL-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/overclokk/ItalyStrap.git"
+    "url": "https://github.com/overclokk/italystrap.git"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

@@ -3,6 +3,24 @@ var bootstrap_path = bower_path + 'bootstrap-sass/assets/';
 var bootstrap_js_path = bootstrap_path + 'javascripts/bootstrap/';
 var bootstrap_fonts_path = bootstrap_path + 'fonts/bootstrap/';
 
+var italystrap_theme = [
+    '**',
+    '!.git/**',
+    '!.sass-cache/**',
+    '!node_modules/**',
+    '!bower/**',
+    '!tests/**',
+    '!future-inclusions/**',
+    '!bower.json',
+    '!Gruntfile.js',
+    '!package.json',
+    '!.gitattributes',
+    '!.gitignore',
+    '!*.yml',
+    '!snippets.md',
+    '!*.zip',
+];
+
 module.exports = function(grunt) {
     'use strict';
     grunt.initConfig({
@@ -305,19 +323,7 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        src: [
-                            '**' ,
-                            '!.git/**',
-                            '!.sass-cache/**',
-                            '!bower/**',
-                            '!node_modules/**',
-                            '!tests/**',
-                            '!.gitattributes',
-                            '!.gitignore',
-                            // '!bower.json',
-                            // '!Gruntfile.js',
-                            // '!package.json',
-                            '!*.zip'], // What should be included in the zip
+                        src: italystrap_theme, // What should be included in the zip
                         dest: 'italystrap/',        // Where the zipfile should go
                         filter: 'isFile',
                     },
@@ -329,18 +335,7 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        src: [
-                            '**' ,
-                            '!.git/**',
-                            '!.sass-cache/**',
-                            '!bower_components/**',
-                            '!node_modules/**',
-                            '!.gitattributes',
-                            '!.gitignore',
-                            // '!bower.json',
-                            // '!Gruntfile.js',
-                            // '!package.json',
-                            '!*.zip'], // What should be included in the zip
+                        src: italystrap_theme, // What should be included in the zip
                         dest: 'italystrap/',        // Where the zipfile should go
                         // dest: 'italystrap/',        // Where the zipfile should go
                         filter: 'isFile',
@@ -353,27 +348,7 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        src: [
-                            '**' ,
-                            '!.git/**',
-                            '!.sass-cache/**',
-                            '!bower_components/**',
-                            '!node_modules/**',
-                            '!.gitattributes',
-                            '!.gitignore',
-                            '!bower.json',
-                            '!Gruntfile.js',
-                            '!package.json',
-                            '!codeception.yml',
-                            '!composer.json',
-                            '!composer.lock',
-                            '!phpunit.xml',
-                            '!test_italystrap.php',
-                            '!wp-tests-config.php',
-                            '!snippets.md',
-                            '!tests/**',
-                            '!future-inclusions/**',
-                            '!*.zip'], // What should be included in the zip
+                        src: italystrap_theme, // What should be included in the zip
                         dest: 'italystrap/',        // Where the zipfile should go
                         filter: 'isFile',
                     },

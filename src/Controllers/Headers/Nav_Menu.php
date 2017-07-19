@@ -40,6 +40,13 @@ class Nav_Menu extends Controller implements Subscriber_Interface  {
 	}
 
 	/**
+	 * File name for the view
+	 *
+	 * @var string
+	 */
+	protected $file_name = 'headers/navbar';
+
+	/**
 	 * Init the class
 	 *
 	 * @param array $theme_mod Class configuration array.
@@ -49,13 +56,5 @@ class Nav_Menu extends Controller implements Subscriber_Interface  {
 		$this->navbar = $navbar;
 
 		parent::__construct( $theme_mod );
-	}
-
-	/**
-	 * Function description
-	 */
-	public function render() {
-		// $this->get_template_part( 'templates/headers/navbar4' );
-		$this->navbar->output();
 	}
 }

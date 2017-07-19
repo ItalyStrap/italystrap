@@ -36,9 +36,15 @@ ItalyStrap is a WordPress framework theme based on [HTML5 Boilerplate](http://ht
 
 First of all you have to install the core plugin [Advanced Control Manager](https://wordpress.org/plugins/advanced-control-manager/)
 
-Now you can clone the git repo:
+Clone the git repo of the theme:
 
-```git clone git://github.com/overclokk/italystrap.git```
+`git clone git://github.com/overclokk/italystrap.git`
+
+`cd italystrap`
+
+Install composer dependencies:
+
+`composer install --no-dev`
 
 or [download the zip file](https://github.com/overclokk/italystrap/releases/latest), unzip it, place it in your folder themes `/wp-content/themes/` directory and activate it via Admin > Appearance > Themes
 

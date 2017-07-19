@@ -153,6 +153,8 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 				$class_names .= $dropdown = ( 'dropup' === $classes[0] ) ? '' : ' dropdown';
 			}
 
+			$current_text = '';
+
 			/**
 			 * Da fare
 			 *
@@ -161,6 +163,10 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 			 */
 			if ( in_array( 'current-menu-item', $classes, true ) && ! is_front_page() ) {
 				$class_names .= ' active';
+				$current_text = sprintf(
+					' <span class="sr-only">%s</span>',
+					__( '(current)', 'italystrap' )
+				);
 			}
 
 			if ( $class_names ) {
@@ -202,8 +208,9 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 
 			} else {
 
-				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
-				$atts['itemprop'] = 'url';
+				$atts['href']			= ! empty( $item->url ) ? $item->url : '';
+				$atts['itemprop']		= 'url';
+				$atts['class']			= 'nav-link'; // BT4
 
 			}
 
@@ -277,8 +284,13 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 
 			}
 
-			$item_output .= $args->link_before . $title . $args->link_after;
-			$item_output .= ( $args->has_children && 0 === $depth ) ? ' <span' . $this->get_attributes( array( 'class' => 'caret' ) ) . '></span></a>' : '</a>';
+			$item_output .= $args->link_before . $title . $args->link_after . $current_text;
+
+			$item_output .=
+				$args->has_children && 0 === $depth
+				? ' <span' . $this->get_attributes( array( 'class' => 'caret' ) ) . '></span></a>'
+				: '</a>';
+
 			$item_output .= $args->after;
 
 			/**

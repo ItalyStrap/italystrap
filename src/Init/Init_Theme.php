@@ -125,8 +125,8 @@ class Init_Theme implements Subscriber_Interface {
 	public function add_theme_supports( array $theme_supports = array() ) {
 
 		foreach ( $theme_supports as $feature => $parameters ) {
-			if ( is_null( $parameters ) ) {
-				add_theme_support( $feature );
+			if ( is_string( $parameters ) ) {
+				add_theme_support( $parameters );
 			} else {
 				add_theme_support( $feature, $parameters );
 			}

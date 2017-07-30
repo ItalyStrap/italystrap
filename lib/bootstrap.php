@@ -29,8 +29,12 @@ $autoload_theme_files = array(
 	'/lib/pointer.php',
 	'/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
 
-	'/deprecated/deprecated.php', // Deprecated files and functions.
+	// '/deprecated/deprecated.php', // Deprecated files and functions.
 );
+
+if ( apply_filters( 'italystrap_load_deprecated', true ) ) {
+	$autoload_theme_files[] = '/deprecated/deprecated.php';
+}
 
 foreach ( $autoload_theme_files as $file ) {
 	require( TEMPLATEPATH . $file );
@@ -75,7 +79,7 @@ if ( ! isset( $injector ) ) {
 /**
  * Define theme_mods parmeter
  */
-$injector->defineParam( 'theme_mods', $theme_mods );
+// $injector->defineParam( 'theme_mods', $theme_mods );
 
 /**=======================
  * Autoload Shared Classes
@@ -106,33 +110,43 @@ $autoload_aliases = array(
  *
  * @see _init & _init_admin
  */
+// $autoload_concrete = array(
+// 	'router'		=> 'ItalyStrap\Router\Router',
+// 	// 'controller'	=> 'ItalyStrap\Core\Router\Controller', // Da testare meglio
+// 	'customizer'	=> 'ItalyStrap\Customizer\Theme_Customizer',
+// 	'css'			=> 'ItalyStrap\Css\Css',
+// 	'init_theme'	=> 'ItalyStrap\Init\Init_Theme',
+// 	'sidebars'		=> 'ItalyStrap\Custom\Sidebars\Sidebars',
+// 	'menu'			=> 'ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
+// 	'size'			=> 'ItalyStrap\Custom\Image\Size',
+// );
 $autoload_concrete = array(
-	'router'		=> 'ItalyStrap\Router\Router',
-	// 'controller'	=> 'ItalyStrap\Core\Router\Controller', // Da testare meglio
-	'customizer'	=> 'ItalyStrap\Customizer\Theme_Customizer',
-	'css'			=> 'ItalyStrap\Css\Css',
-	'init_theme'	=> 'ItalyStrap\Init\Init_Theme',
-	'sidebars'		=> 'ItalyStrap\Custom\Sidebars\Sidebars',
-	'menu'			=> 'ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
-	'size'			=> 'ItalyStrap\Custom\Image\Size',
+	'ItalyStrap\Router\Router',
+	// 'ItalyStrap\Core\Router\Controller', // Da testare meglio
+	'ItalyStrap\Customizer\Theme_Customizer',
+	'ItalyStrap\Css\Css',
+	'ItalyStrap\Init\Init_Theme', // 'italystrap_plugin_app_loaded'
+	'ItalyStrap\Custom\Sidebars\Sidebars',
+	'ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
+	'ItalyStrap\Custom\Image\Size', // 'italystrap_plugin_app_loaded'
 );
 
 require( TEMPLATEPATH . '/lib/_init_admin.php' );
 require( TEMPLATEPATH . '/lib/_init.php' );
 
-foreach ( $autoload_sharing as $class ) {
-	$injector->share( $class );
-}
-foreach ( $autoload_definitions as $class_name => $class_args ) {
-	$injector->define( $class_name, $class_args );
-}
-foreach ( $autoload_aliases as $interface => $implementation ) {
-	$injector->alias( $interface, $implementation );
-}
+// foreach ( $autoload_sharing as $class ) {
+// 	$injector->share( $class );
+// }
+// foreach ( $autoload_definitions as $class_name => $class_args ) {
+// 	$injector->define( $class_name, $class_args );
+// }
+// foreach ( $autoload_aliases as $interface => $implementation ) {
+// 	$injector->alias( $interface, $implementation );
+// }
 
-foreach ( $autoload_concrete as $option_name => $concrete ) {
-	$event_manager->add_subscriber( $injector->make( $concrete ) );
-}
+// foreach ( $autoload_concrete as $option_name => $concrete ) {
+// 	$event_manager->add_subscriber( $injector->make( $concrete ) );
+// }
 
 add_action( 'init', function() use ( $theme_mods ) {
 	foreach ( $theme_mods['post_type_support'] as $post_type => $features ) {
@@ -151,3 +165,20 @@ add_action( 'init', function() use ( $theme_mods ) {
 if ( ! isset( $content_width ) ) {
 	$content_width = apply_filters( 'italystrap_content_width', $theme_mods['content_width'] );
 }
+
+add_filter( 'italystrap_app', function ( $app ) use ( $autoload_concrete, $autoload_definitions, $theme_mods ) {
+
+	$app['definitions'] = array_merge( $app['definitions'], $autoload_definitions );
+
+	$app['sharing'][] = 'ItalyStrap\Css\Css';
+
+	$app['define_param']['theme_mods'] = $theme_mods;
+
+	if ( isset( $app['definitions']['ItalyStrap\Config\Config'][':config'] ) ) {
+		$app['definitions']['ItalyStrap\Config\Config'][':config'] = array_merge( $app['definitions']['ItalyStrap\Config\Config'][':config'], $theme_mods );
+	}
+
+	$app['subscribers'] = array_merge( $app['subscribers'], $autoload_concrete );
+
+	return $app;
+}, 10, 1 );

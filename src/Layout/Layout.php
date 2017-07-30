@@ -47,7 +47,7 @@ class Layout implements Subscriber_Interface {
 				'function_to_add'	=> 'set_sidebar_secondary_class',
 				'accepted_args'		=> 3
 			),
-			'italystrap_theme_loaded'			=> array(
+			'wp_loaded'			=> array(
 				'function_to_add'	=> 'init',
 			),
 		);
@@ -73,7 +73,9 @@ class Layout implements Subscriber_Interface {
 	 * @param array $theme_mod Theme mods array.
 	 */
 	function __construct( array $theme_mods = array() ) {
+	// function __construct( \ItalyStrap\Config\Config $config ) {
 		$this->theme_mods = $theme_mods;
+		// $this->theme_mods = $config->all();
 	}
 
 	/**

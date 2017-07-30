@@ -35,10 +35,11 @@ class Size implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'after_setup_theme'	=> array(
-				'function_to_add'	=> 'register',
-				'priority'			=> 10,
-			),
+			// 'after_setup_theme'	=> array(
+			// 	'function_to_add'	=> 'register',
+			// 	'priority'			=> 10,
+			// ),
+			'italystrap_plugin_app_loaded'	=> 'register',
 		);
 	}
 

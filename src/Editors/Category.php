@@ -12,6 +12,11 @@
 
 namespace ItalyStrap\Editors;
 
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
+use ItalyStrap\Event\Subscriber_Interface;
 /**
  * Display the TinyMCE wp_editor in taxonomy description page
  * This is an idea from:
@@ -22,7 +27,25 @@ namespace ItalyStrap\Editors;
  *
  * I have improved the code found in those page because it wasn't much clean and powerfull, now it is (os I hope so) :-)
  */
-class Category {
+class Category implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked mce_buttons_2 - 10
+	 * @hooked mce_buttons   - 1
+	 * @hooked tiny_mce_before_init   - 9999
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'italystrap_plugin_app_loaded'	=> 'init',
+		);
+	}
 
 	/**
 	 * Init the constructor

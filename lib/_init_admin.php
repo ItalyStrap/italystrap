@@ -20,15 +20,14 @@ $autoload_concrete = array_merge( $autoload_concrete, array(
 	'ItalyStrap\User\Contact_Methods',
 ) );
 
-require( TEMPLATEPATH . '/functions/admin-functions.php' );
-
 /**
  * TinyMCE Editor in Category description
  */
-$editor = $injector->make( '\ItalyStrap\Editors\Category' );
 if ( 'edit-tags.php' === $pagenow || 'term.php' === $pagenow ) {
-	$editor->init();
+	$autoload_concrete[] = 'ItalyStrap\Editors\Category';
 }
+
+require( TEMPLATEPATH . '/functions/admin-functions.php' );
 
 /**
  * Add fields to widget areas

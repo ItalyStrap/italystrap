@@ -38,7 +38,8 @@ class Init_Theme implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'after_setup_theme'	=> 'setup',
+			// 'after_setup_theme'	=> 'setup',
+			'italystrap_plugin_app_loaded'	=> 'setup',
 		);
 	}
 

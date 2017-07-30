@@ -24,12 +24,12 @@ namespace ItalyStrap;
 
 $context = null;
 
-if ( empty( $post ) ) {
-	global $post;
-}
+$featured_image_class = array(
+	'class' => trim( 'featured-image ' . $this->theme_mod['post_thumbnail_alignment'] ),
+);
 
 if ( has_post_thumbnail() ) { ?>
-	<figure <?php Core\get_attr( 'featured_image', array( 'class' => 'featured-image' ), true ); ?>>
+	<figure <?php Core\get_attr( 'featured_image', $featured_image_class, true ); ?>>
 		<?php
 
 		/**
@@ -55,11 +55,10 @@ if ( has_post_thumbnail() ) { ?>
 		$attr = apply_filters( 'italystrap_post_thumbnail_attr',
 			array(
 				'class'		=> sprintf(
-					'attachment-%1$s size-%1$s %1$s %2$s img-responsive',
-					$size,
-					$this->theme_mod['post_thumbnail_alignment']
+					'attachment-%1$s size-%1$s %1$s img-responsive',
+					$size
 				),
-				'alt'		=> trim( strip_tags( get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true ) ) ),
+				'alt'		=> trim( strip_tags( get_post_meta( get_post_thumbnail_id( get_the_id() ), '_wp_attachment_image_alt', true ) ) ),
 				'itemprop'	=> 'image',
 			),
 			$context,

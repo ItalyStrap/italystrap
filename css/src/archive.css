@@ -7095,7 +7095,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, a, p, li {
 
 /* line 15, ../../sass/global/_fix.scss */
 .size-full,
-.wp-post-image {
+.wp-post-image,
+.wp-block-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+/* line 20, ../../sass/global/_fix.scss */
+.size-full > img,
+.wp-post-image > img,
+.wp-block-image > img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -7200,35 +7209,40 @@ a img.alignnone {
   margin-bottom: 1em;
 }
 
-/* line 71, ../../sass/global/_wordpressCss.scss */
+/* line 65, ../../sass/global/_wordpressCss.scss */
+.wp-caption {
+  display: block;
+  max-width: 100%;
+}
+/* line 73, ../../sass/global/_wordpressCss.scss */
 .wp-caption.alignnone {
   margin: 0.3em 1.25em 1.25em 0;
 }
-/* line 74, ../../sass/global/_wordpressCss.scss */
+/* line 76, ../../sass/global/_wordpressCss.scss */
 .wp-caption.alignleft {
   margin: 0.3em 1.25em 1.25em 0;
 }
-/* line 76, ../../sass/global/_wordpressCss.scss */
+/* line 78, ../../sass/global/_wordpressCss.scss */
 .wp-caption.alignleft .wp-caption-text {
   text-align: left;
 }
-/* line 80, ../../sass/global/_wordpressCss.scss */
+/* line 82, ../../sass/global/_wordpressCss.scss */
 .wp-caption.alignright {
   margin: 0.3em 0 1.25em 1.25em;
 }
-/* line 82, ../../sass/global/_wordpressCss.scss */
+/* line 84, ../../sass/global/_wordpressCss.scss */
 .wp-caption.alignright .wp-caption-text {
   text-align: right;
 }
-/* line 86, ../../sass/global/_wordpressCss.scss */
+/* line 88, ../../sass/global/_wordpressCss.scss */
 .wp-caption.aligncenter {
   margin: 0.3em 1.25em;
 }
-/* line 88, ../../sass/global/_wordpressCss.scss */
+/* line 90, ../../sass/global/_wordpressCss.scss */
 .wp-caption.aligncenter .wp-caption-text {
   text-align: center;
 }
-/* line 100, ../../sass/global/_wordpressCss.scss */
+/* line 102, ../../sass/global/_wordpressCss.scss */
 .wp-caption p.wp-caption-text,
 .wp-caption .wp-caption-text {
   border: 1px solid #eeeeee;
@@ -7241,7 +7255,7 @@ a img.alignnone {
 }
 
 /* Text meant only for screen readers. */
-/* line 114, ../../sass/global/_wordpressCss.scss */
+/* line 116, ../../sass/global/_wordpressCss.scss */
 .screen-reader-text {
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
@@ -7249,7 +7263,7 @@ a img.alignnone {
   width: 1px;
   overflow: hidden;
 }
-/* line 120, ../../sass/global/_wordpressCss.scss */
+/* line 122, ../../sass/global/_wordpressCss.scss */
 .screen-reader-text:focus {
   background-color: #f1f1f1;
   border-radius: 3px;
@@ -7328,6 +7342,77 @@ a img.dropdown-submenu.alignleft > .dropdown-menu {
   border-left-color: #ccc;
   margin-top: 5px;
   margin-right: -10px;
+}
+
+/* line 60, ../../sass/header/_menu.scss */
+.nav > .lang-item > a {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+/* line 16, ../../sass/content/_gallery.scss */
+.gallery {
+  display: flex;
+  flex-flow: row wrap;
+}
+/* line 19, ../../sass/content/_gallery.scss */
+.gallery .gallery-item {
+  padding: 0.5em;
+}
+/* line 22, ../../sass/content/_gallery.scss */
+.gallery .gallery-caption {
+  color: #777777;
+  font-size: 0.85em;
+}
+/* line 26, ../../sass/content/_gallery.scss */
+.gallery .gallery-icon,
+.gallery .gallery-caption {
+  text-align: center;
+}
+
+/* line 34, ../../sass/content/_gallery.scss */
+.gallery-columns-1 .gallery-item {
+  flex: 1 1 100%;
+}
+
+/* line 34, ../../sass/content/_gallery.scss */
+.gallery-columns-2 .gallery-item {
+  flex: 1 1 50%;
+}
+
+/* line 34, ../../sass/content/_gallery.scss */
+.gallery-columns-3 .gallery-item {
+  flex: 1 1 33.33333%;
+}
+
+/* line 34, ../../sass/content/_gallery.scss */
+.gallery-columns-4 .gallery-item {
+  flex: 1 1 25%;
+}
+
+/* line 34, ../../sass/content/_gallery.scss */
+.gallery-columns-5 .gallery-item {
+  flex: 1 1 20%;
+}
+
+/* line 34, ../../sass/content/_gallery.scss */
+.gallery-columns-6 .gallery-item {
+  flex: 1 1 16.66667%;
+}
+
+/* line 34, ../../sass/content/_gallery.scss */
+.gallery-columns-7 .gallery-item {
+  flex: 1 1 14.28571%;
+}
+
+/* line 34, ../../sass/content/_gallery.scss */
+.gallery-columns-8 .gallery-item {
+  flex: 1 1 12.5%;
+}
+
+/* line 34, ../../sass/content/_gallery.scss */
+.gallery-columns-9 .gallery-item {
+  flex: 1 1 11.11111%;
 }
 
 /* line 3, ../../sass/_content.scss */

@@ -15,9 +15,9 @@ use ItalyStrap\Comments\Comments;
 /**
  * @link https://codex.wordpress.org/Function_Reference/post_type_supports
  */
-if ( ! post_type_supports( get_post_type(), 'comments' ) ) {
-	return;
-}
+// if ( ! post_type_supports( get_post_type(), 'comments' ) ) {
+// 	return;
+// }
 
 /*
  * If the current post is protected by a password and the visitor has not yet
@@ -31,7 +31,7 @@ $template_settings = (array) apply_filters( 'italystrap_template_settings', arra
 /**
  * If there are comments
  */
-if ( have_comments() && ! in_array( 'hide_comments', $template_settings, true ) ) : ?>
+if ( have_comments() ) : ?>
 	<section id="comments" class="comments-area">
 		<h3 class="comments-title"><?php printf( _n( 'One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'ItalyStrap' ), number_format_i18n( get_comments_number() ), get_the_title() ); // XSS ok. ?></h3>
 

@@ -45,10 +45,27 @@ class Comments extends Controller implements Subscriber_Interface  {
 	 */
 	public function render() {
 
+		/**
+		 * Singular (also the static front-page is a singular)
+		 */
 		if ( ! is_singular() ) {
-			return null;
+			return;
 		}
-	
+
+		/**
+		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
+		 */
+		if ( ! post_type_supports( $this->get_post_type(), 'comments' ) ) {
+			return;
+		}
+
+		if ( in_array( 'hide_comments', $this->get_template_settings(), true ) ) {
+			return;
+		}
+		
+		/**
+		 *  $file = '/comments.php', $separate_comments = false
+		 */
 		comments_template();
 	}
 }

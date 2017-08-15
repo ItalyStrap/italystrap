@@ -1,0 +1,99 @@
+/**
+ * COLUMNS
+******************************************/
+/* Setting */
+.remove-block {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 17px;
+	height: 17px;
+	background: url('../images/remove.png');
+	opacity: 0.5;
+}
+.remove-block:hover{
+	opacity: 1;
+	cursor: pointer;
+}
+.row {
+	position: relative;
+}
+.row:before
+{
+	content: "";
+	display: block;
+	clear: both;
+	width: 100%;
+	padding: 0 5px;
+	font-size: 0.65rem;
+	height: 2rem;
+	line-height: 2rem;
+	text-transform: uppercase;
+}
+.row:before {
+	content: "Block grid";
+	background-color: rgba( 204, 204, 204, 0.4 );
+	color: #555;
+}
+/*.row.wpe-col-12-12:before{
+	content: "Column 1/2-1/2";
+}
+.row.wpe-col-13-23:before{
+	content: "Column 1/3-2/3";
+}
+.row.wpe-col-23-13:before{
+	content: "Column 2/3-1/3";
+}
+.row.wpe-col-13-13-13:before{
+	content: "Column 1/3-1/3-1/3";
+}*/
+/* ===== Col ===== */
+.row:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.row {
+	width: 100%;
+	clear: both;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+/* === MEDIA QUERIES === */
+/*@media screen and (max-width: 590px) {*/
+	/* Each Column Info */
+/*	.wpe-col-1:before,
+	.wpe-col-2:before,
+	.wpe-col-3:before{
+		content: "";
+		display: block;
+		clear: both;
+		width: auto;
+		background-color: rgba(204, 204, 204, 0.6);
+		color: #555;
+		padding: 0 5px;
+		font-size: 0.65rem;
+		height: 2rem;
+		line-height: 2rem;
+		text-transform: none;
+		text-align: center;
+		margin-bottom: 5px;
+	}
+	.wpe-col-1:before{
+		content: "1st Column";
+	}
+	.wpe-col-2:before{
+		content: "2nd Column";
+	}
+	.wpe-col-3:before{
+		content: "3rd Column";
+	}*/
+/*}*/
+
+.row .row {
+	margin-left: 0;
+	margin-right: 0;
+}

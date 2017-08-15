@@ -2,6 +2,9 @@
 /**
  * Initialize custom meta box build with CMB2
  *
+ * @link https://codex.wordpress.org/TinyMCE_Custom_Styles
+ * @link https://codex.wordpress.org/TinyMCE_Custom_Buttons
+ *
  * @package ItalyStrap\Admin
  *
  * @version 1.0
@@ -32,21 +35,95 @@ class TinyMCE implements Subscriber_Interface {
 	 * @return array
 	 */
 	public static function get_subscribed_events() {
-
+		/* Register TinyMCE External Plugins */
+		// add_filter( 'mce_external_plugins', array( $this, 'register_mce_external_plugins' ) );
+		/* Add CSS to TinyMCE Editor */
+		// add_filter( 'mce_css', array( $this, 'editor_css' ) );
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'mce_buttons_2'	=> 'reveal_hidden_tinymce_buttons',
-			'mce_buttons'	=> array(
+			'mce_external_plugins'	=> 'register_mce_external_plugins',
+			'mce_css'				=> 'editor_css',
+			'mce_buttons_2'			=> 'reveal_hidden_tinymce_buttons',
+			'mce_buttons'			=> array(
 				'function_to_add'	=> 'break_page_button',
 				'priority'			=> 1,
 				'accepted_args'		=> 2,
 			),
+			'mce_buttons_4'	=> array(
+				'function_to_add'	=> 'mce_add_buttons_4_columns',
+				'priority'			=> 10,
+				'accepted_args'		=> 2,
+			),
 			'tiny_mce_before_init'	=> array(
 				'function_to_add'	=> 'add_new_format_to_mce',
-				'priority'			=> 9999,
+				'priority'			=> 999,
 				'accepted_args'		=> 2,
 			),
 		);
+	}
+
+	/**
+	 * Contructor
+	 */
+	public function __construct() {
+		$this->assets_mce_plugin_url = TEMPLATEURL . '/src/Editors/mce-plugins';
+	}
+
+	/**
+	 * Register MCE External Plugins
+	 * @since 0.1.0
+	 */
+	public function register_mce_external_plugins( array $plugins ){
+
+		/* Columns */
+		// if( true ){
+			$plugins['wpe_addon_columns'] = $this->assets_mce_plugin_url . '/columns/editor.js';
+		// }
+
+		return $plugins;
+	}
+
+	/**
+	 * MCE/Editor CSS
+	 * @since 0.1.0
+	 */
+	public function editor_css( $mce_css ){
+
+		/* Only if buttons, boxes, or columns active */
+		// if( fx_editor_is_custom_feature_active() && apply_filters( 'fx_editor_load_editor_css', true ) ){
+			$mce_css .= sprintf(
+				',%s',
+				$this->assets_mce_plugin_url . '/columns/editor.css'
+			);
+		// }
+
+		return $mce_css;
+	}
+
+	/**
+	 * Add button to 4th row in editor: Columns
+	 * @since 0.1.0
+	 */
+	public function mce_add_buttons_4_columns( array $buttons, $editor_id ){
+
+		/* Make editor id filterable. Set to false to enable anywhere. */
+		// $columns_editor_ids = apply_filters( 'fx_editor_columns_editor_ids', false );
+		// if( is_array( $columns_editor_ids ) && ! in_array( $editor_id, $columns_editor_ids ) ){
+		// 	return $buttons;
+		// }
+
+		/* Columns */
+		// if( fx_editor_get_option( 'columns', false ) ){
+			array_push( $buttons,
+				'wpe_addon_col_12_12',
+				'wpe_addon_col_13_23',
+				'wpe_addon_col_23_13',
+				'wpe_addon_col_13_13_13',
+				'wpe_addon_col_14_14_14'
+			);
+		// }
+
+		return $buttons;
 	}
 
 	/**
@@ -78,6 +155,8 @@ class TinyMCE implements Subscriber_Interface {
 	 * @link http://shellcreeper.com/?p=889
 	 * @link http://shellcreeper.com/how-to-add-next-page-or-page-break-button-in-wordpress-editor/
 	 *
+	 * @link https://www.tinymce.com/docs-3x//reference/buttons/
+	 *
 	 * @see wp-includes\class-wp-editor.php
 	 *
 	 * @param  array  $buttons   Array with WP editor buttons registered.
@@ -87,12 +166,14 @@ class TinyMCE implements Subscriber_Interface {
 	 */
 	public function break_page_button( array $buttons, $editor_id ) {
 
+		$buttons[] = 'fontselect';
+
 		/**
 		 * Only add this for content editor
 		 */
-		if ( 'content' !== $editor_id ) {
-			return $buttons;
-		}
+		// if ( 'content' !== $editor_id ) {
+		// 	return $buttons;
+		// }
 
 		/**
 		 * Add next page after more tag button
@@ -120,146 +201,19 @@ class TinyMCE implements Subscriber_Interface {
 		/**
 		 * Only add this for content editor
 		 */
-		if ( 'content' !== $editor_id ) {
-			return $mceInit;
-		}
-
-		// $defaultStyleFormats = array(
-			// array(
-			// 	'title'	=> __( 'Headers', 'italystrap' ),
-			// 	'items'	=> array(
-			// 		array(
-			// 			'title'		=> __( 'Header 1', 'italystrap' ),
-			// 			'format'	=> 'h1',
-			// 		),
-			// 		array(
-			// 			'title'		=> __( 'Header 2', 'italystrap' ),
-			// 			'format'	=> 'h2',
-			// 		),
-			// 		array(
-			// 			'title'		=> __( 'Header 3', 'italystrap' ),
-			// 			'format'	=> 'h3',
-			// 		),
-			// 		array(
-			// 			'title'		=> __( 'Header 4', 'italystrap' ),
-			// 			'format'	=> 'h4',
-			// 		),
-			// 		array(
-			// 			'title'		=> __( 'Header 5', 'italystrap' ),
-			// 			'format'	=> 'h5',
-			// 		),
-			// 		array(
-			// 			'title'		=> __( 'Header 6', 'italystrap' ),
-			// 			'format'	=> 'h6',
-			// 		),
-			// 	),
-			// ),
-			// array(
-			// 	'title'	=> __( 'Inline' ),
-			// 	'items'	=> array(
-			// 		array(
-			// 			'title'		=> 'Bold',
-			// 			'icon'		=> 'bold',
-			// 			'format'	=> 'bold',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Italic',
-			// 			'icon'		=> 'italic',
-			// 			'format'	=> 'italic',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Underline',
-			// 			'icon'		=> 'underline',
-			// 			'format'	=> 'underline',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Strikethrough',
-			// 			'icon'		=> 'strikethrough',
-			// 			'format'	=> 'strikethrough',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Superscript',
-			// 			'icon'		=> 'superscript',
-			// 			'format'	=> 'superscript',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Subscript',
-			// 			'icon'		=> 'subscript',
-			// 			'format'	=> 'subscript',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Code',
-			// 			'icon'		=> 'code',
-			// 			'format'	=> 'code',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Small',
-			// 			// 'icon'		=> 'small',
-			// 			'format'	=> 'small',
-			// 			'wrapper'	=> true,
-			// 		),
-			// 	),
-			// ),
-			// array(
-			// 	'title'	=> __( 'Blocks' ),
-			// 	'items'	=> array(
-			// 		array(
-			// 			'title'		=> 'Paragraph',
-			// 			'format'	=> 'p',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Blockquote',
-			// 			'format'	=> 'blockquote',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Div',
-			// 			'format'	=> 'div',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Pre',
-			// 			'format'	=> 'pre',
-			// 		),
-			// 	),
-			// ),
-			// array(
-			// 	'title'	=> __( 'Alignment' ),
-			// 	'items'	=> array(
-			// 		array(
-			// 			'title'		=> 'Left',
-			// 			'icon'		=> 'alignleft',
-			// 			'format'	=> 'alignleft',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Center',
-			// 			'icon'		=> 'aligncenter',
-			// 			'format'	=> 'aligncenter',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Right',
-			// 			'icon'		=> 'alignright',
-			// 			'format'	=> 'alignright',
-			// 		),
-			// 		array(
-			// 			'title'		=> 'Justify',
-			// 			'icon'		=> 'alignjustify',
-			// 			'format'	=> 'alignjustify',
-			// 		),
-			// 	),
-			// ),
-		// );
+		// if ( 'content' !== $editor_id ) {
+		// 	return $mceInit;
+		// }
 
 		$mceInit['style_formats_merge'] = true;
 
-		$defaultStyleFormats = array(
-			array(
-				'title' => 'Small',
-				'block' => 'small',
-				// 'classes' => 'small',
-				'wrapper' => true,
-			),
-		);
+		$defaultStyleFormats = require( __DIR__ . '/config/style_formats.php' );
+
+		// d( $mceInit['style_formats'] );
 
 		$mceInit['style_formats'] = json_encode( $defaultStyleFormats );
+
+		// d( $mceInit['style_formats'] );
 
 		return $mceInit;
 	}

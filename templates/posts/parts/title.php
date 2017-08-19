@@ -13,6 +13,15 @@ namespace ItalyStrap;
 
 $tag = is_singular() ? 'h1' : 'h2';
 $title_prop = is_singular() ? 'headline' : 'name';
+
+$tag = apply_filters( 'italystrap_entry_title_tag', $tag );
+
+$title_html_attr = Core\get_attr( 'entry_title',
+	array(
+		'class'	=> 'entry-title',
+	)
+);
+
 $args = array(
 	'before'	=> sprintf(
 		'<%1$s class="entry-title"><a itemprop="url" href="%2$s" title="%3$s" rel="bookmark"><span itemprop="%4$s">',
@@ -28,7 +37,7 @@ $args = array(
 );
 // the_title( $args['before'], $args['after'] );
 ?><header class="page-header entry-header">
-	<<?php echo $tag; ?> class="entry-title">
+	<<?php echo $tag . ' '; echo $title_html_attr; ?>>
 		<a itemprop="url" href="<?php the_permalink(); ?>" title="<?php the_title_attribute() ?>" rel="bookmark">
 			<span itemprop="<?php echo $title_prop; ?>"><?php the_title(); ?></span>
 		</a>

@@ -36,18 +36,19 @@ class Edit_Post_Link extends Controller implements Subscriber_Interface  {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			// 'italystrap_after_entry_content'	=> array(
-			// 	'function_to_add'	=> 'render',
-			// 	'priority'			=> 20,
-			// ),
+			'italystrap_after_entry_content'	=> array(
+				'function_to_add'	=> 'render',
+				// 'priority'			=> 20,
+				'priority'			=> 999,
+			),
 			// 'woocommerce_after_single_product'	=> array(
 			// 	'function_to_add'	=> 'render',
 			// 	'priority'			=> 20,
 			// ),
-			'the_content'	=> array(
-				'function_to_add'	=> 'append_to_content',
-				'priority'			=> 99999999,
-			),
+			// 'the_content'	=> array(
+			// 	'function_to_add'	=> 'append_to_content',
+			// 	'priority'			=> 99999999,
+			// ),
 		);
 	}
 
@@ -55,6 +56,13 @@ class Edit_Post_Link extends Controller implements Subscriber_Interface  {
 	 * Render the output of the controller.
 	 */
 	public function render() {
+
+		if ( ! current_theme_supports( 'italystrap_edit_delete_post_link' ) ) {
+			return;
+		}
+
+		echo $this->append_to_content();
+		return;
 
 		/**
 		 * Arguments for edit_post_link()

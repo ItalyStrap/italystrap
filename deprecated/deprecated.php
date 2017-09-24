@@ -317,4 +317,54 @@ function get_the_custom_header_image( $get_header_image ) {
   return apply_filters( 'italystrap_custom_header_image', $output );
 }
 
+/**
+ * Return the defaul image
+ * Useful for Opengraph
+ *
+ * @return string Return url of default image
+ * @deprecated 3.1 Funzione deprecata in favore di italystrap_get_the_custom_image_url()
+ */
+function italystrap_get_default_image() {
+  _deprecated_function( __FUNCTION__, '3.1' );
+
+  global $theme_mods;
+
+  if ( empty( $theme_mods['default_image'] ) ) {
+    return; }
+
+  if ( is_int( $theme_mods['default_image'] ) ) {
+    $default_image = wp_get_attachment_url( $theme_mods['default_image'] ); } elseif ( $theme_mods['default_image'] ) {
+    $default_image = $theme_mods['default_image'];
+    } else { $default_image = TEMPLATEURL . '/img/italystrap-default-image.png'; }
+
+    return esc_url( $default_image );
+
+}
+
+/**
+ * Add a favicons to site
+ *
+ * @link http://www.robertoiacono.it/aggiungere-favicon-wordpress-come-perche/
+ */
+function ri_wp_favicon() {
+  _deprecated_function( __FUNCTION__, '3.1' );
+
+  $favicon = false;
+
+  if ( $GLOBALS['italystrap_options']['favicon'] ) {
+    $favicon = $GLOBALS['italystrap_options']['favicon']; } elseif ( is_child_theme() && ! $favicon ) {
+
+    global $pathchild;
+    $favicon = $pathchild . '/img/favicon.ico';
+
+    } else {
+
+      $favicon = TEMPLATEURL . '/img/favicon.ico';
+
+    }
+
+    echo '<link rel="shortcut icon" type="image/x-icon" href="' . $favicon . '" />';
+}
+// add_action('wp_head', 'ri_wp_favicon');
+
 require( TEMPLATEPATH . '/deprecated/pagination.php' );

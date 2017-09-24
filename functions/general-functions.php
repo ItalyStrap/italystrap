@@ -65,6 +65,8 @@ function print_search_form_in_menu( $nav_menu, $args ) {
 /**
  * Display the breadcrumbs
  *
+ * THIS FUNCTION IS NO MORE NEEDED
+ *
  * @param array $defaults Default array for parameters.
  * @return string Echo breadcrumbs
  */
@@ -479,12 +481,12 @@ function wp_parse_args_recursive( &$args, $defaults ) {
 /**
  * Register theme position
  *
- * @param  string $position The position registered.
- * @return array            Array with theme position.
+ * @param  string $new_position The position registered.
+ * @return array                Array with theme position.
  */
-function register_theme_positions( array $position ) {
+function register_theme_positions( array $new_position ) {
 
-	$new_position = array(
+	$position = array(
 		'italystrap_before'			=> __( 'After the &lt;body&gt;', 'italystrap' ),
 
 		'italystrap_before_header'	=> __( 'Before the header', 'italystrap' ),
@@ -510,7 +512,25 @@ function register_theme_positions( array $position ) {
 
 	return array_merge( $position, $new_position );
 }
+add_filter( 'italystrap_theme_positions', __NAMESPACE__ . '\register_theme_positions' );
+/**
+ * This filter is deprecated. Use 'italystrap_theme_positions' instead.
+ */
 add_filter( 'italystrap_widget_area_position', __NAMESPACE__ . '\register_theme_positions' );
+
+/**
+ * Register theme width
+ *
+ * @param  string $position The position registered.
+ * @return array            Array with theme position.
+ */
+function register_theme_width( array $new_width ) {
+
+	$with = require( TEMPLATEPATH . '/config/theme-width.php' );
+
+	return array_merge( $with, $new_width );
+}
+add_filter( 'italystrap_theme_width', __NAMESPACE__ . '\register_theme_width' );
 
 /**
  * Wrap embedded media as suggested by Readability

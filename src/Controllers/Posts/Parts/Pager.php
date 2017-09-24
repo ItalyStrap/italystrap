@@ -66,13 +66,18 @@ class Pager extends Controller implements Subscriber_Interface  {
 			'previous_link'		=> '<i class="glyphicon glyphicon-arrow-left"></i> %title</li>',
 			'next_format'		=> '<li class="next pager-next"> %link',
 			'next_link'			=> '%title <i class="glyphicon glyphicon-arrow-right"></i></li>',
-			);
+		);
+
 		$args = apply_filters( 'italystrap_previous_next_post_link_args', $args );
-		?>
-		<ul class="pager">
-			<?php previous_post_link( $args['previous_format'], $args['previous_link'] );
-			next_post_link( $args['next_format'], $args['next_link'] ); ?>
-		</ul>
-		<span class="clearfix"></span><?php
+
+?>
+<nav aria-label="<?php _e( 'In post navigation', 'italystrap' ); ?>">
+	<ul class="pager">
+		<?php previous_post_link( $args['previous_format'], $args['previous_link'] );
+		next_post_link( $args['next_format'], $args['next_link'] ); ?>
+	</ul>
+</nav>
+<span class="clearfix"></span>
+<?php
 	}
 }

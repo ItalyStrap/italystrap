@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Config\Config;
 
 /**
  * Layout Class
@@ -47,6 +48,9 @@ class Layout implements Subscriber_Interface {
 				'function_to_add'	=> 'set_sidebar_secondary_class',
 				'accepted_args'		=> 3
 			),
+			'italystrap_post_thumbnail_size'			=> array(
+				'function_to_add'	=> 'post_thumbnail_size',
+			),
 			'wp_loaded'			=> array(
 				'function_to_add'	=> 'init',
 			),
@@ -72,30 +76,30 @@ class Layout implements Subscriber_Interface {
 	 *
 	 * @param array $theme_mod Theme mods array.
 	 */
-	function __construct( array $theme_mods = array() ) {
-	// function __construct( \ItalyStrap\Config\Config $config ) {
+	function __construct( array $theme_mods = array(), Config $config = null ) {
 		$this->theme_mods = $theme_mods;
 		// $this->theme_mods = $config->all();
 	}
 
 	/**
 	 * Get the ID
+	 *
 	 * @see Template::get_the_ID()
 	 *
 	 * @return int The current content ID
 	 */
 	public function get_the_ID() {
 
-		if ( is_home() ) {
-			return PAGE_FOR_POSTS;
-		}
+		/**
+		 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
+		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
+		 */
 
 		/**
 		 * Using get_queried_object_id() here since the $post global may not be set before a call to the_post(). twentyseventeen
 		 * get_queried_object_id()
 		 */
-
-		return get_the_ID();
+		return get_queried_object_id();
 	}
 
 	/**
@@ -108,7 +112,6 @@ class Layout implements Subscriber_Interface {
 	 * @return string|false           Post type on success, false on failure.
 	 */
 	public function get_post_type( $post = null ) {
-
 		return get_post_type( $post );
 	}
 
@@ -168,54 +171,31 @@ class Layout implements Subscriber_Interface {
 	 */
 	public function get_layout_settings() {
 
-		static $setting;
-		$setting = $this->theme_mods['site_layout'];
-
-		// delete_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
-		// delete_post_meta_by_key( '_italystrap_layout_settings' );
+		static $layout = null;
 
 		/**
-		 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
-		 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
+		 * Cache the post_meta data
 		 */
-
-		// if ( ! $setting ) {
-		// 	$setting = $this->theme_mods['site_layout'];
-		// }
-
-		if ( is_singular() ) {
+		if ( ! $layout ) {
 			$page_layout = get_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
-			$setting = $page_layout ? $page_layout : 'content_sidebar';
+			/**
+			 * The name of the layout to use in page
+			 *
+			 * @var string
+			 */
+			$layout = $page_layout ? $page_layout : $this->theme_mods['site_layout'];
 		}
 
-		// if ( empty( $setting ) ) {
-		// 	$setting = $this->theme_mods['site_layout'];
-		// }
+		return (string) apply_filters( 'italystrap_get_layout_settings', $layout );
+	}
 
-		/**
-		 * Backward compatibility with the front-page template
-		 * old PAGE_ON_FRONT === $this->get_the_ID() && empty( $setting ) 
-		 */
-		// if ( \ItalyStrap\Core\is_static_front_page() && empty( $setting ) ) {
-		// 	return 'full_width';
-		// }
-
-		/**
-		 * Momentaneamente nella pagina di ricerca ritorno il layout con sidebar
-		 * perché se il risultato è un solo articolo mi prendeva l'ID
-		 * dell'articolo cercato e mi ritornava il layout assegnato ad esso.
-		 * Fare ulteriori test in futuro e appena creo i settings globali
-		 * anche per questa pagina allora dovrà bypassare questo problema.
-		 */
-		// if ( is_search() ) {
-		// 	return 'content_sidebar';
-		// }
-
-		// if ( empty( $setting ) ) {
-		// 	return 'content_sidebar';
-		// }
-
-		return $setting;
+	/**
+	 * Delete layout
+	 */
+	public function delete_layout() {	
+		delete_post_meta( $this->get_the_ID(), '_italystrap_layout_settings', true );
+		delete_post_meta_by_key( '_italystrap_layout_settings' );
+		remove_theme_mod( 'site_layout' );
 	}
 
 	/**
@@ -250,10 +230,8 @@ class Layout implements Subscriber_Interface {
 	 * @return string        Return the new array
 	 */
 	public function set_sidebar_class( array $attr, $context, $args ) {
-
 		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['sidebar'];
 		return $attr;
-	
 	}
 
 	/**
@@ -266,9 +244,21 @@ class Layout implements Subscriber_Interface {
 	 * @return string        Return the new array
 	 */
 	public function set_sidebar_secondary_class( array $attr, $context, $args ) {
-
 		$attr['class'] = $this->classes[ $this->get_layout_settings() ]['sidebar_secondary'];
 		return $attr;
-	
+	}
+
+	/**
+	 * post_thumbnail_size
+	 *
+	 * @param  string $size The post_thumbnail_size.
+	 * @return string       The post_thumbnail_size full if layout is fullwidth
+	 */
+	public function post_thumbnail_size( $size ) {
+		if ( 'full_width' === $this->get_layout_settings() ) {
+			return 'full';
+		}
+
+		return $size;
 	}
 }

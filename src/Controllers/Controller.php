@@ -69,6 +69,16 @@ class Controller implements Controller_Interface {
 			self::$post_content_template = explode( ',', $this->theme_mod['post_content_template'] );
 		}
 
+		$this->set_class_name();
+
+		$this->template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
+	}
+
+	/**
+	 * Set class name
+	 */
+	public function set_class_name() {
+
 		/**
 		 * Credits:
 		 * @link https://coderwall.com/p/cpxxxw/php-get-class-name-without-namespace
@@ -78,8 +88,6 @@ class Controller implements Controller_Interface {
 		$class_name = new \ReflectionClass( $this );
 		$this->class_name =  $class_name->getShortName();
 		$this->class_name = strtolower( $this->class_name );
-
-		$this->template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
 	}
 
 	/**
@@ -141,11 +149,24 @@ class Controller implements Controller_Interface {
 	 */
 	protected function get_template_settings() {
 
-		if ( ! is_singular() ) {
-			return (array) self::$post_content_template;
+		static $parts = null;
+
+		/**
+		 * Cache the post_meta data
+		 */
+		if ( ! $parts ) {
+
+			/**
+			 * This is a little different from the layout settings because
+			 * only in singular it must return the data from post_meta
+			 *
+			 * @var [type]
+			 */
+			$parts = ! is_singular() ? (array) self::$post_content_template : (array) get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
+
 		}
 
-		return (array) get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
+		return (array) apply_filters( 'italystrap_get_template_settings', $parts );
 	}
 
 	/**

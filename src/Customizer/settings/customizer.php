@@ -191,14 +191,7 @@ $manager->add_control(
 		'section'	=> 'italystrap_layout_options',
 		'type'		=> 'radio',
 		'settings'	=> 'site_layout',
-		'choices'	=> array(
-			'full_width'				=> __( 'Full width, no sidebar', 'italystrap' ),
-			'content_sidebar'			=> __( 'Content Sidebar', 'italystrap' ),
-			'content_sidebar_sidebar'	=> __( 'Content Sidebar Sidebar', 'italystrap' ),
-			'sidebar_content_sidebar'	=> __( 'Sidebar Content Sidebar', 'italystrap' ),
-			'sidebar_sidebar_content'	=> __( 'Sidebar Sidebar content', 'italystrap' ),
-			'sidebar_content'			=> __( 'Sidebar Content', 'italystrap' ),
-		),
+		'choices'	=> require( TEMPLATEPATH . '/config/layout.php' ),
 	)
 );
 

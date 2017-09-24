@@ -44,22 +44,11 @@ $manager->add_control(
 		$manager,
 		'italystrap_post_content_template',
 		array(
-			'label'		=> __( 'Container Width of the header', 'italystrap' ),
+			'label'		=> __( 'Template content settings', 'italystrap' ),
 			'section'	=> 'italystrap_post_content_template_options',
 			'type'		=> 'multicheck',
 			'settings'	=> 'post_content_template',
-			'choices'	=> array(
-				'hide_breadcrumbs'	=> __( 'Hide breadcrumbs', 'italystrap' ),
-				'hide_title'		=> __( 'Hide title', 'italystrap' ),
-				'hide_meta'			=> __( 'Hide meta info', 'italystrap' ),
-				'hide_thumb'		=> __( 'Hide feautured image', 'italystrap' ),
-				'hide_figcaption'	=> __( 'Hide figure caption', 'italystrap' ),
-				'hide_content'		=> __( 'Hide the content', 'italystrap' ),
-				// 'hide_author'		=> __( 'Hide author box', 'italystrap' ),
-				// 'hide_social'		=> __( 'Hide builtin social sharing', 'italystrap' ),
-				// 'hide_comments'		=> __( 'Hide comments', 'italystrap' ),
-				// 'hide_comments_form'=> __( 'Hide comments form', 'italystrap' ),
-			),
+			'choices'	=> require( TEMPLATEPATH . '/config/template-content.php' ),
 		)
 	)
 );

@@ -166,7 +166,7 @@ class TinyMCE implements Subscriber_Interface {
 	 */
 	public function break_page_button( array $buttons, $editor_id ) {
 
-		$buttons[] = 'fontselect';
+		// $buttons[] = 'fontselect';
 
 		/**
 		 * Only add this for content editor
@@ -186,35 +186,37 @@ class TinyMCE implements Subscriber_Interface {
 	/**
 	 * Insert new mce format.
 	 *
+	 * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/tiny_mce_before_init
+	 * @link https://codex.wordpress.org/TinyMCE_Custom_Styles
+	 *
 	 * @link http://wordpress.stackexchange.com/questions/128931/tinymce-adding-css-to-format-dropdown
 	 * @link http://wordpress.stackexchange.com/questions/3882/can-i-add-a-custom-format-to-the-format-option-in-the-text-panel
 	 *
+	 * @link http://www.wpexplorer.com/wordpress-tinymce-tweaks/
+	 *
 	 * @see bootstrap/_type.scss for more HTML tags.
 	 *
-	 * @param  array  $mceInit   An array with TinyMCE config.
+	 * @param  array  $config    An array with TinyMCE config.
 	 * @param  string $editor_id Unique editor identifier, e.g. 'content'.
 	 *
 	 * @return array             The new array.
 	 */
-	public function add_new_format_to_mce( array $mceInit, $editor_id ) {
+	public function add_new_format_to_mce( array $config, $editor_id ) {
 
-		/**
-		 * Only add this for content editor
-		 */
-		// if ( 'content' !== $editor_id ) {
-		// 	return $mceInit;
-		// }
+		$config['style_formats_merge'] = true;
 
-		$mceInit['style_formats_merge'] = true;
+		$default = require( __DIR__ . '/config/style_formats.php' );
 
-		$defaultStyleFormats = require( __DIR__ . '/config/style_formats.php' );
+		$default = apply_filters( 'italystrap_style_formats_config', $default );
 
-		// d( $mceInit['style_formats'] );
+		// d( $config );
+		// d( $config['formats'] );
+		// d( $config['style_formats'] );
 
-		$mceInit['style_formats'] = json_encode( $defaultStyleFormats );
+		$config['style_formats'] = wp_json_encode( $default );
 
-		// d( $mceInit['style_formats'] );
+		// d( $config['style_formats'] );
 
-		return $mceInit;
+		return $config;
 	}
 }

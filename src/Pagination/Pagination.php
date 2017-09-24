@@ -12,6 +12,8 @@
 
 namespace ItalyStrap\Pagination;
 
+use WP_Query;
+
 /**
  * Pagination Class
  */
@@ -36,17 +38,26 @@ class Pagination {
 	 *
 	 * @var array
 	 */
-	private $theme_mod;
+	private $config;
+
+	/**
+	 * WP_Query object
+	 *
+	 * @var WP_Query
+	 */
+	private $query;
 
 	/**
 	 * [__construct description]
 	 *
 	 * @param [type] $argument [description].
 	 */
-	function __construct( array $theme_mod ) {
-		$this->big = 999999999;
+	function __construct( array $config, WP_Query $query = null ) {
+		// $this->big = 999999999;
+		$this->big = PHP_INT_MAX;
 		$this->translated = __( 'Page: ', 'italystrap' );
-		$this->theme_mod = $theme_mod;
+		$this->config = $config;
+		$this->query = $query;
 	}
 
 	/**
@@ -62,6 +73,70 @@ class Pagination {
 	}
 
 	/**
+	 * Get paginate link
+	 *
+	 * @return string        Return the paginate link
+	 */
+	public function get_paginate_link() {
+
+		if ( ! $this->query instanceof WP_Query ) {
+			global $wp_query;
+			$this->query = $wp_query;
+		}
+
+		// if ( ! isset( $wp_query ) ) {
+		// 	global $wp_query;
+		// }
+
+		/**
+		 * wp-includes/general-template.php
+		 *
+		 * @var array
+		 */
+		// $defaults = array(
+		// 	'base' => $pagenum_link, // http://example.com/all_posts.php%_% : %_% is replaced by format (below)
+		// 	'format' => $format, // ?page=%#% : %#% is replaced by the page number
+		// 	'total' => $total,
+		// 	'current' => $current,
+		// 	'show_all' => false,
+		// 	'prev_next' => true,
+		// 	'prev_text' => __('&laquo; Previous'),
+		// 	'next_text' => __('Next &raquo;'),
+		// 	'end_size' => 1,
+		// 	'mid_size' => 2,
+		// 	'type' => 'plain',
+		// 	'add_args' => array(), // array of query args to add
+		// 	'add_fragment' => '',
+		// 	'before_page_number' => '',
+		// 	'after_page_number' => ''
+		// );
+
+		if ( $this->query->max_num_pages <= 1 ) {
+			return;
+		}
+
+		$args = array(
+			'base'					=>	str_replace(
+				$this->big,
+				'%#%',
+				esc_url( get_pagenum_link( $this->big ) )
+			),
+			'format'				=>	'?paged=%#%',
+			'current'				=>	max( 1, get_query_var( 'paged' ) ),
+			'total'					=>	$this->query->max_num_pages,
+			'type'					=>	'list',
+			// 'type'					=>	'plain',
+			// 'type'					=>	'array',
+			'before_page_number'	=>	sprintf(
+				'<span class="sr-only">%s</span>',
+				$this->translated
+			),
+		);
+
+		return paginate_links( $args );
+	}
+
+	/**
 	 * Function for show pagination with Bootstrap style
 	 * If you have a custom loop pass the object to functions like this:
 	 * bootstrap_pagination( $my_custom_query ), otherwise use only bootstrap_pagination()
@@ -74,27 +149,11 @@ class Pagination {
 	 */
 	public function render( $wp_query = NULL ) {
 
-		if ( ! isset( $wp_query ) ) {
-			global $wp_query;
-		}
+		$paginate = $this->get_paginate_link();
 
-		$paginate = paginate_links( 
-			array(
-				'base'					=>	str_replace(
-					$this->big,
-					'%#%',
-					esc_url( get_pagenum_link( $this->big ) )
-				),
-				'format'				=>	'?paged=%#%',
-				'current'				=>	max( 1, get_query_var( 'paged' ) ),
-				'total'					=>	$wp_query->max_num_pages,
-				'type'					=>	'list',
-				'before_page_number'	=>	sprintf(
-					'<span class="sr-only">%s</span>',
-					$this->translated
-				),
-			)
-		);
+		if ( ! $paginate ) {
+			return;
+		}
 
 		$paginate = str_replace(
 			"<ul class='page-numbers'",
@@ -109,8 +168,10 @@ class Pagination {
 		);
 
 		printf(
-			'<span class="clearfix"></span><div class="text-center">%s</div>',
-			$paginate
+			'<span class="clearfix"></span><nav aria-label="%s %s">%s</nav>',
+			ucfirst( get_post_type() ),
+			__( 'navigation', 'italystrap' ),
+			apply_filters( 'italystrap_pagination_html', $paginate, $this )
 		);
 
 	}

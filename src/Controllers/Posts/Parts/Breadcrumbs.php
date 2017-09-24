@@ -45,6 +45,14 @@ class Breadcrumbs extends Controller implements Subscriber_Interface  {
 	 */
 	public function render() {
 
-		\Italystrap\Core\display_breadcrumbs();
+		if ( in_array( 'hide_breadcrumbs', $this->get_template_settings(), true ) ) {
+			return;
+		}
+
+		$args = array(
+			'home'	=> '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>',
+		);
+
+		do_action( 'do_breadcrumbs', $args );
 	}
 }

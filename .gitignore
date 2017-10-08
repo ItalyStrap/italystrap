@@ -31,3 +31,7 @@ tests
 *.map
 
 vendor
+
+#EDD only unitill is ready for production
+EDD
+config/edd.php

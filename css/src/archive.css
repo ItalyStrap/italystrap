@@ -7369,48 +7369,54 @@ a img.dropdown-submenu.alignleft > .dropdown-menu {
 .gallery .gallery-caption {
   text-align: center;
 }
+/* line 30, ../../sass/content/_gallery.scss */
+.gallery img {
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+}
 
-/* line 34, ../../sass/content/_gallery.scss */
+/* line 39, ../../sass/content/_gallery.scss */
 .gallery-columns-1 .gallery-item {
   flex: 1 1 100%;
 }
 
-/* line 34, ../../sass/content/_gallery.scss */
+/* line 39, ../../sass/content/_gallery.scss */
 .gallery-columns-2 .gallery-item {
   flex: 1 1 50%;
 }
 
-/* line 34, ../../sass/content/_gallery.scss */
+/* line 39, ../../sass/content/_gallery.scss */
 .gallery-columns-3 .gallery-item {
   flex: 1 1 33.33333%;
 }
 
-/* line 34, ../../sass/content/_gallery.scss */
+/* line 39, ../../sass/content/_gallery.scss */
 .gallery-columns-4 .gallery-item {
   flex: 1 1 25%;
 }
 
-/* line 34, ../../sass/content/_gallery.scss */
+/* line 39, ../../sass/content/_gallery.scss */
 .gallery-columns-5 .gallery-item {
   flex: 1 1 20%;
 }
 
-/* line 34, ../../sass/content/_gallery.scss */
+/* line 39, ../../sass/content/_gallery.scss */
 .gallery-columns-6 .gallery-item {
   flex: 1 1 16.66667%;
 }
 
-/* line 34, ../../sass/content/_gallery.scss */
+/* line 39, ../../sass/content/_gallery.scss */
 .gallery-columns-7 .gallery-item {
   flex: 1 1 14.28571%;
 }
 
-/* line 34, ../../sass/content/_gallery.scss */
+/* line 39, ../../sass/content/_gallery.scss */
 .gallery-columns-8 .gallery-item {
   flex: 1 1 12.5%;
 }
 
-/* line 34, ../../sass/content/_gallery.scss */
+/* line 39, ../../sass/content/_gallery.scss */
 .gallery-columns-9 .gallery-item {
   flex: 1 1 11.11111%;
 }

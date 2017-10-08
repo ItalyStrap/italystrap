@@ -126,6 +126,11 @@ return array(
 		'woocommerce',
 
 		/**
+		 * Add support for the builtin breadcrumbs
+		 */
+		'breadcrumbs',
+
+		/**
 		 * Beta 4.0.0
 		 */
 		'bootstrap3',

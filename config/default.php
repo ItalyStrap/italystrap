@@ -125,6 +125,7 @@ return array(
 	),
 
 	'post_content_template'			=> '',
+	'breadcrumbs_show_on'			=> '',
 
 	/**
 	 * Display image size 740x370 in single and page

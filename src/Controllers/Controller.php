@@ -185,6 +185,8 @@ class Controller implements Controller_Interface {
 	 * For the $name parameter, if the file is called "{slug}-special.php" then specify
 	 * "special".
 	 *
+	 * Some idea for the template structure http://jespervanengelen.com/page-templates-in-wordpress-template-hierarchy/#comment-99397
+	 *
 	 * @since 4.0.0
 	 *
 	 * @see get_template_part() - wp-includes/general-template.php
@@ -219,5 +221,16 @@ class Controller implements Controller_Interface {
 		}
 
 		require( locate_template( $templates, $load, false ) );
+	}
+
+	/**
+	 * Conditional tag for show or hide the template part.
+	 *
+	 * @param  string $part The key of the template parts settings.
+	 *
+	 * @return bool         Return
+	 */
+	protected function hide_template_part( $part ) {
+		return in_array( $part, $this->get_template_settings(), true );
 	}
 }

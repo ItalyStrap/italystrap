@@ -264,15 +264,17 @@ class Navbar {
 	/**
 	 * Get the HTML for description
 	 *
-	 * @return string Return the HTML for description
+	 * @param  array  $attr The navbar brand attributes.
+	 *
+	 * @return string       Return the HTML for description
 	 */
-	public function get_navbar_brand() {
+	public function get_navbar_brand( array $attr = array() ) {
 
 		if ( 'none' === $this->theme_mods['display_navbar_brand'] ) {
-			return apply_filters( 'italystrap_navbar_brand', '', $this->navbar_id );
+			return apply_filters( 'italystrap_navbar_brand_none', '', $this->navbar_id );
 		}
 
-		$a = array(
+		$default = array(
 			'class'			=> 'navbar-brand',
 			'href'			=> esc_attr( HOME_URL ),
 			'title'			=> esc_attr( GET_BLOGINFO_NAME ) . ' - ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
@@ -282,12 +284,11 @@ class Navbar {
 
 		$output = sprintf(
 			'<a %s>%s</a>',
-			$this->get_html_tag_attr( $a, 'navbar_brand' ),
+			$this->get_html_tag_attr( array_merge( $default, $attr ), 'navbar_brand' ),
 			$this->get_brand()
 		);
 
 		return apply_filters( 'italystrap_navbar_brand', $output, $this->navbar_id );
-
 	}
 
 	/**

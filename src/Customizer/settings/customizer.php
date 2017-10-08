@@ -196,6 +196,7 @@ $manager->add_control(
 );
 
 include( 'post-content-template.php' );
+include( 'breadcrumbs.php' );
 
 /**
  * Define a new section for theme image options
@@ -569,8 +570,8 @@ $manager->add_control(
 $manager->add_section(
 	'custom_css',
 	array(
-		'title'				=> __( 'Additional CSS' ),
-		'description'		=> __( 'Add custom CSS here' ),
+		'title'				=> __( 'Additional CSS', 'italystrap' ),
+		'description'		=> __( 'Add custom CSS here', 'italystrap' ),
 		'panel'				=> $this->panel, // Not typically needed.
 		'priority'			=> 160,
 		'capability'		=> $this->capability,
@@ -598,7 +599,7 @@ $manager->add_control(
 		'custom_css',
 		array(
 			'label'			=> __( 'Custom CSS', 'italystrap' ),
-			'description'	=> __( '', 'italystrap' ),
+			'description'	=> __( 'Insert here your custom CSS', 'italystrap' ),
 			'section'		=> 'custom_css',
 			'settings'		=> 'custom_css',
 			'priority'		=> 10,
@@ -612,8 +613,8 @@ $manager->add_control(
 $manager->add_section(
 	'colophon',
 	array(
-		'title'				=> __( 'Footer\'s Colophon' ),
-		'description'		=> __( 'Add text for footer\'s colophon here' ),
+		'title'				=> __( 'Footer\'s Colophon', 'italystrap' ),
+		'description'		=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
 		'panel'				=> $this->panel, // Not typically needed.
 		'priority'			=> 160,
 		'capability'		=> $this->capability,
@@ -639,7 +640,7 @@ $manager->add_control(
 	'colophon',
 		array(
 			'label'			=> __( 'Footer\'s Colophon', 'italystrap' ),
-			'description'	=> __( '', 'italystrap' ),
+			'description'	=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
 			'section'		=> 'colophon',
 			'settings'		=> 'colophon',
 			'priority'		=> 10,

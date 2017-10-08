@@ -41,11 +41,32 @@ class Breadcrumbs extends Controller implements Subscriber_Interface  {
 	}
 
 	/**
+	 * Get breadcrumbs settings
+	 *
+	 * @return bool Return true if current file template support breadcrumbs. 
+	 */
+	public function show_on() {
+		return in_array( CURRENT_TEMPLATE, explode( ',', $this->theme_mod['breadcrumbs_show_on'] ), true );
+	}
+
+	/**
 	 * Render the output of the controller.
 	 */
 	public function render() {
 
-		if ( in_array( 'hide_breadcrumbs', $this->get_template_settings(), true ) ) {
+		/**
+		 * If built in breadcrumbs are not supported bail out.
+		 * Maybe move this check in the array autoload for this class name.
+		 */
+		if ( ! current_theme_supports( 'breadcrumbs' ) ) {
+			return;
+		}
+
+		if ( ! $this->show_on() ) {
+			return;
+		}
+
+		if ( $this->hide_template_part( 'hide_breadcrumbs' ) ) {
 			return;
 		}
 

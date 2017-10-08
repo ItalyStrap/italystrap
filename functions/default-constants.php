@@ -14,6 +14,11 @@ namespace ItalyStrap\Core;
 
 /**
  * Set default constant
+ *
+ * @uses \get_template()
+ * @uses get_stylesheet()
+ * @uses wp_get_theme()
+ * @uses wp_get_theme( \get_template() )
  */
 function set_default_constant() {
 
@@ -30,7 +35,7 @@ function set_default_constant() {
 	/**
 	 * The version of the theme
 	 */
-	define( 'ITALYSTRAP_THEME_VERSION', wp_get_theme()->display( 'Version' ) );
+	define( 'ITALYSTRAP_THEME_VERSION', wp_get_theme( \get_template() )->display( 'Version' ) );
 
 	/**
 	 * The name of active theme

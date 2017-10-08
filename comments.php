@@ -33,7 +33,7 @@ $template_settings = (array) apply_filters( 'italystrap_template_settings', arra
  */
 if ( have_comments() ) : ?>
 	<section id="comments" class="comments-area">
-		<h3 class="comments-title"><?php printf( _n( 'One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'ItalyStrap' ), number_format_i18n( get_comments_number() ), get_the_title() ); // XSS ok. ?></h3>
+		<h3 class="comments-title"><?php printf( _n( 'One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'italystrap' ), number_format_i18n( get_comments_number() ), get_the_title() ); // XSS ok. ?></h3>
 
 		<?php
 		/**
@@ -66,7 +66,7 @@ if ( have_comments() ) : ?>
 	</section><!-- /#comments -->
 <?php elseif ( comments_open() && ! in_array( 'hide_comments', $template_settings, true ) ) : ?>
 	<section id="comments" class="comments-area">
-		<h3 id="comments-title"><?php esc_html_e( 'There are no comments yet, why not be the first', 'ItalyStrap' ); ?></h3>
+		<h3 id="comments-title"><?php esc_html_e( 'There are no comments yet, why not be the first', 'italystrap' ); ?></h3>
 	</section>
 <?php endif;  // End have_comments(). ?>
 

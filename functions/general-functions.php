@@ -33,7 +33,7 @@ function get_search_form() {
 	 */
 	$get_search_query = is_search() ? get_search_query() : '' ;
 
-	$form = '<div itemscope itemtype="https://schema.org/WebSite"><meta itemprop="url" content="' . esc_attr( HOME_URL ) . '"/><form class="navbar-form navbar-right" role="search" method="get" action="' . esc_attr( HOME_URL ) . '" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction"><meta itemprop="target" content="' . esc_attr( HOME_URL ) . '?s={s}"/><div class="input-group input-group-sm"><input type="search" placeholder="' . __( 'Search now', 'ItalyStrap' ) . '" value="' . $get_search_query . '" name="s" class="form-control" itemprop="query-input"><span class="input-group-btn"><button type="submit" class="btn btn-default" value="' . __( 'Search', 'ItalyStrap' ) . '"><i class="glyphicon glyphicon-search"></i></button></span></div></form></div>';
+	$form = '<div itemscope itemtype="https://schema.org/WebSite"><meta itemprop="url" content="' . esc_attr( HOME_URL ) . '"/><form class="navbar-form navbar-right" role="search" method="get" action="' . esc_attr( HOME_URL ) . '" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction"><meta itemprop="target" content="' . esc_attr( HOME_URL ) . '?s={s}"/><div class="input-group input-group-sm"><input type="search" placeholder="' . __( 'Search now', 'italystrap' ) . '" value="' . $get_search_query . '" name="s" class="form-control" itemprop="query-input"><span class="input-group-btn"><button type="submit" class="btn btn-default" value="' . __( 'Search', 'italystrap' ) . '"><i class="glyphicon glyphicon-search"></i></button></span></div></form></div>';
 
 	return apply_filters( 'italystrap_search_form', $form, $get_search_query );
 
@@ -321,13 +321,13 @@ function comment_form_args( $comment_author, $user_identity ){
 	$comment_field = array(
 
 		'author'	=> 
-			'<div class="form-group comment-form-author"><label for="author" class="sr-only">' . __( 'Name', 'ItalyStrap' ) . ' ' . ( $req ? __('(required) <span class="required">*</span>', 'ItalyStrap') : '' ) . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="text" class="form-control" name="author" id="author" value="' . esc_attr( $comment_author ) . '" placeholder="' . __('Name','ItalyStrap') . ' ' . ( $req ? __('(required) *', 'ItalyStrap') : '' ) . '" tabindex="1"' . ( $req ? 'aria-required="true"' : '') . ' title="' . __( 'Name', 'ItalyStrap' ) . ' ' . ( $req ? __('(required) *', 'ItalyStrap') : '' ) . '"/></div></div>',
+			'<div class="form-group comment-form-author"><label for="author" class="sr-only">' . __( 'Name', 'italystrap' ) . ' ' . ( $req ? __( '(required)', 'italystrap') . '<span class="required">*</span>' : '' ) . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="text" class="form-control" name="author" id="author" value="' . esc_attr( $comment_author ) . '" placeholder="' . __('Name','italystrap') . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '" tabindex="1"' . ( $req ? 'aria-required="true"' : '') . ' title="' . __( 'Name', 'italystrap' ) . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '"/></div></div>',
 
 		'email'		=>
-			'<div class="form-group comment-form-email"><label for="email" class="sr-only">' . __( 'Email (will not be published)', 'ItalyStrap' ) . ' ' . ( $req ? __('(required) <span class="required">*</span>', 'ItalyStrap') : '' ) . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input type="email" class="form-control" name="email" id="email" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . __( 'Email (will not be published)', 'ItalyStrap' ) . ' ' . ( $req ? __('(required) *', 'ItalyStrap') : '' ) . '" tabindex="2" aria-describedby="email-notes" ' . $aria_req . $html_req  . ' title="' . __( 'Email (will not be published)', 'ItalyStrap' ) . ' ' . ( $req ? __('(required) *', 'ItalyStrap') : '' ) . '" /></div></div>',
+			'<div class="form-group comment-form-email"><label for="email" class="sr-only">' . __( 'Email (will not be published)', 'italystrap' ) . ' ' . ( $req ? __( '(required)', 'italystrap') . '<span class="required">*</span>' : '' ) . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input type="email" class="form-control" name="email" id="email" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . __( 'Email (will not be published)', 'italystrap' ) . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '" tabindex="2" aria-describedby="email-notes" ' . $aria_req . $html_req  . ' title="' . __( 'Email (will not be published)', 'italystrap' ) . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '" /></div></div>',
 
 		'url'		=>
-			'<div class="form-group comment-form-url"><label for="url" class="sr-only">' . __( 'Website' ,'ItalyStrap') . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input type="url" class="form-control" name="url" id="url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . __( 'Website (optional)' ,'ItalyStrap') . '" tabindex="3" title="' . __( 'Website (optional)' ,'ItalyStrap') . '" /></div></div>',
+			'<div class="form-group comment-form-url"><label for="url" class="sr-only">' . __( 'Website' ,'italystrap') . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input type="url" class="form-control" name="url" id="url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . __( 'Website (optional)' ,'italystrap') . '" tabindex="3" title="' . __( 'Website (optional)' ,'italystrap') . '" /></div></div>',
 
 		);
 
@@ -338,7 +338,7 @@ function comment_form_args( $comment_author, $user_identity ){
 		'class_submit'		=>	'btn btn-large btn-primary',
 		'format'			=>	'html5',
 		'comment_field' 	=>
-			'<div class="form-group comment-form-comment"><label for="comment" class="sr-only">' . _x( 'Comment', 'noun' ) . '</label><textarea class="form-control" name="comment" id="comment" placeholder="' . __( 'Write your comment here' ,'ItalyStrap') . '" tabindex="4" rows="6" aria-required="true" title="' . __( 'Write your comment here' ,'ItalyStrap') . '"></textarea></div>',
+			'<div class="form-group comment-form-comment"><label for="comment" class="sr-only">' . _x( 'Comment', 'noun' ) . '</label><textarea class="form-control" name="comment" id="comment" placeholder="' . __( 'Write your comment here' ,'italystrap') . '" tabindex="4" rows="6" aria-required="true" title="' . __( 'Write your comment here' ,'italystrap') . '"></textarea></div>',
 		'logged_in_as'		=>
 			'<p class="logged-in-as">' . sprintf( 
 				__( 'Logged in as <a href="%1$s" class="btn btn-primary btn-xs">%2$s</a>. <a href="%3$s" title="Log out of this account" class="btn btn-warning btn-xs">Log out?</a>' ),
@@ -382,8 +382,8 @@ function comment_pagination(){
 				array( 
 					'echo'		=> false,
 					'type'		=> 'array',
-					'prev_text'	=> __( '&laquo; Previous comments' , 'ItalyStrap' ),
-					'next_text'	=> __( 'Next comments &raquo;', 'ItalyStrap' ),
+					'prev_text'	=> __( '&laquo; Previous comments' , 'italystrap' ),
+					'next_text'	=> __( 'Next comments &raquo;', 'italystrap' ),
 					)
 				);
 			if ( is_array( $pages ) ){

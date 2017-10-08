@@ -181,7 +181,7 @@ class Comments extends Walker_Comment {
 								apply_filters( 'italystrap_post_author',
 									' <span class="label label-primary"> ' . __(
 									'Post Author',
-									'ItalyStrap'
+									'italystrap'
 								) . '</span> ' );
 
 							printf( ( $comment->user_id === $post->post_author ) ? $post_author : ''); ?>
@@ -192,14 +192,14 @@ class Comments extends Walker_Comment {
 					</li>
 					
 					<?php if ( is_user_logged_in() && current_user_can( 'manage_options' ) ): ?>
-						<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit','ItalyStrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
+						<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit','italystrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
 					<?php endif ?>
 
 				</ul>
 
 				<?php if ($comment->comment_approved == '0') : ?>
 				<div class="alert alert-info">
-					<?php _e('Your comment is awaiting moderation.', 'ItalyStrap'); ?>
+					<?php _e('Your comment is awaiting moderation.', 'italystrap'); ?>
 				</div>
 				<?php endif; ?>
 
@@ -222,7 +222,7 @@ class Comments extends Walker_Comment {
 				array_merge(
 					$args, 
 					array(
-						'reply_text' => __('Reply to ', 'ItalyStrap') . $comment->comment_author . ' <i class="glyphicon glyphicon-arrow-down"></i>',
+						'reply_text' => __('Reply to ', 'italystrap') . $comment->comment_author . ' <i class="glyphicon glyphicon-arrow-down"></i>',
 						'depth'      => $depth,
 						// 'max_depth'  => $args['max_depth']
 						'max_depth'  => -1,
@@ -260,7 +260,7 @@ class Comments extends Walker_Comment {
 					<footer class="comment-meta">
 					
 							<?php if ( is_user_logged_in() && current_user_can( 'manage_options' ) && 'pingback'!== $comment->comment_type ): ?>
-								<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit', 'ItalyStrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
+								<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit', 'italystrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
 							<?php endif ?>
 							<?php
 							$email =  get_comment_author_email();
@@ -287,7 +287,7 @@ class Comments extends Walker_Comment {
 						</div><!-- .comment-metadata -->
 					
 						<?php if ( '0' === $comment->comment_approved ) : ?>
-						<p class="comment-awaiting-moderation alert alert-info"><?php _e( 'Your comment is awaiting moderation.', 'ItalyStrap' ); ?></p>
+						<p class="comment-awaiting-moderation alert alert-info"><?php _e( 'Your comment is awaiting moderation.', 'italystrap' ); ?></p>
 						<?php endif; ?>
 					</footer><!-- .comment-meta -->
 					
@@ -299,7 +299,7 @@ class Comments extends Walker_Comment {
 					if ( 'pingback'!== $comment->comment_type ) {
 						$comment_reply_link_args = apply_filters( 'comment_reply_link_args', array(
 							'reply_text' => sprintf(
-								__('Reply to %s %s', 'ItalyStrap'),
+								__('Reply to %s %s', 'italystrap'),
 								$comment->comment_author,
 								'<i class="glyphicon glyphicon-arrow-down"></i>'
 							),

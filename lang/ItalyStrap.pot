@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2016-01-06 11:59+0100\n"
+"Project-Id-Version: ItalyStrap\n"
+"POT-Creation-Date: 2017-10-05 19:55+0200\n"
 "PO-Revision-Date: 2015-04-07 19:09+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
@@ -10,444 +10,308 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 2.0.1\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x;_ex;_nx;esc_attr__;esc_html_e;esc_attr_x;"
+"esc_html__;esc_html_e;esc_html_x;_n_noop;_nx_noop;translate_nooped_plural\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: .git\n"
 "X-Poedit-SearchPathExcluded-2: .sass-cache\n"
 "X-Poedit-SearchPathExcluded-3: bower\n"
 
-#: admin/ItalyStrapOptionTheme.php:55 admin/ItalyStrapOptionTheme.php:70
-#: admin/class-italystrap-theme-customizer.php:74
-#: admin/class-italystrap-theme-customizer.php:201
+#: comments.php:36
+#, php-format
+msgid "One Response to &ldquo;%2$s&rdquo;"
+msgstr ""
+
+#: comments.php:69
+msgid "There are no comments yet, why not be the first"
+msgstr ""
+
+#: config/config.php:194
+msgid "Default"
+msgstr ""
+
+#: config/config.php:198
+msgid "Sandwich"
+msgstr ""
+
+#: config/config.php:202
+msgid "Coffee"
+msgstr ""
+
+#: config/config.php:226 src/Init/Init_Theme.php:112
+msgid "Info Menu"
+msgstr ""
+
+#: config/config.php:237
+msgid "Social Links Menu"
+msgstr ""
+
+#: config/config.php:250 deprecated/init.php:92 src/Init/Init_Theme.php:109
+msgid "Main Menu"
+msgstr ""
+
+#: config/customizer.php:38
+msgid "Theme settings"
+msgstr ""
+
+#: config/customizer.php:50
+msgid "Theme Image Options"
+msgstr ""
+
+#: config/customizer.php:53 src/Customizer/settings/customizer.php:209
+msgid "Allows you to customize settings for ItalyStrap."
+msgstr ""
+
+#: config/customizer.php:69 src/Customizer/settings/customizer.php:232
+msgid "Your Logo"
+msgstr ""
+
+#: config/customizer.php:70 src/Customizer/settings/customizer.php:233
+msgid "Insert here your logo"
+msgstr ""
+
+#: config/default.php:122 src/Customizer/settings/customizer.php:110
+msgid "Full witdh"
+msgstr ""
+
+#: config/default.php:123 src/Customizer/settings/customizer.php:111
+msgid "Standard width"
+msgstr ""
+
+#: config/layout.php:15
+msgid "Content Sidebar"
+msgstr ""
+
+#: config/layout.php:19
+msgid "Sidebar Content"
+msgstr ""
+
+#: config/layout.php:20
+msgid "Full width, no sidebar"
+msgstr ""
+
+#: config/sidebars.php:22
+msgid "Sidebar"
+msgstr ""
+
+#: config/sidebars.php:31 deprecated/sidebar.php:16
+msgid "Footer Box 1"
+msgstr ""
+
+#: config/sidebars.php:33
+msgid "Footer box 1 widget area."
+msgstr ""
+
+#: config/sidebars.php:41 deprecated/sidebar.php:26
+msgid "Footer Box 2"
+msgstr ""
+
+#: config/sidebars.php:43
+msgid "Footer box 2 widget area."
+msgstr ""
+
+#: config/sidebars.php:51 deprecated/sidebar.php:36
+msgid "Footer Box 3"
+msgstr ""
+
+#: config/sidebars.php:53
+msgid "Footer box 3 widget area."
+msgstr ""
+
+#: config/sidebars.php:61 deprecated/sidebar.php:46
+msgid "Footer Box 4"
+msgstr ""
+
+#: config/sidebars.php:63
+msgid "Footer box 4 widget area."
+msgstr ""
+
+#: config/template-content.php:15
+msgid "Hide breadcrumbs"
+msgstr ""
+
+#: config/template-content.php:16
+msgid "Hide title"
+msgstr ""
+
+#: config/template-content.php:17
+msgid "Hide meta info"
+msgstr ""
+
+#: config/template-content.php:18
+msgid "Hide feautured image"
+msgstr ""
+
+#: config/template-content.php:19
+msgid "Hide figure caption"
+msgstr ""
+
+#: config/template-content.php:20
+msgid "Hide the content"
+msgstr ""
+
+#: config/template-content.php:21
+msgid "Hide author box"
+msgstr ""
+
+#: config/template-content.php:22
+msgid "Hide builtin social sharing"
+msgstr ""
+
+#: config/template-content.php:23
+msgid "Hide comments"
+msgstr ""
+
+#: config/template-content.php:24
+msgid "Hide comments form"
+msgstr ""
+
+#: config/theme-width.php:16
+msgid "Standard container"
+msgstr ""
+
+#: config/theme-width.php:17
+msgid "Fluid container"
+msgstr ""
+
+#: deprecated/ItalyStrapBreadcrumbs.php:308 deprecated/breadcrumb.php:63
+msgid "Tag: "
+msgstr ""
+
+#: deprecated/ItalyStrapBreadcrumbs.php:315 deprecated/breadcrumb.php:78
+msgid "Yearly archive: "
+msgstr ""
+
+#: deprecated/ItalyStrapBreadcrumbs.php:329 deprecated/breadcrumb.php:73
+msgid "Monthly archive: "
+msgstr ""
+
+#: deprecated/ItalyStrapBreadcrumbs.php:351 deprecated/breadcrumb.php:68
+msgid "Daily archive: "
+msgstr ""
+
+#: deprecated/ItalyStrapBreadcrumbs.php:358 deprecated/breadcrumb.php:83
+msgid "Author Archives: "
+msgstr ""
+
+#: deprecated/ItalyStrapBreadcrumbs.php:365 deprecated/breadcrumb.php:90
+msgid "Search Results: "
+msgstr ""
+
+#: deprecated/ItalyStrapBreadcrumbs.php:371 deprecated/custom_taxonomy.php:36
+msgid "Not Found"
+msgstr ""
+
+#: deprecated/ItalyStrapBreadcrumbs.php:380
+msgid "Page"
+msgstr ""
+
+#: deprecated/ItalyStrapOptionTheme.php:55
+#: deprecated/ItalyStrapOptionTheme.php:70
+#: src/Customizer/Theme_Customizer.php:286
 msgid "Theme Options"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:69
+#: deprecated/ItalyStrapOptionTheme.php:69
 msgid "ItalyStrap Theme Options"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:85
+#: deprecated/ItalyStrapOptionTheme.php:85
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:140
+#: deprecated/ItalyStrapOptionTheme.php:140
 msgid "ItalyStrap options page"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:151
+#: deprecated/ItalyStrapOptionTheme.php:151
 msgid "Default image for 404 page"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:163
+#: deprecated/ItalyStrapOptionTheme.php:163
 msgid "Default image"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:187
+#: deprecated/ItalyStrapOptionTheme.php:187
 msgid "Logo"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:199
+#: deprecated/ItalyStrapOptionTheme.php:199
 msgid "Analytics ID"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:247
+#: deprecated/ItalyStrapOptionTheme.php:247
 msgid ""
 "Manage or enter your settings below: <strong>(It is still in Beta version)</"
 "strong>"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:258
+#: deprecated/ItalyStrapOptionTheme.php:258
 msgid "Upload default 404 image"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:259
+#: deprecated/ItalyStrapOptionTheme.php:259
 msgid "Upload an image for the 404.php page (at least width 750px)."
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:260
+#: deprecated/ItalyStrapOptionTheme.php:260
 msgid "Default 404 image preview"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:276
+#: deprecated/ItalyStrapOptionTheme.php:276
 msgid "Upload default image"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:277
+#: deprecated/ItalyStrapOptionTheme.php:277
 msgid ""
 "Upload an image for the default image used for social share (must be "
 "1200x600px)."
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:278
+#: deprecated/ItalyStrapOptionTheme.php:278
 msgid "Default image preview"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:294
+#: deprecated/ItalyStrapOptionTheme.php:294
 msgid "Upload favicon"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:295
+#: deprecated/ItalyStrapOptionTheme.php:295
 msgid "Upload an image for the favicon (max 32x32px)."
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:296
+#: deprecated/ItalyStrapOptionTheme.php:296
 msgid "Favicon preview"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:312
+#: deprecated/ItalyStrapOptionTheme.php:312
 msgid "Upload Logo"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:313
+#: deprecated/ItalyStrapOptionTheme.php:313
 msgid "Upload an image for the logo."
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:314
+#: deprecated/ItalyStrapOptionTheme.php:314
 msgid "Logo preview"
 msgstr ""
 
-#: admin/ItalyStrapOptionTheme.php:329
+#: deprecated/ItalyStrapOptionTheme.php:329
 msgid "Enter your analytics ID (e.g. UA-XXXXX-X )."
 msgstr ""
 
-#. translators: %s: title of menu item which is invalid
-#. @var string
-#.
-#: admin/class-italystrap-admin-menu-custom-field.php:90
-#, php-format
-msgid "%s (Invalid)"
-msgstr ""
-
-#. translators: %s: title of menu item in draft status
-#. @var string
-#.
-#: admin/class-italystrap-admin-menu-custom-field.php:99
-#, php-format
-msgid "%s (Pending)"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:163
-msgid "Edit Menu Item"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:173
-msgid "URL"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:180
-msgid "Navigation Label"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:186
-msgid "Title Attribute"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:193
-msgid "Open link in a new window/tab"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:198
-msgid "CSS Classes (optional)"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:204
-msgid "Link Relationship (XFN)"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:210
-msgid "Description"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:212
-msgid ""
-"The description will be displayed in the menu if the current theme supports "
-"it."
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:220
-msgid "Glyphicon or your icon class"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:232
-#, php-format
-msgid "Original: %s"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:253
-msgid "Remove"
-msgstr ""
-
-#: admin/class-italystrap-admin-menu-custom-field.php:268
-#: woocommerce/myaccount/my-orders.php:75
-msgid "Cancel"
-msgstr ""
-
-#: admin/class-italystrap-category-editor.php:92
-#: admin/class-italystrap-category-editor.php:113
-msgid ""
-"The description is not prominent by default; however, some themes may show "
-"it."
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:89
-#: admin/class-italystrap-theme-customizer.php:90
-msgid "ItalyStrap Theme Info"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:144
-msgid "Theme Colors"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:164
-msgid "Link Color"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:188
-msgid "Heading Color"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:212
-msgid "Theme Image Options"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:216
-msgid "Allows you to customize settings for ItalyStrap."
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:236
-msgid "Your Logo"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:237
-msgid "Insert here your logo"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:262
-msgid "Default Image"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:263
-msgid ""
-"Upload an image for the default image used for social sharing (must be at "
-"least 1200x600px for Facebook), it will also be displayed if no feautured "
-"image will be added in your content page/post if the theme supports this "
-"feature."
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:287
-msgid "Default 404 Image"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:288
-msgid ""
-"This is a default 404 image, it will be displayed in 404 page (must be at "
-"least weight 848px)"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:305
-#: admin/class-italystrap-theme-customizer.php:330
-msgid "Custom CSS"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:306
-msgid "Add custom CSS here"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:345
-#: admin/class-italystrap-theme-customizer.php:370
-msgid "Footer's Colophon"
-msgstr ""
-
-#: admin/class-italystrap-theme-customizer.php:346
-msgid "Add text for footer's colophon here"
-msgstr ""
-
-#: core/ItalyStrapBreadcrumbs.php:304 deprecated/breadcrumb.php:63
-msgid "Tag: "
-msgstr ""
-
-#: core/ItalyStrapBreadcrumbs.php:311 deprecated/breadcrumb.php:78
-msgid "Yearly archive: "
-msgstr ""
-
-#: core/ItalyStrapBreadcrumbs.php:325 deprecated/breadcrumb.php:73
-msgid "Monthly archive: "
-msgstr ""
-
-#: core/ItalyStrapBreadcrumbs.php:347 deprecated/breadcrumb.php:68
-msgid "Daily archive: "
-msgstr ""
-
-#: core/ItalyStrapBreadcrumbs.php:354 deprecated/breadcrumb.php:83
-msgid "Author Archives: "
-msgstr ""
-
-#: core/ItalyStrapBreadcrumbs.php:361 deprecated/breadcrumb.php:90
-msgid "Search Results: "
-msgstr ""
-
-#: core/ItalyStrapBreadcrumbs.php:367 lib/custom_taxonomy.php:36
-msgid "Not Found"
-msgstr ""
-
-#: core/ItalyStrapBreadcrumbs.php:376
-msgid "Page"
-msgstr ""
-
-#: core/class-italystrap-comments.php:172
-msgid "Post Author"
-msgstr ""
-
-#: core/class-italystrap-comments.php:184
-#: core/class-italystrap-comments.php:252
-#: core/class-italystrap-comments.php:561 lib/comments.php:41
-#: lib/comments.php:153 loops/content-page.php:53 loops/content-single.php:52
-#: woocommerce/myaccount/my-address.php:45
-msgid "Edit"
-msgstr ""
-
-#: core/class-italystrap-comments.php:191
-#: core/class-italystrap-comments.php:279 lib/comments.php:160
-msgid "Your comment is awaiting moderation."
-msgstr ""
-
-#: core/class-italystrap-comments.php:214
-#: core/class-italystrap-comments.php:290 lib/comments.php:185
-msgid "Reply to "
-msgstr ""
-
-#: core/class-italystrap-comments.php:264
-#, php-format
-msgid "%s <span class=\"says\">says:</span>"
-msgstr ""
-
-#: core/class-italystrap-comments.php:345
-msgid "Comments are closed."
-msgstr ""
-
-#: core/class-italystrap-comments.php:370
-#: woocommerce/single-product-reviews.php:65
-msgid "Name"
-msgstr ""
-
-#: core/class-italystrap-comments.php:370
-#: core/class-italystrap-comments.php:373
-msgid "(required) <span class=\"required\">*</span>"
-msgstr ""
-
-#: core/class-italystrap-comments.php:370
-#: core/class-italystrap-comments.php:373
-msgid "(required) *"
-msgstr ""
-
-#: core/class-italystrap-comments.php:373
-msgid "Email (will not be published)"
-msgstr ""
-
-#: core/class-italystrap-comments.php:376
-msgid "Website"
-msgstr ""
-
-#: core/class-italystrap-comments.php:376
-msgid "Website (optional)"
-msgstr ""
-
-#: core/class-italystrap-comments.php:387
-msgid "Write your comment here"
-msgstr ""
-
-#: core/class-italystrap-comments.php:390
-#, php-format
-msgid ""
-"Logged in as <a href=\"%1$s\" class=\"btn btn-primary btn-xs\">%2$s</a>. <a "
-"href=\"%3$s\" title=\"Log out of this account\" class=\"btn btn-warning btn-"
-"xs\">Log out?</a>"
-msgstr ""
-
-#: core/class-italystrap-comments.php:392
-#, php-format
-msgid ""
-"You must be <a href=\"%s\" class=\"alert-link\">logged in</a> to post a "
-"comment."
-msgstr ""
-
-#: core/class-italystrap-comments.php:422
-msgid "&laquo; Previous comments"
-msgstr ""
-
-#: core/class-italystrap-comments.php:423
-msgid "Next comments &raquo;"
-msgstr ""
-
-#: core/class-italystrap-comments.php:480 lib/comment_reply.php:25
-msgid "Click here to cancel reply."
-msgstr ""
-
-#: core/class-italystrap-comments.php:556 lib/comments.php:36
-#: lib/comments.php:143
-msgid "The Boss :-)"
-msgstr ""
-
-#: core/class-italystrap-comments.php:575 lib/comments.php:55
-msgid "Reply <i class=\"glyphicon glyphicon-arrow-down\"></i>"
-msgstr ""
-
-#: core/class-italystrap-excerpt.php:49
-msgid "Read more"
-msgstr ""
-
-#: core/class-italystrap-navwalker.php:219
-msgid "Add a menu"
-msgstr ""
-
-#: core/class-italystrap-sidebars.php:44 deprecated/sidebar.php:16
-msgid "Footer Box 1"
-msgstr ""
-
-#: core/class-italystrap-sidebars.php:46 deprecated/sidebar.php:18
-msgid "Footer box 1 widget area (Use only a widget)"
-msgstr ""
-
-#: core/class-italystrap-sidebars.php:54 deprecated/sidebar.php:26
-msgid "Footer Box 2"
-msgstr ""
-
-#: core/class-italystrap-sidebars.php:56 deprecated/sidebar.php:28
-msgid "Footer box 2 widget area (Use only a widget)"
-msgstr ""
-
-#: core/class-italystrap-sidebars.php:64 deprecated/sidebar.php:36
-msgid "Footer Box 3"
-msgstr ""
-
-#: core/class-italystrap-sidebars.php:66 deprecated/sidebar.php:38
-msgid "Footer box 3 widget area (Use only a widget)"
-msgstr ""
-
-#: core/class-italystrap-sidebars.php:74 deprecated/sidebar.php:46
-msgid "Footer Box 4"
-msgstr ""
-
-#: core/class-italystrap-sidebars.php:76 deprecated/sidebar.php:48
-msgid "Footer box 4 widget area (Use only a widget)"
-msgstr ""
-
-#: core/images.php:240
-msgid "Image for 404 page"
-msgstr ""
-
-#: deprecated/breadcrumb.php:2 template/author-bio.php:2
-#: template/author_meta.php:2
+#: deprecated/breadcrumb.php:2
 msgid ""
 "This file no longer needs to be included. Please use the plugin ItalyStrap."
 msgstr ""
 
 #: deprecated/breadcrumb.php:31
+#: tests/tests/phpunit/tests/customize/nav-menus.php:119
 msgid "Home"
 msgstr ""
 
@@ -455,12 +319,97 @@ msgstr ""
 msgid "Blog Archives"
 msgstr ""
 
-#: deprecated/globals.php:2
-msgid "All globals now are in functions.php"
+#: deprecated/comment_reply.php:25 deprecated/deprecated.php:170
+msgid "Click here to cancel reply."
 msgstr ""
 
-#: deprecated/init.php:92 functions.php:490
-msgid "Main Menu"
+#: deprecated/comments.php:36 deprecated/comments.php:143
+#: deprecated/deprecated.php:246
+msgid "The Boss :-)"
+msgstr ""
+
+#: deprecated/comments.php:41 deprecated/comments.php:153
+#: deprecated/deprecated.php:251 deprecated/woocommerce.php:38
+#: src/Comments/Comments.php:195 src/Comments/Comments.php:263
+#: src/Nav_Menu/Nav_Menu_Edit.php:133
+msgid "Edit"
+msgstr ""
+
+#: deprecated/comments.php:55 deprecated/deprecated.php:265
+msgid "Reply <i class=\"glyphicon glyphicon-arrow-down\"></i>"
+msgstr ""
+
+#: deprecated/comments.php:160 src/Comments/Comments.php:202
+#: src/Comments/Comments.php:290
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: deprecated/comments.php:185 src/Comments/Comments.php:225
+msgid "Reply to "
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:20
+msgid "Taxonomies"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:21 deprecated/custom_taxonomy.php:22
+msgid "Taxonomy"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:23
+msgid "All Items"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:24
+msgid "Parent Item"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:25
+msgid "Parent Item:"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:26
+msgid "New Item Name"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:27
+msgid "Add New Item"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:28
+msgid "Edit Item"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:29
+msgid "Update Item"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:30
+msgid "View Item"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:31
+msgid "Separate items with commas"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:32
+msgid "Add or remove items"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:33
+msgid "Choose from the most used"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:34
+msgid "Popular Items"
+msgstr ""
+
+#: deprecated/custom_taxonomy.php:35
+msgid "Search Items"
+msgstr ""
+
+#: deprecated/globals.php:2
+msgid "All globals now are in functions.php"
 msgstr ""
 
 #: deprecated/non-trovato.php:2
@@ -475,296 +424,211 @@ msgstr ""
 msgid "Search again with the form below."
 msgstr ""
 
+#: deprecated/pagination.php:14
+msgid "Use \\ItalyStrap\\Core\\Pagination\\Pagination::render instead."
+msgstr ""
+
+#: deprecated/pagination.php:32 src/Pagination/Pagination.php:58
+msgid "Page: "
+msgstr ""
+
+#: deprecated/password_protection.php:28
+#: src/Controllers/Posts/Parts/Password_Form.php:62
+msgid "To view this protected post, enter the password below:"
+msgstr ""
+
+#: deprecated/password_protection.php:30
+#: src/Controllers/Posts/Parts/Password_Form.php:64
+msgid "Password: "
+msgstr ""
+
+#: deprecated/password_protection.php:31
+#: src/Controllers/Posts/Parts/Password_Form.php:65
+msgid "Enter password"
+msgstr ""
+
+#: deprecated/password_protection.php:32
+#: src/Controllers/Posts/Parts/Password_Form.php:66
+msgid "Submit"
+msgstr ""
+
+#: deprecated/schema.php:44
+msgid ""
+"Use: \\ItalyStrap\\Core\\Schema\\Word_Count::render() or \\ItalyStrap\\Core"
+"\\Schema\\Time_Required::render() instead"
+msgstr ""
+
 #: deprecated/sidebar.php:2
 msgid ""
 "This file is deprecated, please use class-italystrap-sidebars.php instead"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:161
-#: includes/class-tgm-plugin-required.php:62
-msgid "Install Required Plugins"
+#: deprecated/sidebar.php:18
+msgid "Footer box 1 widget area (Use only a widget)"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:162
-#: includes/class-tgm-plugin-required.php:63
-msgid "Install Plugins"
+#: deprecated/sidebar.php:28
+msgid "Footer box 2 widget area (Use only a widget)"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:163
-#: includes/class-tgm-plugin-required.php:64
-#, php-format
-msgid "Installing Plugin: %s"
+#: deprecated/sidebar.php:38
+msgid "Footer box 3 widget area (Use only a widget)"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:164
-msgid "Something went wrong."
+#: deprecated/sidebar.php:48
+msgid "Footer box 4 widget area (Use only a widget)"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:175
-#: includes/class-tgm-plugin-required.php:76
-msgid "Return to Required Plugins Installer"
+#: deprecated/widget.php:28
+msgid "Use this widget to add a vCard"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:176
-msgid "Return to the dashboard"
+#: deprecated/widget.php:57
+msgid "Company name"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:177
-#: includes/class-tgm-plugin-activation.php:1956
-#: includes/class-tgm-plugin-required.php:77
-msgid "Plugin activated successfully."
+#: deprecated/woocommerce.php:85 deprecated/woocommerce.php:117
+#: src/WooCommerce/WC_Nav_Menu.php:46 src/WooCommerce/WC_Nav_Menu.php:78
+msgid "View your shopping cart"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:178
-msgid "The following plugin was activated successfully:"
+#: deprecated/woocommerce.php:103 src/WooCommerce/WC_Nav_Menu.php:64
+msgid "My Account"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:179
-#, php-format
-msgid "All plugins installed and activated successfully. %1$s"
+#: deprecated/woocommerce.php:107 src/WooCommerce/WC_Nav_Menu.php:68
+msgid "Login / Register"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:180
-msgid "Dismiss this notice"
+#: functions/general-functions.php:36
+msgid "Search now"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:532
-#: includes/class-tgm-plugin-activation.php:2173
-msgid "Return to the Dashboard"
+#: functions/general-functions.php:36
+msgid "Search"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1167
-#: includes/class-tgm-plugin-activation.php:1348
-msgid "Private Repository"
+#: functions/general-functions.php:299
+msgid "Comments are closed."
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1170
-#: includes/class-tgm-plugin-activation.php:1351
-msgid "Pre-Packaged"
+#: functions/general-functions.php:324
+msgid "Name"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1175
-msgid "WordPress Repository"
+#: functions/general-functions.php:324 functions/general-functions.php:327
+msgid "(required)"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1178
-msgid "Required"
+#: functions/general-functions.php:324 functions/general-functions.php:327
+msgid "(required) *"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1178
-msgid "Recommended"
+#: functions/general-functions.php:327
+msgid "Email (will not be published)"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1181
-msgid "Not Installed"
+#: functions/general-functions.php:330
+msgid "Website"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1183
-msgid "Installed But Not Activated"
+#: functions/general-functions.php:330
+msgid "Website (optional)"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1288
-#: includes/class-tgm-plugin-activation.php:1409
-msgid "Install"
+#: functions/general-functions.php:341
+msgid "Comment"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1312
-#: includes/class-tgm-plugin-activation.php:1410
-msgid "Activate"
+#: functions/general-functions.php:341
+msgid "Write your comment here"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1372
+#: functions/general-functions.php:344
 #, php-format
 msgid ""
-"No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
-"Dashboard\">Return to the Dashboard</a>"
+"Logged in as <a href=\"%1$s\" class=\"btn btn-primary btn-xs\">%2$s</a>. <a "
+"href=\"%3$s\" title=\"Log out of this account\" class=\"btn btn-warning btn-"
+"xs\">Log out?</a>"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:1388
-msgid "Plugin"
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:1389
-msgid "Source"
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:1390
-msgid "Type"
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:1391
-#: woocommerce/myaccount/my-orders.php:34
-msgid "Status"
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:1939
-msgid "Install package not available."
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:1940
+#: functions/general-functions.php:350
 #, php-format
-msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:1941
-msgid "Unpacking the package&#8230;"
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:1942
-msgid "Installing the plugin&#8230;"
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:1943
-msgid "Plugin install failed."
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:1944
-msgid "Plugin installed successfully."
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:1955
-msgid "Plugin activation failed."
-msgstr ""
-
-#: includes/class-tgm-plugin-activation.php:2069
 msgid ""
-"The installation and activation process is starting. This process may take a "
-"while on some hosts, so please be patient."
+"You must be <a href=\"%s\" class=\"alert-link\">logged in</a> to post a "
+"comment."
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2070
-#, php-format
-msgid "%1$s installed and activated successfully."
+#: functions/general-functions.php:385
+msgid "&laquo; Previous comments"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2070
-#: includes/class-tgm-plugin-activation.php:2079
-msgid "Show Details"
+#: functions/general-functions.php:386
+msgid "Next comments &raquo;"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2070
-#: includes/class-tgm-plugin-activation.php:2079
-msgid "Hide Details"
+#: functions/general-functions.php:490
+msgid "After the &lt;body&gt;"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2071
-msgid "All installations and activations have been completed."
+#: functions/general-functions.php:492
+msgid "Before the header"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2072
-#, php-format
-msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+#: functions/general-functions.php:493
+msgid "The content header"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2076
-msgid ""
-"The installation process is starting. This process may take a while on some "
-"hosts, so please be patient."
+#: functions/general-functions.php:494
+msgid "After the header"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2077
-#, php-format
-msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+#: functions/general-functions.php:496
+msgid "Before the Main Content"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2078
-#, php-format
-msgid "The installation of %1$s failed."
+#: functions/general-functions.php:497
+msgid "Before the Content"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2079
-#, php-format
-msgid "%1$s installed successfully."
+#: functions/general-functions.php:499
+msgid "Before the Loop"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2080
-msgid "All installations have been completed."
+#: functions/general-functions.php:500
+msgid "The Loop"
 msgstr ""
 
-#: includes/class-tgm-plugin-activation.php:2081
-#, php-format
-msgid "Installing Plugin %1$s (%2$d/%3$d)"
+#: functions/general-functions.php:501
+msgid "After the Loop"
 msgstr ""
 
-#: includes/class-tgm-plugin-required.php:65
-msgid "Something went wrong with the plugin API."
+#: functions/general-functions.php:503
+msgid "After the Content"
 msgstr ""
 
-#: includes/class-tgm-plugin-required.php:78
-#, php-format
-msgid "All plugins installed and activated successfully. %s"
+#: functions/general-functions.php:505
+msgid "After the Main Content"
 msgstr ""
 
-#: lib/custom_taxonomy.php:22
-msgid "Taxonomy"
+#: functions/general-functions.php:506
+msgid "In the footer open"
 msgstr ""
 
-#: lib/custom_taxonomy.php:23
-msgid "All Items"
+#: functions/general-functions.php:507
+msgid "In the footer"
 msgstr ""
 
-#: lib/custom_taxonomy.php:24
-msgid "Parent Item"
+#: functions/general-functions.php:508
+msgid "In the footer closed"
 msgstr ""
 
-#: lib/custom_taxonomy.php:25
-msgid "Parent Item:"
+#: functions/general-functions.php:510
+msgid "At the end of the page before the <code>&lt;/body&gt;</code>"
 msgstr ""
 
-#: lib/custom_taxonomy.php:26
-msgid "New Item Name"
-msgstr ""
-
-#: lib/custom_taxonomy.php:27
-msgid "Add New Item"
-msgstr ""
-
-#: lib/custom_taxonomy.php:28
-msgid "Edit Item"
-msgstr ""
-
-#: lib/custom_taxonomy.php:29
-msgid "Update Item"
-msgstr ""
-
-#: lib/custom_taxonomy.php:30
-msgid "View Item"
-msgstr ""
-
-#: lib/custom_taxonomy.php:31
-msgid "Separate items with commas"
-msgstr ""
-
-#: lib/custom_taxonomy.php:32
-msgid "Add or remove items"
-msgstr ""
-
-#: lib/custom_taxonomy.php:33
-msgid "Choose from the most used"
-msgstr ""
-
-#: lib/custom_taxonomy.php:34
-msgid "Popular Items"
-msgstr ""
-
-#: lib/custom_taxonomy.php:35
-msgid "Search Items"
-msgstr ""
-
-#: lib/pagination.php:19
-msgid "Page: "
-msgstr ""
-
-#: lib/password_protection.php:16
-msgid "To view this protected post, enter the password below:"
-msgstr ""
-
-#: lib/password_protection.php:18
-msgid "Password: "
-msgstr ""
-
-#: lib/password_protection.php:19
-msgid "Enter password"
+#: lib/images.php:185
+msgid "Image for 404 page"
 msgstr ""
 
 #: lib/pointer.php:38
@@ -783,55 +647,782 @@ msgid ""
 "wiki/How-to-use-Child-Theme\" target=\"_blank\">How to use Child Theme</a>"
 msgstr ""
 
-#: lib/related_post.php:19
-msgid "Related posts"
-msgstr ""
-
-#: lib/search-form.php:12
-msgid "Search now"
-msgstr ""
-
-#: lib/search-form.php:12
-msgid "Search"
-msgstr ""
-
-#: lib/security.php:7
-msgid "<strong>Login Failed</strong>: please check your username and password."
-msgstr ""
-
-#: lib/widget.php:28
-msgid "Use this widget to add a vCard"
-msgstr ""
-
-#: lib/widget.php:57
-msgid "Company name"
-msgstr ""
-
 #: lib/wp-h5bp-htaccess.php:19
 #, php-format
 msgid "Please make sure your <a href=\"%s\">.htaccess</a> file is writable "
 msgstr ""
 
-#: loops/content-none.php:24
+#: src/Comments/Comments.php:183
+msgid "Post Author"
+msgstr ""
+
+#: src/Comments/Comments.php:275
+#, php-format
+msgid "%s <span class=\"says\">says:</span>"
+msgstr ""
+
+#: src/Comments/Comments.php:281
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: src/Comments/Comments.php:302
+#, php-format
+msgid "Reply to %s %s"
+msgstr ""
+
+#. translators: %s: Name of current post
+#: src/Controllers/Posts/Parts/Edit_Post_Link.php:74
+#, php-format
+msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: src/Controllers/Posts/Parts/Edit_Post_Link.php:125
+msgid "Edit This"
+msgstr ""
+
+#: src/Controllers/Posts/Parts/Edit_Post_Link.php:127
+msgid "Delete post"
+msgstr ""
+
+#: src/Controllers/Posts/Parts/Link_Pages.php:62
+msgid "Pages:"
+msgstr ""
+
+#: src/Controllers/Posts/Parts/Pager.php:74
+msgid "In post navigation"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:95
+msgid "Custom settings"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:104
+msgid "Page container witdh settings"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:106
+#, php-format
+msgid "Choose the width of the page container for this %s"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:112
+#, php-format
+msgid "Default width set in %s"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:121
+msgid "Layout settings"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:123
+#, php-format
+msgid "Advance layout setting for this %s"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:129
+#, php-format
+msgid "Default layout set in %s"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:138
+msgid "Template settings"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:140
+#, php-format
+msgid "Advance template content setting for this %s"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:152
+msgid "Custom header"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:153
+msgid "The image for the theme header"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:161
+msgid "Add or upload image"
+msgstr ""
+
+#: src/Custom/Metabox/Register.php:179
+msgid "Video URL"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:52
+msgid "Link Color"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:79
+msgid "Heading Color"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:104
+msgid "Container Width of the header"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:150
+#, php-format
+msgid "%s Options"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:165
+#: src/Customizer/settings/customizer.php:190
+msgid "Layout"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:168
+msgid ""
+"Allows you to customize the layout for all archive type pages. (Not page and "
+"post)."
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:206
+msgid "Image Options"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:261
+msgid "Default Image"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:262
+msgid ""
+"Upload an image for the default image used for social sharing (must be at "
+"least 1200x600px for Facebook), it will also be displayed if no feautured "
+"image will be added in your content page/post if the theme supports this "
+"feature."
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:286
+msgid "Default 404 Image"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:287
+msgid ""
+"This is a default 404 image, it will be displayed in 404 page (must be at "
+"least weight 848px)"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:312
+msgid "Archive post thumbnail size"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:313
+msgid ""
+"Change image size of post thumbnail in archive, author, blog, category, "
+"search, and tag pages."
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:337
+msgid "Archive post thumbnail alignment"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:338
+msgid ""
+"Change image alignment of post thumbnail in archive, author, blog, category, "
+"search, and tag pages."
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:342
+msgid "None"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:343
+msgid "Center"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:344
+msgid "Left"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:345
+msgid "Right"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:360
+msgid "Navbar Settings"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:363
+msgid ""
+"Allows you to customize settings for the main navbar. Remember that this "
+"uses the Twitter Bootstrap Navbar style, if you want more info read the <a "
+"href=\"http://getbootstrap.com/components/#navbar\" target=\"_blank"
+"\">documentation</a>."
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:384
+msgid "Navbar type"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:385
+msgid ""
+"Select the type of navbar. By default is the <code>navbar-default</code> "
+"(light grey)."
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:389
+msgid "Default navbar"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:390
+msgid "Inverse navbar"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:412
+msgid "Navbar position"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:413
+msgid ""
+"Select the position of the navbar. By default is set to <code>relative top</"
+"code>, you can chose <code>fixed top</code>, <code>fixed bottom</code> or "
+"<code>static top</code>, with the <code>static top</code> you also have to "
+"set the navbar <code>full width</code> for fixing the correct padding."
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:417
+msgid "Default relative top"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:418
+msgid "Fixed Top"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:419
+msgid "Fixed Bottom"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:420
+msgid "Static Top"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:442
+msgid "Navbar width"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:443
+msgid ""
+"Select the nav_width of navbar, this enlarges the navbar to the windows size "
+"(use it also width Static Top option)."
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:447
+msgid "Default boxed width"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:448
+msgid "Full width"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:470
+msgid "Navbar menus width"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:471
+msgid ""
+"Select the menus_width, this is the width of the container of the 2 menu, "
+"main-menu and secondary-menu, with the full width the menus will enlarge to "
+"the widnows size, with the \"width of the content\" they will sized like the "
+"size of the content. If you have select the \"default boxed width\" leave "
+"the default value."
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:475
+msgid "The width of navbar wrapper"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:476
+msgid "The width of the content"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:500
+msgid "Your logo brand for nav menu"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:501
+msgid "Insert here your logo brand for nav menu"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:526
+msgid "Logo image size"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:553
+msgid "Display the navbar brand"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:554
+msgid ""
+"Select the type of navbar brand to visualize or select to hide navbar brand, "
+"if you select to visualize navbar with image you also have to select the "
+"image and the size of the image to visualize in the above controls."
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:558
+msgid "Hide navbar brand"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:559
+msgid "Display navbar brand image"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:560
+msgid "Display navbar brand name"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:561
+msgid "Display navbar brand image and name"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:572
+msgid "Additional CSS"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:573
+msgid "Add custom CSS here"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:600
+msgid "Custom CSS"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:601
+msgid "Insert here your custom CSS"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:615
+#: src/Customizer/settings/customizer.php:641
+msgid "Footer's Colophon"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:616
+#: src/Customizer/settings/customizer.php:642
+msgid "Add text for footer's colophon here"
+msgstr ""
+
+#: src/Customizer/settings/post-content-template.php:21
+msgid "Post content template"
+msgstr ""
+
+#: src/Customizer/settings/post-content-template.php:24
+msgid ""
+"Allows you to customize the post content template for all archive type "
+"pages. (Not page and post)."
+msgstr ""
+
+#: src/Customizer/settings/post-content-template.php:47
+msgid "Template content settings"
+msgstr ""
+
+#: src/Editors/Category.php:128 src/Editors/Category.php:144
+#: src/Nav_Menu/Nav_Menu_Edit.php:179
+msgid "Description"
+msgstr ""
+
+#: src/Editors/Category.php:131 src/Editors/Category.php:148
+msgid ""
+"The description is not prominent by default; however, some themes may show "
+"it."
+msgstr ""
+
+#: src/Editors/config/default_style_formats.php:17
+msgid "Headers"
+msgstr ""
+
+#: src/Editors/config/default_style_formats.php:20
+msgid "Header 1"
+msgstr ""
+
+#: src/Editors/config/default_style_formats.php:24
+msgid "Header 2"
+msgstr ""
+
+#: src/Editors/config/default_style_formats.php:28
+msgid "Header 3"
+msgstr ""
+
+#: src/Editors/config/default_style_formats.php:32
+msgid "Header 4"
+msgstr ""
+
+#: src/Editors/config/default_style_formats.php:36
+msgid "Header 5"
+msgstr ""
+
+#: src/Editors/config/default_style_formats.php:40
+msgid "Header 6"
+msgstr ""
+
+#: src/Editors/config/default_style_formats.php:46
+msgid "Inline"
+msgstr ""
+
+#: src/Editors/config/default_style_formats.php:92
+msgid "Blocks"
+msgstr ""
+
+#: src/Editors/config/default_style_formats.php:113
+msgid "Alignment"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:22
+msgid "Text size"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:26
+msgid "Big"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:33
+msgid "Small"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:40
+msgid "H1"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:48
+msgid "H2"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:56
+msgid "H3"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:64
+msgid "H4"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:72
+msgid "H5"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:80
+msgid "H6"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:90
+msgid "Text colors"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:94
+msgid "Text primary"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:102
+msgid "Text secondary"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:110
+msgid "Text inverse"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:128
+msgid "Highlight text"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:132
+msgid "Mark"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:139
+msgid "Button style"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:143
+msgid "Button Primary"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:150
+msgid "Button Large"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:157
+msgid "Button small"
+msgstr ""
+
+#: src/Editors/config/style_formats.php:164
+msgid "Button block"
+msgstr ""
+
+#: src/Init/Init_Theme.php:110
+msgid "Secondary Menu"
+msgstr ""
+
+#: src/Init/Init_Theme.php:111
+msgid "Social Menu"
+msgstr ""
+
+#: src/Init/Init_Theme.php:113
+msgid "Footer Menu"
+msgstr ""
+
+#. translators: %s: title of menu item which is invalid
+#: src/Nav_Menu/Nav_Menu_Edit.php:84
+#, php-format
+msgid "%s (Invalid)"
+msgstr ""
+
+#. translators: %s: title of menu item in draft status
+#: src/Nav_Menu/Nav_Menu_Edit.php:88
+#, php-format
+msgid "%s (Pending)"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:101
+msgid "sub item"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:142
+msgid "URL"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:149
+msgid "Navigation Label"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:155
+msgid "Title Attribute"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:162
+msgid "Open link in a new tab"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:167
+msgid "CSS Classes (optional)"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:173
+msgid "Link Relationship (XFN)"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:181
+msgid ""
+"The description will be displayed in the menu if the current theme supports "
+"it."
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:187
+msgid "Move"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:188
+msgid "Up one"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:189
+msgid "Down one"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:192
+msgid "To the top"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:199
+#, php-format
+msgid "Original: %s"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:212
+msgid "Remove"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:213
+msgid "Cancel"
+msgstr ""
+
+#: src/Nav_Menu/Register_Nav_Menu_Edit.php:81
+msgid "Glyphicon or your icon class"
+msgstr ""
+
+#: src/Navbar/Bootstrap_Nav_Menu.php:168
+msgid "(current)"
+msgstr ""
+
+#: src/Navbar/Bootstrap_Nav_Menu.php:394
+msgid "Add a menu"
+msgstr ""
+
+#: src/Navbar/Navbar.php:198
+msgid "Toggle navigation"
+msgstr ""
+
+#: src/Pagination/Pagination.php:173
+msgid "navigation"
+msgstr ""
+
+#: src/Required_Plugins/Register.php:52
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:334
+msgid "Install Required Plugins"
+msgstr ""
+
+#: src/Required_Plugins/Register.php:54
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:335
+msgid "Install Plugins"
+msgstr ""
+
+#. translators: %s: plugin name.
+#: src/Required_Plugins/Register.php:59
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:337
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: src/Required_Plugins/Register.php:61
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:340
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: src/Required_Plugins/Register.php:66
+#, php-format
+msgid "This theme requires the following plugin: %1$s. Please, install it now"
+msgstr ""
+
+#. translators: 1: plugin name(s).
+#: src/Required_Plugins/Register.php:71
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:349
+#, php-format
+msgid "This theme recommends the following plugin: %1$s."
+msgstr ""
+
+#: src/Required_Plugins/Register.php:76
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to install the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin "
+"installed."
+msgstr ""
+
+#. translators: 1: plugin name(s).
+#: src/Required_Plugins/Register.php:81
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:367
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgstr ""
+
+#. translators: 1: plugin name(s).
+#: src/Required_Plugins/Register.php:86
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:373
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgstr ""
+
+#: src/Required_Plugins/Register.php:91
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugin. Contact the administrator of this site for help on getting the "
+"plugin activated."
+msgstr ""
+
+#. translators: 1: plugin name(s).
+#: src/Required_Plugins/Register.php:96
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:355
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr ""
+
+#: src/Required_Plugins/Register.php:101
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to update the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin "
+"updated."
+msgstr ""
+
+#: src/Required_Plugins/Register.php:103
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:378
+msgid "Begin installing plugin"
+msgstr ""
+
+#: src/Required_Plugins/Register.php:105
+msgid "Activate installed plugin"
+msgstr ""
+
+#: src/Required_Plugins/Register.php:107
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:392
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: src/Required_Plugins/Register.php:109
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:394
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3252
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: src/Required_Plugins/Register.php:114
+#, php-format
+msgid "All plugins installed and activated successfully. %s"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:40
+msgid "Url avatar"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:41
+msgid "Skype"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:42
+msgid "Twitter"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:43
+msgid "Google Profile URL"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:44
+msgid "Google Page URL"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:45
+msgid "Facebook Profile URL"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:46
+msgid "Facebook Page URL"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:47
+msgid "LinkedIn"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:48
+msgid "Pinterest"
+msgstr ""
+
+#: templates/misc/archive-headline.php:22
+#, php-format
+msgid "Search result of: %s"
+msgstr ""
+
+#: templates/posts/none.php:29
 #, php-format
 msgid ""
 "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
-#: loops/content-single.php:47
-msgid "Pages:"
-msgstr ""
-
-#: template/meta.php:24
+#: templates/posts/parts/meta.php:31
 msgid "No Responses"
 msgstr ""
 
-#: template/meta.php:24
+#: templates/posts/parts/meta.php:31
 msgid "One Response"
 msgstr ""
 
-#: template/meta.php:24
+#: templates/posts/parts/meta.php:31
 msgid "% Responses"
+msgstr ""
+
+#: templates/posts/parts/preview.php:16
+msgid ""
+"<strong>Note:</strong> You are previewing this post. This post has not yet "
+"been published."
 msgstr ""
 
 #: tests/tests/phpunit/data/plugins/wordpress-importer/parsers.php:42
@@ -1140,933 +1731,364 @@ msgstr ""
 msgid "This taxonomy is not hierarchical."
 msgstr ""
 
-#: woocommerce/auth/form-grant-access.php:16 woocommerce/auth/form-login.php:18
+#. translators: %s: plugin name.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:339
 #, php-format
-msgid "%s would like to connect to your store"
+msgid "Updating Plugin: %s"
 msgstr ""
 
-#: woocommerce/auth/form-grant-access.php:20
+#. translators: 1: plugin name(s).
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:343
 #, php-format
-msgid ""
-"This will give \"%s\" <strong>%s</strong> access which will allow it to:"
+msgid "This theme requires the following plugin: %1$s."
 msgstr ""
 
-#: woocommerce/auth/form-grant-access.php:30
+#. translators: 1: plugin name(s).
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:361
 #, php-format
-msgid "Logged in as %s"
+msgid "There is an update available for: %1$s."
 msgstr ""
 
-#: woocommerce/auth/form-grant-access.php:30
-msgid "Logout"
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:383
+msgid "Begin updating plugin"
 msgstr ""
 
-#: woocommerce/auth/form-grant-access.php:34
-msgid "Approve"
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:388
+msgid "Begin activating plugin"
 msgstr ""
 
-#: woocommerce/auth/form-grant-access.php:35
-msgid "Deny"
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:393
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:920
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2626
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3673
+msgid "Return to the Dashboard"
 msgstr ""
 
-#: woocommerce/auth/form-login.php:22
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:395
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3045
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#. translators: 1: plugin name.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:397
 #, php-format
-msgid ""
-"To connect to %1$s you need to be logged in. Log in to your store below, or "
-"%2$scancel and return to %1$s%3$s"
+msgid "No action taken. Plugin %1$s was already active."
 msgstr ""
 
-#: woocommerce/auth/form-login.php:26 woocommerce/myaccount/form-login.php:35
-msgid "Username or email address"
-msgstr ""
-
-#: woocommerce/auth/form-login.php:30 woocommerce/global/form-login.php:30
-#: woocommerce/myaccount/form-login.php:39
-#: woocommerce/myaccount/form-login.php:89
-msgid "Password"
-msgstr ""
-
-#: woocommerce/auth/header.php:20
-msgid "Application Authentication Request"
-msgstr ""
-
-#: woocommerce/cart/cart-empty.php:18
-msgid "Your cart is currently empty."
-msgstr ""
-
-#: woocommerce/cart/cart-empty.php:22
-msgid "Return To Shop"
-msgstr ""
-
-#: woocommerce/cart/cart-shipping.php:20
-#, php-format
-msgid "Shipping #%d"
-msgstr ""
-
-#: woocommerce/cart/cart-shipping.php:22 woocommerce/cart/cart-shipping.php:97
-#: woocommerce/cart/cart-totals.php:46
-msgid "Shipping"
-msgstr ""
-
-#: woocommerce/cart/cart-shipping.php:59
-msgid "Please use the shipping calculator to see available shipping methods."
-msgstr ""
-
-#: woocommerce/cart/cart-shipping.php:63
-msgid ""
-"Please continue to the checkout and enter your full address to see if there "
-"are any available shipping methods."
-msgstr ""
-
-#: woocommerce/cart/cart-shipping.php:67
-msgid "Please fill in your details to see available shipping methods."
-msgstr ""
-
-#: woocommerce/cart/cart-shipping.php:76 woocommerce/cart/cart-shipping.php:82
-msgid ""
-"There are no shipping methods available. Please double check your address, "
-"or contact us if you need any help."
-msgstr ""
-
-#: woocommerce/cart/cart-totals.php:19
-msgid "Cart Totals"
-msgstr ""
-
-#: woocommerce/cart/cart-totals.php:24 woocommerce/cart/mini-cart.php:71
-#: woocommerce/checkout/review-order.php:50
-msgid "Subtotal"
-msgstr ""
-
-#: woocommerce/cart/cart-totals.php:78 woocommerce/cart/cart.php:30
-#: woocommerce/checkout/review-order.php:18
-#: woocommerce/checkout/review-order.php:97
-#: woocommerce/myaccount/my-orders.php:35
-#: woocommerce/order/order-details.php:21
-msgid "Total"
-msgstr ""
-
-#: woocommerce/cart/cart-totals.php:90
-#, php-format
-msgid " (taxes estimated for %s)"
-msgstr ""
-
-#: woocommerce/cart/cart-totals.php:93
+#. translators: 1: plugin name.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:399
 #, php-format
 msgid ""
-"Note: Shipping and taxes are estimated%s and will be updated during checkout "
-"based on your billing and shipping information."
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
 msgstr ""
 
-#: woocommerce/cart/cart.php:27 woocommerce/checkout/form-pay.php:20
-#: woocommerce/checkout/review-order.php:17
-#: woocommerce/emails/admin-cancelled-order.php:22
-#: woocommerce/emails/admin-new-order.php:27
-#: woocommerce/emails/customer-completed-order.php:27
-#: woocommerce/emails/customer-invoice.php:31
-#: woocommerce/emails/customer-note.php:31
-#: woocommerce/emails/customer-processing-order.php:27
-#: woocommerce/emails/customer-refunded-order.php:34
-#: woocommerce/order/order-details.php:20
-msgid "Product"
+#. translators: 1: dashboard link.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:401
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
 msgstr ""
 
-#: woocommerce/cart/cart.php:28 woocommerce/emails/admin-cancelled-order.php:24
-#: woocommerce/emails/admin-new-order.php:29
-#: woocommerce/emails/customer-completed-order.php:29
-#: woocommerce/emails/customer-invoice.php:33
-#: woocommerce/emails/customer-note.php:33
-#: woocommerce/emails/customer-processing-order.php:29
-#: woocommerce/emails/customer-refunded-order.php:36
-msgid "Price"
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:402
+msgid "Dismiss this notice"
 msgstr ""
 
-#: woocommerce/cart/cart.php:29 woocommerce/emails/admin-cancelled-order.php:23
-#: woocommerce/emails/admin-new-order.php:28
-#: woocommerce/emails/customer-completed-order.php:28
-#: woocommerce/emails/customer-invoice.php:32
-#: woocommerce/emails/customer-note.php:32
-#: woocommerce/emails/customer-processing-order.php:28
-#: woocommerce/emails/customer-refunded-order.php:35
-msgid "Quantity"
-msgstr ""
-
-#: woocommerce/cart/cart.php:50 woocommerce/cart/mini-cart.php:40
-msgid "Remove this item"
-msgstr ""
-
-#: woocommerce/cart/cart.php:128
-msgid "Coupon"
-msgstr ""
-
-#: woocommerce/cart/cross-sells.php:40
-msgid "You may be interested in&hellip;"
-msgstr ""
-
-#: woocommerce/cart/mini-cart.php:63
-msgid "No products in the cart."
-msgstr ""
-
-#: woocommerce/cart/mini-cart.php:76
-msgid "View Cart"
-msgstr ""
-
-#: woocommerce/cart/mini-cart.php:77
-msgid "Checkout"
-msgstr ""
-
-#: woocommerce/cart/proceed-to-checkout-button.php:16
-msgid "Proceed to Checkout"
-msgstr ""
-
-#: woocommerce/cart/shipping-calculator.php:24
-msgid "Calculate Shipping"
-msgstr ""
-
-#: woocommerce/cart/shipping-calculator.php:30
-msgid "Select a country&hellip;"
-msgstr ""
-
-#: woocommerce/cart/shipping-calculator.php:54
-msgid "Select a state&hellip;"
-msgstr ""
-
-#: woocommerce/cart/shipping-calculator.php:87
-msgid "Update Totals"
-msgstr ""
-
-#: woocommerce/checkout/cart-errors.php:18
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:403
 msgid ""
-"There are some issues with the items in your cart (shown above). Please go "
-"back to the cart page and resolve these issues before checking out."
+"There are one or more required or recommended plugins to install, update or "
+"activate."
 msgstr ""
 
-#: woocommerce/checkout/cart-errors.php:22
-msgid "Return To Cart"
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:404
+msgid "Please contact the administrator of this site for help."
 msgstr ""
 
-#: woocommerce/checkout/form-billing.php:19
-msgid "Billing &amp; Shipping"
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:607
+msgid "This plugin needs to be updated to be compatible with your theme."
 msgstr ""
 
-#: woocommerce/checkout/form-billing.php:23
-msgid "Billing Details"
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:608
+msgid "Update Required"
 msgstr ""
 
-#: woocommerce/checkout/form-billing.php:42
-msgid "Create an account?"
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:725
+msgid "Set the parent_slug config variable instead."
 msgstr ""
 
-#: woocommerce/checkout/form-billing.php:53
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:1027
 msgid ""
-"Create an account by entering the information below. If you are a returning "
-"customer please login at the top of the page."
+"The remote plugin package does not contain a folder with the desired slug "
+"and renaming did not work."
 msgstr ""
 
-#: woocommerce/checkout/form-checkout.php:20
-msgid "You must be logged in to checkout."
-msgstr ""
-
-#: woocommerce/checkout/form-checkout.php:45
-msgid "Your order"
-msgstr ""
-
-#: woocommerce/checkout/form-coupon.php:18
-msgid "Have a coupon?"
-msgstr ""
-
-#: woocommerce/checkout/form-coupon.php:18
-msgid "Click here to enter your code"
-msgstr ""
-
-#: woocommerce/checkout/form-login.php:18
-msgid "Returning customer?"
-msgstr ""
-
-#: woocommerce/checkout/form-login.php:19
-msgid "Click here to login"
-msgstr ""
-
-#: woocommerce/checkout/form-login.php:26
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:1027
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:1030
 msgid ""
-"If you have shopped with us before, please enter your details in the boxes "
-"below. If you are a new customer please proceed to the Billing &amp; "
-"Shipping section."
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
 msgstr ""
 
-#: woocommerce/checkout/form-pay.php:21
-msgid "Qty"
-msgstr ""
-
-#: woocommerce/checkout/form-pay.php:22
-msgid "Totals"
-msgstr ""
-
-#: woocommerce/checkout/form-pay.php:80
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:1030
 msgid ""
-"Sorry, it seems that there are no available payment methods for your "
-"location. Please contact us if you require assistance or wish to make "
-"alternate arrangements."
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
 msgstr ""
 
-#: woocommerce/checkout/form-pay.php:90
-msgid "Pay for order"
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:1214
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3041
+msgid "and"
 msgstr ""
 
-#: woocommerce/checkout/form-shipping.php:32
-msgid "Ship to a different address?"
+#. translators: %s: version number
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2075
+#, php-format
+msgid "TGMPA v%s"
 msgstr ""
 
-#: woocommerce/checkout/form-shipping.php:58
-#: woocommerce/single-product/tabs/additional-information.php:16
-msgid "Additional Information"
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2366
+msgid "Required"
 msgstr ""
 
-#: woocommerce/checkout/payment.php:30
-msgid "Please fill in your details above to see available payment methods."
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2369
+msgid "Recommended"
 msgstr ""
 
-#: woocommerce/checkout/payment.php:32
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2385
+msgid "WordPress Repository"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2388
+msgid "External Source"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2391
+msgid "Pre-Packaged"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2408
+msgid "Not Installed"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2412
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2414
+msgid "Active"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2420
+msgid "Required Update not Available"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2423
+msgid "Requires Update"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2426
+msgid "Update recommended"
+msgstr ""
+
+#. translators: 1: install status, 2: update status
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2435
+#, php-format
+msgid "%1$s, %2$s"
+msgstr ""
+
+#. translators: 1: number of plugins.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2481
+#, php-format
+msgid "All <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#. translators: 1: number of plugins.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2485
+#, php-format
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#. translators: 1: number of plugins.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2489
+#, php-format
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#. translators: 1: number of plugins.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2493
+#, php-format
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2575
+msgid "unknown"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2583
+msgid "Installed version:"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2591
+msgid "Minimum required version:"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2603
+msgid "Available version:"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2626
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2640
+msgid "Plugin"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2641
+msgid "Source"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2642
+msgid "Type"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2646
+msgid "Version"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2647
+msgid "Status"
+msgstr ""
+
+#. translators: %2$s: plugin name in screen reader markup
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2696
+#, php-format
+msgid "Install %2$s"
+msgstr ""
+
+#. translators: %2$s: plugin name in screen reader markup
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2701
+#, php-format
+msgid "Update %2$s"
+msgstr ""
+
+#. translators: %2$s: plugin name in screen reader markup
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2707
+#, php-format
+msgid "Activate %2$s"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2777
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2810
+msgid "Install"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2816
+msgid "Update"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2819
+msgid "Activate"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2850
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2852
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2893
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2895
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3001
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3027
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3251
+msgid "Plugin activation failed."
+msgstr ""
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3591
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#. translators: 1: plugin name, 2: error message.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3594
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#. translators: 1: plugin name.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3596
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3600
 msgid ""
-"Sorry, it seems that there are no available payment methods for your state. "
-"Please contact us if you require assistance or wish to make alternate "
-"arrangements."
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
 msgstr ""
 
-#: woocommerce/checkout/payment.php:43
+#. translators: 1: plugin name.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3602
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3602
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3610
+msgid "Show Details"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3602
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3610
+msgid "Hide Details"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3603
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3605
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3608
 msgid ""
-"Since your browser does not support JavaScript, or it is disabled, please "
-"ensure you click the <em>Update Totals</em> button before placing your "
-"order. You may be charged more than the amount stated above if you fail to "
-"do so."
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
 msgstr ""
 
-#: woocommerce/checkout/payment.php:53
+#. translators: 1: plugin name.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3610
 #, php-format
-msgid ""
-"I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms &amp; "
-"conditions</a>"
+msgid "%1$s installed successfully."
 msgstr ""
 
-#: woocommerce/checkout/thankyou.php:18
-msgid ""
-"Unfortunately your order cannot be processed as the originating bank/"
-"merchant has declined your transaction."
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3611
+msgid "All installations have been completed."
 msgstr ""
 
-#: woocommerce/checkout/thankyou.php:22
-msgid "Please attempt your purchase again or go to your account page."
-msgstr ""
-
-#: woocommerce/checkout/thankyou.php:24
-msgid "Please attempt your purchase again."
-msgstr ""
-
-#: woocommerce/checkout/thankyou.php:28 woocommerce/myaccount/my-orders.php:68
-msgid "Pay"
-msgstr ""
-
-#: woocommerce/checkout/thankyou.php:30
-msgid "My Account"
-msgstr ""
-
-#: woocommerce/checkout/thankyou.php:36 woocommerce/checkout/thankyou.php:67
-msgid "Thank you. Your order has been received."
-msgstr ""
-
-#: woocommerce/checkout/thankyou.php:40
-msgid "Order Number:"
-msgstr ""
-
-#: woocommerce/checkout/thankyou.php:44
-msgid "Date:"
-msgstr ""
-
-#: woocommerce/checkout/thankyou.php:48
-msgid "Total:"
-msgstr ""
-
-#: woocommerce/checkout/thankyou.php:53
-msgid "Payment Method:"
-msgstr ""
-
-#: woocommerce/emails/admin-cancelled-order.php:13
-#: woocommerce/emails/plain/admin-cancelled-order.php:15
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3613
 #, php-format
-msgid "The order #%d from %s has been cancelled. The order was as follows:"
-msgstr ""
-
-#: woocommerce/emails/admin-cancelled-order.php:17
-#, php-format
-msgid "Order: %s"
-msgstr ""
-
-#: woocommerce/emails/admin-new-order.php:18
-#, php-format
-msgid "You have received an order from %s. The order is as follows:"
-msgstr ""
-
-#: woocommerce/emails/admin-new-order.php:22
-#: woocommerce/emails/customer-completed-order.php:22
-#: woocommerce/emails/customer-invoice.php:26
-#: woocommerce/emails/customer-note.php:26
-#: woocommerce/emails/customer-processing-order.php:22
-#: woocommerce/emails/customer-refunded-order.php:29
-#, php-format
-msgid "Order #%s"
-msgstr ""
-
-#: woocommerce/emails/customer-completed-order.php:18
-#: woocommerce/emails/plain/customer-completed-order.php:16
-#, php-format
-msgid ""
-"Hi there. Your recent order on %s has been completed. Your order details are "
-"shown below for your reference:"
-msgstr ""
-
-#: woocommerce/emails/customer-invoice.php:20
-#: woocommerce/emails/plain/customer-invoice.php:17
-#, php-format
-msgid ""
-"An order has been created for you on %s. To pay for this order please use "
-"the following link: %s"
-msgstr ""
-
-#: woocommerce/emails/customer-invoice.php:20
-msgid "pay"
-msgstr ""
-
-#: woocommerce/emails/customer-new-account.php:18
-#: woocommerce/emails/plain/customer-new-account.php:16
-#, php-format
-msgid ""
-"Thanks for creating an account on %s. Your username is <strong>%s</strong>."
-msgstr ""
-
-#: woocommerce/emails/customer-new-account.php:22
-#, php-format
-msgid "Your password has been automatically generated: <strong>%s</strong>"
-msgstr ""
-
-#: woocommerce/emails/customer-new-account.php:26
-#: woocommerce/emails/plain/customer-new-account.php:21
-#, php-format
-msgid ""
-"You can access your account area to view your orders and change your "
-"password here: %s."
-msgstr ""
-
-#: woocommerce/emails/customer-note.php:18
-#: woocommerce/emails/plain/customer-note.php:16
-msgid "Hello, a note has just been added to your order:"
-msgstr ""
-
-#: woocommerce/emails/customer-note.php:22
-#: woocommerce/emails/plain/customer-note.php:24
-msgid "For your reference, your order details are shown below."
-msgstr ""
-
-#: woocommerce/emails/customer-processing-order.php:18
-#: woocommerce/emails/plain/customer-processing-order.php:16
-msgid ""
-"Your order has been received and is now being processed. Your order details "
-"are shown below for your reference:"
-msgstr ""
-
-#: woocommerce/emails/customer-refunded-order.php:20
-#, php-format
-msgid "Hi there. Your order on %s has been partially refunded."
-msgstr ""
-
-#: woocommerce/emails/customer-refunded-order.php:23
-#, php-format
-msgid "Hi there. Your order on %s has been refunded."
-msgstr ""
-
-#: woocommerce/emails/customer-refunded-order.php:50
-#: woocommerce/emails/plain/customer-refunded-order.php:32
-msgid "Amount Refunded"
-msgstr ""
-
-#: woocommerce/emails/customer-reset-password.php:18
-#: woocommerce/emails/plain/customer-reset-password.php:16
-msgid "Someone requested that the password be reset for the following account:"
-msgstr ""
-
-#: woocommerce/emails/customer-reset-password.php:19
-#: woocommerce/emails/plain/customer-reset-password.php:18
-#, php-format
-msgid "Username: %s"
-msgstr ""
-
-#: woocommerce/emails/customer-reset-password.php:20
-#: woocommerce/emails/plain/customer-reset-password.php:19
-msgid "If this was a mistake, just ignore this email and nothing will happen."
-msgstr ""
-
-#: woocommerce/emails/customer-reset-password.php:21
-#: woocommerce/emails/plain/customer-reset-password.php:20
-msgid "To reset your password, visit the following address:"
-msgstr ""
-
-#: woocommerce/emails/customer-reset-password.php:24
-msgid "Click here to reset your password"
-msgstr ""
-
-#: woocommerce/emails/email-addresses.php:20
-#: woocommerce/emails/plain/email-addresses.php:14
-msgid "Billing address"
-msgstr ""
-
-#: woocommerce/emails/email-addresses.php:30
-#: woocommerce/emails/plain/email-addresses.php:18
-msgid "Shipping address"
-msgstr ""
-
-#: woocommerce/emails/plain/admin-cancelled-order.php:21
-#: woocommerce/emails/plain/admin-new-order.php:22
-#: woocommerce/emails/plain/customer-completed-order.php:22
-#: woocommerce/emails/plain/customer-invoice.php:23
-#: woocommerce/emails/plain/customer-note.php:30
-#: woocommerce/emails/plain/customer-processing-order.php:22
-#: woocommerce/emails/plain/customer-refunded-order.php:22
-#, php-format
-msgid "Order number: %s"
-msgstr ""
-
-#: woocommerce/emails/plain/admin-cancelled-order.php:22
-#: woocommerce/emails/plain/admin-new-order.php:23
-#: woocommerce/emails/plain/customer-completed-order.php:23
-#: woocommerce/emails/plain/customer-invoice.php:24
-#: woocommerce/emails/plain/customer-note.php:31
-#: woocommerce/emails/plain/customer-processing-order.php:23
-#: woocommerce/emails/plain/customer-refunded-order.php:23
-msgid "jS F Y"
-msgstr ""
-
-#: woocommerce/emails/plain/admin-cancelled-order.php:36
-#: woocommerce/emails/plain/admin-new-order.php:37
-#, php-format
-msgid "View order: %s"
-msgstr ""
-
-#: woocommerce/emails/plain/admin-new-order.php:16
-#, php-format
-msgid "You have received an order from %s."
-msgstr ""
-
-#: woocommerce/emails/plain/customer-new-account.php:19
-#, php-format
-msgid "Your password is <strong>%s</strong>."
-msgstr ""
-
-#: woocommerce/emails/plain/customer-refunded-order.php:16
-#, php-format
-msgid ""
-"Hi there. Your order on %s has been refunded. Your order details are shown "
-"below for your reference:"
-msgstr ""
-
-#: woocommerce/emails/plain/email-order-items.php:35
-#, php-format
-msgid "Quantity: %s"
-msgstr ""
-
-#: woocommerce/emails/plain/email-order-items.php:38
-#, php-format
-msgid "Cost: %s"
-msgstr ""
-
-#: woocommerce/emails/plain/email-order-items.php:49
-#, php-format
-msgid "Download %d"
-msgstr ""
-
-#: woocommerce/emails/plain/email-order-items.php:51
-msgid "Download"
-msgstr ""
-
-#: woocommerce/global/form-login.php:26
-#: woocommerce/myaccount/form-lost-password.php:24
-msgid "Username or email"
-msgstr ""
-
-#: woocommerce/global/form-login.php:42 woocommerce/myaccount/form-login.php:49
-msgid "Remember me"
-msgstr ""
-
-#: woocommerce/global/form-login.php:46 woocommerce/myaccount/form-login.php:53
-msgid "Lost your password?"
-msgstr ""
-
-#: woocommerce/loop/no-products-found.php:17
-msgid "No products were found matching your selection."
-msgstr ""
-
-#: woocommerce/loop/result-count.php:30
-msgid "Showing the single result"
-msgstr ""
-
-#: woocommerce/loop/result-count.php:32
-#, php-format
-msgid "Showing all %d results"
-msgstr ""
-
-#: woocommerce/loop/sale-flash.php:19
-#: woocommerce/single-product/sale-flash.php:19
-msgid "Sale!"
-msgstr ""
-
-#: woocommerce/myaccount/form-add-payment-method.php:41
-msgid ""
-"Sorry, it seems that there are no payment methods which support adding a new "
-"payment method. Please contact us if you require assistance or wish to make "
-"alternate arrangements."
-msgstr ""
-
-#: woocommerce/myaccount/form-edit-account.php:23
-msgid "First name"
-msgstr ""
-
-#: woocommerce/myaccount/form-edit-account.php:27
-msgid "Last name"
-msgstr ""
-
-#: woocommerce/myaccount/form-edit-account.php:33
-#: woocommerce/myaccount/form-login.php:82
-msgid "Email address"
-msgstr ""
-
-#: woocommerce/myaccount/form-edit-account.php:38
-msgid "Password Change"
-msgstr ""
-
-#: woocommerce/myaccount/form-edit-account.php:41
-msgid "Current Password (leave blank to leave unchanged)"
-msgstr ""
-
-#: woocommerce/myaccount/form-edit-account.php:45
-msgid "New Password (leave blank to leave unchanged)"
-msgstr ""
-
-#: woocommerce/myaccount/form-edit-account.php:49
-msgid "Confirm New Password"
-msgstr ""
-
-#: woocommerce/myaccount/form-edit-address.php:16
-#: woocommerce/myaccount/my-address.php:19
-#: woocommerce/myaccount/my-address.php:25
-#: woocommerce/order/order-details-customer.php:49
-msgid "Billing Address"
-msgstr ""
-
-#: woocommerce/myaccount/form-edit-address.php:16
-#: woocommerce/myaccount/my-address.php:20
-#: woocommerce/order/order-details-customer.php:60
-msgid "Shipping Address"
-msgstr ""
-
-#: woocommerce/myaccount/form-login.php:28
-msgid "Login"
-msgstr ""
-
-#: woocommerce/myaccount/form-login.php:66
-msgid "Register"
-msgstr ""
-
-#: woocommerce/myaccount/form-login.php:75
-msgid "Username"
-msgstr ""
-
-#: woocommerce/myaccount/form-login.php:96
-msgid "Anti-spam"
-msgstr ""
-
-#: woocommerce/myaccount/form-lost-password.php:22
-msgid ""
-"Lost your password? Please enter your username or email address. You will "
-"receive a link to create a new password via email."
-msgstr ""
-
-#: woocommerce/myaccount/form-lost-password.php:28
-msgid "Enter a new password below."
-msgstr ""
-
-#: woocommerce/myaccount/form-lost-password.php:31
-msgid "New password"
-msgstr ""
-
-#: woocommerce/myaccount/form-lost-password.php:35
-msgid "Re-enter new password"
-msgstr ""
-
-#: woocommerce/myaccount/form-lost-password.php:50
-msgid "Reset Password"
-msgstr ""
-
-#: woocommerce/myaccount/form-lost-password.php:50
-msgid "Save"
-msgstr ""
-
-#: woocommerce/myaccount/my-account.php:19
-#, php-format
-msgid "Hello <strong>%1$s</strong> (not %1$s? <a href=\"%2$s\">Sign out</a>)."
-msgstr ""
-
-#: woocommerce/myaccount/my-account.php:24
-#, php-format
-msgid ""
-"From your account dashboard you can view your recent orders, manage your "
-"shipping and billing addresses and <a href=\"%s\">edit your password and "
-"account details</a>."
-msgstr ""
-
-#: woocommerce/myaccount/my-address.php:17
-msgid "My Addresses"
-msgstr ""
-
-#: woocommerce/myaccount/my-address.php:23
-msgid "My Address"
-msgstr ""
-
-#: woocommerce/myaccount/my-address.php:35
-msgid "The following addresses will be used on the checkout page by default."
-msgstr ""
-
-#: woocommerce/myaccount/my-address.php:64
-msgid "You have not set up this type of address yet."
-msgstr ""
-
-#: woocommerce/myaccount/my-downloads.php:20
-msgid "Available Downloads"
-msgstr ""
-
-#: woocommerce/myaccount/my-orders.php:26
-msgid "Recent Orders"
-msgstr ""
-
-#: woocommerce/myaccount/my-orders.php:32
-msgid "Order"
-msgstr ""
-
-#: woocommerce/myaccount/my-orders.php:33
-msgid "Date"
-msgstr ""
-
-#: woocommerce/myaccount/my-orders.php:81
-msgid "View"
-msgstr ""
-
-#: woocommerce/myaccount/view-order.php:20
-#, php-format
-msgid ""
-"Order #<mark class=\"order-number\">%s</mark> was placed on <mark class="
-"\"order-date\">%s</mark> and is currently <mark class=\"order-status\">%s</"
-"mark>."
-msgstr ""
-
-#: woocommerce/myaccount/view-order.php:24 woocommerce/order/tracking.php:25
-msgid "Order Updates"
-msgstr ""
-
-#: woocommerce/myaccount/view-order.php:30 woocommerce/order/tracking.php:31
-msgid "l jS \\o\\f F Y, h:ia"
-msgstr ""
-
-#: woocommerce/order/form-tracking.php:20
-msgid ""
-"To track your order please enter your Order ID in the box below and press "
-"the \"Track\" button. This was given to you on your receipt and in the "
-"confirmation email you should have received."
-msgstr ""
-
-#: woocommerce/order/form-tracking.php:22
-msgid "Order ID"
-msgstr ""
-
-#: woocommerce/order/form-tracking.php:23
-msgid "Billing Email"
-msgstr ""
-
-#: woocommerce/order/order-again.php:16
-msgid "Order Again"
-msgstr ""
-
-#: woocommerce/order/order-details-customer.php:14
-msgid "Customer Details"
-msgstr ""
-
-#: woocommerce/order/order-details-customer.php:19
-msgid "Note:"
-msgstr ""
-
-#: woocommerce/order/order-details-customer.php:26
-msgid "Email:"
-msgstr ""
-
-#: woocommerce/order/order-details-customer.php:33
-msgid "Telephone:"
-msgstr ""
-
-#: woocommerce/order/order-details-customer.php:52
-#: woocommerce/order/order-details-customer.php:63
-#: woocommerce/single-product/meta.php:26
-msgid "N/A"
-msgstr ""
-
-#: woocommerce/order/order-details.php:16
-msgid "Order Details"
-msgstr ""
-
-#: woocommerce/order/tracking.php:14
-#, php-format
-msgid "Order #%s which was made %s has the status &ldquo;%s&rdquo;"
-msgstr ""
-
-#: woocommerce/order/tracking.php:14
-msgid "ago"
-msgstr ""
-
-#: woocommerce/order/tracking.php:16
-msgid "and was completed"
-msgstr ""
-
-#: woocommerce/order/tracking.php:16
-msgid " ago"
-msgstr ""
-
-#: woocommerce/product-searchform.php:2
-msgid "Search for:"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:26
-msgid "Reviews"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:47
-msgid "There are no reviews yet."
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:60
-msgid "Add a review"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:60
-msgid "Be the first to review"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:61
-#, php-format
-msgid "Leave a Reply to %s"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:67
-msgid "Email"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:70
-msgid "Submit"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:76
-#, php-format
-msgid "You must be <a href=\"%s\">logged in</a> to post a review."
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:80
-msgid "Your Rating"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:81
-msgid "Rate&hellip;"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:82
-msgid "Perfect"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:83
-msgid "Good"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:84
-msgid "Average"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:85
-msgid "Not that bad"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:86
-msgid "Very Poor"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:90
-msgid "Your Review"
-msgstr ""
-
-#: woocommerce/single-product-reviews.php:99
-msgid ""
-"Only logged in customers who have purchased this product may leave a review."
-msgstr ""
-
-#: woocommerce/single-product/add-to-cart/variable.php:23
-msgid "This product is currently out of stock and unavailable."
-msgstr ""
-
-#: woocommerce/single-product/add-to-cart/variable.php:34
-msgid "Clear selection"
-msgstr ""
-
-#: woocommerce/single-product/meta.php:26
-msgid "SKU:"
-msgstr ""
-
-#: woocommerce/single-product/product-attributes.php:29
-msgid "Weight"
-msgstr ""
-
-#: woocommerce/single-product/product-attributes.php:36
-msgid "Dimensions"
-msgstr ""
-
-#: woocommerce/single-product/product-image.php:42
-msgid "Placeholder"
-msgstr ""
-
-#: woocommerce/single-product/rating.php:27
-#, php-format
-msgid "Rated %s out of 5"
-msgstr ""
-
-#: woocommerce/single-product/rating.php:29
-#, php-format
-msgid "out of %s5%s"
-msgstr ""
-
-#: woocommerce/single-product/related.php:42
-msgid "Related Products"
-msgstr ""
-
-#: woocommerce/single-product/review.php:29
-#, php-format
-msgid "Rated %d out of 5"
-msgstr ""
-
-#: woocommerce/single-product/review.php:30
-msgid "out of 5"
-msgstr ""
-
-#: woocommerce/single-product/review.php:37
-msgid "Your comment is awaiting approval"
-msgstr ""
-
-#: woocommerce/single-product/review.php:46
-msgid "verified owner"
-msgstr ""
-
-#: woocommerce/single-product/tabs/description.php:16
-msgid "Product Description"
-msgstr ""
-
-#: woocommerce/single-product/up-sells.php:43
-msgid "You may also like&hellip;"
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""

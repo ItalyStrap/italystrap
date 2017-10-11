@@ -338,10 +338,10 @@ function comment_form_args( $comment_author, $user_identity ){
 		'class_submit'		=>	'btn btn-large btn-primary',
 		'format'			=>	'html5',
 		'comment_field' 	=>
-			'<div class="form-group comment-form-comment"><label for="comment" class="sr-only">' . _x( 'Comment', 'noun' ) . '</label><textarea class="form-control" name="comment" id="comment" placeholder="' . __( 'Write your comment here' ,'italystrap') . '" tabindex="4" rows="6" aria-required="true" title="' . __( 'Write your comment here' ,'italystrap') . '"></textarea></div>',
+			'<div class="form-group comment-form-comment"><label for="comment" class="sr-only">' . _x( 'Comment', 'noun' ) . '</label><textarea class="form-control" name="comment" id="comment" placeholder="' . __( 'Write your comment here' ,'italystrap') . '" tabindex="4" rows="6" aria-required="true" title="' . __( 'Write your comment here', 'italystrap' ) . '"></textarea></div>',
 		'logged_in_as'		=>
 			'<p class="logged-in-as">' . sprintf( 
-				__( 'Logged in as <a href="%1$s" class="btn btn-primary btn-xs">%2$s</a>. <a href="%3$s" title="Log out of this account" class="btn btn-warning btn-xs">Log out?</a>' ),
+				__( 'Logged in as <a href="%1$s" class="btn btn-primary btn-xs">%2$s</a>. <a href="%3$s" title="Log out of this account" class="btn btn-warning btn-xs">Log out?</a>', 'italystrap' ),
 				get_edit_user_link(),
 				$user_identity,
 				wp_logout_url( apply_filters( 'the_permalink', get_permalink() ) )

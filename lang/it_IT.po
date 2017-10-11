@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ItalyStrap\n"
-"POT-Creation-Date: 2017-10-05 19:56+0200\n"
-"PO-Revision-Date: 2017-10-05 19:58+0200\n"
+"POT-Creation-Date: 2017-10-10 13:11+0200\n"
+"PO-Revision-Date: 2017-10-10 13:13+0200\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: it_IT\n"
@@ -27,63 +27,159 @@ msgstr "Una risposta a &ldquo;%2$s&rdquo;"
 
 #: comments.php:69
 msgid "There are no comments yet, why not be the first"
-msgstr "Non ci sono ancora commenti, inizia tu!"
+msgstr "Non ci sono ancora commenti, inizia tu"
 
-#: config/config.php:194
+#: config/config.php:199
 msgid "Default"
-msgstr ""
+msgstr "Predefinito"
 
-#: config/config.php:198
+#: config/config.php:203
 msgid "Sandwich"
 msgstr ""
 
-#: config/config.php:202
+#: config/config.php:207
 msgid "Coffee"
-msgstr ""
+msgstr "Caffè"
 
-#: config/config.php:226 src/Init/Init_Theme.php:112
+#: config/config.php:231 src/Init/Init_Theme.php:112
 msgid "Info Menu"
-msgstr ""
+msgstr "Menù informazioni"
 
-#: config/config.php:237
+#: config/config.php:242
 msgid "Social Links Menu"
 msgstr ""
 
-#: config/config.php:250 deprecated/init.php:92 src/Init/Init_Theme.php:109
+#: config/config.php:255 src/Init/Init_Theme.php:109
 msgid "Main Menu"
 msgstr "Menù principale"
 
 #: config/customizer.php:38
 msgid "Theme settings"
-msgstr ""
+msgstr "Impostazioni del tema"
 
 #: config/customizer.php:50
 msgid "Theme Image Options"
 msgstr "Opzioni per le immagini"
 
-#: config/customizer.php:53 src/Customizer/settings/customizer.php:209
+#: config/customizer.php:53 src/Customizer/settings/customizer.php:210
 msgid "Allows you to customize settings for ItalyStrap."
 msgstr "Ti consente di personalizzare le impostazioni per ItalyStrap."
 
-#: config/customizer.php:69 src/Customizer/settings/customizer.php:232
+#: config/customizer.php:69 src/Customizer/settings/customizer.php:233
 msgid "Your Logo"
 msgstr "Il tuo logo"
 
-#: config/customizer.php:70 src/Customizer/settings/customizer.php:233
+#: config/customizer.php:70 src/Customizer/settings/customizer.php:234
 msgid "Insert here your logo"
 msgstr "Inserisci qui il tuo logo"
 
 #: config/default.php:122 src/Customizer/settings/customizer.php:110
 msgid "Full witdh"
-msgstr ""
+msgstr "Tutta larghezza"
 
 #: config/default.php:123 src/Customizer/settings/customizer.php:111
 msgid "Standard width"
+msgstr "Larghezza standard"
+
+#: config/edd.php:27
+msgid "Theme License"
 msgstr ""
+
+#: config/edd.php:28
+msgid "Enter your theme license key."
+msgstr "Inserisci la licenza del tuo tema."
+
+#: config/edd.php:29
+msgid "License Key"
+msgstr ""
+
+#: config/edd.php:30
+msgid "License Action"
+msgstr ""
+
+#: config/edd.php:31
+msgid "Deactivate License"
+msgstr "Disattiva licenza"
+
+#: config/edd.php:32
+msgid "Activate License"
+msgstr "Attiva la licenza"
+
+#: config/edd.php:33 config/edd.php:46
+msgid "License status is unknown."
+msgstr ""
+
+#: config/edd.php:34
+msgid "Renew?"
+msgstr ""
+
+#: config/edd.php:35
+msgid "unlimited"
+msgstr ""
+
+#: config/edd.php:36
+msgid "License key is active."
+msgstr ""
+
+#: config/edd.php:37
+#, php-format
+msgid "Expires %s."
+msgstr ""
+
+#: config/edd.php:38
+msgid "Lifetime License."
+msgstr ""
+
+#: config/edd.php:39
+#, php-format
+msgid "You have %1$s / %2$s sites activated."
+msgstr "Tu hai %1$s / %2$s siti attivati."
+
+#: config/edd.php:40
+#, php-format
+msgid "License key expired %s."
+msgstr ""
+
+#: config/edd.php:41
+msgid "License key has expired."
+msgstr ""
+
+#: config/edd.php:42
+msgid "License keys do not match."
+msgstr ""
+
+#: config/edd.php:43
+msgid "License is inactive."
+msgstr ""
+
+#: config/edd.php:44
+msgid "License key is disabled."
+msgstr ""
+
+#: config/edd.php:45
+msgid "Site is inactive."
+msgstr ""
+
+#: config/edd.php:47
+msgid ""
+"Updating this theme will lose any customizations you have made. 'Cancel' to "
+"stop, 'OK' to update."
+msgstr ""
+
+#: config/edd.php:48
+#, php-format
+msgid ""
+"<strong>%1$s %2$s</strong> is available. <a href=\"%3$s\" class=\"thickbox\" "
+"title=\"%4s\">Check out what's new</a> or <a href=\"%5$s\"%6$s>update now</"
+"a>."
+msgstr ""
+"<strong>%1$s %2$s</strong> è disponibile. <a href=\"%3$s\" class=\"thickbox"
+"\" title=\"%4s\">Controlla cosa c'è di nuovo</a> o <a href=\"%5$s"
+"\"%6$s>aggiorna adesso</a>."
 
 #: config/layout.php:15
 msgid "Content Sidebar"
-msgstr ""
+msgstr "Contenuto Sidebar"
 
 #: config/layout.php:19
 msgid "Sidebar Content"
@@ -91,13 +187,13 @@ msgstr ""
 
 #: config/layout.php:20
 msgid "Full width, no sidebar"
-msgstr ""
+msgstr "Tutta larghezza, nessuna sidebar"
 
 #: config/sidebars.php:22
 msgid "Sidebar"
 msgstr ""
 
-#: config/sidebars.php:31 deprecated/sidebar.php:16
+#: config/sidebars.php:31
 msgid "Footer Box 1"
 msgstr "Footer Box 1"
 
@@ -105,7 +201,7 @@ msgstr "Footer Box 1"
 msgid "Footer box 1 widget area."
 msgstr ""
 
-#: config/sidebars.php:41 deprecated/sidebar.php:26
+#: config/sidebars.php:41
 msgid "Footer Box 2"
 msgstr "Footer Box 2"
 
@@ -113,7 +209,7 @@ msgstr "Footer Box 2"
 msgid "Footer box 2 widget area."
 msgstr ""
 
-#: config/sidebars.php:51 deprecated/sidebar.php:36
+#: config/sidebars.php:51
 msgid "Footer Box 3"
 msgstr "Footer Box 3"
 
@@ -121,7 +217,7 @@ msgstr "Footer Box 3"
 msgid "Footer box 3 widget area."
 msgstr ""
 
-#: config/sidebars.php:61 deprecated/sidebar.php:46
+#: config/sidebars.php:61
 msgid "Footer Box 4"
 msgstr "Footer Box 4"
 
@@ -131,383 +227,54 @@ msgstr ""
 
 #: config/template-content.php:15
 msgid "Hide breadcrumbs"
-msgstr ""
+msgstr "Nascondi i breadcrumbs"
 
 #: config/template-content.php:16
 msgid "Hide title"
-msgstr ""
+msgstr "Nascondi il titolo"
 
 #: config/template-content.php:17
 msgid "Hide meta info"
-msgstr ""
+msgstr "Nascondi le meta informazioni"
 
 #: config/template-content.php:18
 msgid "Hide feautured image"
-msgstr ""
+msgstr "Nascondi l'immagine in evidenza"
 
 #: config/template-content.php:19
 msgid "Hide figure caption"
-msgstr ""
+msgstr "Nascondi la didascalia"
 
 #: config/template-content.php:20
 msgid "Hide the content"
-msgstr ""
+msgstr "Nascondi il contenuto"
 
 #: config/template-content.php:21
 msgid "Hide author box"
-msgstr ""
-
-#: config/template-content.php:22
-msgid "Hide builtin social sharing"
-msgstr ""
+msgstr "Nascondi il box autore"
 
 #: config/template-content.php:23
 msgid "Hide comments"
-msgstr ""
+msgstr "Nascondi i commenti"
 
 #: config/template-content.php:24
 msgid "Hide comments form"
-msgstr ""
+msgstr "Nascondi il form dei commenti"
 
 #: config/theme-width.php:16
 msgid "Standard container"
-msgstr ""
+msgstr "Contenitore standard"
 
 #: config/theme-width.php:17
 msgid "Fluid container"
-msgstr ""
-
-#: deprecated/ItalyStrapBreadcrumbs.php:308 deprecated/breadcrumb.php:63
-msgid "Tag: "
-msgstr "Tag: "
-
-#: deprecated/ItalyStrapBreadcrumbs.php:315 deprecated/breadcrumb.php:78
-msgid "Yearly archive: "
-msgstr "Archivio dell'anno: "
-
-#: deprecated/ItalyStrapBreadcrumbs.php:329 deprecated/breadcrumb.php:73
-msgid "Monthly archive: "
-msgstr "Archivio del mese di: "
-
-#: deprecated/ItalyStrapBreadcrumbs.php:351 deprecated/breadcrumb.php:68
-msgid "Daily archive: "
-msgstr "Archivio del giorno: "
-
-#: deprecated/ItalyStrapBreadcrumbs.php:358 deprecated/breadcrumb.php:83
-msgid "Author Archives: "
-msgstr "Archivio autore: "
-
-#: deprecated/ItalyStrapBreadcrumbs.php:365 deprecated/breadcrumb.php:90
-msgid "Search Results: "
-msgstr "Risultato per la ricerca di: "
-
-#: deprecated/ItalyStrapBreadcrumbs.php:371 deprecated/custom_taxonomy.php:36
-msgid "Not Found"
-msgstr "Non trovato"
-
-#: deprecated/ItalyStrapBreadcrumbs.php:380
-msgid "Page"
-msgstr "Pagina"
-
-#: deprecated/ItalyStrapOptionTheme.php:55
-#: deprecated/ItalyStrapOptionTheme.php:70
-#: src/Customizer/Theme_Customizer.php:286
-msgid "Theme Options"
-msgstr "Opzioni del tema"
-
-#: deprecated/ItalyStrapOptionTheme.php:69
-msgid "ItalyStrap Theme Options"
-msgstr "Pagina opzioni di ItalyStrap"
-
-#: deprecated/ItalyStrapOptionTheme.php:85
-msgid "You do not have sufficient permissions to access this page."
-msgstr "Non hai sufficienti permessi per accedere a questa pagina."
-
-#: deprecated/ItalyStrapOptionTheme.php:140
-msgid "ItalyStrap options page"
-msgstr "Pagina opzioni di ItalyStrap"
-
-#: deprecated/ItalyStrapOptionTheme.php:151
-msgid "Default image for 404 page"
-msgstr "Immagine predefinita per pagina 404"
-
-#: deprecated/ItalyStrapOptionTheme.php:163
-msgid "Default image"
-msgstr "Immagine di default"
-
-#: deprecated/ItalyStrapOptionTheme.php:187
-msgid "Logo"
-msgstr "Logo"
-
-#: deprecated/ItalyStrapOptionTheme.php:199
-msgid "Analytics ID"
-msgstr "ID Analytics"
-
-#: deprecated/ItalyStrapOptionTheme.php:247
-msgid ""
-"Manage or enter your settings below: <strong>(It is still in Beta version)</"
-"strong>"
-msgstr ""
-"Modifica o inserisci i tuoi settaggi qui sotto: <strong>(Funzionalità ancora "
-"in versione beta)</strong>"
-
-#: deprecated/ItalyStrapOptionTheme.php:258
-msgid "Upload default 404 image"
-msgstr "Carica l'immagine per la 404"
-
-#: deprecated/ItalyStrapOptionTheme.php:259
-msgid "Upload an image for the 404.php page (at least width 750px)."
-msgstr ""
-"Carica un'immagine per la pagina 404.php (deve essere larga almeno 750px)."
-
-#: deprecated/ItalyStrapOptionTheme.php:260
-msgid "Default 404 image preview"
-msgstr "Anteprima immagine 404 predefinita"
-
-#: deprecated/ItalyStrapOptionTheme.php:276
-msgid "Upload default image"
-msgstr "Carica un immagine di default"
-
-#: deprecated/ItalyStrapOptionTheme.php:277
-msgid ""
-"Upload an image for the default image used for social share (must be "
-"1200x600px)."
-msgstr ""
-"Carica un'immagine da usare come immagine di default per la condivisione "
-"sociale (deve essere almeno 1200x600px)."
-
-#: deprecated/ItalyStrapOptionTheme.php:278
-msgid "Default image preview"
-msgstr "Anteprima immagine predefinita"
-
-#: deprecated/ItalyStrapOptionTheme.php:294
-msgid "Upload favicon"
-msgstr "Carica la favicon"
-
-#: deprecated/ItalyStrapOptionTheme.php:295
-msgid "Upload an image for the favicon (max 32x32px)."
-msgstr "Carica un immagine per la favivon (max 32x32px)."
-
-#: deprecated/ItalyStrapOptionTheme.php:296
-msgid "Favicon preview"
-msgstr "Anteprima Favicon"
-
-#: deprecated/ItalyStrapOptionTheme.php:312
-msgid "Upload Logo"
-msgstr "Carica il logo"
-
-#: deprecated/ItalyStrapOptionTheme.php:313
-msgid "Upload an image for the logo."
-msgstr "Carica un'immagine per il logo."
-
-#: deprecated/ItalyStrapOptionTheme.php:314
-msgid "Logo preview"
-msgstr "Anteprima logo"
-
-#: deprecated/ItalyStrapOptionTheme.php:329
-msgid "Enter your analytics ID (e.g. UA-XXXXX-X )."
-msgstr "Inserisci il tuo ID analytics (es. UA-XXXXX-X )."
-
-#: deprecated/breadcrumb.php:2
-msgid ""
-"This file no longer needs to be included. Please use the plugin ItalyStrap."
-msgstr ""
-
-#: deprecated/breadcrumb.php:31
-#: tests/tests/phpunit/tests/customize/nav-menus.php:119
-msgid "Home"
-msgstr "Home"
-
-#: deprecated/breadcrumb.php:86
-msgid "Blog Archives"
-msgstr "Archivio del blog: "
-
-#: deprecated/comment_reply.php:25 deprecated/deprecated.php:170
-msgid "Click here to cancel reply."
-msgstr "Clicca qui per cancellare la tua risposta."
-
-#: deprecated/comments.php:36 deprecated/comments.php:143
-#: deprecated/deprecated.php:246
-msgid "The Boss :-)"
-msgstr "The boss :-)"
-
-#: deprecated/comments.php:41 deprecated/comments.php:153
-#: deprecated/deprecated.php:251 deprecated/woocommerce.php:38
-#: src/Comments/Comments.php:195 src/Comments/Comments.php:263
-#: src/Nav_Menu/Nav_Menu_Edit.php:133
-msgid "Edit"
-msgstr "Modifica"
-
-#: deprecated/comments.php:55 deprecated/deprecated.php:265
-msgid "Reply <i class=\"glyphicon glyphicon-arrow-down\"></i>"
-msgstr "Rispondi <i class=\"glyphicon glyphicon-arrow-down\"></i>"
-
-#: deprecated/comments.php:160 src/Comments/Comments.php:202
-#: src/Comments/Comments.php:290
-msgid "Your comment is awaiting moderation."
-msgstr "Il tuo commento è in attesa di essere moderato."
-
-#: deprecated/comments.php:185 src/Comments/Comments.php:225
-msgid "Reply to "
-msgstr "Rispondi a "
-
-#: deprecated/custom_taxonomy.php:20
-msgid "Taxonomies"
-msgstr ""
-
-#: deprecated/custom_taxonomy.php:21 deprecated/custom_taxonomy.php:22
-msgid "Taxonomy"
-msgstr ""
-
-#: deprecated/custom_taxonomy.php:23
-msgid "All Items"
-msgstr "Tutte le voci"
-
-#: deprecated/custom_taxonomy.php:24
-msgid "Parent Item"
-msgstr "Voce genitore"
-
-#: deprecated/custom_taxonomy.php:25
-msgid "Parent Item:"
-msgstr "Voce genitore:"
-
-#: deprecated/custom_taxonomy.php:26
-msgid "New Item Name"
-msgstr "Nuova voce"
-
-#: deprecated/custom_taxonomy.php:27
-msgid "Add New Item"
-msgstr "Aggiungi una nuova voce"
-
-#: deprecated/custom_taxonomy.php:28
-msgid "Edit Item"
-msgstr "Modifica voce"
-
-#: deprecated/custom_taxonomy.php:29
-msgid "Update Item"
-msgstr ""
-
-#: deprecated/custom_taxonomy.php:30
-msgid "View Item"
-msgstr ""
-
-#: deprecated/custom_taxonomy.php:31
-msgid "Separate items with commas"
-msgstr ""
-
-#: deprecated/custom_taxonomy.php:32
-msgid "Add or remove items"
-msgstr "Aggiungi o rimuovi voci"
-
-#: deprecated/custom_taxonomy.php:33
-msgid "Choose from the most used"
-msgstr "Scegli fra quelli più utilizzati"
-
-#: deprecated/custom_taxonomy.php:34
-msgid "Popular Items"
-msgstr ""
-
-#: deprecated/custom_taxonomy.php:35
-msgid "Search Items"
-msgstr ""
-
-#: deprecated/globals.php:2
-msgid "All globals now are in functions.php"
-msgstr "Tutte le variabili globali sono ora in functions.php"
-
-#: deprecated/non-trovato.php:2
-msgid "This file no longer needs to be included."
-msgstr ""
-
-#: deprecated/non-trovato.php:5
-msgid "Damn, what you were looking for is not there"
-msgstr "Azz, quello che stavi cercando non c'è"
-
-#: deprecated/non-trovato.php:7
-msgid "Search again with the form below."
-msgstr "Cerca ancora usando il form qui sotto."
-
-#: deprecated/pagination.php:14
-msgid "Use \\ItalyStrap\\Core\\Pagination\\Pagination::render instead."
-msgstr ""
-
-#: deprecated/pagination.php:32 src/Pagination/Pagination.php:58
-msgid "Page: "
-msgstr "Pagina:"
-
-#: deprecated/password_protection.php:28
-#: src/Controllers/Posts/Parts/Password_Form.php:62
-msgid "To view this protected post, enter the password below:"
-msgstr "Per visualizzare questo post inserisci la password qui sotto:"
-
-#: deprecated/password_protection.php:30
-#: src/Controllers/Posts/Parts/Password_Form.php:64
-msgid "Password: "
-msgstr "Password"
-
-#: deprecated/password_protection.php:31
-#: src/Controllers/Posts/Parts/Password_Form.php:65
-msgid "Enter password"
-msgstr "Inserisci la password"
-
-#: deprecated/password_protection.php:32
-#: src/Controllers/Posts/Parts/Password_Form.php:66
-msgid "Submit"
-msgstr ""
-
-#: deprecated/schema.php:44
-msgid ""
-"Use: \\ItalyStrap\\Core\\Schema\\Word_Count::render() or \\ItalyStrap\\Core"
-"\\Schema\\Time_Required::render() instead"
-msgstr ""
-
-#: deprecated/sidebar.php:2
-msgid ""
-"This file is deprecated, please use class-italystrap-sidebars.php instead"
-msgstr ""
-
-#: deprecated/sidebar.php:18
-msgid "Footer box 1 widget area (Use only a widget)"
-msgstr "Footer box 1 widget area (Usa solo un widget)"
-
-#: deprecated/sidebar.php:28
-msgid "Footer box 2 widget area (Use only a widget)"
-msgstr "Footer box 2 widget area (Usa solo un widget)"
-
-#: deprecated/sidebar.php:38
-msgid "Footer box 3 widget area (Use only a widget)"
-msgstr "Footer box 3 widget area (Usa solo un widget)"
-
-#: deprecated/sidebar.php:48
-msgid "Footer box 4 widget area (Use only a widget)"
-msgstr "Footer box 4 widget area (Usa solo un widget)"
-
-#: deprecated/widget.php:28
-msgid "Use this widget to add a vCard"
-msgstr "Usa questo widget per aggiungere una scheda"
-
-#: deprecated/widget.php:57
-msgid "Company name"
-msgstr "Ragione sociale"
-
-#: deprecated/woocommerce.php:85 deprecated/woocommerce.php:117
-#: src/WooCommerce/WC_Nav_Menu.php:46 src/WooCommerce/WC_Nav_Menu.php:78
-msgid "View your shopping cart"
-msgstr ""
-
-#: deprecated/woocommerce.php:103 src/WooCommerce/WC_Nav_Menu.php:64
-msgid "My Account"
-msgstr ""
-
-#: deprecated/woocommerce.php:107 src/WooCommerce/WC_Nav_Menu.php:68
-msgid "Login / Register"
-msgstr ""
+msgstr "Contenitore fluido"
 
 #: functions/general-functions.php:36
 msgid "Search now"
 msgstr "Cerca ora"
 
 #: functions/general-functions.php:36
+#: src/Customizer/settings/breadcrumbs.php:54
 msgid "Search"
 msgstr "Ricerca"
 
@@ -554,6 +321,9 @@ msgid ""
 "href=\"%3$s\" title=\"Log out of this account\" class=\"btn btn-warning btn-"
 "xs\">Log out?</a>"
 msgstr ""
+"Connesso come <a href=\"%1$s\" class=\"btn btn-primary btn-xs\">%2$s</a>. <a "
+"href=\"%3$s\" title=\"Log out of this account\" class=\"btn btn-warning btn-"
+"xs\">Disconnetti?</a>"
 
 #: functions/general-functions.php:350
 #, php-format
@@ -580,7 +350,7 @@ msgstr "Prima della testata"
 
 #: functions/general-functions.php:493
 msgid "The content header"
-msgstr ""
+msgstr "Contenuto della intestazione"
 
 #: functions/general-functions.php:494
 msgid "After the header"
@@ -600,7 +370,7 @@ msgstr "Prima del loop"
 
 #: functions/general-functions.php:500
 msgid "The Loop"
-msgstr ""
+msgstr "Il ciclo"
 
 #: functions/general-functions.php:501
 msgid "After the Loop"
@@ -616,19 +386,19 @@ msgstr "Dopo il contenuto principale"
 
 #: functions/general-functions.php:506
 msgid "In the footer open"
-msgstr ""
+msgstr "All'apertura del piè di pagina"
 
 #: functions/general-functions.php:507
 msgid "In the footer"
-msgstr ""
+msgstr "Nel piè di pagina"
 
 #: functions/general-functions.php:508
 msgid "In the footer closed"
-msgstr ""
+msgstr "Alla chiusura del piè di pagina"
 
 #: functions/general-functions.php:510
 msgid "At the end of the page before the <code>&lt;/body&gt;</code>"
-msgstr ""
+msgstr "Alla fine della pagina prima di <code>&lt;/body&gt;</code>"
 
 #: lib/images.php:185
 msgid "Image for 404 page"
@@ -662,7 +432,20 @@ msgstr "Assicurati che il file <a href=\"%s\">.htaccess</a> sia scrivibile "
 
 #: src/Comments/Comments.php:183
 msgid "Post Author"
-msgstr ""
+msgstr "Articolio autore"
+
+#: src/Comments/Comments.php:195 src/Comments/Comments.php:263
+#: src/Nav_Menu/Nav_Menu_Edit.php:133
+msgid "Edit"
+msgstr "Modifica"
+
+#: src/Comments/Comments.php:202 src/Comments/Comments.php:290
+msgid "Your comment is awaiting moderation."
+msgstr "Il tuo commento è in attesa di essere moderato."
+
+#: src/Comments/Comments.php:225
+msgid "Reply to "
+msgstr "Rispondi a "
 
 #: src/Comments/Comments.php:275
 #, php-format
@@ -672,26 +455,26 @@ msgstr "%s <span class=\"says\">dice:</span>"
 #: src/Comments/Comments.php:281
 #, php-format
 msgid "%1$s at %2$s"
-msgstr ""
+msgstr "%1$s alle %2$s"
 
 #: src/Comments/Comments.php:302
 #, php-format
 msgid "Reply to %s %s"
-msgstr ""
+msgstr "Rispondi a %s %s"
 
 #. translators: %s: Name of current post
 #: src/Controllers/Posts/Parts/Edit_Post_Link.php:74
 #, php-format
 msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
-msgstr ""
+msgstr "Modifica<span class=\"screen-reader-text\"> \"%s\"</span>"
 
 #: src/Controllers/Posts/Parts/Edit_Post_Link.php:125
 msgid "Edit This"
-msgstr ""
+msgstr "Modifica questo"
 
 #: src/Controllers/Posts/Parts/Edit_Post_Link.php:127
 msgid "Delete post"
-msgstr ""
+msgstr "Cancella articolo"
 
 #: src/Controllers/Posts/Parts/Link_Pages.php:62
 msgid "Pages:"
@@ -699,39 +482,56 @@ msgstr "Pagine:"
 
 #: src/Controllers/Posts/Parts/Pager.php:74
 msgid "In post navigation"
-msgstr ""
+msgstr "Nella navigazione dell'articolo"
+
+#: src/Controllers/Posts/Parts/Password_Form.php:62
+msgid "To view this protected post, enter the password below:"
+msgstr "Per visualizzare questo post inserisci la password qui sotto:"
+
+#: src/Controllers/Posts/Parts/Password_Form.php:64
+msgid "Password: "
+msgstr "Password: "
+
+#: src/Controllers/Posts/Parts/Password_Form.php:65
+msgid "Enter password"
+msgstr "Inserisci la password"
+
+#: src/Controllers/Posts/Parts/Password_Form.php:66
+msgid "Submit"
+msgstr "Invia"
 
 #: src/Custom/Metabox/Register.php:95
 msgid "Custom settings"
-msgstr ""
+msgstr "Impostazioni personalizzate"
 
 #: src/Custom/Metabox/Register.php:104
 msgid "Page container witdh settings"
-msgstr ""
+msgstr "Configurazione larghezza contenitore pagina"
 
 #: src/Custom/Metabox/Register.php:106
 #, php-format
 msgid "Choose the width of the page container for this %s"
 msgstr ""
+"Scegli la larghezza del contenitore della pagina per questo for this %s"
 
 #: src/Custom/Metabox/Register.php:112
 #, php-format
 msgid "Default width set in %s"
-msgstr ""
+msgstr "Larghezza predefinita impostata in %s"
 
 #: src/Custom/Metabox/Register.php:121
 msgid "Layout settings"
-msgstr ""
+msgstr "Impostazione impaginazione"
 
 #: src/Custom/Metabox/Register.php:123
 #, php-format
 msgid "Advance layout setting for this %s"
-msgstr ""
+msgstr "Configurazione avanzata del layout per questo %s"
 
 #: src/Custom/Metabox/Register.php:129
 #, php-format
 msgid "Default layout set in %s"
-msgstr ""
+msgstr "Layout predefinito impostato in %s"
 
 #: src/Custom/Metabox/Register.php:138
 msgid "Template settings"
@@ -740,15 +540,15 @@ msgstr ""
 #: src/Custom/Metabox/Register.php:140
 #, php-format
 msgid "Advance template content setting for this %s"
-msgstr ""
+msgstr "Configurazione avanzata del template per questo %s"
 
 #: src/Custom/Metabox/Register.php:152
 msgid "Custom header"
-msgstr ""
+msgstr "Testata personalizzata"
 
 #: src/Custom/Metabox/Register.php:153
 msgid "The image for the theme header"
-msgstr ""
+msgstr "L'immagine per l'inteztazione del tema"
 
 #: src/Custom/Metabox/Register.php:161
 msgid "Add or upload image"
@@ -756,7 +556,51 @@ msgstr "Aggiungi o carica una immagine"
 
 #: src/Custom/Metabox/Register.php:179
 msgid "Video URL"
+msgstr "URL video"
+
+#: src/Customizer/Theme_Customizer.php:286
+msgid "Theme Options"
+msgstr "Opzioni del tema"
+
+#: src/Customizer/settings/breadcrumbs.php:19
+msgid "Breadcrumbs"
+msgstr "Breadcrumbs"
+
+#: src/Customizer/settings/breadcrumbs.php:22
+msgid "Allows you to show the breadcrumbs on selected templates."
+msgstr "Ti permette di mostrare i breadcrumbs nei file template selezionati."
+
+#: src/Customizer/settings/breadcrumbs.php:48
+msgid "404"
+msgstr "404"
+
+#: src/Customizer/settings/breadcrumbs.php:49
+msgid "Archive"
+msgstr "Archivio"
+
+#: src/Customizer/settings/breadcrumbs.php:50
+msgid "Author"
+msgstr "Autore"
+
+#: src/Customizer/settings/breadcrumbs.php:51
+msgid "Front page"
+msgstr "Pagina frontale"
+
+#: src/Customizer/settings/breadcrumbs.php:52
+msgid "Home"
+msgstr "Home"
+
+#: src/Customizer/settings/breadcrumbs.php:53
+msgid "Page"
+msgstr "Pagina"
+
+#: src/Customizer/settings/breadcrumbs.php:55
+msgid "Single"
 msgstr ""
+
+#: src/Customizer/settings/breadcrumbs.php:63
+msgid "Display breadcrumbs on"
+msgstr "Visualizza i breadcrumb in"
 
 #: src/Customizer/settings/customizer.php:52
 msgid "Link Color"
@@ -768,7 +612,7 @@ msgstr "Colore della testata"
 
 #: src/Customizer/settings/customizer.php:104
 msgid "Container Width of the header"
-msgstr ""
+msgstr "Larghezza del contenitore della testata"
 
 #: src/Customizer/settings/customizer.php:150
 #, php-format
@@ -778,23 +622,25 @@ msgstr "%s Opzioni"
 #: src/Customizer/settings/customizer.php:165
 #: src/Customizer/settings/customizer.php:190
 msgid "Layout"
-msgstr ""
+msgstr "Impaginazione"
 
 #: src/Customizer/settings/customizer.php:168
 msgid ""
 "Allows you to customize the layout for all archive type pages. (Not page and "
 "post)."
 msgstr ""
+"Ti permette di personalizzare il layout per tutte le pagine archivio. (No "
+"pagine e post)."
 
-#: src/Customizer/settings/customizer.php:206
+#: src/Customizer/settings/customizer.php:207
 msgid "Image Options"
-msgstr ""
+msgstr "Opzioni immagine"
 
-#: src/Customizer/settings/customizer.php:261
+#: src/Customizer/settings/customizer.php:262
 msgid "Default Image"
 msgstr "Immagine predefinita"
 
-#: src/Customizer/settings/customizer.php:262
+#: src/Customizer/settings/customizer.php:263
 msgid ""
 "Upload an image for the default image used for social sharing (must be at "
 "least 1200x600px for Facebook), it will also be displayed if no feautured "
@@ -802,87 +648,96 @@ msgid ""
 "feature."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:286
+#: src/Customizer/settings/customizer.php:287
 msgid "Default 404 Image"
 msgstr "Immagine predefinita per la pagina 404"
 
-#: src/Customizer/settings/customizer.php:287
+#: src/Customizer/settings/customizer.php:288
 msgid ""
 "This is a default 404 image, it will be displayed in 404 page (must be at "
 "least weight 848px)"
 msgstr ""
-
-#: src/Customizer/settings/customizer.php:312
-msgid "Archive post thumbnail size"
-msgstr ""
+"Questa è l'immagine predefinita per la pagina 404 (Deve essere almeno 848px))"
 
 #: src/Customizer/settings/customizer.php:313
+msgid "Archive post thumbnail size"
+msgstr "Dimensione immagine in evidenza degli archivi"
+
+#: src/Customizer/settings/customizer.php:314
 msgid ""
 "Change image size of post thumbnail in archive, author, blog, category, "
 "search, and tag pages."
 msgstr ""
-
-#: src/Customizer/settings/customizer.php:337
-msgid "Archive post thumbnail alignment"
-msgstr ""
+"Cambia la dimensione delle immagini nelle pagine archivio, autore, blog, "
+"categoria, ricerca, e pagine tag."
 
 #: src/Customizer/settings/customizer.php:338
+msgid "Archive post thumbnail alignment"
+msgstr "Allineamento immagine in evidenza degli archivi"
+
+#: src/Customizer/settings/customizer.php:339
 msgid ""
 "Change image alignment of post thumbnail in archive, author, blog, category, "
 "search, and tag pages."
 msgstr ""
+"Cambia l'allineamento delle immagini nelle pagine archivio, autore, blog, "
+"categoria, ricerca, e pagine tag."
 
-#: src/Customizer/settings/customizer.php:342
+#: src/Customizer/settings/customizer.php:343
 msgid "None"
 msgstr "Nessuno"
 
-#: src/Customizer/settings/customizer.php:343
+#: src/Customizer/settings/customizer.php:344
 msgid "Center"
 msgstr "Centrato"
 
-#: src/Customizer/settings/customizer.php:344
-msgid "Left"
-msgstr ""
-
 #: src/Customizer/settings/customizer.php:345
-msgid "Right"
-msgstr ""
+msgid "Left"
+msgstr "Sinistra"
 
-#: src/Customizer/settings/customizer.php:360
+#: src/Customizer/settings/customizer.php:346
+msgid "Right"
+msgstr "Destra"
+
+#: src/Customizer/settings/customizer.php:361
 msgid "Navbar Settings"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:363
+#: src/Customizer/settings/customizer.php:364
 msgid ""
 "Allows you to customize settings for the main navbar. Remember that this "
 "uses the Twitter Bootstrap Navbar style, if you want more info read the <a "
 "href=\"http://getbootstrap.com/components/#navbar\" target=\"_blank"
 "\">documentation</a>."
 msgstr ""
+"Ti permette di personalizzare la navbar principale. Ricorda che questo usa "
+"Twitter Bootstrap per lo stile della navbar, se vuoi avere maggiori "
+"informazioni leggi la <a href=\"http://getbootstrap.com/components/#navbar\" "
+"target=\"_blank\">documentazzione</a>."
 
-#: src/Customizer/settings/customizer.php:384
+#: src/Customizer/settings/customizer.php:385
 msgid "Navbar type"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:385
+#: src/Customizer/settings/customizer.php:386
 msgid ""
 "Select the type of navbar. By default is the <code>navbar-default</code> "
 "(light grey)."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:389
-msgid "Default navbar"
-msgstr ""
-
 #: src/Customizer/settings/customizer.php:390
-msgid "Inverse navbar"
-msgstr ""
+msgid "Default navbar"
+msgstr "Navbar predefinita"
 
-#: src/Customizer/settings/customizer.php:412
+#: src/Customizer/settings/customizer.php:391
+msgid "Inverse navbar"
+msgstr "Onverti il colore della navbar"
+
+#: src/Customizer/settings/customizer.php:413
 msgid "Navbar position"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:413
+#: src/Customizer/settings/customizer.php:414
 msgid ""
 "Select the position of the navbar. By default is set to <code>relative top</"
 "code>, you can chose <code>fixed top</code>, <code>fixed bottom</code> or "
@@ -890,45 +745,45 @@ msgid ""
 "set the navbar <code>full width</code> for fixing the correct padding."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:417
+#: src/Customizer/settings/customizer.php:418
 msgid "Default relative top"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:418
-msgid "Fixed Top"
-msgstr ""
-
 #: src/Customizer/settings/customizer.php:419
-msgid "Fixed Bottom"
-msgstr ""
+msgid "Fixed Top"
+msgstr "Fissato in alto"
 
 #: src/Customizer/settings/customizer.php:420
+msgid "Fixed Bottom"
+msgstr "Fissato in basso"
+
+#: src/Customizer/settings/customizer.php:421
 msgid "Static Top"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:442
+#: src/Customizer/settings/customizer.php:443
 msgid "Navbar width"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:443
+#: src/Customizer/settings/customizer.php:444
 msgid ""
 "Select the nav_width of navbar, this enlarges the navbar to the windows size "
 "(use it also width Static Top option)."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:447
-msgid "Default boxed width"
-msgstr ""
-
 #: src/Customizer/settings/customizer.php:448
-msgid "Full width"
-msgstr ""
+msgid "Default boxed width"
+msgstr "Larghezza boxata predefinita"
 
-#: src/Customizer/settings/customizer.php:470
+#: src/Customizer/settings/customizer.php:449
+msgid "Full width"
+msgstr "Tutta larghezza"
+
+#: src/Customizer/settings/customizer.php:471
 msgid "Navbar menus width"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:471
+#: src/Customizer/settings/customizer.php:472
 msgid ""
 "Select the menus_width, this is the width of the container of the 2 menu, "
 "main-menu and secondary-menu, with the full width the menus will enlarge to "
@@ -937,76 +792,76 @@ msgid ""
 "the default value."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:475
+#: src/Customizer/settings/customizer.php:476
 msgid "The width of navbar wrapper"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:476
+#: src/Customizer/settings/customizer.php:477
 msgid "The width of the content"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:500
+#: src/Customizer/settings/customizer.php:501
 msgid "Your logo brand for nav menu"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:501
+#: src/Customizer/settings/customizer.php:502
 msgid "Insert here your logo brand for nav menu"
-msgstr ""
+msgstr "Inserisci qui il tuo logo per il menù"
 
-#: src/Customizer/settings/customizer.php:526
+#: src/Customizer/settings/customizer.php:527
 msgid "Logo image size"
-msgstr ""
-
-#: src/Customizer/settings/customizer.php:553
-msgid "Display the navbar brand"
-msgstr ""
+msgstr "Dimensione logo"
 
 #: src/Customizer/settings/customizer.php:554
+msgid "Display the navbar brand"
+msgstr "Attiva la visualizzazione della navbar brand"
+
+#: src/Customizer/settings/customizer.php:555
 msgid ""
 "Select the type of navbar brand to visualize or select to hide navbar brand, "
 "if you select to visualize navbar with image you also have to select the "
 "image and the size of the image to visualize in the above controls."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:558
-msgid "Hide navbar brand"
-msgstr ""
-
 #: src/Customizer/settings/customizer.php:559
-msgid "Display navbar brand image"
-msgstr ""
+msgid "Hide navbar brand"
+msgstr "Nascondi la navbar brand"
 
 #: src/Customizer/settings/customizer.php:560
-msgid "Display navbar brand name"
-msgstr ""
+msgid "Display navbar brand image"
+msgstr "Visualizza il logo nella navbar"
 
 #: src/Customizer/settings/customizer.php:561
-msgid "Display navbar brand image and name"
-msgstr ""
+msgid "Display navbar brand name"
+msgstr "Visualizza il titolo nella navbar"
 
-#: src/Customizer/settings/customizer.php:572
+#: src/Customizer/settings/customizer.php:562
+msgid "Display navbar brand image and name"
+msgstr "Visualizza il logo e il titolo nella navbar"
+
+#: src/Customizer/settings/customizer.php:573
 msgid "Additional CSS"
 msgstr "CSS aggiuntivo"
 
-#: src/Customizer/settings/customizer.php:573
+#: src/Customizer/settings/customizer.php:574
 msgid "Add custom CSS here"
 msgstr "Aggiungi il tuo CSS personalizzato qui"
 
-#: src/Customizer/settings/customizer.php:600
+#: src/Customizer/settings/customizer.php:601
 msgid "Custom CSS"
 msgstr "CSS personalizzato"
 
-#: src/Customizer/settings/customizer.php:601
+#: src/Customizer/settings/customizer.php:602
 msgid "Insert here your custom CSS"
-msgstr ""
-
-#: src/Customizer/settings/customizer.php:615
-#: src/Customizer/settings/customizer.php:641
-msgid "Footer's Colophon"
-msgstr ""
+msgstr "Inserisci qui il tuo stile personalizzato"
 
 #: src/Customizer/settings/customizer.php:616
 #: src/Customizer/settings/customizer.php:642
+msgid "Footer's Colophon"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:617
+#: src/Customizer/settings/customizer.php:643
 msgid "Add text for footer's colophon here"
 msgstr "Aggiungi il testo per il colophon del footer qui"
 
@@ -1019,9 +874,46 @@ msgid ""
 "Allows you to customize the post content template for all archive type "
 "pages. (Not page and post)."
 msgstr ""
+"Ti permette di personalizzare il contenuto del post per tutte le pagine "
+"archivio. (No pagine e post)."
 
 #: src/Customizer/settings/post-content-template.php:47
 msgid "Template content settings"
+msgstr ""
+
+#: src/EDD/Theme_Updater_Admin.php:238
+msgid "Error"
+msgstr ""
+
+#: src/EDD/Theme_Updater_Admin.php:269 src/EDD/Theme_Updater_Admin.php:316
+#: src/EDD/Theme_Updater_Admin.php:369
+msgid "An error occurred, please try again."
+msgstr "C'è stato un errore, riprova di nuovo."
+
+#: src/EDD/Theme_Updater_Admin.php:283
+#, php-format
+msgid "Your license key expired on %s."
+msgstr ""
+
+#: src/EDD/Theme_Updater_Admin.php:290
+msgid "Your license key has been disabled."
+msgstr ""
+
+#: src/EDD/Theme_Updater_Admin.php:295
+msgid "Invalid license."
+msgstr ""
+
+#: src/EDD/Theme_Updater_Admin.php:301
+msgid "Your license is not active for this URL."
+msgstr ""
+
+#: src/EDD/Theme_Updater_Admin.php:306
+#, php-format
+msgid "This appears to be an invalid license key for %s."
+msgstr ""
+
+#: src/EDD/Theme_Updater_Admin.php:311
+msgid "Your license key has reached its activation limit."
 msgstr ""
 
 #: src/Editors/Category.php:128 src/Editors/Category.php:144
@@ -1037,39 +929,39 @@ msgstr ""
 
 #: src/Editors/config/default_style_formats.php:17
 msgid "Headers"
-msgstr ""
+msgstr "Intestazione"
 
 #: src/Editors/config/default_style_formats.php:20
 msgid "Header 1"
-msgstr ""
+msgstr "Intestazione 1"
 
 #: src/Editors/config/default_style_formats.php:24
 msgid "Header 2"
-msgstr ""
+msgstr "Intestazione 2"
 
 #: src/Editors/config/default_style_formats.php:28
 msgid "Header 3"
-msgstr ""
+msgstr "Intestazione 3"
 
 #: src/Editors/config/default_style_formats.php:32
 msgid "Header 4"
-msgstr ""
+msgstr "Intestazione 4"
 
 #: src/Editors/config/default_style_formats.php:36
 msgid "Header 5"
-msgstr ""
+msgstr "Intestazione 5"
 
 #: src/Editors/config/default_style_formats.php:40
 msgid "Header 6"
-msgstr ""
+msgstr "Intestazione 6"
 
 #: src/Editors/config/default_style_formats.php:46
 msgid "Inline"
-msgstr ""
+msgstr "Sulla stessa riga"
 
 #: src/Editors/config/default_style_formats.php:92
 msgid "Blocks"
-msgstr ""
+msgstr "Blocchi"
 
 #: src/Editors/config/default_style_formats.php:113
 msgid "Alignment"
@@ -1077,7 +969,7 @@ msgstr "Allineamento"
 
 #: src/Editors/config/style_formats.php:22
 msgid "Text size"
-msgstr ""
+msgstr "Dimenzione testo"
 
 #: src/Editors/config/style_formats.php:26
 msgid "Big"
@@ -1085,51 +977,51 @@ msgstr "Grande"
 
 #: src/Editors/config/style_formats.php:33
 msgid "Small"
-msgstr ""
+msgstr "Piccolo"
 
 #: src/Editors/config/style_formats.php:40
 msgid "H1"
-msgstr ""
+msgstr "H1"
 
 #: src/Editors/config/style_formats.php:48
 msgid "H2"
-msgstr ""
+msgstr "H2"
 
 #: src/Editors/config/style_formats.php:56
 msgid "H3"
-msgstr ""
+msgstr "H3"
 
 #: src/Editors/config/style_formats.php:64
 msgid "H4"
-msgstr ""
+msgstr "H4"
 
 #: src/Editors/config/style_formats.php:72
 msgid "H5"
-msgstr ""
+msgstr "H5"
 
 #: src/Editors/config/style_formats.php:80
 msgid "H6"
-msgstr ""
+msgstr "H6"
 
 #: src/Editors/config/style_formats.php:90
 msgid "Text colors"
-msgstr ""
+msgstr "Colori testo"
 
 #: src/Editors/config/style_formats.php:94
 msgid "Text primary"
-msgstr ""
+msgstr "Testo primario"
 
 #: src/Editors/config/style_formats.php:102
 msgid "Text secondary"
-msgstr ""
+msgstr "Testo secondario"
 
 #: src/Editors/config/style_formats.php:110
 msgid "Text inverse"
-msgstr ""
+msgstr "Testo inverso"
 
 #: src/Editors/config/style_formats.php:128
 msgid "Highlight text"
-msgstr ""
+msgstr "Evidenzia testo"
 
 #: src/Editors/config/style_formats.php:132
 msgid "Mark"
@@ -1137,27 +1029,27 @@ msgstr ""
 
 #: src/Editors/config/style_formats.php:139
 msgid "Button style"
-msgstr ""
+msgstr "Stile bottone"
 
 #: src/Editors/config/style_formats.php:143
 msgid "Button Primary"
-msgstr ""
+msgstr "Bottone primario"
 
 #: src/Editors/config/style_formats.php:150
 msgid "Button Large"
-msgstr ""
+msgstr "Bottone largo"
 
 #: src/Editors/config/style_formats.php:157
 msgid "Button small"
-msgstr ""
+msgstr "Bottone piccolo"
 
 #: src/Editors/config/style_formats.php:164
 msgid "Button block"
-msgstr ""
+msgstr "Bottone blocco"
 
 #: src/Init/Init_Theme.php:110
 msgid "Secondary Menu"
-msgstr ""
+msgstr "Menù secondario"
 
 #: src/Init/Init_Theme.php:111
 msgid "Social Menu"
@@ -1165,7 +1057,7 @@ msgstr ""
 
 #: src/Init/Init_Theme.php:113
 msgid "Footer Menu"
-msgstr ""
+msgstr "Menù footer"
 
 #. translators: %s: title of menu item which is invalid
 #: src/Nav_Menu/Nav_Menu_Edit.php:84
@@ -1219,15 +1111,15 @@ msgstr ""
 
 #: src/Nav_Menu/Nav_Menu_Edit.php:188
 msgid "Up one"
-msgstr ""
+msgstr "Sopra uno"
 
 #: src/Nav_Menu/Nav_Menu_Edit.php:189
 msgid "Down one"
-msgstr ""
+msgstr "Sotto uno"
 
 #: src/Nav_Menu/Nav_Menu_Edit.php:192
 msgid "To the top"
-msgstr ""
+msgstr "Vai su"
 
 #: src/Nav_Menu/Nav_Menu_Edit.php:199
 #, php-format
@@ -1258,29 +1150,28 @@ msgstr "Aggiungi al menù"
 msgid "Toggle navigation"
 msgstr ""
 
+#: src/Pagination/Pagination.php:58
+msgid "Page: "
+msgstr "Pagina:"
+
 #: src/Pagination/Pagination.php:173
 msgid "navigation"
-msgstr ""
+msgstr "navigazione"
 
 #: src/Required_Plugins/Register.php:52
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:334
 msgid "Install Required Plugins"
 msgstr "Installa i plugin richiesti"
 
 #: src/Required_Plugins/Register.php:54
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:335
 msgid "Install Plugins"
 msgstr "Installa i plugin"
 
-#. translators: %s: plugin name.
 #: src/Required_Plugins/Register.php:59
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:337
 #, php-format
 msgid "Installing Plugin: %s"
 msgstr "Installa il Plugin: %s"
 
 #: src/Required_Plugins/Register.php:61
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:340
 msgid "Something went wrong with the plugin API."
 msgstr "Qualcosa non ha funzionato con le API del plugin."
 
@@ -1288,13 +1179,12 @@ msgstr "Qualcosa non ha funzionato con le API del plugin."
 #, php-format
 msgid "This theme requires the following plugin: %1$s. Please, install it now"
 msgstr ""
+"Il tema richiede l'installazione dei seguenti plugin: %1$s. Installali ora"
 
-#. translators: 1: plugin name(s).
 #: src/Required_Plugins/Register.php:71
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:349
 #, php-format
 msgid "This theme recommends the following plugin: %1$s."
-msgstr ""
+msgstr "Il tema consiglia i seguenti plugin: %1$s."
 
 #: src/Required_Plugins/Register.php:76
 #, php-format
@@ -1304,19 +1194,15 @@ msgid ""
 "installed."
 msgstr ""
 
-#. translators: 1: plugin name(s).
 #: src/Required_Plugins/Register.php:81
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:367
 #, php-format
 msgid "The following required plugin is currently inactive: %1$s."
-msgstr ""
+msgstr "Il seguente plugin richiesto e attualmente inattivo: %1$s."
 
-#. translators: 1: plugin name(s).
 #: src/Required_Plugins/Register.php:86
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:373
 #, php-format
 msgid "The following recommended plugin is currently inactive: %1$s."
-msgstr ""
+msgstr "Il seguente plugin raccomandato e attualmente inattivo: %1$s."
 
 #: src/Required_Plugins/Register.php:91
 #, php-format
@@ -1326,14 +1212,14 @@ msgid ""
 "plugin activated."
 msgstr ""
 
-#. translators: 1: plugin name(s).
 #: src/Required_Plugins/Register.php:96
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:355
 #, php-format
 msgid ""
 "The following plugin needs to be updated to its latest version to ensure "
 "maximum compatibility with this theme: %1$s."
 msgstr ""
+"I seguenti plugin devono essere aggiornati alla loro ultima versione per "
+"avere una piane compatibilità con questo tema: %1$s."
 
 #: src/Required_Plugins/Register.php:101
 #, php-format
@@ -1344,22 +1230,18 @@ msgid ""
 msgstr ""
 
 #: src/Required_Plugins/Register.php:103
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:378
 msgid "Begin installing plugin"
-msgstr ""
+msgstr "Comincia ad installare il plugin"
 
 #: src/Required_Plugins/Register.php:105
 msgid "Activate installed plugin"
-msgstr ""
+msgstr "Attiva il plugin installato"
 
 #: src/Required_Plugins/Register.php:107
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:392
 msgid "Return to Required Plugins Installer"
 msgstr "Ritorna all'Installazione richiesta dei plugin"
 
 #: src/Required_Plugins/Register.php:109
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:394
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3252
 msgid "Plugin activated successfully."
 msgstr "Il plugin è stato attivato con successo."
 
@@ -1370,7 +1252,7 @@ msgstr "Tutti i plugin sono stati installati ed attivati con successo. %s"
 
 #: src/User/Contact_Methods_Base.php:40
 msgid "Url avatar"
-msgstr ""
+msgstr "URL avatar"
 
 #: src/User/Contact_Methods_Base.php:41
 msgid "Skype"
@@ -1382,19 +1264,19 @@ msgstr ""
 
 #: src/User/Contact_Methods_Base.php:43
 msgid "Google Profile URL"
-msgstr ""
+msgstr "URL profilo google"
 
 #: src/User/Contact_Methods_Base.php:44
 msgid "Google Page URL"
-msgstr ""
+msgstr "URL pagina google"
 
 #: src/User/Contact_Methods_Base.php:45
 msgid "Facebook Profile URL"
-msgstr ""
+msgstr "URL profilo facebook"
 
 #: src/User/Contact_Methods_Base.php:46
 msgid "Facebook Page URL"
-msgstr ""
+msgstr "URL pagina facebook"
 
 #: src/User/Contact_Methods_Base.php:47
 msgid "LinkedIn"
@@ -1402,6 +1284,18 @@ msgstr ""
 
 #: src/User/Contact_Methods_Base.php:48
 msgid "Pinterest"
+msgstr ""
+
+#: src/WooCommerce/WC_Nav_Menu.php:46 src/WooCommerce/WC_Nav_Menu.php:78
+msgid "View your shopping cart"
+msgstr "Visualizza il tuo carrello"
+
+#: src/WooCommerce/WC_Nav_Menu.php:64
+msgid "My Account"
+msgstr ""
+
+#: src/WooCommerce/WC_Nav_Menu.php:68
+msgid "Login / Register"
 msgstr ""
 
 #: templates/misc/archive-headline.php:22
@@ -1414,6 +1308,8 @@ msgstr "Risultato per la ricerca di: %s"
 msgid ""
 "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
+"Sei pronto per pubblicare il tuo primo articolo? <a href=\"%1$s\">Comincia "
+"da qui</a>."
 
 #: templates/posts/parts/meta.php:31
 msgid "No Responses"
@@ -1435,677 +1331,276 @@ msgstr ""
 "<strong>Nota:</strong> Stai visualizzando questo post. Questo post non è "
 "ancora stato pubblicato."
 
-#: tests/tests/phpunit/data/plugins/wordpress-importer/parsers.php:42
-#: tests/tests/phpunit/data/plugins/wordpress-importer/parsers.php:72
-#: tests/tests/phpunit/data/plugins/wordpress-importer/parsers.php:80
-msgid "There was an error when reading this WXR file"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/parsers.php:43
-msgid ""
-"Details are shown above. The importer will now try again with a different "
-"parser..."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/parsers.php:84
-#: tests/tests/phpunit/data/plugins/wordpress-importer/parsers.php:89
-#: tests/tests/phpunit/data/plugins/wordpress-importer/parsers.php:279
-#: tests/tests/phpunit/data/plugins/wordpress-importer/parsers.php:468
-msgid ""
-"This does not appear to be a WXR file, missing/invalid WXR version number"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:132
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:141
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:192
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:196
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:205
-msgid "Sorry, there has been an error."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:133
-msgid "The file does not exist, please try again."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:176
-msgid "All done."
-msgstr "Tutto fatto."
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:176
-msgid "Have fun!"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:177
-msgid "Remember to update the passwords and roles of imported users."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:197
-#, php-format
-msgid ""
-"The export file could not be found at <code>%s</code>. It is likely that "
-"this was caused by a permissions problem."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:213
-#, php-format
-msgid ""
-"This WXR file (version %s) may not be supported by this version of the "
-"importer. Please consider updating."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:238
-#, php-format
-msgid ""
-"Failed to import author %s. Their posts will be attributed to the current "
-"user."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:264
-msgid "Assign Authors"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:265
-msgid ""
-"To make it easier for you to edit and save the imported content, you may "
-"want to reassign the author of the imported item to an existing user of this "
-"site. For example, you may want to import all the entries as <code>admin</"
-"code>s entries."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:267
-#, php-format
-msgid ""
-"If a new user is created by WordPress, a new password will be randomly "
-"generated and the new user&#8217;s role will be set as %s. Manually changing "
-"the new user&#8217;s details will be necessary."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:277
-msgid "Import Attachments"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:280
-msgid "Download and import file attachments"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:297
-msgid "Import author:"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:308
-msgid "or create new user with login name:"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:311
-msgid "as a new user:"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:319
-msgid "assign posts to an existing user:"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:321
-msgid "or assign posts to an existing user:"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:322
-msgid "- Select -"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:372
-#, php-format
-msgid ""
-"Failed to create new user for %s. Their posts will be attributed to the "
-"current user."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:423
-#, php-format
-msgid "Failed to import category %s"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:463
-#, php-format
-msgid "Failed to import post tag %s"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:509
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:650
-#, php-format
-msgid "Failed to import %s %s"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:535
-#, php-format
-msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:557
-#, php-format
-msgid "%s &#8220;%s&#8221; already exists."
-msgstr "%s &#8220;%s&#8221; già esistente."
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:616
-#, php-format
-msgid "Failed to import %s &#8220;%s&#8221;"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:781
-msgid "Menu item skipped due to missing menu slug"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:788
-#, php-format
-msgid "Menu item skipped due to invalid menu slug: %s"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:851
-msgid "Fetching attachments is not enabled"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:864
-msgid "Invalid file type"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:908
-msgid "Remote server did not respond"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:914
-#, php-format
-msgid "Remote server returned error response %1$d %2$s"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:921
-msgid "Remote file is incorrect size"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:926
-msgid "Zero size file downloaded"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:932
-#, php-format
-msgid "Remote file is too large, limit is %s"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:1031
-msgid "Import WordPress"
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:1038
-#, php-format
-msgid ""
-"A new version of this importer is available. Please update to version %s to "
-"ensure compatibility with newer export files."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:1053
-msgid ""
-"Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import "
-"the posts, pages, comments, custom fields, categories, and tags into this "
-"site."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:1054
-msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
-msgstr ""
-
-#: tests/tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:1128
-msgid ""
-"Import <strong>posts, pages, comments, custom fields, categories, and tags</"
-"strong> from a WordPress export file."
-msgstr ""
-
-#: tests/tests/phpunit/tests/customize/nav-menus.php:121
-msgid "Custom Link"
-msgstr ""
-
-#: tests/tests/phpunit/tests/includes/helpers.php:203
-msgid "Incorrect usage test"
-msgstr ""
-
-#: tests/tests/phpunit/tests/theme/themeDir.php:176
-msgid "Stylesheet is missing."
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:28
-#: tests/tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:37
-#: tests/tests/phpunit/tests/xmlrpc/wp/editTerm.php:34
-#: tests/tests/phpunit/tests/xmlrpc/wp/editTerm.php:43
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTaxonomy.php:20
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTaxonomy.php:29
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTerm.php:28
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTerm.php:37
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTerms.php:20
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTerms.php:29
-#: tests/tests/phpunit/tests/xmlrpc/wp/newTerm.php:29
-#: tests/tests/phpunit/tests/xmlrpc/wp/newTerm.php:38
-msgid "Invalid taxonomy"
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:46
-msgid "You are not allowed to delete terms in this taxonomy."
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:55
-#: tests/tests/phpunit/tests/xmlrpc/wp/editTerm.php:70
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTerm.php:56
-msgid "Empty Term"
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:64
-#: tests/tests/phpunit/tests/xmlrpc/wp/editTerm.php:61
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTerm.php:65
-msgid "Invalid term ID"
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/editComment.php:47
-msgid "You are not allowed to moderate or edit this comment."
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/editTerm.php:52
-msgid "You are not allowed to edit terms in this taxonomy."
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/editTerm.php:79
-#: tests/tests/phpunit/tests/xmlrpc/wp/newTerm.php:56
-msgid "The term name cannot be empty."
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/editTerm.php:88
-msgid "This taxonomy is not hierarchical so you can't set a parent."
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/editTerm.php:125
-#: tests/tests/phpunit/tests/xmlrpc/wp/newTerm.php:82
-msgid "Parent term does not exist."
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/editTerm.php:135
-#, php-format
-msgid "The slug &#8220;%s&#8221; is already in use by another term"
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTaxonomy.php:38
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTerm.php:46
-#: tests/tests/phpunit/tests/xmlrpc/wp/getTerms.php:38
-msgid "You are not allowed to assign terms in this taxonomy."
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/newTerm.php:47
-msgid "You are not allowed to create terms in this taxonomy."
-msgstr ""
-
-#: tests/tests/phpunit/tests/xmlrpc/wp/newTerm.php:65
-msgid "This taxonomy is not hierarchical."
-msgstr ""
-
-#. translators: %s: plugin name.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:339
-#, php-format
-msgid "Updating Plugin: %s"
-msgstr ""
-
-#. translators: 1: plugin name(s).
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:343
-#, php-format
-msgid "This theme requires the following plugin: %1$s."
-msgstr ""
-
-#. translators: 1: plugin name(s).
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:361
-#, php-format
-msgid "There is an update available for: %1$s."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:383
-msgid "Begin updating plugin"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:388
-msgid "Begin activating plugin"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:393
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:920
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2626
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3673
-msgid "Return to the Dashboard"
-msgstr "Ritorna al pannello di controllo"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:395
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3045
-msgid "The following plugin was activated successfully:"
-msgstr "Il seguente plugin è stato attivato con successo:"
-
-#. translators: 1: plugin name.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:397
-#, php-format
-msgid "No action taken. Plugin %1$s was already active."
-msgstr ""
-
-#. translators: 1: plugin name.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:399
-#, php-format
-msgid ""
-"Plugin not activated. A higher version of %s is needed for this theme. "
-"Please update the plugin."
-msgstr ""
-
-#. translators: 1: dashboard link.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:401
-#, php-format
-msgid "All plugins installed and activated successfully. %1$s"
-msgstr "Tutti i plugin sono stati installati ed attivati con successo. %1$s"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:402
-msgid "Dismiss this notice"
-msgstr "Nascondi l'avviso"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:403
-msgid ""
-"There are one or more required or recommended plugins to install, update or "
-"activate."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:404
-msgid "Please contact the administrator of this site for help."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:607
-msgid "This plugin needs to be updated to be compatible with your theme."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:608
-msgid "Update Required"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:725
-msgid "Set the parent_slug config variable instead."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:1027
-msgid ""
-"The remote plugin package does not contain a folder with the desired slug "
-"and renaming did not work."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:1027
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:1030
-msgid ""
-"Please contact the plugin provider and ask them to package their plugin "
-"according to the WordPress guidelines."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:1030
-msgid ""
-"The remote plugin package consists of more than one file, but the files are "
-"not packaged in a folder."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:1214
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3041
-msgid "and"
-msgstr ""
-
-#. translators: %s: version number
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2075
-#, php-format
-msgid "TGMPA v%s"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2366
-msgid "Required"
-msgstr "Richiesto"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2369
-msgid "Recommended"
-msgstr "Raccomandato"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2385
-msgid "WordPress Repository"
-msgstr "Repository di WordPress"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2388
-msgid "External Source"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2391
-msgid "Pre-Packaged"
-msgstr "Pre-Packaged"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2408
-msgid "Not Installed"
-msgstr "Non installato"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2412
-msgid "Installed But Not Activated"
-msgstr "Installato ma non attivato"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2414
-msgid "Active"
-msgstr "Attivo"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2420
-msgid "Required Update not Available"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2423
-msgid "Requires Update"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2426
-msgid "Update recommended"
-msgstr ""
-
-#. translators: 1: install status, 2: update status
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2435
-#, php-format
-msgid "%1$s, %2$s"
-msgstr ""
-
-#. translators: 1: number of plugins.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2481
-#, php-format
-msgid "All <span class=\"count\">(%s)</span>"
-msgstr ""
-
-#. translators: 1: number of plugins.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2485
-#, php-format
-msgid "To Install <span class=\"count\">(%s)</span>"
-msgstr ""
-
-#. translators: 1: number of plugins.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2489
-#, php-format
-msgid "Update Available <span class=\"count\">(%s)</span>"
-msgstr ""
-
-#. translators: 1: number of plugins.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2493
-#, php-format
-msgid "To Activate <span class=\"count\">(%s)</span>"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2575
-msgid "unknown"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2583
-msgid "Installed version:"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2591
-msgid "Minimum required version:"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2603
-msgid "Available version:"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2626
-msgid "No plugins to install, update or activate."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2640
-msgid "Plugin"
-msgstr "Plugin"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2641
-msgid "Source"
-msgstr "Sorgente"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2642
-msgid "Type"
-msgstr "Tipo"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2646
-msgid "Version"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2647
-msgid "Status"
-msgstr "Stato"
-
-#. translators: %2$s: plugin name in screen reader markup
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2696
-#, php-format
-msgid "Install %2$s"
-msgstr ""
-
-#. translators: %2$s: plugin name in screen reader markup
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2701
-#, php-format
-msgid "Update %2$s"
-msgstr ""
-
-#. translators: %2$s: plugin name in screen reader markup
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2707
-#, php-format
-msgid "Activate %2$s"
-msgstr "Attiva %2$s"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2777
-msgid "Upgrade message from the plugin author:"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2810
-msgid "Install"
-msgstr "Installa"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2816
-msgid "Update"
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2819
-msgid "Activate"
-msgstr "Attiva"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2850
-msgid "No plugins were selected to be installed. No action taken."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2852
-msgid "No plugins were selected to be updated. No action taken."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2893
-msgid "No plugins are available to be installed at this time."
-msgstr "Nessun plugin è disponibile per essere installato in questo momento."
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:2895
-msgid "No plugins are available to be updated at this time."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3001
-msgid "No plugins were selected to be activated. No action taken."
-msgstr ""
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3027
-msgid "No plugins are available to be activated at this time."
-msgstr "Nessun plugin è disponibile per essere attivato in questo momento."
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3251
-msgid "Plugin activation failed."
-msgstr "L'attivazione del plugin è fallita."
-
-#. translators: 1: plugin name, 2: action number 3: total number of actions.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3591
-#, php-format
-msgid "Updating Plugin %1$s (%2$d/%3$d)"
-msgstr ""
-
-#. translators: 1: plugin name, 2: error message.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3594
-#, php-format
-msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
-msgstr "C'è stato un errore mentre si installava %1$s: <strong>%2$s</strong>."
-
-#. translators: 1: plugin name.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3596
-#, php-format
-msgid "The installation of %1$s failed."
-msgstr "L'installazione di %1$s è fallita."
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3600
-msgid ""
-"The installation and activation process is starting. This process may take a "
-"while on some hosts, so please be patient."
-msgstr ""
-"Il processo di installazione e attivazione è cominciato. In alcuni hosting "
-"potrebbe impiegare del tempo, sii paziente."
-
-#. translators: 1: plugin name.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3602
-#, php-format
-msgid "%1$s installed and activated successfully."
-msgstr "%1$s installazione e attivazione riuscita."
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3602
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3610
-msgid "Show Details"
-msgstr "Mostra i dettagli"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3602
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3610
-msgid "Hide Details"
-msgstr "Nascondi i dettagli"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3603
-msgid "All installations and activations have been completed."
-msgstr "tutte le installazioni e attivazioni sono state completate."
-
-#. translators: 1: plugin name, 2: action number 3: total number of actions.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3605
-#, php-format
-msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
-msgstr "Installazione e attivazione Plugin %1$s (%2$d/%3$d)"
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3608
-msgid ""
-"The installation process is starting. This process may take a while on some "
-"hosts, so please be patient."
-msgstr ""
-"Il processo di installazione e attivazione è cominciato. In alcuni hosting "
-"potrebbe impiegare del tempo, sii paziente."
-
-#. translators: 1: plugin name.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3610
-#, php-format
-msgid "%1$s installed successfully."
-msgstr "%1$s installato con successo."
-
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3611
-msgid "All installations have been completed."
-msgstr "Ogni installazione è stata completata."
-
-#. translators: 1: plugin name, 2: action number 3: total number of actions.
-#: vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php:3613
-#, php-format
-msgid "Installing Plugin %1$s (%2$d/%3$d)"
-msgstr "Installazione del plugin %1$s (%2$d/%3$d)"
+#~ msgid "Tag: "
+#~ msgstr "Tag: "
+
+#~ msgid "Yearly archive: "
+#~ msgstr "Archivio dell'anno: "
+
+#~ msgid "Monthly archive: "
+#~ msgstr "Archivio del mese di: "
+
+#~ msgid "Daily archive: "
+#~ msgstr "Archivio del giorno: "
+
+#~ msgid "Author Archives: "
+#~ msgstr "Archivio autore: "
+
+#~ msgid "Search Results: "
+#~ msgstr "Risultato per la ricerca di: "
+
+#~ msgid "Not Found"
+#~ msgstr "Non trovato"
+
+#~ msgid "ItalyStrap Theme Options"
+#~ msgstr "Pagina opzioni di ItalyStrap"
+
+#~ msgid "You do not have sufficient permissions to access this page."
+#~ msgstr "Non hai sufficienti permessi per accedere a questa pagina."
+
+#~ msgid "ItalyStrap options page"
+#~ msgstr "Pagina opzioni di ItalyStrap"
+
+#~ msgid "Default image for 404 page"
+#~ msgstr "Immagine predefinita per pagina 404"
+
+#~ msgid "Default image"
+#~ msgstr "Immagine di default"
+
+#~ msgid "Logo"
+#~ msgstr "Logo"
+
+#~ msgid "Analytics ID"
+#~ msgstr "ID Analytics"
+
+#~ msgid ""
+#~ "Manage or enter your settings below: <strong>(It is still in Beta "
+#~ "version)</strong>"
+#~ msgstr ""
+#~ "Modifica o inserisci i tuoi settaggi qui sotto: <strong>(Funzionalità "
+#~ "ancora in versione beta)</strong>"
+
+#~ msgid "Upload default 404 image"
+#~ msgstr "Carica l'immagine per la 404"
+
+#~ msgid "Upload an image for the 404.php page (at least width 750px)."
+#~ msgstr ""
+#~ "Carica un'immagine per la pagina 404.php (deve essere larga almeno 750px)."
+
+#~ msgid "Default 404 image preview"
+#~ msgstr "Anteprima immagine 404 predefinita"
+
+#~ msgid "Upload default image"
+#~ msgstr "Carica un immagine di default"
+
+#~ msgid ""
+#~ "Upload an image for the default image used for social share (must be "
+#~ "1200x600px)."
+#~ msgstr ""
+#~ "Carica un'immagine da usare come immagine di default per la condivisione "
+#~ "sociale (deve essere almeno 1200x600px)."
+
+#~ msgid "Default image preview"
+#~ msgstr "Anteprima immagine predefinita"
+
+#~ msgid "Upload favicon"
+#~ msgstr "Carica la favicon"
+
+#~ msgid "Upload an image for the favicon (max 32x32px)."
+#~ msgstr "Carica un immagine per la favivon (max 32x32px)."
+
+#~ msgid "Favicon preview"
+#~ msgstr "Anteprima Favicon"
+
+#~ msgid "Upload Logo"
+#~ msgstr "Carica il logo"
+
+#~ msgid "Upload an image for the logo."
+#~ msgstr "Carica un'immagine per il logo."
+
+#~ msgid "Logo preview"
+#~ msgstr "Anteprima logo"
+
+#~ msgid "Enter your analytics ID (e.g. UA-XXXXX-X )."
+#~ msgstr "Inserisci il tuo ID analytics (es. UA-XXXXX-X )."
+
+#~ msgid "Blog Archives"
+#~ msgstr "Archivio del blog: "
+
+#~ msgid "Click here to cancel reply."
+#~ msgstr "Clicca qui per cancellare la tua risposta."
+
+#~ msgid "The Boss :-)"
+#~ msgstr "The boss :-)"
+
+#~ msgid "Reply <i class=\"glyphicon glyphicon-arrow-down\"></i>"
+#~ msgstr "Rispondi <i class=\"glyphicon glyphicon-arrow-down\"></i>"
+
+#~ msgid "All Items"
+#~ msgstr "Tutte le voci"
+
+#~ msgid "Parent Item"
+#~ msgstr "Voce genitore"
+
+#~ msgid "Parent Item:"
+#~ msgstr "Voce genitore:"
+
+#~ msgid "New Item Name"
+#~ msgstr "Nuova voce"
+
+#~ msgid "Add New Item"
+#~ msgstr "Aggiungi una nuova voce"
+
+#~ msgid "Edit Item"
+#~ msgstr "Modifica voce"
+
+#~ msgid "Add or remove items"
+#~ msgstr "Aggiungi o rimuovi voci"
+
+#~ msgid "Choose from the most used"
+#~ msgstr "Scegli fra quelli più utilizzati"
+
+#~ msgid "All globals now are in functions.php"
+#~ msgstr "Tutte le variabili globali sono ora in functions.php"
+
+#~ msgid "Damn, what you were looking for is not there"
+#~ msgstr "Azz, quello che stavi cercando non c'è"
+
+#~ msgid "Search again with the form below."
+#~ msgstr "Cerca ancora usando il form qui sotto."
+
+#~ msgid "Footer box 1 widget area (Use only a widget)"
+#~ msgstr "Footer box 1 widget area (Usa solo un widget)"
+
+#~ msgid "Footer box 2 widget area (Use only a widget)"
+#~ msgstr "Footer box 2 widget area (Usa solo un widget)"
+
+#~ msgid "Footer box 3 widget area (Use only a widget)"
+#~ msgstr "Footer box 3 widget area (Usa solo un widget)"
+
+#~ msgid "Footer box 4 widget area (Use only a widget)"
+#~ msgstr "Footer box 4 widget area (Usa solo un widget)"
+
+#~ msgid "Use this widget to add a vCard"
+#~ msgstr "Usa questo widget per aggiungere una scheda"
+
+#~ msgid "Company name"
+#~ msgstr "Ragione sociale"
+
+#~ msgid "All done."
+#~ msgstr "Tutto fatto."
+
+#~ msgid "%s &#8220;%s&#8221; already exists."
+#~ msgstr "%s &#8220;%s&#8221; già esistente."
+
+#~ msgid "Return to the Dashboard"
+#~ msgstr "Ritorna al pannello di controllo"
+
+#~ msgid "The following plugin was activated successfully:"
+#~ msgstr "Il seguente plugin è stato attivato con successo:"
+
+#~ msgid "All plugins installed and activated successfully. %1$s"
+#~ msgstr "Tutti i plugin sono stati installati ed attivati con successo. %1$s"
+
+#~ msgid "Dismiss this notice"
+#~ msgstr "Nascondi l'avviso"
+
+#~ msgid "Required"
+#~ msgstr "Richiesto"
+
+#~ msgid "Recommended"
+#~ msgstr "Raccomandato"
+
+#~ msgid "WordPress Repository"
+#~ msgstr "Repository di WordPress"
+
+#~ msgid "Pre-Packaged"
+#~ msgstr "Pre-Packaged"
+
+#~ msgid "Not Installed"
+#~ msgstr "Non installato"
+
+#~ msgid "Installed But Not Activated"
+#~ msgstr "Installato ma non attivato"
+
+#~ msgid "Active"
+#~ msgstr "Attivo"
+
+#~ msgid "Plugin"
+#~ msgstr "Plugin"
+
+#~ msgid "Source"
+#~ msgstr "Sorgente"
+
+#~ msgid "Type"
+#~ msgstr "Tipo"
+
+#~ msgid "Status"
+#~ msgstr "Stato"
+
+#~ msgid "Activate %2$s"
+#~ msgstr "Attiva %2$s"
+
+#~ msgid "Install"
+#~ msgstr "Installa"
+
+#~ msgid "Activate"
+#~ msgstr "Attiva"
+
+#~ msgid "No plugins are available to be installed at this time."
+#~ msgstr ""
+#~ "Nessun plugin è disponibile per essere installato in questo momento."
+
+#~ msgid "No plugins are available to be activated at this time."
+#~ msgstr "Nessun plugin è disponibile per essere attivato in questo momento."
+
+#~ msgid "Plugin activation failed."
+#~ msgstr "L'attivazione del plugin è fallita."
+
+#~ msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+#~ msgstr ""
+#~ "C'è stato un errore mentre si installava %1$s: <strong>%2$s</strong>."
+
+#~ msgid "The installation of %1$s failed."
+#~ msgstr "L'installazione di %1$s è fallita."
+
+#~ msgid ""
+#~ "The installation and activation process is starting. This process may "
+#~ "take a while on some hosts, so please be patient."
+#~ msgstr ""
+#~ "Il processo di installazione e attivazione è cominciato. In alcuni "
+#~ "hosting potrebbe impiegare del tempo, sii paziente."
+
+#~ msgid "%1$s installed and activated successfully."
+#~ msgstr "%1$s installazione e attivazione riuscita."
+
+#~ msgid "Show Details"
+#~ msgstr "Mostra i dettagli"
+
+#~ msgid "Hide Details"
+#~ msgstr "Nascondi i dettagli"
+
+#~ msgid "All installations and activations have been completed."
+#~ msgstr "tutte le installazioni e attivazioni sono state completate."
+
+#~ msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+#~ msgstr "Installazione e attivazione Plugin %1$s (%2$d/%3$d)"
+
+#~ msgid ""
+#~ "The installation process is starting. This process may take a while on "
+#~ "some hosts, so please be patient."
+#~ msgstr ""
+#~ "Il processo di installazione e attivazione è cominciato. In alcuni "
+#~ "hosting potrebbe impiegare del tempo, sii paziente."
+
+#~ msgid "%1$s installed successfully."
+#~ msgstr "%1$s installato con successo."
+
+#~ msgid "All installations have been completed."
+#~ msgstr "Ogni installazione è stata completata."
+
+#~ msgid "Installing Plugin %1$s (%2$d/%3$d)"
+#~ msgstr "Installazione del plugin %1$s (%2$d/%3$d)"
 
 #~ msgid "Edit Menu Item"
 #~ msgstr "Modifica la voce di menù"

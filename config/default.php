@@ -76,9 +76,13 @@ return array(
 	/**
 	 * Default images
 	 */
-	'logo'							=> TEMPLATEURL . '/img/italystrap-logo.jpg',
+	'logo'							=> TEMPLATEURL . '/img/logo.png',
 	'default_image'					=> TEMPLATEURL . '/img/italystrap-default-image.png',
-	'default_404'					=> TEMPLATEURL . '/img/404.jpg',
+	'default_404'					=> TEMPLATEURL . '/img/404.png',
+	'404_show_image'				=> 'show',
+	'404_image'						=> '',
+	'404_title'						=> esc_attr__( 'Nothing Found', 'italystrap' ),
+	'404_content'					=> esc_attr__( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'italystrap' ),
 
 	'post_thumbnail_size'			=> 'post-thumbnail',
 	'post_thumbnail_alignment'		=> 'alignnone',

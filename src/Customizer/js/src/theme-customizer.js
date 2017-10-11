@@ -90,6 +90,21 @@
 		} );
 	} );
 
+	/**
+	 * 404 Page settings
+	 */
+	wp.customize( '404_title', function( value ) {
+		value.bind( function( newval ) {
+			$( '.404-title' ).html( newval );
+		} );
+	} );
+
+	wp.customize( '404_content', function( value ) {
+		value.bind( function( newval ) {
+			$( '.404-content' ).html( newval );
+		} );
+	} );
+
 	wp.customize( 'colophon', function( value ) {
 		value.bind( function( newval ) {
 			$( '.colophon-entry-content' ).html( newval );

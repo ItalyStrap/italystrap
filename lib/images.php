@@ -175,45 +175,61 @@ function italystrap_get_404_image( $class = '' ) {
 
 	global $theme_mods;
 
-	if ( empty( $theme_mods['default_404'] ) ) {
-		return; }
+	if ( 'show' !== $theme_mods['404_show_image'] ) {
+		return;
+	}
+
+	/**
+	 * Back compat with the old setting name
+	 */
+	$default_image = TEMPLATEURL . '/img/404.png';
+
+	if ( empty( $theme_mods['404_image'] ) ) {
+		$theme_mods['404_image'] = $theme_mods['default_404'];
+		remove_theme_mod( 'default_404' ); // Remove the old value from database
+	}
 
 	// $image_404_url = TEMPLATEURL . '/img/404.jpg';
-	$image_404_url = $theme_mods['default_404'];
-	$width = 848;
-	$height = 477;
-	$alt = __( 'Image for 404 page', 'ItalyStrap' ) . ' ' . esc_attr( GET_BLOGINFO_NAME );
+	$image_404_url = $default_image;
+	$width = absint( $theme_mods['content_width'] );
+	$height = '';
+	$alt = __( 'Image for 404 page', 'italystrap' ) . ' ' . esc_attr( GET_BLOGINFO_NAME );
 
-	if ( is_int( $theme_mods['default_404'] ) ) {
+	if ( is_numeric( $theme_mods['404_image'] ) ) {
 
-		// global $wpdb;
-		// $image_404_url = esc_attr( $theme_mods['default_404'] );
-		// $query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$image_404_url'";
-		// $id = $wpdb->get_var($query);
-		// $meta = wp_get_attachment_metadata( $id );var_dump($meta);
-		// $width = ( isset( $meta['width'] ) ) ? $meta['width'] : '' ;
-		// $height = ( isset( $meta['height'] ) ) ? $meta['height'] : '' ;
-		// $alt = trim( strip_tags( get_post_meta($id, '_wp_attachment_image_alt', true) ) );
-		$size = apply_filters( '404-image-size', 'article-thumb' );
-		$id = $theme_mods['default_404'];
+		$size = apply_filters( 'italystrap_404_image_size', $theme_mods['post_thumbnail_size'] );
+
+		$id = (int) $theme_mods['404_image'];
 		$meta = wp_get_attachment_image_src( $id, $size );
 		$image_404_url = $meta[0];
 		$width = esc_attr( $meta[1] );
 		$height = esc_attr( $meta[2] );
-
 	}
 
-	$html = '<img width="' . $width . 'px" height="' . $height . 'px" src="' . esc_url( $image_404_url ) . '" alt="' . $alt . '" class="' . $class . '">';
+	$attr = array(
+		'class'		=>	$class,
+		'width'		=>	empty( $width ) ? '' : $width . 'px',
+		'height'	=>	empty( $height ) ? '' : $height . 'px',
+		'src'		=>	$image_404_url,
+		'alt'		=>	$alt,
 
-	$html = apply_filters( 'italystrap-404-image', $html );
+	);
+
+	$html = sprintf(
+		'<img %s>',
+		\ItalyStrap\Core\get_attr( '', $attr )
+	);
+
+	$html = apply_filters( 'italystrap_404_image_html', $html );
 
 	/**
 	 * If is active ItalyStrap plugin
 	 */
 	if ( function_exists( 'italystrap_apply_lazyload' ) ) {
-		return italystrap_get_apply_lazyload( $html ); } else {
-		return $html; }
-
+		return italystrap_get_apply_lazyload( $html );
+	} else {
+		return $html;
+	}
 }
 
 /**

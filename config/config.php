@@ -130,6 +130,12 @@ return array(
 		 */
 		'breadcrumbs',
 
+
+		/**
+		 * Add support for the builtin breadcrumbs
+		 */
+		'custom_404',
+
 		/**
 		 * Beta 4.0.0
 		 */

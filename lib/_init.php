@@ -35,6 +35,9 @@ $autoload_concrete = array_merge(
 		'ItalyStrap\Controllers\Posts\Loop',
 		'ItalyStrap\Controllers\Posts\Post',
 		'ItalyStrap\Controllers\Posts\None',
+		'ItalyStrap\Controllers\Posts\None\Image',
+		'ItalyStrap\Controllers\Posts\None\Title',
+		'ItalyStrap\Controllers\Posts\None\Content',
 
 		'ItalyStrap\Controllers\Posts\Parts\Breadcrumbs',
 		'ItalyStrap\Controllers\Posts\Parts\Title',

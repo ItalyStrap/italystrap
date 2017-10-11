@@ -195,8 +195,8 @@ $manager->add_control(
 	)
 );
 
-include( 'post-content-template.php' );
-include( 'breadcrumbs.php' );
+// include( 'post-content-template.php' );
+// include( 'breadcrumbs.php' );
 
 /**
  * Define a new section for theme image options
@@ -263,31 +263,6 @@ $manager->add_control(
 			'description'	=> __( 'Upload an image for the default image used for social sharing (must be at least 1200x600px for Facebook), it will also be displayed if no feautured image will be added in your content page/post if the theme supports this feature.', 'italystrap' ),
 			'section'		=> 'italystrap_image_options',
 			'settings'		=> 'default_image',
-			'priority'		=> 10,
-		)
-	)
-);
-
-$manager->add_setting(
-	'default_404',
-	array(
-		'default'			=> $this->theme_mods['default_404'],
-		'type'				=> 'theme_mod',
-		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
-		'sanitize_callback'	=> 'sanitize_text_field',
-	)
-);
-
-$manager->add_control(
-	new WP_Customize_Media_Control(
-		$manager,
-		'italystrap_default_404',
-		array(
-			'label'			=> __( 'Default 404 Image', 'italystrap' ),
-			'description'	=> __( 'This is a default 404 image, it will be displayed in 404 page (must be at least weight 848px)', 'italystrap' ),
-			'section'		=> 'italystrap_image_options',
-			'settings'		=> 'default_404',
 			'priority'		=> 10,
 		)
 	)

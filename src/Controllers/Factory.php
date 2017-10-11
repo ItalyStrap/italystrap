@@ -85,6 +85,11 @@ class Factory {
 		// 	'Colophon'			=> 'ItalyStrap\Controllers\Footers\Colophon',
 		// );
 
+		/**
+		 * @see _init.php for the actual loading files
+		 *
+		 * @var array
+		 */
 		$this->subscribers = array(
 			'ItalyStrap\Controllers\Headers\Navbar_Top',
 			'ItalyStrap\Controllers\Headers\Image',
@@ -96,6 +101,9 @@ class Factory {
 			'ItalyStrap\Controllers\Posts\Loop',
 			'ItalyStrap\Controllers\Posts\Post',
 			'ItalyStrap\Controllers\Posts\None',
+			'ItalyStrap\Controllers\Posts\None\Image',
+			'ItalyStrap\Controllers\Posts\None\Title',
+			'ItalyStrap\Controllers\Posts\None\Content',
 
 			'ItalyStrap\Controllers\Posts\Parts\Breadcrumbs',
 			'ItalyStrap\Controllers\Posts\Parts\Title',

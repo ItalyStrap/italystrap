@@ -130,6 +130,9 @@ class Theme_Customizer implements Subscriber_Interface {
 		// $this->register( $manager );
 
 		require(  __DIR__ . '/settings/customizer.php'  );
+		require( __DIR__ . '/settings/post-content-template.php' );
+		require( __DIR__ . '/settings/breadcrumbs.php' );
+		require( __DIR__ . '/settings/404.php' );
 
 		// Hide core sections/controls when they aren't used on the current page.
 		// $manager->get_section( 'header_image' )->active_callback = 'is_front_page';

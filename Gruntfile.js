@@ -5,20 +5,25 @@ var bootstrap_fonts_path = bootstrap_path + 'fonts/bootstrap/';
 
 var italystrap_theme = [
 	'**',
+	'!codecept',
 	'!.git/**',
+	'!.gitattributes',
+	'!.gitignore',
 	'!.sass-cache/**',
 	'!node_modules/**',
 	'!bower/**',
 	'!tests/**',
 	'!future-inclusions/**',
+	'!sass/**',
+	'!css/src/**',
+	'!js/src/**',
+	'!snippets.md',
 	'!bower.json',
 	'!Gruntfile.js',
 	'!package.json',
-	'!.gitattributes',
-	'!.gitignore',
 	'!*.yml',
-	'!snippets.md',
 	'!*.zip',
+	'!**/*.map',
 ];
 
 module.exports = function(grunt) {
@@ -80,58 +85,10 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				options: {
-					sourceMap: true
+					// sourceMap: true
 					// ,beautify: true
 				},
 				files: {
-					'js/home.min.js': [
-						bootstrap_js_path + 'transition.js',
-						bootstrap_js_path + 'alert.js',
-						bootstrap_js_path + 'button.js',
-						bootstrap_js_path + 'carousel.js',
-						bootstrap_js_path + 'collapse.js',
-						bootstrap_js_path + 'dropdown.js',
-						bootstrap_js_path + 'modal.js',
-						bootstrap_js_path + 'tooltip.js',
-						bootstrap_js_path + 'popover.js',
-						bootstrap_js_path + 'scrollspy.js',
-						bootstrap_js_path + 'tab.js',
-						bootstrap_js_path + 'affix.js',
-						'js/src/home.js' // <- Modify this
-					],
-
-					'js/singular.min.js': [
-						bootstrap_js_path + 'transition.js',
-						bootstrap_js_path + 'alert.js',
-						bootstrap_js_path + 'button.js',
-						bootstrap_js_path + 'carousel.js',
-						bootstrap_js_path + 'collapse.js',
-						bootstrap_js_path + 'dropdown.js',
-						bootstrap_js_path + 'modal.js',
-						bootstrap_js_path + 'tooltip.js',
-						bootstrap_js_path + 'popover.js',
-						bootstrap_js_path + 'scrollspy.js',
-						bootstrap_js_path + 'tab.js',
-						bootstrap_js_path + 'affix.js',
-						'js/src/singular.js' // <- Modify this
-					],
-
-					'js/archive.min.js': [
-						bootstrap_js_path + 'transition.js',
-						bootstrap_js_path + 'alert.js',
-						bootstrap_js_path + 'button.js',
-						bootstrap_js_path + 'carousel.js',
-						bootstrap_js_path + 'collapse.js',
-						bootstrap_js_path + 'dropdown.js',
-						bootstrap_js_path + 'modal.js',
-						bootstrap_js_path + 'tooltip.js',
-						bootstrap_js_path + 'popover.js',
-						bootstrap_js_path + 'scrollspy.js',
-						bootstrap_js_path + 'tab.js',
-						bootstrap_js_path + 'affix.js',
-						'js/src/archive.js' // <- Modify this
-					],
-
 					'js/custom.min.js': [
 						bootstrap_js_path + 'transition.js',
 						bootstrap_js_path + 'alert.js',
@@ -510,6 +467,13 @@ module.exports = function(grunt) {
 		[
 			'compass',
 			'postcss'
+		]
+	);
+	
+	grunt.registerTask(
+		'js',
+		[
+			'uglify',
 		]
 	);
 

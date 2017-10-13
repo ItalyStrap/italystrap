@@ -2243,8 +2243,7 @@ blockquote .small:before {
 
 /* line 274, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_type.scss */
 .blockquote-reverse,
-blockquote.pull-right,
-blockquote.alignright {
+blockquote.pull-right {
   padding-right: 15px;
   padding-left: 0;
   border-right: 5px solid #eeeeee;
@@ -2256,11 +2255,8 @@ blockquote.alignright {
 .blockquote-reverse small:before,
 .blockquote-reverse .small:before,
 blockquote.pull-right footer:before,
-blockquote.alignright footer:before,
 blockquote.pull-right small:before,
-blockquote.alignright small:before,
-blockquote.pull-right .small:before,
-blockquote.alignright .small:before {
+blockquote.pull-right .small:before {
   content: '';
 }
 /* line 287, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_type.scss */
@@ -2268,11 +2264,8 @@ blockquote.alignright .small:before {
 .blockquote-reverse small:after,
 .blockquote-reverse .small:after,
 blockquote.pull-right footer:after,
-blockquote.alignright footer:after,
 blockquote.pull-right small:after,
-blockquote.alignright small:after,
-blockquote.pull-right .small:after,
-blockquote.alignright .small:after {
+blockquote.pull-right .small:after {
   content: '\00A0 \2014';
 }
 
@@ -4627,7 +4620,7 @@ tbody.collapse.in {
   background-clip: padding-box;
 }
 /* line 54, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_dropdowns.scss */
-.dropdown-menu.pull-right, .dropdown-menu.alignright {
+.dropdown-menu.pull-right {
   right: 0;
   left: auto;
 }
@@ -4719,8 +4712,7 @@ tbody.collapse.in {
 }
 
 /* line 173, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_dropdowns.scss */
-.pull-right > .dropdown-menu, .alignright > .dropdown-menu,
-a img.alignright > .dropdown-menu {
+.pull-right > .dropdown-menu {
   right: 0;
   left: auto;
 }
@@ -6370,17 +6362,13 @@ a.thumbnail.active {
 
 /* line 29, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_media.scss */
 .media-right,
-.media > .pull-right,
-.media > .alignright,
-a .media > img.alignright {
+.media > .pull-right {
   padding-left: 10px;
 }
 
 /* line 34, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_media.scss */
 .media-left,
-.media > .pull-left,
-.media > .alignleft,
-a .media > img.alignleft {
+.media > .pull-left {
   padding-right: 10px;
 }
 
@@ -6730,14 +6718,12 @@ a .media > img.alignleft {
 }
 
 /* line 15, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_utilities.scss */
-.pull-right, .alignright,
-a img.alignright {
+.pull-right {
   float: right !important;
 }
 
 /* line 18, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_utilities.scss */
-.pull-left, .alignleft,
-a img.alignleft {
+.pull-left {
   float: left !important;
 }
 
@@ -7076,445 +7062,80 @@ a img.alignleft {
     display: none !important;
   }
 }
-/* line 1, ../../sass/global/_fix.scss */
-.widget ul {
-  list-style: none outside none;
-  padding-left: 0;
-}
-
-/* line 5, ../../sass/global/_fix.scss */
-.comment-edit-link, .comment-reply-link, .btn-primary a {
-  color: #FFFFFF !important;
-}
-
-/* line 10, ../../sass/global/_fix.scss */
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, a, p, li {
-  -ms-word-wrap: break-word;
-  word-wrap: break-word;
-}
-
-/* line 15, ../../sass/global/_fix.scss */
-.size-full,
-.wp-post-image,
-.wp-block-image {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-/* line 20, ../../sass/global/_fix.scss */
-.size-full > img,
-.wp-post-image > img,
-.wp-block-image > img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-/* line 1, ../../sass/global/_margin.scss */
-.margin-top-xs {
-  margin-top: 32px;
-}
-
-/* line 4, ../../sass/global/_margin.scss */
-.margin-top-sm {
-  margin-top: 64px;
-}
-
-/* line 7, ../../sass/global/_margin.scss */
-.margin-top-md {
-  margin-top: 96px;
-}
-
-/* line 10, ../../sass/global/_margin.scss */
-.margin-top-lg {
-  margin-top: 128px;
-}
-
-/* New class to hide content with max-width: 480px*/
-/* line 8, ../../sass/global/_new-class.scss */
-.boxed {
-  margin-left: auto;
-  margin-right: auto;
-}
-@media (min-width: 768px) {
-  /* line 8, ../../sass/global/_new-class.scss */
-  .boxed {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  /* line 8, ../../sass/global/_new-class.scss */
-  .boxed {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  /* line 8, ../../sass/global/_new-class.scss */
-  .boxed {
-    width: 1170px;
-  }
-}
-
-/* line 1, ../../sass/global/_wordpressCss.scss */
-#wp-calendar {
-  width: 100%;
-}
-
-/* line 6, ../../sass/global/_wordpressCss.scss */
-.mejs-container {
-  margin-bottom: 1.5em;
-}
-
 /**
- * Class for Figure tag and figure caption tag
- * https://codex.wordpress.org/CSS
+ * Css for admin panel
  */
-/* =WordPress Core
--------------------------------------------------------------- */
-/* line 26, ../../sass/global/_wordpressCss.scss */
-.aligncenter,
-div.aligncenter,
-a img.aligncenter {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+/* line 67, ../../sass/editor-style.scss */
+body {
+  padding: 1rem !important;
+}
+/* line 69, ../../sass/editor-style.scss */
+body.wp-autoresize {
+  padding: 1rem !important;
 }
 
-/* line 33, ../../sass/global/_wordpressCss.scss */
-.alignright,
-a img.alignright {
-  margin: 0 0 1em 1em;
+/* line 74, ../../sass/editor-style.scss */
+.icon {
+  background-color: transparent;
 }
 
-/* line 40, ../../sass/global/_wordpressCss.scss */
-.alignleft,
-a img.alignleft {
-  margin: 0 1em 1em 0;
+/* line 80, ../../sass/editor-style.scss */
+.wpview-wrap {
+  background-color: #f2f2f2;
+  padding: 0 0.5rem;
+}
+/* line 84, ../../sass/editor-style.scss */
+.wpview-wrap .toolbar div {
+  margin: 0.2rem;
+  padding: 0;
+}
+/* line 89, ../../sass/editor-style.scss */
+.wpview-wrap .remove-block {
+  display: none;
+}
+/* line 92, ../../sass/editor-style.scss */
+.wpview-wrap .text-inverse h1, .wpview-wrap .text-inverse h2, .wpview-wrap .text-inverse h3, .wpview-wrap .text-inverse h4, .wpview-wrap .text-inverse h5, .wpview-wrap .text-inverse h6, .wpview-wrap .text-inverse .h1, .wpview-wrap .text-inverse .h2, .wpview-wrap .text-inverse .h3, .wpview-wrap .text-inverse .figure-project .wp-caption-text strong, .wpview-wrap .figure-project .wp-caption-text .text-inverse strong, .wpview-wrap .text-inverse .h4, .wpview-wrap .text-inverse .h5, .wpview-wrap .text-inverse .h6, .wpview-wrap .text-inverse .nav-link {
+  color: #337ab7 !important;
 }
 
-/* line 49, ../../sass/global/_wordpressCss.scss */
-.alignnone,
-a img.alignnone {
-  display: inline;
-  margin-bottom: 1em;
-  margin-right: 1em;
-  margin-top: 1em;
+/* line 99, ../../sass/editor-style.scss */
+.row {
+  background-color: #F1F1F1;
+  border: 1px solid #e5e5e5 !important;
+  padding: 5px;
+  margin: 0 -10px 1rem;
+}
+/* line 107, ../../sass/editor-style.scss */
+.row [class*="col"] {
+  background: #fff;
+  border: 1px dashed #7f7f7f;
+  padding: 5px;
+}
+/* line 111, ../../sass/editor-style.scss */
+.row [class*="col"]:hover {
+  background-color: #f7f7f7;
+  border-color: #4c4c4c;
 }
 
-/**
- * Featured Image archive and singular
- */
-/* line 61, ../../sass/global/_wordpressCss.scss */
-.wp-post-image {
-  margin-bottom: 1em;
+/* line 119, ../../sass/editor-style.scss */
+.wpview-wrap .row {
+  background-color: unset;
+  border: unset;
+  padding: unset;
+  margin: unset;
 }
-
-/* line 65, ../../sass/global/_wordpressCss.scss */
-.wp-caption {
-  display: block;
-  max-width: 100%;
+/* line 124, ../../sass/editor-style.scss */
+.wpview-wrap .row:before {
+  content: unset;
 }
-/* line 73, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignnone {
-  margin: 0.3em 1.25em 1.25em 0;
+/* line 127, ../../sass/editor-style.scss */
+.wpview-wrap .row [class*="col"] {
+  background: unset;
+  border: unset;
+  padding: unset;
 }
-/* line 76, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignleft {
-  margin: 0.3em 1.25em 1.25em 0;
+/* line 131, ../../sass/editor-style.scss */
+.wpview-wrap .row [class*="col"]:hover {
+  background-color: unset;
+  border-color: unset;
 }
-/* line 78, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignleft .wp-caption-text {
-  text-align: left;
-}
-/* line 82, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignright {
-  margin: 0.3em 0 1.25em 1.25em;
-}
-/* line 84, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignright .wp-caption-text {
-  text-align: right;
-}
-/* line 88, ../../sass/global/_wordpressCss.scss */
-.wp-caption.aligncenter {
-  margin: 0.3em 1.25em;
-}
-/* line 90, ../../sass/global/_wordpressCss.scss */
-.wp-caption.aligncenter .wp-caption-text {
-  text-align: center;
-}
-/* line 102, ../../sass/global/_wordpressCss.scss */
-.wp-caption p.wp-caption-text,
-.wp-caption .wp-caption-text {
-  border: 1px solid #eeeeee;
-  border-top: none;
-  color: #777777;
-  font-size: 0.85em;
-  line-height: 1em;
-  margin: 0;
-  padding: 0.5em;
-}
-
-/* Text meant only for screen readers. */
-/* line 116, ../../sass/global/_wordpressCss.scss */
-.screen-reader-text {
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-}
-/* line 122, ../../sass/global/_wordpressCss.scss */
-.screen-reader-text:focus {
-  background-color: #f1f1f1;
-  border-radius: 3px;
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-  clip: auto !important;
-  color: #21759b;
-  display: block;
-  font-size: 14px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  height: auto;
-  left: 5px;
-  line-height: normal;
-  padding: 15px 23px 14px;
-  text-decoration: none;
-  top: 5px;
-  width: auto;
-  z-index: 100000;
-  /* Above WP toolbar. */
-}
-
-/**
- * Snippet example:
- */
-/**
- * Fix for dropdown menu with multilevel
- * @link http://bootsnipp.com/snippets/featured/multi-level-dropdown-menu-bs3
- *
- * Da finire di testare
- */
-/* line 11, ../../sass/header/_menu.scss */
-.dropdown-submenu {
-  position: relative;
-}
-/* line 14, ../../sass/header/_menu.scss */
-.dropdown-submenu:hover > .dropdown-menu {
-  display: block;
-}
-/* line 17, ../../sass/header/_menu.scss */
-.dropdown-submenu:hover > a:after {
-  border-left-color: #fff;
-}
-/* line 21, ../../sass/header/_menu.scss */
-.dropdown-submenu.pull-left, .dropdown-submenu.alignleft {
-  float: none;
-}
-/* line 23, ../../sass/header/_menu.scss */
-.dropdown-submenu.pull-left > .dropdown-menu, .dropdown-submenu.alignleft > .dropdown-menu,
-a img.dropdown-submenu.alignleft > .dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  -webkit-border-radius: 6px 0 6px 6px;
-  -moz-border-radius: 6px 0 6px 6px;
-  border-radius: 6px 0 6px 6px;
-}
-/* line 32, ../../sass/header/_menu.scss */
-.dropdown-submenu > .dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  -webkit-border-radius: 0 6px 6px 6px;
-  -moz-border-radius: 0 6px 6px;
-  border-radius: 0 6px 6px 6px;
-}
-/* line 42, ../../sass/header/_menu.scss */
-.dropdown-submenu > a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #ccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-
-/* line 60, ../../sass/header/_menu.scss */
-.nav > .lang-item > a {
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-}
-
-/* line 16, ../../sass/content/_gallery.scss */
-.gallery {
-  display: flex;
-  flex-flow: row wrap;
-}
-/* line 19, ../../sass/content/_gallery.scss */
-.gallery .gallery-item {
-  padding: 0.5em;
-}
-/* line 22, ../../sass/content/_gallery.scss */
-.gallery .gallery-caption {
-  color: #777777;
-  font-size: 0.85em;
-}
-/* line 26, ../../sass/content/_gallery.scss */
-.gallery .gallery-icon,
-.gallery .gallery-caption {
-  text-align: center;
-}
-/* line 30, ../../sass/content/_gallery.scss */
-.gallery img {
-  height: auto;
-  width: 100%;
-  max-width: 100%;
-}
-
-/* line 39, ../../sass/content/_gallery.scss */
-.gallery-columns-1 .gallery-item {
-  flex: 1 1 100%;
-}
-
-/* line 39, ../../sass/content/_gallery.scss */
-.gallery-columns-2 .gallery-item {
-  flex: 1 1 50%;
-}
-
-/* line 39, ../../sass/content/_gallery.scss */
-.gallery-columns-3 .gallery-item {
-  flex: 1 1 33.33333%;
-}
-
-/* line 39, ../../sass/content/_gallery.scss */
-.gallery-columns-4 .gallery-item {
-  flex: 1 1 25%;
-}
-
-/* line 39, ../../sass/content/_gallery.scss */
-.gallery-columns-5 .gallery-item {
-  flex: 1 1 20%;
-}
-
-/* line 39, ../../sass/content/_gallery.scss */
-.gallery-columns-6 .gallery-item {
-  flex: 1 1 16.66667%;
-}
-
-/* line 39, ../../sass/content/_gallery.scss */
-.gallery-columns-7 .gallery-item {
-  flex: 1 1 14.28571%;
-}
-
-/* line 39, ../../sass/content/_gallery.scss */
-.gallery-columns-8 .gallery-item {
-  flex: 1 1 12.5%;
-}
-
-/* line 39, ../../sass/content/_gallery.scss */
-.gallery-columns-9 .gallery-item {
-  flex: 1 1 11.11111%;
-}
-
-/* line 3, ../../sass/_content.scss */
-.author-nick {
-  margin-top: 0;
-}
-
-/* CSS SPRITE ICONE SOCIALI Pagina Autore*/
-/* line 5, ../../sass/meta/_sprite.scss */
-.sprite {
-  background: url("../img/css_sprite_social_icon.jpg") no-repeat !important;
-  display: block;
-  height: 64px;
-  width: 64px;
-}
-
-/* line 11, ../../sass/meta/_sprite.scss */
-.twitter {
-  background-position: 0 0 !important;
-}
-
-/* line 14, ../../sass/meta/_sprite.scss */
-.facebook {
-  background-position: -64px 0 !important;
-}
-
-/* line 17, ../../sass/meta/_sprite.scss */
-.googleplus {
-  background-position: -128px 0 !important;
-}
-
-/* line 20, ../../sass/meta/_sprite.scss */
-.skype {
-  background-position: -192px 0 !important;
-}
-
-/* line 23, ../../sass/meta/_sprite.scss */
-.googlepage {
-  background-position: -256px 0 !important;
-}
-
-/* line 26, ../../sass/meta/_sprite.scss */
-.linkedin {
-  background-position: -320px 0 !important;
-}
-
-/* line 29, ../../sass/meta/_sprite.scss */
-.pinterest {
-  background-position: -384px 0 !important;
-}
-
-/* CSS SPRITE ICONE SOCIALI Autore articoli*/
-/* line 37, ../../sass/meta/_sprite.scss */
-.sprite32 {
-  background: url("../img/css_sprite_admin_comment_x32.png") no-repeat !important;
-  display: block;
-  height: 32px;
-  width: 32px;
-}
-
-/* line 43, ../../sass/meta/_sprite.scss */
-.twitter32 {
-  background-position: 0 0 !important;
-}
-
-/* line 46, ../../sass/meta/_sprite.scss */
-.facebook32 {
-  background-position: -34px 0 !important;
-}
-
-/* line 49, ../../sass/meta/_sprite.scss */
-.googleplus32 {
-  background-position: -68px 0 !important;
-}
-
-/* line 52, ../../sass/meta/_sprite.scss */
-.skype32 {
-  background-position: -102px 0 !important;
-}
-
-/* line 55, ../../sass/meta/_sprite.scss */
-.googlepage32 {
-  background-position: -136px 0 !important;
-}
-
-/* line 58, ../../sass/meta/_sprite.scss */
-.linkedin32 {
-  background-position: -170px 0 !important;
-}
-
-/* line 61, ../../sass/meta/_sprite.scss */
-.pinterest32 {
-  background-position: -204px 0 !important;
-}
-
-/*Stile per la form dei commenti*/
-/**
- * Snippet example for widget:
- */

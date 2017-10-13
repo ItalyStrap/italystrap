@@ -39,8 +39,8 @@ $manager->add_setting(
 $manager->add_control(
 	'italystrap_404_show_image',
 	array(
-		'label'			=> __( '404 Page Text', 'italystrap' ),
-		'description'	=> __( 'The text for the content for the 404 page.', 'italystrap' ),
+		'label'			=> __( 'Show or hide 404 image', 'italystrap' ),
+		'description'	=> __( 'Show or hide the 404 image.', 'italystrap' ),
 		'section'		=> 'italystrap_404',
 		'settings'		=> '404_show_image',
 		'priority'		=> 10,
@@ -119,7 +119,7 @@ $manager->add_control(
 	'italystrap_404_content',
 	array(
 		'label'			=> __( '404 Page Text', 'italystrap' ),
-		'description'	=> __( 'The text for the content for the 404 page.', 'italystrap' ),
+		'description'	=> __( 'The text for the content for the 404 page. HTML allowed.', 'italystrap' ),
 		'section'		=> 'italystrap_404',
 		'settings'		=> '404_content',
 		'priority'		=> 10,

@@ -93,6 +93,7 @@ return array(
 	'display_navbar_brand'			=> 'display_name',
 	'navbar_logo_image'				=> '',
 	'navbar_logo_image_size'		=> 'navbar-brand-image',
+	'navbar_logo_image_mobile'		=> null,
 	// 'display_navbar_logo_image'		=> '',
 	// 'display_navbar_logo_image'		=> '',
 	'navbar'						=> array(

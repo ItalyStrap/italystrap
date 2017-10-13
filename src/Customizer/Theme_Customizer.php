@@ -130,6 +130,7 @@ class Theme_Customizer implements Subscriber_Interface {
 		// $this->register( $manager );
 
 		require(  __DIR__ . '/settings/customizer.php'  );
+		require(  __DIR__ . '/settings/navbar.php'  );
 		require( __DIR__ . '/settings/post-content-template.php' );
 		require( __DIR__ . '/settings/breadcrumbs.php' );
 		require( __DIR__ . '/settings/404.php' );
@@ -199,8 +200,7 @@ class Theme_Customizer implements Subscriber_Interface {
 			'sanitize_callback'	=> 'sanitize_text_field',
 		);
 
-		return wp_parse_args( $setting, $defaults );
-	
+		return array_merge( $defaults, $setting );
 	}
 
 	/**
@@ -261,7 +261,6 @@ class Theme_Customizer implements Subscriber_Interface {
 			null,
 			true
 		);
-
 	}
 
 	/**

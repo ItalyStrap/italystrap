@@ -12,7 +12,7 @@
 namespace ItalyStrap;
 
 ?>
-<section id="post-not-found" <?php post_class( array( 'no-results', 'not-found' ) ); ?>>
+<section id="post-not-found" <?php Core\get_attr( 'section_none', array( 'class' => 'no-results not-found' ), true ); ?>>
 <?php
 	do_action( 'italystrap_before_entry_content_none' );
 

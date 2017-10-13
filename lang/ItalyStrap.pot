@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ItalyStrap\n"
-"POT-Creation-Date: 2017-10-10 13:11+0200\n"
+"POT-Creation-Date: 2017-10-11 15:48+0200\n"
 "PO-Revision-Date: 2015-04-07 19:09+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
@@ -37,27 +37,27 @@ msgstr ""
 msgid "There are no comments yet, why not be the first"
 msgstr ""
 
-#: config/config.php:199
+#: config/config.php:205
 msgid "Default"
 msgstr ""
 
-#: config/config.php:203
+#: config/config.php:209
 msgid "Sandwich"
 msgstr ""
 
-#: config/config.php:207
+#: config/config.php:213
 msgid "Coffee"
 msgstr ""
 
-#: config/config.php:231 src/Init/Init_Theme.php:112
+#: config/config.php:237 src/Init/Init_Theme.php:112
 msgid "Info Menu"
 msgstr ""
 
-#: config/config.php:242
+#: config/config.php:248
 msgid "Social Links Menu"
 msgstr ""
 
-#: config/config.php:255 src/Init/Init_Theme.php:109
+#: config/config.php:261 src/Init/Init_Theme.php:109
 msgid "Main Menu"
 msgstr ""
 
@@ -81,11 +81,21 @@ msgstr ""
 msgid "Insert here your logo"
 msgstr ""
 
-#: config/default.php:122 src/Customizer/settings/customizer.php:110
+#: config/default.php:84
+msgid "Nothing Found"
+msgstr ""
+
+#: config/default.php:85
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: config/default.php:126 src/Customizer/settings/customizer.php:110
 msgid "Full witdh"
 msgstr ""
 
-#: config/default.php:123 src/Customizer/settings/customizer.php:111
+#: config/default.php:127 src/Customizer/settings/customizer.php:111
 msgid "Standard width"
 msgstr ""
 
@@ -402,7 +412,7 @@ msgstr ""
 msgid "At the end of the page before the <code>&lt;/body&gt;</code>"
 msgstr ""
 
-#: lib/images.php:185
+#: lib/images.php:196
 msgid "Image for 404 page"
 msgstr ""
 
@@ -554,8 +564,51 @@ msgstr ""
 msgid "Video URL"
 msgstr ""
 
-#: src/Customizer/Theme_Customizer.php:286
+#: src/Customizer/Theme_Customizer.php:289
 msgid "Theme Options"
+msgstr ""
+
+#: src/Customizer/settings/404.php:21
+msgid "404 Page"
+msgstr ""
+
+#: src/Customizer/settings/404.php:24
+msgid "Customize the 404 page for this theme."
+msgstr ""
+
+#: src/Customizer/settings/404.php:42 src/Customizer/settings/404.php:121
+msgid "404 Page Text"
+msgstr ""
+
+#: src/Customizer/settings/404.php:43 src/Customizer/settings/404.php:122
+msgid "The text for the content for the 404 page."
+msgstr ""
+
+#: src/Customizer/settings/404.php:49
+msgid "Show the 404 image"
+msgstr ""
+
+#: src/Customizer/settings/404.php:50
+msgid "Hide the 404 image"
+msgstr ""
+
+#: src/Customizer/settings/404.php:72
+msgid "Default 404 Image"
+msgstr ""
+
+#: src/Customizer/settings/404.php:74
+#, php-format
+msgid ""
+"This is a default 404 image, it will be displayed in 404 page (must be at "
+"least %dpx width)"
+msgstr ""
+
+#: src/Customizer/settings/404.php:98
+msgid "404 Page Title"
+msgstr ""
+
+#: src/Customizer/settings/404.php:99
+msgid "Add a title for the 404 page."
 msgstr ""
 
 #: src/Customizer/settings/breadcrumbs.php:19
@@ -642,57 +695,47 @@ msgid ""
 "feature."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:287
-msgid "Default 404 Image"
-msgstr ""
-
 #: src/Customizer/settings/customizer.php:288
-msgid ""
-"This is a default 404 image, it will be displayed in 404 page (must be at "
-"least weight 848px)"
-msgstr ""
-
-#: src/Customizer/settings/customizer.php:313
 msgid "Archive post thumbnail size"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:314
+#: src/Customizer/settings/customizer.php:289
 msgid ""
 "Change image size of post thumbnail in archive, author, blog, category, "
 "search, and tag pages."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:338
+#: src/Customizer/settings/customizer.php:313
 msgid "Archive post thumbnail alignment"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:339
+#: src/Customizer/settings/customizer.php:314
 msgid ""
 "Change image alignment of post thumbnail in archive, author, blog, category, "
 "search, and tag pages."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:343
+#: src/Customizer/settings/customizer.php:318
 msgid "None"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:344
+#: src/Customizer/settings/customizer.php:319
 msgid "Center"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:345
+#: src/Customizer/settings/customizer.php:320
 msgid "Left"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:346
+#: src/Customizer/settings/customizer.php:321
 msgid "Right"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:361
+#: src/Customizer/settings/customizer.php:336
 msgid "Navbar Settings"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:364
+#: src/Customizer/settings/customizer.php:339
 msgid ""
 "Allows you to customize settings for the main navbar. Remember that this "
 "uses the Twitter Bootstrap Navbar style, if you want more info read the <a "
@@ -700,29 +743,29 @@ msgid ""
 "\">documentation</a>."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:385
+#: src/Customizer/settings/customizer.php:360
 msgid "Navbar type"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:386
+#: src/Customizer/settings/customizer.php:361
 msgid ""
 "Select the type of navbar. By default is the <code>navbar-default</code> "
 "(light grey)."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:390
+#: src/Customizer/settings/customizer.php:365
 msgid "Default navbar"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:391
+#: src/Customizer/settings/customizer.php:366
 msgid "Inverse navbar"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:413
+#: src/Customizer/settings/customizer.php:388
 msgid "Navbar position"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:414
+#: src/Customizer/settings/customizer.php:389
 msgid ""
 "Select the position of the navbar. By default is set to <code>relative top</"
 "code>, you can chose <code>fixed top</code>, <code>fixed bottom</code> or "
@@ -730,45 +773,45 @@ msgid ""
 "set the navbar <code>full width</code> for fixing the correct padding."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:418
+#: src/Customizer/settings/customizer.php:393
 msgid "Default relative top"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:419
+#: src/Customizer/settings/customizer.php:394
 msgid "Fixed Top"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:420
+#: src/Customizer/settings/customizer.php:395
 msgid "Fixed Bottom"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:421
+#: src/Customizer/settings/customizer.php:396
 msgid "Static Top"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:443
+#: src/Customizer/settings/customizer.php:418
 msgid "Navbar width"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:444
+#: src/Customizer/settings/customizer.php:419
 msgid ""
 "Select the nav_width of navbar, this enlarges the navbar to the windows size "
 "(use it also width Static Top option)."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:448
+#: src/Customizer/settings/customizer.php:423
 msgid "Default boxed width"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:449
+#: src/Customizer/settings/customizer.php:424
 msgid "Full width"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:471
+#: src/Customizer/settings/customizer.php:446
 msgid "Navbar menus width"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:472
+#: src/Customizer/settings/customizer.php:447
 msgid ""
 "Select the menus_width, this is the width of the container of the 2 menu, "
 "main-menu and secondary-menu, with the full width the menus will enlarge to "
@@ -777,76 +820,76 @@ msgid ""
 "the default value."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:476
+#: src/Customizer/settings/customizer.php:451
 msgid "The width of navbar wrapper"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:477
+#: src/Customizer/settings/customizer.php:452
 msgid "The width of the content"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:501
+#: src/Customizer/settings/customizer.php:476
 msgid "Your logo brand for nav menu"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:502
+#: src/Customizer/settings/customizer.php:477
 msgid "Insert here your logo brand for nav menu"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:527
+#: src/Customizer/settings/customizer.php:502
 msgid "Logo image size"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:554
+#: src/Customizer/settings/customizer.php:529
 msgid "Display the navbar brand"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:555
+#: src/Customizer/settings/customizer.php:530
 msgid ""
 "Select the type of navbar brand to visualize or select to hide navbar brand, "
 "if you select to visualize navbar with image you also have to select the "
 "image and the size of the image to visualize in the above controls."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:559
+#: src/Customizer/settings/customizer.php:534
 msgid "Hide navbar brand"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:560
+#: src/Customizer/settings/customizer.php:535
 msgid "Display navbar brand image"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:561
+#: src/Customizer/settings/customizer.php:536
 msgid "Display navbar brand name"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:562
+#: src/Customizer/settings/customizer.php:537
 msgid "Display navbar brand image and name"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:573
+#: src/Customizer/settings/customizer.php:548
 msgid "Additional CSS"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:574
+#: src/Customizer/settings/customizer.php:549
 msgid "Add custom CSS here"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:601
+#: src/Customizer/settings/customizer.php:576
 msgid "Custom CSS"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:602
+#: src/Customizer/settings/customizer.php:577
 msgid "Insert here your custom CSS"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:616
-#: src/Customizer/settings/customizer.php:642
+#: src/Customizer/settings/customizer.php:591
+#: src/Customizer/settings/customizer.php:617
 msgid "Footer's Colophon"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:617
-#: src/Customizer/settings/customizer.php:643
+#: src/Customizer/settings/customizer.php:592
+#: src/Customizer/settings/customizer.php:618
 msgid "Add text for footer's colophon here"
 msgstr ""
 
@@ -1283,7 +1326,7 @@ msgstr ""
 msgid "Search result of: %s"
 msgstr ""
 
-#: templates/posts/none.php:29
+#: templates/posts/none/content.php:9
 #, php-format
 msgid ""
 "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."

@@ -88,6 +88,34 @@ $manager->add_control(
 /**
  * Select the nav_width of navbar
  */
+// $manager->add_setting(
+// 	'navbar[nav_width]',
+// 	array(
+// 		'default'			=> $this->theme_mods['navbar']['nav_width'],
+// 		'type'				=> 'theme_mod',
+// 		'capability'		=> $this->capability,
+// 		'transport'			=> 'postMessage',
+// 		'sanitize_callback'	=> 'sanitize_text_field',
+// 	)
+// );
+// $manager->add_control(
+// 	'italystrap_navbar[nav_width]',
+// 	array(
+// 		'settings'	=> 'navbar[nav_width]',
+// 		'label'			=> __( 'Navbar width', 'italystrap' ),
+// 		'description'	=> __( 'Select the nav_width of navbar, this enlarges the navbar to the windows size (use it also width Static Top option).', 'italystrap' ),
+// 		'section'		=> 'italystrap_navbar_options',
+// 		'type'			=> 'radio',
+// 		'choices'		=> array(
+// 			'container'	=> __( 'Default boxed width', 'italystrap' ),
+// 			'none'		=> __( 'Full width', 'italystrap' ),
+// 		),
+// 	)
+// );
+
+/**
+ * Select the nav_width of navbar
+ */
 $manager->add_setting(
 	'navbar[nav_width]',
 	array(

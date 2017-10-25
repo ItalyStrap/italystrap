@@ -91,6 +91,19 @@
 	} );
 
 	/**
+	 * Breadcrumbs
+	 */
+	wp.customize( 'breadcrumbs_show_on', function( value ) {
+		value.bind( function( newval ) {
+			if ( -1 !== $.inArray( $('body').data("current-template"), newval.split(",") ) ) {
+				$('.breadcrumb').show();
+			} else {
+				$('.breadcrumb').hide();
+			}
+		} );
+	} );
+
+	/**
 	 * 404 Page settings
 	 */
 	wp.customize( '404_title', function( value ) {

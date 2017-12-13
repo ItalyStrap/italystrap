@@ -119,6 +119,20 @@ return array(
 		'customize-selective-refresh-widgets',
 
 		/**
+		 * Not yet supported
+		 * @link https://wordpress.org/gutenberg/handbook/reference/theme-support/
+		 */
+		'gutenberg'		=> array(
+			'wide-images'	=> true,
+			// 'colors' => array(
+			// 	'#a156b4',
+			// 	'#d0a5db',
+			// 	'#eee',
+			// 	'#444',
+			// ),
+		),
+
+		/**
 		 * Add support to WooCommerce
 		 *
 		 * @since 4.0.0

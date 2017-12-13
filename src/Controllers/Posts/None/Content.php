@@ -47,4 +47,14 @@ class Content extends Controller implements Subscriber_Interface {
 	 * @var string
 	 */
 	protected $file_name = 'posts/none/content';
+
+	/**
+	 * Render the output of the controller.
+	 */
+	public function render() {
+
+		$this->data['theme_mod'] = $this->theme_mod;
+
+		parent::render();
+	}
 }

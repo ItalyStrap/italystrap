@@ -40,7 +40,7 @@ class Author_Info extends Controller implements Subscriber_Interface  {
 				'priority'			=> 20,
 			),
 			'italystrap_after_entry_content'	=> array(
-				'function_to_add'	=> 'render_after_content',
+				'function_to_add'	=> 'render',
 				'priority'			=> 30,
 			),
 		);
@@ -58,6 +58,18 @@ class Author_Info extends Controller implements Subscriber_Interface  {
 	 */
 	public function render() {
 
+		$method_name = current_filter() === 'italystrap_before_loop'
+		? 'before_loop'
+		: 'after_entry_content';
+
+		$this->$method_name();
+	}
+
+	/**
+	 * Render the output of the controller.
+	 */
+	protected function before_loop() {
+
 		if ( 'author' !== CURRENT_TEMPLATE_SLUG ) {
 			return null;
 		}
@@ -68,7 +80,7 @@ class Author_Info extends Controller implements Subscriber_Interface  {
 	/**
 	 * Render the output of the controller.
 	 */
-	public function render_after_content() {
+	protected function after_entry_content() {
 
 		/**
 		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports

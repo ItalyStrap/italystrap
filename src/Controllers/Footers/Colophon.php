@@ -36,9 +36,9 @@ class Colophon extends Controller implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_footer'	=> array(
+			self::$mods['colophon_action']	=> array(
 				'function_to_add'	=> 'render',
-				'priority'			=> 20,
+				'priority'			=> self::$mods['colophon_priority'],
 			),
 		);
 	}
@@ -49,4 +49,17 @@ class Colophon extends Controller implements Subscriber_Interface {
 	 * @var string
 	 */
 	protected $file_name = 'footers/colophon';
+
+	/**
+	 * Render the output of the controller.
+	 */
+	public function render() {
+
+		if ( empty( $this->theme_mod['colophon'] ) ) {
+			return;
+		}
+
+		$theme_mods = $this->theme_mod;
+		parent::render();
+	}
 }

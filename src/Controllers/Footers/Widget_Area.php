@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 use ItalyStrap\Controllers\Controller;
 use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\View\View_Interface as View;
 
 /**
  * Class description
@@ -51,19 +52,43 @@ class Widget_Area extends Controller implements Subscriber_Interface {
 	protected $file_name = 'footers/widget-area';
 
 	/**
+	 * Init the class
+	 *
+	 * @param array $theme_mod Class configuration array.
+	 */
+	function __construct( array $theme_mod = array(), View $view ) {
+
+		$this->data['footer_sidebars'] = apply_filters(
+			'footer_sidebars_widgets',
+			array(
+				'footer-box-1',
+				'footer-box-2',
+				'footer-box-3',
+				'footer-box-4',
+			)
+		);
+
+		// $this->data['col'] = $this->set_col();
+
+		parent::__construct( $theme_mod, $view );
+	}
+
+	/**
 	 * Render the output of the controller.
 	 */
 	public function render() {
 
-		$this->footer_sidebars = apply_filters(
-			'footer_sidebars_widgets',
-			array(
-			'footer-box-1',
-			'footer-box-2',
-			'footer-box-3',
-			'footer-box-4',
-			)
-		);
+		// $this->footer_sidebars = apply_filters(
+		// 	'footer_sidebars_widgets',
+		// 	array(
+		// 	'footer-box-1',
+		// 	'footer-box-2',
+		// 	'footer-box-3',
+		// 	'footer-box-4',
+		// 	)
+		// );
+
+		$this->data['col'] = $this->set_col();
 
 		parent::render();
 	}
@@ -79,7 +104,7 @@ class Widget_Area extends Controller implements Subscriber_Interface {
 
 		$count = 0;
 
-		foreach ( $this->footer_sidebars as $value ) {
+		foreach ( $this->data['footer_sidebars'] as $value ) {
 
 			if ( ! empty( $sidebars_widgets[ $value ][0] ) ) {
 

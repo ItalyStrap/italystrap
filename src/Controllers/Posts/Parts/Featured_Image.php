@@ -71,6 +71,8 @@ class Featured_Image extends Controller implements Subscriber_Interface  {
 			$this->theme_mod['post_thumbnail_alignment'] = 'aligncenter';
 		}
 
+		$this->data['theme_mod'] = $this->theme_mod;
+
 		parent::render();
 	}
 }

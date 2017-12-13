@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Views\View;
+use ItalyStrap\View\View_Interface as View;
 
 /**
  * Template Class
@@ -36,11 +36,18 @@ class Controller implements Controller_Interface {
 	protected $template_dir = '';
 
 	/**
-	 *File name for the view
+	 * File name for the view
 	 *
 	 * @var string
 	 */
 	protected $file_name = '';
+
+	/**
+	 * Data for the view
+	 *
+	 * @var array
+	 */
+	protected $data = [];
 
 	/**
 	 * Theme mods
@@ -50,14 +57,14 @@ class Controller implements Controller_Interface {
 	protected static $mods = array();
 	protected static $post_content_template = array();
 	protected static $count = 0;
-	protected static $view;
+	protected $view;
 
 	/**
 	 * Init the class
 	 *
 	 * @param array $theme_mod Class configuration array.
 	 */
-	public function __construct( array $theme_mods = array() ) {
+	public function __construct( array $theme_mods = array(), View $view ) {
 
 		if ( empty( self::$mods ) ) {
 			self::$mods = $theme_mods;
@@ -72,6 +79,8 @@ class Controller implements Controller_Interface {
 		$this->set_class_name();
 
 		$this->template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
+
+		$this->view = $view;
 	}
 
 	/**
@@ -99,7 +108,11 @@ class Controller implements Controller_Interface {
 			throw new \Exception('You have to register the file name of the view.');
 		}
 
-		$this->get_template_part( $this->template_dir . DIRECTORY_SEPARATOR . $this->file_name );
+		$template = $this->template_dir . DS . $this->file_name;
+
+		$this->view->render( $template, null, false, $this->data   );
+
+		// $this->get_template_part( $template );
 	}
 
 	/**

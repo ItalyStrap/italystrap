@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 use ItalyStrap\Controllers\Controller;
 use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Navbar\Navbar;
+use ItalyStrap\View\View_Interface as View;
 
 /**
  * Class description
@@ -51,10 +52,11 @@ class Nav_Menu extends Controller implements Subscriber_Interface  {
 	 *
 	 * @param array $theme_mod Class configuration array.
 	 */
-	function __construct( array $theme_mod = array(), Navbar $navbar  ) {
+	function __construct( array $theme_mod = array(), View $view, Navbar $navbar  ) {
 
 		$this->navbar = $navbar;
+		$this->data['navbar'] = $navbar;
 
-		parent::__construct( $theme_mod );
+		parent::__construct( $theme_mod, $view );
 	}
 }

@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-$col = $this->set_col();
+// $col = $this->set_col();
 
 ?><div class="container">
 	<div class="row" itemscope itemtype="https://schema.org/WPSideBar">
 		<?php foreach ( $this->footer_sidebars as $value ) : ?>
 
 			<?php if ( is_active_sidebar( $value ) ) : ?>
-				<div class="col-md-<?php echo $col; // XSS ok. ?>">
+				<div class="col-md-<?php echo $this->col; // XSS ok. ?>">
 					<?php dynamic_sidebar( $value ) ?>
 				</div>
 			<?php endif; ?>

@@ -47,4 +47,14 @@ class Title extends Controller implements Subscriber_Interface {
 	 * @var string
 	 */
 	protected $file_name = 'posts/none/title';
+
+	/**
+	 * Render the output of the controller.
+	 */
+	public function render() {
+
+		$this->data['theme_mod'] = $this->theme_mod;
+
+		parent::render();
+	}
 }

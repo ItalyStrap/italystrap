@@ -14,8 +14,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-?>
-<div id="colophon" class="colophon"><!-- #copyright -->
+?><!-- #copyright -->
+<div id="colophon" class="colophon">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 colophon-entry-content">
@@ -29,4 +29,5 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 			</div>
 		</div>
 	</div>
-</div><!-- #copyright -->
+</div>
+<!-- / #copyright -->

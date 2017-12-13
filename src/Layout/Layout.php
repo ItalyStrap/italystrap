@@ -119,6 +119,7 @@ class Layout implements Subscriber_Interface {
 	 * Init
 	 */
 	public function init() {
+		// $this->delete_layout();
 
 		$this->classes = array(
 			'full_width'				=> array(
@@ -183,7 +184,11 @@ class Layout implements Subscriber_Interface {
 			 *
 			 * @var string
 			 */
-			$layout = $page_layout ? $page_layout : $this->theme_mods['site_layout'];
+			$layout = $page_layout 
+				? $page_layout 
+				// : ( is_customize_preview() ? get_theme_mod('site_layout') : $this->theme_mods['site_layout'] );
+				// https://core.trac.wordpress.org/ticket/24844
+				: apply_filters( 'theme_mod_site_layout', $this->theme_mods['site_layout'] );
 		}
 
 		return (string) apply_filters( 'italystrap_get_layout_settings', $layout );

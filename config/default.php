@@ -107,6 +107,8 @@ return array(
 	 * Default text for colophon
 	 */
 	'colophon'						=> apply_filters( 'italystrap_colophon_default_text', Core\colophon_default_text() ),
+	'colophon_action'				=> 'italystrap_footer',
+	'colophon_priority'				=> 20,
 
 	/**
 	 * Layout configuration

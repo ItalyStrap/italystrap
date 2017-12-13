@@ -27,6 +27,7 @@ lang/README.txt
 
 tests*
 codecept*
+backups
 
 #map files
 *.map

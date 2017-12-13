@@ -27,7 +27,7 @@ $autoload_theme_files = array(
 
 	'/lib/images.php',
 	'/lib/pointer.php',
-	'/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
+	// '/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
 
 	// '/deprecated/deprecated.php', // Deprecated files and functions.
 );
@@ -45,8 +45,10 @@ foreach ( $autoload_theme_files as $file ) {
  *
  * @var \ItalyStrap\Admin\Required_Plugins\Register
  */
-$required_plugins = new \ItalyStrap\Required_Plugins\Register;
-add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
+// add_action( 'after_setup_theme', function() use ( $required_plugins ) {
+// 	$required_plugins = new \ItalyStrap\Required_Plugins\Register;
+// 	add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
+// }, 10, 1 );
 
 /**
  * Set the default theme constant
@@ -61,6 +63,13 @@ $italystrap_defaults = apply_filters( 'italystrap_default_theme_config', require
 if ( ! isset( $theme_mods ) ) {
 	$theme_mods = (array) get_theme_mods();
 }
+
+// https://core.trac.wordpress.org/ticket/24844
+// if ( is_customize_preview() ) {
+// 	foreach ( $theme_mods as $key => $value ) {
+// 		$theme_mods[ $key ] = apply_filters( 'theme_mod_' . $key, $value );
+// 	}
+// }
 
 $theme_mods = wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
 
@@ -129,6 +138,7 @@ $autoload_concrete = array(
 	'ItalyStrap\Custom\Sidebars\Sidebars',
 	'ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
 	'ItalyStrap\Custom\Image\Size', // 'italystrap_plugin_app_loaded'
+	// 'ItalyStrap\EDD\Theme_Updater_Factory',
 );
 
 require( TEMPLATEPATH . '/lib/_init_admin.php' );

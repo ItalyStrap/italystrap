@@ -3,6 +3,8 @@
  * this, set your custom settings to 'postMessage' and then add your handling
  * here. Your javascript should grab settings from customizer controls, and 
  * then make any necessary changes to the page using jQuery.
+ *
+ * {@link https://developer.wordpress.org/themes/customize-api/the-customizer-javascript-api/}
  */
 ( function( $ ) {
 

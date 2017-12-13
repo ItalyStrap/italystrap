@@ -109,7 +109,9 @@ class Theme_Customizer implements Subscriber_Interface {
 	 *
 	 * @see add_action( 'customize_register', $func )
 	 * @see https://developer.wordpress.org/reference/hooks/customize_register
+	 * @see https://developer.wordpress.org/themes/customize-api/tools-for-improved-user-experience/
 	 * @link https://make.wordpress.org/core/2016/02/16/selective-refresh-in-the-customizer/
+	 * @link https://iamsteve.me/blog/entry/hero-area-series-wordpress-customizer-with-selective-refresh
 	 *
 	 * @link http://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/
 	 * @since ItalyStrap 1.0

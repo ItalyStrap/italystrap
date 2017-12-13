@@ -12,6 +12,7 @@ namespace ItalyStrap\Navbar;
 
 use ItalyStrap\Core;
 use Walker_Nav_Menu;
+use Walker;
 
 /**
  * Template for Navbar like Botstrap CSS
@@ -56,7 +57,7 @@ class Navbar {
 	/**
 	 * Init the constructor
 	 */
-	public function __construct( array $theme_mods = array(), Walker_Nav_Menu $walker ) {
+	public function __construct( array $theme_mods = array(), Walker $walker ) {
 
 		$this->walker = $walker;
 

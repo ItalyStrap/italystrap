@@ -35,7 +35,7 @@ function add_edit_post_to_product_single() {
 		'close'	=> '</span>',
 		);
 
-	edit_post_link( __( 'Edit', 'ItalyStrap' ), $button['open'], $button['close'] );
+	edit_post_link( __( 'Edit', 'italystrap' ), $button['open'], $button['close'] );
 }
 // add_action( 'woocommerce_after_single_product', __NAMESPACE__ . '\add_edit_post_to_product_single', 11 );
 
@@ -82,7 +82,7 @@ function add_qta_number_to_chart_icon( $item_output, $item, $depth, $args ) {
 	 * @link https://gist.github.com/mikejolley/2044101
 	 */
 
-	$qta = '<li><a class="cart-contents" href="' . WC()->cart->get_cart_url() . '" title="' . __( 'View your shopping cart' ) . '"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge" style="color:#fff;position:absolute;top:5px;right:5px">' . WC()->cart->get_cart_contents_count() . '</span></a></li>';
+	$qta = '<li><a class="cart-contents" href="' . WC()->cart->get_cart_url() . '" title="' . __( 'View your shopping cart', 'italystrap' ) . '"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge" style="color:#fff;position:absolute;top:5px;right:5px">' . WC()->cart->get_cart_contents_count() . '</span></a></li>';
 
 	if ( in_array( 'cart', $item->classes ) ) {
 		$item_output .= $qta;
@@ -100,11 +100,11 @@ function get_the_account() {
 
 	if ( is_user_logged_in() ) {
 
-			$account = '<li><a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '" title="' . __( 'My Account','woothemes' ) . '"><span class="glyphicon glyphicon-user"></span></a></li>';
+			$account = '<li><a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '" title="' . __( 'My Account', 'italystrap' ) . '"><span class="glyphicon glyphicon-user"></span></a></li>';
 
 	} else {
 
-			$account = '<li><a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '" title="' . __( 'Login / Register','woothemes' ) . '"><span class="glyphicon glyphicon-user"></span>' . __( 'Login / Register','woothemes' ) . '</a></li>';
+			$account = '<li><a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '" title="' . __( 'Login / Register', 'italystrap' ) . '"><span class="glyphicon glyphicon-user"></span>' . __( 'Login / Register','italystrap' ) . '</a></li>';
 	}
 
 		return $account;
@@ -114,7 +114,7 @@ function get_the_wc_cart() {
 
 	$cart = '';
 
-	$cart = '<li><a class="cart-contents" href="' . esc_url( WC()->cart->get_cart_url() ) . '" title="' . __( 'View your shopping cart' ) . '"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge" style="color:#fff;position:absolute;top:5px;right:5px;background-color:red;">' . esc_attr( WC()->cart->get_cart_contents_count() ) . '</span></a></li>';
+	$cart = '<li><a class="cart-contents" href="' . esc_url( WC()->cart->get_cart_url() ) . '" title="' . __( 'View your shopping cart', 'italystrap' ) . '"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge" style="color:#fff;position:absolute;top:5px;right:5px;background-color:red;">' . esc_attr( WC()->cart->get_cart_contents_count() ) . '</span></a></li>';
 
 	return $cart;
 }

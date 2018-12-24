@@ -52,7 +52,7 @@ class ItalyStrapOptionTheme{
 		// $url = 'themes.php?page=italystrap-option-page';
 		$url = admin_url( 'customize.php?autofocus[control]=italystrap_options' );
 		$submenu['italystrap-dashboard'][] = array(
-											__( 'Theme Options', 'ItalyStrap' ),
+											__( 'Theme Options', 'italystrap' ),
 											$this->capability,
 											$url);
 	}
@@ -66,8 +66,8 @@ class ItalyStrapOptionTheme{
 		 * @link https://codex.wordpress.org/Function_Reference/add_theme_page
 		 */
 		add_theme_page(
-			__( 'ItalyStrap Theme Options', 'ItalyStrap' ),	// $page_title <title></title>
-			__( 'Theme Options', 'ItalyStrap' ),			// $menu_title
+			__( 'ItalyStrap Theme Options', 'italystrap' ),	// $page_title <title></title>
+			__( 'Theme Options', 'italystrap' ),			// $menu_title
 			$this->capability,								// $capability
 			'italystrap-option-page',						// $menu_slug
 			array( $this, 'italystrap_callback_function' )	// $function
@@ -82,7 +82,7 @@ class ItalyStrapOptionTheme{
 	public function italystrap_callback_function(){
 
 			if ( !current_user_can( $this->capability ) )
-				wp_die( __( 'You do not have sufficient permissions to access this page.', 'ItalyStrap' ) );
+				wp_die( __( 'You do not have sufficient permissions to access this page.', 'italystrap' ) );
 
 			?>
 
@@ -137,7 +137,7 @@ class ItalyStrapOptionTheme{
 		 */
 		add_settings_section(
 			'italystrap_option_theme_section', // $id String for use in the 'id' attribute of tags.
-			__( 'ItalyStrap options page', 'ItalyStrap' ), //$title Title of the section.
+			__( 'ItalyStrap options page', 'italystrap' ), //$title Title of the section.
 			array( $this, 'theme_settings_section_callback'), // $callback
 			'italystrap_theme_options_group' // $page Should match $menu_slug from add_theme_page
 			);
@@ -148,7 +148,7 @@ class ItalyStrapOptionTheme{
 		 */
 		add_settings_field( 
 			'default_404', // $id String for use in the 'id' attribute of tags
-			__( 'Default image for 404 page', 'ItalyStrap' ), // $id Title of the field
+			__( 'Default image for 404 page', 'italystrap' ), // $id Title of the field
 			array( $this, 'option_404'), // $callback 
 			'italystrap_theme_options_group', // $page Should match $menu_slug from add_theme_page()
 			'italystrap_option_theme_section', // $section
@@ -160,7 +160,7 @@ class ItalyStrapOptionTheme{
 		 */
 		add_settings_field( 
 			'default_image',
-			__( 'Default image', 'ItalyStrap' ),
+			__( 'Default image', 'italystrap' ),
 			array( $this, 'option_default_image'),
 			'italystrap_theme_options_group',
 			'italystrap_option_theme_section',
@@ -172,7 +172,7 @@ class ItalyStrapOptionTheme{
 		 */
 		// add_settings_field( 
 		// 	'favicon',
-		// 	__( 'Favicon', 'ItalyStrap' ),
+		// 	__( 'Favicon', 'italystrap' ),
 		// 	array( $this, 'option_favicon'),
 		// 	'italystrap_theme_options_group',
 		// 	'italystrap_option_theme_section',
@@ -184,7 +184,7 @@ class ItalyStrapOptionTheme{
 		 */
 		add_settings_field( 
 			'logo',
-			__( 'Logo', 'ItalyStrap' ),
+			__( 'Logo', 'italystrap' ),
 			array( $this, 'option_logo'),
 			'italystrap_theme_options_group',
 			'italystrap_option_theme_section',
@@ -196,7 +196,7 @@ class ItalyStrapOptionTheme{
 		 */
 		add_settings_field( 
 			'analytics',
-			__( 'Analytics ID', 'ItalyStrap' ),
+			__( 'Analytics ID', 'italystrap' ),
 			array( $this, 'option_analytics'),
 			'italystrap_theme_options_group',
 			'italystrap_option_theme_section',
@@ -244,7 +244,7 @@ class ItalyStrapOptionTheme{
 		 * $arg show add_settings_section $id, $title, $callback and $page name
 		 */
 
-		_e( 'Manage or enter your settings below: <strong>(It is still in Beta version)</strong>', 'ItalyStrap' );
+		_e( 'Manage or enter your settings below: <strong>(It is still in Beta version)</strong>', 'italystrap' );
 
 	}
 
@@ -255,9 +255,9 @@ class ItalyStrapOptionTheme{
 		?>
 		<div id="option_404">
 			<input type="text" id="default_404" name="italystrap_theme_settings[default_404]" value="<?php echo esc_url( $default_404 ); ?>" />
-			<input id="upload_404_button" type="button" class="button upload_button" value="<?php _e( 'Upload default 404 image', 'ItalyStrap' ); ?>" />
-			<span class="description"><?php _e('Upload an image for the 404.php page (at least width 750px).', 'ItalyStrap' ); ?></span>
-			<h4  style="margin:0"><?php _e( 'Default 404 image preview', 'ItalyStrap' ); ?></h4>
+			<input id="upload_404_button" type="button" class="button upload_button" value="<?php _e( 'Upload default 404 image', 'italystrap' ); ?>" />
+			<span class="description"><?php _e('Upload an image for the 404.php page (at least width 750px).', 'italystrap' ); ?></span>
+			<h4  style="margin:0"><?php _e( 'Default 404 image preview', 'italystrap' ); ?></h4>
 			<p>
 				<img src="<?php echo esc_url( $default_404 ); ?>" width="150px" class="img-preview">
 			</p>
@@ -273,9 +273,9 @@ class ItalyStrapOptionTheme{
 		?>
 		<div id="option_default_image">
 			<input type="text" id="default_image" name="italystrap_theme_settings[default_image]" value="<?php echo esc_url( $default_image ); ?>" />
-			<input id="upload_default_image_button" type="button" class="button upload_button" value="<?php _e( 'Upload default image', 'ItalyStrap' ); ?>" />
-			<span class="description"><?php _e('Upload an image for the default image used for social share (must be 1200x600px).', 'ItalyStrap' ); ?></span>
-			<h4  style="margin:0"><?php _e( 'Default image preview', 'ItalyStrap' ); ?></h4>
+			<input id="upload_default_image_button" type="button" class="button upload_button" value="<?php _e( 'Upload default image', 'italystrap' ); ?>" />
+			<span class="description"><?php _e('Upload an image for the default image used for social share (must be 1200x600px).', 'italystrap' ); ?></span>
+			<h4  style="margin:0"><?php _e( 'Default image preview', 'italystrap' ); ?></h4>
 			<p>
 				<img src="<?php echo esc_url( $default_image ); ?>" width="150px" class="img-preview">
 			</p>
@@ -291,9 +291,9 @@ class ItalyStrapOptionTheme{
 		?>
 		<div id="option_favicon">
 			<input type="text" id="favicon" name="italystrap_theme_settings[favicon]" value="<?php echo esc_url( $favicon ); ?>" />
-			<input id="upload_favicon_button" type="button" class="button upload_button" value="<?php _e( 'Upload favicon', 'ItalyStrap' ); ?>" />
-			<span class="description"><?php _e('Upload an image for the favicon (max 32x32px).', 'ItalyStrap' ); ?></span>
-			<h4  style="margin:0"><?php _e( 'Favicon preview', 'ItalyStrap' ); ?></h4>
+			<input id="upload_favicon_button" type="button" class="button upload_button" value="<?php _e( 'Upload favicon', 'italystrap' ); ?>" />
+			<span class="description"><?php _e('Upload an image for the favicon (max 32x32px).', 'italystrap' ); ?></span>
+			<h4  style="margin:0"><?php _e( 'Favicon preview', 'italystrap' ); ?></h4>
 			<p>
 				<img src="<?php echo esc_url( $favicon ); ?>" width="16px" class="img-preview">
 			</p>
@@ -309,9 +309,9 @@ class ItalyStrapOptionTheme{
 		?>
 		<div id="option_logo">
 			<input type="text" id="logo" name="italystrap_theme_settings[logo]" value="<?php echo esc_url( $logo ); ?>" />
-			<input id="upload_logo_button" type="button" class="button upload_button" value="<?php _e( 'Upload Logo', 'ItalyStrap' ); ?>" />
-			<span class="description"><?php _e('Upload an image for the logo.', 'ItalyStrap' ); ?></span>
-			<h4  style="margin:0"><?php _e( 'Logo preview', 'ItalyStrap' ); ?></h4>
+			<input id="upload_logo_button" type="button" class="button upload_button" value="<?php _e( 'Upload Logo', 'italystrap' ); ?>" />
+			<span class="description"><?php _e('Upload an image for the logo.', 'italystrap' ); ?></span>
+			<h4  style="margin:0"><?php _e( 'Logo preview', 'italystrap' ); ?></h4>
 			<p>
 				<img src="<?php echo esc_url( $logo ); ?>" width="150px" class="img-preview">
 			</p>
@@ -326,7 +326,7 @@ class ItalyStrapOptionTheme{
 
 		?>
 		<input type="text" id="analytics" name="italystrap_theme_settings[analytics]" value="<?php echo esc_textarea( $analytics ); ?>" placeholder="UA-XXXXX-X" />
-		<span class="description"><?php _e('Enter your analytics ID (e.g. UA-XXXXX-X ).', 'ItalyStrap' ); ?></span>
+		<span class="description"><?php _e('Enter your analytics ID (e.g. UA-XXXXX-X ).', 'italystrap' ); ?></span>
 		<?php
 
 	}

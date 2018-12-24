@@ -167,7 +167,7 @@ function new_get_cancel_comment_reply_link( $text = '', $class = '' ) {
   _deprecated_function( __FUNCTION__, 'ItalyStrap 3.1' );
 
   if ( empty( $text ) )
-    $text = __('Click here to cancel reply.', 'ItalyStrap');
+    $text = __('Click here to cancel reply.', 'italystrap');
 
   if ( empty( $class ) )
     $class = 'btn btn-danger btn-xs';
@@ -243,12 +243,12 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
                  * @var [type]
                  */
                 printf(
-                ($comment->user_id === $post->post_author) ? '<span class="label label-danger"> ' . __('The Boss :-)', 'ItalyStrap') . '</span> ' : ''); ?>
+                ($comment->user_id === $post->post_author) ? '<span class="label label-danger"> ' . __('The Boss :-)', 'italystrap') . '</span> ' : ''); ?>
               </h4>
 
             </li>
             <li><time datetime="<?php comment_date('Y-m-d', $comment) ?>" itemprop="datePublished"><?php comment_date('j M Y', $comment) ?></time></li>
-            <?php edit_comment_link(__('Edit','ItalyStrap'),'<span class="btn btn-sm btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i> ','</span>') ?>
+            <?php edit_comment_link(__('Edit','italystrap'),'<span class="btn btn-sm btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i> ','</span>') ?>
           </ul>
 
           <p itemprop="text"><?php echo get_comment_text($comment); ?></p>
@@ -262,7 +262,7 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
             array_merge(
               $args, 
               array(
-                'reply_text' => __('Reply <i class="glyphicon glyphicon-arrow-down"></i>', 'ItalyStrap'),
+                'reply_text' => __('Reply <i class="glyphicon glyphicon-arrow-down"></i>', 'italystrap'),
                 'depth'      => $depth,
                 'max_depth'  => $args['max_depth'],
                 'class'      => 'btn',
@@ -367,4 +367,4 @@ function ri_wp_favicon() {
 }
 // add_action('wp_head', 'ri_wp_favicon');
 
-require( TEMPLATEPATH . '/deprecated/pagination.php' );
+require( PARENTPATH . '/deprecated/pagination.php' );

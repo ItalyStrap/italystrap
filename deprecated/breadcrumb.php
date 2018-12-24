@@ -1,5 +1,5 @@
 <?php
-_deprecated_file( basename(__FILE__), 'ItalyStrap 2.1.0', null, __( 'This file no longer needs to be included. Please use the plugin ItalyStrap.' ) );
+_deprecated_file( basename(__FILE__), 'ItalyStrap 2.1.0', null, __( 'This file no longer needs to be included. Please use the plugin ItalyStrap.', 'italystrap' ) );
 /**
  * @link http://mkoerner.de/breadcrumbs-for-wordpress-themes-with-bootstrap-3/
  * Bootstrap breadcrumbs for wordpress modified by Enea Overclokk
@@ -28,7 +28,7 @@ function create_breadcrumbs() {
   if(!is_home() || !is_front_page()) {
 
     echo '<div itemscope itemtype="https://schema.org/WebPage"><ol class="breadcrumb" itemprop="breadcrumb">';
-    echo '<li><a href="' . home_url() . '">' . __('Home', 'ItalyStrap') . '</a></li>';
+    echo '<li><a href="' . home_url() . '">' . __('Home', 'italystrap') . '</a></li>';
 
     if (is_single()) {
 
@@ -60,34 +60,34 @@ function create_breadcrumbs() {
       echo '<li>' . get_the_title() . '</li>';
 
     } elseif (is_tag()) {
-      echo '<li>' . __('Tag: ', 'ItalyStrap');
+      echo '<li>' . __('Tag: ', 'italystrap');
       single_tag_title();
       echo '</li>';
 
     } elseif (is_day()) {
-      echo'<li>'. __('Daily archive: ', 'ItalyStrap');
+      echo'<li>'. __('Daily archive: ', 'italystrap');
       the_time('F jS, Y');
       echo'</li>';
 
     } elseif (is_month()) {
-      echo'<li>'. __('Monthly archive: ', 'ItalyStrap');
+      echo'<li>'. __('Monthly archive: ', 'italystrap');
       the_time('F, Y');
       echo'</li>';
 
     } elseif (is_year()) {
-      echo'<li>' . __('Yearly archive: ', 'ItalyStrap');
+      echo'<li>' . __('Yearly archive: ', 'italystrap');
       the_time('Y');
       echo'</li>';
 
     } elseif (is_author()) {
-      echo'<li>' . __('Author Archives: ', 'ItalyStrap') . get_the_author() . '</li>';
+      echo'<li>' . __('Author Archives: ', 'italystrap') . get_the_author() . '</li>';
 
     } elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {
-      echo '<li>' . __('Blog Archives', 'ItalyStrap');
+      echo '<li>' . __('Blog Archives', 'italystrap');
       echo'</li>';
 
     } elseif (is_search()) {
-      echo'<li>' . __('Search Results: ', 'ItalyStrap') . get_search_query();
+      echo'<li>' . __('Search Results: ', 'italystrap') . get_search_query();
       echo'</li>';
 
     }

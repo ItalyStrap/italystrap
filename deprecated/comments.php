@@ -33,12 +33,12 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
 									<?php
 									printf(
 									// If current post author is also comment author, make it known visually.
-										($comment->user_id === $post->post_author) ? '<span class="label label-danger"> ' . __('The Boss :-)', 'ItalyStrap') . '</span> ' : ''); ?>
+										($comment->user_id === $post->post_author) ? '<span class="label label-danger"> ' . __('The Boss :-)', 'italystrap') . '</span> ' : ''); ?>
 								</h4>
 								
 								</li>
 								<li><time datetime="<?php comment_date('Y-m-d', $comment) ?>" itemprop="datePublished"><?php comment_date('j M Y', $comment) ?></time></li>
-								<?php edit_comment_link(__('Edit','ItalyStrap'),'<span class="btn btn-sm btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i> ','</span>') ?>
+								<?php edit_comment_link(__('Edit','italystrap'),'<span class="btn btn-sm btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i> ','</span>') ?>
 							</ul>
 
 								<p itemprop="text"><?php echo get_comment_text($comment); ?></p>
@@ -52,7 +52,7 @@ function ItalyStrap_custom_comment($comment, $args, $depth){
 											array_merge(
 												$args, 
 												array(
-													'reply_text' => __('Reply <i class="glyphicon glyphicon-arrow-down"></i>', 'ItalyStrap'),
+													'reply_text' => __('Reply <i class="glyphicon glyphicon-arrow-down"></i>', 'italystrap'),
 													'depth'      => $depth,
 													'max_depth'  => $args['max_depth'],
 													'class'      => 'btn',
@@ -141,7 +141,7 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 								// If current post author is also comment author, make it known visually.
 									($comment->user_id === $post->post_author) ? ' <span class="label label-danger"> ' . __(
 										'The Boss :-)',
-										'ItalyStrap'
+										'italystrap'
 									) . '</span> ' : ''); ?>
 							</h4>
 						</li>
@@ -150,14 +150,14 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 						</li>
 						
 						<?php if ( is_user_logged_in() && current_user_can( 'manage_options' ) ): ?>
-							<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit','ItalyStrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
+							<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit','italystrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
 						<?php endif ?>
 
 					</ul>
 
 					<?php if ($comment->comment_approved == '0') : ?>
 					<div class="alert alert-info">
-						<?php _e('Your comment is awaiting moderation.', 'ItalyStrap'); ?>
+						<?php _e('Your comment is awaiting moderation.', 'italystrap'); ?>
 					</div>
 					<?php endif; ?>
 
@@ -182,7 +182,7 @@ class ItalyStrap_Walker_Comment extends Walker_Comment {
 							array_merge(
 								$args, 
 								array(
-									'reply_text' => __('Reply to ', 'ItalyStrap') . $comment_author . ' <i class="glyphicon glyphicon-arrow-down"></i>',
+									'reply_text' => __('Reply to ', 'italystrap') . $comment_author . ' <i class="glyphicon glyphicon-arrow-down"></i>',
 									'depth'      => $depth,
 									'max_depth'  => $args['max_depth']
 									)

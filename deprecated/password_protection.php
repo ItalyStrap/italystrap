@@ -29,7 +29,7 @@ function get_the_password_form( $output = '' ) {
 		'pwbox-'. ( empty( $post->ID ) ? rand() : $post->ID ),
 		__( 'Password: ', 'italystrap' ),
 		__( 'Enter password', 'italystrap' ),
-		esc_attr__( "Submit" )
+		esc_attr__( "Submit", 'italystrap' )
 	);
 
 	return $form;

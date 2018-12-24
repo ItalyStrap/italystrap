@@ -41,7 +41,7 @@ function add_style_and_script() {
 		array(
 			'handle'	=> CURRENT_TEMPLATE_SLUG,
 			'file'		=>
-				file_exists( STYLESHEETPATH . '/css/' . $dev_dir . CURRENT_TEMPLATE_SLUG . '.css' )
+				file_exists( CHILDPATH . '/css/' . $dev_dir . CURRENT_TEMPLATE_SLUG . '.css' )
 				? STYLESHEETURL . '/css/' . $dev_dir . CURRENT_TEMPLATE_SLUG . '.css'
 				: STYLESHEETURL . '/css/' . $dev_dir . 'custom.css',
 			'version'	=> $ver,
@@ -65,7 +65,7 @@ function add_style_and_script() {
 		array(
 			'handle'		=> CURRENT_TEMPLATE_SLUG,
 			'file'			=>
-				file_exists( STYLESHEETPATH . '/js/' . CURRENT_TEMPLATE_SLUG . $min . '.js' )
+				file_exists( CHILDPATH . '/js/' . CURRENT_TEMPLATE_SLUG . $min . '.js' )
 				? STYLESHEETURL . '/js/' . CURRENT_TEMPLATE_SLUG . $min . '.js'
 				: STYLESHEETURL . '/js/custom' . $min . '.js',
 			'deps'			=> array( 'jquery' ),

@@ -15,7 +15,7 @@ if ( !function_exists('ItalyStrap_theme_setup') ):
         /*
          * Make theme available for translation.
          */
-        load_theme_textdomain( 'ItalyStrap', get_template_directory() . '/lang' );
+        load_theme_textdomain( 'italystrap', get_template_directory() . '/lang' );
 
         /**
          * Add default posts and comments RSS feed links to head.
@@ -63,7 +63,7 @@ if ( !function_exists('ItalyStrap_theme_setup') ):
             'audio',
             'chat'
         );
-        add_theme_support('post-formats', apply_filters( 'post_formats_support', $post_formats ) );
+//        add_theme_support('post-formats', apply_filters( 'post_formats_support', $post_formats ) );
 
         /**
          * Custom header value array
@@ -89,7 +89,7 @@ if ( !function_exists('ItalyStrap_theme_setup') ):
          * This theme uses wp_nav_menu() in one location.
          */
         $locations = array(
-            'main-menu' => __( 'Main Menu', 'ItalyStrap' ) 
+            'main-menu' => __( 'Main Menu', 'italystrap' )
         );
         register_nav_menus( apply_filters( 'register_nav_menu', $locations ) );
 

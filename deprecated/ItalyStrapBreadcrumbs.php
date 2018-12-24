@@ -305,14 +305,14 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 				/**
 				 * If is tag (default archive.php) add tag title
 				 */
-				$breadcrumb .= $before_element_active . $wrapper_name . __('Tag: ', 'ItalyStrap') . single_tag_title('', false) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
+				$breadcrumb .= $before_element_active . $wrapper_name . __('Tag: ', 'italystrap') . single_tag_title('', false) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 
 			} elseif ( is_year() ) {
 
 				/**
 				 * If is year (default archive.php) add year
 				 */
-				$breadcrumb .= $before_element_active . $wrapper_name . __('Yearly archive: ', 'ItalyStrap') . get_the_time('Y') . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
+				$breadcrumb .= $before_element_active . $wrapper_name . __('Yearly archive: ', 'italystrap') . get_the_time('Y') . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 
 			} elseif ( is_month() ) {
 
@@ -326,7 +326,7 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 
 				$breadcrumb .= $before_element . '<a itemprop="item" href="' . get_year_link( $year ) . '" title="' . $year . '">' . $wrapper_name . $year . $close_wrapper_name . '</a>' . '<meta itemprop="position" content="2" />' . $after_element;
 
-				$breadcrumb .= $before_element_active . $wrapper_name . __('Monthly archive: ', 'ItalyStrap') . get_the_time('F') . $close_wrapper_name . '<meta itemprop="position" content="3" />' . $after_element;
+				$breadcrumb .= $before_element_active . $wrapper_name . __('Monthly archive: ', 'italystrap') . get_the_time('F') . $close_wrapper_name . '<meta itemprop="position" content="3" />' . $after_element;
 
 			} elseif ( is_day() ) {
 
@@ -348,27 +348,27 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 
 				$breadcrumb .= $before_element . '<a itemprop="item" href="' . get_month_link( $year, $month ) . '" title="' . $month . '">' . $wrapper_name . $month . $close_wrapper_name . '</a><meta itemprop="position" content="3" />' . $after_element;
 
-				$breadcrumb .= $before_element_active . $wrapper_name . __('Daily archive: ', 'ItalyStrap') . get_the_time('d') . $close_wrapper_name . '<meta itemprop="position" content="4" />' . $after_element;
+				$breadcrumb .= $before_element_active . $wrapper_name . __('Daily archive: ', 'italystrap') . get_the_time('d') . $close_wrapper_name . '<meta itemprop="position" content="4" />' . $after_element;
 
 			} elseif ( is_author() ) {
 
 				/**
 				 * If is author (default archive.php) add author name
 				 */
-				$breadcrumb .= $before_element_active . $wrapper_name . __('Author Archives: ', 'ItalyStrap') . get_the_author() . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
+				$breadcrumb .= $before_element_active . $wrapper_name . __('Author Archives: ', 'italystrap') . get_the_author() . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 
 			} elseif ( is_search() ) {
 
 				/**
 				 * If is search (default search.php) add search query
 				 */
-				$breadcrumb .= $before_element_active . $wrapper_name . __('Search Results: ', 'ItalyStrap') . get_search_query() . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
+				$breadcrumb .= $before_element_active . $wrapper_name . __('Search Results: ', 'italystrap') . get_search_query() . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 
 			} elseif ( is_404() ) {
 				/**
 				 * If is 404
 				 */
-				$breadcrumb .= $before_element_active . $wrapper_name . __( 'Not Found', 'Italystrap' ) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
+				$breadcrumb .= $before_element_active . $wrapper_name . __( 'Not Found', 'italystrap' ) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 			}
 
 			/**
@@ -377,7 +377,7 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 			 */
 			if ( get_query_var('paged') ) {
 
-				$breadcrumb .= ' - <small>(' . __('Page', 'ItalyStrap') . ' ' . get_query_var('paged') . ')</small>';
+				$breadcrumb .= ' - <small>(' . __('Page', 'italystrap') . ' ' . get_query_var('paged') . ')</small>';
 
 			  }
 

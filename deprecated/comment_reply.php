@@ -22,7 +22,7 @@ function new_get_cancel_comment_reply_link( $text = '', $class = '' ) {
 	_deprecated_function( __FUNCTION__, 'ItalyStrap 3.1' );
 
 	if ( empty( $text ) )
-		$text = __('Click here to cancel reply.', 'ItalyStrap');
+		$text = __('Click here to cancel reply.', 'italystrap');
 
 	if ( empty( $class ) )
 		$class = 'btn btn-danger btn-xs';

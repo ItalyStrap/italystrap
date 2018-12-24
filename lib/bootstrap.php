@@ -11,11 +11,7 @@
  * @since 4.0.0
  */
 
-namespace ItalyStrap\Core;
-
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
+namespace ItalyStrap;
 
 /**
  * Autoload theme core files.
@@ -37,7 +33,7 @@ if ( apply_filters( 'italystrap_load_deprecated', true ) ) {
 }
 
 foreach ( $autoload_theme_files as $file ) {
-	require( TEMPLATEPATH . $file );
+	require( __DIR__ . '/..' . $file );
 }
 
 /**
@@ -55,10 +51,10 @@ foreach ( $autoload_theme_files as $file ) {
  *
  * @see /lib/default-constant.php
  */
-set_default_constant();
+\ItalyStrap\Core\set_default_constant();
 
 // $italystrap_options = get_option( 'italystrap_theme_settings' ); // DEPRECATED
-$italystrap_defaults = apply_filters( 'italystrap_default_theme_config', require( TEMPLATEPATH . '/config/default.php' ) );
+$italystrap_defaults = apply_filters( 'italystrap_default_theme_config', require( PARENTPATH . '/config/default.php' ) );
 
 if ( ! isset( $theme_mods ) ) {
 	$theme_mods = (array) get_theme_mods();
@@ -71,15 +67,15 @@ if ( ! isset( $theme_mods ) ) {
 // 	}
 // }
 
-$theme_mods = wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
+$theme_mods = \ItalyStrap\Core\wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
 
 /**
  * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
  * Make shure Router runs after 99998.
  *
- * @see ItalyStrap\Core\set_current_template()
+ * @see \ItalyStrap\Core\set_current_template()
  */
-add_filter( 'template_include', __NAMESPACE__ . '\set_current_template', 99998 );
+add_filter( 'template_include', '\ItalyStrap\Core\set_current_template', 99998 );
 
 if ( ! isset( $injector ) ) {
 	return;
@@ -141,8 +137,8 @@ $autoload_concrete = array(
 	// 'ItalyStrap\EDD\Theme_Updater_Factory',
 );
 
-require( TEMPLATEPATH . '/lib/_init_admin.php' );
-require( TEMPLATEPATH . '/lib/_init.php' );
+require( '_init_admin.php' );
+require( '_init.php' );
 
 // foreach ( $autoload_sharing as $class ) {
 // 	$injector->share( $class );
@@ -192,3 +188,83 @@ add_filter( 'italystrap_app', function ( $app ) use ( $autoload_concrete, $autol
 
 	return $app;
 }, 10, 1 );
+
+/**
+ * Function for loading the template.
+ *
+ * @param  string $file_name The file_name on this function is called.
+ */
+function italystrap( $file_name = 'index' ) {
+
+	$template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
+
+	require locate_template(
+		$template_dir . DIRECTORY_SEPARATOR . $file_name . '.php'
+	);
+
+	do_action( 'italystrap' );
+}
+
+/**
+ * Fires once ItalyStrap theme has loaded.
+ *
+ * @since 2.0.0
+ */
+do_action( 'italystrap_theme_will_load' );
+
+/**
+ * Fires once ItalyStrap theme has loaded.
+ *
+ * @since 2.0.0
+ */
+do_action( 'italystrap_theme_load' );
+
+/**
+ * Fires once ItalyStrap theme has loaded.
+ *
+ * @since 2.0.0
+ */
+do_action( 'italystrap_theme_loaded' );
+
+/**
+ * This filter is used to load your php file right after ItalyStrap theme is loaded.
+ * The purpose is to have al code in the same scope without using global
+ * with variables provided from this theme.
+ *
+ * Usage example:
+ *
+ * 1 - First of all you have to have the file/files with some code
+ *     that extending this themes functionality in your theme path.
+ * 2 - Than you have to activate your theme.
+ * 3 - And then see the below example.
+ *
+ * add_filter( 'italystrap_require_theme_files_path', 'add_your_files_path' );
+ *
+ * function add_your_files_path( array $arg ) {
+ *     return array_merge(
+ *                  $arg,
+ *                  array( STYLESHEETPATH . 'my-dir/my-file.php' )
+ *     );
+ * }
+ * Important:
+ * Remeber that the file you want to load just after ItalyStrap theme
+ * has not to be required/included from your theme because
+ * you will get an error 'You can't redeclare...'.
+ *
+ * @since 2.0.0
+ *
+ * @var array
+ */
+$theme_files_path = apply_filters( 'italystrap_require_theme_files_path', array() );
+
+if ( ! empty( $theme_files_path ) ) {
+	foreach ( (array) $theme_files_path as $key => $theme_file_path ) {
+		require( $theme_file_path );
+	}
+	/**
+	 * Fires once ItalyStrap Child theme has loaded.
+	 *
+	 * @since 2.0.0
+	 */
+	do_action( 'italystrap_child_theme_loaded' );
+}

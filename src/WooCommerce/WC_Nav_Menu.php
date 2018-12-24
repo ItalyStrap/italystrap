@@ -43,7 +43,7 @@ class WC_Nav_Menu implements Subscriber_Interface {
 		 * @link https://gist.github.com/mikejolley/2044101
 		 */
 
-		$qta = '<li><a class="cart-contents" href="' . WC()->cart->get_cart_url() . '" title="' . __( 'View your shopping cart' ) . '"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge" style="color:#fff;position:absolute;top:5px;right:5px">' . WC()->cart->get_cart_contents_count() . '</span></a></li>';
+		$qta = '<li><a class="cart-contents" href="' . WC()->cart->get_cart_url() . '" title="' . __( 'View your shopping cart', 'italystrap' ) . '"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge" style="color:#fff;position:absolute;top:5px;right:5px">' . WC()->cart->get_cart_contents_count() . '</span></a></li>';
 
 		if ( in_array( 'cart', $item->classes ) ) {
 			$item_output .= $qta;
@@ -61,11 +61,11 @@ class WC_Nav_Menu implements Subscriber_Interface {
 
 		if ( is_user_logged_in() ) {
 
-				$account = '<li><a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '" title="' . __( 'My Account','woothemes' ) . '"><span class="glyphicon glyphicon-user"></span></a></li>';
+				$account = '<li><a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '" title="' . __( 'My Account', 'italystrap' ) . '"><span class="glyphicon glyphicon-user"></span></a></li>';
 
 		} else {
 
-				$account = '<li><a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '" title="' . __( 'Login / Register','woothemes' ) . '"><span class="glyphicon glyphicon-user"></span>' . __( 'Login / Register','woothemes' ) . '</a></li>';
+				$account = '<li><a href="' . esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) . '" title="' . __( 'Login / Register', 'italystrap' ) . '"><span class="glyphicon glyphicon-user"></span>' . __( 'Login / Register', 'italystrap' ) . '</a></li>';
 		}
 
 			return $account;
@@ -75,7 +75,7 @@ class WC_Nav_Menu implements Subscriber_Interface {
 
 		$cart = '';
 
-		$cart = '<li><a class="cart-contents" href="' . esc_url( WC()->cart->get_cart_url() ) . '" title="' . __( 'View your shopping cart' ) . '"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge" style="color:#fff;position:absolute;top:5px;right:5px;background-color:red;">' . esc_attr( WC()->cart->get_cart_contents_count() ) . '</span></a></li>';
+		$cart = '<li><a class="cart-contents" href="' . esc_url( WC()->cart->get_cart_url() ) . '" title="' . __( 'View your shopping cart', 'italystrap' ) . '"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge" style="color:#fff;position:absolute;top:5px;right:5px;background-color:red;">' . esc_attr( WC()->cart->get_cart_contents_count() ) . '</span></a></li>';
 
 		return $cart;
 	}

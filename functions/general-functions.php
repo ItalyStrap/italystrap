@@ -338,7 +338,7 @@ function comment_form_args( $comment_author, $user_identity ){
 		'class_submit'		=>	'btn btn-large btn-primary',
 		'format'			=>	'html5',
 		'comment_field' 	=>
-			'<div class="form-group comment-form-comment"><label for="comment" class="sr-only">' . _x( 'Comment', 'noun' ) . '</label><textarea class="form-control" name="comment" id="comment" placeholder="' . __( 'Write your comment here' ,'italystrap') . '" tabindex="4" rows="6" aria-required="true" title="' . __( 'Write your comment here', 'italystrap' ) . '"></textarea></div>',
+			'<div class="form-group comment-form-comment"><label for="comment" class="sr-only">' . _x( 'Comment', 'noun', 'italystrap' ) . '</label><textarea class="form-control" name="comment" id="comment" placeholder="' . __( 'Write your comment here' ,'italystrap') . '" tabindex="4" rows="6" aria-required="true" title="' . __( 'Write your comment here', 'italystrap' ) . '"></textarea></div>',
 		'logged_in_as'		=>
 			'<p class="logged-in-as">' . sprintf( 
 				__( 'Logged in as <a href="%1$s" class="btn btn-primary btn-xs">%2$s</a>. <a href="%3$s" title="Log out of this account" class="btn btn-warning btn-xs">Log out?</a>', 'italystrap' ),
@@ -347,7 +347,7 @@ function comment_form_args( $comment_author, $user_identity ){
 				wp_logout_url( apply_filters( 'the_permalink', get_permalink() ) )
 			) . '</p>',
 		'must_log_in'		=>
-			'<p class="alert alert-danger must-log-in">' . sprintf( __( 'You must be <a href="%s" class="alert-link">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ) . '</p>',
+			'<p class="alert alert-danger must-log-in">' . sprintf( __( 'You must be <a href="%s" class="alert-link">logged in</a> to post a comment.', 'italystrap' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ) . '</p>',
 		// 'cancel_reply_link'	=> '<span class="btn btn-danger btn-xs">' . __( 'Cancel reply' ) . '</span>',
 
 		);
@@ -526,7 +526,7 @@ add_filter( 'italystrap_widget_area_position', __NAMESPACE__ . '\register_theme_
  */
 function register_theme_width( array $new_width ) {
 
-	$with = require( TEMPLATEPATH . '/config/theme-width.php' );
+	$with = require( PARENTPATH . '/config/theme-width.php' );
 
 	return array_merge( $with, $new_width );
 }

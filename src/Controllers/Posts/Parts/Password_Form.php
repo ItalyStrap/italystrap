@@ -63,7 +63,7 @@ class Password_Form extends Controller implements Subscriber_Interface {
 			'pwbox-'. ( empty( $post->ID ) ? rand() : $post->ID ),
 			__( 'Password: ', 'italystrap' ),
 			__( 'Enter password', 'italystrap' ),
-			esc_attr__( "Submit" )
+			esc_attr__( "Submit", 'italystrap' )
 		);
 
 		return $form;

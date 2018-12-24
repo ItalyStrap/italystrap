@@ -43,7 +43,7 @@ return array(
 		),
 	),
 	array(
-		'title'	=> __( 'Inline' ),
+		'title'	=> __( 'Inline', 'italystrap' ),
 		'items'	=> array(
 			array(
 				'title'		=> 'Bold',
@@ -89,7 +89,7 @@ return array(
 		),
 	),
 	array(
-		'title'	=> __( 'Blocks' ),
+		'title'	=> __( 'Blocks', 'italystrap' ),
 		'items'	=> array(
 			array(
 				'title'		=> 'Paragraph',
@@ -110,7 +110,7 @@ return array(
 		),
 	),
 	array(
-		'title'	=> __( 'Alignment' ),
+		'title'	=> __( 'Alignment', 'italystrap' ),
 		'items'	=> array(
 			array(
 				'title'		=> 'Left',

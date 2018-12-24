@@ -10,7 +10,7 @@
  * @link www.italystrap.com
  * @since 4.0.0
  *
- * @package Italystrap
+ * @package ItalyStrap
  */
 
 namespace ItalyStrap\Headers;
@@ -29,7 +29,7 @@ namespace ItalyStrap\Headers;
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-					<span class="sr-only"><?php esc_attr_e( 'Toggle navigation', 'ItalyStrap' ); ?></span>
+					<span class="sr-only"><?php esc_attr_e( 'Toggle navigation', 'italystrap' ); ?></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>

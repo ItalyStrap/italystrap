@@ -49,7 +49,7 @@ if ( ! $author_info ) {
 				<p itemprop="description"><?php echo do_shortcode( wp_kses_post( $author_info->description ) ); ?></a></p>
 			<?php } ?>
 			<?php if ( $author_info->user_url ) { ?>
-				<p itemprop="url"><strong><?php esc_attr_e( 'Web site:', 'ItalyStrap' ); ?></strong> <a href="<?php echo esc_html( $author_info->user_url ); ?>"><?php echo esc_html( $author_info->user_url ); ?></a></p>
+				<p itemprop="url"><strong><?php esc_attr_e( 'Web site:', 'italystrap' ); ?></strong> <a href="<?php echo esc_html( $author_info->user_url ); ?>"><?php echo esc_html( $author_info->user_url ); ?></a></p>
 			<?php } ?>
 
 			<?php // $this->user_list->render(); ?>

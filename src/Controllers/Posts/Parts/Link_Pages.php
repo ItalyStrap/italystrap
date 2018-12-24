@@ -59,7 +59,7 @@ class Link_Pages extends Controller implements Subscriber_Interface  {
 		 * @var array
 		 */
 		$args = array(
-			'before'	=> '<p class="text-muted lead"><b>' . __( 'Pages:', 'ItalyStrap' ) . '</b>',
+			'before'	=> '<p class="text-muted lead"><b>' . __( 'Pages:', 'italystrap' ) . '</b>',
 			'after'		=> '</p>',
 		);
 		$args = apply_filters( 'italystrap_wp_link_pages_args', $args );

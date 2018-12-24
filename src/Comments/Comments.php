@@ -272,13 +272,13 @@ class Comments extends Walker_Comment {
 						<div class="comment-author vcard">
 					
 							<?php // if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-							<?php printf( __( '%s <span class="says">says:</span>' ), sprintf( '<b class="fn">%s</b>', get_comment_author_link() ) ); ?>
+							<?php printf( __( '%s <span class="says">says:</span>', 'italystrap' ), sprintf( '<b class="fn">%s</b>', get_comment_author_link() ) ); ?>
 						</div><!-- .comment-author -->
 					
 						<div class="comment-metadata">
 							<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
 								<time datetime="<?php comment_time( 'c' ); ?>" itemprop="datePublished">
-									<?php printf( _x( '%1$s at %2$s', '1: date, 2: time' ), get_comment_date(), get_comment_time() ); ?>
+									<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'italystrap' ), get_comment_date(), get_comment_time() ); ?>
 								</time>
 							</a>
 							<?php // edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>

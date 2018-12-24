@@ -74,6 +74,14 @@ function set_default_constant() {
 		define( 'STYLESHEETURL', get_stylesheet_directory_uri() );
 	}
 
+	if ( ! defined( 'PARENTPATH' ) ) {
+		define( 'PARENTPATH', get_template_directory() );
+	}
+
+	if ( ! defined( 'CHILDPATH' ) ) {
+		define( 'CHILDPATH', get_stylesheet_directory() );
+	}
+
 	/**
 	 * Define Bog Name constant
 	 */
@@ -115,6 +123,8 @@ function set_default_constant() {
  * @hooked template_include - 99998
  *
  * @param string $current_template Return the current temlate
+ *
+ * @return string
  */
 function set_current_template( $current_template ) {
 

@@ -59,7 +59,7 @@ class Init_Theme implements Subscriber_Interface {
 
 		$this->content_width = $theme_mods['content_width'];
 
-		$this->config = require( TEMPLATEPATH . '/config/config.php' );
+		$this->config = require( PARENTPATH . '/config/config.php' );
 	}
 
 	/**
@@ -74,7 +74,7 @@ class Init_Theme implements Subscriber_Interface {
 		/**
 		 * Make theme available for translation.
 		 */
-		load_theme_textdomain( 'italystrap', TEMPLATEPATH . '/lang' );
+		load_theme_textdomain( 'italystrap', PARENTPATH . '/lang' );
 
 		$this->add_theme_supports( $this->config['add_theme_support'] );
 
@@ -106,11 +106,11 @@ class Init_Theme implements Subscriber_Interface {
 		 * This theme uses wp_nav_menu() in one location.
 		 */
 		$nav_menus_locations = array(
-			'main-menu'			=> __( 'Main Menu', 'ItalyStrap' ),
-			'secondary-menu'	=> __( 'Secondary Menu', 'ItalyStrap' ),
-			'social-menu'		=> __( 'Social Menu', 'ItalyStrap' ),
-			'info-menu'			=> __( 'Info Menu', 'ItalyStrap' ),
-			'footer-menu'		=> __( 'Footer Menu', 'ItalyStrap' ),
+			'main-menu'			=> __( 'Main Menu', 'italystrap' ),
+			'secondary-menu'	=> __( 'Secondary Menu', 'italystrap' ),
+			'social-menu'		=> __( 'Social Menu', 'italystrap' ),
+			'info-menu'			=> __( 'Info Menu', 'italystrap' ),
+			'footer-menu'		=> __( 'Footer Menu', 'italystrap' ),
 		);
 		register_nav_menus( apply_filters( 'register_nav_menu_locations', $nav_menus_locations ) );
 

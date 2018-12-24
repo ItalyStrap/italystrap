@@ -8,7 +8,7 @@
  * @since 4.0.0
  * @beta
  *
- * @package Italystrap
+ * @package ItalyStrap
  */
 
 namespace ItalyStrap\Router;

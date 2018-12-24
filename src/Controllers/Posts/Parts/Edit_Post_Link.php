@@ -122,9 +122,9 @@ class Edit_Post_Link extends Controller implements Subscriber_Interface  {
 		$content .= sprintf(
 			'<p><small><a class="" href="%s">%s</a> - <a class="" href="%s">%s</a></small></p>',
 			esc_url( $edit_post ),
-			__( 'Edit This' ),
+			__( 'Edit This', 'italystrap' ),
 			esc_url( $delete_post ),
-			__( 'Delete post' )
+			__( 'Delete post', 'italystrap' )
 		);
 	
 		return $content;

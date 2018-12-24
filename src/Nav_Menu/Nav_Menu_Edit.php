@@ -81,11 +81,11 @@ class Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 		if ( ! empty( $item->_invalid ) ) {
 			$classes[] = 'menu-item-invalid';
 			/* translators: %s: title of menu item which is invalid */
-			$title = sprintf( __( '%s (Invalid)' ), $item->title );
+			$title = sprintf( __( '%s (Invalid)', 'italystrap' ), $item->title );
 		} elseif ( isset( $item->post_status ) && 'draft' == $item->post_status ) {
 			$classes[] = 'pending';
 			/* translators: %s: title of menu item in draft status */
-			$title = sprintf( __( '%s (Pending)' ), $item->title );
+			$title = sprintf( __( '%s (Pending)', 'italystrap' ), $item->title );
 		}
 
 		$title = ( ! isset( $item->label ) || '' == $item->label ) ? $title : $item->label;
@@ -98,7 +98,7 @@ class Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 		<li id="menu-item-<?php echo $item_id; ?>" class="<?php echo implode( ' ', $classes ); ?>">
 			<div class="menu-item-bar">
 				<div class="menu-item-handle">
-					<span class="item-title"><span class="menu-item-title"><?php echo esc_html( $title ); ?></span> <span class="is-submenu" <?php echo $submenu_text; ?>><?php _e( 'sub item' ); ?></span></span>
+					<span class="item-title"><span class="menu-item-title"><?php echo esc_html( $title ); ?></span> <span class="is-submenu" <?php echo $submenu_text; ?>><?php _e( 'sub item', 'italystrap' ); ?></span></span>
 					<span class="item-controls">
 						<span class="item-type"><?php echo esc_html( $item->type_label ); ?></span>
 						<span class="item-order hide-if-js">
@@ -113,7 +113,7 @@ class Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 									),
 									'move-menu_item'
 								);
-							?>" class="item-move-up" aria-label="<?php esc_attr_e( 'Move up' ) ?>">&#8593;</a>
+							?>" class="item-move-up" aria-label="<?php esc_attr_e( 'Move up', 'italystrap' ) ?>">&#8593;</a>
 							|
 							<a href="<?php
 								echo wp_nonce_url(
@@ -126,11 +126,11 @@ class Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 									),
 									'move-menu_item'
 								);
-							?>" class="item-move-down" aria-label="<?php esc_attr_e( 'Move down' ) ?>">&#8595;</a>
+							?>" class="item-move-down" aria-label="<?php esc_attr_e( 'Move down', 'italystrap' ) ?>">&#8595;</a>
 						</span>
 						<a class="item-edit" id="edit-<?php echo $item_id; ?>" href="<?php
 							echo ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? admin_url( 'nav-menus.php' ) : add_query_arg( 'edit-menu-item', $item_id, remove_query_arg( $removed_args, admin_url( 'nav-menus.php#menu-item-settings-' . $item_id ) ) );
-						?>" aria-label="<?php esc_attr_e( 'Edit menu item' ); ?>"><?php _e( 'Edit' ); ?></a>
+						?>" aria-label="<?php esc_attr_e( 'Edit menu item', 'italystrap' ); ?>"><?php _e( 'Edit', 'italystrap' ); ?></a>
 					</span>
 				</div>
 			</div>
@@ -139,64 +139,64 @@ class Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 				<?php if ( 'custom' == $item->type ) : ?>
 					<p class="field-url description description-wide">
 						<label for="edit-menu-item-url-<?php echo $item_id; ?>">
-							<?php _e( 'URL' ); ?><br />
+							<?php _e( 'URL', 'italystrap' ); ?><br />
 							<input type="text" id="edit-menu-item-url-<?php echo $item_id; ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
 						</label>
 					</p>
 				<?php endif; ?>
 				<p class="description description-wide">
 					<label for="edit-menu-item-title-<?php echo $item_id; ?>">
-						<?php _e( 'Navigation Label' ); ?><br />
+						<?php _e( 'Navigation Label', 'italystrap' ); ?><br />
 						<input type="text" id="edit-menu-item-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
 					</label>
 				</p>
 				<p class="field-title-attribute field-attr-title description description-wide">
 					<label for="edit-menu-item-attr-title-<?php echo $item_id; ?>">
-						<?php _e( 'Title Attribute' ); ?><br />
+						<?php _e( 'Title Attribute', 'italystrap' ); ?><br />
 						<input type="text" id="edit-menu-item-attr-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
 					</label>
 				</p>
 				<p class="field-link-target description">
 					<label for="edit-menu-item-target-<?php echo $item_id; ?>">
 						<input type="checkbox" id="edit-menu-item-target-<?php echo $item_id; ?>" value="_blank" name="menu-item-target[<?php echo $item_id; ?>]"<?php checked( $item->target, '_blank' ); ?> />
-						<?php _e( 'Open link in a new tab' ); ?>
+						<?php _e( 'Open link in a new tab', 'italystrap' ); ?>
 					</label>
 				</p>
 				<p class="field-css-classes description description-thin">
 					<label for="edit-menu-item-classes-<?php echo $item_id; ?>">
-						<?php _e( 'CSS Classes (optional)' ); ?><br />
+						<?php _e( 'CSS Classes (optional)', 'italystrap' ); ?><br />
 						<input type="text" id="edit-menu-item-classes-<?php echo $item_id; ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo $item_id; ?>]" value="<?php echo esc_attr( implode( ' ', $item->classes ) ); ?>" />
 					</label>
 				</p>
 				<p class="field-xfn description description-thin">
 					<label for="edit-menu-item-xfn-<?php echo $item_id; ?>">
-						<?php _e( 'Link Relationship (XFN)' ); ?><br />
+						<?php _e( 'Link Relationship (XFN)', 'italystrap' ); ?><br />
 						<input type="text" id="edit-menu-item-xfn-<?php echo $item_id; ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
 					</label>
 				</p>
 				<p class="field-description description description-wide">
 					<label for="edit-menu-item-description-<?php echo $item_id; ?>">
-						<?php _e( 'Description' ); ?><br />
+						<?php _e( 'Description', 'italystrap' ); ?><br />
 						<textarea id="edit-menu-item-description-<?php echo $item_id; ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo $item_id; ?>]"><?php echo esc_html( $item->description ); // textarea_escaped ?></textarea>
-						<span class="description"><?php _e( 'The description will be displayed in the menu if the current theme supports it.' ); ?></span>
+						<span class="description"><?php _e( 'The description will be displayed in the menu if the current theme supports it.', 'italystrap' ); ?></span>
 					</label>
 				</p>
 
 				<p class="field-move hide-if-no-js description description-wide">
 					<label>
-						<span><?php _e( 'Move' ); ?></span>
-						<a href="#" class="menus-move menus-move-up" data-dir="up"><?php _e( 'Up one' ); ?></a>
-						<a href="#" class="menus-move menus-move-down" data-dir="down"><?php _e( 'Down one' ); ?></a>
+						<span><?php _e( 'Move', 'italystrap' ); ?></span>
+						<a href="#" class="menus-move menus-move-up" data-dir="up"><?php _e( 'Up one', 'italystrap' ); ?></a>
+						<a href="#" class="menus-move menus-move-down" data-dir="down"><?php _e( 'Down one', 'italystrap' ); ?></a>
 						<a href="#" class="menus-move menus-move-left" data-dir="left"></a>
 						<a href="#" class="menus-move menus-move-right" data-dir="right"></a>
-						<a href="#" class="menus-move menus-move-top" data-dir="top"><?php _e( 'To the top' ); ?></a>
+						<a href="#" class="menus-move menus-move-top" data-dir="top"><?php _e( 'To the top', 'italystrap' ); ?></a>
 					</label>
 				</p>
 				<?php do_action( 'wp_fields_nav_menu_item', $item, $item_id ); ?>
 				<div class="menu-item-actions description-wide submitbox">
 					<?php if ( 'custom' != $item->type && $original_title !== false ) : ?>
 						<p class="link-to-original">
-							<?php printf( __( 'Original: %s' ), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
+							<?php printf( __( 'Original: %s', 'italystrap' ), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
 						</p>
 					<?php endif; ?>
 					<a class="item-delete submitdelete deletion" id="delete-<?php echo $item_id; ?>" href="<?php
@@ -209,8 +209,8 @@ class Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 							admin_url( 'nav-menus.php' )
 						),
 						'delete-menu_item_' . $item_id
-					); ?>"><?php _e( 'Remove' ); ?></a> <span class="meta-sep hide-if-no-js"> | </span> <a class="item-cancel submitcancel hide-if-no-js" id="cancel-<?php echo $item_id; ?>" href="<?php echo esc_url( add_query_arg( array( 'edit-menu-item' => $item_id, 'cancel' => time() ), admin_url( 'nav-menus.php' ) ) );
-						?>#menu-item-settings-<?php echo $item_id; ?>"><?php _e( 'Cancel' ); ?></a>
+					); ?>"><?php _e( 'Remove', 'italystrap' ); ?></a> <span class="meta-sep hide-if-no-js"> | </span> <a class="item-cancel submitcancel hide-if-no-js" id="cancel-<?php echo $item_id; ?>" href="<?php echo esc_url( add_query_arg( array( 'edit-menu-item' => $item_id, 'cancel' => time() ), admin_url( 'nav-menus.php' ) ) );
+						?>#menu-item-settings-<?php echo $item_id; ?>"><?php _e( 'Cancel', 'italystrap' ); ?></a>
 				</div>
 
 				<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $item_id; ?>]" value="<?php echo $item_id; ?>" />

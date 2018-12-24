@@ -7,7 +7,7 @@
  * @link www.italystrap.com
  * @since 4.0.0
  *
- * @package Italystrap
+ * @package ItalyStrap
  */
 
 namespace ItalyStrap\Pagination;

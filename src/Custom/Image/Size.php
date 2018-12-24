@@ -7,7 +7,7 @@
  * @link [URL]
  * @since 4.0.0
  *
- * @package Italystrap
+ * @package ItalyStrap
  */
 
 namespace ItalyStrap\Custom\Image;

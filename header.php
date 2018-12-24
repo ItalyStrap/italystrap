@@ -1,6 +1,6 @@
 <?php
 /**
- * The Header for Italystrap
+ * The Header for ItalyStrap
  *
  * Displays all of the <head> section and Main menu
  *

@@ -2,6 +2,8 @@
 /**
  * Initialize custom meta box build with CMB2
  *
+ * https://make.wordpress.org/core/2018/11/07/meta-box-compatibility-flags/
+ *
  * @package ItalyStrap\Custom\Metabox
  * @version 1.0
  * @since   4.0.0
@@ -129,7 +131,7 @@ class Register implements Subscriber_Interface {
 					__( 'Default layout set in %s', 'italystrap' ),
 					'link'
 				),
-				'options'			=> require( TEMPLATEPATH . '/config/layout.php' ),
+				'options'			=> require( PARENTPATH . '/config/layout.php' ),
 			)
 		);
 
@@ -142,7 +144,7 @@ class Register implements Subscriber_Interface {
 				),
 				'id'		=> $this->_prefix . '_template_settings',
 				'type'		=> 'multicheck',
-				'options'	=> require( TEMPLATEPATH . '/config/template-content.php' ),
+				'options'	=> require( PARENTPATH . '/config/template-content.php' ),
 			)
 		);
 

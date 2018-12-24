@@ -27,7 +27,7 @@ if ( 'edit-tags.php' === $pagenow || 'term.php' === $pagenow ) {
 	$autoload_concrete[] = 'ItalyStrap\Editors\Category';
 }
 
-require( TEMPLATEPATH . '/functions/admin-functions.php' );
+require( PARENTPATH . '/functions/admin-functions.php' );
 
 /**
  * Add fields to widget areas

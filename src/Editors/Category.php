@@ -125,10 +125,10 @@ class Category implements Subscriber_Interface {
 	public function taxonomies_description( $tax ) {
 
 		?><div class="form-field">
-			<label for="description"><?php echo esc_html_x( 'Description', 'Taxonomy Description' ); ?></label>
+			<label for="description"><?php echo esc_html_x( 'Description', 'Taxonomy Description', 'italystrap' ); ?></label>
 			<?php $this->print_wp_editor( $tax ); ?>
 			<br />
-			<span class="description"><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.' ); ?></span>
+			<span class="description"><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.', 'italystrap' ); ?></span>
 		</div><?php
 	}
 
@@ -141,11 +141,11 @@ class Category implements Subscriber_Interface {
 
 		?><table class="form-table">
 			<tr class="form-field">
-				<th scope="row" valign="top"><label for="description"><?php echo esc_html_x( 'Description', 'Taxonomy Description' ); ?></label></th>
+				<th scope="row" valign="top"><label for="description"><?php echo esc_html_x( 'Description', 'Taxonomy Description', 'italystrap' ); ?></label></th>
 				<td>
 					<?php $this->print_wp_editor( $tax ); ?>
 					<br />
-					<span class="description"><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.' ); ?></span>
+					<span class="description"><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.', 'italystrap' ); ?></span>
 				</td>
 			</tr>
 		</table><?php

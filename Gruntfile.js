@@ -11,6 +11,7 @@ var italystrap_theme = [
 	'!.gitignore',
 	'!.sass-cache/**',
 	'!node_modules/**',
+	'!backups/**',
 	'!bower/**',
 	'!tests/**',
 	'!future-inclusions/**',
@@ -24,6 +25,7 @@ var italystrap_theme = [
 	'!*.yml',
 	'!*.zip',
 	'!**/*.map',
+	'!**/tests/**',
 ];
 
 module.exports = function(grunt) {

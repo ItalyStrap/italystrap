@@ -57,6 +57,6 @@ $manager->add_control(
 		'section'	=> 'italystrap_layout_options',
 		'type'		=> 'radio',
 		'settings'	=> 'site_layout',
-		'choices'	=> require( TEMPLATEPATH . '/config/layout.php' ),
+		'choices'	=> require( PARENTPATH . '/config/layout.php' ),
 	)
 );

@@ -64,7 +64,7 @@ class Sidebars implements Subscriber_Interface {
 		 *       del footer che la key viene usate per calcolare la larghezza della colonna.
 		 *       Vedi Classe Footer_Widget_area
 		 */
-		$this->sidebars = (array) apply_filters( 'italystrap_sidebars_registered', require( TEMPLATEPATH . '/config/sidebars.php' ) );
+		$this->sidebars = (array) apply_filters( 'italystrap_sidebars_registered', require( PARENTPATH . '/config/sidebars.php' ) );
 	}
 
 	/**
@@ -77,10 +77,10 @@ class Sidebars implements Subscriber_Interface {
 		}
 
 		// register_sidebars(4, array(
-		// 	'name'				=> __( 'Footer Box %d', 'ItalyStrap' ),
+		// 	'name'				=> __( 'Footer Box %d', 'italystrap' ),
 		// 	'id'				=> 'footer-box',
 		// 	'class'				=> 'footer',
-		// 	'description'		=> __( 'Footer box widget area.', 'ItalyStrap' ),
+		// 	'description'		=> __( 'Footer box widget area.', 'italystrap' ),
 		// 	'before_widget'		=> '<div id="%2$s" class="widget %2$s col-md-3">',
 		// 	'after_widget' 		=> '</div>',
 		// 	'before_title'		=> '<h3 class="widget-title">',

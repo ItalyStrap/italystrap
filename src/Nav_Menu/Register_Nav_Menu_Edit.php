@@ -78,7 +78,7 @@ class Register_Nav_Menu_Edit implements Subscriber_Interface {
 	?>
 	<p class="field-custom description description-wide">
 		<label for="edit-menu-item-glyphicon-<?php echo $item_id; // XSS ok. ?>">
-			<?php _e( 'Glyphicon or your icon class', 'ItalyStrap' ); // XSS ok. ?>
+			<?php _e( 'Glyphicon or your icon class', 'italystrap' ); // XSS ok. ?>
 			<input type="text" id="edit-menu-item-glyphicon-<?php echo $item_id; // XSS ok. ?>" class="widefat code edit-menu-item-custom" name="menu-item-glyphicon[<?php echo $item_id; // XSS ok. ?>]" value="<?php echo esc_attr( $item->glyphicon ); // XSS ok. ?>" />
 		</label>
 	</p>

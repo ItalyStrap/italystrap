@@ -127,7 +127,7 @@ class Customizer_Beta implements Subscriber_Interface {
 
 		$transport = $manager->selective_refresh ? 'postMessage' : 'refresh';
 
-		$this->config = (array) require(  TEMPLATEPATH . '/config/customizer.php'  );
+		$this->config = (array) require(  PARENTPATH . '/config/customizer.php'  );
 
 		// $this->register( $manager );
 

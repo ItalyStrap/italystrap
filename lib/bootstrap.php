@@ -13,27 +13,30 @@
 
 namespace ItalyStrap;
 
+use Auryn\Injector;
+use ItalyStrap\Core;
+
 /**
  * Autoload theme core files.
  */
-$autoload_theme_files = array(
+$autoload_theme_files = [
 	'/vendor/autoload.php',
 	'/functions/default-constants.php',
 	'/functions/general-functions.php',
+	'/functions/config-helpers.php',
+	'/functions/italystrap.php',
 
 	'/lib/images.php',
 	'/lib/pointer.php',
-	// '/lib/wp-h5bp-htaccess.php', // URL https://github.com/roots/wp-h5bp-htaccess.
+	'/lib/edd.php',
+];
 
-	// '/deprecated/deprecated.php', // Deprecated files and functions.
-);
-
-if ( apply_filters( 'italystrap_load_deprecated', true ) ) {
+if ( apply_filters( 'italystrap_load_deprecated', false ) ) {
 	$autoload_theme_files[] = '/deprecated/deprecated.php';
 }
 
 foreach ( $autoload_theme_files as $file ) {
-	require( __DIR__ . '/..' . $file );
+	require __DIR__ . '/..' . $file;
 }
 
 /**
@@ -51,10 +54,21 @@ foreach ( $autoload_theme_files as $file ) {
  *
  * @see /lib/default-constant.php
  */
-\ItalyStrap\Core\set_default_constant();
+$constants = Core\set_default_constant( require __DIR__ . '/../config/constants.php' );
 
-// $italystrap_options = get_option( 'italystrap_theme_settings' ); // DEPRECATED
-$italystrap_defaults = apply_filters( 'italystrap_default_theme_config', require( PARENTPATH . '/config/default.php' ) );
+/**
+ * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
+ * Make sure Router runs after 99998.
+ *
+ * @see \ItalyStrap\Core\set_current_template()
+ */
+add_filter( 'template_include', '\ItalyStrap\Core\set_current_template', 99998 );
+
+
+$italystrap_defaults = apply_filters(
+	'italystrap_default_theme_config',
+	require __DIR__ . '/../config/default.php'
+);
 
 if ( ! isset( $theme_mods ) ) {
 	$theme_mods = (array) get_theme_mods();
@@ -67,19 +81,29 @@ if ( ! isset( $theme_mods ) ) {
 // 	}
 // }
 
-$theme_mods = \ItalyStrap\Core\wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
+$theme_mods = Core\wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
 
-/**
- * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
- * Make shure Router runs after 99998.
- *
- * @see \ItalyStrap\Core\set_current_template()
- */
-add_filter( 'template_include', '\ItalyStrap\Core\set_current_template', 99998 );
+$theme_supports = require PARENTPATH . '/config/theme-supports.php';
+
+$theme_config = array_merge( $theme_mods, $constants, $theme_supports );
+
+$injector = apply_filters( 'italystrap_injector', null );
 
 if ( ! isset( $injector ) ) {
-	return;
+	$injector = new Injector();
+	add_filter( 'italystrap_injector', function () use ( $injector ) {
+		return $injector;
+	} );
 }
+
+add_action( 'italystrap_theme_will_load', function () use ( $injector, $theme_config ) {
+
+	$args = [
+		':array_to_merge' => $theme_config,
+	];
+
+	$injector->execute( '\ItalyStrap\Config\merge_array_to_config', $args );
+} );
 
 /**
  * Define theme_mods parmeter
@@ -96,9 +120,10 @@ $autoload_sharing = array(
 /**=============================
  * Autoload Classes definitions
  *============================*/
-// $fields_type = array( 'fields_type' => 'ItalyStrap\Fields\Fields' );
 $autoload_definitions = array(
-	// 'ItalyStrap\Widgets\Attributes\Attributes'	=> $fields_type,
+//	'ItalyStrap\Init\Init_Theme'	=> [
+//		':theme_supports'	=> require PARENTPATH . '/config/theme-supports.php',
+//	],
 );
 
 /**======================
@@ -115,16 +140,6 @@ $autoload_aliases = array(
  *
  * @see _init & _init_admin
  */
-// $autoload_concrete = array(
-// 	'router'		=> 'ItalyStrap\Router\Router',
-// 	// 'controller'	=> 'ItalyStrap\Core\Router\Controller', // Da testare meglio
-// 	'customizer'	=> 'ItalyStrap\Customizer\Theme_Customizer',
-// 	'css'			=> 'ItalyStrap\Css\Css',
-// 	'init_theme'	=> 'ItalyStrap\Init\Init_Theme',
-// 	'sidebars'		=> 'ItalyStrap\Custom\Sidebars\Sidebars',
-// 	'menu'			=> 'ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
-// 	'size'			=> 'ItalyStrap\Custom\Image\Size',
-// );
 $autoload_concrete = array(
 	'ItalyStrap\Router\Router',
 	// 'ItalyStrap\Core\Router\Controller', // Da testare meglio
@@ -134,11 +149,11 @@ $autoload_concrete = array(
 	'ItalyStrap\Custom\Sidebars\Sidebars',
 	'ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
 	'ItalyStrap\Custom\Image\Size', // 'italystrap_plugin_app_loaded'
-	// 'ItalyStrap\EDD\Theme_Updater_Factory',
+//	'ItalyStrap\EDD\Theme_Updater_Factory',
 );
 
-require( '_init_admin.php' );
-require( '_init.php' );
+require '_init_admin.php';
+require '_init.php';
 
 // foreach ( $autoload_sharing as $class ) {
 // 	$injector->share( $class );
@@ -190,34 +205,18 @@ add_filter( 'italystrap_app', function ( $app ) use ( $autoload_concrete, $autol
 }, 10, 1 );
 
 /**
- * Function for loading the template.
- *
- * @param  string $file_name The file_name on this function is called.
- */
-function italystrap( $file_name = 'index' ) {
-
-	$template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
-
-	require locate_template(
-		$template_dir . DIRECTORY_SEPARATOR . $file_name . '.php'
-	);
-
-	do_action( 'italystrap' );
-}
-
-/**
  * Fires once ItalyStrap theme has loaded.
  *
  * @since 2.0.0
  */
 do_action( 'italystrap_theme_will_load' );
 
-/**
- * Fires once ItalyStrap theme has loaded.
- *
- * @since 2.0.0
- */
-do_action( 'italystrap_theme_load' );
+	/**
+	 * Fires once ItalyStrap theme is loading.
+	 *
+	 * @since 2.0.0
+	 */
+	do_action( 'italystrap_theme_load' );
 
 /**
  * Fires once ItalyStrap theme has loaded.
@@ -259,7 +258,7 @@ $theme_files_path = apply_filters( 'italystrap_require_theme_files_path', array(
 
 if ( ! empty( $theme_files_path ) ) {
 	foreach ( (array) $theme_files_path as $key => $theme_file_path ) {
-		require( $theme_file_path );
+		require $theme_file_path ;
 	}
 	/**
 	 * Fires once ItalyStrap Child theme has loaded.

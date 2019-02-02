@@ -14,106 +14,16 @@ namespace ItalyStrap\Core;
 
 /**
  * Set default constant
- *
- * @uses \get_template()
- * @uses get_stylesheet()
- * @uses wp_get_theme()
- * @uses wp_get_theme( \get_template() )
  */
-function set_default_constant() {
+function set_default_constant( array $constant = [] ) {
 
-	/**
-	 * Define ITALYSTRAP_THEME constant for internal use
-	 */
-	define( 'ITALYSTRAP_THEME', true );
-
-	/**
-	 * Define the name of parent theme
-	 */
-	define( 'ITALYSTRAP_THEME_NAME', 'ItalyStrap' );
-
-	/**
-	 * The version of the theme
-	 */
-	define( 'ITALYSTRAP_THEME_VERSION', wp_get_theme( \get_template() )->display( 'Version' ) );
-
-	/**
-	 * The name of active theme
-	 */
-	define( 'ITALYSTRAP_CURRENT_THEME_NAME', wp_get_theme()->get( 'Name' ) );
-
-	/**
-	 * Define the prefix for internal use
-	 */
-	define( 'PREFIX', strtolower( ITALYSTRAP_CURRENT_THEME_NAME ) );
-
-	/**
-	 * Define the prefix for internal use with underscore
-	 */
-	define( '_PREFIX', '_' . PREFIX );
-
-	/**
-	 * Define parent path directory
-	 * Define ITALYSTRAP_CHILD_PATH in your child theme functions.php file
-	 * define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
-	 */
-	// define( 'ITALYSTRAP_PARENT_PATH', get_template_directory_uri() );
-	// Var deprecated from 4.0.0.
-	// $path = ITALYSTRAP_PARENT_PATH;
-
-	if ( ! defined( 'TEMPLATEURL' ) ) {
-		define( 'TEMPLATEURL', get_template_directory_uri() );
+	foreach ( $constant as $name => $value ) {
+		if ( ! defined( $name ) ) {
+			define( $name, $value );
+		}
 	}
 
-	/**
-	 * Define child path directory if is active child theme
-	 */
-	// define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );
-
-	if ( ! defined( 'STYLESHEETURL' ) ) {
-		define( 'STYLESHEETURL', get_stylesheet_directory_uri() );
-	}
-
-	if ( ! defined( 'PARENTPATH' ) ) {
-		define( 'PARENTPATH', get_template_directory() );
-	}
-
-	if ( ! defined( 'CHILDPATH' ) ) {
-		define( 'CHILDPATH', get_stylesheet_directory() );
-	}
-
-	/**
-	 * Define Bog Name constant
-	 */
-	if ( ! defined( 'GET_BLOGINFO_NAME' ) ) {
-		define( 'GET_BLOGINFO_NAME', get_option( 'blogname' ) );
-	}
-
-	/**
-	 * Define Blog Description Constant
-	 */
-	if ( ! defined( 'GET_BLOGINFO_DESCRIPTION' ) ) {
-		define( 'GET_BLOGINFO_DESCRIPTION', get_option( 'blogdescription' ) );
-	}
-
-	/**
-	 * Define HOME_URL
-	 */
-	if ( ! defined( 'HOME_URL' ) ) {
-		define( 'HOME_URL', get_home_url( null, '/' ) );
-	}
-
-	/**
-	 * Front page ID get_option( 'page_on_front' );
-	 * Home page ID get_option( 'page_for_posts' );
-	 */
-	if ( ! defined( 'PAGE_ON_FRONT' ) ) {
-		define( 'PAGE_ON_FRONT', absint( get_option( 'page_on_front' ) ) );
-	}
-	if ( ! defined( 'PAGE_FOR_POSTS' ) ) {
-		define( 'PAGE_FOR_POSTS', absint( get_option( 'page_for_posts' ) ) );
-	}
-
+	return $constant;
 }
 
 /**

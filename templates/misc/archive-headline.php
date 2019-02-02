@@ -5,6 +5,7 @@
  *
  * @link www.italystrap.com
  * @since 1.0.0
+ * @since WP 4.9.0 Added support for post type archives
  *
  * @package ItalyStrap
  */
@@ -25,21 +26,4 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 	the_archive_title( '<h1 class="page-title" itemprop="name">', '</h1>' );
 	the_archive_description( '<div class="well taxonomy-description" itemprop="description">', '</div>' );
-
-	/**
-	 * Display or retrieve title for a Custom Post Type archive.
-	 * This is optimized for archive.php and archive-{posttype}.php template files for displaying the title of the CPT.
-	 *
-	 * @todo Use 'get_the_archive_description' filter instead the snippets below
-	 * https://developer.wordpress.org/reference/functions/get_the_archive_description/
-	 */
-	if ( is_post_type_archive() ) {
-
-		$post_type_object = get_post_type_object( get_post_type() );
-
-		if ( $post_type_object ) {
-
-			?><div class="well" itemprop="description"><p><?php echo wp_kses_post( $post_type_object->description ); ?></p></div><?php
-		}
-	}
 ?></header>

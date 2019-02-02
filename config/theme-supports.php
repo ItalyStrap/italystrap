@@ -1,8 +1,8 @@
 <?php
 /**
- * Theme configuration file.
+ * Theme supports configuration file.
  *
- * This is the configuration settings of the theme, you can override the value by filters.
+ * This is the configuration for the supported features of the theme, you can override the value by filters.
  *
  * @link www.italystrap.com
  * @since 4.0.0
@@ -10,14 +10,19 @@
  * @package ItalyStrap
  */
 
-return array(
+/**
+ * @var int $font_size_base
+ */
+$font_size_base = 14;
+
+return [
 
 	/**
 	 * Add theme support functionality
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support
 	 */
-	'add_theme_support'	=> array(
+	'add_theme_support'	=> [
 
 		/**
 		 * Add default posts and comments RSS feed links to head.
@@ -37,13 +42,13 @@ return array(
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
 		 */
-		'html5'	=> array(
+		'html5'	=> [
 			'search-form',
 			'comment-form',
 			'comment-list',
 			'gallery',
 			'caption',
-		),
+		],
 
 		/**
 		 * Enable support for title-tag.
@@ -56,7 +61,7 @@ return array(
 		 *
 		 * @var array
 		 */
-		'post-formats'	=> array(
+		'post-formats'	=> [
 			'aside',
 			'image',
 			'gallery',
@@ -66,7 +71,7 @@ return array(
 			'video',
 			'audio',
 			'chat',
-		),
+		],
 
 		/**
 		 * Custom header value array
@@ -74,7 +79,7 @@ return array(
 		 *
 		 * @var array
 		 */
-		'custom-header'	=> array(
+		'custom-header'	=> [
 			'default-image'          => '',
 			'width'                  => 1140,
 			'height'                 => 400,
@@ -87,7 +92,7 @@ return array(
 			'wp-head-callback'       => '',
 			'admin-head-callback'    => '',
 			'admin-preview-callback' => '',
-		),
+		],
 
 		/**
 		 * Custom background support
@@ -117,20 +122,6 @@ return array(
 		 * @see https://make.wordpress.org/core/2016/03/22/implementing-selective-refresh-support-for-widgets/
 		 */
 		'customize-selective-refresh-widgets',
-
-		/**
-		 * Not yet supported
-		 * @link https://wordpress.org/gutenberg/handbook/reference/theme-support/
-		 */
-		'gutenberg'		=> array(
-			'wide-images'	=> true,
-			// 'colors' => array(
-			// 	'#a156b4',
-			// 	'#d0a5db',
-			// 	'#eee',
-			// 	'#444',
-			// ),
-		),
 
 		/**
 		 * Add support to WooCommerce
@@ -165,10 +156,10 @@ return array(
 		 *
 		 * @var array
 		 */
-		'starter-content'	=> array(
-			'widgets' => array(
+		'starter-content'	=> [
+			'widgets' => [
 				// Place three core-defined widgets in the sidebar area.
-				'sidebar-1' => array(
+				'sidebar-1' => [
 					'text_business_info',
 					'search',
 					'text_about',
@@ -178,112 +169,259 @@ return array(
 					// 		'title'	=> 'Title test'
 					// 	),
 					// ),
-				),
+				],
 
 				// Add the core-defined business info widget to the footer 1 area.
-				'footer-box-1' => array(
+				'footer-box-1' => [
 					'text_business_info',
-				),
+				],
 
 				// Put two core-defined widgets in the footer 2 area.
-				'footer-box-2' => array(
+				'footer-box-2' => [
 					'text_about',
 					'search',
-				),
-			),
+				],
+			],
 
 			// Specify the core-defined pages to create and add custom thumbnails to some of them.
-			'posts' => array(
+			'posts' => [
 				'home',
-				'about' => array(
+				'about' => [
 					'thumbnail' => '{{image-sandwich}}',
-				),
-				'contact' => array(
+				],
+				'contact' => [
 					'thumbnail' => '{{image-default}}',
-				),
-				'test' => array(
+				],
+				'test' => [
 					'thumbnail' => '{{image-default}}',
 					'post_content'	=> 'pOST CONTENT',
-				),
-				'blog' => array(
+				],
+				'blog' => [
 					'thumbnail' => '{{image-coffee}}',
-				),
-				'homepage-section' => array(
+				],
+				'homepage-section' => [
 					'thumbnail' => '{{image-default}}',
-				),
-			),
+				],
+			],
 
 			// Create the custom image attachments used as post thumbnails for pages.
-			'attachments' => array(
-				'image-default' => array(
+			'attachments' => [
+				'image-default' => [
 					'post_title' => _x( 'Default', 'Theme starter content', 'italystrap' ),
 					'file' => 'img/italystrap-default-image.png', // URL relative to the template directory.
-				),
-				'image-sandwich' => array(
+				],
+				'image-sandwich' => [
 					'post_title' => _x( 'Sandwich', 'Theme starter content', 'italystrap' ),
 					'file' => 'img/images/sandwich.jpg',
-				),
-				'image-coffee' => array(
+				],
+				'image-coffee' => [
 					'post_title' => _x( 'Coffee', 'Theme starter content', 'italystrap' ),
 					'file' => 'img/images/coffee.jpg',
-				),
-			),
+				],
+			],
 
 			// Default to a static front page and assign the front and posts pages.
-			'options' => array(
+			'options' => [
 				'show_on_front' => 'page',
 				'page_on_front' => '{{home}}',
 				'page_for_posts' => '{{blog}}',
-			),
+			],
 
 			// Set the front page section theme mods to the IDs of the core-registered pages.
-			'theme_mods' => array(
+			'theme_mods' => [
 				'panel_1' => '{{homepage-section}}',
 				'panel_2' => '{{about}}',
 				'panel_3' => '{{blog}}',
 				'panel_4' => '{{contact}}',
-			),
+			],
 
 			// Set up nav menus for each of the two areas registered in the theme.
-			'nav_menus' => array(
+			'nav_menus' => [
 				// Assign a menu to the "top" location.
-				'info-menu' => array(
+				'info-menu' => [
 					'name' => __( 'Info Menu', 'italystrap' ),
-					'items' => array(
+					'items' => [
 						'link_home', // Note that the core "home" page is actually a link in case a static front page is not used.
 						'page_about',
 						'page_blog',
 						'page_contact',
-					),
-				),
+					],
+				],
 
 				// Assign a menu to the "social" location.
-				'social-menu' => array(
+				'social-menu' => [
 					'name' => __( 'Social Links Menu', 'italystrap' ),
-					'items' => array(
+					'items' => [
 						'link_yelp',
 						'link_facebook',
 						'link_twitter',
 						'link_instagram',
 						'link_email',
 						'link_test',
-					),
-				),
+					],
+				],
 
 				// Assign a menu to the "social" location.
-				'main-menu' => array(
+				'main-menu' => [
 					'name' => __( 'Main Menu', 'italystrap' ),
-					'items' => array(
+					'items' => [
 						'link_home', // Note that the core "home" page is actually a link in case a static front page is not used.
 						'page_about',
 						'page_blog',
 						'page_contact',
 						'page_test',
-					),
-				),
-			),
-		),
+					],
+				],
+			],
+		],
 
-	),
-);
+		/** =================================
+		 * Theme support for Gutenberg editor
+		 *
+		 * https://wordpress.org/gutenberg/handbook/designers-developers/developers/themes/theme-support/
+		 *
+		 * @since WordPress 5.0
+		===================================*/
+
+		/**
+		 * You can disable the option to allow customize the colors in the editor
+		 */
+//		'disable-custom-colors',
+
+		'editor-color-palette'	=> [
+			[
+				'name'  => __( 'Primary', 'italystrap' ),
+				'slug'  => 'primary',
+//				'color' => twentynineteen_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 33 ),
+				'color' => '#337ab7',
+			],
+			[
+				'name'  => __( 'Success', 'italystrap' ),
+				'slug'  => 'success',
+//				'color' => twentynineteen_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 23 ),
+				'color' => '#5cb85c',
+			],
+			[
+				'name'  => __( 'Info', 'italystrap' ),
+				'slug'  => 'info',
+				'color' => '#5bc0de',
+			],
+			[
+				'name'  => __( 'Warning', 'italystrap' ),
+				'slug'  => 'warning',
+				'color' => '#f0ad4e',
+			],
+			[
+				'name'  => __( 'Danger', 'italystrap' ),
+				'slug'  => 'danger',
+				'color' => '#d9534f',
+			],
+			[
+				'name'  => __( 'Dark Gray', 'italystrap' ),
+				'slug'  => 'dark-gray',
+				'color' => '#333',
+			],
+			[
+				'name'  => __( 'Light Gray', 'italystrap' ),
+				'slug'  => 'light-gray',
+				'color' => '#777',
+			],
+			[
+				'name'  => __( 'White', 'italystrap' ),
+				'slug'  => 'white',
+				'color' => '#FFF',
+			],
+		],
+
+		/**
+		 * You can disable the option to allow customize the font style in the editor
+		 */
+//		'disable-custom-font-sizes',
+
+		'editor-font-sizes'	=> [
+			[
+				'name'      => __( 'Extra Small', 'italystrap' ),
+				'shortName' => __( 'XS', 'italystrap' ),
+				'size'      => ceil( $font_size_base * 0.75 ),
+				'slug'      => 'extra-small',
+			],
+			[
+				'name'      => __( 'Small', 'italystrap' ),
+				'shortName' => __( 'S', 'italystrap' ),
+				'size'      => ceil( $font_size_base * 0.85 ),
+				'slug'      => 'small',
+			],
+			[
+				'name'      => __( 'Normal', 'italystrap' ),
+				'shortName' => __( 'M', 'italystrap' ),
+				'size'      => $font_size_base,
+				'slug'      => 'normal',
+			],
+			[
+				'name'      => __( 'Large', 'italystrap' ),
+				'shortName' => __( 'L', 'italystrap' ),
+				'size'      => ceil( $font_size_base * 1.25 ),
+//				'unit'		=> 'rem',
+				'slug'      => 'large',
+			],
+			[
+				'name'      => __( 'Huge', 'italystrap' ),
+				'shortName' => __( 'XL', 'italystrap' ),
+				'size'      => ceil( $font_size_base * 1.7 ),
+				'slug'      => 'huge',
+			],
+			[
+				'name'      => __( 'Extra Huge', 'italystrap' ),
+				'shortName' => __( 'XXL', 'italystrap' ),
+				'size'      => ceil( $font_size_base * 2.15 ),
+				'slug'      => 'extra-huge',
+			],
+			[
+				'name'      => __( 'H1', 'italystrap' ),
+				'shortName' => __( 'H1', 'italystrap' ),
+				'size'      => ceil( $font_size_base * 2.6 ),
+				'slug'      => 'h1',
+			],
+		],
+
+		/**
+		 * If the theme support align-wide then activate it
+		 */
+//		'align-wide',
+
+		/**
+		 * Support for Gutenberg editor style
+		 * Then make sure you are loading the editor-style.css
+		 * @see \ItalyStrap\Init\Init_Theme.php
+		 */
+		'editor-styles',
+
+		/**
+		 * If the theme has dark background then activate it
+		 */
+//		'dark-editor-style',
+
+		/**
+		 * This will add:
+		 * <figure class="wp-embed-aspect-16-9 wp-has-aspect-ratio">...</figure>
+		 *
+		 * @link https://wordpress.org/gutenberg/handbook/designers-developers/developers/themes/theme-support/#responsive-embedded-content
+		 * @TODO
+		 */
+		'responsive-embeds',
+
+		/**
+		 * https://wordpress.org/support/topic/wp-block-styles/
+		 * Some blocks in Gutenberg like tables, quotes, separator benefit from structural styles
+		 * (margin, padding, border etc…)
+		 * They are applied visually only in the editor (back-end) but not on the front-end
+		 * to avoid the risk of conflicts with the styles wanted in the theme.
+		 * If you want to display them on front to have a base to work with, in this case,
+		 * you can add support for wp-block-styles.
+		 * You can consult Matias Ventura’s tickets to keep you informed about Gutenberg developments:
+		 * https://make.wordpress.org/core/2018/06/05/whats-new-in-gutenberg-5th-june/
+		 */
+//		'wp-block-styles',
+	],
+];
 

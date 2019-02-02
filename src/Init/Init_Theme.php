@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Config\Config_Interface;
 use ItalyStrap\Event\Subscriber_Interface;
 
 use ItalyStrap\Css\Css;
@@ -36,30 +37,40 @@ class Init_Theme implements Subscriber_Interface {
 	 */
 	public static function get_subscribed_events() {
 
-		return array(
+		return [
 			// 'hook_name'							=> 'method_name',
 			// 'after_setup_theme'	=> 'setup',
 			'italystrap_plugin_app_loaded'	=> 'setup',
-		);
+//			'after_setup_theme'	=> 'setup',
+//			'after_setup_theme'				=> 'add_editor_styles',
+//			'after_setup_theme'	=> [
+//				'function_to_add'	=> 'setup',
+//				'priority'			=> PHP_INT_MIN,
+//				'accepted_args'		=> null,
+//			],
+		];
 	}
 
-	/**
-	 * $capability
-	 *
-	 * @var string
-	 */
-	private $capability = 'edit_theme_options';
-
+	private $config;
+	private $css_manager;
+	private $content_width;
+	private $theme_supports;
 	/**
 	 * Init some functionality
 	 */
-	public function __construct( Css $css_manager, $theme_mods ) {
+	public function __construct( Config_Interface $config, Css $css_manager ) {
+
+		$this->config = $config;
 
 		$this->css_manager = $css_manager;
 
-		$this->content_width = $theme_mods['content_width'];
+		$this->content_width = $this->config->get('content_width');
 
-		$this->config = require( PARENTPATH . '/config/config.php' );
+		$this->theme_supports = (array) $this->config->get('add_theme_support');
+
+//		add_action('wp_footer', function () {
+//			d( $this->content_width, $this->config->all() );
+//		});
 	}
 
 	/**
@@ -76,7 +87,7 @@ class Init_Theme implements Subscriber_Interface {
 		 */
 		load_theme_textdomain( 'italystrap', PARENTPATH . '/lang' );
 
-		$this->add_theme_supports( $this->config['add_theme_support'] );
+		$this->add_theme_supports( $this->theme_supports );
 
 		/**
 		 * Custom background support
@@ -97,23 +108,30 @@ class Init_Theme implements Subscriber_Interface {
 		 * 'wp-head-callback' => null In case is printed from Theme customizer
 		 * @see ItalyStrap\Core\Css\Css::custom_background_cb()
 		 */
-		$custom_background = array(
-			'wp-head-callback' => array( $this->css_manager, 'custom_background_cb' ),
-		);
+		$custom_background = [
+			'wp-head-callback' => [
+				$this->css_manager, 'custom_background_cb'
+			],
+		];
 		add_theme_support( 'custom-background', apply_filters( 'custom_background_support', $custom_background ) );
+
+		/**
+		 * Per ora la eseguo da qui
+		 * in futuro valutare posto migliore
+		 */
+		$this->add_editor_styles();
 
 		/**
 		 * This theme uses wp_nav_menu() in one location.
 		 */
-		$nav_menus_locations = array(
+		$nav_menus_locations = [
 			'main-menu'			=> __( 'Main Menu', 'italystrap' ),
 			'secondary-menu'	=> __( 'Secondary Menu', 'italystrap' ),
 			'social-menu'		=> __( 'Social Menu', 'italystrap' ),
 			'info-menu'			=> __( 'Info Menu', 'italystrap' ),
 			'footer-menu'		=> __( 'Footer Menu', 'italystrap' ),
-		);
+		];
 		register_nav_menus( apply_filters( 'register_nav_menu_locations', $nav_menus_locations ) );
-
 	}
 
 	/**
@@ -123,7 +141,7 @@ class Init_Theme implements Subscriber_Interface {
 	 *
 	 * @param  array $theme_supports An array with theme support list.
 	 */
-	public function add_theme_supports( array $theme_supports = array() ) {
+	private function add_theme_supports( array $theme_supports = array() ) {
 
 		foreach ( $theme_supports as $feature => $parameters ) {
 			if ( is_string( $parameters ) ) {
@@ -132,5 +150,26 @@ class Init_Theme implements Subscriber_Interface {
 				add_theme_support( $feature, $parameters );
 			}
 		}
+	}
+
+	/**
+	 * Add Custom CSS in visual editor
+	 *
+	 * @link http://codex.wordpress.org/Function_Reference/add_editor_style
+	 * @link https://developer.wordpress.org/reference/functions/add_editor_style/
+	 *
+	 * Leggere qui perché forse c'è un problema con i font, non prende il path giusto
+	 * @link http://codeboxr.com/blogs/adding-twitter-bootstrap-support-in-wordpress-visual-editor
+	 * @link https://www.google.it/search?q=wordpress+add+css+bootstrap+visual+editor&oq=wordpress+add+css+bootstrap+visual+editor&gs_l=serp.3...893578.895997.0.896668.10.10.0.0.0.3.388.1849.0j1j4j2.7.0....0...1c.1.52.serp..8.2.732.wb3nJL89Fxk
+	 */
+	public function add_editor_styles() {
+
+		$style_url = file_exists( CHILDPATH . '/css/editor-style.css' )
+			? STYLESHEETURL . '/css/editor-style.css'
+			: TEMPLATEURL . '/css/editor-style.css';
+
+		$arg = apply_filters( 'italystrap_visual_editor_style', array( $style_url ) );
+
+		add_editor_style( $arg );
 	}
 }

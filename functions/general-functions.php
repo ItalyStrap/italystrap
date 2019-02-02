@@ -13,6 +13,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu;
+use ItalyStrap\HTML;
 
 /**
  * New get_search_form function
@@ -94,14 +95,32 @@ function display_breadcrumbs( $defaults = array() ) {
  */
 function colophon_default_text() {
 
-	// return '<p class="text-muted small">&copy; <span itemprop="copyrightYear">' . esc_attr( date( 'Y' ) ) . '</span> ' . esc_attr( GET_BLOGINFO_NAME ) . ' | This website uses ' . esc_attr( ITALYSTRAP_CURRENT_THEME_NAME ) . ' powered by <a href="http://www.italystrap.it" rel="nofollow" itemprop="url">ItalyStrap</a> developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> ' . ( ( ! is_child_theme() ) ? '| Theme version: <span class="badge" itemprop="version">' . esc_attr( ITALYSTRAP_THEME_VERSION ) . '</span>' : '' ) . '</p>';
+    $powered = sprintf(
+        '<a%s>ItalyStrap</a>',
+        \ItalyStrap\HTML\get_attr( 'powered', [
+                'href'      => '//www.italystrap.it',
+                'rel'       => 'nofollow',
+                'itemprop'  => 'url',
+        ] )
+    );
+
+    $developed = sprintf(
+        '<a%s>Overclokk.net</a>',
+		\ItalyStrap\HTML\get_attr( 'developed', [
+			'href'      => '//www.overclokk.net',
+			'rel'       => 'nofollow',
+			'itemprop'  => 'url',
+		] )
+    );
 
 	return sprintf(
-		'<p class="text-muted small">&copy; <span itemprop="copyrightYear">%1$d</span> %2$s | This website uses %3$s powered by <a href="http://www.italystrap.it" rel="nofollow" itemprop="url">ItalyStrap</a> developed by <a href="http://www.overclokk.net" rel="nofollow" itemprop="url">Overclokk.net</a> %4$s</p>',
+		'<p class="text-muted small">&copy; <span itemprop="copyrightYear">%1$d</span> %2$s | This website uses %3$s powered by %5$s developed by %6$s %4$s</p>',
 		esc_attr( date( 'Y' ) ),
 		esc_attr( GET_BLOGINFO_NAME ),
 		esc_attr( ITALYSTRAP_CURRENT_THEME_NAME ),
-		! is_child_theme() ? '| Theme version: <span itemprop="version">' . esc_attr( ITALYSTRAP_THEME_VERSION ) . '</span>' : ''
+		! is_child_theme() ? '| Theme version: <span itemprop="version">' . esc_attr( ITALYSTRAP_THEME_VERSION ) . '</span>' : '',
+		$powered,
+		$developed
 	);
 
 }
@@ -526,7 +545,7 @@ add_filter( 'italystrap_widget_area_position', __NAMESPACE__ . '\register_theme_
  */
 function register_theme_width( array $new_width ) {
 
-	$with = require( PARENTPATH . '/config/theme-width.php' );
+	$with = require PARENTPATH . '/config/theme-width.php';
 
 	return array_merge( $with, $new_width );
 }
@@ -559,33 +578,33 @@ function embed_wrap( $cache, $url, $attr, $post_ID ) {
 		return $cache;
 	}
 
-	$container_attr = get_attr( 'embed-responsive', array( 'class' => 'entry-content-asset embed-responsive embed-responsive-16by9' ) );
-	
+	$container_attr = HTML\get_attr(
+        'embed-responsive',
+        [
+            'class' => 'entry-content-asset embed-responsive embed-responsive-16by9'
+        ]
+    );
+
+	$ifr_attr = HTML\get_attr(
+        'embed-responsive-item',
+        [
+            'class' => 'embed-responsive-item'
+        ]
+    );
+
+	$elements = explode(' ', $cache );
+
+	if ( ! in_array( 'class', $elements, true ) ) {
+        array_splice( $elements, 1, 0, trim( $ifr_attr ) );
+    }
+
 	return sprintf(
-		'<div %s>%s</div>',
+		'<div%s>%s</div>',
 		$container_attr,
-		str_replace( '<iframe' , '<iframe class="embed-responsive-item"', $cache )
+		implode( ' ', $elements )
 	);
 }
 add_filter( 'embed_oembed_html', __NAMESPACE__ . '\embed_wrap', 10, 4 );
-
-/**
- * Change the thumbnail size for the old template full-width.php
- *
- * @param  string $size    The thumbnail size.
- * @param  string $context The context.
- * @return string          The thumbnail size.
- */
-function post_thumbnail_size( $size, $context ) {
-
-	if ( is_page_template( 'full-width.php' ) ) {
-		return 'full-width';
-	}
-
-	return $size;
-
-}
-add_action( 'italystrap_post_thumbnail_size', __NAMESPACE__ . '\post_thumbnail_size', 10, 2 );
 
 add_filter( 'post_class', function ( $classes ) use ( $theme_mods ) {
 

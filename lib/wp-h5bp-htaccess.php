@@ -11,6 +11,10 @@ License URI:        http://opensource.org/licenses/MIT
 */
 
 /**
+ * https://github.com/roots/wp-h5bp-htaccess.
+ */
+
+/**
  * Show an admin notice if .htaccess isn't writable
  */
 function roots_htaccess_writable() {

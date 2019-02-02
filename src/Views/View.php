@@ -63,11 +63,11 @@ class View implements View_Interface {
 		$templates[] = "{$slug}.php";
 
 		if ( $load ) {
-			$this->has( $templates, $load, false );
+			$this->locate( $templates, $load, false );
 			return;
 		}
 
-		require( $this->has( $templates, $load, false ) );
+		require $this->locate( $templates, $load, false );
 	}
 
 	/**
@@ -85,6 +85,24 @@ class View implements View_Interface {
 	 * @return string The template filename if one is located.
 	 */
 	public function has( $template_names, $load = false, $require_once = true ) {
+		return $this->locate( $template_names, $load, $require_once );
+	}
+
+	/**
+	 * Retrieve the name of the highest priority template file that exists.
+	 *
+	 * Searches in the STYLESHEETPATH before TEMPLATEPATH and wp-includes/theme-compat
+	 * so that themes which inherit from a parent theme can just overload one file.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param string|array $template_names Template file(s) to search for, in order.
+	 * @param bool         $load           If true the template file will be loaded if it is found.
+	 * @param bool         $require_once   Whether to require_once or require. Default true. Has no effect if $load is false.
+	 *
+	 * @return string The template filename if one is located.
+	 */
+	protected function locate( $template_names, $load = false, $require_once = true ) {
 		return locate_template( $template_names, $load, $require_once );
 	}
 }

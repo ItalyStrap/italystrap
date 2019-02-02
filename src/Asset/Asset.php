@@ -8,9 +8,9 @@
  * @link        http://hellofromtonya.github.io/Fulcrum/
  * @license     GPL-2.0+
  *
- * @since 2.0.0
+ * @version 0.0.1-alpha
  *
- * @package ItalyStrap\Core
+ * @package ItalyStrap\Asset
  */
 
 namespace ItalyStrap\Asset;
@@ -20,12 +20,13 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ReflectionClass;
+use ItalyStrap\Config\Config;
 
 /**
  * Class description
  * @todo http://wordpress.stackexchange.com/questions/195864/most-elegant-way-to-enqueue-scripts-in-function-php-with-foreach-loop
  */
-abstract class Asset {
+abstract class Asset implements Asset_Interface {
 
 	/**
 	 * Configuration array
@@ -46,7 +47,7 @@ abstract class Asset {
 	 *
 	 * @param array $config Configuration array.
 	 */
-	function __construct( array $config = array() ) {
+	function __construct( Config $config ) {
 
 		/**
 		 * Credits:
@@ -65,17 +66,24 @@ abstract class Asset {
 		 *
 		 * @var array
 		 */
-		$this->config = apply_filters( 'italystrap_config_enqueue_' . strtolower( $this->class_name ) , $config );
+		$this->config = apply_filters( 'italystrap_config_enqueue_' . strtolower( $this->class_name ) , $config->all() );
+	}
+
+	/**
+	 * Checks if an asset has been enqueued
+	 *
+	 * @return bool
+	 */
+	public function is_enqueued() {
+		return wp_script_is( $config['handle'], 'enqueued' );
 	}
 
 	/**
 	 * Register each of the asset (enqueues it)
 	 *
-	 * @since 2.0.0
-	 *
 	 * @return null
 	 */
-	public function register() {
+	public function register_all() {
 
 		foreach ( $this->config as $config ) {
 
@@ -105,18 +113,21 @@ abstract class Asset {
 	}
 
 	/**
-	 * De-register each of the asset
-	 *
-	 * @since 1.0.0
+	 * Register each of the asset (enqueues it)
 	 *
 	 * @return null
 	 */
-	// abstract public function deregister();
+	public function register() {}
+
+	/**
+	 * De-register each of the asset
+	 *
+	 * @return null
+	 */
+	// abstract public function deregister( $handle );
 
 	/**
 	 * Loading asset conditionally.
-	 *
-	 * @since 2.0.0
 	 *
 	 * @return bool
 	 */

@@ -8,9 +8,9 @@
  * @link        http://hellofromtonya.github.io/Fulcrum/
  * @license     GPL-2.0+
  *
- * @since 4.0.0
+ * @version 0.0.1-alpha
  *
- * @package ItalyStrap\Core
+ * @package ItalyStrap\Asset
  */
 
 namespace ItalyStrap\Asset;
@@ -27,8 +27,6 @@ class Script extends Asset {
 	/**
 	 * De-register the script
 	 *
-	 * @since 4.0.0
-	 *
 	 * @return null
 	 */
 	public function deregister( $handle ) {
@@ -38,8 +36,6 @@ class Script extends Asset {
 
 	/**
 	 * Pre register the script
-	 *
-	 * @since 4.0.0
 	 */
 	protected function pre_register( array $config = array()  ) {
 
@@ -54,8 +50,6 @@ class Script extends Asset {
 
 	/**
 	 * Enqueue the script
-	 *
-	 * @since 4.0.0
 	 */
 	protected function enqueue( array $config = array() ) {
 
@@ -73,8 +67,6 @@ class Script extends Asset {
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/wp_localize_script/
 	 *
-	 * @since 4.0.0
-	 *
 	 * @return null
 	 */
 	protected function localize_script( array $config = array() ) {
@@ -88,8 +80,6 @@ class Script extends Asset {
 
 	/**
 	 * Get the default structure.
-	 *
-	 * @since 4.0.0
 	 *
 	 * @return array
 	 */

@@ -8,9 +8,9 @@
  * @link        http://hellofromtonya.github.io/Fulcrum/
  * @license     GPL-2.0+
  *
- * @since 2.0.0
+ * @version 0.0.1-alpha
  *
- * @package ItalyStrap\Core
+ * @package ItalyStrap\Asset
  */
 
 namespace ItalyStrap\Asset;
@@ -26,8 +26,6 @@ class Style extends Asset {
 
 	/**
 	 * De-register the style
-	 *
-	 * @since 2.0.0
 	 */
 	public function deregister( $handle ) {
 		wp_dequeue_style( $handle );
@@ -36,8 +34,6 @@ class Style extends Asset {
 
 	/**
 	 * Pre register the style
-	 *
-	 * @since 2.0.0
 	 */
 	protected function pre_register( array $config = array() ) {
 
@@ -52,8 +48,6 @@ class Style extends Asset {
 
 	/**
 	 * Enqueue the style
-	 *
-	 * @since 2.0.0
 	 */
 	protected function enqueue( array $config = array() ) {
 
@@ -68,8 +62,6 @@ class Style extends Asset {
 
 	/**
 	 * Get the default structure.
-	 *
-	 * @since 2.0.0
 	 *
 	 * @return array
 	 */

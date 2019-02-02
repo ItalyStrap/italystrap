@@ -90,7 +90,7 @@ return array(
 		/**
 		 * If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 		 */
-		'force_activation'         => true,
+		'force_activation'         => false,
 
 		/**
 		 * If true, plugin is deactivated upon theme switch, useful for theme-specific plugins

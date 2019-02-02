@@ -27,8 +27,6 @@ if ( 'edit-tags.php' === $pagenow || 'term.php' === $pagenow ) {
 	$autoload_concrete[] = 'ItalyStrap\Editors\Category';
 }
 
-require( PARENTPATH . '/functions/admin-functions.php' );
-
 /**
  * Add fields to widget areas
  * The $register_metabox is declared in plugin

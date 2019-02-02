@@ -24,13 +24,13 @@ $container = 1170;
 $gutter = 30;
 $col = 12;
 
-return array(
+return [
 
 	/**
 	 * Future improvement
 	 */
-	'theme_support'				=> array(
-		'supported_post_type'	=> array(
+	'theme_support'				=> [
+		'supported_post_type'	=> [
 			 'page',
 			 'post',
 			 'download',
@@ -38,14 +38,14 @@ return array(
 			 'forum',
 			 'topic',
 			 'reply',
-		)
-	),
-	'post_type_support'			=> array(
-		'post'		=> array( 'post_navigation', 'entry-meta' ),
-		'page'		=> array( 'post_navigation', 'entry-meta' ),
+		]
+	],
+	'post_type_support'			=> [
+		'post'		=> ['post_navigation', 'entry-meta'],
+		'page'		=> ['post_navigation', 'entry-meta'],
 		// 'product'	=> array( 'post_navigation', 'entry-meta' ), // WOO usa i suoi template quindi forse non è necessario.
-		'download'	=> array( 'post_navigation', 'entry-meta' ),
-	),
+		'download'	=> ['post_navigation', 'entry-meta'],
+	],
 
 	/**
 	 * Color section
@@ -60,9 +60,9 @@ return array(
 	 */
 	'header_image'					=> '', // Set by WordPress.
 
-	'custom_header'					=> array(
+	'custom_header'					=> [
 		'container_width'	=> 'container',
-	),
+	],
 
 	/**
 	 * Background image
@@ -96,12 +96,12 @@ return array(
 	'navbar_logo_image_mobile'		=> null,
 	// 'display_navbar_logo_image'		=> '',
 	// 'display_navbar_logo_image'		=> '',
-	'navbar'						=> array(
+	'navbar'						=> [
 		'type'			=> 'navbar-default',
 		'position'		=> 'navbar-relative-top',
 		'nav_width'		=> 'container', // This is the container of entire navbar.
 		'menus_width'	=> 'container-fluid', // This is the container of the 2 menus inside the nav container and the navbar_header brand and toggle.
-	),
+	],
 
 	/**
 	 * Default text for colophon
@@ -123,13 +123,13 @@ return array(
 	'sidebar_secondary_class'		=> '', // 2 - 3.
 	'full_width'					=> 'col-md-12',
 
-	'layout'						=> array(
-		'choices'	=> array(
+	'layout'						=> [
+		'choices'	=> [
 			// 'none'				=> __( 'None', 'italystrap' ),
 			'container-fluid'	=> __( 'Full witdh', 'italystrap' ),
 			'container'			=> __( 'Standard width', 'italystrap' ),
-		)
-	),
+		]
+	],
 
 	'post_content_template'			=> '',
 	'breadcrumbs_show_on'			=> '',
@@ -173,43 +173,43 @@ return array(
 	 * Set the default image
 	 * @link http://codex.wordpress.org/Function_Reference/add_image_size
 	 */
-	'image_size'					=> array(
-		'navbar-brand-image'	=> array(
+	'image_size'					=> [
+		'navbar-brand-image'	=> [
 			'width'		=> 45,
 			'height'	=> 45,
 			'crop'		=> true,
-		),
+		],
 		/**
 		 * La full-width serve solo per la pagina omonima
 		 * Si potrebbe invece settare "large" a 1140 (verificare se 1170 va bene) e risparmiare spazio avendo una immagine di meno poichè entrambe non vengono croppate
 		 * "large" può essere settata anche con altezza a 9999
 		 */
-		'full-width'			=> array(
+		'full-width'			=> [
 			'width'		=> $container - $gutter,
 			'height'	=> 9999,
 			'crop'		=> false,
-		),
-		'one_half'			=> array(
+		],
+		'one_half'			=> [
 			'width'		=> $container / 2 - $gutter,
 			'height'	=> ($container / 2 - $gutter) * 3 / 4,
 			'crop'		=> true,
-		),
-		'one_third'			=> array(
+		],
+		'one_third'			=> [
 			'width'		=> $container / 3 - $gutter,
 			'height'	=> ($container / 3 - $gutter) * 3 / 4,
 			'crop'		=> true,
-		),
-		'one_fourth'			=> array(
+		],
+		'one_fourth'			=> [
 			'width'		=> $container / 4 - $gutter,
 			'height'	=> ($container / 4 - $gutter) * 3 / 4,
 			'crop'		=> true,
-		),
-		'one_six'			=> array(
+		],
+		'one_six'			=> [
 			'width'		=> $container / 6 - $gutter,
 			'height'	=> ($container / 6 - $gutter) * 3 / 4,
 			'crop'		=> true,
-		),
-	),
+		],
+	],
 
 
 	/**
@@ -229,12 +229,12 @@ return array(
 	 * $width : 4 = $height : 3
 	 * $width * 3 / 4;
 	 */
-	'breakpoint'					=> array(
+	'breakpoint'					=> [
 		// 'xs'	=> 480,
 		// 'sm'	=> 768,
 		// 'md'	=> 992,
 		// 'lg'	=> 1200,
-	),
+	],
 
 	/**
 	 * Content
@@ -257,4 +257,5 @@ return array(
 	// 'body_class'					=> '',
 	// 'post_class'					=> '',
 
-);
+	'beta'	=> false,
+];

@@ -7139,3 +7139,25 @@ body.wp-autoresize {
   background-color: unset;
   border-color: unset;
 }
+
+/** === Content Width === */
+/* line 140, ../../sass/editor-style.scss */
+.wp-block {
+  /*width: calc(100vw - (2 * 1rem));*/
+  max-width: 100%;
+}
+
+/*@media only screen and (min-width: 768px) {*/
+/*.wp-block {*/
+/*width: calc(8 * (100vw / 12));*/
+/*}*/
+/*}*/
+/*@media only screen and (min-width: 1168px) {*/
+/*.wp-block {*/
+/*width: calc(6 * (100vw / 12 ));*/
+/*}*/
+/*}*/
+/* line 157, ../../sass/editor-style.scss */
+.wp-block .wp-block {
+  width: 100%;
+}

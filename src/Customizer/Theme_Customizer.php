@@ -142,10 +142,11 @@ class Theme_Customizer implements Subscriber_Interface {
 			'/settings/post-content-template.php',
 			'/settings/404.php',
 			'/settings/colophon.php',
+			'/settings/beta.php',
 		);
 
 		foreach ( $files as $file ) {
-			require( __DIR__ . $file );
+			require __DIR__ . $file;
 		}
 
 		// Hide core sections/controls when they aren't used on the current page.

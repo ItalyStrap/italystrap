@@ -367,4 +367,4 @@ function ri_wp_favicon() {
 }
 // add_action('wp_head', 'ri_wp_favicon');
 
-require( PARENTPATH . '/deprecated/pagination.php' );
+require PARENTPATH . '/deprecated/pagination.php';

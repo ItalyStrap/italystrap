@@ -48,7 +48,7 @@ $manager->add_control(
 			'section'	=> 'italystrap_post_content_template_options',
 			'type'		=> 'multicheck',
 			'settings'	=> 'post_content_template',
-			'choices'	=> require( PARENTPATH . '/config/template-content.php' ),
+			'choices'	=> require PARENTPATH . '/config/template-content.php',
 		)
 	)
 );

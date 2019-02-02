@@ -233,7 +233,7 @@ class Controller implements Controller_Interface {
 			return;
 		}
 
-		require( locate_template( $templates, $load, false ) );
+		require locate_template( $templates, $load, false );
 	}
 
 	/**

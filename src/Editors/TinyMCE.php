@@ -205,7 +205,7 @@ class TinyMCE implements Subscriber_Interface {
 
 		$config['style_formats_merge'] = true;
 
-		$default = require( __DIR__ . '/config/style_formats.php' );
+		$default = require __DIR__ . '/config/style_formats.php';
 
 		$default = apply_filters( 'italystrap_style_formats_config', $default );
 

@@ -127,7 +127,7 @@ class Customizer_Beta implements Subscriber_Interface {
 
 		$transport = $manager->selective_refresh ? 'postMessage' : 'refresh';
 
-		$this->config = (array) require(  PARENTPATH . '/config/customizer.php'  );
+		$this->config = (array) require PARENTPATH . '/config/customizer.php';
 
 		// $this->register( $manager );
 
@@ -143,10 +143,11 @@ class Customizer_Beta implements Subscriber_Interface {
 			'/settings/post-content-template.php',
 			'/settings/404.php',
 			'/settings/colophon.php',
+			'/settings/beta.php',
 		);
 
 		foreach ( $files as $file ) {
-			require( __DIR__ . $file );
+			require __DIR__ . $file;
 		}
 
 		// Hide core sections/controls when they aren't used on the current page.

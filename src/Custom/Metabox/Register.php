@@ -131,7 +131,7 @@ class Register implements Subscriber_Interface {
 					__( 'Default layout set in %s', 'italystrap' ),
 					'link'
 				),
-				'options'			=> require( PARENTPATH . '/config/layout.php' ),
+				'options'			=> require PARENTPATH . '/config/layout.php',
 			)
 		);
 
@@ -144,7 +144,7 @@ class Register implements Subscriber_Interface {
 				),
 				'id'		=> $this->_prefix . '_template_settings',
 				'type'		=> 'multicheck',
-				'options'	=> require( PARENTPATH . '/config/template-content.php' ),
+				'options'	=> require PARENTPATH . '/config/template-content.php',
 			)
 		);
 

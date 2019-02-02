@@ -64,7 +64,7 @@ class Sidebars implements Subscriber_Interface {
 		 *       del footer che la key viene usate per calcolare la larghezza della colonna.
 		 *       Vedi Classe Footer_Widget_area
 		 */
-		$this->sidebars = (array) apply_filters( 'italystrap_sidebars_registered', require( PARENTPATH . '/config/sidebars.php' ) );
+		$this->sidebars = (array) apply_filters( 'italystrap_sidebars_registered', require PARENTPATH . '/config/sidebars.php' );
 	}
 
 	/**

@@ -40,7 +40,7 @@ class Register {
 
 		$this->options = $options;
 
-		$this->plugins = require( PARENTPATH . '/config/required-plugins.php' );
+		$this->plugins = require PARENTPATH . '/config/required-plugins.php';
 
 		/**
 		 * Strings to display for required plugins

@@ -17,7 +17,7 @@ function italystrap_enqueue_pointer_script_style( $hook_suffix ) {
     $dismissed_pointers = explode( ',', get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
  
     // Check if our pointer is not among dismissed ones
-    if( !in_array( 'italystrap_settings_pointer', $dismissed_pointers ) ) {
+    if( ! in_array( 'italystrap_settings_pointer', $dismissed_pointers ) ) {
         $enqueue_pointer_script_style = true;
  
         // Add footer scripts using callback function
@@ -29,7 +29,6 @@ function italystrap_enqueue_pointer_script_style( $hook_suffix ) {
         wp_enqueue_style( 'wp-pointer' );
         wp_enqueue_script( 'wp-pointer' );
     }
- 
 }
 add_action( 'admin_enqueue_scripts', 'italystrap_enqueue_pointer_script_style' );
  
@@ -37,38 +36,36 @@ function italystrap_pointer_print_scripts() {
  
     $pointer_content  = '<h3>' . __( 'Welcome to the ItalyStrap theme', 'italystrap' ) . '</h3>';
 
-    if ( !is_child_theme() ) {
-        $pointer_content .= '<p>' . __('First off all install <a href="https://github.com/overclokk/ItalyStrap-child" target="_blank">ItalyStrap-child</a> and use it for any customization.', 'italystrap' ) . '</p><p>' . __( 'Also read the Wiki <a href="https://github.com/overclokk/ItalyStrap-child/wiki/How-to-use-Child-Theme" target="_blank">How to use Child Theme</a>', 'italystrap' ) . '</p>';
+    if ( ! is_child_theme() ) {
+        $pointer_content .= sprintf(
+			'<p>%s</p>',
+			__('First off all install <a href="https://github.com/overclokk/ItalyStrap-child" target="_blank">ItalyStrap-child</a> and use it for any customization.', 'italystrap' )
+
+        );
+        $pointer_content .= sprintf(
+			'<p>%s</p>',
+			__( 'Also read the Wiki <a href="https://github.com/overclokk/ItalyStrap-child/wiki/How-to-use-Child-Theme" target="_blank">How to use Child Theme</a>', 'italystrap' )
+        );
     }
     
-    ?>
- 
-    <script type="text/javascript">
+    ?><script type="text/javascript">
     //<![CDATA[
     jQuery(document).ready( function($) {
         $('#menu-appearance').pointer({
-            content:        '<?php echo $pointer_content; ?>',
-            position:        {
-                                edge:    'left', // arrow direction
-                                align:    'center' // vertical alignment
-                            },
-            pointerWidth:    350,
-            close:            function() {
-                                $.post( ajaxurl, {
-                                        pointer: 'italystrap_settings_pointer', // pointer ID
-                                        action: 'dismiss-wp-pointer'
-                                });
-                            }
+            content: '<?php echo $pointer_content; ?>',
+            position: {
+                edge: 'left', // arrow direction
+                align: 'center' // vertical alignment
+            },
+            pointerWidth: 350,
+            close: function() {
+                $.post( ajaxurl, {
+                    pointer: 'italystrap_settings_pointer', // pointer ID
+                    action: 'dismiss-wp-pointer'
+                });
+            }
         }).pointer('open');
     });
     //]]>
-    </script>
- 
-<?php
-}
-
-if ( is_admin() && !is_child_theme() ){
-
-// echo "<script>alert('Non è il tema figlio');</script>";
-
+    </script><?php
 }

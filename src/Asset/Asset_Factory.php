@@ -84,6 +84,9 @@ class Asset_Factory implements Subscriber_Interface {
 		if ( file_exists( CHILDPATH . '/css/' . $dev_dir . CURRENT_TEMPLATE_SLUG . '.css' ) ) {
 			$style_file_url = STYLESHEETURL . '/css/' . $dev_dir . CURRENT_TEMPLATE_SLUG . '.css';
 			$style_file_path = CHILDPATH . '/css/' . $dev_dir . CURRENT_TEMPLATE_SLUG . '.css';
+		} elseif ( file_exists( CHILDPATH . '/css/' . $dev_dir . 'custom.css' ) ) {
+			$style_file_url = STYLESHEETURL . '/css/' . $dev_dir . 'custom.css';
+			$style_file_path = CHILDPATH . '/css/' . $dev_dir . 'custom.css';
 		}
 
 //		d( get_theme_file_uri( '/css/' . $dev_dir . CURRENT_TEMPLATE_SLUG . '.css' ) );
@@ -107,6 +110,9 @@ class Asset_Factory implements Subscriber_Interface {
 		if ( file_exists( CHILDPATH . '/js/' . CURRENT_TEMPLATE_SLUG . $min . '.js' ) ) {
 			$script_file_url = STYLESHEETURL . '/js/' . CURRENT_TEMPLATE_SLUG . $min . '.js';
 			$script_file_path = CHILDPATH . '/js/' . CURRENT_TEMPLATE_SLUG . $min . '.js';
+		} elseif ( file_exists( CHILDPATH . '/js/custom' . $min . '.js' ) ) {
+			$script_file_url = STYLESHEETURL . '/js/custom' . $min . '.js';
+			$script_file_path = CHILDPATH . '/js/custom' . $min . '.js';
 		}
 
 		$config_scripts = [

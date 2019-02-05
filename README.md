@@ -1,10 +1,10 @@
 # ItalyStrap #
-**Contributors:** overclokk  
+**Contributors:** [overclokk](https://profiles.wordpress.org/overclokk)  
 **Donate link:** https://italystrap.com  
 **Tags:** breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant  
-**Requires at least:** 4.6  
-**Tested up to:** 4.8  
-**Stable tag:** 4.0.0-beta.4  
+**Requires at least:** 5.0  
+**Tested up to:** 5.2  
+**Stable tag:** 4.0.0-beta.5  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -36,13 +36,19 @@ ItalyStrap is a WordPress framework theme based on [HTML5 Boilerplate](http://ht
 
 First of all you have to install the core plugin [Advanced Control Manager](https://wordpress.org/plugins/advanced-control-manager/)
 
-Now you can clone the git repo:
+Clone the git repo of the theme:
 
-```git clone git://github.com/overclokk/italystrap.git```
+`git clone git://github.com/ItalyStrap/italystrap.git`
 
-or [download the zip file](https://github.com/overclokk/italystrap/releases/latest), unzip it, place it in your folder themes `/wp-content/themes/` directory and activate it via Admin > Appearance > Themes
+`cd italystrap`
 
-Then [download the child cheme](https://github.com/overclokk/ItalyStrap-child/archive/master.zip) and use it for your customizations.
+Install composer dependencies:
+
+`composer install --no-dev`
+
+or [download the zip file](https://github.com/ItalyStrap/italystrap/releases/latest), unzip it, place it in your folder themes `/wp-content/themes/` directory and activate it via Admin > Appearance > Themes
+
+Then [download the child cheme](https://github.com/ItalyStrap/ItalyStrap-child/archive/master.zip) and use it for your customizations.
 
 ## How to migrate from older version of 4.0.0 ##
 
@@ -67,6 +73,35 @@ wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
 
 
 ## Changelog ##
+
+### 4.0.0-beta.5 ###
+
+Release Date: Feb 5th, 2019
+
+(Dev time 2 years)
+
+**This is a complete rebuild of the theme, it is a breaking changes, always do a backup first**
+
+* Better support for loading the framework with child theme
+* Improvements of the botstrapping of the framework
+* New API for MCE button
+* New API for View in beta
+* New filter for title tag `italystrap_entry_title_tag`
+* Now breadcrumbs are echoed with hook `do_breadcrumbs`
+* Refactoring of some classes
+* Fixed some issue
+* Added theme support for breadcrumbs
+* Added theme support for Gutenberg
+* Support for custom 404 page
+* Improved assets structure
+* Added navbar option for logo on mobile
+* Almost compatible with theme check
+* Autodefinitions of the theme constants
+* CSS for editor is now loaded with the init class
+* Added style for gutenberg editor
+* Example for Injector
+* Example in full-width.php for changing thumbnail size
+* Maybe use the EDD to update the theme
 
 ### 4.0.0-beta.4 ###
 
@@ -98,7 +133,7 @@ Release Date: April 18th, 2017
 * Deprecated class `ItalyStrapBreadcrumbs()`. The breadcrumbs functionality is moved to the plugin.
 * Added [AnonymizeIP](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#anonymizeIp) for cookie law
 * Fixed regex in italystrap_embed_wrap cleanup.php
-* [Fixed Warning: Illegal string offset](https://github.com/overclokk/ItalyStrap/commit/4c2e4f9afc48e123dbebfa85509774d155b6adf8)
+* [Fixed Warning: Illegal string offset](https://github.com/ItalyStrap/ItalyStrap/commit/4c2e4f9afc48e123dbebfa85509774d155b6adf8)
 * Fixed do_action hook name in comments.php
 * Added new class for sidebars and made dynamic the footer's sidebars
 * Deprecated breadcrumbs.php and sidebar.php

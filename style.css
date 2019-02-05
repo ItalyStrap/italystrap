@@ -1,18 +1,18 @@
 /**
  * Theme Name: ItalyStrap
- * Theme URI: http://italystrap.com
+ * Theme URI: //italystrap.com
  * Author: Enea Overclokk
- * Author URI: http://www.overclokk.net
+ * Author URI: //www.overclokk.net
  * Description: Theme Framework for WordPress with twitter Bootstrap, HTML5 boilerplate and Schema.org <a href="https://github.com/overclokk/ItalyStrap/graphs/contributors">Contribute on GitHub</a>
  * Version: 4.0.0-beta.4
  * License: GPLv2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * Tags: right-sidebar, featured-images, full-width-template
+ * License URI: //www.gnu.org/licenses/gpl-2.0.html
+ * Tags: right-sidebar, featured-images, full-width-template, two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, flexible-header, full-width-template, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, featured-images, theme-options
  * Text Domain: italystrap
- * Requires at least: 4.6
- * Tested up to: 4.8
- * GitHub Theme URI: https://github.com/overclokk/italystrap
- * GitHub Branch:     master
+ * Requires at least: 5.0
+ * Tested up to: 5.1
+ * GitHub Theme URI: https://github.com/ItalyStrap/italystrap
+ * GitHub Branch: master
  */
 
 /**
@@ -23,7 +23,7 @@
  * 		custom.css		[loaded only in the other pages]
  * 		@see script.php	[for loading all script]
  *
- * For customize your theme use this child: https://github.com/overclokk/ItalyStrap-child
+ * For customizing your theme use this child: https://github.com/overclokk/ItalyStrap-child
  */
 
 .sticky {}

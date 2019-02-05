@@ -4,28 +4,37 @@ var bootstrap_js_path = bootstrap_path + 'javascripts/bootstrap/';
 var bootstrap_fonts_path = bootstrap_path + 'fonts/bootstrap/';
 
 var italystrap_theme = [
-	'**',
-	'!codecept',
+	'**', // All
+
+	/**
+	 * Directories
+	 */
 	'!.git/**',
-	'!.gitattributes',
-	'!.gitignore',
 	'!.sass-cache/**',
 	'!node_modules/**',
 	'!backups/**',
 	'!bower/**',
-	'!tests/**',
+	'!**/test*/**',
 	'!future-inclusions/**',
 	'!sass/**',
 	'!css/src/**',
 	'!js/src/**',
+
+	/**
+	 * Files
+	 */
+	'!codecept',
+	'!.gitattributes',
+	'!.gitignore',
 	'!snippets.md',
 	'!bower.json',
 	'!Gruntfile.js',
 	'!package.json',
+	'!*.bat',
+	'!*.lock',
 	'!*.yml',
 	'!*.zip',
 	'!**/*.map',
-	'!**/tests/**',
 ];
 
 module.exports = function(grunt) {
@@ -163,20 +172,20 @@ module.exports = function(grunt) {
 		 *
 		 * @type {Object}
 		 */
-		less: { // https://github.com/gruntjs/grunt-contrib-less
-			development: {
-				options: {
-					compress: true,
-					yuicompress: true,
-					optimization: 2
-				},
-				files: {
-					'css/bootstrap.min.css': [
-						'css/src/less/bootstrap.less'
-						],
-				  }
-			}
-		},
+		// less: { // https://github.com/gruntjs/grunt-contrib-less
+		// 	development: {
+		// 		options: {
+		// 			compress: true,
+		// 			yuicompress: true,
+		// 			optimization: 2
+		// 		},
+		// 		files: {
+		// 			'css/bootstrap.min.css': [
+		// 				'css/src/less/bootstrap.less'
+		// 				],
+		// 		  }
+		// 	}
+		// },
 
 		csslint: { // http://astainforth.com/blogs/grunt-part-2
 			files: ['css/src/*.css', '!css/bootstrap.min.css',],
@@ -261,7 +270,7 @@ module.exports = function(grunt) {
 			},
 			first:{
 				options: {
-					message: 'Commit before deploy of new version'
+					message: 'Commit before deploy a new version'
 				},
 				files: {
 					src: [
@@ -285,14 +294,14 @@ module.exports = function(grunt) {
 				options: {
 					questions: [
 						{
-						config: 'github-release.options.auth.user', // set the user to whatever is typed for this question
-						type: 'input',
-						message: 'GitHub username:'
+							config: 'github-release.options.auth.user', // set the user to whatever is typed for this question
+							type: 'input',
+							message: 'GitHub username:'
 						},
 						{
-						config: 'github-release.options.auth.password', // set the password to whatever is typed for this question
-						type: 'password',
-						message: 'GitHub password:'
+							config: 'github-release.options.auth.password', // set the password to whatever is typed for this question
+							type: 'password',
+							message: 'GitHub password:'
 						}
 					]
 				}
@@ -307,7 +316,7 @@ module.exports = function(grunt) {
 				files: [
 					{
 						src: italystrap_theme, // What should be included in the zip
-						dest: 'italystrap/',        // Where the zipfile should go
+						dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
 				]
@@ -319,8 +328,7 @@ module.exports = function(grunt) {
 				files: [
 					{
 						src: italystrap_theme, // What should be included in the zip
-						dest: 'italystrap/',        // Where the zipfile should go
-						// dest: 'italystrap/',        // Where the zipfile should go
+						dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
 				]
@@ -332,7 +340,7 @@ module.exports = function(grunt) {
 				files: [
 					{
 						src: italystrap_theme, // What should be included in the zip
-						dest: 'italystrap/',        // Where the zipfile should go
+						dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
 				]
@@ -341,10 +349,10 @@ module.exports = function(grunt) {
 
 		"github-release": { // https://github.com/dolbyzerr/grunt-github-releaser
 			options: {
-				repository: 'overclokk/italystrap', // Path to repository
+				repository: 'ItalyStrap/<%= pkg.name %>', // Path to repository
 				release: {
 					name: '<%= pkg.name %> <%= pkg.version %>',
-					body: '## New release of <%= pkg.name %> <%= pkg.version %> \nSee the **[changelog](https://github.com/overclokk/italystrap#changelog)**',
+					body: '## New release of <%= pkg.name %> <%= pkg.version %> \nSee the **[changelog](https://github.com/ItalyStrap/<%= pkg.name %>#changelog)**',
 				}
 			},
 			files: {
@@ -433,7 +441,8 @@ module.exports = function(grunt) {
 	//     ]
 	// );
 
-	grunt.registerTask('deploy',
+	grunt.registerTask(
+		'deploy',
 		[
 			'gitcommit:first',
 			'gitcheckout:devtomaster',

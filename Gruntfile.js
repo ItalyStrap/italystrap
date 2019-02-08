@@ -353,6 +353,7 @@ module.exports = function(grunt) {
 				release: {
 					name: '<%= pkg.name %> <%= pkg.version %>',
 					body: '## New release of <%= pkg.name %> <%= pkg.version %> \nSee the **[changelog](https://github.com/ItalyStrap/<%= pkg.name %>#changelog)**',
+					prerelease: true,
 				}
 			},
 			files: {

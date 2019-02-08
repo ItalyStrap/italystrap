@@ -11,10 +11,12 @@
 $current_theme_name = wp_get_theme()->get( 'Name' );
 $prefix = strtolower( $current_theme_name );
 
+$get_template = get_template();
+
 return [
 	'ITALYSTRAP_THEME'				=> true,
-	'ITALYSTRAP_THEME_NAME'			=> 'ItalyStrap',
-	'ITALYSTRAP_THEME_VERSION'		=> wp_get_theme( get_template() )->display( 'Version' ),
+	'ITALYSTRAP_THEME_NAME'			=> wp_get_theme( $get_template )->display( 'Name' ),
+	'ITALYSTRAP_THEME_VERSION'		=> wp_get_theme( $get_template )->display( 'Version' ),
 	'ITALYSTRAP_CURRENT_THEME_NAME'	=> $current_theme_name,
 	'PREFIX'						=> $prefix,
 	'_PREFIX'						=> '_' . $prefix,

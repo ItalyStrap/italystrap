@@ -16,9 +16,9 @@ namespace ItalyStrap;
 use Auryn\Injector;
 use ItalyStrap\Core;
 
-/**
+/** =========================
  * Autoload theme core files.
- */
+ ========================== */
 $autoload_theme_files = [
 	'/vendor/autoload.php',
 	'/functions/default-constants.php',
@@ -37,6 +37,18 @@ if ( apply_filters( 'italystrap_load_deprecated', false ) ) {
 
 foreach ( $autoload_theme_files as $file ) {
 	require __DIR__ . '/..' . $file;
+}
+
+/**
+ * Injector from ACM if is active
+ */
+$injector = apply_filters( 'italystrap_injector', null );
+
+if ( ! isset( $injector ) ) {
+	$injector = new Injector();
+	add_filter( 'italystrap_injector', function () use ( $injector ) {
+		return $injector;
+	} );
 }
 
 /**
@@ -64,10 +76,14 @@ $constants = Core\set_default_constant( require __DIR__ . '/../config/constants.
  */
 add_filter( 'template_include', '\ItalyStrap\Core\set_current_template', 99998 );
 
+/**
+ * Defined here after the set_default_constant()
+ */
+$all_config_files_path = (array) Config\get_config_files();
 
 $italystrap_defaults = apply_filters(
 	'italystrap_default_theme_config',
-	require __DIR__ . '/../config/default.php'
+	require $all_config_files_path[ 'default' ]
 );
 
 if ( ! isset( $theme_mods ) ) {
@@ -87,14 +103,17 @@ $theme_supports = require PARENTPATH . '/config/theme-supports.php';
 
 $theme_config = array_merge( $theme_mods, $constants, $theme_supports );
 
-$injector = apply_filters( 'italystrap_injector', null );
-
-if ( ! isset( $injector ) ) {
-	$injector = new Injector();
-	add_filter( 'italystrap_injector', function () use ( $injector ) {
-		return $injector;
-	} );
-}
+/**
+ * Injector from ACM if is active
+ */
+//$injector = apply_filters( 'italystrap_injector', null );
+//
+//if ( ! isset( $injector ) ) {
+//	$injector = new Injector();
+//	add_filter( 'italystrap_injector', function () use ( $injector ) {
+//		return $injector;
+//	} );
+//}
 
 add_action( 'italystrap_theme_will_load', function () use ( $injector, $theme_config ) {
 

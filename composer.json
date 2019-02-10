@@ -1,6 +1,7 @@
 {
-	"name": "overclokk/italystrap",
+	"name": "italystrap/italystrap",
 	"description": "Theme Framework for WordPress",
+	"type": "wordpress-theme",
 	"authors": [
 		{
 			"name": "overclokk",
@@ -12,7 +13,11 @@
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
 		"italystrap/helpers": "^1.0",
-		"italystrap/asset": "0.0.1-alpha"
+		"italystrap/config": "~1.0"
+	},
+	"require-dev": {
+		"lucatume/wp-browser": "~2.2",
+		"italystrap/debug": "~1.1"
 	},
 	"autoload": {
 		"classmap": [
@@ -21,8 +26,5 @@
 			"ItalyStrap\\": "src/"
 		}
 	},
-    "minimum-stability": "dev",
-	"require-dev": {
-		"lucatume/wp-browser": "~1.21"
-	}
+    "minimum-stability": "dev"
 }

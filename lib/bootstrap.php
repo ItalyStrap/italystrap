@@ -13,6 +13,7 @@
 
 namespace ItalyStrap;
 
+use Auryn\ConfigException;
 use Auryn\Injector;
 use ItalyStrap\Core;
 
@@ -31,7 +32,7 @@ $autoload_theme_files = [
 	'/lib/edd.php',
 ];
 
-if ( apply_filters( 'italystrap_load_deprecated', false ) ) {
+if ( apply_filters( 'italystrap_load_deprecated', true ) ) {
 	$autoload_theme_files[] = '/deprecated/deprecated.php';
 }
 
@@ -174,9 +175,13 @@ $autoload_concrete = array(
 require '_init_admin.php';
 require '_init.php';
 
-// foreach ( $autoload_sharing as $class ) {
-// 	$injector->share( $class );
-// }
+ foreach ( $autoload_sharing as $class ) {
+ 	try {
+		$injector->share( $class );
+	} catch ( ConfigException $exception ) {
+ 		echo $exception->getMessage();
+	}
+ }
 // foreach ( $autoload_definitions as $class_name => $class_args ) {
 // 	$injector->define( $class_name, $class_args );
 // }
@@ -210,7 +215,7 @@ add_filter( 'italystrap_app', function ( $app ) use ( $autoload_concrete, $autol
 
 	$app['definitions'] = array_merge( $app['definitions'], $autoload_definitions );
 
-	$app['sharing'][] = 'ItalyStrap\Css\Css';
+//	$app['sharing'][] = 'ItalyStrap\Css\Css';
 
 	$app['define_param']['theme_mods'] = $theme_mods;
 

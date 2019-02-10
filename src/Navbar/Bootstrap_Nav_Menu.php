@@ -204,7 +204,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 
 				$atts['href']   		= '#';
 				$atts['data-toggle']	= 'dropdown';
-				$atts['class']			= 'dropdown-toggle';
+				$atts['class']			= 'nav-link dropdown-toggle';
 
 			} else {
 

@@ -368,3 +368,5 @@ function ri_wp_favicon() {
 // add_action('wp_head', 'ri_wp_favicon');
 
 require 'pagination.php';
+require 'core.php';
+require 'hooks.php';

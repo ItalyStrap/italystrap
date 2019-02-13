@@ -12,7 +12,7 @@
 
 namespace ItalyStrap;
 
-use ItalyStrap\Config\Config;
+use ItalyStrap\Config\Config_Interface;
 
 /**
  * ItalyStrap
@@ -38,7 +38,7 @@ class ItalyStrap {
 	 *
 	 * @param Config $config The theme configuration object.
 	 */
-	function __construct( Config $config ) {
+	function __construct( Config_Interface $config ) {
 		$this->config = $config;
 		$this->template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
 	}

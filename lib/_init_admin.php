@@ -14,11 +14,14 @@ if ( ! is_admin() ) {
 	return;
 }
 
-$autoload_concrete = array_merge( $autoload_concrete, array(
-	'ItalyStrap\Editors\TinyMCE',
-	'ItalyStrap\Custom\Metabox\Register',
-	'ItalyStrap\User\Contact_Methods',
-) );
+$autoload_concrete = array_merge(
+	$autoload_concrete,
+	[
+		'ItalyStrap\Editors\TinyMCE',
+		'ItalyStrap\Custom\Metabox\Register',
+		'ItalyStrap\User\Contact_Methods',
+	]
+);
 
 /**
  * TinyMCE Editor in Category description

@@ -39,6 +39,7 @@ class Init_Theme implements Subscriber_Interface {
 
 		return [
 			// 'hook_name'							=> 'method_name',
+			 'init'	=> 'add_post_type_support',
 			// 'after_setup_theme'	=> 'setup',
 			'italystrap_plugin_app_loaded'	=> 'setup',
 //			'after_setup_theme'	=> 'setup',
@@ -132,6 +133,16 @@ class Init_Theme implements Subscriber_Interface {
 			'footer-menu'		=> __( 'Footer Menu', 'italystrap' ),
 		];
 		register_nav_menus( apply_filters( 'register_nav_menu_locations', $nav_menus_locations ) );
+	}
+
+	/**
+	 * Add post type support
+	 * @fire on init
+	 */
+	public function add_post_type_support() {
+		foreach ( $this->config->get( 'post_type_support' ) as $post_type => $features ) {
+			add_post_type_support( $post_type, $features );
+		}
 	}
 
 	/**

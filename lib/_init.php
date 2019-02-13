@@ -16,7 +16,7 @@ if ( is_admin() ) {
 
 $autoload_concrete = array_merge(
 	$autoload_concrete,
-	array(
+	[
 		'ItalyStrap\Asset\Asset_Factory',
 		'ItalyStrap\Tag_Cloud\Tag_Cloud',
 		'ItalyStrap\WooCommerce\WooCommerce',
@@ -60,14 +60,7 @@ $autoload_concrete = array_merge(
 
 		'ItalyStrap\Controllers\Footers\Widget_Area',
 		'ItalyStrap\Controllers\Footers\Colophon',
-	)
-);
-
-$autoload_definitions = array_merge(
-	$autoload_definitions,
-	array(
-		'ItalyStrap\Navbar\Navbar'	=> array( 'walker' => 'ItalyStrap\Navbar\Bootstrap_Nav_Menu' ),
-	)
+	]
 );
 
 /* Questo filtro si trova nei file template per gestire commenti e breadcrumbs */

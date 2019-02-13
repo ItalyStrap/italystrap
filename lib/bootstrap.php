@@ -9,12 +9,16 @@
  *
  * @package ItalyStrap
  * @since 4.0.0
+ *
+ * @TODO https://github.com/understrap/understrap/issues/585
  */
 
 namespace ItalyStrap;
 
-use Auryn\ConfigException;
 use Auryn\Injector;
+use Auryn\ConfigException;
+use Auryn\InjectionException;
+use ItalyStrap\Config;
 use ItalyStrap\Core;
 
 /** =========================
@@ -25,6 +29,7 @@ $autoload_theme_files = [
 	'/functions/default-constants.php',
 	'/functions/general-functions.php',
 	'/functions/config-helpers.php',
+	'/functions/comments-helpers.php',
 	'/functions/italystrap.php',
 
 	'/lib/images.php',
@@ -53,21 +58,11 @@ if ( ! isset( $injector ) ) {
 }
 
 /**
- * This class has to be loaded before the init of all classes.
- *
- * @var \ItalyStrap\Admin\Required_Plugins\Register
- */
-// add_action( 'after_setup_theme', function() use ( $required_plugins ) {
-// 	$required_plugins = new \ItalyStrap\Required_Plugins\Register;
-// 	add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
-// }, 10, 1 );
-
-/**
  * Set the default theme constant
  *
- * @see /lib/default-constant.php
+ * @see /config/constants.php
  */
-$constants = Core\set_default_constant( require __DIR__ . '/../config/constants.php' );
+$constants = Core\set_default_constant( Config\get_config_file_content( 'constants' ) );
 
 /**
  * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
@@ -77,82 +72,100 @@ $constants = Core\set_default_constant( require __DIR__ . '/../config/constants.
  */
 add_filter( 'template_include', '\ItalyStrap\Core\set_current_template', 99998 );
 
-/**
- * Defined here after the set_default_constant()
- */
-$all_config_files_path = (array) Config\get_config_files();
-
-$italystrap_defaults = apply_filters(
-	'italystrap_default_theme_config',
-	require $all_config_files_path[ 'default' ]
-);
-
 if ( ! isset( $theme_mods ) ) {
 	$theme_mods = (array) get_theme_mods();
 }
 
-// https://core.trac.wordpress.org/ticket/24844
-// if ( is_customize_preview() ) {
-// 	foreach ( $theme_mods as $key => $value ) {
-// 		$theme_mods[ $key ] = apply_filters( 'theme_mod_' . $key, $value );
-// 	}
-// }
+$theme_mods = Core\wp_parse_args_recursive( $theme_mods, Config\get_config_file_content( 'default' ) );
 
-$theme_mods = Core\wp_parse_args_recursive( $theme_mods, $italystrap_defaults );
+$theme_supports = Config\get_config_file_content( 'theme-supports' );
 
-$theme_supports = require PARENTPATH . '/config/theme-supports.php';
+//$theme_config = array_merge( $theme_mods, $constants, $theme_supports );
 
-$theme_config = array_merge( $theme_mods, $constants, $theme_supports );
+try {
+	$event_manager = $injector->make( '\ItalyStrap\Event\Manager' );
+	$config = $injector->make( '\ItalyStrap\Config\Config' );
+	$config->merge( $theme_mods );
+	$config->merge( $constants );
+	$config->merge( $theme_supports );
+} catch ( InjectionException $exception ) {
+	echo $exception->getMessage();
+} catch ( \Exception $exception ) {
+	echo $exception->getMessage();
+}
 
-/**
- * Injector from ACM if is active
- */
-//$injector = apply_filters( 'italystrap_injector', null );
+//add_action( 'italystrap_theme_will_load', function ( Injector $injector ) use ( $theme_config ) {
 //
-//if ( ! isset( $injector ) ) {
-//	$injector = new Injector();
-//	add_filter( 'italystrap_injector', function () use ( $injector ) {
-//		return $injector;
-//	} );
-//}
-
-add_action( 'italystrap_theme_will_load', function () use ( $injector, $theme_config ) {
-
-	$args = [
-		':array_to_merge' => $theme_config,
-	];
-
-	$injector->execute( '\ItalyStrap\Config\merge_array_to_config', $args );
-} );
+//	$args = [
+//		':array_to_merge' => $theme_config,
+//	];
+//
+//	$injector->execute( '\ItalyStrap\Config\merge_array_to_config', $args );
+//
+//} );
 
 /**
- * Define theme_mods parmeter
+ * @var array $dependencies
  */
-// $injector->defineParam( 'theme_mods', $theme_mods );
+$dependencies = Config\get_config_file_content( 'dependencies' );
 
-/**=======================
- * Autoload Shared Classes
- *======================*/
-$autoload_sharing = array(
-	'ItalyStrap\Css\Css',
-);
+foreach ( $dependencies['sharing'] as $class ) {
+	try {
+		$injector->share( $class );
+	} catch ( ConfigException $exception ) {
+		echo $exception->getMessage();
+	} catch ( \Exception $exception ) {
+		echo $exception->getMessage();
+	}
+}
 
-/**=============================
- * Autoload Classes definitions
- *============================*/
-$autoload_definitions = array(
-//	'ItalyStrap\Init\Init_Theme'	=> [
-//		':theme_supports'	=> require PARENTPATH . '/config/theme-supports.php',
-//	],
-);
+foreach ( $dependencies['aliases'] as $interface => $implementation ) {
+	try {
+		$injector->alias( $interface, $implementation );
+	} catch ( ConfigException $exception ) {
+		echo $exception->getMessage();
+	} catch ( \Exception $exception ) {
+		echo $exception->getMessage();
+	}
+}
 
-/**======================
- * Autoload Aliases Class
- *=====================*/
-$autoload_aliases = array(
-	// 'ItalyStrap\Config\Config_Interface'	=> 'ItalyStrap\Config\Config',
-);
+foreach ( $dependencies['definitions'] as $class_name => $class_args ) {
+	$injector->define( $class_name, $class_args );
+}
 
+foreach ( $dependencies['define_param'] as $param_name => $param_args ) {
+	$injector->defineParam( $param_name, $param_args );
+}
+
+foreach ( $dependencies['delegations'] as $name => $callableOrMethodStr ) {
+	try {
+		$injector->delegate( $name, $callableOrMethodStr );
+	} catch ( ConfigException $exception ) {
+		echo $exception->getMessage();
+	} catch ( \Exception $exception ) {
+		echo $exception->getMessage();
+	}
+}
+
+foreach ( $dependencies['preparations'] as $class => $callable ) {
+	try {
+		$injector->prepare( $class, $callable );
+	} catch ( InjectionException $exception ) {
+		echo $exception->getMessage();
+	} catch ( \Exception $exception ) {
+		echo $exception->getMessage();
+	}
+}
+foreach ( $dependencies['execute'] as $callableOrMethodStr => $args ) {
+	d( $callableOrMethodStr, $args );
+//	try {
+//		$injector->execute( $callableOrMethodStr, $args );
+//	} catch ( InjectionException $exception ) {
+//		echo $exception->getMessage();
+//	} catch ( \Exception $exception ) {
+//		echo $exception->getMessage();
+//	}
+}
 /**
  * ========================================================================
  * Autoload Concrete Classes
@@ -169,35 +182,40 @@ $autoload_concrete = array(
 	'ItalyStrap\Custom\Sidebars\Sidebars',
 	'ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
 	'ItalyStrap\Custom\Image\Size', // 'italystrap_plugin_app_loaded'
-//	'ItalyStrap\EDD\Theme_Updater_Factory',
 );
 
 require '_init_admin.php';
 require '_init.php';
 
- foreach ( $autoload_sharing as $class ) {
- 	try {
-		$injector->share( $class );
-	} catch ( ConfigException $exception ) {
- 		echo $exception->getMessage();
-	}
- }
-// foreach ( $autoload_definitions as $class_name => $class_args ) {
-// 	$injector->define( $class_name, $class_args );
-// }
-// foreach ( $autoload_aliases as $interface => $implementation ) {
-// 	$injector->alias( $interface, $implementation );
-// }
+//$args = [];
+//$concrete_example = [
+//	'ItalyStrap\Router\Router', // String
+//	'ItalyStrap\Router\Router'	=> $args, // String
+//	'option'	=> 'ItalyStrap\Router\Router',
+//	'option2'	=> [
+//		'name'	=> 'ItalyStrap\Router\Router',
+//		'args'	=> $args,
+//	],
+//];
 
-// foreach ( $autoload_concrete as $option_name => $concrete ) {
-// 	$event_manager->add_subscriber( $injector->make( $concrete ) );
-// }
-
-add_action( 'init', function() use ( $theme_mods ) {
-	foreach ( $theme_mods['post_type_support'] as $post_type => $features ) {
-		add_post_type_support( $post_type, $features );
+foreach ( $dependencies['concretes'] as $option_name => $concrete ) {
+	if ( method_exists( $concrete, 'get_subscribed_events' ) ) {
+		$event_manager->add_subscriber( $injector->make( $concrete ) );
+	} else {
+		$injector->make( $concrete );
 	}
-});
+}
+
+/**
+ * Loaded on after_setup_themes in the ACM plugin
+ */
+add_filter( 'italystrap_app', function ( $app ) use ( $autoload_concrete, $config ) {
+
+	$app['subscribers'] = array_merge( $app['subscribers'], $autoload_concrete );
+
+	return $app;
+
+}, 10, 1 );
 
 /**
  * $content_width is a global variable used by WordPress for max image upload sizes
@@ -208,86 +226,35 @@ add_action( 'init', function() use ( $theme_mods ) {
  * Default: 750px is the default ItalyStrap container width.
  */
 if ( ! isset( $content_width ) ) {
-	$content_width = apply_filters( 'italystrap_content_width', $theme_mods['content_width'] );
+	$content_width = apply_filters( 'italystrap_content_width', $config->get( 'content_width' ) );
 }
 
-add_filter( 'italystrap_app', function ( $app ) use ( $autoload_concrete, $autoload_definitions, $theme_mods ) {
+add_action( 'after_setup_theme', function () {
 
-	$app['definitions'] = array_merge( $app['definitions'], $autoload_definitions );
+	/**
+	 * Injector from ACM if is active
+	 */
+	$injector = apply_filters( 'italystrap_injector', null );
 
-//	$app['sharing'][] = 'ItalyStrap\Css\Css';
-
-	$app['define_param']['theme_mods'] = $theme_mods;
-
-	if ( isset( $app['definitions']['ItalyStrap\Config\Config'][':config'] ) ) {
-		$app['definitions']['ItalyStrap\Config\Config'][':config'] = array_merge( $app['definitions']['ItalyStrap\Config\Config'][':config'], $theme_mods );
-	}
-
-	$app['subscribers'] = array_merge( $app['subscribers'], $autoload_concrete );
-
-	return $app;
-}, 10, 1 );
-
-/**
- * Fires once ItalyStrap theme has loaded.
- *
- * @since 2.0.0
- */
-do_action( 'italystrap_theme_will_load' );
+	/**
+	 * Fires before ItalyStrap theme load.
+	 *
+	 * @since 2.0.0
+	 */
+	do_action( 'italystrap_theme_will_load', $injector );
 
 	/**
 	 * Fires once ItalyStrap theme is loading.
 	 *
 	 * @since 2.0.0
 	 */
-	do_action( 'italystrap_theme_load' );
+	do_action( 'italystrap_theme_load', $injector );
 
-/**
- * Fires once ItalyStrap theme has loaded.
- *
- * @since 2.0.0
- */
-do_action( 'italystrap_theme_loaded' );
-
-/**
- * This filter is used to load your php file right after ItalyStrap theme is loaded.
- * The purpose is to have al code in the same scope without using global
- * with variables provided from this theme.
- *
- * Usage example:
- *
- * 1 - First of all you have to have the file/files with some code
- *     that extending this themes functionality in your theme path.
- * 2 - Than you have to activate your theme.
- * 3 - And then see the below example.
- *
- * add_filter( 'italystrap_require_theme_files_path', 'add_your_files_path' );
- *
- * function add_your_files_path( array $arg ) {
- *     return array_merge(
- *                  $arg,
- *                  array( STYLESHEETPATH . 'my-dir/my-file.php' )
- *     );
- * }
- * Important:
- * Remeber that the file you want to load just after ItalyStrap theme
- * has not to be required/included from your theme because
- * you will get an error 'You can't redeclare...'.
- *
- * @since 2.0.0
- *
- * @var array
- */
-$theme_files_path = apply_filters( 'italystrap_require_theme_files_path', array() );
-
-if ( ! empty( $theme_files_path ) ) {
-	foreach ( (array) $theme_files_path as $key => $theme_file_path ) {
-		require $theme_file_path ;
-	}
 	/**
-	 * Fires once ItalyStrap Child theme has loaded.
+	 * Fires once ItalyStrap theme has loaded.
 	 *
 	 * @since 2.0.0
 	 */
-	do_action( 'italystrap_child_theme_loaded' );
-}
+	do_action( 'italystrap_theme_loaded', $injector );
+
+}, 99 );

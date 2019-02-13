@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu;
 use ItalyStrap\HTML;
 
 /**
@@ -213,26 +212,6 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 }
 
 /**
- * Render the HTML tag attributes from an array
- *
- * @param  array $attr The HTML attributes with key value.
- * @return string      Return a string with HTML attributes
- */
-function get_html_tag_attr( array $attr = array(), $context = '' ) {
-
-	_deprecated_function( __FUNCTION__, '4.0.0', 'ItalyStrap\Core\get_attr()' );
-
-	// $html = '';
-
-	// $attr = array_map( 'esc_attr', $attr );
-	// foreach ( $attr as $name => $value ) {
-	// 	$html .= " $name=" . '"' . $value . '"';
-	// }
-
-	return get_attr( $context, $attr, false, null );
-}
-
-/**
  * Display the classes for content element
  *
  * @since 4.0.0
@@ -274,179 +253,6 @@ function get_content_class( $class = '' ) {
 	$classes = apply_filters( 'italystrap_content_class', $classes, $class );
 
 	return  array_flip( array_flip( $classes ) );
-
-}
-
-/**
- * Add a bootstrap button class to cancel reply
- * @param string $formatted_link Cancel reply a tag
- * @param string $link           Link to reply
- * @param string $text           Text to display
- */
-function add_class_button_to_cancel_reply( $formatted_link, $link, $text ){
-
-	return str_replace( '<a ', '<a class="btn btn-danger btn-xs" ', $formatted_link);
-
-}
-add_filter( 'cancel_comment_reply_link', '\ItalyStrap\Core\add_class_button_to_cancel_reply', 10, 3 );
-
-/**
- * Add a rel="nofollow" and Bootstrap button class to the comment reply links
- *
- * @link http://www.robertoiacono.it/aggiungere-nofollow-link-rispondi-commenti-wordpress/ (only for nofollow)
- * 
- * @since 1.9.1
- * 
- * @param string $link Comment reply url button
- */
-function add_nofollow_and_bootstrap_button_css_to_reply_link( $link ) {
-
-	$search = array( '")\'>', 'comment-reply-link' );
-	$replace = array( '")\' rel=\'nofollow\'>', 'btn btn-primary btn-sm pull-right' );
-	$link = str_replace( $search, $replace, $link );
-
-	return $link;
-}
-add_filter( 'comment_reply_link', '\ItalyStrap\Core\add_nofollow_and_bootstrap_button_css_to_reply_link' );
-
-/**
- * Display a message if comments are closed
- * @return string Return message
- */
-function display_message_if_comments_are_closed(){
-
-    echo '<div class="alert alert-warning">' . __( 'Comments are closed.', 'italystrap' ) . '</div>';
-
-}
-add_action( 'comment_form_comments_closed', '\ItalyStrap\Core\display_message_if_comments_are_closed' );
-
-
-/**
- * Argument for standard comment_form()
- * @param  string $comment_author Author of comment
- * @param  string $user_identity  Identity of user logged in
- * @return array                  An array with arguments for comment_form()
- */
-function comment_form_args( $comment_author, $user_identity ){
-
-	$commenter = wp_get_current_commenter();
-	$req = get_option( 'require_name_email' );
-	$aria_req = ( $req ? " aria-required='true'" : '' );
-	$html_req = ( $req ? " required='required'" : '' );
-	/**
-	 * The comment field with bootstrap style
-	 * @var array
-	 */
-	$comment_field = array(
-
-		'author'	=> 
-			'<div class="form-group comment-form-author"><label for="author" class="sr-only">' . __( 'Name', 'italystrap' ) . ' ' . ( $req ? __( '(required)', 'italystrap') . '<span class="required">*</span>' : '' ) . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="text" class="form-control" name="author" id="author" value="' . esc_attr( $comment_author ) . '" placeholder="' . __('Name','italystrap') . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '" tabindex="1"' . ( $req ? 'aria-required="true"' : '') . ' title="' . __( 'Name', 'italystrap' ) . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '"/></div></div>',
-
-		'email'		=>
-			'<div class="form-group comment-form-email"><label for="email" class="sr-only">' . __( 'Email (will not be published)', 'italystrap' ) . ' ' . ( $req ? __( '(required)', 'italystrap') . '<span class="required">*</span>' : '' ) . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input type="email" class="form-control" name="email" id="email" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . __( 'Email (will not be published)', 'italystrap' ) . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '" tabindex="2" aria-describedby="email-notes" ' . $aria_req . $html_req  . ' title="' . __( 'Email (will not be published)', 'italystrap' ) . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '" /></div></div>',
-
-		'url'		=>
-			'<div class="form-group comment-form-url"><label for="url" class="sr-only">' . __( 'Website' ,'italystrap') . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input type="url" class="form-control" name="url" id="url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . __( 'Website (optional)' ,'italystrap') . '" tabindex="3" title="' . __( 'Website (optional)' ,'italystrap') . '" /></div></div>',
-
-		);
-
-	$comment_field = apply_filters( 'italystrap_comment_form_default_fields', $comment_field, $comment_author, $commenter, $req, $aria_req, $html_req );
-
-	$comment_array = array(
-		'fields'			=>	$comment_field,
-		'class_submit'		=>	'btn btn-large btn-primary',
-		'format'			=>	'html5',
-		'comment_field' 	=>
-			'<div class="form-group comment-form-comment"><label for="comment" class="sr-only">' . _x( 'Comment', 'noun', 'italystrap' ) . '</label><textarea class="form-control" name="comment" id="comment" placeholder="' . __( 'Write your comment here' ,'italystrap') . '" tabindex="4" rows="6" aria-required="true" title="' . __( 'Write your comment here', 'italystrap' ) . '"></textarea></div>',
-		'logged_in_as'		=>
-			'<p class="logged-in-as">' . sprintf( 
-				__( 'Logged in as <a href="%1$s" class="btn btn-primary btn-xs">%2$s</a>. <a href="%3$s" title="Log out of this account" class="btn btn-warning btn-xs">Log out?</a>', 'italystrap' ),
-				get_edit_user_link(),
-				$user_identity,
-				wp_logout_url( apply_filters( 'the_permalink', get_permalink() ) )
-			) . '</p>',
-		'must_log_in'		=>
-			'<p class="alert alert-danger must-log-in">' . sprintf( __( 'You must be <a href="%s" class="alert-link">logged in</a> to post a comment.', 'italystrap' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ) . '</p>',
-		// 'cancel_reply_link'	=> '<span class="btn btn-danger btn-xs">' . __( 'Cancel reply' ) . '</span>',
-
-		);
-
-	return $comment_array = apply_filters( 'italystrap_comment_form_defaults', $comment_array, $user_identity, $comment_field );
-
-}
-
-/**
- * Pagination for comment
- *
- * @todo wp-includes\link-template.php 2894
- *       the_comments_pagination( $args = array() );
- *
- * @since ItalyStrap 3.1
- *
- * @return string Return pagination
- */
-function comment_pagination(){
-
-	if ( get_comment_pages_count() > 1 && get_option('page_comments') ){ ?>
-
-		<nav class="text-center" itemscope itemtype="https://schema.org/SiteNavigationElement">
-			<ul class="pagination pagination-sm">
-
-			<?php 
-			/**
-			 * http://wordpress.stackexchange.com/questions/125389/return-paginate-comments-links-as-array
-			 * Then I modify below code, now print bootstrap style correctly
-			 */
-			$pages = paginate_comments_links( 
-				array( 
-					'echo'		=> false,
-					'type'		=> 'array',
-					'prev_text'	=> __( '&laquo; Previous comments' , 'italystrap' ),
-					'next_text'	=> __( 'Next comments &raquo;', 'italystrap' ),
-					)
-				);
-			if ( is_array( $pages ) ){
-				$pages = str_replace('<a', '<a itemprop="url"', $pages);
-				foreach($pages as $page){
-					$position = strpos($page, '<span');
-					if ( $position === false )
-						echo '<li itemprop="name">' . $page . '</li>';
-					else
-						echo '<li class="active" itemprop="name">' . $page . '</li>';
-				}
-			}
-			?>
-
-			</ul>
-		</nav>
-
-	<?php }
-}
-
-/**
- * Is comment reply
- *
- * @return bool Return true if the comment is open.
- */
-function is_comment_reply() {
-
-	return (bool) is_singular() && comments_open() && get_option( 'thread_comments' );
-}
-
-/**
- * Fallback function for custom background.
- */
-function _custom_background_cb() {
-
-	_deprecated_function( __FUNCTION__, '4.0.0', 'ItalyStrap\Core\Css\Css::custom_background_cb()' );
-
-	global $italystrap_customizer;
-
-	if ( ! $italystrap_customizer ) {
-		$italystrap_customizer = new \ItalyStrap\Customizer\Customizer;
-	}
-
-	$italystrap_customizer->custom_background_cb();
 
 }
 
@@ -505,31 +311,10 @@ function wp_parse_args_recursive( &$args, $defaults ) {
  */
 function register_theme_positions( array $new_position ) {
 
-	$position = array(
-		'italystrap_before'			=> __( 'After the &lt;body&gt;', 'italystrap' ),
-
-		'italystrap_before_header'	=> __( 'Before the header', 'italystrap' ),
-		'italystrap_content_header'	=> __( 'The content header', 'italystrap' ),
-		'italystrap_after_header'	=> __( 'After the header', 'italystrap' ),
-
-		'italystrap_before_main'	=> __( 'Before the Main Content', 'italystrap' ),
-		'italystrap_before_content'	=> __( 'Before the Content', 'italystrap' ),
-
-		'italystrap_before_loop'	=> __( 'Before the Loop', 'italystrap' ),
-		'italystrap_loop'			=> __( 'The Loop', 'italystrap' ),
-		'italystrap_after_loop'		=> __( 'After the Loop', 'italystrap' ),
-
-		'italystrap_after_content'	=> __( 'After the Content', 'italystrap' ),
-
-		'italystrap_after_main'		=> __( 'After the Main Content', 'italystrap' ),
-		'italystrap_before_footer'	=> __( 'In the footer open', 'italystrap' ),
-		'italystrap_footer'			=> __( 'In the footer', 'italystrap' ),
-		'italystrap_after_footer'	=> __( 'In the footer closed', 'italystrap' ),
-
-		'italystrap_after'			=> __( 'At the end of the page before the <code>&lt;/body&gt;</code>', 'italystrap' ),
-	);
-
-	return array_merge( $position, $new_position );
+	return array_merge(
+		\ItalyStrap\Config\get_config_file_content( 'theme-positions' ),
+        $new_position
+    );
 }
 add_filter( 'italystrap_theme_positions', __NAMESPACE__ . '\register_theme_positions' );
 /**
@@ -545,7 +330,7 @@ add_filter( 'italystrap_widget_area_position', __NAMESPACE__ . '\register_theme_
  */
 function register_theme_width( array $new_width ) {
 
-	$with = require PARENTPATH . '/config/theme-width.php';
+	$with = \ItalyStrap\Config\get_config_file_content( 'theme-width' );
 
 	return array_merge( $with, $new_width );
 }
@@ -629,3 +414,28 @@ add_filter( 'body_class', function ( $classes ) use ( $theme_mods ) {
 	$classes[] = CURRENT_TEMPLATE_SLUG;
 	return  $classes ;
 });
+
+
+/**
+ * @param array $theme_mods
+ * @TODO Da sviluppare per il customizer
+ * https://core.trac.wordpress.org/ticket/24844
+ */
+function get_theme_mods_in_customizer ( array $theme_mods = [] ) {
+    if ( is_customize_preview() ) {
+        foreach ( $theme_mods as $key => $value ) {
+            $theme_mods[ $key ] = apply_filters( 'theme_mod_' . $key, $value );
+        }
+    }
+}
+
+/**
+ * This class has to be loaded before the init of all classes.
+ * @TODO Required plugins
+ *
+ * @var \ItalyStrap\Admin\Required_Plugins\Register
+ */
+// add_action( 'after_setup_theme', function() use ( $required_plugins ) {
+// 	$required_plugins = new \ItalyStrap\Required_Plugins\Register;
+// 	add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
+// }, 10, 1 );

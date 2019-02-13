@@ -47,3 +47,44 @@ function get_config_files() {
 
 	return (array) $config_files;
 }
+
+/**
+ * @param  string $name
+ *
+ * @return string
+ * @throws \InvalidArgumentException If the given file name does not exists
+ */
+function get_config_file_path( $name ) {
+
+	$file_path = sprintf(
+		'%s/../config/%s.php',
+		__DIR__,
+		$name
+	);
+
+	if ( ! file_exists( $file_path ) ) {
+		throw new \InvalidArgumentException( sprintf( 'The file %s does not exists', $name ) );
+	}
+
+	return $file_path;
+}
+
+/**
+ * @param  string $name
+ *
+ * @return array
+ */
+function get_config_file_content( $name ) {
+
+	$config = [];
+
+	try {
+		$config = (array) require get_config_file_path( $name );
+	} catch ( \InvalidArgumentException $exception ) {
+		echo $exception->getMessage();
+	} catch ( \Exception $exception ) {
+		echo $exception->getMessage();
+	}
+
+	return (array) $config;
+}

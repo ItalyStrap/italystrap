@@ -11,7 +11,7 @@
 namespace ItalyStrap\Core;
 
 if ( ! is_admin() ) {
-	return;
+	return [];
 }
 
 $autoload_concrete = array_merge(
@@ -37,3 +37,9 @@ if ( 'edit-tags.php' === $pagenow || 'term.php' === $pagenow ) {
 if ( isset( $register_metabox ) ) {
 	add_action( 'cmb2_admin_init', array( $register_metabox, 'register_widget_areas_fields' ) );
 }
+
+return [
+	'ItalyStrap\Editors\TinyMCE',
+	'ItalyStrap\Custom\Metabox\Register',
+	'ItalyStrap\User\Contact_Methods',
+];

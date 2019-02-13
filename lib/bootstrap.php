@@ -18,12 +18,17 @@ namespace ItalyStrap;
 use Auryn\Injector;
 use Auryn\ConfigException;
 use Auryn\InjectionException;
+use Auryn\InjectorException;
 use ItalyStrap\Config;
 use ItalyStrap\Core;
 
-/** =========================
+/**
+ * ==========================
+ *
  * Autoload theme core files.
- ========================== */
+ *
+ * ==========================
+ */
 $autoload_theme_files = [
 	'/vendor/autoload.php',
 	'/functions/default-constants.php',
@@ -83,7 +88,7 @@ $theme_supports = Config\get_config_file_content( 'theme-supports' );
 //$theme_config = array_merge( $theme_mods, $constants, $theme_supports );
 
 try {
-	$event_manager = $injector->make( '\ItalyStrap\Event\Manager' );
+//	$event_manager = $injector->make( '\ItalyStrap\Event\Manager' );
 	$config = $injector->make( '\ItalyStrap\Config\Config' );
 	$config->merge( $theme_mods );
 	$config->merge( $constants );
@@ -109,63 +114,6 @@ try {
  */
 $dependencies = Config\get_config_file_content( 'dependencies' );
 
-foreach ( $dependencies['sharing'] as $class ) {
-	try {
-		$injector->share( $class );
-	} catch ( ConfigException $exception ) {
-		echo $exception->getMessage();
-	} catch ( \Exception $exception ) {
-		echo $exception->getMessage();
-	}
-}
-
-foreach ( $dependencies['aliases'] as $interface => $implementation ) {
-	try {
-		$injector->alias( $interface, $implementation );
-	} catch ( ConfigException $exception ) {
-		echo $exception->getMessage();
-	} catch ( \Exception $exception ) {
-		echo $exception->getMessage();
-	}
-}
-
-foreach ( $dependencies['definitions'] as $class_name => $class_args ) {
-	$injector->define( $class_name, $class_args );
-}
-
-foreach ( $dependencies['define_param'] as $param_name => $param_args ) {
-	$injector->defineParam( $param_name, $param_args );
-}
-
-foreach ( $dependencies['delegations'] as $name => $callableOrMethodStr ) {
-	try {
-		$injector->delegate( $name, $callableOrMethodStr );
-	} catch ( ConfigException $exception ) {
-		echo $exception->getMessage();
-	} catch ( \Exception $exception ) {
-		echo $exception->getMessage();
-	}
-}
-
-foreach ( $dependencies['preparations'] as $class => $callable ) {
-	try {
-		$injector->prepare( $class, $callable );
-	} catch ( InjectionException $exception ) {
-		echo $exception->getMessage();
-	} catch ( \Exception $exception ) {
-		echo $exception->getMessage();
-	}
-}
-foreach ( $dependencies['execute'] as $callableOrMethodStr => $args ) {
-	d( $callableOrMethodStr, $args );
-//	try {
-//		$injector->execute( $callableOrMethodStr, $args );
-//	} catch ( InjectionException $exception ) {
-//		echo $exception->getMessage();
-//	} catch ( \Exception $exception ) {
-//		echo $exception->getMessage();
-//	}
-}
 /**
  * ========================================================================
  * Autoload Concrete Classes
@@ -173,49 +121,40 @@ foreach ( $dependencies['execute'] as $callableOrMethodStr => $args ) {
  *
  * @see _init & _init_admin
  */
-$autoload_concrete = array(
-	'ItalyStrap\Router\Router',
-	// 'ItalyStrap\Core\Router\Controller', // Da testare meglio
-	'ItalyStrap\Customizer\Theme_Customizer',
-	'ItalyStrap\Css\Css',
-	'ItalyStrap\Init\Init_Theme', // 'italystrap_plugin_app_loaded'
-	'ItalyStrap\Custom\Sidebars\Sidebars',
-	'ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
-	'ItalyStrap\Custom\Image\Size', // 'italystrap_plugin_app_loaded'
-);
+$autoload_concrete = $dependencies['concretes'];
 
-require '_init_admin.php';
-require '_init.php';
+$dependencies_admin = require '_init_admin.php';
+$dependencies_front = require '_init.php';
 
-//$args = [];
-//$concrete_example = [
-//	'ItalyStrap\Router\Router', // String
-//	'ItalyStrap\Router\Router'	=> $args, // String
-//	'option'	=> 'ItalyStrap\Router\Router',
-//	'option2'	=> [
-//		'name'	=> 'ItalyStrap\Router\Router',
-//		'args'	=> $args,
-//	],
-//];
+//$dependencies['concretes'] = $autoload_concrete;
 
-foreach ( $dependencies['concretes'] as $option_name => $concrete ) {
-	if ( method_exists( $concrete, 'get_subscribed_events' ) ) {
-		$event_manager->add_subscriber( $injector->make( $concrete ) );
-	} else {
-		$injector->make( $concrete );
-	}
+try {
+	$theme_loader = $injector->make( 'ItalyStrap\Theme_Test_Load' );
+
+	$theme_loader->set_dependencies( $dependencies );
+	$theme_loader->add_concretes( $dependencies_admin );
+	$theme_loader->add_concretes( $dependencies_front );
+
+//	$theme_loader->before( $injector );
+
+	add_action( 'italystrap_theme_load', [ $theme_loader, 'load' ] );
+
+} catch ( InjectorException $exception ) {
+	echo $exception->getMessage();
+} catch ( \Exception $exception ) {
+	echo $exception->getMessage();
 }
 
 /**
  * Loaded on after_setup_themes in the ACM plugin
  */
-add_filter( 'italystrap_app', function ( $app ) use ( $autoload_concrete, $config ) {
+//add_filter( 'italystrap_app', function ( $app ) use ( $autoload_concrete, $config ) {
 
-	$app['subscribers'] = array_merge( $app['subscribers'], $autoload_concrete );
+//	$app['subscribers'] = array_merge( $app['subscribers'], $autoload_concrete );
 
-	return $app;
+//	return $app;
 
-}, 10, 1 );
+//}, 10, 1 );
 
 /**
  * $content_width is a global variable used by WordPress for max image upload sizes
@@ -257,4 +196,4 @@ add_action( 'after_setup_theme', function () {
 	 */
 	do_action( 'italystrap_theme_loaded', $injector );
 
-}, 99 );
+}, 20 );

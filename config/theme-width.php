@@ -10,12 +10,13 @@
  * @package ItalyStrap
  */
 
-$site_width = apply_filters( 'italystrap_theme_width_settings',
-	array(
+$site_width = apply_filters(
+	'italystrap_theme_width_settings',
+	[
 		// 'none'				=> __( 'None', 'italystrap' ),
 		'container'			=> __( 'Standard container', 'italystrap' ),
 		'container-fluid'	=> __( 'Fluid container', 'italystrap' ),
-	)
+	]
 );
 
 return $site_width;

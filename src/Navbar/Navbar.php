@@ -412,12 +412,14 @@ class Navbar {
 
 	}
 
+	public function render() {
+		return $this->get_nav_container();
+	}
+
 	/**
 	 * Output the HTML
 	 */
 	public function output() {
-
-		echo $this->get_nav_container();
-
+		echo $this->render();
 	}
 }

@@ -61,32 +61,36 @@ $injector = Factory\get_injector();
  *
  * @see /config/constants.php
  */
-$constants = Core\set_default_constant( Config\get_config_file_content( 'constants' ) );
+$constants = Core\set_default_constants( Config\get_config_file_content( 'constants' ) );
 
 /**
+ * ========================================================================
+ *
  * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
  * Make sure Router runs after 99998.
  *
- * @see \ItalyStrap\Core\set_current_template()
+ * @see \ItalyStrap\Core\set_current_template_constants()
+ *
+ * ========================================================================
  */
-add_filter( 'template_include', '\ItalyStrap\Core\set_current_template', 99998 );
-
-if ( ! isset( $theme_mods ) ) {
-	$theme_mods = (array) get_theme_mods();
-}
-
-$theme_mods = Core\wp_parse_args_recursive(
-	$theme_mods,
-	Config\get_config_file_content( 'default' )
-);
-
-$theme_supports = Config\get_config_file_content( 'theme-supports' );
+add_filter( 'template_include', '\ItalyStrap\Core\set_current_template_constants', 99998 );
 
 try {
 	$event_manager = $injector->make( '\ItalyStrap\Event\Manager' );
 	$config = $injector->make( '\ItalyStrap\Config\Config' );
+
+	if ( ! isset( $theme_mods ) ) {
+		$theme_mods = (array) get_theme_mods();
+	}
+
+	$theme_mods = Core\wp_parse_args_recursive(
+		$theme_mods,
+		Config\get_config_file_content( 'default' )
+	);
 	$config->merge( $theme_mods );
 	$config->merge( $constants );
+
+	$theme_supports = Config\get_config_file_content( 'theme-supports' );
 	$config->merge( $theme_supports );
 
 	/**
@@ -115,26 +119,12 @@ try {
 	$theme_loader->add_concretes( $dependencies_admin );
 	$theme_loader->add_concretes( $dependencies_front );
 
-//	$theme_loader->before( $injector );
-
 	add_action( 'italystrap_theme_load', [ $theme_loader, 'load' ] );
 
 } catch ( InjectorException $exception ) {
 	echo $exception->getMessage();
 } catch ( \Exception $exception ) {
 	echo $exception->getMessage();
-}
-
-/**
- * $content_width is a global variable used by WordPress for max image upload sizes
- * and media embeds (in pixels).
- *
- * Example: If the content area is 640px wide,
- * set $content_width = 620; so images and videos will not overflow.
- * Default: 750px is the default ItalyStrap container width.
- */
-if ( ! isset( $content_width ) ) {
-	$content_width = apply_filters( 'italystrap_content_width', $config->get( 'content_width' ) );
 }
 
 add_action( 'after_setup_theme', function () {

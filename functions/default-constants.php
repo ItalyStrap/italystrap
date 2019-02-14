@@ -15,7 +15,7 @@ namespace ItalyStrap\Core;
 /**
  * Set default constant
  */
-function set_default_constant( array $constant = [] ) {
+function set_default_constants( array $constant = [] ) {
 
 	foreach ( $constant as $name => $value ) {
 		if ( ! defined( $name ) ) {
@@ -36,7 +36,7 @@ function set_default_constant( array $constant = [] ) {
  *
  * @return string
  */
-function set_current_template( $current_template ) {
+function set_current_template_constants( $current_template ) {
 
 	define( 'CURRENT_TEMPLATE', basename( $current_template ) );
 	define( 'CURRENT_TEMPLATE_SLUG', str_replace( '.php', '', CURRENT_TEMPLATE ) );

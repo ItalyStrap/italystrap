@@ -97,8 +97,8 @@ class Css implements Subscriber_Interface {
 		}
 
 		$style = $color ? 'background-color:#' . $color . ';' : '';
-// d( get_theme_support( 'custom-background', 'default-repeat' ) );
-// d( $this->theme_mods );
+		// d( get_theme_support( 'custom-background', 'default-repeat' ) );
+		// d( $this->theme_mods );
 		if ( $background ) {
 			$image = 'background-image:url(' . $background . ');';
 
@@ -131,7 +131,6 @@ class Css implements Subscriber_Interface {
 		}
 
 		$this->style .= 'body.custom-background{' . trim( $style ) . '}';
-
 	}
 
 	/**

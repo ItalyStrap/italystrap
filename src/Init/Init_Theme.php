@@ -20,8 +20,6 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 use ItalyStrap\Config\Config_Interface;
 use ItalyStrap\Event\Subscriber_Interface;
 
-use ItalyStrap\Css\Css;
-
 /**
  * Theme init
  */
@@ -39,7 +37,6 @@ class Init_Theme implements Subscriber_Interface {
 
 		return [
 			// 'hook_name'							=> 'method_name',
-			 'init'	=> 'add_post_type_support',
 			// 'after_setup_theme'	=> 'setup',
 //			'italystrap_plugin_app_loaded'	=> 'setup',
 //			'after_setup_theme'	=> 'setup',
@@ -54,29 +51,16 @@ class Init_Theme implements Subscriber_Interface {
 				'priority'			=> 11,
 				'accepted_args'		=> null,
 			],
+			'init'	=> 'add_post_type_support',
 		];
 	}
 
 	private $config;
-	private $css_manager;
-	private $content_width;
-	private $theme_supports;
 	/**
 	 * Init some functionality
 	 */
-	public function __construct( Config_Interface $config, Css $css_manager ) {
-
+	public function __construct( Config_Interface $config ) {
 		$this->config = $config;
-
-		$this->css_manager = $css_manager;
-
-		$this->content_width = $this->config->get('content_width');
-
-		$this->theme_supports = (array) $this->config->get('add_theme_support');
-
-//		add_action('wp_footer', function () {
-//			d( $this->content_width, $this->config->all() );
-//		});
 	}
 
 	/**
@@ -91,39 +75,13 @@ class Init_Theme implements Subscriber_Interface {
 		/**
 		 * Make theme available for translation.
 		 */
-		load_theme_textdomain( 'italystrap', $this->config->get( 'PARENTPATH' ) . '/lang' );
+		load_theme_textdomain( 'italystrap', $this->config->get( 'PARENTPATH' ) . '/languages' );
 
 //		if ( is_child_theme() ) {
-//			load_child_theme_textdomain( 'CHILD', $this->config->get( 'CHILDPATH' ) . '/lang' );
+//			load_child_theme_textdomain( 'CHILD', $this->config->get( 'CHILDPATH' ) . '/languages' );
 //		}
 
-		$this->add_theme_supports( $this->theme_supports );
-
-		/**
-		 * Custom background support
-		 *
-		 * @link http://codex.wordpress.org/Custom_Backgrounds
-		 * @var array
-		 * $defaults = array(
-		 *      'default-image'          => '',
-		 *		'default-repeat'         => 'repeat',
-		 *		'default-position-x'     => 'left',
-		 *		'default-attachment'     => 'scroll',
-		 *		'default-color'          => '',
-		 *		'wp-head-callback'       => '_custom_background_cb',
-		 *		'admin-head-callback'    => '',
-		 *		'admin-preview-callback' => '',
-		 * );
-		 *
-		 * 'wp-head-callback' => null In case is printed from Theme customizer
-		 * @see ItalyStrap\Core\Css\Css::custom_background_cb()
-		 */
-		$custom_background = [
-			'wp-head-callback' => [
-				$this->css_manager, 'custom_background_cb'
-			],
-		];
-		add_theme_support( 'custom-background', apply_filters( 'custom_background_support', $custom_background ) );
+		$this->add_theme_supports( (array) $this->config->get( 'add_theme_support' ) );
 
 		/**
 		 * Per ora la eseguo da qui
@@ -142,6 +100,19 @@ class Init_Theme implements Subscriber_Interface {
 			'footer-menu'		=> __( 'Footer Menu', 'italystrap' ),
 		];
 		register_nav_menus( apply_filters( 'register_nav_menu_locations', $nav_menus_locations ) );
+
+		/**
+		 * $content_width is a global variable used by WordPress for max image upload sizes
+		 * and media embeds (in pixels).
+		 *
+		 * Example: If the content area is 640px wide,
+		 * set $content_width = 620; so images and videos will not overflow.
+		 * Default: 750px is the default ItalyStrap container width.
+		 */
+		global $content_width;
+		if ( ! isset( $content_width ) ) {
+			$content_width = apply_filters( 'italystrap_content_width', $this->config->get( 'content_width' ) );
+		}
 	}
 
 	/**

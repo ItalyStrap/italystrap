@@ -2,7 +2,7 @@
 /**
  * ItalyStrap Bootstrap File
  *
- * This is the bootstrap file for all core and admin Class and Functions.
+ * This is the bootstrap file for all core and admin Classes and Functions.
  *
  * Da leggere:
  * http://mikejolley.com/2013/12/15/deprecating-plugin-functions-hooks-woocommmerce/
@@ -16,18 +16,16 @@
 namespace ItalyStrap;
 
 use Auryn\Injector;
-use Auryn\ConfigException;
-use Auryn\InjectionException;
 use Auryn\InjectorException;
 use ItalyStrap\Config;
 use ItalyStrap\Core;
 
 /**
- * ==========================
+ * ========================================================================
  *
  * Autoload theme core files.
  *
- * ==========================
+ * ========================================================================
  */
 $autoload_theme_files = [
 	'/vendor/autoload.php',
@@ -36,6 +34,7 @@ $autoload_theme_files = [
 	'/functions/config-helpers.php',
 	'/functions/comments-helpers.php',
 	'/functions/italystrap.php',
+	'/functions/injector.php',
 
 	'/lib/images.php',
 	'/lib/pointer.php',
@@ -43,7 +42,7 @@ $autoload_theme_files = [
 ];
 
 if ( apply_filters( 'italystrap_load_deprecated', true ) ) {
-	$autoload_theme_files[] = '/deprecated/deprecated.php';
+	$autoload_theme_files[] = '/deprecated/autoload.php';
 }
 
 foreach ( $autoload_theme_files as $file ) {
@@ -52,15 +51,10 @@ foreach ( $autoload_theme_files as $file ) {
 
 /**
  * Injector from ACM if is active
+ *
+ * @var \Auryn\Injector
  */
-$injector = apply_filters( 'italystrap_injector', null );
-
-if ( ! isset( $injector ) ) {
-	$injector = new Injector();
-	add_filter( 'italystrap_injector', function () use ( $injector ) {
-		return $injector;
-	} );
-}
+$injector = Factory\get_injector();
 
 /**
  * Set the default theme constant
@@ -81,54 +75,40 @@ if ( ! isset( $theme_mods ) ) {
 	$theme_mods = (array) get_theme_mods();
 }
 
-$theme_mods = Core\wp_parse_args_recursive( $theme_mods, Config\get_config_file_content( 'default' ) );
+$theme_mods = Core\wp_parse_args_recursive(
+	$theme_mods,
+	Config\get_config_file_content( 'default' )
+);
 
 $theme_supports = Config\get_config_file_content( 'theme-supports' );
 
-//$theme_config = array_merge( $theme_mods, $constants, $theme_supports );
-
 try {
-//	$event_manager = $injector->make( '\ItalyStrap\Event\Manager' );
+	$event_manager = $injector->make( '\ItalyStrap\Event\Manager' );
 	$config = $injector->make( '\ItalyStrap\Config\Config' );
 	$config->merge( $theme_mods );
 	$config->merge( $constants );
 	$config->merge( $theme_supports );
-} catch ( InjectionException $exception ) {
-	echo $exception->getMessage();
-} catch ( \Exception $exception ) {
-	echo $exception->getMessage();
-}
 
-//add_action( 'italystrap_theme_will_load', function ( Injector $injector ) use ( $theme_config ) {
-//
-//	$args = [
-//		':array_to_merge' => $theme_config,
-//	];
-//
-//	$injector->execute( '\ItalyStrap\Config\merge_array_to_config', $args );
-//
-//} );
+	/**
+	 * @var array $dependencies
+	 */
+	$dependencies = Config\get_config_file_content( 'dependencies' );
 
-/**
- * @var array $dependencies
- */
-$dependencies = Config\get_config_file_content( 'dependencies' );
+	/**
+	 * ========================================================================
+	 * Autoload Concrete Classes
+	 * ========================================================================
+	 *
+	 * @see _init & _init_admin
+	 */
+	$autoload_concrete = $dependencies['concretes'];
 
-/**
- * ========================================================================
- * Autoload Concrete Classes
- * ========================================================================
- *
- * @see _init & _init_admin
- */
-$autoload_concrete = $dependencies['concretes'];
+	$dependencies_admin = require '_init_admin.php';
+	$dependencies_front = require '_init.php';
 
-$dependencies_admin = require '_init_admin.php';
-$dependencies_front = require '_init.php';
+	//$dependencies['concretes'] = $autoload_concrete;
 
-//$dependencies['concretes'] = $autoload_concrete;
 
-try {
 	$theme_loader = $injector->make( 'ItalyStrap\Theme_Test_Load' );
 
 	$theme_loader->set_dependencies( $dependencies );
@@ -146,17 +126,6 @@ try {
 }
 
 /**
- * Loaded on after_setup_themes in the ACM plugin
- */
-//add_filter( 'italystrap_app', function ( $app ) use ( $autoload_concrete, $config ) {
-
-//	$app['subscribers'] = array_merge( $app['subscribers'], $autoload_concrete );
-
-//	return $app;
-
-//}, 10, 1 );
-
-/**
  * $content_width is a global variable used by WordPress for max image upload sizes
  * and media embeds (in pixels).
  *
@@ -172,8 +141,10 @@ add_action( 'after_setup_theme', function () {
 
 	/**
 	 * Injector from ACM if is active
+	 *
+	 * @var \Auryn\Injector
 	 */
-	$injector = apply_filters( 'italystrap_injector', null );
+	$injector = Factory\get_injector();
 
 	/**
 	 * Fires before ItalyStrap theme load.

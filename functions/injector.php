@@ -1,10 +1,14 @@
 <?php
-namespace ItalyStrap\Core;
+/**
+ * Get the Injector instance
+ */
 
+namespace ItalyStrap\Factory;
 
 use Auryn\Injector;
 
-function injector_factory() {
+function get_injector() {
+
 	/**
 	 * Injector from ACM if is active
 	 */

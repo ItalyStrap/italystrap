@@ -41,7 +41,7 @@ class Init_Theme implements Subscriber_Interface {
 			// 'hook_name'							=> 'method_name',
 			 'init'	=> 'add_post_type_support',
 			// 'after_setup_theme'	=> 'setup',
-			'italystrap_plugin_app_loaded'	=> 'setup',
+//			'italystrap_plugin_app_loaded'	=> 'setup',
 //			'after_setup_theme'	=> 'setup',
 //			'after_setup_theme'				=> 'add_editor_styles',
 //			'after_setup_theme'	=> [
@@ -49,6 +49,11 @@ class Init_Theme implements Subscriber_Interface {
 //				'priority'			=> PHP_INT_MIN,
 //				'accepted_args'		=> null,
 //			],
+			'italystrap_theme_load'	=> [
+				'function_to_add'	=> 'setup',
+				'priority'			=> 11,
+				'accepted_args'		=> null,
+			],
 		];
 	}
 
@@ -86,7 +91,11 @@ class Init_Theme implements Subscriber_Interface {
 		/**
 		 * Make theme available for translation.
 		 */
-		load_theme_textdomain( 'italystrap', PARENTPATH . '/lang' );
+		load_theme_textdomain( 'italystrap', $this->config->get( 'PARENTPATH' ) . '/lang' );
+
+//		if ( is_child_theme() ) {
+//			load_child_theme_textdomain( 'CHILD', $this->config->get( 'CHILDPATH' ) . '/lang' );
+//		}
 
 		$this->add_theme_supports( $this->theme_supports );
 

@@ -17,7 +17,8 @@ return [
 	 |-----------------------------------------------------------
 	 */
 	'sharing'				=> [
-		'ItalyStrap\Css\Css',
+		'\ItalyStrap\Config\Config',
+		'\ItalyStrap\Css\Css',
 	],
 
 	/**
@@ -30,7 +31,7 @@ return [
 	 * ==========================================================
 	 */
 	'aliases'				=> [
-		 'ItalyStrap\Config\Config_Interface'	=> 'ItalyStrap\Config\Config',
+		 '\ItalyStrap\Config\Config_Interface'	=> 'ItalyStrap\Config\Config',
 	],
 
 	/**
@@ -49,8 +50,8 @@ return [
 	 * ============================
 	 */
 	'definitions'			=> [
-		'ItalyStrap\Navbar\Navbar'	=> [
-			'walker' => 'ItalyStrap\Navbar\Bootstrap_Nav_Menu'
+		'\ItalyStrap\Navbar\Navbar'	=> [
+			'walker' => '\ItalyStrap\Navbar\Bootstrap_Nav_Menu'
 		],
 	],
 
@@ -110,14 +111,14 @@ return [
 	 * ========================================================================
 	 */
 	'concretes'				=> [
-		'ItalyStrap\Router\Router',
-		// 'ItalyStrap\Core\Router\Controller', // Da testare meglio
-		'ItalyStrap\Customizer\Theme_Customizer',
-		'ItalyStrap\Css\Css',
-		'ItalyStrap\Init\Init_Theme', // 'italystrap_plugin_app_loaded'
-		'ItalyStrap\Custom\Sidebars\Sidebars',
-		'ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
-		'ItalyStrap\Custom\Image\Size', // 'italystrap_plugin_app_loaded'
+		'\ItalyStrap\Router\Router',
+		// '\ItalyStrap\Core\Router\Controller', // Da testare meglio
+		'\ItalyStrap\Customizer\Theme_Customizer',
+		'\ItalyStrap\Css\Css',
+		'\ItalyStrap\Init\Init_Theme', // 'italystrap_plugin_app_loaded'
+		'\ItalyStrap\Custom\Sidebars\Sidebars',
+		'\ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
+		'\ItalyStrap\Custom\Image\Size', // 'italystrap_plugin_app_loaded'
 	],
 
 //	'options_concretes'		=> [],

@@ -4,18 +4,16 @@
  *
  * This is the bootstrap file for all core and admin Classes and Functions.
  *
- * Da leggere:
- * http://mikejolley.com/2013/12/15/deprecating-plugin-functions-hooks-woocommmerce/
  *
  * @package ItalyStrap
  * @since 4.0.0
  *
+ * @TODO http://mikejolley.com/2013/12/15/deprecating-plugin-functions-hooks-woocommmerce/
  * @TODO https://github.com/understrap/understrap/issues/585
  */
 
 namespace ItalyStrap;
 
-use Auryn\Injector;
 use Auryn\InjectorException;
 use ItalyStrap\Config;
 use ItalyStrap\Core;
@@ -41,6 +39,13 @@ $autoload_theme_files = [
 	'/lib/edd.php',
 ];
 
+/**
+ * ========================================================================
+ *
+ * Do you want to load deprecated files?
+ *
+ * ========================================================================
+ */
 if ( apply_filters( 'italystrap_load_deprecated', true ) ) {
 	$autoload_theme_files[] = '/deprecated/autoload.php';
 }
@@ -49,8 +54,10 @@ foreach ( $autoload_theme_files as $file ) {
 	require __DIR__ . '/..' . $file;
 }
 
+//d( glob( __DIR__ . '/../functions/*.php' ) );
+
 /**
- * Injector from ACM if is active
+ * Get the Injector instance
  *
  * @var \Auryn\Injector
  */
@@ -100,17 +107,15 @@ try {
 
 	/**
 	 * ========================================================================
+	 *
 	 * Autoload Concrete Classes
+	 *
 	 * ========================================================================
 	 *
 	 * @see _init & _init_admin
 	 */
-	$autoload_concrete = $dependencies['concretes'];
-
 	$dependencies_admin = require '_init_admin.php';
 	$dependencies_front = require '_init.php';
-
-	//$dependencies['concretes'] = $autoload_concrete;
 
 
 	$theme_loader = $injector->make( 'ItalyStrap\Theme_Test_Load' );
@@ -122,9 +127,9 @@ try {
 	add_action( 'italystrap_theme_load', [ $theme_loader, 'load' ] );
 
 } catch ( InjectorException $exception ) {
-	echo $exception->getMessage();
+	_doing_it_wrong( get_class( $injector ), $exception->getMessage(), '4.0.0' );
 } catch ( \Exception $exception ) {
-	echo $exception->getMessage();
+	_doing_it_wrong( 'General error.', $exception->getMessage(), '4.0.0' );
 }
 
 add_action( 'after_setup_theme', function () {

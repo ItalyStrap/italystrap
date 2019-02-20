@@ -47,15 +47,16 @@ class Init_Theme implements Subscriber_Interface {
 //				'accepted_args'		=> null,
 //			],
 			'italystrap_theme_load'	=> [
-				'function_to_add'	=> 'setup',
-				'priority'			=> 11,
-				'accepted_args'		=> null,
+				'function_to_add'		=> 'setup',
+				'priority'				=> 20,
+				'accepted_args'			=> null,
 			],
-			'init'	=> 'add_post_type_support',
+			'init'					=> 'add_post_type_support',
 		];
 	}
 
 	private $config;
+
 	/**
 	 * Init some functionality
 	 */

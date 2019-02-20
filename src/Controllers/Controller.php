@@ -64,7 +64,7 @@ class Controller implements Controller_Interface {
 	 *
 	 * @param array $theme_mod Class configuration array.
 	 */
-	public function __construct( array $theme_mods = array(), View $view ) {
+	public function __construct( array $theme_mods = array(), View $view = null ) {
 
 		if ( empty( self::$mods ) ) {
 			self::$mods = $theme_mods;

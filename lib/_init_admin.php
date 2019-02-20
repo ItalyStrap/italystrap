@@ -14,21 +14,11 @@ if ( ! is_admin() ) {
 	return [];
 }
 
-$autoload_concrete = array_merge(
-	$autoload_concrete,
-	[
-		'ItalyStrap\Editors\TinyMCE',
-		'ItalyStrap\Custom\Metabox\Register',
-		'ItalyStrap\User\Contact_Methods',
-	]
-);
-
-/**
- * TinyMCE Editor in Category description
- */
-if ( 'edit-tags.php' === $pagenow || 'term.php' === $pagenow ) {
-	$autoload_concrete[] = 'ItalyStrap\Editors\Category';
-}
+$concretes = [
+	'\ItalyStrap\Editors\TinyMCE',
+	'\ItalyStrap\Custom\Metabox\Register',
+	'\ItalyStrap\User\Contact_Methods',
+];
 
 /**
  * Add fields to widget areas
@@ -38,8 +28,4 @@ if ( isset( $register_metabox ) ) {
 	add_action( 'cmb2_admin_init', array( $register_metabox, 'register_widget_areas_fields' ) );
 }
 
-return [
-	'ItalyStrap\Editors\TinyMCE',
-	'ItalyStrap\Custom\Metabox\Register',
-	'ItalyStrap\User\Contact_Methods',
-];
+return $concretes;

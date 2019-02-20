@@ -5,21 +5,55 @@
 
 namespace ItalyStrap\Factory;
 
+use Auryn\ConfigException;
+use Auryn\InjectionException;
 use Auryn\Injector;
+use ItalyStrap\Config\Config;
 
-function get_injector() {
+if ( ! function_exists( '\ItalyStrap\Factory\get_injector' ) ) {
 
 	/**
-	 * Injector from ACM if is active
+	 * @return Injector
 	 */
-	$injector = apply_filters( 'italystrap_injector', null );
+	function get_injector() {
 
-	if ( ! isset( $injector ) ) {
-		$injector = new Injector();
-		add_filter( 'italystrap_injector', function () use ( $injector ) {
-			return $injector;
-		} );
+		/**
+		 * Injector from ACM if is active
+		 */
+		$injector = apply_filters( 'italystrap_injector', null );
+
+		if ( ! $injector ) {
+			$injector = new Injector();
+			add_filter( 'italystrap_injector', function () use ( $injector ) {
+				return $injector;
+			} );
+		}
+
+		return $injector;
 	}
+}
 
-	return $injector;
+if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
+
+	/**
+	 * @return Config
+	 */
+	function get_config() {
+
+		static $config = null;
+
+		if ( ! $config ) {
+			try {
+				$config = get_injector()->share('\ItalyStrap\Config\Config')->make( '\ItalyStrap\Config\Config' );
+			} catch ( ConfigException $configException ) {
+				echo $configException->getMessage();
+			} catch ( InjectionException $injectionException ) {
+				echo $injectionException->getMessage();
+			} catch ( \Exception $exception ) {
+				echo $exception->getMessage();
+			}
+		}
+
+		return $config;
+	}
 }

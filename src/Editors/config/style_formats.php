@@ -130,8 +130,8 @@ return array(
 		'items'		=> 	array(
 			array(
 				'title'		=> __( 'Mark', 'italystrap' ),
-				'block'		=> 'mark',
-				'wrapper'	=> true,
+				'inline'	=> 'mark',
+//				'wrapper'	=> true,
 			),
 		),
 	),

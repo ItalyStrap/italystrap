@@ -45,14 +45,15 @@ class Theme_Customizer implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'customize_register'		=> array(
-				'function_to_add'		=> 'customize_register',
-				'priority'				=> 99,
+			'customize_register'					=> array(
+				'function_to_add'	=> 'customize_register',
+				'priority'			=> 99,
 			),
-			'customize_preview_init'	=> 'live_preview',
-			'admin_menu'				=> 'add_link_to_theme_option_page',
-			// 'body_class'				=> 'body_class',
-			'italystrap_body_attr'		=> 'body_attr',
+			'customize_preview_init'				=> 'enqueue_script_on_live_preview',
+			'customize_controls_enqueue_scripts'	=> 'enqueue_script_on_customize_controls_enqueue_scripts',
+			'admin_menu'							=> 'add_link_to_theme_option_page',
+			// 'body_class'							=> 'body_class',
+			'italystrap_body_attr'					=> 'body_attr',
 		);
 	}
 
@@ -123,8 +124,6 @@ class Theme_Customizer implements Subscriber_Interface {
 	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/
 	 *
 	 * @param  WP_Customize_Manager $manager WP_Customize_Manager object.
-	 *
-	 * @return WP_Customize_Manager          Return the manager object
 	 */
 	public function customize_register( WP_Customize_Manager $manager ) {
 
@@ -167,12 +166,37 @@ class Theme_Customizer implements Subscriber_Interface {
 	 * @since ItalyStrap 1.0
 	 *
 	 */
-	public function live_preview() {
+	public function enqueue_script_on_live_preview() {
 
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
 			TEMPLATEURL . '/src/Customizer/js/src/theme-customizer.js',
 			array( 'jquery', 'customize-preview' ),
+			null,
+			true
+		);
+	}
+
+	/**
+	 * This outputs the javascript needed to automate the live settings preview.
+	 * Also keep in mind that this function isn't necessary unless your settings.
+	 *
+	 * Used by hook: 'customize_preview_init'
+	 *
+	 * @see add_action( 'customize_preview_init', $func )
+	 *
+	 * @since ItalyStrap 1.0
+	 *
+	 */
+	public function enqueue_script_on_customize_controls_enqueue_scripts() {
+
+		wp_enqueue_script(
+			'italystrap-theme-customizer',
+			TEMPLATEURL . '/src/Customizer/js/src/customize-controls.js',
+			[
+				'jquery',
+//				'customize-preview',
+			],
 			null,
 			true
 		);

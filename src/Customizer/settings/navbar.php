@@ -19,12 +19,13 @@ use WP_Customize_Media_Control;
  */
 $manager->add_section(
 	'italystrap_navbar_options',
-	array(
+	[
 		'title'			=> __( 'Navbar Settings', 'italystrap' ), // Visible title of section.
 		'panel'			=> $this->panel,
 		'capability'	=> $this->capability,
 		'description'	=> __( 'Allows you to customize settings for the main navbar. Remember that this uses the Twitter Bootstrap Navbar style, if you want more info read the <a href="http://getbootstrap.com/components/#navbar" target="_blank">documentation</a>.', 'italystrap' ),
-	)
+		'description_hidden'	=> true,
+	]
 );
 
 /**
@@ -78,40 +79,12 @@ $manager->add_control(
 		'type'			=> 'radio',
 		'choices'		=> array(
 			'navbar-relative-top'	=> __( 'Default relative top', 'italystrap' ),
+			'navbar-static-top'		=> __( 'Static Top', 'italystrap' ),
 			'navbar-fixed-top'		=> __( 'Fixed Top', 'italystrap' ),
 			'navbar-fixed-bottom'	=> __( 'Fixed Bottom', 'italystrap' ),
-			'navbar-static-top'		=> __( 'Static Top', 'italystrap' ),
 		),
 	)
 );
-
-/**
- * Select the nav_width of navbar
- */
-// $manager->add_setting(
-// 	'navbar[nav_width]',
-// 	array(
-// 		'default'			=> $this->theme_mods['navbar']['nav_width'],
-// 		'type'				=> 'theme_mod',
-// 		'capability'		=> $this->capability,
-// 		'transport'			=> 'postMessage',
-// 		'sanitize_callback'	=> 'sanitize_text_field',
-// 	)
-// );
-// $manager->add_control(
-// 	'italystrap_navbar[nav_width]',
-// 	array(
-// 		'settings'	=> 'navbar[nav_width]',
-// 		'label'			=> __( 'Navbar width', 'italystrap' ),
-// 		'description'	=> __( 'Select the nav_width of navbar, this enlarges the navbar to the windows size (use it also width Static Top option).', 'italystrap' ),
-// 		'section'		=> 'italystrap_navbar_options',
-// 		'type'			=> 'radio',
-// 		'choices'		=> array(
-// 			'container'	=> __( 'Default boxed width', 'italystrap' ),
-// 			'none'		=> __( 'Full width', 'italystrap' ),
-// 		),
-// 	)
-// );
 
 /**
  * Select the nav_width of navbar
@@ -135,7 +108,7 @@ $manager->add_control(
 		'section'		=> 'italystrap_navbar_options',
 		'type'			=> 'radio',
 		'choices'		=> array(
-			'container'	=> __( 'Default boxed width', 'italystrap' ),
+			'container'	=> __( 'Boxed', 'italystrap' ),
 			'none'		=> __( 'Full width', 'italystrap' ),
 		),
 	)
@@ -158,14 +131,17 @@ $manager->add_control(
 	'italystrap_navbar[menus_width]',
 	array(
 		'settings'	=> 'navbar[menus_width]',
-		'label'			=> __( 'Navbar menus width', 'italystrap' ),
+		'label'			=> __( '!!!!Navbar menus width', 'italystrap' ),
 		'description'	=> __( 'Select the menus_width, this is the width of the container of the 2 menu, main-menu and secondary-menu, with the full width the menus will enlarge to the widnows size, with the "width of the content" they will sized like the size of the content. If you have select the "default boxed width" leave the default value.', 'italystrap' ),
 		'section'		=> 'italystrap_navbar_options',
 		'type'			=> 'radio',
 		'choices'		=> array(
-			'container-fluid'	=> __( 'The width of navbar wrapper', 'italystrap' ),
-			'container'			=> __( 'The width of the content', 'italystrap' ),
+			'container-fluid'	=> __( 'Fluid', 'italystrap' ),
+			'container'			=> __( 'Container', 'italystrap' ),
 		),
+//		'active_callback'	=> function ( $control ) {
+//			return $control->manager->get_setting('navbar[nav_width]')->value() == 'none';
+//		},
 	)
 );
 
@@ -180,7 +156,8 @@ $manager->add_setting(
 		// 'default'			=> 'display_name',
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
-		'transport'			=> 'refresh',
+//		'transport'			=> 'refresh',
+		'transport'			=> 'postMessage',
 		'sanitize_callback'	=> 'sanitize_text_field',
 	)
 );

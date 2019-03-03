@@ -1,3 +1,9 @@
+function italystrap_toogle_control() {
+	wp.customize.bind( 'ready', function() {
+		console.log( 'message' );
+	} );
+}
+
 /**
  * This file adds some LIVE to the Theme Customizer live preview. To leverage
  * this, set your custom settings to 'postMessage' and then add your handling
@@ -7,7 +13,6 @@
  * {@link https://developer.wordpress.org/themes/customize-api/the-customizer-javascript-api/}
  */
 ( function( $ ) {
-
 	// Update the site title in real time...
 	wp.customize( 'blogname', function( value ) {
 		value.bind( function( newval ) {
@@ -50,39 +55,52 @@
 	} );
 
 	/**
-	 * Navbar
+	 * ==================================================
+	 *
+	 * Navbar settings
+	 *
+	 * ==================================================
+	 */
+
+	/**
+	 * Navbar background color
 	 */
 	wp.customize( 'navbar[type]', function( value ) {
 		value.bind( function( newval ) {
-			$('div.navbar').removeClass( 'navbar-inverse navbar-default' ).addClass( newval );
+			$('nav.navbar').removeClass( 'navbar-inverse navbar-default' ).addClass( newval );
 		} );
 	} );
 
+	/**
+	 * Navbar position
+	 */
 	wp.customize( 'navbar[position]', function( value ) {
 		value.bind( function( newval ) {
-			$('div.navbar').removeClass( 'navbar-relative-top navbar-fixed-top navbar-fixed-bottom navbar-static-top' ).addClass( newval );
-			// console.log(newval);
-			// if ( 'navbar-fixed-top' === newval ) {
-			// 	console.log("hola datevid");
-			// }
+			$('nav.navbar').removeClass( 'navbar-relative-top navbar-fixed-top navbar-fixed-bottom navbar-static-top' ).addClass( newval );
 		} );
 	} );
 
+	/**
+	 *
+	 */
 	wp.customize( 'navbar[nav_width]', function( value ) {
 		value.bind( function( newval ) {
-			$('nav').removeClass( 'container' ).addClass( newval );
+			// console.log(newval);
+			$('.navbar-wrapper').removeClass( 'container' ).addClass( newval );
 		} );
 	} );
 
 	wp.customize( 'navbar[menus_width]', function( value ) {
 		value.bind( function( newval ) {
-			$('div.navbar > div').removeClass( 'container-fluid container' ).addClass( newval );
+			$('nav > div').removeClass( 'container-fluid container' ).addClass( newval );
 		} );
 	} );
 
 	wp.customize( 'display_navbar_brand', function( value ) {
 		value.bind( function( newval ) {
+			console.log(newval);
 			// $('.navbar').css('color', newval );
+			$('.navbar-brand').css('color', newval );
 		} );
 	} );
 

@@ -72,14 +72,42 @@ function get_config_file_path( $name ) {
 /**
  * @param  string $name
  *
+ * @return string
+ * @throws \InvalidArgumentException If the given file name does not exists
+ */
+function get_child_config_file_path( $name ) {
+
+	$file_path = sprintf(
+		'%s/config/%s.php',
+		get_stylesheet_directory(),
+		$name
+	);
+
+	if ( ! file_exists( $file_path ) ) {
+		return null;
+	}
+
+	return $file_path;
+}
+
+/**
+ * @param  string $name
+ *
  * @return array
  */
 function get_config_file_content( $name ) {
 
 	$config = [];
+	$child = [];
 
 	try {
 		$config = (array) require get_config_file_path( $name );
+
+		if ( $child_path = get_child_config_file_path( $name ) ) {
+			$child = (array) require $child_path;
+			$config = array_replace_recursive( $config, $child );
+		}
+
 	} catch ( \InvalidArgumentException $exception ) {
 		echo $exception->getMessage();
 	} catch ( \Exception $exception ) {

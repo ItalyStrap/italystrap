@@ -15,6 +15,7 @@ namespace ItalyStrap\Controllers\Posts\Parts;
 use ItalyStrap\Controllers\Controller;
 use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Pagination\Pagination as BT_Pagination;
+use ItalyStrap\View\View_Interface as View;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -41,11 +42,16 @@ class Pagination extends Controller implements Subscriber_Interface  {
 		);
 	}
 
+	private $pagination;
+
+	public function __construct( View $view, \ItalyStrap\Components\Navigations\Pagination $pagination, array $theme_mods = array() ) {
+		parent::__construct( $theme_mods, $view );
+
+		$this->pagination = $pagination;
+	}
+
 	/**
 	 * Render the output of the controller.
-	 *
-	 * @todo wp-includes\link-template.php 2563
-	 *       the_posts_pagination();
 	 */
 	public function render() {
 
@@ -53,7 +59,6 @@ class Pagination extends Controller implements Subscriber_Interface  {
 			return;
 		}
 
-		$pagination = new  BT_Pagination( $this->theme_mod );
-		$pagination->render();
+		echo $this->pagination->render();
 	}
 }

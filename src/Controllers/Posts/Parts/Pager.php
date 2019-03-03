@@ -14,13 +14,14 @@ namespace ItalyStrap\Controllers\Posts\Parts;
 
 use ItalyStrap\Controllers\Controller;
 use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\View\View_Interface as View;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
 /**
- * The pagination controller class
+ * The pager controller class
  */
 class Pager extends Controller implements Subscriber_Interface  {
 
@@ -40,11 +41,16 @@ class Pager extends Controller implements Subscriber_Interface  {
 		);
 	}
 
+	private $pager;
+
+	public function __construct( View $view, \ItalyStrap\Components\Navigations\Pager $pager, array $theme_mods = array() ) {
+		parent::__construct( $theme_mods, $view );
+
+		$this->pager = $pager;
+	}
+
 	/**
 	 * Render the output of the controller.
-	 *
-	 * @todo E:\xampp\htdocs\italystrap\wp-includes\link-template.php
-	 *       the_post_navigation( array() );
 	 */
 	public function render() {
 		
@@ -55,29 +61,7 @@ class Pager extends Controller implements Subscriber_Interface  {
 		if (  ! is_single()  ) {
 			return;
 		}
-	
-		/**
-		 * Arguments for previous_post_link() and next_post_link()
-		 *
-		 * @var array
-		 */
-		$args = array(
-			'previous_format'	=> '<li class="previous pager-prev"> %link',
-			'previous_link'		=> '<i class="glyphicon glyphicon-arrow-left"></i> %title</li>',
-			'next_format'		=> '<li class="next pager-next"> %link',
-			'next_link'			=> '%title <i class="glyphicon glyphicon-arrow-right"></i></li>',
-		);
 
-		$args = apply_filters( 'italystrap_previous_next_post_link_args', $args );
-
-?>
-<nav aria-label="<?php _e( 'In post navigation', 'italystrap' ); ?>">
-	<ul class="pager">
-		<?php previous_post_link( $args['previous_format'], $args['previous_link'] );
-		next_post_link( $args['next_format'], $args['next_link'] ); ?>
-	</ul>
-</nav>
-<span class="clearfix"></span>
-<?php
+		echo $this->pager->render();
 	}
 }

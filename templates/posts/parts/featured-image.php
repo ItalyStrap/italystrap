@@ -47,7 +47,7 @@ if ( has_post_thumbnail() ) { ?>
 		 * Filter the post thumbnail attributes with context
 		 *
 		 * @param array  $attr    The attributes of the post_thumbnail.
-		 * @param string $context The context in wich this function is called.
+		 * @param string $context The context in witch this function is called.
 		 * @param string $size    The size of the post_thumbnail.
 		 *
 		 * @var array

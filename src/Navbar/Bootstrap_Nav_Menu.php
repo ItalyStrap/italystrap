@@ -356,7 +356,6 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 	 * @return string       Return the string with attribute
 	 */
 	protected static function get_attributes( array $atts = array() ) {
-
 		return \ItalyStrap\Core\get_attr( 'nav', $atts );
 	}
 
@@ -369,11 +368,12 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 	 * and will add a link to the WordPress menu manager if logged in as an admin.
 	 *
 	 * @param array $args passed from the wp_nav_menu function.
+	 * @return string
 	 */
 	public static function fallback( $wp_nav_menu_args ) {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			return '';
 		}
 
 		$output = '';
@@ -382,14 +382,24 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 
 			$output = sprintf(
 				'<%s%s>',
-				$wp_nav_menu_args['container'],
-				self::get_attributes( array( 'id' => $wp_nav_menu_args['container_id'], 'class' => $wp_nav_menu_args['container_class'] ) )
+				esc_attr( trim( $wp_nav_menu_args['container'] ) ),
+				self::get_attributes(
+					[
+						'id'	=> $wp_nav_menu_args['container_id'],
+						'class'	=> $wp_nav_menu_args['container_class']
+					]
+				)
 			);
 		}
 
 		$output .= sprintf(
 			'<ul%s><li><a href="%s">%s</a></li></ul>',
-			self::get_attributes( array( 'id' => $wp_nav_menu_args['menu_id'], 'class' => $wp_nav_menu_args['menu_class'] ) ),
+			self::get_attributes(
+				[
+					'id'	=> $wp_nav_menu_args['menu_id'],
+					'class'	=> $wp_nav_menu_args['menu_class']
+				]
+			),
 			admin_url( 'nav-menus.php' ),
 			__( 'Add a menu', 'italystrap' )
 		);
@@ -398,7 +408,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 
 			$output .= sprintf(
 				'</%s>',
-				$wp_nav_menu_args['container']
+				esc_attr( trim( $wp_nav_menu_args['container'] ) )
 			);
 		}
 

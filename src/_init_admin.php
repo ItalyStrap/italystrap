@@ -8,7 +8,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap;
 
 if ( ! is_admin() ) {
 	return [];

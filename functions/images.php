@@ -79,8 +79,6 @@ if ( ! function_exists( 'italystrap_thumb_url' ) ) {
 if ( ! function_exists( 'italystrap_logo' ) ) {
 	/**
 	 * Get the logo url
-	 *
-	 * @return string Return logo url
 	 */
 	function italystrap_logo() {
 		echo italystrap_get_the_custom_image_url( 'logo', TEMPLATEURL . '/img/italystrap-logo.jpg' );
@@ -273,9 +271,9 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 	 *
 	 * @todo In questa funzione creare una if per stampare o ritornare il codice, per farlo aggiungere un parametro alla funzione o all'array, esempio:
 	 * if (true)
-	 * 	return
+	 *    return
 	 * else
-	 * 	echo
+	 *    echo
 	 *
 	 * @todo Interessante funzionalità potrebbe essere quella di avere più immagini di default variabili.
 	 *
@@ -283,6 +281,7 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 	 * @param $size Il nome della thumb dichiarate in add_image_size()
 	 * @param $default_width Deve essere un numero intero corrispondente alla larghezza dell'immagine di default
 	 * @param $default_height Deve essere un numero intero corrispondente all'altezza' dell'immagine di default
+	 * @return string
 	 */
 	function italystrap_get_the_post_thumbnail( $postID = null, $size = 'post-thumbnail', $attr = array(), $default_width = 0, $default_height = 0, $default_image = '' ) {
 
@@ -290,7 +289,8 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 		 * If has feautured image return that
 		 */
 		if ( has_post_thumbnail() ) {
-			return get_the_post_thumbnail( $postID, $size, $attr ); }
+			return get_the_post_thumbnail( $postID, $size, $attr );
+		}
 
 		$postID = ( null === $postID ) ? get_the_ID() : $postID;
 

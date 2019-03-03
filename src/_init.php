@@ -8,7 +8,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap;
 
 if ( is_admin() ) {
 	return [];
@@ -19,8 +19,7 @@ $concretes = [
 	'ItalyStrap\Tag_Cloud\Tag_Cloud',
 	'ItalyStrap\WooCommerce\WooCommerce',
 	'ItalyStrap\WooCommerce\Form_Field',
-	'ItalyStrap\Layout\Layout', // 'wp_loaded'
-	// 'ItalyStrap\Controllers\Factory',
+	'ItalyStrap\Layout\Layout',
 
 	'ItalyStrap\Controllers\Headers\Navbar_Top',
 	'ItalyStrap\Controllers\Headers\Image',

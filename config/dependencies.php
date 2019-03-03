@@ -2,10 +2,10 @@
 
 namespace ItalyStrap;
 
-/**
- * Injector from ACM if is active
- */
-$injector = apply_filters( 'italystrap_injector', null );
+use ItalyStrap\Config\Config;
+use ItalyStrap\Factory;
+
+global $wp_query;
 
 return [
 
@@ -31,7 +31,8 @@ return [
 	 * ==========================================================
 	 */
 	'aliases'				=> [
-		 '\ItalyStrap\Config\Config_Interface'	=> 'ItalyStrap\Config\Config',
+		 '\ItalyStrap\Config\Config_Interface'	=> '\ItalyStrap\Config\Config',
+		 '\Walker_Nav_Menu'						=> '\ItalyStrap\Navbar\Bootstrap_Nav_Menu',
 	],
 
 	/**
@@ -39,8 +40,6 @@ return [
 	 *
 	 * Autoload Classes definitions
 	 *
-	 * ':var_name'	=> string,
-	 * '+var_name'	=> invocable,
 	 * 'walker'		=> 'ItalyStrap\Navbar\Bootstrap_Nav_Menu',
 	 * ':walker'	=> new \ItalyStrap\Navbar\Bootstrap_Nav_Menu(),
 	 * '+walker'	=> function () {
@@ -50,8 +49,20 @@ return [
 	 * ============================
 	 */
 	'definitions'			=> [
+//		'\ItalyStrap\Navbar\Navbar'	=> [
+//			'walker' => '\ItalyStrap\Navbar\Bootstrap_Nav_Menu'
+//		],
 		'\ItalyStrap\Navbar\Navbar'	=> [
-			'walker' => '\ItalyStrap\Navbar\Bootstrap_Nav_Menu'
+			':fallback_cb' => '\ItalyStrap\Navbar\Bootstrap_Nav_Menu::fallback',
+		],
+//		'\ItalyStrap\Navbar\Navbar'	=> [
+//			':fallback_cb' => [ '\ItalyStrap\Navbar\Bootstrap_Nav_Menu', 'fallback' ],
+//		],
+		'\ItalyStrap\Components\Navigations\Pagination'	=> [
+			':config'	=> new Config( \ItalyStrap\Config\get_config_file_content( 'pagination' ) ),
+		],
+		'\ItalyStrap\Components\Navigations\Pager'	=> [
+			':config'	=> new Config( \ItalyStrap\Config\get_config_file_content( 'pager' ) ),
 		],
 	],
 
@@ -65,7 +76,9 @@ return [
 	 * ==========================================================
 	 */
 	'define_param'			=> [
-		'theme_mods'	=> $injector->make( '\ItalyStrap\Config\Config' )->all(),
+		'theme_mods'	=> Factory\get_config()->all(),
+		'wp_query'		=> $wp_query,
+		'query'			=> $wp_query,
 	],
 
 	/**

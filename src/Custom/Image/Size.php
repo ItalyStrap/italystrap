@@ -39,7 +39,12 @@ class Size implements Subscriber_Interface {
 			// 	'function_to_add'	=> 'register',
 			// 	'priority'			=> 10,
 			// ),
-			'italystrap_plugin_app_loaded'	=> 'register',
+//			'italystrap_plugin_app_loaded'	=> 'register',
+			'italystrap_theme_load'	=> [
+				'function_to_add'		=> 'register',
+				'priority'				=> 20,
+				'accepted_args'			=> null,
+			],
 		);
 	}
 

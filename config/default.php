@@ -89,7 +89,11 @@ return apply_filters(
 		'post_thumbnail_alignment'		=> 'alignnone',
 
 		/**
+		 * ==========================================================
+		 *
 		 * Navbar
+		 *
+		 * ==========================================================
 		 */
 		'display_navbar_brand'			=> 'display_name',
 		'navbar_logo_image'				=> '',
@@ -98,6 +102,11 @@ return apply_filters(
 		// 'display_navbar_logo_image'		=> '',
 		// 'display_navbar_logo_image'		=> '',
 		'navbar'						=> [
+			/**
+			 * options:
+			 * navbar-default
+			 * navbar-inverse
+			 */
 			'type'			=> 'navbar-default',
 			'position'		=> 'navbar-relative-top',
 			'nav_width'		=> 'container', // This is the container of entire navbar.

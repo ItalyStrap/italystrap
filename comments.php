@@ -12,6 +12,8 @@ namespace ItalyStrap;
 
 use ItalyStrap\Comments\Comments;
 
+//d(get_defined_vars());
+
 /**
  * @link https://codex.wordpress.org/Function_Reference/post_type_supports
  */

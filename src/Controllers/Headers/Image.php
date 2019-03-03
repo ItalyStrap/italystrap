@@ -118,7 +118,7 @@ class Image extends Controller implements Subscriber_Interface  {
 	 *
 	 * @return string            The image HTML.
 	 */
-	protected function get_custom_header_image( $image_obj ) {
+	protected function get_custom_header_image( $image_obj, $size ) {
 
 		if ( ! isset( $image_obj->attachment_id ) ) {
 			return sprintf(

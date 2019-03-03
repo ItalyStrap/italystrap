@@ -33,6 +33,7 @@ backups
 *.map
 
 vendor
+_others
 
 #Travis
 .env

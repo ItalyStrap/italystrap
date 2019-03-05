@@ -13,6 +13,7 @@
 namespace ItalyStrap\Custom\Image;
 
 use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Config\Config_Interface;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -60,8 +61,9 @@ class Size implements Subscriber_Interface {
 	 *
 	 * @param [type] $argument [description].
 	 */
-	function __construct( array $theme_mods = array() ) {
-		$this->theme_mods = $theme_mods;
+	function __construct( Config_Interface $config ) {
+
+		$this->theme_mods = $config->all();
 
 		$this->image_sizes = (array) $this->theme_mods['image_size'];
 	}

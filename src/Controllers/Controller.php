@@ -14,7 +14,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\View\View_Interface as View;
+//use ItalyStrap\View\View_Interface as View;
+use ItalyStrap\Template\View_Interface;
 
 /**
  * Template Class
@@ -43,6 +44,11 @@ class Controller implements Controller_Interface {
 	protected $file_name = '';
 
 	/**
+	 * @var string
+	 */
+	protected $class_name;
+
+	/**
 	 * Data for the view
 	 *
 	 * @var array
@@ -62,9 +68,10 @@ class Controller implements Controller_Interface {
 	/**
 	 * Init the class
 	 *
-	 * @param array $theme_mod Class configuration array.
+	 * @param array $theme_mods
+	 * @param View_Interface|null $view
 	 */
-	public function __construct( array $theme_mods = array(), View $view = null ) {
+	public function __construct( array $theme_mods = array(), View_Interface $view = null ) {
 
 		if ( empty( self::$mods ) ) {
 			self::$mods = $theme_mods;
@@ -86,17 +93,23 @@ class Controller implements Controller_Interface {
 	/**
 	 * Set class name
 	 */
-	public function set_class_name() {
+	private function set_class_name() {
 
-		/**
-		 * Credits:
-		 * @link https://coderwall.com/p/cpxxxw/php-get-class-name-without-namespace
-		 * @php54
-		 * $this->class_name =  ( new \ReflectionClass( $this ) )->getShortName();
-		 */
-		$class_name = new \ReflectionClass( $this );
-		$this->class_name =  $class_name->getShortName();
-		$this->class_name = strtolower( $this->class_name );
+		try {
+
+			/**
+			 * Credits:
+			 * @link https://coderwall.com/p/cpxxxw/php-get-class-name-without-namespace
+			 * @php54
+			 * $this->class_name =  ( new \ReflectionClass( $this ) )->getShortName();
+			 */
+			$class_name = new \ReflectionClass( $this );
+			$this->class_name = $class_name->getShortName();
+			$this->class_name = strtolower( $this->class_name );
+
+		} catch ( \ReflectionException $exception ) {
+			echo $exception->getMessage();
+		}
 	}
 
 	/**
@@ -108,11 +121,9 @@ class Controller implements Controller_Interface {
 			throw new \Exception('You have to register the file name of the view.');
 		}
 
-		$template = $this->template_dir . DS . $this->file_name;
+		$template = $this->template_dir . DIRECTORY_SEPARATOR . $this->file_name;
 
-		$this->view->render( $template, null, false, $this->data   );
-
-		// $this->get_template_part( $template );
+		echo $this->view->render( $template, $this->data );
 	}
 
 	/**
@@ -180,60 +191,6 @@ class Controller implements Controller_Interface {
 		}
 
 		return (array) apply_filters( 'italystrap_get_template_settings', $parts );
-	}
-
-	/**
-	 * Load a template part into a template
-	 *
-	 * Makes it easy for a theme to reuse sections of code in a easy to overload way
-	 * for child themes.
-	 *
-	 * Includes the named template part for a theme or if a name is specified then a
-	 * specialised part will be included. If the theme contains no {slug}.php file
-	 * then no template will be included.
-	 *
-	 * The template is included using require, not require_once, so you may include the
-	 * same template part multiple times.
-	 *
-	 * For the $name parameter, if the file is called "{slug}-special.php" then specify
-	 * "special".
-	 *
-	 * Some idea for the template structure http://jespervanengelen.com/page-templates-in-wordpress-template-hierarchy/#comment-99397
-	 *
-	 * @since 4.0.0
-	 *
-	 * @see get_template_part() - wp-includes/general-template.php
-	 *
-	 * @param string $slug The slug name for the generic template.
-	 * @param string $name The name of the specialised template.
-	 */
-	protected function get_template_part( $slug, $name = null, $load = false ) {
-		/**
-		 * Fires before the specified template part file is loaded.
-		 *
-		 * The dynamic portion of the hook name, `$slug`, refers to the slug name
-		 * for the generic template part.
-		 *
-		 * @since 3.0.0
-		 *
-		 * @param string      $slug The slug name for the generic template.
-		 * @param string|null $name The name of the specialized template.
-		 */
-		do_action( "italystrap_get_template_part_{$slug}", $slug, $name );
-
-		$templates = array();
-		$name = (string) $name;
-		if ( '' !== $name )
-			$templates[] = "{$slug}-{$name}.php";
-
-		$templates[] = "{$slug}.php";
-
-		if ( $load ) {
-			locate_template( $templates, $load, false );
-			return;
-		}
-
-		require locate_template( $templates, $load, false );
 	}
 
 	/**

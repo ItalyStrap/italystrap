@@ -15,7 +15,7 @@ namespace ItalyStrap\Controllers\Posts\Parts;
 use ItalyStrap\Controllers\Controller;
 use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Pagination\Pagination as BT_Pagination;
-use ItalyStrap\View\View_Interface as View;
+use ItalyStrap\Template\View_Interface;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -44,7 +44,7 @@ class Pagination extends Controller implements Subscriber_Interface  {
 
 	private $pagination;
 
-	public function __construct( View $view, \ItalyStrap\Components\Navigations\Pagination $pagination, array $theme_mods = array() ) {
+	public function __construct( View_Interface $view, \ItalyStrap\Components\Navigations\Pagination $pagination, array $theme_mods = array() ) {
 		parent::__construct( $theme_mods, $view );
 
 		$this->pagination = $pagination;

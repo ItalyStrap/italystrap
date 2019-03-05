@@ -14,7 +14,7 @@ namespace ItalyStrap\Controllers\Posts\Parts;
 
 use ItalyStrap\Controllers\Controller;
 use ItalyStrap\Event\Subscriber_Interface;
-use ItalyStrap\View\View_Interface as View;
+use ItalyStrap\Template\View_Interface;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -43,7 +43,7 @@ class Pager extends Controller implements Subscriber_Interface  {
 
 	private $pager;
 
-	public function __construct( View $view, \ItalyStrap\Components\Navigations\Pager $pager, array $theme_mods = array() ) {
+	public function __construct( View_Interface $view, \ItalyStrap\Components\Navigations\Pager $pager, array $theme_mods = array() ) {
 		parent::__construct( $theme_mods, $view );
 
 		$this->pager = $pager;

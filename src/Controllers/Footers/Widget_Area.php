@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 use ItalyStrap\Controllers\Controller;
 use ItalyStrap\Event\Subscriber_Interface;
-use ItalyStrap\View\View_Interface as View;
+use ItalyStrap\Template\View_Interface;
 
 /**
  * Class description
@@ -56,7 +56,7 @@ class Widget_Area extends Controller implements Subscriber_Interface {
 	 *
 	 * @param array $theme_mod Class configuration array.
 	 */
-	function __construct( array $theme_mod = array(), View $view ) {
+	function __construct( array $theme_mod = array(), View_Interface $view ) {
 
 		$this->data['footer_sidebars'] = apply_filters(
 			'footer_sidebars_widgets',

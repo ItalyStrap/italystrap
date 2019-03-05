@@ -2,7 +2,8 @@
 
 namespace ItalyStrap;
 
-use ItalyStrap\Config\Config;
+use ItalyStrap\Config\Config_Factory;
+use ItalyStrap\Config;
 use ItalyStrap\Factory;
 
 global $wp_query;
@@ -17,7 +18,12 @@ return [
 	 |-----------------------------------------------------------
 	 */
 	'sharing'				=> [
+		/**
+		 * Already shared in bootstrap.php or in ACM if active
+		 */
 		'\ItalyStrap\Config\Config',
+		'\ItalyStrap\Event\Manager',
+		'\ItalyStrap\Template\View',
 		'\ItalyStrap\Css\Css',
 	],
 
@@ -31,8 +37,10 @@ return [
 	 * ==========================================================
 	 */
 	'aliases'				=> [
-		 '\ItalyStrap\Config\Config_Interface'	=> '\ItalyStrap\Config\Config',
-		 '\Walker_Nav_Menu'						=> '\ItalyStrap\Navbar\Bootstrap_Nav_Menu',
+		'\ItalyStrap\Config\Config_Interface'	=> '\ItalyStrap\Config\Config',
+		'\ItalyStrap\Template\Finder_Interface'	=> '\ItalyStrap\Template\Finder',
+		'\ItalyStrap\Template\View_Interface'	=> '\ItalyStrap\Template\View',
+		'\Walker_Nav_Menu'						=> '\ItalyStrap\Navbar\Bootstrap_Nav_Menu',
 	],
 
 	/**
@@ -40,6 +48,7 @@ return [
 	 *
 	 * Autoload Classes definitions
 	 *
+	 * @example :
 	 * 'walker'		=> 'ItalyStrap\Navbar\Bootstrap_Nav_Menu',
 	 * ':walker'	=> new \ItalyStrap\Navbar\Bootstrap_Nav_Menu(),
 	 * '+walker'	=> function () {
@@ -59,10 +68,10 @@ return [
 //			':fallback_cb' => [ '\ItalyStrap\Navbar\Bootstrap_Nav_Menu', 'fallback' ],
 //		],
 		'\ItalyStrap\Components\Navigations\Pagination'	=> [
-			':config'	=> new Config( \ItalyStrap\Config\get_config_file_content( 'pagination' ) ),
+			':config'	=> Config_Factory::make( Config\get_config_file_content( 'pagination' ) ),
 		],
 		'\ItalyStrap\Components\Navigations\Pager'	=> [
-			':config'	=> new Config( \ItalyStrap\Config\get_config_file_content( 'pager' ) ),
+			':config'	=> Config_Factory::make( Config\get_config_file_content( 'pager' ) ),
 		],
 	],
 
@@ -128,10 +137,10 @@ return [
 		// '\ItalyStrap\Core\Router\Controller', // Da testare meglio
 		'\ItalyStrap\Customizer\Theme_Customizer',
 		'\ItalyStrap\Css\Css',
-		'\ItalyStrap\Init\Init_Theme', // 'italystrap_plugin_app_loaded'
+		'\ItalyStrap\Init\Init_Theme',
 		'\ItalyStrap\Custom\Sidebars\Sidebars',
 		'\ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
-		'\ItalyStrap\Custom\Image\Size', // 'italystrap_plugin_app_loaded'
+		'\ItalyStrap\Custom\Image\Size',
 	],
 
 //	'options_concretes'		=> [],

@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Config\Config;
 use ItalyStrap\HTML;
 
 /**
@@ -391,7 +392,9 @@ function embed_wrap( $cache, $url, $attr, $post_ID ) {
 }
 add_filter( 'embed_oembed_html', __NAMESPACE__ . '\embed_wrap', 10, 4 );
 
-add_filter( 'post_class', function ( $classes ) use ( $theme_mods ) {
+add_filter( 'post_class', function ( $classes ) {
+
+	$theme_mods = \ItalyStrap\Factory\get_config()->all();
 
 	foreach ( $classes as $key => $class ) {
 		if( 'hentry' === $class ) {
@@ -410,7 +413,7 @@ add_filter( 'post_class', function ( $classes ) use ( $theme_mods ) {
 	return  $classes ;
 });
 
-add_filter( 'body_class', function ( $classes ) use ( $theme_mods ) {
+add_filter( 'body_class', function ( $classes ) {
 	$classes[] = CURRENT_TEMPLATE_SLUG;
 	return  $classes ;
 });
@@ -439,3 +442,19 @@ function get_theme_mods_in_customizer ( array $theme_mods = [] ) {
 // 	$required_plugins = new \ItalyStrap\Required_Plugins\Register;
 // 	add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
 // }, 10, 1 );
+
+/**
+ * Append schema to relative filter
+ * @TODO In prova, vedere se può essre utile
+ */
+function _test_append_schema_to_filter () {
+	$schema = (array) \ItalyStrap\Config\get_config_file_content( 'schema' );
+
+	foreach ( $schema as $filter_name => $new_attr ) {
+		add_filter( $filter_name, function ( $old_attr ) use ( $new_attr ) {
+			return array_merge( $old_attr, $new_attr );
+		} );
+	}
+}
+
+add_filter( 'after_setup_theme', __NAMESPACE__ . '\_test_append_schema_to_filter' );

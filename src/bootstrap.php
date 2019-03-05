@@ -66,6 +66,8 @@ $injector = Factory\get_injector();
  * Set the default theme constant
  *
  * @see /config/constants.php
+ *
+ * @var array $constants
  */
 $constants = Core\set_default_constants( Config\get_config_file_content( 'constants' ) );
 
@@ -82,7 +84,11 @@ $constants = Core\set_default_constants( Config\get_config_file_content( 'consta
 add_filter( 'template_include', '\ItalyStrap\Core\set_current_template_constants', 99998 );
 
 try {
-	$event_manager = $injector->make( '\ItalyStrap\Event\Manager' );
+
+	/**
+	 * Just in case ACM is not active
+	 */
+	$injector->share( '\ItalyStrap\Config\Config' );
 	$config = $injector->make( '\ItalyStrap\Config\Config' );
 
 	if ( ! isset( $theme_mods ) ) {

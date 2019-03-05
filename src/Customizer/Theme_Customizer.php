@@ -16,8 +16,6 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 use ItalyStrap\Event\Subscriber_Interface;
 
-use ItalyStrap\Core as Core;
-use ItalyStrap\Image\Size;
 use ItalyStrap\Config\Config;
 
 use WP_Customize_Manager;
@@ -95,11 +93,8 @@ class Theme_Customizer implements Subscriber_Interface {
 	/**
 	 * Init the class
 	 */
-	function __construct( array $theme_mods = array(), Config $config, Size $size ) {
-
-		$this->theme_mods = $theme_mods;
-		// $this->theme_mods = $config->all();
-		$this->size = $size;
+	function __construct( Config $config ) {
+		 $this->theme_mods = $config->all();
 	}
 
 	/**

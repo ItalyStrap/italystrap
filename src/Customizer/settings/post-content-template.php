@@ -12,6 +12,10 @@
 
 namespace ItalyStrap\Customizer\Control;
 
+if ( ! class_exists( '\ItalyStrap\Customizer\Control\Multicheck' ) ) {
+	return;
+}
+
 /**
  * Define a new section for theme image options
  */

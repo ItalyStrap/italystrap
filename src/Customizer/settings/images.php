@@ -113,7 +113,7 @@ $manager->add_control(
 		'description'	=> __( 'Change image size of post thumbnail in archive, author, blog, category, search, and tag pages.', 'italystrap' ),
 		'section'		=> 'italystrap_image_options',
 		'type'			=> 'select',
-		'choices'		=> $this->size->get_image_sizes(),
+		'choices'		=> apply_filters( 'image_size_names_choose', [] ),
 	)
 );
 

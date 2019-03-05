@@ -227,7 +227,7 @@ $manager->add_control(
 		'label'		=> __( 'Logo image size', 'italystrap' ),
 		'section'	=> 'italystrap_navbar_options',
 		'type'		=> 'select',
-		'choices'	=> $this->size->get_image_sizes(),
+		'choices'	=> apply_filters( 'image_size_names_choose', [] ),
 	)
 );
 

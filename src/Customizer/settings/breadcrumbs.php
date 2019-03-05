@@ -23,6 +23,10 @@ $manager->add_section(
 	)
 );
 
+if ( ! class_exists( '\ItalyStrap\Customizer\Control\Multicheck' ) ) {
+	return;
+}
+
 /**
  * Container Width of the header
  */

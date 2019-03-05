@@ -121,7 +121,7 @@ class Init_Theme implements Subscriber_Interface {
 	 * @fire on init
 	 */
 	public function add_post_type_support() {
-		foreach ( $this->config->get( 'post_type_support' ) as $post_type => $features ) {
+		foreach ( $this->config->get( 'post_type_support', [] ) as $post_type => $features ) {
 			add_post_type_support( $post_type, $features );
 		}
 	}

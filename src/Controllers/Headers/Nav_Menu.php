@@ -54,7 +54,6 @@ class Nav_Menu extends Controller implements Subscriber_Interface  {
 	 */
 	function __construct( array $theme_mod = array(), View_Interface $view, Navbar $navbar  ) {
 
-//		$this->navbar = $navbar;
 		$this->data['navbar'] = $navbar;
 
 		parent::__construct( $theme_mod, $view );

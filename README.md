@@ -4,7 +4,7 @@
 **Tags:** breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant  
 **Requires at least:** 5.0  
 **Tested up to:** 5.2  
-**Stable tag:** 4.0.0-beta.5  
+**Stable tag:** 4.0.0-beta.6  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -73,6 +73,26 @@ wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
 
 
 ## Changelog ##
+
+### 4.0.0-beta.6 ###
+
+Release Date: Mar 6th, 2019
+
+(Dev time 30 days)
+
+**This is a complete rebuild of the theme, it is a breaking changes, always do a backup first**
+
+* Now the theme can be activated without the ACM plugin active first for better user experience.
+* New API for templating finder and viewer
+* New API for Components (still in alpha)
+* New filter 'italystrap_default_theme_config'
+* New filter 'italystrap_default_theme_constants'
+* Navbar improvements
+* Better bootstrapping for the framework
+* API functions for config files
+* Moving for upgrading Bootstrap CSS to v.4
+* Some minor fix
+* Some refactoring of the structure
 
 ### 4.0.0-beta.5 ###
 

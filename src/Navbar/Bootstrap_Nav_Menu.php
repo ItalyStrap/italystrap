@@ -412,6 +412,6 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 			);
 		}
 
-		echo $output; // XSS ok.
+		return $output; // XSS ok.
 	}
 }

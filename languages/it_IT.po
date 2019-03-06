@@ -1188,7 +1188,7 @@ msgstr "(attuale)"
 
 #: src/Navbar/Bootstrap_Nav_Menu.php:394
 msgid "Add a menu"
-msgstr "Aggiungi al menù"
+msgstr "Aggiungi un menù"
 
 #: src/Navbar/Navbar.php:198
 msgid "Toggle navigation"

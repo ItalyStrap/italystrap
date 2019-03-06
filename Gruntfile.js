@@ -19,6 +19,7 @@ var italystrap_theme = [
 	'!sass/**',
 	'!css/src/**',
 	'!js/src/**',
+	'!_others',
 
 	/**
 	 * Files

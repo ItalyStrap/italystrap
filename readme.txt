@@ -74,6 +74,26 @@ wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
 
 == Changelog ==
 
+= 4.0.0-beta.6 =
+
+Release Date: Mar 6th, 2019
+
+(Dev time 30 days)
+
+**This is a complete rebuild of the theme, it is a breaking changes, always do a backup first**
+
+* Now the theme can be activated without the ACM plugin active first for better user experience.
+* New API for templating finder and viewer
+* New API for Components (still in alpha)
+* New filter 'italystrap_default_theme_config'
+* New filter 'italystrap_default_theme_constants'
+* Navbar improvements
+* Better bootstrapping for the framework
+* API functions for config files
+* Moving for upgrading Bootstrap CSS to v.4
+* Some minor fix
+* Some refactoring of the structure
+
 = 4.0.0-beta.5 =
 
 Release Date: Feb 5th, 2019

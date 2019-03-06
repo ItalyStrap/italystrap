@@ -443,6 +443,14 @@ module.exports = function(grunt) {
 	//     ]
 	// );
 
+	/**
+	 * ========================================
+	 * REMEMBER:
+	 * Delete prerelease in case stable version
+	 * will be released
+	 * ========================================
+	 */
+
 	grunt.registerTask(
 		'deploy',
 		[

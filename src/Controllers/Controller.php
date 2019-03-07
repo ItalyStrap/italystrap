@@ -14,7 +14,6 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-//use ItalyStrap\View\View_Interface as View;
 use ItalyStrap\Template\View_Interface;
 
 /**

@@ -67,8 +67,4 @@ add_filter( 'italystrap_template_settings', function ( $array ) {
 	return (array) get_post_meta( get_queried_object_id(), '_italystrap_template_settings', true );
 } );
 
-// $template_factory = new \ItalyStrap\Controllers\Factory( $theme_mods, $injector, $event_manager );
-// $template_factory->register();
-// add_action( 'wp_loaded', array( $template_factory, 'register' ) );
-
 return $concretes;

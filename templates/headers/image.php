@@ -12,7 +12,7 @@ namespace ItalyStrap\Headers;
 		<div class="row">
 			<div class="col-md-12">
 				<a href="<?php echo esc_url( HOME_URL ); ?>" rel="home">
-					<?php $this->custom_header(); ?>
+					<?php echo $this->custom_header; ?>
 				</a>
 			</div>
 		</div>

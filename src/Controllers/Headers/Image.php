@@ -97,10 +97,10 @@ class Image extends Controller implements Subscriber_Interface  {
 	 *
 	 * @return string       HTML img element or empty string on failure.
 	 */
-	protected function get_attachment_image( $id, $size = 'full', array $attr = array() ) {
+	private function get_attachment_image( $id, $size = 'full', array $attr = array() ) {
 	// full-width
 		$attr = array(
-			'class'		=> "center-block img-responsive attachment-$id attachment-header size-header",
+			'class'		=> "center-block img-responsive img-fluid attachment-$id attachment-header size-header",
 			'alt'		=> esc_attr( GET_BLOGINFO_NAME ),
 			'itemprop'	=> 'image',
 		);
@@ -118,15 +118,17 @@ class Image extends Controller implements Subscriber_Interface  {
 	 *
 	 * @return string            The image HTML.
 	 */
-	protected function get_custom_header_image( $image_obj, $size ) {
+	private function get_custom_header_image( $image_obj, $size ) {
 
 		if ( ! isset( $image_obj->attachment_id ) ) {
 			return sprintf(
-				'<img src="%s" width="%s" height="%s" alt="%s">',
-				$image_obj->url,
-				$image_obj->width,
-				$image_obj->height,
-				GET_BLOGINFO_NAME
+				'<img%s>',
+				\ItalyStrap\HTML\get_attr( 'custom_header', [
+					'src'		=> $image_obj->url,
+					'width'		=> $image_obj->width,
+					'height'	=> $image_obj->height,
+					'alt'		=> GET_BLOGINFO_NAME,
+				] )
 			);
 		}
 
@@ -140,7 +142,7 @@ class Image extends Controller implements Subscriber_Interface  {
 	/**
 	 * The Custom Header
 	 */
-	public function custom_header() {
+	private function custom_header() {
 
 		$this->size = array(
 			'container'			=> 'full-width',
@@ -151,11 +153,10 @@ class Image extends Controller implements Subscriber_Interface  {
 		$size = $this->size[ $this->theme_mod['custom_header']['container_width'] ];
 
 		if ( ! empty( $this->post_meta_id ) ) {
-			echo $this->get_attachment_image( $this->post_meta_id, $size );
-			return;
+			return $this->get_attachment_image( $this->post_meta_id, $size );
 		}
 
-		echo $this->get_custom_header_image( $this->custom_header, $size ); 
+		return $this->get_custom_header_image( $this->custom_header, $size );
 	}
 
 	/**
@@ -163,11 +164,14 @@ class Image extends Controller implements Subscriber_Interface  {
 	 */
 	public function render() {
 
-		$this->_init_property();
-
-		if ( ! $this->custom_header->url && ! $this->post_meta_id ) {
+		if ( ! has_header_image() ) {
 			return;
 		}
+
+		$this->_init_property();
+
+		$this->data['custom_header'] = $this->custom_header();
+		$this->data['theme_mod'] = $this->theme_mod;
 
 		parent::render();
 	}

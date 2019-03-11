@@ -10,19 +10,20 @@
  * @package ItalyStrap
  */
 
-$template_content = apply_filters( 'italystrap_template_content_settings',
-	array(
-		'hide_breadcrumbs'	=> __( 'Hide breadcrumbs', 'italystrap' ),
-		'hide_title'		=> __( 'Hide title', 'italystrap' ),
-		'hide_meta'			=> __( 'Hide meta info', 'italystrap' ),
-		'hide_thumb'		=> __( 'Hide feautured image', 'italystrap' ),
-		'hide_figcaption'	=> __( 'Hide figure caption', 'italystrap' ),
-		'hide_content'		=> __( 'Hide the content', 'italystrap' ),
-		'hide_author'		=> __( 'Hide author box', 'italystrap' ),
-		// 'hide_social'		=> __( 'Hide builtin social sharing', 'italystrap' ),
-		'hide_comments'		=> __( 'Hide comments', 'italystrap' ),
-		'hide_comments_form'=> __( 'Hide comments form', 'italystrap' ),
-	)
-);
+$template_content = [
+	'hide_breadcrumbs'	=> __( 'Hide breadcrumbs', 'italystrap' ),
+	'hide_title'		=> __( 'Hide title', 'italystrap' ),
+	'hide_meta'			=> __( 'Hide meta info', 'italystrap' ),
+	'hide_thumb'		=> __( 'Hide feautured image', 'italystrap' ),
+	'hide_figcaption'	=> __( 'Hide figure caption', 'italystrap' ),
+	'hide_content'		=> __( 'Hide the content', 'italystrap' ),
+	'hide_author'		=> __( 'Hide author box', 'italystrap' ),
+	// 'hide_social'		=> __( 'Hide builtin social sharing', 'italystrap' ),
+];
 
-return $template_content;
+if ( ! is_customize_preview() ) {
+	$template_content['hide_comments'] = __( 'Hide comments', 'italystrap' );
+	$template_content['hide_comments_form'] = __( 'Hide comments form', 'italystrap' );
+}
+
+return apply_filters( 'italystrap_template_content_settings', $template_content );

@@ -1,1 +1,0 @@
-This folder is for WooCommerce template, use the same in yourchild theme for overriding this files.

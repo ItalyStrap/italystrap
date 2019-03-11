@@ -144,7 +144,7 @@ return apply_filters( 'italystrap_theme_supports',
 			 *
 			 * @since 4.0.0
 			 */
-			'woocommerce',
+//			'woocommerce',
 
 			/**
 			 * Add support for the builtin breadcrumbs

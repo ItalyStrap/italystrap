@@ -19,12 +19,14 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 use ItalyStrap\Controllers\Controller;
 
 use ItalyStrap\Event\Subscriber_Interface;
-use ItalyStrap\Layout\Layout;
+use ItalyStrap\Config\Config_Interface;
 
 /**
  * The pagination controller class
  */
-class Sidebar extends Controller implements Subscriber_Interface  {
+class Sidebar implements Subscriber_Interface  {
+
+	private $config = null;
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -42,8 +44,8 @@ class Sidebar extends Controller implements Subscriber_Interface  {
 		);
 	}
 
-	function __construct( Layout $layout ) {
-		$this->layout = $layout;
+	function __construct( Config_Interface $config ) {
+		$this->config = $config;
 	}
 
 	/**
@@ -54,7 +56,7 @@ class Sidebar extends Controller implements Subscriber_Interface  {
 		/**
 		 * Don't load sidebar on pages that doesn't need it
 		 */
-		if ( 'full_width' === $this->layout->get_layout_settings() ) {
+		if ( 'full_width' === $this->config->get( 'site_layout' ) ) {
 			/**
 			 * This hook is usefull for example when you need to remove the
 			 * WooCommerce sidebar on full width page.
@@ -70,8 +72,8 @@ class Sidebar extends Controller implements Subscriber_Interface  {
 
 		get_sidebar();
 
-		if ( in_array( $this->layout->get_layout_settings(), array(), true ) ) {
-			get_sidebar( 'secondary' );
-		}
+//		if ( in_array( $this->layout->get_layout_settings(), array(), true ) ) {
+//			get_sidebar( 'secondary' );
+//		}
 	}
 }

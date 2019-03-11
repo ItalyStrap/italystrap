@@ -27,15 +27,15 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
  * @param  string $context The context.
  * @return string          The thumbnail size.
  */
-function post_thumbnail_size( $size, $context ) {
-
-	if ( is_page_template( 'full-width.php' ) ) {
-		return 'full-width';
-	}
-
-	return $size;
-
-}
-add_action( 'italystrap_post_thumbnail_size', __NAMESPACE__ . '\post_thumbnail_size', 10, 2 );
+//function post_thumbnail_size( $size, $context ) {
+//
+//	if ( is_page_template( 'full-width.php' ) ) {
+//		return 'full-width';
+//	}
+//
+//	return $size;
+//
+//}
+//add_action( 'italystrap_post_thumbnail_size', __NAMESPACE__ . '\post_thumbnail_size', 10, 2 );
 
 italystrap();

@@ -28,11 +28,12 @@ $autoload_theme_files = [
 	'/vendor/autoload.php',
 	'/functions/edd.php',
 	'/functions/default-constants.php',
-	'/functions/general-functions.php',
 	'/functions/config-helpers.php',
+	'/functions/general-functions.php',
 	'/functions/comments-helpers.php',
 	'/functions/italystrap.php',
 	'/functions/injector.php',
+	'/functions/html.php',
 
 	'/functions/images.php',
 	'/functions/pointer.php',

@@ -124,7 +124,10 @@ return apply_filters(
 		 * Layout configuration
 		 * It's still in alpha version
 		 */
-		'site_layout'					=> 'content_sidebar',
+//		'site_layout'					=> 'content_sidebar',
+		//( is_customize_preview() ? get_theme_mod('site_layout') : $this->theme_mods['site_layout'] );
+		// https://core.trac.wordpress.org/ticket/24844
+		'site_layout'					=> apply_filters( 'theme_mod_site_layout', 'content_sidebar' ),
 		'singular_layout'				=> 'content_sidebar',
 		'content_width'					=> Core\get_content_width( 1170, 12, 8, 30 ),
 		'container_class'				=> 'container', // container-fluid.

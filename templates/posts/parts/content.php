@@ -9,4 +9,4 @@
 
 namespace ItalyStrap;
 
-?><div <?php Core\get_attr( 'entry_content', array( 'class' => 'entry-content', 'itemprop' => 'articleBody' ), true ); ?>><?php if ( is_singular() ) { the_content(); } else { the_excerpt(); } ?></div>
+?><div <?php Core\get_attr( 'entry_content', [], true ); ?>><?php if ( is_singular() ) { the_content(); } else { the_excerpt(); } ?></div>

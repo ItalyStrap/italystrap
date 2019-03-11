@@ -17,9 +17,9 @@ if ( is_admin() ) {
 $concretes = [
 	'ItalyStrap\Asset\Asset_Factory',
 	'ItalyStrap\Tag_Cloud\Tag_Cloud',
-	'ItalyStrap\WooCommerce\WooCommerce',
-	'ItalyStrap\WooCommerce\Form_Field',
-	'ItalyStrap\Layout\Layout',
+
+	'ItalyStrap\Schema\Word_Count',
+	'ItalyStrap\Schema\Time_Required',
 
 	'ItalyStrap\Controllers\Headers\Navbar_Top',
 	'ItalyStrap\Controllers\Headers\Image',
@@ -51,9 +51,6 @@ $concretes = [
 	'ItalyStrap\Controllers\Sidebars\Sidebar',
 	'ItalyStrap\Controllers\Comments\Comments',
 
-	'ItalyStrap\Schema\Word_Count',
-	'ItalyStrap\Schema\Time_Required',
-
 	'ItalyStrap\Controllers\Footers\Widget_Area',
 	'ItalyStrap\Controllers\Footers\Colophon',
 ];
@@ -62,9 +59,56 @@ if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
 	$concretes[] = 'ItalyStrap\Migrations\Old_Hooks';
 }
 
-/* Questo filtro si trova nei file template per gestire commenti e breadcrumbs */
-add_filter( 'italystrap_template_settings', function ( $array ) {
-	return (array) get_post_meta( get_queried_object_id(), '_italystrap_template_settings', true );
-} );
+/**
+ * Load at 'wp' hook to make sure get_queried_object_id() returns the current page ID
+ * 'wp_loaded' is too early
+ *
+ * @priority -1 Make sure it will be loaded ASAP at 'wp' hook
+ */
+add_action( 'wp', function (){
+
+	$config = \ItalyStrap\Factory\get_config();
+	$id = (int) get_queried_object_id();
+
+	/**
+	 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
+	 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
+	 * get_queried_object_id() before $post is sett
+	 */
+	$config->push( 'current_page_id', $id );
+
+	/**
+	 * If we are in singular page then load the template settings from post_meta
+	 * If we are not in singular pages load the global post_content_template
+	 *
+	 */
+	if ( is_singular() ) {
+		$config->push( 'post_content_template',
+			(array) get_post_meta( $id, '_italystrap_template_settings', true )
+		);
+	} else {
+		$config->push(
+			'post_content_template',
+			explode( ',', $config->get( 'post_content_template' ) )
+		);
+	}
+
+	/**
+	 * If in page settings are setted then override the global settings for the layout.
+	 */
+	if ( $page_layout = (string) get_post_meta( $id, '_italystrap_layout_settings', true ) ) {
+		$config->push( 'site_layout', $page_layout );
+	}
+
+//	$config->push( 'site_layout',
+//		(string) apply_filters( 'italystrap_get_layout_settings', $config->get( 'site_layout', 'content_sidebar' ) )
+//	);
+
+	/**
+	 * For now load here
+	 */
+	\ItalyStrap\HTML\filter_attr();
+
+}, PHP_INT_MIN );
 
 return $concretes;

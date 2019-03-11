@@ -64,29 +64,6 @@ function print_search_form_in_menu( $nav_menu, $args ) {
 // add_filter( 'wp_nav_menu', __NAMESPACE__ . '\print_search_form_in_menu', 10, 2 );
 
 /**
- * Display the breadcrumbs
- *
- * THIS FUNCTION IS NO MORE NEEDED
- *
- * @param array $defaults Default array for parameters.
- * @return string Echo breadcrumbs
- */
-function display_breadcrumbs( $defaults = array() ) {
-
-	$template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
-
-	if ( in_array( 'hide_breadcrumbs', $template_settings, true ) ) {
-		return;
-	}
-
-	$args = array(
-		'home'	=> '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>',
-	);
-
-	do_action( 'do_breadcrumbs', $args );
-}
-
-/**
  * Get the default text for colophon
  *
  * @since 4.0.0 ItalyStrap
@@ -338,88 +315,6 @@ function register_theme_width( array $new_width ) {
 add_filter( 'italystrap_theme_width', __NAMESPACE__ . '\register_theme_width' );
 
 /**
- * Wrap embedded media as suggested by Readability
- * Add code to Oembed media
- *
- * @link https://gist.github.com/965956
- * @link http://www.readability.com/publishers/guidelines#publisher
- * Rootstheme function
- * Renamed and modify for new bootstrap class for video embed
- *
- * @since 1.0.0
- * @since 4.0.0 (Refactored)
- *
- * @see WP_Embed::shortcode()
- *
- * @param mixed   $cache   The cached HTML result, stored in post meta.
- * @param string  $url     The attempted embed URL.
- * @param array   $attr    An array of shortcode attributes.
- * @param int     $post_ID Post ID.
- *
- * @return string          Return the new HTML.
- */
-function embed_wrap( $cache, $url, $attr, $post_ID ) {
-
-	if ( strpos( $cache, 'class="twitter-tweet"' ) ) {
-		return $cache;
-	}
-
-	$container_attr = HTML\get_attr(
-        'embed-responsive',
-        [
-            'class' => 'entry-content-asset embed-responsive embed-responsive-16by9'
-        ]
-    );
-
-	$ifr_attr = HTML\get_attr(
-        'embed-responsive-item',
-        [
-            'class' => 'embed-responsive-item'
-        ]
-    );
-
-	$elements = explode(' ', $cache );
-
-	if ( ! in_array( 'class', $elements, true ) ) {
-        array_splice( $elements, 1, 0, trim( $ifr_attr ) );
-    }
-
-	return sprintf(
-		'<div%s>%s</div>',
-		$container_attr,
-		implode( ' ', $elements )
-	);
-}
-add_filter( 'embed_oembed_html', __NAMESPACE__ . '\embed_wrap', 10, 4 );
-
-add_filter( 'post_class', function ( $classes ) {
-
-	$theme_mods = \ItalyStrap\Factory\get_config()->all();
-
-	foreach ( $classes as $key => $class ) {
-		if( 'hentry' === $class ) {
-			unset( $classes[ $key ] );
-		}
-	}
-
-	if ( ! has_post_thumbnail() ) {
-		return $classes;
-	}
-
-	$theme_mods['post_thumbnail_alignment'] = isset( $theme_mods['post_thumbnail_alignment'] ) ? $theme_mods['post_thumbnail_alignment'] : '';
-
-	$classes[] = 'post-thumbnail-' . $theme_mods['post_thumbnail_alignment'];
-
-	return  $classes ;
-});
-
-add_filter( 'body_class', function ( $classes ) {
-	$classes[] = CURRENT_TEMPLATE_SLUG;
-	return  $classes ;
-});
-
-
-/**
  * @param array $theme_mods
  * @TODO Da sviluppare per il customizer
  * https://core.trac.wordpress.org/ticket/24844
@@ -442,19 +337,3 @@ function get_theme_mods_in_customizer ( array $theme_mods = [] ) {
 // 	$required_plugins = new \ItalyStrap\Required_Plugins\Register;
 // 	add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
 // }, 10, 1 );
-
-/**
- * Append schema to relative filter
- * @TODO In prova, vedere se può essre utile
- */
-function _test_append_schema_to_filter () {
-	$schema = (array) \ItalyStrap\Config\get_config_file_content( 'schema' );
-
-	foreach ( $schema as $filter_name => $new_attr ) {
-		add_filter( $filter_name, function ( $old_attr ) use ( $new_attr ) {
-			return array_merge( $old_attr, $new_attr );
-		} );
-	}
-}
-
-add_filter( 'after_setup_theme', __NAMESPACE__ . '\_test_append_schema_to_filter' );

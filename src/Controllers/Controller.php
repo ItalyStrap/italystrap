@@ -185,8 +185,8 @@ class Controller implements Controller_Interface {
 			 *
 			 * @var [type]
 			 */
-			$parts = ! is_singular() ? (array) self::$post_content_template : (array) get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
-
+//			$parts = ! is_singular() ? (array) self::$post_content_template : (array) get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
+			$parts = (array) \ItalyStrap\Factory\get_config()->get('post_content_template');
 		}
 
 		return (array) apply_filters( 'italystrap_get_template_settings', $parts );

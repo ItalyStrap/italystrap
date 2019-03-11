@@ -29,13 +29,24 @@ if ( post_password_required() ) {
 	return;
 }
 
-$template_settings = (array) apply_filters( 'italystrap_template_settings', array() );
+$template_settings = (array) \ItalyStrap\Factory\get_config()->get('post_content_template');
 /**
  * If there are comments
  */
 if ( have_comments() ) : ?>
 	<section id="comments" class="comments-area">
-		<h3 class="comments-title"><?php printf( _n( 'One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'italystrap' ), number_format_i18n( get_comments_number() ), get_the_title() ); // XSS ok. ?></h3>
+		<h3 class="comments-title">
+            <?php
+			/**
+			 * The comment number
+			 */
+            $comment_number = get_comments_number();
+            printf(
+                    _n( '%1$s response to &ldquo;%2$s&rdquo;', '%1$s responses to &ldquo;%2$s&rdquo;', $comment_number, 'italystrap' ),
+                    number_format_i18n( $comment_number ),
+                    get_the_title() ); // XSS ok.
+            ?>
+        </h3>
 
 		<?php
 		/**

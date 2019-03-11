@@ -253,8 +253,7 @@ if ( ! function_exists( 'italystrap_get_ID_image_from_url' ) ) {
 
 		global $wpdb;
 
-		$query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$url'";
-		$id = $wpdb->get_var( $query );
+		$id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM %s WHERE guid=%s", [ $wpdb->posts, $url ] ) );
 
 		return absint( $id );
 

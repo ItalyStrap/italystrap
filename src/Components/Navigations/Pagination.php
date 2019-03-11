@@ -76,7 +76,7 @@ class Pagination {
 	 *
 	 * @link http://codex.wordpress.org/function_reference/paginate_links
 	 *
-	 * @return string             boostrap navigation for wordpress
+	 * @return string             boostrap navigation for WordPress
 	 */
 	public function render() {
 

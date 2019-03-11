@@ -44,3 +44,28 @@ function _custom_background_cb() {
 
 }
 
+
+
+/**
+ * Display the breadcrumbs
+ *
+ * THIS FUNCTION IS NO MORE NEEDED
+ *
+ * @param array $defaults Default array for parameters.
+ */
+function display_breadcrumbs( $defaults = array() ) {
+
+	_deprecated_function( __FUNCTION__, '4.0.0', 'The breadcrumbs are now autoloaded from the controller' );
+
+	$template_settings = (array) \ItalyStrap\Factory\get_config()->get('post_content_template');
+
+	if ( in_array( 'hide_breadcrumbs', $template_settings, true ) ) {
+		return;
+	}
+
+	$args = array(
+		'home'	=> '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>',
+	);
+
+	do_action( 'do_breadcrumbs', $args );
+}

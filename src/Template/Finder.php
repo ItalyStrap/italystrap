@@ -21,13 +21,13 @@ class Finder implements Finder_Interface
 	 *
 	 * @return $this
 	 */
-	private function in( $dirNameOrArrayOfDirName ) {
-		foreach ( (array) $dirNameOrArrayOfDirName as $dirName ) {
-//			d( $dirName );
-		}
-
-		return $this;
-	}
+//	private function in( $dirNameOrArrayOfDirName ) {
+////		foreach ( (array) $dirNameOrArrayOfDirName as $dirName ) {
+//////			d( $dirName );
+////		}
+//
+//		return $this;
+//	}
 
 	/**
 	 * Load a template part into a template

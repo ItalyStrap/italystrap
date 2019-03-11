@@ -93,19 +93,22 @@ function get_child_config_file_path( $name ) {
 /**
  * @param  string $name
  *
+ * @todo Se nel file richiesto c'è una variabile con lo stesso nome di quelle usate nella funzione
+ *       ci possono essere dei problemi, in futuro trovare soluzione migliore, per il momento ho
+ *       Nominato le variabili con nomi lunghi per evitare conflitti.
+ *
  * @return array
  */
 function get_config_file_content( $name ) {
 
-	$config = [];
-	$child = [];
+	$config_file_content = [];
 
 	try {
-		$config = (array) require get_config_file_path( $name );
+		$config_file_content = (array) require get_config_file_path( $name );
 
-		if ( $child_path = get_child_config_file_path( $name ) ) {
-			$child = (array) require $child_path;
-			$config = array_replace_recursive( $config, $child );
+		if ( $child_config_file_path = get_child_config_file_path( $name ) ) {
+			$child_config_file_content = (array) require $child_config_file_path;
+			$config_file_content = array_replace_recursive( $config_file_content, $child_config_file_content );
 		}
 
 	} catch ( \InvalidArgumentException $exception ) {
@@ -114,5 +117,5 @@ function get_config_file_content( $name ) {
 		echo $exception->getMessage();
 	}
 
-	return (array) $config;
+	return (array) $config_file_content;
 }

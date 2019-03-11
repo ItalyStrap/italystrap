@@ -92,6 +92,7 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 	private function apply( Injector $injector ) {
 
 		$event_manager = $injector->make( 'ItalyStrap\Event\Manager' );
+		$config = $injector->make( 'ItalyStrap\Config\Config' );
 
 		foreach ( $this->dependencies['concretes'] as $option_name => $concrete ) {
 			try {

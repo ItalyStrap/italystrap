@@ -165,7 +165,7 @@ class Css implements Subscriber_Interface {
 		 * If mod is empty return
 		 */
 		if ( empty( $mod ) ) {
-			return;
+			return '';
 		}
 
 		/**
@@ -238,7 +238,7 @@ class Css implements Subscriber_Interface {
 
 		add_filter( 'italystrap_custom_inline_style', function ( $css ) use ( $style ) {
 			return $style . $css;
-		}, 999999999, 1 );
+		}, PHP_INT_MAX, 1 );
 
 		// printf(
 		// 	'<style type="text/css" id="custom-background-css">%s</style>',

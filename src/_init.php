@@ -16,10 +16,10 @@ if ( is_admin() ) {
 
 $concretes = [
 	'ItalyStrap\Asset\Asset_Factory',
-	'ItalyStrap\Tag_Cloud\Tag_Cloud',
+	'\ItalyStrap\User\Contact_Methods',
 
-	'ItalyStrap\Schema\Word_Count',
-	'ItalyStrap\Schema\Time_Required',
+//	'ItalyStrap\Schema\Word_Count',
+//	'ItalyStrap\Schema\Time_Required',
 
 	'ItalyStrap\Controllers\Headers\Navbar_Top',
 	'ItalyStrap\Controllers\Headers\Image',
@@ -107,8 +107,10 @@ add_action( 'wp', function (){
 	/**
 	 * For now load here
 	 */
-	\ItalyStrap\HTML\filter_attr();
+//	\ItalyStrap\HTML\filter_attr();
 
 }, PHP_INT_MIN );
+
+add_action( 'get_header', '\ItalyStrap\HTML\filter_attr' );
 
 return $concretes;

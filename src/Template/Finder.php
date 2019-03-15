@@ -57,7 +57,7 @@ class Finder implements Finder_Interface
 	 * Searches in the STYLESHEETPATH before TEMPLATEPATH and wp-includes/theme-compat
 	 * so that themes which inherit from a parent theme can just overload one file.
 	 *
-	 * @param string|array $templates Template file(s) to search for, in order.
+	 * @param string|array $slugs Template file(s) to search for, in order.
 	 *
 	 * @return string The template filename if one is located.
 	 */
@@ -87,7 +87,10 @@ class Finder implements Finder_Interface
 		$templates[] = "{$slugs[0]}.php";
 
 		if ( ! $this->has( $templates ) ) {
-			throw new \InvalidArgumentException( sprintf( 'The template %s does not exists', $templates ) );
+			/**
+			 * @todo Make exception also for $templates[1] if is not empty
+			 */
+			throw new \InvalidArgumentException( sprintf( 'The template %s does not exists', $templates[0] ) );
 		}
 
 		return locate_template( $templates, false, false );

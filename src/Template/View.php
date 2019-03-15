@@ -27,7 +27,7 @@ class View implements View_Interface {
 	/**
 	 * Take a template file, bind the data provided and return the string rendered.
 	 *
-	 * @param string $template_file Full path for tthis template file.
+	 * @param string $template_file Full path for this template file.
 	 * @param array  $data
 	 *
 	 * @return mixed

@@ -119,7 +119,6 @@ class Size implements Subscriber_Interface {
 	 * Add image sizes
 	 *
 	 * @param  array $image_sizes [description]
-	 * @return string        [description]
 	 */
 	protected function add( array $image_sizes ) {
 

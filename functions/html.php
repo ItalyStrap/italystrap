@@ -77,29 +77,3 @@ function embed_wrap( $cache, $url, $attr, $post_ID ) {
 	);
 }
 add_filter( 'embed_oembed_html', __NAMESPACE__ . '\embed_wrap', 10, 4 );
-
-add_filter( 'post_class', function ( $classes ) {
-
-	$theme_mods = \ItalyStrap\Factory\get_config()->all();
-
-	foreach ( $classes as $key => $class ) {
-		if( 'hentry' === $class ) {
-			unset( $classes[ $key ] );
-		}
-	}
-
-	if ( ! has_post_thumbnail() ) {
-		return $classes;
-	}
-
-	$theme_mods['post_thumbnail_alignment'] = isset( $theme_mods['post_thumbnail_alignment'] ) ? $theme_mods['post_thumbnail_alignment'] : '';
-
-	$classes[] = 'post-thumbnail-' . $theme_mods['post_thumbnail_alignment'];
-
-	return  $classes ;
-});
-
-add_filter( 'body_class', function ( $classes ) {
-	$classes[] = CURRENT_TEMPLATE_SLUG;
-	return  $classes ;
-});

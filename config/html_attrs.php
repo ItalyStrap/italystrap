@@ -66,15 +66,58 @@ $classes = [
 ];
 
 /**
+ * Make sure to apply this filters at wp action.
+ *
  * @return array Return the filters with the value to append to.
  */
 return [
-	'body_class'	=> [
-		'body_class',
+
+	/**
+	 * Append the CURRENT_TEMPLATE_SLUG to body_class
+	 */
+	'body_class'	=> function ( array $classes ) {
+		$classes[] = CURRENT_TEMPLATE_SLUG;
+		return  $classes ;
+	},
+
+	/**
+	 * This is the <article ...> HTML attr.
+	 */
+	'post_class'	=> function ( array $classes ) use ( $config ) {
+
+		/**
+		 * Remove the 'hentry' css class to prevents error in search console
+		 */
+		foreach ( $classes as $key => $class ) {
+			if( 'hentry' === $class ) {
+				unset( $classes[ $key ] );
+			}
+		}
+
+		/**
+		 * If has not a post thumbnail just bail out.
+		 */
+		if ( ! has_post_thumbnail() ) {
+			return $classes;
+		}
+
+		$classes[] = 'post-thumbnail-' . $config->get( 'post_thumbnail_alignment' );
+
+		return  $classes;
+	},
+
+	/**
+	 * Attributes for the body element.
+	 */
+	'italystrap_body_attr'			=> [
+		'class'	=> join( ' ', get_body_class() ),
 	],
 
-	'post_class'	=> [
-		'post_class',
+	/**
+	 * Attributes for the body element.
+	 */
+	'italystrap_wrapper_attr'			=> [
+		'class'	=> 'wrapper',
 	],
 
 	/**
@@ -119,8 +162,6 @@ return [
 		return $size;
 	},
 
-
-
 	/**
 	 * Attributes for the preview component.
 	 */
@@ -136,6 +177,16 @@ return [
 	'italystrap_entry_content_attr'	=> [
 		'class' => 'entry-content'
 	],
+
+	/**
+	 * Attributes for the entry content component.
+	 */
+	'italystrap_post_thumbnail_attr'	=> function ( array $attr ) {
+
+		$attr['class'] = $attr['class'] . ' img-responsive img-fluid';
+
+		return $attr;
+	},
 
 	/**
 	 * Attributes for the footer component.

@@ -58,23 +58,30 @@ class Author_Info extends Controller implements Subscriber_Interface  {
 	 */
 	public function render() {
 
+		global $author_name;
+		$this->data['author'] = array_key_exists( 'author_name', $_GET )
+			? get_user_by( 'slug', $author_name )
+			: get_userdata( absint( get_the_author_meta( 'ID' ) ) );
+
+
+		$this->data['contact'] = new Contact_Method_List();
+
 		$method_name = current_filter() === 'italystrap_before_loop'
 		? 'before_loop'
 		: 'after_entry_content';
 
-		$this->$method_name();
+		if ( ! $this->$method_name() ) {
+			return '';
+		}
+
+		return parent::render();
 	}
 
 	/**
 	 * Render the output of the controller.
 	 */
 	protected function before_loop() {
-
-		if ( 'author' !== CURRENT_TEMPLATE_SLUG ) {
-			return null;
-		}
-
-		parent::render();
+		return (bool) 'author' !== CURRENT_TEMPLATE_SLUG;
 	}
 
 	/**
@@ -86,19 +93,17 @@ class Author_Info extends Controller implements Subscriber_Interface  {
 		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
 		 */
 		if ( ! post_type_supports( $this->get_post_type(), 'author' ) ) {
-			return;
+			return false;
 		}
 
 		if ( ! is_singular() ) {
-			return;
+			return false;
 		}
 
 		if ( in_array( 'hide_author', $this->get_template_settings(), true ) ) {
-			return;
+			return false;
 		}
 
-		$this->user_list = new Contact_Method_List();
-
-		parent::render();
+		return true;
 	}
 }

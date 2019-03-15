@@ -55,7 +55,7 @@ if ( has_post_thumbnail() ) { ?>
 		$attr = apply_filters( 'italystrap_post_thumbnail_attr',
 			[
 				'class'		=> sprintf(
-					'attachment-%1$s size-%1$s %1$s img-responsive',
+					'attachment-%1$s size-%1$s %1$s',
 					$size
 				),
 				'alt'		=> trim( strip_tags( get_post_meta( get_post_thumbnail_id( get_the_id() ), '_wp_attachment_image_alt', true ) ) ),

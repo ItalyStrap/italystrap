@@ -21,27 +21,31 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-get_header();
-do_action( 'italystrap_before_main' );
+\get_header();
+\do_action( 'italystrap_before_main' );
+/**
+ * @todo Per il momento questa variabile non è utilizzata
+ */
+$file_name = isset( $file_name ) ?: '';
 ?>
 <!-- Main Content -->
-	<main id="<?php echo esc_attr( $file_name ); ?>">
+	<main id="<?php echo \esc_attr( $file_name ); ?>">
 		<div class="container">
 			<div class="row">
-				<?php do_action( 'italystrap_before_content' ); ?>
-				<div <?php Core\get_attr( 'content', array( 'itemscope' => true, 'itemtype' => 'https://schema.org/CollectionPage' ), true ); ?>>
+				<?php \do_action( 'italystrap_before_content' ); ?>
+				<div <?php Core\get_attr( 'content', [], true ); ?>>
 
-					<?php do_action( 'italystrap_before_loop' ); ?>
+					<?php \do_action( 'italystrap_before_loop' ); ?>
 
-					<?php do_action( 'italystrap_loop' ); ?>
+					<?php \do_action( 'italystrap_loop' ); ?>
 
-					<?php do_action( 'italystrap_after_loop' ); ?>
+					<?php \do_action( 'italystrap_after_loop' ); ?>
 
 				</div><!-- / .col-md-8 -->
-				<?php do_action( 'italystrap_after_content' ); ?>
+				<?php \do_action( 'italystrap_after_content' ); ?>
 			</div><!-- / .row -->
 		</div>
 	</main><!-- / main -->
 <?php
-do_action( 'italystrap_after_main' );
-get_footer();
+\do_action( 'italystrap_after_main' );
+\get_footer();

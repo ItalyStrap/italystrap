@@ -18,7 +18,5 @@ namespace ItalyStrap;
 
 	do_action( 'italystrap_after_entry_content' );
 
-?>
-	<span class="clearfix">&nbsp;</span>
-	<meta itemprop="interactionCount" content="UserComments:<?php comments_number( 0, 1, '%' );?>" />
+?><meta itemprop="interactionCount" content="UserComments:<?php comments_number( 0, 1, '%' );?>" />
 </article>

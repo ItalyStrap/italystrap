@@ -63,8 +63,8 @@ class Parse_Attr {
 	}
 
 	/**
-	 * @param array $attr
-	 * @return array
+	 * @param  string|int|bool $value
+	 * @return string|int|bool
 	 */
 	public function parse_scalar( $value ) {
 
@@ -73,13 +73,5 @@ class Parse_Attr {
 		}
 
 		return $new_val;
-	}
-
-	/**
-	 * @param array $attr
-	 * @return string
-	 */
-	private function prepend_append_string( $prepended = '', $appended = '' ) {
-		return (string) $prepended . $appended;
 	}
 }

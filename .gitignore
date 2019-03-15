@@ -20,15 +20,15 @@ bower
 
 #bower.json
 
-tests*
-codecept*
-backups
-
 #map files
 *.map
 
 vendor
 _others
+
+tests*
+codecept*
+backups
 
 #Travis
 .env

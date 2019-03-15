@@ -44,8 +44,8 @@ class Word_Count extends Schema_Base implements Subscriber_Interface {
 	/**
 	 * Render the output
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param  string $value
+	 * @return string
 	 */
 	public function render( $content = '' ) {
 

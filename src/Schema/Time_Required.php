@@ -44,8 +44,8 @@ class Time_Required extends Schema_Base implements Subscriber_Interface {
 	/**
 	 * Render the output
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param  string $value
+	 * @return string
 	 */
 	public function render( $content = '' ) {
 
@@ -103,5 +103,6 @@ class Time_Required extends Schema_Base implements Subscriber_Interface {
 		}
 
 		echo $meta;
+		return '';
 	}
 }

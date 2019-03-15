@@ -87,6 +87,14 @@ class Controller implements Controller_Interface {
 		$this->template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
 
 		$this->view = $view;
+
+//		$this->listOfFiles = new \RecursiveIteratorIterator(
+//			new \RecursiveDirectoryIterator(
+//				get_stylesheet_directory() . DIRECTORY_SEPARATOR . $this->template_dir
+//			)
+//		);
+//
+//		d($this->listOfFiles);
 	}
 
 	/**

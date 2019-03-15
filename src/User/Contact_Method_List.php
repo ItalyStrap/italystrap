@@ -18,41 +18,37 @@ namespace ItalyStrap\User;
 class Contact_Method_List extends Contact_Methods_Base {
 
 	/**
-	 * Get author info from database
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function get_author_info() {
-		/**
-		 * Author object
-		 * @var object
-		 */
-		$this->author_info = ( isset( $_GET['author_name'] ) ) ? get_user_by( 'slug', $author_name ) : get_userdata( absint( get_the_author_meta( 'ID' ) ) );
-	}
-
-	/**
 	 * Get th list
 	 *
-	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	public function get_list() {
+	private function get_list() {
 
-		$this->get_author_info();
+		$this->set_author();
 
 		$list = '';
 
+		$asclude = [
+			'avatar',
+		];
+
 		foreach ( $this->new_contact_methods as $key => $value ) {
-			if ( ! empty( $this->author_info->$key ) ) {
+
+//			if ( array_key_exists( $key, $list ) ) {
+//				continue;
+//			}
+
+d($key,$this->author->$key);
+			if ( ! empty( $this->author->$key ) ) {
 				$list .= sprintf(
 					'<li><a href="%1$s" title="%3$s" rel="me" class="sprite32 %2$s32"><span class="sr-only">%3$s</span></a></li>',
-					esc_url( $this->author_info->$key ),
-					$key,
-					$value
+					esc_url( $this->author->get( $key ), ( isset( $value['protocol'] ) ? $value['protocol'] : null ) ),
+					$value['icon'],
+					$value['label']
 				);
 			}
 		}
+
 		return $list;
 	}
 
@@ -67,7 +63,7 @@ class Contact_Method_List extends Contact_Methods_Base {
 			return '';
 		}
 
-		printf(
+		return sprintf(
 			'<ul class="list-inline">%s</ul>',
 			$this->get_list()
 		);

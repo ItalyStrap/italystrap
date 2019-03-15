@@ -37,10 +37,28 @@ class Contact_Methods extends Contact_Methods_Base implements Subscriber_Interfa
 		return array(
 			// 'hook_name'							=> 'method_name',
 			'user_contactmethods'	=> 'run',
+//			'get_avatar_url'	=> array(
+//				'function_to_add'	=> 'avatar_url',
+//				'accepted_args'     => 2,
+//			),
+			'kses_allowed_protocols'	=> 'allowed_protocols',
 		);
 	}
 
-// add_filter( 'user_contactmethods', array( $contactmethods, 'run' ), 10, 1 );
+
+	public function avatar_url( $url, $id_or_email ) {
+
+		d($this->get_author()->avatar);
+
+		d($url,$id_or_email);
+		return $url;
+	}
+
+
+	public function allowed_protocols( $protocols) {
+		$protocols[] = 'skype';
+		return $protocols;
+	}
 
 	/**
 	 * Add user contact method
@@ -51,8 +69,8 @@ class Contact_Methods extends Contact_Methods_Base implements Subscriber_Interfa
 	public function add_contact_methods( array &$contactmethods ) {
 
 		foreach ( $this->new_contact_methods as $key => $value ) {
-			if ( ! isset( $contactmethods[ $key ] ) ) {
-				$contactmethods[ $key ] = $value;
+			if ( ! array_key_exists( $key, $contactmethods ) ) {
+				$contactmethods[ $key ] = $value['label'];
 			}
 		}
 

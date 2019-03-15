@@ -13,17 +13,12 @@ sass
 bower
 
 #Files
-lang/ItalyStrap.po
-lang/ItalyStrap.mo
 *.zip
 
 #Temp file
 .gitattributes
 
 #bower.json
-lib/roadmap.php
-lib/01-hook-schema.php
-lang/README.txt
 
 tests*
 codecept*

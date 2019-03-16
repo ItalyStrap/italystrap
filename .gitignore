@@ -27,10 +27,11 @@ vendor
 _others
 
 #tests*
-codecept*
+*.bat
+codeception.yml
 backups
 
 #Travis
-.env
+#.env
 *.local
-.travis.yml
+#.travis.yml

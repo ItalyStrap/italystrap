@@ -18,6 +18,8 @@ namespace ItalyStrap;
  */
 function italystrap( $file = 'index', array $data = [] ) {
 
+//	d( \Symfony\Component\Finder\Finder::create() );
+
 	$injector = \ItalyStrap\Factory\get_injector();
 
 	$view = $injector->share('\ItalyStrap\Template\View')->make('\ItalyStrap\Template\View');

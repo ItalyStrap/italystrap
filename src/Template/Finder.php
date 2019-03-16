@@ -64,6 +64,7 @@ class Finder implements Finder_Interface
 	public function getRealPath( $slugs ) {
 
 		$slugs = (array) $slugs;
+//		$slugs = (array) explode( '-', $slugs );
 
 		/**
 		 * Fires before the specified template part file is loaded.

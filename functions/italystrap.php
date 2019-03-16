@@ -18,7 +18,31 @@ namespace ItalyStrap;
  */
 function italystrap( $file = 'index', array $data = [] ) {
 
-//	d( \Symfony\Component\Finder\Finder::create() );
+//	$finder = \Symfony\Component\Finder\Finder::create();
+//	$finder->files()->name('*.php')->in(
+//		[
+//			get_template_directory() . '\templates',
+////			get_stylesheet_directory() . '\templates',
+//		]
+//	);
+//
+//	$files_list = [];
+//
+//	foreach ($finder as $file) {
+//		// dumps the absolute path
+////		d($file);
+////		d($file->getRealPath());
+//
+//		// dumps the relative path to the file, omitting the filename
+////		d($file->getRelativePath());
+//
+//		// dumps the relative path to the file
+////		d($file->getRelativePathname());
+//
+//		$files_list[ $file->getRelativePathname() ] = $file;
+//	}
+//
+//	d($files_list);
 
 	$injector = \ItalyStrap\Factory\get_injector();
 
@@ -33,9 +57,9 @@ function italystrap( $file = 'index', array $data = [] ) {
 
 	foreach ( $base_structure as $filter => $file ) {
 
-		$template = $template_dir . DIRECTORY_SEPARATOR . $file;
-		add_filter( $filter, function() use ( $view, $template, $data ) {
-			echo $view->render( $template, $data );
+		$slug = $template_dir . DIRECTORY_SEPARATOR . $file;
+		add_filter( $filter, function() use ( $view, $slug, $data ) {
+			echo $view->render( $slug, $data );
 		} );
 	}
 

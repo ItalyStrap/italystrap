@@ -24,12 +24,12 @@ namespace ItalyStrap;
 
 $context = null;
 
-$featured_image_class = array(
-	'class' => trim( 'featured-image ' . $this->theme_mod['post_thumbnail_alignment'] ),
-);
+$featured_image_class = [
+	'class' => \trim( 'featured-image ' . $this->theme_mod['post_thumbnail_alignment'] ),
+];
 
-if ( has_post_thumbnail() ) { ?>
-	<figure <?php Core\get_attr( 'featured_image', $featured_image_class, true ); ?>>
+if ( \has_post_thumbnail() ) { ?>
+	<figure <?php HTML\get_attr( 'featured_image', $featured_image_class, true ); ?>>
 		<?php
 
 		/**
@@ -41,7 +41,7 @@ if ( has_post_thumbnail() ) { ?>
 		 *
 		 * @var string
 		 */
-		$size = apply_filters( 'italystrap_post_thumbnail_size', $this->theme_mod['post_thumbnail_size'], $context );
+		$size = \apply_filters( 'italystrap_post_thumbnail_size', $this->theme_mod['post_thumbnail_size'], $context );
 
 		/**
 		 * Filter the post thumbnail attributes with context
@@ -52,20 +52,20 @@ if ( has_post_thumbnail() ) { ?>
 		 *
 		 * @var array
 		 */
-		$attr = apply_filters( 'italystrap_post_thumbnail_attr',
+		$attr = \apply_filters( 'italystrap_post_thumbnail_attr',
 			[
-				'class'		=> sprintf(
+				'class'		=> \sprintf(
 					'attachment-%1$s size-%1$s %1$s',
 					$size
 				),
-				'alt'		=> trim( strip_tags( get_post_meta( get_post_thumbnail_id( get_the_id() ), '_wp_attachment_image_alt', true ) ) ),
+				'alt'		=> \trim( strip_tags( \get_post_meta( \get_post_thumbnail_id( \get_the_id() ), '_wp_attachment_image_alt', true ) ) ),
 				'itemprop'	=> 'image',
 			],
 			$context,
 			$size
 		);
 
-		the_post_thumbnail( $size, $attr );
+		\the_post_thumbnail( $size, $attr );
   		?>
 	</figure>
 <?php } else {
@@ -73,5 +73,5 @@ if ( has_post_thumbnail() ) { ?>
 	/**
 	 * This action fire in case no thumbnail is loaded
 	 */
-	do_action( 'italystrap_no_post_thumbnail' );
+	\do_action( 'italystrap_no_post_thumbnail' );
 }

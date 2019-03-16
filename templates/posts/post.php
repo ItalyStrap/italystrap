@@ -10,13 +10,13 @@
 namespace ItalyStrap;
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php \the_ID(); ?>" <?php \post_class(); ?>>
 <?php
-	do_action( 'italystrap_before_entry_content' );
+	\do_action( 'italystrap_before_entry_content' );
 
-		do_action( 'italystrap_entry_content' );
+		\do_action( 'italystrap_entry_content' );
 
-	do_action( 'italystrap_after_entry_content' );
+	\do_action( 'italystrap_after_entry_content' );
 
-?><meta itemprop="interactionCount" content="UserComments:<?php comments_number( 0, 1, '%' );?>" />
+?><meta itemprop="interactionCount" content="UserComments:<?php \comments_number( 0, 1, '%' );?>" />
 </article>

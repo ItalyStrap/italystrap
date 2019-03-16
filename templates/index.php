@@ -17,10 +17,6 @@
 
 namespace ItalyStrap;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 \get_header();
 \do_action( 'italystrap_before_main' );
 /**
@@ -33,7 +29,7 @@ $file_name = isset( $file_name ) ?: '';
 		<div class="container">
 			<div class="row">
 				<?php \do_action( 'italystrap_before_content' ); ?>
-				<div <?php Core\get_attr( 'content', [], true ); ?>>
+				<div <?php HTML\get_attr( 'content', [], true ); ?>>
 
 					<?php \do_action( 'italystrap_before_loop' ); ?>
 

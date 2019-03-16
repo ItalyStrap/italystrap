@@ -9,8 +9,8 @@
 
 namespace ItalyStrap;
 
-if ( ! is_preview() ) {
+if ( ! \is_preview() ) {
 	return;
 }
 
-?><div <?php Core\get_attr( 'preview', [], true ); ?>><?php wp_kses_post( _e( '<strong>Note:</strong> You are previewing this post. This post has not yet been published.', 'italystrap' ) ); ?></div>
+?><div <?php HTML\get_attr( 'preview', [], true ); ?>><?php \wp_kses_post( \_e( '<strong>Note:</strong> You are previewing this post. This post has not yet been published.', 'italystrap' ) ); ?></div>

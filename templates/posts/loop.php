@@ -8,26 +8,26 @@
 
 namespace ItalyStrap;
 
-if ( have_posts() ) :
+if ( \have_posts() ) :
 
-	do_action( 'italystrap_before_while' );
+	\do_action( 'italystrap_before_while' );
 
-	while ( have_posts() ) :
+	while ( \have_posts() ) :
 
-		the_post();
+		\the_post();
 
-		do_action( 'italystrap_before_entry' );
+		\do_action( 'italystrap_before_entry' );
 
-		do_action( 'italystrap_entry' );
+		\do_action( 'italystrap_entry' );
 
-		do_action( 'italystrap_after_entry' );
+		\do_action( 'italystrap_after_entry' );
 
 	endwhile;
 
-	do_action( 'italystrap_after_while' );
+	\do_action( 'italystrap_after_while' );
 
 else :
 
-	do_action( 'italystrap_content_none' );
+	\do_action( 'italystrap_content_none' );
 
 endif;

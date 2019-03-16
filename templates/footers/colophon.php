@@ -10,10 +10,6 @@
 
 namespace ItalyStrap;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 ?><!-- #copyright -->
 <div id="colophon" class="colophon">
 	<div class="container">
@@ -21,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 			<div class="col-md-12 colophon-entry-content">
 				<?php
 
-				echo apply_filters( 'italystrap_colophon', false );
+				echo \apply_filters( 'italystrap_colophon', false );
 
 				global $theme_mods;
 				echo Core\get_the_colophon( $theme_mods ); // XSS ok.

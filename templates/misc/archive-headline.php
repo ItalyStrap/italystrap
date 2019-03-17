@@ -16,7 +16,7 @@ namespace ItalyStrap\Misc;
 
 	if ( 'search' === \CURRENT_TEMPLATE_SLUG ) {
 
-		?><h1 itemprop="headline"><?php printf( esc_html__( 'Search result of: %s', 'italystrap' ), '<span>' . get_search_query() . '</span>' ); ?></h1><?php
+		?><h1 itemprop="headline"><?php \printf( \esc_html__( 'Search result of: %s', 'italystrap' ), '<span>' . \get_search_query() . '</span>' ); ?></h1><?php
 		return null;
 	}
 

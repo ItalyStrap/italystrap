@@ -10,11 +10,11 @@ namespace ItalyStrap;
  *       Vedere content-sidebar.php
  */
 ?>
-<aside <?php Core\get_attr( 'sidebar', [], true ); ?>>
-<?php do_action( 'italystrap_before_sidebar_widget_area' ); ?>
-	<?php do_action( 'italystrap_sidebar' ); ?>
+<aside <?php HTML\get_attr( 'sidebar', [], true ); ?>>
+<?php \do_action( 'italystrap_before_sidebar_widget_area' ); ?>
+	<?php \do_action( 'italystrap_sidebar' ); ?>
 	<div class="row">
-		<?php dynamic_sidebar( 'Sidebar' ); ?>
+		<?php \dynamic_sidebar( 'Sidebar' ); ?>
 	</div>
-<?php do_action( 'italystrap_after_sidebar_widget_area' ); ?>
+<?php \do_action( 'italystrap_after_sidebar_widget_area' ); ?>
 </aside>

@@ -26,9 +26,9 @@ namespace ItalyStrap;
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<?php \wp_head(); ?>
 </head>
-<body <?php Core\get_attr( 'body', [], true ); ?>>
+<body <?php HTML\get_attr( 'body', [], true ); ?>>
 <?php \do_action( 'italystrap_before' ); ?>
-	<div <?php Core\get_attr( 'wrapper', [], true ); ?>>
+	<div <?php HTML\get_attr( 'wrapper', [], true ); ?>>
 <?php
 
 \do_action( 'italystrap_before_header' );

@@ -19,10 +19,6 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 use ItalyStrap\Controllers\Controller;
 use ItalyStrap\Event\Subscriber_Interface;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 /**
  * The pagination controller class
  */
@@ -66,6 +62,7 @@ class Archive_Headline extends Controller implements Subscriber_Interface {
 		if ( is_author() ) {
 			return;
 		}
+
 		parent::render();
 	}
 }

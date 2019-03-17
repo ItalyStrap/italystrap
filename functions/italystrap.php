@@ -49,7 +49,7 @@ function italystrap( $file = 'index', array $data = [] ) {
 	$view = $injector->share('\ItalyStrap\Template\View')->make('\ItalyStrap\Template\View');
 
 	$base_structure = [
-//		'italystrap_loop'	=> 'posts/loop',
+		'italystrap_loop'	=> 'posts/loop',
 		'italystrap'		=> 'index',
 	];
 

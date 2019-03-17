@@ -356,7 +356,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 	 * @return string       Return the string with attribute
 	 */
 	protected static function get_attributes( array $atts = array() ) {
-		return \ItalyStrap\Core\get_attr( 'nav', $atts );
+		return \ItalyStrap\HTML\get_attr( 'nav', $atts );
 	}
 
 	/**

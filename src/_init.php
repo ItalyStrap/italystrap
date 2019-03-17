@@ -28,7 +28,7 @@ $concretes = [
 	'ItalyStrap\Controllers\Misc\Archive_Headline',
 	'ItalyStrap\Controllers\Misc\Author_Info',
 
-	'ItalyStrap\Controllers\Posts\Loop',
+//	'ItalyStrap\Controllers\Posts\Loop',
 	'ItalyStrap\Controllers\Posts\Post',
 	'ItalyStrap\Controllers\Posts\None',
 	'ItalyStrap\Controllers\Posts\None\Image',

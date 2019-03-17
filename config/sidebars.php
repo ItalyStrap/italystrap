@@ -6,7 +6,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\HTML;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();

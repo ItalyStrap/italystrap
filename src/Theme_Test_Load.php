@@ -89,6 +89,10 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 		}
 	}
 
+	/**
+	 * @param Injector $injector
+	 * @throws InjectionException
+	 */
 	private function apply( Injector $injector ) {
 
 		$event_manager = $injector->make( 'ItalyStrap\Event\Manager' );
@@ -119,6 +123,11 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 		}
 	}
 
+	/**
+	 * @param Injector $injector
+	 * @return mixed|void
+	 * @throws InjectionException
+	 */
 	public function load( Injector $injector ) {
 
 		if ( $this->loaded ) {

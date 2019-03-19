@@ -18,9 +18,4 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-$italystrap = $injector->make( 'ItalyStrap\ItalyStrap' );
-
-$italystrap->render();
-// $italystrap->render( $file_name, $callback );
-
-// italystrap();
+italystrap();

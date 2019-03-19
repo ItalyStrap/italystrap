@@ -44,7 +44,11 @@ class Sidebar implements Subscriber_Interface  {
 		);
 	}
 
-	function __construct( Config_Interface $config ) {
+	/**
+	 * Sidebar constructor.
+	 * @param Config_Interface $config
+	 */
+	public function __construct( Config_Interface $config ) {
 		$this->config = $config;
 	}
 

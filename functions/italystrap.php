@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: fisso
- * Date: 25/01/2019
- * Time: 08:18
- */
 
 namespace ItalyStrap;
 

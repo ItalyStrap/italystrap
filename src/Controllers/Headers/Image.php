@@ -65,9 +65,6 @@ class Image extends Controller implements Subscriber_Interface  {
 
 	/**
 	 * Init property
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
 	 */
 	private function _init_property() {
 
@@ -76,14 +73,14 @@ class Image extends Controller implements Subscriber_Interface  {
 		 *
 		 * @var int|null
 		 */
-		$this->post_meta_id = absint( get_post_meta( $this->get_the_ID(), '_italystrap_custom_header_id', true ) );
+		$this->post_meta_id = \absint( \get_post_meta( $this->get_the_ID(), '_italystrap_custom_header_id', true ) );
 
 		/**
 		 * Get the header object
 		 *
-		 * @var object
+		 * @var \stdClass
 		 */
-		$this->custom_header = get_custom_header();
+		$this->custom_header = \get_custom_header();
 	}
 
 	/**
@@ -105,9 +102,9 @@ class Image extends Controller implements Subscriber_Interface  {
 			'itemprop'	=> 'image',
 		);
 
-		$attr = apply_filters( 'italystrap_custom_header_image_attr', $attr );
+		$attr = \apply_filters( 'italystrap_custom_header_image_attr', $attr );
 
-		return wp_get_attachment_image( $id , $size, false, $attr );
+		return \wp_get_attachment_image( $id , $size, false, $attr );
 	
 	}
 
@@ -164,7 +161,7 @@ class Image extends Controller implements Subscriber_Interface  {
 	 */
 	public function render() {
 
-		if ( ! has_header_image() ) {
+		if ( ! \has_header_image() ) {
 			return;
 		}
 

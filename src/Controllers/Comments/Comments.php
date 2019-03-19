@@ -55,7 +55,7 @@ class Comments extends Controller implements Subscriber_Interface  {
 		/**
 		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
 		 */
-		if ( ! post_type_supports( $this->get_post_type(), 'comments' ) ) {
+		if ( ! post_type_supports( \get_post_type(), 'comments' ) ) {
 			return;
 		}
 
@@ -66,6 +66,6 @@ class Comments extends Controller implements Subscriber_Interface  {
 		/**
 		 *  $file = '/comments.php', $separate_comments = false
 		 */
-		comments_template();
+		\comments_template();
 	}
 }

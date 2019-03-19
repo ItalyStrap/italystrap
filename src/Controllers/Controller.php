@@ -121,6 +121,7 @@ class Controller implements Controller_Interface {
 
 	/**
 	 * Render the output of the controller.
+	 * @throws \Exception
 	 */
 	public function render() {
 

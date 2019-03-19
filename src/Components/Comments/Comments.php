@@ -16,10 +16,10 @@
  * @since 3.1.0
  */
 
-namespace ItalyStrap\Comments;
+namespace ItalyStrap\Components\Comments;
 
+use \Walker_Comment;
 
-use Walker_Comment;
 /**
  * ItalyStrap Walker Class
  */
@@ -78,9 +78,9 @@ class Comments extends Walker_Comment {
 		$GLOBALS['comment'] = $comment;
 
 		if ( ! empty( $args['callback'] ) ) {
-			ob_start();
-			call_user_func( $args['callback'], $comment, $args, $depth );
-			$output .= ob_get_clean();
+			\ob_start();
+			\call_user_func( $args['callback'], $comment, $args, $depth );
+			$output .= \ob_get_clean();
 			return;
 
 		}
@@ -93,18 +93,18 @@ class Comments extends Walker_Comment {
 		 */
 
 		if ( ( 'pingback' === $comment->comment_type || 'trackback' === $comment->comment_type ) && $args['short_ping'] ) {
-			ob_start();
+			\ob_start();
 			$this->ping( $comment, $depth, $args );
-			$output .= ob_get_clean();
+			$output .= \ob_get_clean();
 		} elseif ( 'html5' === $args['format'] ) {
-			ob_start();
+			\ob_start();
 			$this->html5_comment( $comment, $depth, $args );
 			// $this->boostrap_style( $comment, $depth, $args );
-			$output .= ob_get_clean();
+			$output .= \ob_get_clean();
 		} else {
-			ob_start();
+			\ob_start();
 			$this->comment( $comment, $depth, $args );
-			$output .= ob_get_clean();
+			$output .= \ob_get_clean();
 		}
 
 	}
@@ -125,9 +125,9 @@ class Comments extends Walker_Comment {
 	public function end_el( &$output, $comment, $depth = 0, $args = array() ) {
 
 		if ( ! empty( $args['end-callback'] ) ) {
-			ob_start();
-			call_user_func( $args['end-callback'], $comment, $args, $depth );
-			$output .= ob_get_clean();
+			\ob_start();
+			\call_user_func( $args['end-callback'], $comment, $args, $depth );
+			$output .= \ob_get_clean();
 			return;
 
 		}
@@ -147,14 +147,14 @@ class Comments extends Walker_Comment {
 		?>
 
 		<span class="clearfix"></span>
-		<ul <?php comment_class( 'media list-unstyled comment-' . get_comment_ID() ); ?>>
+		<ul <?php \comment_class( 'media list-unstyled comment-' . get_comment_ID() ); ?>>
 
 		<?php
 		/**
 		 * @link http://codex.wordpress.org/Function_Reference/comment_class
 		 */
 		?>
-		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( 'media comment-' . get_comment_ID() ); ?> itemscope itemtype="https://schema.org/Comment">
+		<li id="comment-<?php \comment_ID(); ?>" <?php \comment_class( 'media comment-' . get_comment_ID() ); ?> itemscope itemtype="https://schema.org/Comment">
 
 			<span class="pull-left">
 				<?php echo italystrap_get_avatar( $comment, null, null, get_comment_author(), 'img-circle img-responsive' );?>
@@ -246,39 +246,39 @@ class Comments extends Walker_Comment {
 	protected function html5_comment( $comment, $depth, $args ) {
 		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
 ?>
-		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $this->has_children ? 'parent' : '' ); ?>>
-			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body row" itemscope itemtype="https://schema.org/Comment">
+		<<?php echo $tag; ?> id="comment-<?php \comment_ID(); ?>" <?php \comment_class( $this->has_children ? 'parent' : '' ); ?>>
+			<article id="div-comment-<?php \comment_ID(); ?>" class="comment-body row" itemscope itemtype="https://schema.org/Comment">
 				<section class="col-sm-2">
 					<?php
 					/**
 					 * Di default dovrebbe essere a 32 quindi la if non serve, controllare
 					 */
 					$args['avatar_size'] = ( isset( $args['avatar_size'] ) ) ? $args['avatar_size'] : null ;
-					echo italystrap_get_avatar( $comment, $args['avatar_size'], NULL, get_comment_author(), 'img-circle img-responsive center-block' );?>
+					echo \italystrap_get_avatar( $comment, $args['avatar_size'], NULL, \get_comment_author(), 'img-circle img-responsive center-block' );?>
 				</section>
 				<section class="col-sm-10">
 					<footer class="comment-meta">
 					
-							<?php if ( is_user_logged_in() && current_user_can( 'manage_options' ) && 'pingback'!== $comment->comment_type ): ?>
-								<a href="<?php echo get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit', 'italystrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
+							<?php if ( \is_user_logged_in() && \current_user_can( 'manage_options' ) && 'pingback'!== $comment->comment_type ): ?>
+								<a href="<?php echo \get_edit_comment_link(); ?>" class="btn btn-sm btn-warning pull-right"><?php echo __('Edit', 'italystrap') ; ?> <i class="glyphicon glyphicon-pencil"></i></a>
 							<?php endif ?>
 							<?php
-							$email =  get_comment_author_email();
+							$email =  \get_comment_author_email();
 					
 							if ( $email )
-								echo '<meta  itemprop="image" content="' . italystrap_get_avatar_url( $email ) . '"/>';
+								echo '<meta  itemprop="image" content="' . \italystrap_get_avatar_url( $email ) . '"/>';
 							?>
 					
 						<div class="comment-author vcard">
 					
 							<?php // if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-							<?php printf( __( '%s <span class="says">says:</span>', 'italystrap' ), sprintf( '<b class="fn">%s</b>', get_comment_author_link() ) ); ?>
+							<?php \printf( \__( '%s <span class="says">says:</span>', 'italystrap' ), \sprintf( '<b class="fn">%s</b>', \get_comment_author_link() ) ); ?>
 						</div><!-- .comment-author -->
 					
 						<div class="comment-metadata">
-							<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
-								<time datetime="<?php comment_time( 'c' ); ?>" itemprop="datePublished">
-									<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'italystrap' ), get_comment_date(), get_comment_time() ); ?>
+							<a href="<?php echo \esc_url( \get_comment_link( $comment->comment_ID, $args ) ); ?>">
+								<time datetime="<?php \comment_time( 'c' ); ?>" itemprop="datePublished">
+									<?php \printf( \_x( '%1$s at %2$s', '1: date, 2: time', 'italystrap' ), \get_comment_date(), \get_comment_time() ); ?>
 								</time>
 							</a>
 							<?php // edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
@@ -287,17 +287,17 @@ class Comments extends Walker_Comment {
 						</div><!-- .comment-metadata -->
 					
 						<?php if ( '0' === $comment->comment_approved ) : ?>
-						<p class="comment-awaiting-moderation alert alert-info"><?php _e( 'Your comment is awaiting moderation.', 'italystrap' ); ?></p>
+						<p class="comment-awaiting-moderation alert alert-info"><?php \_e( 'Your comment is awaiting moderation.', 'italystrap' ); ?></p>
 						<?php endif; ?>
 					</footer><!-- .comment-meta -->
 					
 					<div class="comment-content" itemprop="text">
-						<?php comment_text(); ?>
+						<?php \comment_text(); ?>
 					</div><!-- .comment-content -->
 					
 					<?php
 					if ( 'pingback'!== $comment->comment_type ) {
-						$comment_reply_link_args = apply_filters( 'comment_reply_link_args', array(
+						$comment_reply_link_args = \apply_filters( 'comment_reply_link_args', array(
 							'reply_text' => sprintf(
 								__('Reply to %s %s', 'italystrap'),
 								$comment->comment_author,
@@ -309,7 +309,7 @@ class Comments extends Walker_Comment {
 							'before'    => '<div class="reply">',
 							'after'     => '</div>'
 						) );
-						comment_reply_link( array_merge( $args, $comment_reply_link_args ) );
+						\comment_reply_link( \array_merge( $args, $comment_reply_link_args ) );
 					} ?>
 				</section>
 			</article><!-- .comment-body -->

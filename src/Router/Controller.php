@@ -105,8 +105,8 @@ class Controller implements Subscriber_Interface {
 	/**
 	 * Filter
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param array $map
+	 * @return array [description]
 	 */
 	public function filter( array $map ) {
 
@@ -120,7 +120,7 @@ class Controller implements Subscriber_Interface {
 	/**
 	 * Content
 	 *
-	 * @param  string $value [description]
+	 * @param $template
 	 * @return string        [description]
 	 */
 	public function content( $template ) {

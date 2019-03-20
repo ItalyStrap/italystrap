@@ -10,7 +10,7 @@
 namespace ItalyStrap;
 
 ?>
-<article id="post-<?php \the_ID(); ?>" <?php \post_class(); ?>>
+<article<?php echo HTML\get_attr( 'entry', [ 'id' => \get_the_ID(), 'class' => \join( ' ', \get_post_class() ) ] ) ?>>
 <?php
 	\do_action( 'italystrap_before_entry_content' );
 
@@ -18,5 +18,5 @@ namespace ItalyStrap;
 
 	\do_action( 'italystrap_after_entry_content' );
 
-?><meta itemprop="interactionCount" content="UserComments:<?php \comments_number( 0, 1, '%' );?>" />
+?>
 </article>

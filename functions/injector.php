@@ -57,3 +57,28 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 		return $config;
 	}
 }
+
+if ( ! function_exists( '\ItalyStrap\Factory\get_view' ) ) {
+
+	/**
+	 * @return Config
+	 */
+	function get_view() {
+
+		static $view = null;
+
+		if ( ! $view ) {
+			try {
+				$view = get_injector()->share('\ItalyStrap\Template\View')->make( '\ItalyStrap\Template\View' );
+			} catch ( ConfigException $configException ) {
+				echo $configException->getMessage();
+			} catch ( InjectionException $injectionException ) {
+				echo $injectionException->getMessage();
+			} catch ( \Exception $exception ) {
+				echo $exception->getMessage();
+			}
+		}
+
+		return $view;
+	}
+}

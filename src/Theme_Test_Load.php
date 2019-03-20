@@ -77,16 +77,15 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 			}
 		}
 
-		foreach ( $this->dependencies['execute'] as $callableOrMethodStr => $args ) {
-//			d( $callableOrMethodStr, $args );
-			try {
-				$injector->execute( $callableOrMethodStr, $args );
-			} catch ( InjectionException $exception ) {
-				echo $exception->getMessage();
-			} catch ( \Exception $exception ) {
-				echo $exception->getMessage();
-			}
-		}
+//		foreach ( $this->dependencies['execute'] as $callableOrMethodStr => $args ) {
+//			try {
+//				$injector->execute( $callableOrMethodStr, $args );
+//			} catch ( InjectionException $exception ) {
+//				echo $exception->getMessage();
+//			} catch ( \Exception $exception ) {
+//				echo $exception->getMessage();
+//			}
+//		}
 	}
 
 	/**

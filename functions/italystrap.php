@@ -12,54 +12,33 @@ namespace ItalyStrap;
  */
 function italystrap( $file = 'index', array $data = [] ) {
 
-//	$finder = \Symfony\Component\Finder\Finder::create();
-//	$finder->files()->name('*.php')->in(
-//		[
-//			get_template_directory() . '\templates',
-////			get_stylesheet_directory() . '\templates',
-//		]
-//	);
+//	$injector = \ItalyStrap\Factory\get_injector();
 //
-//	$files_list = [];
+//	$director = $injector->make( '\ItalyStrap\Builders\Director' );
+//	$director->create_page();
+
+//	$config = \ItalyStrap\Factory\get_config();
+
+//	$view = \ItalyStrap\Factory\get_view();
+
+//	$base_structure = [
 //
-//	foreach ($finder as $file) {
-//		// dumps the absolute path
-////		d($file);
-////		d($file->getRealPath());
+//		'italystrap_entry'			=> 'posts/post',
+//		'italystrap_content_none'	=> 'posts/none',
 //
-//		// dumps the relative path to the file, omitting the filename
-////		d($file->getRelativePath());
+//		'italystrap_loop'			=> 'posts/loop',
+//		'italystrap'				=> 'index',
+//	];
+
+//	$template_dir = $config->get( 'template_dir' );
 //
-//		// dumps the relative path to the file
-////		d($file->getRelativePathname());
+//	foreach ( $base_structure as $filter => $file ) {
 //
-//		$files_list[ $file->getRelativePathname() ] = $file;
+//		$slug = $template_dir . DIRECTORY_SEPARATOR . $file;
+//		add_filter( $filter, function() use ( $view, $slug, $data ) {
+//			echo $view->render( $slug, $data );
+//		} );
 //	}
-//
-//	d($files_list);
-
-	$injector = \ItalyStrap\Factory\get_injector();
-
-	$view = $injector->share('\ItalyStrap\Template\View')->make('\ItalyStrap\Template\View');
-
-	$base_structure = [
-		'italystrap_loop'	=> 'posts/loop',
-		'italystrap'		=> 'index',
-	];
-
-	$template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
-
-	foreach ( $base_structure as $filter => $file ) {
-
-		$slug = $template_dir . DIRECTORY_SEPARATOR . $file;
-		add_filter( $filter, function() use ( $view, $slug, $data ) {
-			echo $view->render( $slug, $data );
-		} );
-	}
-
-//		$template = $template_dir . DIRECTORY_SEPARATOR . $file;
-//
-//		echo $view->render( $template, $data );
 
 	do_action( 'italystrap' );
 }

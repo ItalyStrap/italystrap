@@ -50,6 +50,9 @@ return [
 		'itemscope'	=> true,
 		'itemtype'	=> 'https://schema.org/WPSideBar',
 	],
+	'italystrap_after_entry_content'	=> function () {
+		?><meta itemprop="interactionCount" content="UserComments:<?php \comments_number( 0, 1, '%' );?>" /><?php
+	},
 	'italystrap_footer_attr'	=> [
 		'itemscope'	=> true,
 		'itemtype'	=> 'https://schema.org/WPFooter',

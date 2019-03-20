@@ -37,14 +37,15 @@ return [
 	 * ==========================================================
 	 */
 	'aliases'				=> [
-		'\ItalyStrap\Config\Config_Interface'	=> '\ItalyStrap\Config\Config',
-		'\ItalyStrap\Template\Finder_Interface'	=> '\ItalyStrap\Template\Finder',
-		'\ItalyStrap\Template\View_Interface'	=> '\ItalyStrap\Template\View',
-		'\Walker_Nav_Menu'						=> '\ItalyStrap\Navbar\Bootstrap_Nav_Menu',
+		'\ItalyStrap\Config\Config_Interface'		=> '\ItalyStrap\Config\Config',
+		'\ItalyStrap\Template\Finder_Interface'		=> '\ItalyStrap\Template\Finder',
+		'\ItalyStrap\Template\View_Interface'		=> '\ItalyStrap\Template\View',
+		'\Walker_Nav_Menu'							=> '\ItalyStrap\Navbar\Bootstrap_Nav_Menu',
+		'\ItalyStrap\Builders\Builder_Interface'	=> '\ItalyStrap\Builders\Builder',
 	],
 
 	/**
-	 * =============================
+	 * ==========================================================
 	 *
 	 * Autoload Classes definitions
 	 *
@@ -55,7 +56,7 @@ return [
 	 * 		return new \ItalyStrap\Navbar\Bootstrap_Nav_Menu();
 	 * },
 	 *
-	 * ============================
+	 * ==========================================================
 	 */
 	'definitions'			=> [
 //		'\ItalyStrap\Navbar\Navbar'	=> [
@@ -116,10 +117,9 @@ return [
 	 * ========================================================================
 	 */
 	'preparations'			=> [
-//		'MyClass'	=> function( $myObj, $injector ) {
-//			d( $myObj, $injector );
-//			$myObj->myProperty = 42;
-//		},
+		'\ItalyStrap\Builders\Builder'	=> function( Builders\Builder $builder, \Auryn\Injector $injector ) {
+			$builder->set_injector( $injector );
+		},
 	],
 
 	/**
@@ -133,7 +133,7 @@ return [
 	 * ========================================================================
 	 */
 	'concretes'				=> [
-		'\ItalyStrap\Router\Router',
+//		'\ItalyStrap\Router\Router', // Anche questo da testare meglio
 		// '\ItalyStrap\Core\Router\Controller', // Da testare meglio
 		'\ItalyStrap\Customizer\Theme_Customizer',
 		'\ItalyStrap\Css\Css',
@@ -141,15 +141,17 @@ return [
 		'\ItalyStrap\Custom\Sidebars\Sidebars',
 		'\ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
 		'\ItalyStrap\Custom\Image\Size',
+
+		// This is the class that build the page
+		'\ItalyStrap\Builders\Director',
 	],
 
-//	'options_concretes'		=> [],
 //	'subscribers'			=> [],
-	'execute'				=> [
-//		[
-//			function () {},
-//			[],
-//		],
-//		function () { echo '<h1>Callable</h1>'; },
-	],
+//	'execute'				=> [
+////		[
+////			function () {},
+////			[],
+////		],
+////		function () { echo '<h1>Callable</h1>'; },
+//	],
 ];

@@ -28,15 +28,15 @@ $concretes = [
 	'ItalyStrap\Controllers\Misc\Archive_Headline',
 	'ItalyStrap\Controllers\Misc\Author_Info',
 
-//	'ItalyStrap\Controllers\Posts\Loop',
-	'ItalyStrap\Controllers\Posts\Post',
-	'ItalyStrap\Controllers\Posts\None',
+//	'ItalyStrap\Controllers\Posts\Post',
+//	'ItalyStrap\Controllers\Posts\None',
+
 	'ItalyStrap\Controllers\Posts\None\Image',
 	'ItalyStrap\Controllers\Posts\None\Title',
 	'ItalyStrap\Controllers\Posts\None\Content',
 
-	'ItalyStrap\Controllers\Posts\Parts\Breadcrumbs',
-	'ItalyStrap\Controllers\Posts\Parts\Title',
+//	'ItalyStrap\Controllers\Posts\Parts\Breadcrumbs',
+//	'ItalyStrap\Controllers\Posts\Parts\Title',
 	'ItalyStrap\Controllers\Posts\Parts\Meta',
 	'ItalyStrap\Controllers\Posts\Parts\Preview',
 	'ItalyStrap\Controllers\Posts\Parts\Featured_Image',

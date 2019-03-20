@@ -44,7 +44,6 @@ return apply_filters(
 		'post_type_support'			=> [
 			'post'		=> ['post_navigation', 'entry-meta'],
 			'page'		=> ['post_navigation', 'entry-meta'],
-			// 'product'	=> array( 'post_navigation', 'entry-meta' ), // WOO usa i suoi template quindi forse non è necessario.
 			'download'	=> ['post_navigation', 'entry-meta'],
 		],
 
@@ -271,5 +270,7 @@ return apply_filters(
 		// 'post_class'					=> '',
 
 		'beta'	=> false,
+
+		'template_dir'	=> (string) apply_filters( 'italystrap_template_dir', 'templates' ),
 	]
 );

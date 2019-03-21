@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Class description
  */
-class Password_Form extends Controller implements Subscriber_Interface {
+class Password_Form implements Subscriber_Interface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -44,6 +44,15 @@ class Password_Form extends Controller implements Subscriber_Interface {
 			'the_excerpt'		=> 'excerpt_password_form',
 		);
 	}
+
+//	public function render() {
+//		d( \func_get_arg( 1 ) );
+//		if ( current_filter() === 'the_password_form' ) {
+//			return $this->get_the_password_form();
+//		}
+//
+//		return $this->excerpt_password_form();
+//	}
 
 	/**
 	 * Get a form for content password protection 
@@ -76,9 +85,9 @@ class Password_Form extends Controller implements Subscriber_Interface {
 	 *
 	 * @return string          The post has password return the password form.
 	 */
-	function excerpt_password_form( $excerpt ) {
+	function excerpt_password_form( $excerpt = '' ) {
 
-		if ( post_password_required() ) {
+		if ( \post_password_required() ) {
 			return $this->get_the_password_form();
 		}
 

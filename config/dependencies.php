@@ -5,6 +5,7 @@ namespace ItalyStrap;
 use ItalyStrap\Config\Config_Factory;
 use ItalyStrap\Config;
 use ItalyStrap\Factory;
+use function \ItalyStrap\Config\get_config_file_content;
 
 global $wp_query;
 
@@ -118,7 +119,9 @@ return [
 	 */
 	'preparations'			=> [
 		'\ItalyStrap\Builders\Builder'	=> function( Builders\Builder $builder, \Auryn\Injector $injector ) {
-			$builder->set_injector( $injector );
+			$builder
+				->set_injector( $injector )
+				->set_structure( get_config_file_content( 'structure' ) );
 		},
 	],
 

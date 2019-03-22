@@ -14,10 +14,29 @@ use \ItalyStrap\Template\View_Interface;
 
 class Builder implements Builder_Interface {
 
+	/**
+	 * @var Config_Interface
+	 */
 	private $config;
+
+	/**
+	 * @var View_Interface
+	 */
 	private $view;
+
+	/**
+	 * @var \Auryn\Injector
+	 */
 	private $injector;
+
+	/**
+	 * @var string
+	 */
 	private $template_dir = '';
+
+	/**
+	 * @var array
+	 */
 	private $structure = [];
 
 	/**
@@ -50,13 +69,15 @@ class Builder implements Builder_Interface {
 	}
 
 	/**
+	 * Build the page
+	 *
 	 * @throws \Exception
 	 */
 	public function build() {
 
 		if ( ! $this->injector ) {
 			throw new \Exception( sprintf(
-				'You have to set the Injector with "%s::set_injector()" before to load %s',
+				'You have to set the Injector with "%s::set_injector" before to load %s',
 					__CLASS__,
 				__METHOD__
 			), 0 );
@@ -77,6 +98,10 @@ class Builder implements Builder_Interface {
 			}
 
 			$this->add_action( $component );
+
+//			foreach ( (array) $component['hooks'] as $hook ) {
+//				$this->add_action( $hook, $component );
+//			}
 		}
 	}
 
@@ -87,55 +112,63 @@ class Builder implements Builder_Interface {
 
 		\add_action( $component['hook'], function() use ( $component ) {
 
-			/**
-			 * Define the data array from optional callable
-			 * $this->set_data( $component );
-			 */
-			if ( \is_callable( $component['data'] ) ) {
-				$component['data'] = (array) \call_user_func( $component['data'], $component );
-			}
+			$this->set_data( $component );
 
-			if ( ! $component['callback'] ) {
-				echo $this->view->render(
-					$this->get_relative_path_of_the_view( $component ),
-					$component['data']
-				);
-				return;
-			}
-
-			if ( $component['callback'] instanceof \Closure ) {
-				echo $this->injector->execute( $component['callback'] );
-				return;
-			}
-
-			if ( \is_callable( [ $component['callback'], 'render' ] ) ) {
-				$callable = $this->injector->make( $component['callback'] );
-				echo $callable->render();
-				return;
-			}
+			echo $this->render_from_callback( $component );
 
 		}, $component['priority'] );
 	}
 
 	/**
-	 * @return bool
+	 * @param array $component
+	 *
+	 * @return string
+	 * @throws \Auryn\InjectionException
 	 */
-	private function should_show() : bool {
-		return true;
+	private function render_from_callback( array $component ) : string {
+
+		/**
+		 * If callback is not defined we need to return a view
+		 * from the View obj and the view file key must be defined.
+		 */
+		if ( ! $component['callback'] ) {
+			return (string) $this->view->render(
+				$this->get_the_view_relative_path( $component ),
+				$component['data']
+			);
+		}
+
+		return (string) $this->injector->execute( $component['callback'] );
+	}
+
+	/**
+	 * @param array $component
+	 */
+	private function set_data( array &$component ) {
+		/**
+		 * Define the data array from optional callable
+		 * $this->set_data( $component );
+		 */
+		if ( \is_callable( $component['data'] ) ) {
+			$component['data'] = (array) \call_user_func( $component['data'] );
+		}
 	}
 
 	/**
 	 * @param array $component
 	 * @return string|array
 	 */
-	private function get_relative_path_of_the_view( array $component ) {
+	private function get_the_view_relative_path( array $component ) : array {
 
-		if ( is_array( $component['view'] ) ) {
-			$component['view'][0] = $this->template_dir . DIRECTORY_SEPARATOR . $component['view'][0];
-			return $component['view'];
+		$view = (array) $component['view'];
+
+		if ( ! isset( $view[0] ) ) {
+			throw new \InvalidArgumentException( \__( 'If a callback is null you have to provide a file name to print in the view', 'italystrap' ), 0 );
 		}
 
-		return $this->template_dir . DIRECTORY_SEPARATOR . $component['view'];
+		$view[0] = $this->template_dir . DIRECTORY_SEPARATOR . $view[0];
+
+		return (array) $view;
 	}
 
 	/**

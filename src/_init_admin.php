@@ -15,9 +15,9 @@ if ( ! is_admin() ) {
 }
 
 $concretes = [
-	'\ItalyStrap\Editors\TinyMCE',
-	'\ItalyStrap\Custom\Metabox\Register',
-	'\ItalyStrap\User\Contact_Methods',
+	Editors\TinyMCE::class,
+	Custom\Metabox\Register::class,
+	User\Contact_Methods::class,
 ];
 
 /**

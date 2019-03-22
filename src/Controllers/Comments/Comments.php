@@ -48,18 +48,18 @@ class Comments extends Controller implements Subscriber_Interface  {
 		/**
 		 * Singular (also the static front-page is a singular)
 		 */
-		if ( ! is_singular() ) {
+		if ( ! \is_singular() ) {
 			return;
 		}
 
 		/**
 		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
 		 */
-		if ( ! post_type_supports( \get_post_type(), 'comments' ) ) {
+		if ( ! \post_type_supports( \get_post_type(), 'comments' ) ) {
 			return;
 		}
 
-		if ( in_array( 'hide_comments', $this->get_template_settings(), true ) ) {
+		if ( \in_array( 'hide_comments', $this->get_template_settings(), true ) ) {
 			return;
 		}
 		

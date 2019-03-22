@@ -9,7 +9,8 @@
 namespace ItalyStrap\Builders;
 
 use ItalyStrap\Event\Subscriber_Interface;
-use \ItalyStrap\Factory;
+use function \ItalyStrap\Config\get_config_file_content;
+use function \ItalyStrap\Factory\get_event_manager;
 
 class Director implements Subscriber_Interface {
 
@@ -42,7 +43,7 @@ class Director implements Subscriber_Interface {
 	 */
 	public static function get_subscribed_events() {
 		return [
-			'init'	=> 'create_page',
+			'wp'	=> 'create_page', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
 		];
 	}
 
@@ -64,9 +65,17 @@ class Director implements Subscriber_Interface {
 	 * Create the page
 	 */
 	public function create_page() {
+
 		/**
 		 * Injector setter is run on dependencies.php
 		 */
-		$this->builder->build();
+		$this->builder->set_structure( get_config_file_content( 'structure' ) )->build();
+	}
+
+	/**
+	 * Remove from hooks
+	 */
+	public function destroy() {
+		get_event_manager()->remove_subscriber( $this );
 	}
 }

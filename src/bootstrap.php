@@ -32,7 +32,7 @@ $autoload_theme_files = [
 	'/functions/general-functions.php',
 	'/functions/comments-helpers.php',
 	'/functions/italystrap.php',
-	'/functions/injector.php',
+	'/functions/factory.php',
 	'/functions/html.php',
 
 	'/functions/images.php',

@@ -138,7 +138,13 @@ class Builder implements Builder_Interface {
 			);
 		}
 
-		return (string) $this->injector->execute( $component['callback'] );
+		$args = [
+			':view' 		=> $this->get_the_view_relative_path( $component ),
+			':data' 		=> $component['data'],
+			':component'	=> $component,
+		];
+
+		return (string) $this->injector->execute( $component['callback'], $args );
 	}
 
 	/**

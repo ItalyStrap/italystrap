@@ -82,3 +82,30 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_view' ) ) {
 		return $view;
 	}
 }
+
+if ( ! function_exists( '\ItalyStrap\Factory\get_event_manager' ) ) {
+
+	/**
+	 * @return Config
+	 */
+	function get_event_manager() {
+
+		static $event_manager = null;
+
+		if ( ! $event_manager ) {
+			try {
+				$event_manager = get_injector()
+					->share( \ItalyStrap\Event\Manager::class )
+					->make( \ItalyStrap\Event\Manager::class );
+			} catch ( ConfigException $configException ) {
+				echo $configException->getMessage();
+			} catch ( InjectionException $injectionException ) {
+				echo $injectionException->getMessage();
+			} catch ( \Exception $exception ) {
+				echo $exception->getMessage();
+			}
+		}
+
+		return $event_manager;
+	}
+}

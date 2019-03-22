@@ -49,7 +49,7 @@ add_action( 'wp', function (){
 	/**
 	 * If we are in singular page then load the template settings from post_meta
 	 * If we are not in singular pages load the global post_content_template
-	 *
+	 * @TODO Forse qui è meglio settare i valori con l'hook "italystrap" nel file di template per avere la possibilità di poter cambiare il valore in esecuzione
 	 */
 	if ( is_singular() ) {
 		$config->push( 'post_content_template',

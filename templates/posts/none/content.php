@@ -27,7 +27,7 @@
 
 	else :
 
-	?><p class="404-content"><?php echo \wp_kses_post( $this->theme_mod['404_content'] ); ?></p><?php
+	?><p class="404-content"><?php echo \wp_kses_post( $this->get('404_content') ); ?></p><?php
 
 		\get_search_form();
 

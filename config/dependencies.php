@@ -3,9 +3,8 @@
 namespace ItalyStrap;
 
 use ItalyStrap\Config\Config_Factory;
-use ItalyStrap\Config;
-use ItalyStrap\Factory;
 use function \ItalyStrap\Config\get_config_file_content;
+use function \ItalyStrap\Factory\get_config;
 
 global $wp_query;
 
@@ -70,10 +69,10 @@ return [
 //			':fallback_cb' => [ '\ItalyStrap\Navbar\Bootstrap_Nav_Menu', 'fallback' ],
 //		],
 		'\ItalyStrap\Components\Navigations\Pagination'	=> [
-			':config'	=> Config_Factory::make( Config\get_config_file_content( 'pagination' ) ),
+			':config'	=> Config_Factory::make( get_config_file_content( 'pagination' ) ),
 		],
 		'\ItalyStrap\Components\Navigations\Pager'	=> [
-			':config'	=> Config_Factory::make( Config\get_config_file_content( 'pager' ) ),
+			':config'	=> Config_Factory::make( get_config_file_content( 'pager' ) ),
 		],
 	],
 
@@ -87,7 +86,7 @@ return [
 	 * ==========================================================
 	 */
 	'define_param'			=> [
-		'theme_mods'	=> Factory\get_config()->all(),
+		'theme_mods'	=> get_config()->all(),
 		'wp_query'		=> $wp_query,
 		'query'			=> $wp_query,
 	],
@@ -119,9 +118,7 @@ return [
 	 */
 	'preparations'			=> [
 		'\ItalyStrap\Builders\Builder'	=> function( Builders\Builder $builder, \Auryn\Injector $injector ) {
-			$builder
-				->set_injector( $injector )
-				->set_structure( get_config_file_content( 'structure' ) );
+			$builder->set_injector( $injector );
 		},
 	],
 

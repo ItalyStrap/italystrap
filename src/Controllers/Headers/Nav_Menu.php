@@ -16,46 +16,25 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Controllers\Controller;
-use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Navbar\Navbar;
 use ItalyStrap\Template\View_Interface;
 
 /**
  * Class description
  */
-class Nav_Menu extends Controller implements Subscriber_Interface  {
-
-	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
-	 * @return array
-	 */
-	public static function get_subscribed_events() {
-
-		return array(
-			// 'hook_name'							=> 'method_name',
-			'italystrap_after_header'	=> 'render',
-		);
-	}
-
-	/**
-	 * File name for the view
-	 *
-	 * @var string
-	 */
-	protected $file_name = 'headers/navbar';
+class Nav_Menu  {
 
 	/**
 	 * Init the class
 	 *
 	 * @param array $theme_mod Class configuration array.
 	 */
-	function __construct( array $theme_mod = array(), View_Interface $view, Navbar $navbar  ) {
+	function __construct( View_Interface $view, Navbar $navbar  ) {
+		$this->view = $view;
+		$this->navbar = $navbar;
+	}
 
-		$this->data['navbar'] = $navbar;
-
-		parent::__construct( $theme_mod, $view );
+	public function render( $view ) {
+		echo $this->view->render( $view, [ 'navbar' => $this->navbar ] );
 	}
 }

@@ -5,6 +5,7 @@
  * Date: 18/03/2019
  * Time: 15:20
  */
+declare( strict_types = 1 );
 
 namespace ItalyStrap\Builders;
 
@@ -100,7 +101,7 @@ class Builder implements Builder_Interface {
 			$this->add_action( $component );
 
 //			foreach ( (array) $component['hooks'] as $hook ) {
-//				$this->add_action( $hook, $component );
+//				$this->add_action( $hook['hook'], $component, $hook['priority'] );
 //			}
 		}
 	}
@@ -149,14 +150,16 @@ class Builder implements Builder_Interface {
 
 	/**
 	 * @param array $component
+	 * @throws \Auryn\InjectionException
 	 */
 	private function set_data( array &$component ) {
+
 		/**
 		 * Define the data array from optional callable
 		 * $this->set_data( $component );
 		 */
 		if ( \is_callable( $component['data'] ) ) {
-			$component['data'] = (array) \call_user_func( $component['data'] );
+			$component['data'] = (array) $this->injector->execute( $component['data'] );
 		}
 	}
 
@@ -169,7 +172,7 @@ class Builder implements Builder_Interface {
 		$view = (array) $component['view'];
 
 		if ( ! isset( $view[0] ) ) {
-			throw new \InvalidArgumentException( \__( 'If a callback is null you have to provide a file name to print in the view', 'italystrap' ), 0 );
+			throw new \InvalidArgumentException( \__( 'If the callback is null you have to provide a file name to print for the View::class', 'italystrap' ), 0 );
 		}
 
 		$view[0] = $this->template_dir . DIRECTORY_SEPARATOR . $view[0];

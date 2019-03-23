@@ -1,7 +1,49 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: fisso
- * Date: 22/03/2019
- * Time: 15:47
- */
+
+namespace ItalyStrap\Event;
+
+use Auryn\ConfigException;
+use Auryn\InjectionException;
+
+use function \ItalyStrap\Factory\get_injector;
+use function \ItalyStrap\Factory\get_event_manager;
+
+if ( ! function_exists( '\ItalyStrap\Event\add_subscriber' ) ) {
+
+	function add_subscriber( $name, array $args = [] ) {
+
+		try {
+			get_event_manager()->add_subscriber(
+				get_injector()
+					->share( $name )
+					->make( $name, $args )
+			);
+		} catch ( ConfigException $configException ) {
+			echo $configException->getMessage();
+		} catch ( InjectionException $injectionException ) {
+			echo $injectionException->getMessage();
+		} catch ( \Exception $exception ) {
+			echo $exception->getMessage();
+		}
+	}
+}
+
+if ( ! function_exists( '\ItalyStrap\Event\remove_subscriber' ) ) {
+
+	function remove_subscriber( $name ) {
+
+		try {
+			get_event_manager()->remove_subscriber(
+				get_injector()
+					->share( $name )
+					->make( $name )
+			);
+		} catch ( ConfigException $configException ) {
+			echo $configException->getMessage();
+		} catch ( InjectionException $injectionException ) {
+			echo $injectionException->getMessage();
+		} catch ( \Exception $exception ) {
+			echo $exception->getMessage();
+		}
+	}
+}

@@ -34,6 +34,9 @@ class View implements View_Interface {
 	 */
 	private function render_template( $template_file, array $data = [] ) {
 
+		/**
+		 * @TODO Valutare se condividere il Config globale o uno nuovo, al momento viene creato ex-novo
+		 */
 		$storage = \ItalyStrap\Config\Config_Factory::make( $data );
 
 		$renderer = \Closure::bind( function( $template_file ) {

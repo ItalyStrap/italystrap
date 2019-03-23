@@ -9,8 +9,7 @@
 namespace ItalyStrap\Template;
 
 
-class Finder implements Finder_Interface
-{
+class Finder implements Finder_Interface {
 
 	private $files = [];
 
@@ -64,7 +63,6 @@ class Finder implements Finder_Interface
 	public function getRealPath( $slugs ) {
 
 		$slugs = (array) $slugs;
-//		$slugs = (array) explode( '-', $slugs );
 
 		/**
 		 * Fires before the specified template part file is loaded.
@@ -77,7 +75,7 @@ class Finder implements Finder_Interface
 		 * @param string      $slug The slug name for the generic template.
 		 * @param string      $name The name of the specialized template.
 		 */
-//		do_action( "italystrap_get_template_part_{$slugs[0]}", $slugs );
+		do_action( "italystrap_get_template_part_{$slugs[0]}", $slugs );
 
 		$templates = [];
 
@@ -87,27 +85,35 @@ class Finder implements Finder_Interface
 
 		$templates[] = "{$slugs[0]}.php";
 
-		if ( ! $this->has( $templates ) ) {
-			/**
-			 * @todo Make exception also for $templates[1] if is not empty
-			 */
-			throw new \InvalidArgumentException( sprintf( 'The template %s does not exists', $templates[0] ) );
-		}
-
-		return locate_template( $templates, false, false );
+		return (string) $this->get( $templates );
 	}
 
 	/**
 	 * Check if the template exists
 	 *
-	 * @param string|array $templates Template file(s) to search for, in order.
+	 * @param array $templates Template file(s) to search for, in order.
 	 *
 	 * @return bool                        Return true if template exists
 	 */
-	public function has( $templates ) {
+	private function has( array $templates ) {
 
-//		$this->files[ $templates ] = locate_template( $templates, false, false );
+		if ( empty( $this->files[ $templates[0] ] ) ) {
+			$this->files[ $templates[0] ] = locate_template( $templates, false, false );
+		}
 
-		return (bool) locate_template( $templates, false, false );
+		return (bool) is_readable( $this->files[ $templates[0] ] );
+	}
+
+	/**
+	 * @param array $templates
+	 * @return string
+	 */
+	private function get( array $templates ) {
+
+		if ( ! $this->has( $templates ) ) {
+			throw new \InvalidArgumentException( sprintf( 'The template %s does not exists', $templates[0] ) );
+		}
+
+		return (string) $this->files[ $templates[0] ];
 	}
 }

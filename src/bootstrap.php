@@ -33,6 +33,7 @@ $autoload_theme_files = [
 	'/functions/comments-helpers.php',
 	'/functions/italystrap.php',
 	'/functions/factory.php',
+	'/functions/event.php',
 	'/functions/html.php',
 
 	'/functions/images.php',

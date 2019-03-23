@@ -54,7 +54,7 @@ return [
 		'breadcrumbs'	=> [
 			'hook'	=> 'italystrap_before_loop',
 			'priority'	=> 10, // Optional
-			'callback'	=> '\ItalyStrap\Controllers\Posts\Parts\Breadcrumbs::render', // Optional
+			'callback'	=> [ Controllers\Posts\Parts\Breadcrumbs::class, 'render' ], // Optional
 		],
 
 		'featured-image'	=> [
@@ -141,7 +141,7 @@ return [
 		'hook'	=> 'italystrap_entry',
 		'view'	=> 'posts/post',
 		'data'	=> function () : array {
-			return (array) get_post( null, ARRAY_A );
+			return (array) \get_post( null, ARRAY_A );
 		},
 	],
 
@@ -185,7 +185,7 @@ return [
 			'priority'	=> 20,
 			'view'		=> 'misc/archive-headline',
 //			'callback'	=> [ \ItalyStrap\Controllers\Misc\Archive_Headline::class, 'render' ],
-			'should_load'	=> ( is_archive() || is_search() ) && ! is_author(),
+			'should_load'	=> ( \is_archive() || \is_search() ) && ! \is_author(),
 		],
 
 		'author-info'	=> [

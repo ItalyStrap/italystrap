@@ -6,8 +6,6 @@ use ItalyStrap\Config\Config_Factory;
 use function \ItalyStrap\Config\get_config_file_content;
 use function \ItalyStrap\Factory\get_config;
 
-global $wp_query;
-
 return [
 
 	/**
@@ -87,8 +85,14 @@ return [
 	 */
 	'define_param'			=> [
 		'theme_mods'	=> get_config()->all(),
-		'wp_query'		=> $wp_query,
-		'query'			=> $wp_query,
+		':wp_query'		=> function () {
+			global $wp_query;
+			return $wp_query;
+		},
+		':query'			=> function () {
+			global $wp_query;
+			return $wp_query;
+		},
 	],
 
 	/**
@@ -135,23 +139,16 @@ return [
 	'concretes'				=> [
 //		'\ItalyStrap\Router\Router', // Anche questo da testare meglio
 		// '\ItalyStrap\Core\Router\Controller', // Da testare meglio
-		'\ItalyStrap\Customizer\Theme_Customizer',
-		'\ItalyStrap\Css\Css',
-		'\ItalyStrap\Init\Init_Theme',
-		'\ItalyStrap\Custom\Sidebars\Sidebars',
-		'\ItalyStrap\Nav_Menu\Register_Nav_Menu_Edit',
-		'\ItalyStrap\Custom\Image\Size',
+		Customizer\Theme_Customizer::class,
+		Css\Css::class,
+		Init\Init_Theme::class,
+		Custom\Sidebars\Sidebars::class,
+		Custom\Image\Size::class,
+		Nav_Menu\Register_Nav_Menu_Edit::class,
 
 		// This is the class that build the page
-		'\ItalyStrap\Builders\Director',
+		Builders\Director::class,
 	],
 
 //	'subscribers'			=> [],
-//	'execute'				=> [
-////		[
-////			function () {},
-////			[],
-////		],
-////		function () { echo '<h1>Callable</h1>'; },
-//	],
 ];

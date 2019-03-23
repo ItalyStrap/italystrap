@@ -36,7 +36,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_injector' ) ) {
 if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 
 	/**
-	 * @return Config
+	 * @return \ItalyStrap\Config\Config
 	 */
 	function get_config() {
 
@@ -61,7 +61,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 if ( ! function_exists( '\ItalyStrap\Factory\get_view' ) ) {
 
 	/**
-	 * @return Config
+	 * @return \ItalyStrap\Template\View
 	 */
 	function get_view() {
 
@@ -86,7 +86,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_view' ) ) {
 if ( ! function_exists( '\ItalyStrap\Factory\get_event_manager' ) ) {
 
 	/**
-	 * @return Config
+	 * @return \ItalyStrap\Event\Manager
 	 */
 	function get_event_manager() {
 

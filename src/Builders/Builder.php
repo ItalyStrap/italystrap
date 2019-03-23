@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: fisso
- * Date: 18/03/2019
- * Time: 15:20
+ * Builder API
+ *
+ * This builder class build the page structure from a given configuration.
  */
 declare( strict_types = 1 );
 
@@ -55,7 +54,7 @@ class Builder implements Builder_Interface {
 	 * @param \Auryn\Injector $injector
 	 * @return Builder
 	 */
-	public function set_injector( \Auryn\Injector $injector ) : Builder {
+	public function set_injector( \Auryn\Injector $injector ) : self {
 		$this->injector = $injector;
 		return $this;
 	}
@@ -64,7 +63,7 @@ class Builder implements Builder_Interface {
 	 * @param array $structure
 	 * @return Builder
 	 */
-	public function set_structure( array $structure ) : Builder {
+	public function set_structure( array $structure ) : self {
 		$this->structure = $structure;
 		return $this;
 	}

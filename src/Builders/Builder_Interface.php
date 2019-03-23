@@ -9,7 +9,24 @@
 namespace ItalyStrap\Builders;
 
 
-interface Builder_Interface
-{
+interface Builder_Interface {
 
+	/**
+	 * @param \Auryn\Injector $injector
+	 * @return Builder
+	 */
+	public function set_injector( \Auryn\Injector $injector );
+
+	/**
+	 * @param array $structure
+	 * @return Builder
+	 */
+	public function set_structure( array $structure );
+
+	/**
+	 * Build the page
+	 *
+	 * @throws \Exception
+	 */
+	public function build();
 }

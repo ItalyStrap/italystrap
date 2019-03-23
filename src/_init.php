@@ -25,7 +25,7 @@ $concretes = [
 ];
 
 if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
-	$concretes[] = 'ItalyStrap\Migrations\Old_Hooks';
+	$concretes[] = Migrations\Old_Hooks::class;
 }
 
 /**

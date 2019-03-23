@@ -25,32 +25,6 @@ class View implements View_Interface {
 	}
 
 	/**
-	 * Take a template file, bind the data provided and return the string rendered.
-	 *
-	 * @param string $template_file Full path for this template file.
-	 * @param array  $data
-	 *
-	 * @return mixed
-	 */
-	private function render_template( $template_file, array $data = [] ) {
-
-		/**
-		 * @TODO Valutare se condividere il Config globale o uno nuovo, al momento viene creato ex-novo
-		 */
-		$storage = \ItalyStrap\Config\Config_Factory::make( $data );
-
-		$renderer = \Closure::bind( function( $template_file ) {
-				ob_start();
-				include $template_file;
-				return ob_get_clean();
-			},
-			$storage
-		);
-
-		return $renderer( $template_file );
-	}
-
-	/**
 	 * Render a template part into a template
 	 *
 	 * @param  string|array $slugs The slug name for the generic template.
@@ -68,5 +42,31 @@ class View implements View_Interface {
 	 */
 	public function output( $slug, array $data = [] ) {
 		echo $this->render( $slug, $data );
+	}
+
+	/**
+	 * Take a template file, bind the data provided and return the string rendered.
+	 *
+	 * @param string $template_file Full path for this template file.
+	 * @param array  $data
+	 *
+	 * @return mixed
+	 */
+	private function render_template( $template_file, array $data = [] ) {
+
+		/**
+		 * @TODO Valutare se condividere il Config globale o uno nuovo, al momento viene creato ex-novo
+		 */
+		$storage = \ItalyStrap\Config\Config_Factory::make( $data );
+
+		$renderer = \Closure::bind( function( $template_file ) {
+			ob_start();
+			include $template_file;
+			return ob_get_clean();
+		},
+			$storage
+		);
+
+		return $renderer( $template_file );
 	}
 }

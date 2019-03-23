@@ -84,7 +84,7 @@ class Controller implements Controller_Interface {
 
 		$this->set_class_name();
 
-		$this->template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
+//		$this->template_dir = apply_filters( 'italystrap_template_dir', 'templates' );
 
 		$this->view = $view;
 
@@ -129,9 +129,10 @@ class Controller implements Controller_Interface {
 			throw new \Exception('You have to register the file name of the view.');
 		}
 
-		$template = $this->template_dir . DIRECTORY_SEPARATOR . $this->file_name;
+//		$template = $this->template_dir . DIRECTORY_SEPARATOR . $this->file_name;
 
-		echo $this->view->render( $template, $this->data );
+//		echo $this->view->render( $template, $this->data );
+		echo $this->view->render( $this->file_name, $this->data );
 	}
 
 	/**

@@ -11,22 +11,21 @@ namespace ItalyStrap\Template;
 
 class Finder implements Finder_Interface {
 
+	private $dir_name = '';
+
 	private $files = [];
 
 	/**
 	 * @todo Future implementation.
 	 *
-	 * @param $dirNameOrArrayOfDirName
+	 * @param $dir_name
 	 *
 	 * @return $this
 	 */
-//	private function in( $dirNameOrArrayOfDirName ) {
-////		foreach ( (array) $dirNameOrArrayOfDirName as $dirName ) {
-//////			d( $dirName );
-////		}
-//
-//		return $this;
-//	}
+	public function in( $dir_name ) {
+		$this->dir_name = $dir_name;
+		return $this;
+	}
 
 	/**
 	 * Load a template part into a template
@@ -63,6 +62,10 @@ class Finder implements Finder_Interface {
 	public function getRealPath( $slugs ) {
 
 		$slugs = (array) $slugs;
+
+		if ( $this->dir_name ) {
+			$slugs[0] = $this->dir_name . DIRECTORY_SEPARATOR . $slugs[0];
+		}
 
 		/**
 		 * Fires before the specified template part file is loaded.

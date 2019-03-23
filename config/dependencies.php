@@ -121,8 +121,11 @@ return [
 	 * ========================================================================
 	 */
 	'preparations'			=> [
-		'\ItalyStrap\Builders\Builder'	=> function( Builders\Builder $builder, \Auryn\Injector $injector ) {
+		Builders\Builder::class	=> function( Builders\Builder $builder, \Auryn\Injector $injector ) {
 			$builder->set_injector( $injector );
+		},
+		Template\Finder::class	=> function( Template\Finder $finder ) {
+			$finder->in( get_config()->get( 'template_dir' ) );
 		},
 	],
 
@@ -131,6 +134,7 @@ return [
 	 *
 	 * Autoload Concrete Classes
 	 * Loaded on admin and front-end
+	 * @TODO Maybe it should be called subscribers because they are subscribed and not only instantiated
 	 *
 	 * string
 	 *

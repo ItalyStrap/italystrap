@@ -8,16 +8,9 @@ declare( strict_types = 1 );
 
 namespace ItalyStrap\Builders;
 
-
-use \ItalyStrap\Config\Config_Interface;
 use \ItalyStrap\Template\View_Interface;
 
 class Builder implements Builder_Interface {
-
-	/**
-	 * @var Config_Interface
-	 */
-	private $config;
 
 	/**
 	 * @var View_Interface
@@ -30,24 +23,16 @@ class Builder implements Builder_Interface {
 	private $injector;
 
 	/**
-	 * @var string
-	 */
-	private $template_dir = '';
-
-	/**
 	 * @var array
 	 */
 	private $structure = [];
 
 	/**
 	 * Builder constructor.
-	 * @param Config_Interface $config
 	 * @param View_Interface $view
 	 */
-	public function __construct( Config_Interface $config, View_Interface $view ) {
-		$this->config = $config;
+	public function __construct( View_Interface $view ) {
 		$this->view = $view;
-		$this->template_dir = (string) $this->config->get( 'template_dir' );
 	}
 
 	/**
@@ -174,8 +159,6 @@ class Builder implements Builder_Interface {
 			throw new \InvalidArgumentException( \__( 'If the callback is null you have to provide a file name to print for the View::class', 'italystrap' ), 0 );
 		}
 
-		$view[0] = $this->template_dir . DIRECTORY_SEPARATOR . $view[0];
-
 		return (array) $view;
 	}
 
@@ -185,7 +168,7 @@ class Builder implements Builder_Interface {
 	private function get_default() : array {
 		return [
 			'hook'			=> '',
-			'view'			=> '', // Could be a string|array|callable
+			'view'			=> '', // Could be a string|array
 			'data'			=> [], // Could be array|callable
 			'priority'		=> 10, // Optional
 			'callback'		=> null, // Optional

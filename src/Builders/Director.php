@@ -69,7 +69,11 @@ class Director implements Subscriber_Interface {
 		/**
 		 * Injector setter is run on dependencies.php
 		 */
-		$this->builder->set_structure( get_config_file_content( 'structure' ) )->build();
+		try {
+			$this->builder->set_structure( get_config_file_content( 'structure' ) )->build();
+		} catch ( \Exception $e ) {
+			echo $e->getMessage();
+		}
 	}
 
 	/**

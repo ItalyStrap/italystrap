@@ -22,35 +22,6 @@ use function \ItalyStrap\Factory\get_config;
  */
 return [
 
-//	'author-info'	=> [
-//		'hook'	=> [
-//			[
-//				'italystrap_before_loop',
-//				20,
-//			],
-//			[
-//				'italystrap_after_entry_content',
-//				30,
-//			],
-//		],
-//		'priority'	=> 10, // Optional
-//		'callback'	=> '\ItalyStrap\Controllers\Posts\Parts\Breadcrumbs', // Optional
-//	],
-
-//	'author-info'	=> [
-//		[
-//			'hook'		=> 'italystrap_before_loop',
-//			'priority'	=> 20, // Optional
-//		],
-//		[
-//			'hook'		=> 'italystrap_after_entry_content',
-//			'priority'	=> 30, // Optional
-//		],
-//		'view'	=> 'misc/author-info',
-//		'data'	=> [],
-//		'callback'	=> '\ItalyStrap\Controllers\Posts\Parts\Breadcrumbs', // Optional
-//	],
-
 		'breadcrumbs'	=> [
 			'hook'	=> 'italystrap_before_loop',
 			'priority'	=> 10, // Optional

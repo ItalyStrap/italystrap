@@ -8,6 +8,8 @@
 
 namespace ItalyStrap\HTML;
 
+use \ItalyStrap\Config\Config_Interface;
+
 
 class Parse_Attr {
 
@@ -26,7 +28,7 @@ class Parse_Attr {
 	 * Parse_Attr constructor.
 	 * @param \ItalyStrap\Config\Config_Interface|null $config
 	 */
-	public function __construct( \ItalyStrap\Config\Config_Interface $config = null ) {
+	public function __construct( Config_Interface $config = null ) {
 		$this->config = $config;
 	}
 

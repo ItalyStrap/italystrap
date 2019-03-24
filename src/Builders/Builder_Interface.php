@@ -18,12 +18,6 @@ interface Builder_Interface {
 	public function set_injector( \Auryn\Injector $injector );
 
 	/**
-	 * @param array $structure
-	 * @return Builder
-	 */
-	public function set_structure( array $structure );
-
-	/**
 	 * Build the page
 	 *
 	 * @throws \Exception

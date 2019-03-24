@@ -2,14 +2,8 @@
 
 namespace ItalyStrap;
 
+use \ItalyStrap\Config\Config_Interface;
 use function \ItalyStrap\Factory\get_config;
-
-/**
- * @TODO Verificare quale hook è più corretto
- */
-//if ( ! did_action( 'wp' ) ) {
-//	throw new \Exception( 'This file must be loaded after wp hook', 0 );
-//}
 
 /**
  * ====================================================================
@@ -132,8 +126,8 @@ return [
 			'hook'			=> 'italystrap_entry_content_none',
 			'priority'		=> 20,
 			'view'			=> 'posts/none/title',
-			'data'			=> function () : array {
-				return get_config()->all();
+			'data'			=> function ( Config_Interface $config ) : array {
+				return $config->all();
 			},
 		],
 
@@ -141,8 +135,8 @@ return [
 			'hook'			=> 'italystrap_entry_content_none',
 			'priority'		=> 30,
 			'view'			=> 'posts/none/content',
-			'data'			=> function () : array {
-				return get_config()->all();
+			'data'			=> function ( Config_Interface $config ) : array {
+				return $config->all();
 			},
 		],
 
@@ -156,7 +150,9 @@ return [
 			'priority'	=> 20,
 			'view'		=> 'misc/archive-headline',
 //			'callback'	=> [ \ItalyStrap\Controllers\Misc\Archive_Headline::class, 'render' ],
-			'should_load'	=> ( \is_archive() || \is_search() ) && ! \is_author(),
+			'should_load'	=> function () {
+				return ( \is_archive() || \is_search() ) && ! \is_author();
+			},
 		],
 
 		'author-info'	=> [

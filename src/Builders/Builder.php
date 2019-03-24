@@ -9,6 +9,7 @@ declare( strict_types = 1 );
 namespace ItalyStrap\Builders;
 
 use \ItalyStrap\Template\View_Interface;
+use ItalyStrap\Config\Config_Interface;
 
 class Builder implements Builder_Interface {
 
@@ -16,6 +17,11 @@ class Builder implements Builder_Interface {
 	 * @var View_Interface
 	 */
 	private $view;
+
+	/**
+	 * @var Config_Interface
+	 */
+	private $config;
 
 	/**
 	 * @var \Auryn\Injector
@@ -31,8 +37,9 @@ class Builder implements Builder_Interface {
 	 * Builder constructor.
 	 * @param View_Interface $view
 	 */
-	public function __construct( View_Interface $view ) {
+	public function __construct( View_Interface $view, Config_Interface $config ) {
 		$this->view = $view;
+		$this->config = $config;
 	}
 
 	/**
@@ -41,15 +48,6 @@ class Builder implements Builder_Interface {
 	 */
 	public function set_injector( \Auryn\Injector $injector ) : self {
 		$this->injector = $injector;
-		return $this;
-	}
-
-	/**
-	 * @param array $structure
-	 * @return Builder
-	 */
-	public function set_structure( array $structure ) : self {
-		$this->structure = $structure;
 		return $this;
 	}
 
@@ -68,7 +66,9 @@ class Builder implements Builder_Interface {
 			), 0 );
 		}
 
-		foreach ( $this->structure as $component ) {
+		foreach ( $this->config as $component ) {
+
+			$this->is_valid_hook_name( $component );
 
 			/**
 			 * Merge with default
@@ -78,7 +78,7 @@ class Builder implements Builder_Interface {
 			/**
 			 * If it should not be loaded bail out
 			 */
-			if ( ! $component['should_load'] ) {
+			if ( ! $this->should_load( $component['should_load'] ) ) {
 				continue;
 			}
 
@@ -174,5 +174,29 @@ class Builder implements Builder_Interface {
 			'callback'		=> null, // Optional
 			'should_load'	=> true,
 		];
+	}
+
+	/**
+	 * @param array $component
+	 */
+	private function is_valid_hook_name( array $component ) {
+
+		if ( ! \array_key_exists( 'hook', $component ) || '' === $component['hook'] ) {
+			throw new \RuntimeException( \__( 'The hook name must be not empty', 'italystrap' ), 0 );
+		}
+	}
+
+	/**
+	 * @param $bool_Or_callable
+	 * @return bool
+	 * @throws \Auryn\InjectionException
+	 */
+	private function should_load( $bool_Or_callable ) {
+
+		if ( is_bool( $bool_Or_callable ) ) {
+			return $bool_Or_callable;
+		}
+
+		return (bool) $this->injector->execute( $bool_Or_callable );
 	}
 }

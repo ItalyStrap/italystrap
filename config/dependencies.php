@@ -2,6 +2,7 @@
 
 namespace ItalyStrap;
 
+use ItalyStrap\Builders\Builder;
 use ItalyStrap\Config\Config_Factory;
 use function \ItalyStrap\Config\get_config_file_content;
 use function \ItalyStrap\Factory\get_config;
@@ -57,19 +58,19 @@ return [
 	 * ==========================================================
 	 */
 	'definitions'			=> [
-//		'\ItalyStrap\Navbar\Navbar'	=> [
-//			'walker' => '\ItalyStrap\Navbar\Bootstrap_Nav_Menu'
-//		],
-		'\ItalyStrap\Navbar\Navbar'	=> [
+		Builder::class	=> [
+			':config'	=> Config_Factory::make( get_config_file_content( 'structure' ) ),
+		],
+		Navbar\Navbar::class	=> [
 			':fallback_cb' => '\ItalyStrap\Navbar\Bootstrap_Nav_Menu::fallback',
 		],
 //		'\ItalyStrap\Navbar\Navbar'	=> [
 //			':fallback_cb' => [ '\ItalyStrap\Navbar\Bootstrap_Nav_Menu', 'fallback' ],
 //		],
-		'\ItalyStrap\Components\Navigations\Pagination'	=> [
+		Components\Navigations\Pagination::class	=> [
 			':config'	=> Config_Factory::make( get_config_file_content( 'pagination' ) ),
 		],
-		'\ItalyStrap\Components\Navigations\Pager'	=> [
+		Components\Navigations\Pager::class	=> [
 			':config'	=> Config_Factory::make( get_config_file_content( 'pager' ) ),
 		],
 	],
@@ -121,7 +122,7 @@ return [
 	 * ========================================================================
 	 */
 	'preparations'			=> [
-		Builders\Builder::class	=> function( Builders\Builder $builder, \Auryn\Injector $injector ) {
+		Builder::class	=> function( Builder $builder, \Auryn\Injector $injector ) {
 			$builder->set_injector( $injector );
 		},
 		Template\Finder::class	=> function( Template\Finder $finder ) {

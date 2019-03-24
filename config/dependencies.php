@@ -18,12 +18,13 @@ return [
 	 */
 	'sharing'				=> [
 		/**
-		 * Already shared in bootstrap.php or in ACM if active
+		 * Make sure the config is shared.
+		 * Already shared in bootstrap.php or in ACM if is active.
 		 */
-		'\ItalyStrap\Config\Config',
-		'\ItalyStrap\Event\Manager',
-		'\ItalyStrap\Template\View',
-		'\ItalyStrap\Css\Css',
+		Config\Config::class,
+		Event\Manager::class,
+		Template\View::class,
+		Css\Css::class,
 	],
 
 	/**

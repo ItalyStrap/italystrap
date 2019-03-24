@@ -193,7 +193,7 @@ class Builder implements Builder_Interface {
 	 */
 	private function should_load( $bool_Or_callable ) {
 
-		if ( is_bool( $bool_Or_callable ) ) {
+		if ( \is_bool( $bool_Or_callable ) ) {
 			return $bool_Or_callable;
 		}
 

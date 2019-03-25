@@ -43,7 +43,8 @@ class Director implements Subscriber_Interface {
 	 */
 	public static function get_subscribed_events() {
 		return [
-			'wp'	=> 'create_page', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
+//			'wp'	=> 'create_page', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
+			'italystrap_build'	=> 'create_page', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
 		];
 	}
 

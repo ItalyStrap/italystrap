@@ -103,17 +103,27 @@ function colophon_default_text() {
 }
 
 /**
- * Echo the colophon function
+ * Return colophon text
  *
  * @since 4.0.0 ItalyStrap
  *
- * @param  string $theme_mods The theme mods array.
+ * @param \ItalyStrap\Config\Config_Interface $config
+ * @return string
  */
-function get_the_colophon( $theme_mods ) {
-
-	$output = ( isset( $theme_mods['colophon'] ) ) ? $theme_mods['colophon'] : colophon_default_text();
-
+function get_the_colophon() {
+	$output = \ItalyStrap\Factory\get_config()->get( 'colophon', '' );
 	return apply_filters( 'italystrap_colophon_output', wp_kses_post( $output ) );
+}
+
+/**
+ * Echo colophon text
+ *
+ * @since 4.0.0 ItalyStrap
+ *
+ * @param \ItalyStrap\Config\Config_Interface $config
+ */
+function the_colophon() {
+	echo get_the_colophon();
 }
 
 if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
@@ -313,6 +323,34 @@ function register_theme_width( array $new_width ) {
 	return array_merge( $with, $new_width );
 }
 add_filter( 'italystrap_theme_width', __NAMESPACE__ . '\register_theme_width' );
+
+/**
+ * Get the template parts settings.
+ * This methos has to be called inside a loop.
+ *
+ * @return array Return the array with template part settings.
+ */
+function get_template_settings() {
+
+	static $parts = null;
+
+	/**
+	 * Cache the post_meta data
+	 */
+	if ( ! $parts ) {
+
+		/**
+		 * This is a little different from the layout settings because
+		 * only in singular it must return the data from post_meta
+		 *
+		 * @var [type]
+		 */
+//			$parts = ! is_singular() ? (array) self::$post_content_template : (array) get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
+		$parts = (array) \ItalyStrap\Factory\get_config()->get('post_content_template');
+	}
+
+	return (array) apply_filters( 'italystrap_get_template_settings', $parts );
+}
 
 /**
  * @param array $theme_mods

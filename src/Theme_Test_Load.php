@@ -110,9 +110,10 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 
 				if ( method_exists( $concrete, 'get_subscribed_events' ) ) {
 					$event_manager->add_subscriber( $injector->make( $concrete ) );
-				} else {
-					$injector->make( $concrete );
 				}
+//				else {
+//					$injector->make( $concrete );
+//				}
 
 			} catch ( InjectionException $exception ) {
 				echo $exception->getMessage();

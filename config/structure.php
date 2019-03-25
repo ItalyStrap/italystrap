@@ -99,7 +99,38 @@ return [
 
 		'sidebar'	=> [
 			'hook'	=> 'italystrap_after_content',
-			'callback'	=> [ Controllers\Sidebars\Sidebar::class, 'render' ], // Optional
+			'callback'	=> '\get_sidebar',
+			'should_load'	=> function () {
+				return 'full_width' !== get_config()->get( 'site_layout' );
+			},
+			/**
+			 * @TODO Maybe for WooCommerce, for now is only for remember
+			 */
+			'callback_to_develope'	=> function () {
+
+				/**
+				 * Don't load sidebar on pages that doesn't need it
+				 */
+				if ( 'full_width' === get_config()->get( 'site_layout' ) ) {
+					/**
+					 * This hook is usefull for example when you need to remove the
+					 * WooCommerce sidebar on full width page.
+					 *
+					 * @example
+					 * add_action( 'italystrap_full_width_layout', function () {
+					 *     remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+					 * }, 10 );
+					 */
+					do_action( 'italystrap_full_width_layout' );
+					return;
+				}
+
+				\get_sidebar();
+
+		//		if ( in_array( $this->layout->get_layout_settings(), array(), true ) ) {
+		//			get_sidebar( 'secondary' );
+		//		}
+			}, // Optional
 		],
 
 	'entry'	=> [
@@ -195,20 +226,32 @@ return [
 			'callback'	=> [ Controllers\Headers\Nav_Menu::class, 'render' ],
 		],
 
+		/**
+		 * @example it could be added new key 'callback_args' for additional or custom callback arguments
+		 * 			They will be provisioned to the callback itself.
+		 *
+		 * "callback_args => [ 'file' => 'new_comment_template.php' ]"
+		 */
 		'comments'	=> [
 			'hook'		=> 'italystrap_after_loop',
-			'callback'	=> [ Controllers\Comments\Comments::class, 'render' ],
+			'callback'	=> '\comments_template',
+			'should_load'	=> function () {
+				return \is_singular()
+					&& \post_type_supports( \get_post_type(), 'comments' )
+					&& ! \in_array( 'hide_comments', Core\get_template_settings(), true );
+			},
 		],
 
 		'footer-widget-area'	=> [
 			'hook'		=> 'italystrap_footer',
-			'callback'	=> [ Controllers\Footers\Widget_Area::class, 'render' ],
+			'view'		=> 'footers/widget-area',
+			'callback'	=> [ Components\Footers\Widget_Area::class, 'render' ],
 		],
 
 		'footer-colophon'	=> [
 			'hook'		=> get_config()->get( 'colophon_action' ),
 			'priority'	=> get_config()->get( 'colophon_priority' ),
-			'callback'	=> [ Controllers\Footers\Colophon::class, 'render' ],
+			'view'		=> 'footers/colophon',
 		],
 
 	/**

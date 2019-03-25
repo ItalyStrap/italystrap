@@ -129,6 +129,10 @@ class Builder implements Builder_Interface {
 			':component'	=> $component,
 		];
 
+		foreach ( $component['callback_args'] as $name => $arg ) {
+			$args[ ':' . $name ] = $arg;
+		}
+
 		return (string) $this->injector->execute( $component['callback'], $args );
 	}
 
@@ -172,6 +176,7 @@ class Builder implements Builder_Interface {
 			'data'			=> [], // Could be array|callable
 			'priority'		=> 10, // Optional
 			'callback'		=> null, // Optional
+			'callback_args'	=> [], // Optional
 			'should_load'	=> true,
 		];
 	}

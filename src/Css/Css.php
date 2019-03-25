@@ -16,7 +16,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Event\Subscriber_Interface;
+use \ItalyStrap\Event\Subscriber_Interface;
+use \ItalyStrap\Config\Config_Interface;
 
 /**
  * CSS API Class
@@ -54,15 +55,23 @@ class Css implements Subscriber_Interface {
 	 *
 	 * @var array
 	 */
-	private $theme_mods = array();
+//	private $theme_mods = array();
+
+	/**
+	 * Theme config.
+	 *
+	 * @var Config_Interface
+	 */
+	private $config = array();
 
 	/**
 	 * [__construct description]
 	 *
 	 * @param [type] $argument [description].
 	 */
-	function __construct( array $theme_mods = array() ) {
-		$this->theme_mods = $theme_mods;
+	function __construct( Config_Interface $config ) {
+		$this->config = $config;
+//		$this->theme_mods = $config->all();
 	}
 
 	/**
@@ -159,7 +168,7 @@ class Css implements Subscriber_Interface {
 		 *
 		 * @var string
 		 */
-		$mod = $this->theme_mods[ $mod_name ];
+		$mod = $this->config->get( $mod_name );
 
 		/**
 		 * If mod is empty return

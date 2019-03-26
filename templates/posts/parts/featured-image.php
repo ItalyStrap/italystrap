@@ -25,7 +25,7 @@ namespace ItalyStrap;
 $context = null;
 
 $featured_image_class = [
-	'class' => \trim( 'featured-image ' . $this->theme_mod['post_thumbnail_alignment'] ),
+	'class' => \trim( 'featured-image ' . $this->get( 'post_thumbnail_alignment' ) ),
 ];
 
 if ( \has_post_thumbnail() ) { ?>
@@ -41,7 +41,7 @@ if ( \has_post_thumbnail() ) { ?>
 		 *
 		 * @var string
 		 */
-		$size = \apply_filters( 'italystrap_post_thumbnail_size', $this->theme_mod['post_thumbnail_size'], $context );
+		$size = \apply_filters( 'italystrap_post_thumbnail_size', $this->get( 'post_thumbnail_size' ), $context );
 
 		/**
 		 * Filter the post thumbnail attributes with context

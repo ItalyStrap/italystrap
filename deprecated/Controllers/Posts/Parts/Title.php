@@ -1,8 +1,8 @@
 <?php
 /**
- * Featured_Image Controller API
+ * Title Controller API
  *
- * This class renders the Featured_Image output on the registered position.
+ * [Long Description.]
  *
  * @link www.italystrap.com
  * @since 4.0.0
@@ -22,13 +22,13 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Class description
  */
-class Featured_Image extends Controller implements Subscriber_Interface  {
+class Title extends Controller implements Subscriber_Interface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
 	 *
-	 * @hoocked 'italystrap_entry_content' - 10
+	 * @hooked italystrap_entry_content - 20
 	 *
 	 * @return array
 	 */
@@ -38,7 +38,7 @@ class Featured_Image extends Controller implements Subscriber_Interface  {
 			// 'hook_name'							=> 'method_name',
 			'italystrap_entry_content'	=> array(
 				'function_to_add'	=> 'render',
-				'priority'			=> 10,
+				'priority'			=> 20,
 			),
 		);
 	}
@@ -48,7 +48,7 @@ class Featured_Image extends Controller implements Subscriber_Interface  {
 	 *
 	 * @var string
 	 */
-	protected $file_name = 'posts/parts/featured-image';
+	protected $file_name = 'posts/parts/title';
 
 	/**
 	 * Render the output of the controller.
@@ -58,20 +58,13 @@ class Featured_Image extends Controller implements Subscriber_Interface  {
 		/**
 		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
 		 */
-		if ( ! post_type_supports( $this->get_post_type(), 'thumbnail' ) ) {
+		if ( ! \post_type_supports( \get_post_type(), 'title' ) ) {
 			return;
 		}
 
-		if ( in_array( 'hide_thumb', $this->get_template_settings(), true ) ) {
+		if ( \in_array( 'hide_title', $this->get_template_settings(), true ) ) {
 			return;
 		}
-
-		if ( is_singular() ) {
-			$this->theme_mod['post_thumbnail_size'] = 'post-thumbnail';
-			$this->theme_mod['post_thumbnail_alignment'] = 'aligncenter';
-		}
-
-		$this->data['theme_mod'] = $this->theme_mod;
 
 		parent::render();
 	}

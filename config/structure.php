@@ -19,23 +19,46 @@ return [
 		'breadcrumbs'	=> [
 			'hook'	=> 'italystrap_before_loop',
 			'priority'	=> 10, // Optional
-			'callback'	=> [ Controllers\Posts\Parts\Breadcrumbs::class, 'render' ], // Optional
+			'should_load'	=> function () {
+				return current_theme_supports( 'breadcrumbs' )
+					&& in_array( CURRENT_TEMPLATE, explode( ',', get_config()->get( 'breadcrumbs_show_on' ) ), true )
+					&& ! \in_array( 'hide_breadcrumbs', Core\get_template_settings(), true );
+			},
+			'callback'	=> function () {
+				$args = array(
+					'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
+				);
+
+				do_action( 'do_breadcrumbs', $args );
+			},
 		],
 
 		'featured-image'	=> [
 			'hook'	=> 'italystrap_entry_content',
 			'priority'	=> 10, // Optional
+			'should_load'	=> function () {
+				return \post_type_supports( \get_post_type(), 'thumbnail' )
+					&& ! \in_array( 'hide_thumb', Core\get_template_settings(), true );
+			},
 			'view'	=> 'posts/parts/featured-image',
-			'data'	=> [],
-			'callback'	=> [ Controllers\Posts\Parts\Featured_Image::class, 'render' ], // Optional
+			'data'	=> function ( Config_Interface $config ) : Config_Interface {
+				if ( is_singular() ) {
+					$config->push( 'post_thumbnail_size', 'post-thumbnail' );
+					$config->push( 'post_thumbnail_alignment', 'aligncenter' );
+				}
+
+				return $config;
+			},
 		],
 
 		'title'	=> [
 			'hook'	=> 'italystrap_entry_content',
 			'priority'	=> 20, // Optional
+			'should_load'	=> function () {
+				return \post_type_supports( \get_post_type(), 'title' )
+					&& ! \in_array( 'hide_title', Core\get_template_settings(), true );
+			},
 			'view'	=> 'posts/parts/title',
-			'data'	=> [],
-			'callback'	=> [ Controllers\Posts\Parts\Title::class, 'render' ], // Optional
 		],
 
 		'link-pages'	=> [
@@ -157,8 +180,8 @@ return [
 			'hook'			=> 'italystrap_entry_content_none',
 			'priority'		=> 20,
 			'view'			=> 'posts/none/title',
-			'data'			=> function ( Config_Interface $config ) : array {
-				return $config->all();
+			'data'			=> function ( Config_Interface $config ) : Config_Interface {
+				return $config;
 			},
 		],
 
@@ -166,8 +189,8 @@ return [
 			'hook'			=> 'italystrap_entry_content_none',
 			'priority'		=> 30,
 			'view'			=> 'posts/none/content',
-			'data'			=> function ( Config_Interface $config ) : array {
-				return $config->all();
+			'data'			=> function ( Config_Interface $config ) : Config_Interface {
+				return $config;
 			},
 		],
 

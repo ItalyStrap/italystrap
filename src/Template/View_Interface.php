@@ -11,19 +11,27 @@
 
 namespace ItalyStrap\Template;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
+use \ItalyStrap\Config\Config_Interface;
 
 interface View_Interface {
 
 	/**
 	 * Render a template part into a template
 	 *
-	 * @param string|array $slugs The slug name for the generic template.
-	 * @param array        $data  The data to bind to file.
+	 * @param  string|array $slugs The slug name for the generic template.
+	 * @param  array|Config_Interface $data
 	 *
-	 * @return string            Return the file part rendered
+	 * @return string              Return the file part rendered
+	 * @throws \Exception
 	 */
-	public function render( $slugs, array $data = [] );
+	public function render( $slugs, $data = [] ) : string;
+
+	/**
+	 * Print the redered template.
+	 *
+	 * @param $slugs
+	 * @param array|Config_Interface $data
+	 * @throws \Exception
+	 */
+	public function output( $slugs, $data = [] );
 }

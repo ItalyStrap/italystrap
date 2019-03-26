@@ -9,9 +9,8 @@
 
 namespace ItalyStrap\Template;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
+use \ItalyStrap\Config\Config_Interface;
+use \ItalyStrap\Config\Config_Factory as Config;
 
 /**
  * Template Class
@@ -28,36 +27,46 @@ class View implements View_Interface {
 	 * Render a template part into a template
 	 *
 	 * @param  string|array $slugs The slug name for the generic template.
-	 * @param  array        $data
+	 * @param  array|Config_Interface $data
 	 *
 	 * @return string              Return the file part rendered
+	 * @throws \Exception
 	 */
-	public function render( $slugs, array $data = [] ) {
+	public function render( $slugs, $data = [] ) : string {
 		return $this->render_template( $this->finder->getRealPath( $slugs ), $data );
 	}
 
 	/**
-	 * @param string $slugs
-	 * @param array  $data
+	 * Print the redered template.
+	 *
+	 * @param $slugs
+	 * @param array|Config_Interface $data
+	 * @throws \Exception
 	 */
-	public function output( $slug, array $data = [] ) {
-		echo $this->render( $slug, $data );
+	public function output( $slugs, $data = [] ) {
+		echo $this->render( $slugs, $data );
 	}
 
 	/**
 	 * Take a template file, bind the data provided and return the string rendered.
 	 *
 	 * @param string $template_file Full path for this template file.
-	 * @param array  $data
+	 * @param array|Config_Interface $data
 	 *
-	 * @return mixed
+	 * @return string
+	 * @throws \Exception
 	 */
-	private function render_template( $template_file, array $data = [] ) {
+	private function render_template( string $template_file, $data = [] ) : string {
 
-		/**
-		 * @TODO Valutare se condividere il Config globale o uno nuovo, al momento viene creato ex-novo
-		 */
-		$storage = \ItalyStrap\Config\Config_Factory::make( $data );
+		$storage = null;
+
+		if ( is_array( $data ) ) {
+			$storage = Config::make( $data );
+		} elseif ( $data instanceof Config_Interface ) {
+			$storage = $data;
+		} else {
+			throw new \Exception( 'The {$data} must be an array or an instance of \ItalyStrap\Config\Config_Interface', 0 );
+		}
 
 		$renderer = \Closure::bind( function( $template_file ) {
 			ob_start();

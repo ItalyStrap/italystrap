@@ -95,7 +95,7 @@ class Builder implements Builder_Interface {
 	 */
 	private function add_action( array $component ) {
 
-		\add_action( $component['hook'], function() use ( $component ) {
+		\add_action( $component['hook'], function( ...$args ) use ( $component ) {
 
 			$this->set_data( $component );
 

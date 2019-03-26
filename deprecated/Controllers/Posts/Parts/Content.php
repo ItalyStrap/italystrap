@@ -62,7 +62,7 @@ class Content extends Controller implements Subscriber_Interface {
 		 *       e con il controllo sopra sparisce il contenuto e non va bene.
 		 */
 		$post_type = $this->get_post_type();
-		if ( ! post_type_supports( $post_type, 'editor' ) ) {
+		if ( ! post_type_supports( get_post_type(), 'editor' ) ) {
 			return;
 		}
 

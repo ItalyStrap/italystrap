@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Class description
  */
-class Edit_Post_Link extends Controller implements Subscriber_Interface  {
+class Edit_Post_Link  {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -60,7 +60,7 @@ class Edit_Post_Link extends Controller implements Subscriber_Interface  {
 		if ( ! current_theme_supports( 'italystrap_edit_delete_post_link' ) ) {
 			return;
 		}
-
+		d();
 		echo $this->append_to_content();
 		return;
 
@@ -106,7 +106,7 @@ class Edit_Post_Link extends Controller implements Subscriber_Interface  {
 	 * @return string          The post content with the links.
 	 */
 	public function append_to_content( $content = '' ) {
-
+d();
 		if ( is_archive() ) {
 			return $content;
 		}

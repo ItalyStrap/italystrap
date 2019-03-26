@@ -55,7 +55,7 @@ class Meta extends Controller implements Subscriber_Interface {
 	 */
 	public function render() {
 		
-		if ( ! post_type_supports( $this->get_post_type(), 'entry-meta' ) ) {
+		if ( ! post_type_supports( get_post_type(), 'entry-meta' ) ) {
 			return;
 		}
 

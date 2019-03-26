@@ -54,7 +54,7 @@ class Pager extends Controller implements Subscriber_Interface  {
 	 */
 	public function render() {
 		
-		if ( ! post_type_supports( $this->get_post_type(), 'post_navigation' ) ) {
+		if ( ! \post_type_supports( \get_post_type(), 'post_navigation' ) ) {
 			return;
 		}
 

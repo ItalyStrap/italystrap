@@ -4,6 +4,7 @@ namespace ItalyStrap;
 
 use \ItalyStrap\Config\Config_Interface;
 use function \ItalyStrap\Factory\get_config;
+use function ItalyStrap\Factory\get_injector;
 
 /**
  * ====================================================================
@@ -54,7 +55,7 @@ return [
 		'title'	=> [
 			'hook'	=> 'italystrap_entry_content',
 			'priority'	=> 20, // Optional
-			'should_load'	=> function () {
+			'should_load'	=> function () : bool {
 				return \post_type_supports( \get_post_type(), 'title' )
 					&& ! \in_array( 'hide_title', Core\get_template_settings(), true );
 			},
@@ -64,15 +65,20 @@ return [
 		'link-pages'	=> [
 			'hook'	=> 'italystrap_entry_content',
 			'priority'	=> 25, // Optional
-			'callback'	=> [ Controllers\Posts\Parts\Link_Pages::class, 'render' ], // Optional
+			'should_load'	=> function () : bool {
+				return is_single();
+			},
+			'callback'	=> [ Components\Navigations\Link_Pages::class, 'render' ], // Optional
 		],
 
 		'meta'	=> [
 			'hook'	=> 'italystrap_entry_content',
 			'priority'	=> 30, // Optional
+			'should_load'	=> function () : bool {
+				return post_type_supports( get_post_type(), 'entry-meta' )
+					&& ! \in_array( 'hide_meta', Core\get_template_settings(), true );
+			},
 			'view'	=> 'posts/parts/meta',
-			'data'	=> [],
-			'callback'	=> '\ItalyStrap\Controllers\Posts\Parts\Meta::render', // Optional
 		],
 
 		'preview'	=> [
@@ -84,8 +90,18 @@ return [
 		'content'	=> [
 			'hook'	=> 'italystrap_entry_content',
 			'priority'	=> 50, // Optional
+			'should_load'	=> function () : bool {
+
+				/**
+				 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
+				 * || ! post_type_supports( $post_type, 'excerpt' )
+				 * @todo Vadere di fare un controllo sulle pagine perchè ovviamente non hanno il riassunto
+				 *       e con il controllo sopra sparisce il contenuto e non va bene.
+				 */
+				return post_type_supports( get_post_type(), 'editor' )
+					&& ! \in_array( 'hide_content', Core\get_template_settings(), true );
+			},
 			'view'	=> 'posts/parts/content',
-			'callback'	=> [ Controllers\Posts\Parts\Content::class, 'render' ], // Optional
 		],
 
 		'modified'	=> [
@@ -94,20 +110,27 @@ return [
 			'view'	=> 'posts/parts/modified',
 		],
 
-		'edit-post-link'	=> [
-			'hook'	=> 'italystrap_after_entry_content',
-			'priority'	=> 999, // Optional
-			'callback'	=> [ Controllers\Posts\Parts\Edit_Post_Link::class, 'render' ], // Optional
-		],
+//		'edit-post-link'	=> [
+//			'hook'	=> 'italystrap_after_entry_content',
+//			'priority'	=> 999, // Optional
+//			'callback'	=> [ Controllers\Posts\Parts\Edit_Post_Link::class, 'render' ], // Optional
+//		],
 
 		'pager'	=> [
 			'hook'	=> 'italystrap_after_entry_content',
-			'callback'	=> [ Controllers\Posts\Parts\Pager::class, 'render' ], // Optional
+			'should_load'	=> function () : bool {
+				return \post_type_supports( \get_post_type(), 'post_navigation' )
+					&& is_single();
+			},
+			'callback'	=> [ Components\Navigations\Pager::class, 'render' ], // Optional
 		],
 
 		'pagination'	=> [
 			'hook'	=> 'italystrap_after_loop',
-			'callback'	=> [ Controllers\Posts\Parts\Pagination::class, 'render' ], // Optional
+			'should_load'	=> function () : bool {
+				return ! is_404();
+			},
+			'callback'	=> [ Components\Navigations\Pagination::class, 'render' ], // Optional
 		],
 
 //		'password-form'	=> [
@@ -123,7 +146,7 @@ return [
 		'sidebar'	=> [
 			'hook'	=> 'italystrap_after_content',
 			'callback'	=> '\get_sidebar',
-			'should_load'	=> function () {
+			'should_load'	=> function () : bool {
 				return 'full_width' !== get_config()->get( 'site_layout' );
 			},
 			/**
@@ -203,7 +226,6 @@ return [
 			'hook'		=> 'italystrap_before_while',
 			'priority'	=> 20,
 			'view'		=> 'misc/archive-headline',
-//			'callback'	=> [ \ItalyStrap\Controllers\Misc\Archive_Headline::class, 'render' ],
 			'should_load'	=> function () {
 				return ( \is_archive() || \is_search() ) && ! \is_author();
 			},
@@ -235,7 +257,11 @@ return [
 
 		'navbar-top'	=> [
 			'hook'		=> 'italystrap_before_header',
-			'callback'	=> [ Controllers\Headers\Navbar_Top::class, 'render' ],
+			'view'		=> 'headers/navbar-top',
+			'should_load'	=> function () : bool {
+				return \has_nav_menu( 'info-menu' )
+					&& \has_nav_menu( 'social-menu' );
+			},
 		],
 
 		'header-image'	=> [
@@ -246,7 +272,11 @@ return [
 		'navbar'	=> [
 			'hook'		=> 'italystrap_after_header',
 			'view'		=> 'headers/navbar',
-			'callback'	=> [ Controllers\Headers\Nav_Menu::class, 'render' ],
+			'data'	=> function () {
+				return [
+					'navbar'	=> get_injector()->make( '\ItalyStrap\Navbar\Navbar' ),
+				];
+			},
 		],
 
 		/**
@@ -258,7 +288,7 @@ return [
 		'comments'	=> [
 			'hook'		=> 'italystrap_after_loop',
 			'callback'	=> '\comments_template',
-			'should_load'	=> function () {
+			'should_load'	=> function () : bool {
 				return \is_singular()
 					&& \post_type_supports( \get_post_type(), 'comments' )
 					&& ! \in_array( 'hide_comments', Core\get_template_settings(), true );

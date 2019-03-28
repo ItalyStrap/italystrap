@@ -8,11 +8,11 @@ namespace ItalyStrap\Headers;
 
 ?><header class="header-wrapper">
 	<?php \do_action( 'header_open' ); ?>
-	<div class="<?php echo \esc_attr( $this->theme_mod['custom_header']['container_width'] ); ?>">
+	<div class="<?php echo \esc_attr( $this->get('custom_header')['container_width'] ); ?>">
 		<div class="row">
 			<div class="col-md-12">
 				<a href="<?php echo \esc_url( HOME_URL ); ?>" rel="home">
-					<?php echo $this->custom_header; ?>
+					<?php echo $this->get('output'); ?>
 				</a>
 			</div>
 		</div>

@@ -10,42 +10,17 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Controllers\Headers;
+namespace ItalyStrap\Components\Headers;
 
-use ItalyStrap\Controllers\Controller;
-use ItalyStrap\Event\Subscriber_Interface;
-
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
+use \ItalyStrap\Config\Config_Interface as Config;
 
 /**
  * The Header_Image controller class
  */
-class Image extends Controller implements Subscriber_Interface  {
+class Image {
 
-	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
-	 * @hooked 'italystrap_content_header' - 10
-	 *
-	 * @return array
-	 */
-	public static function get_subscribed_events() {
-
-		return array(
-			// 'hook_name'							=> 'method_name',
-			'italystrap_content_header'	=> 'render',
-		);
-	}
-
-	/**
-	 * File name for the view
-	 *
-	 * @var string
-	 */
-	protected $file_name = 'headers/image';
+	private $data = [];
+	private $config;
 
 	/**
 	 * Store the custom header settings
@@ -63,6 +38,10 @@ class Image extends Controller implements Subscriber_Interface  {
 
 	private $size = array();
 
+	function __construct( Config $config ) {
+		$this->config = $config;
+	}
+
 	/**
 	 * Init property
 	 */
@@ -73,7 +52,7 @@ class Image extends Controller implements Subscriber_Interface  {
 		 *
 		 * @var int|null
 		 */
-		$this->post_meta_id = \absint( \get_post_meta( $this->get_the_ID(), '_italystrap_custom_header_id', true ) );
+		$this->post_meta_id = \absint( \get_post_meta( \get_the_ID(), '_italystrap_custom_header_id', true ) );
 
 		/**
 		 * Get the header object
@@ -94,7 +73,7 @@ class Image extends Controller implements Subscriber_Interface  {
 	 *
 	 * @return string       HTML img element or empty string on failure.
 	 */
-	private function get_attachment_image( $id, $size = 'full', array $attr = array() ) {
+	private function get_attachment_image( $id, $size = 'full', array $attr = [] ) {
 	// full-width
 		$attr = array(
 			'class'		=> "center-block img-responsive img-fluid attachment-$id attachment-header size-header",
@@ -115,7 +94,7 @@ class Image extends Controller implements Subscriber_Interface  {
 	 *
 	 * @return string            The image HTML.
 	 */
-	private function get_custom_header_image( $image_obj, $size ) {
+	private function get_custom_header_image( \stdClass $image_obj, $size ) {
 
 		if ( ! isset( $image_obj->attachment_id ) ) {
 			return sprintf(
@@ -124,7 +103,7 @@ class Image extends Controller implements Subscriber_Interface  {
 					'src'		=> $image_obj->url,
 					'width'		=> $image_obj->width,
 					'height'	=> $image_obj->height,
-					'alt'		=> GET_BLOGINFO_NAME,
+					'alt'		=> $this->config->get( 'GET_BLOGINFO_NAME' ),
 				] )
 			);
 		}
@@ -147,7 +126,7 @@ class Image extends Controller implements Subscriber_Interface  {
 			// 'none'				=> 'full',
 		);
 
-		$size = $this->size[ $this->theme_mod['custom_header']['container_width'] ];
+		$size = $this->size[ $this->config->get('custom_header')['container_width'] ];
 
 		if ( ! empty( $this->post_meta_id ) ) {
 			return $this->get_attachment_image( $this->post_meta_id, $size );
@@ -157,19 +136,15 @@ class Image extends Controller implements Subscriber_Interface  {
 	}
 
 	/**
-	 * Render the output of the controller.
+	 * @TODO get_header_image_tag( $attr = array() )
 	 */
-	public function render() {
-
-		if ( ! \has_header_image() ) {
-			return;
-		}
+	public function get_data() : array {
 
 		$this->_init_property();
 
-		$this->data['custom_header'] = $this->custom_header();
-		$this->data['theme_mod'] = $this->theme_mod;
+		$this->data['output'] = $this->custom_header();
 
-		parent::render();
+		return $this->data;
+
 	}
 }

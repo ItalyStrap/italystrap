@@ -14,9 +14,8 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Controllers\Posts\Parts;
+namespace ItalyStrap\Components\Contents;
 
-use ItalyStrap\Controllers\Controller;
 use ItalyStrap\Event\Subscriber_Interface;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
@@ -41,7 +40,7 @@ class Password_Form implements Subscriber_Interface {
 		return array(
 			// 'hook_name'							=> 'method_name',
 			'the_password_form'	=> 'get_the_password_form',
-			'the_excerpt'		=> 'excerpt_password_form',
+//			'the_excerpt'		=> 'excerpt_password_form',
 		);
 	}
 
@@ -66,7 +65,16 @@ class Password_Form implements Subscriber_Interface {
 		global $post;
 
 		$form = sprintf(
-			'<div class="alert alert-danger" role="alert"><form action="%1$s" method="post" role="form"><p>%2$s</p><div class="form-group  has-error"><label for="%3$s" class="sr-only">%4$s</label><p><input name="post_password" id="%3$s" type="password"  class="form-control" placeholder="%5$s"></p><input type="submit"  class="btn btn-danger btn-block" name="Submit" value="%6$s" /></div></form></div>',
+			'<div class="alert alert-info" role="alert">
+<form action="%1$s" method="post" role="form">
+<p>%2$s</p>
+<div class="form-group  has-errors">
+<label for="%3$s" class="sr-only">%4$s</label>
+<p><input name="post_password" id="%3$s" type="password"  class="form-control" placeholder="%5$s"></p>
+<input type="submit"  class="btn btn-primary btn-block" name="Submit" value="%6$s" />
+</div>
+</form>
+</div>',
 			esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ),
 			__( 'To view this protected post, enter the password below:', 'italystrap' ),
 			'pwbox-'. ( empty( $post->ID ) ? rand() : $post->ID ),

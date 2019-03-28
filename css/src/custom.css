@@ -334,8 +334,9 @@ th {
   }
 
   /* line 77, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_print.scss */
-  .btn > .caret,
-  .dropup > .btn > .caret {
+  .btn > .caret, .post-password-form input[type="submit"] > .caret,
+  .dropup > .btn > .caret,
+  .post-password-form .dropup > input[type="submit"] > .caret {
     border-top-color: #000 !important;
   }
 
@@ -1796,7 +1797,7 @@ hr {
 }
 
 /* line 125, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_scaffolding.scss */
-.sr-only {
+.sr-only, .screen-reader-text {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -3544,7 +3545,7 @@ output {
 }
 
 /* line 114, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.form-control {
+.form-control, .post-password-form input[type="password"] {
   display: block;
   width: 100%;
   height: 36px;
@@ -3563,37 +3564,37 @@ output {
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 /* line 57, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.form-control:focus {
+.form-control:focus, .post-password-form input[type="password"]:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 /* line 103, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss */
-.form-control::-moz-placeholder {
+.form-control::-moz-placeholder, .post-password-form input[type="password"]::-moz-placeholder {
   color: #999;
   opacity: 1;
 }
 /* line 107, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss */
-.form-control:-ms-input-placeholder {
+.form-control:-ms-input-placeholder, .post-password-form input[type="password"]:-ms-input-placeholder {
   color: #999;
 }
 /* line 108, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss */
-.form-control::-webkit-input-placeholder {
+.form-control::-webkit-input-placeholder, .post-password-form input[type="password"]::-webkit-input-placeholder {
   color: #999;
 }
 /* line 136, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.form-control::-ms-expand {
+.form-control::-ms-expand, .post-password-form input[type="password"]::-ms-expand {
   border: 0;
   background-color: transparent;
 }
 /* line 146, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+.form-control[disabled], .post-password-form input[disabled][type="password"], .form-control[readonly], .post-password-form input[readonly][type="password"], fieldset[disabled] .form-control, fieldset[disabled] .post-password-form input[type="password"], .post-password-form fieldset[disabled] input[type="password"] {
   background-color: #eeeeee;
   opacity: 1;
 }
 /* line 153, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.form-control[disabled], fieldset[disabled] .form-control {
+.form-control[disabled], .post-password-form input[disabled][type="password"], fieldset[disabled] .form-control, fieldset[disabled] .post-password-form input[type="password"], .post-password-form fieldset[disabled] input[type="password"] {
   cursor: not-allowed;
 }
 
@@ -3609,57 +3610,74 @@ input[type="search"] {
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   /* line 193, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-  input[type="date"].form-control,
+  input[type="date"].form-control, .post-password-form input[type="date"][type="password"],
   input[type="time"].form-control,
+  .post-password-form input[type="time"][type="password"],
   input[type="datetime-local"].form-control,
-  input[type="month"].form-control {
+  .post-password-form input[type="datetime-local"][type="password"],
+  input[type="month"].form-control,
+  .post-password-form input[type="month"][type="password"] {
     line-height: 36px;
   }
   /* line 197, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-  input[type="date"].input-sm, .input-group-sm > input[type="date"].form-control,
+  input[type="date"].input-sm, .input-group-sm > input[type="date"].form-control, .post-password-form .input-group-sm > input[type="date"][type="password"],
   .input-group-sm > input[type="date"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="date"].btn, .input-group-sm input[type="date"],
+  .input-group-sm > .input-group-btn > input[type="date"].btn,
+  .post-password-form .input-group-sm > .input-group-btn > input[type="date"][type="submit"], .input-group-sm input[type="date"],
   input[type="time"].input-sm,
   .input-group-sm > input[type="time"].form-control,
+  .post-password-form .input-group-sm > input[type="time"][type="password"],
   .input-group-sm > input[type="time"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="time"].btn, .input-group-sm
+  .input-group-sm > .input-group-btn > input[type="time"].btn,
+  .post-password-form .input-group-sm > .input-group-btn > input[type="time"][type="submit"], .input-group-sm
   input[type="time"],
   input[type="datetime-local"].input-sm,
   .input-group-sm > input[type="datetime-local"].form-control,
+  .post-password-form .input-group-sm > input[type="datetime-local"][type="password"],
   .input-group-sm > input[type="datetime-local"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="datetime-local"].btn, .input-group-sm
+  .input-group-sm > .input-group-btn > input[type="datetime-local"].btn,
+  .post-password-form .input-group-sm > .input-group-btn > input[type="datetime-local"][type="submit"], .input-group-sm
   input[type="datetime-local"],
   input[type="month"].input-sm,
   .input-group-sm > input[type="month"].form-control,
+  .post-password-form .input-group-sm > input[type="month"][type="password"],
   .input-group-sm > input[type="month"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="month"].btn, .input-group-sm
+  .input-group-sm > .input-group-btn > input[type="month"].btn,
+  .post-password-form .input-group-sm > .input-group-btn > input[type="month"][type="submit"], .input-group-sm
   input[type="month"] {
     line-height: 33px;
   }
   /* line 202, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-  input[type="date"].input-lg, .input-group-lg > input[type="date"].form-control,
+  input[type="date"].input-lg, .input-group-lg > input[type="date"].form-control, .post-password-form .input-group-lg > input[type="date"][type="password"],
   .input-group-lg > input[type="date"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="date"].btn, .input-group-lg input[type="date"],
+  .input-group-lg > .input-group-btn > input[type="date"].btn,
+  .post-password-form .input-group-lg > .input-group-btn > input[type="date"][type="submit"], .input-group-lg input[type="date"],
   input[type="time"].input-lg,
   .input-group-lg > input[type="time"].form-control,
+  .post-password-form .input-group-lg > input[type="time"][type="password"],
   .input-group-lg > input[type="time"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="time"].btn, .input-group-lg
+  .input-group-lg > .input-group-btn > input[type="time"].btn,
+  .post-password-form .input-group-lg > .input-group-btn > input[type="time"][type="submit"], .input-group-lg
   input[type="time"],
   input[type="datetime-local"].input-lg,
   .input-group-lg > input[type="datetime-local"].form-control,
+  .post-password-form .input-group-lg > input[type="datetime-local"][type="password"],
   .input-group-lg > input[type="datetime-local"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="datetime-local"].btn, .input-group-lg
+  .input-group-lg > .input-group-btn > input[type="datetime-local"].btn,
+  .post-password-form .input-group-lg > .input-group-btn > input[type="datetime-local"][type="submit"], .input-group-lg
   input[type="datetime-local"],
   input[type="month"].input-lg,
   .input-group-lg > input[type="month"].form-control,
+  .post-password-form .input-group-lg > input[type="month"][type="password"],
   .input-group-lg > input[type="month"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="month"].btn, .input-group-lg
+  .input-group-lg > .input-group-btn > input[type="month"].btn,
+  .post-password-form .input-group-lg > .input-group-btn > input[type="month"][type="submit"], .input-group-lg
   input[type="month"] {
     line-height: 49px;
   }
 }
 /* line 215, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.form-group {
+.form-group, .post-password-form {
   margin-bottom: 15px;
 }
 
@@ -3746,19 +3764,22 @@ input[type="checkbox"] {
   min-height: 38px;
 }
 /* line 315, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.form-control-static.input-lg, .input-group-lg > .form-control-static.form-control,
+.form-control-static.input-lg, .input-group-lg > .form-control-static.form-control, .post-password-form .input-group-lg > input.form-control-static[type="password"],
 .input-group-lg > .form-control-static.input-group-addon,
-.input-group-lg > .input-group-btn > .form-control-static.btn, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control,
+.input-group-lg > .input-group-btn > .form-control-static.btn,
+.post-password-form .input-group-lg > .input-group-btn > input.form-control-static[type="submit"], .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control, .post-password-form .input-group-sm > input.form-control-static[type="password"],
 .input-group-sm > .form-control-static.input-group-addon,
-.input-group-sm > .input-group-btn > .form-control-static.btn {
+.input-group-sm > .input-group-btn > .form-control-static.btn,
+.post-password-form .input-group-sm > .input-group-btn > input.form-control-static[type="submit"] {
   padding-left: 0;
   padding-right: 0;
 }
 
 /* line 71, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.input-sm, .input-group-sm > .form-control,
+.input-sm, .input-group-sm > .form-control, .post-password-form .input-group-sm > input[type="password"],
 .input-group-sm > .input-group-addon,
-.input-group-sm > .input-group-btn > .btn {
+.input-group-sm > .input-group-btn > .btn,
+.post-password-form .input-group-sm > .input-group-btn > input[type="submit"] {
   height: 33px;
   padding: 5px 10px;
   font-size: 14px;
@@ -3786,7 +3807,7 @@ select[multiple].input-sm,
 }
 
 /* line 333, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.form-group-sm .form-control {
+.form-group-sm .form-control, .form-group-sm .post-password-form input[type="password"], .post-password-form .form-group-sm input[type="password"] {
   height: 33px;
   padding: 5px 10px;
   font-size: 14px;
@@ -3813,9 +3834,10 @@ select[multiple].input-sm,
 }
 
 /* line 71, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.input-lg, .input-group-lg > .form-control,
+.input-lg, .input-group-lg > .form-control, .post-password-form .input-group-lg > input[type="password"],
 .input-group-lg > .input-group-addon,
-.input-group-lg > .input-group-btn > .btn {
+.input-group-lg > .input-group-btn > .btn,
+.post-password-form .input-group-lg > .input-group-btn > input[type="submit"] {
   height: 49px;
   padding: 10px 16px;
   font-size: 20px;
@@ -3843,7 +3865,7 @@ select[multiple].input-lg,
 }
 
 /* line 359, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.form-group-lg .form-control {
+.form-group-lg .form-control, .form-group-lg .post-password-form input[type="password"], .post-password-form .form-group-lg input[type="password"] {
   height: 49px;
   padding: 10px 16px;
   font-size: 20px;
@@ -3874,7 +3896,7 @@ select[multiple].input-lg,
   position: relative;
 }
 /* line 393, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.has-feedback .form-control {
+.has-feedback .form-control, .has-feedback .post-password-form input[type="password"], .post-password-form .has-feedback input[type="password"] {
   padding-right: 45px;
 }
 
@@ -3893,22 +3915,28 @@ select[multiple].input-lg,
 }
 
 /* line 410, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback,
+.input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, .post-password-form .input-group-lg > input[type="password"] + .form-control-feedback,
 .input-group-lg > .input-group-addon + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
+.post-password-form .input-group-lg > .input-group-btn > input[type="submit"] + .form-control-feedback,
 .input-group-lg + .form-control-feedback,
-.form-group-lg .form-control + .form-control-feedback {
+.form-group-lg .form-control + .form-control-feedback,
+.form-group-lg .post-password-form input[type="password"] + .form-control-feedback,
+.post-password-form .form-group-lg input[type="password"] + .form-control-feedback {
   width: 49px;
   height: 49px;
   line-height: 49px;
 }
 
 /* line 417, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback,
+.input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, .post-password-form .input-group-sm > input[type="password"] + .form-control-feedback,
 .input-group-sm > .input-group-addon + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback,
+.post-password-form .input-group-sm > .input-group-btn > input[type="submit"] + .form-control-feedback,
 .input-group-sm + .form-control-feedback,
-.form-group-sm .form-control + .form-control-feedback {
+.form-group-sm .form-control + .form-control-feedback,
+.form-group-sm .post-password-form input[type="password"] + .form-control-feedback,
+.post-password-form .form-group-sm input[type="password"] + .form-control-feedback {
   width: 33px;
   height: 33px;
   line-height: 33px;
@@ -3924,13 +3952,13 @@ select[multiple].input-lg,
   color: #3c763d;
 }
 /* line 21, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-success .form-control {
+.has-success .form-control, .has-success .post-password-form input[type="password"], .post-password-form .has-success input[type="password"] {
   border-color: #3c763d;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 /* line 24, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-success .form-control:focus {
+.has-success .form-control:focus, .has-success .post-password-form input[type="password"]:focus, .post-password-form .has-success input[type="password"]:focus {
   border-color: #2b542c;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
@@ -3956,13 +3984,13 @@ select[multiple].input-lg,
   color: #8a6d3b;
 }
 /* line 21, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-warning .form-control {
+.has-warning .form-control, .has-warning .post-password-form input[type="password"], .post-password-form .has-warning input[type="password"] {
   border-color: #8a6d3b;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 /* line 24, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-warning .form-control:focus {
+.has-warning .form-control:focus, .has-warning .post-password-form input[type="password"]:focus, .post-password-form .has-warning input[type="password"]:focus {
   border-color: #66512c;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
@@ -3988,13 +4016,13 @@ select[multiple].input-lg,
   color: #a94442;
 }
 /* line 21, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-error .form-control {
+.has-error .form-control, .has-error .post-password-form input[type="password"], .post-password-form .has-error input[type="password"] {
   border-color: #a94442;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 /* line 24, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-error .form-control:focus {
+.has-error .form-control:focus, .has-error .post-password-form input[type="password"]:focus, .post-password-form .has-error input[type="password"]:focus {
   border-color: #843534;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
@@ -4015,7 +4043,7 @@ select[multiple].input-lg,
   top: 27px;
 }
 /* line 442, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.has-feedback label.sr-only ~ .form-control-feedback {
+.has-feedback label.sr-only ~ .form-control-feedback, .has-feedback label.screen-reader-text ~ .form-control-feedback {
   top: 0;
 }
 
@@ -4029,13 +4057,13 @@ select[multiple].input-lg,
 
 @media (min-width: 768px) {
   /* line 478, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-  .form-inline .form-group {
+  .form-inline .form-group, .form-inline .post-password-form {
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle;
   }
   /* line 485, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-  .form-inline .form-control {
+  .form-inline .form-control, .form-inline .post-password-form input[type="password"], .post-password-form .form-inline input[type="password"] {
     display: inline-block;
     width: auto;
     vertical-align: middle;
@@ -4052,11 +4080,13 @@ select[multiple].input-lg,
   /* line 500, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
   .form-inline .input-group .input-group-addon,
   .form-inline .input-group .input-group-btn,
-  .form-inline .input-group .form-control {
+  .form-inline .input-group .form-control,
+  .form-inline .input-group .post-password-form input[type="password"],
+  .post-password-form .form-inline .input-group input[type="password"] {
     width: auto;
   }
   /* line 508, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-  .form-inline .input-group > .form-control {
+  .form-inline .input-group > .form-control, .form-inline .post-password-form .input-group > input[type="password"], .post-password-form .form-inline .input-group > input[type="password"] {
     width: 100%;
   }
   /* line 512, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
@@ -4104,17 +4134,17 @@ select[multiple].input-lg,
   min-height: 29px;
 }
 /* line 575, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-.form-horizontal .form-group {
+.form-horizontal .form-group, .form-horizontal .post-password-form {
   margin-left: -15px;
   margin-right: -15px;
 }
 /* line 14, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.form-horizontal .form-group:before, .form-horizontal .form-group:after {
+.form-horizontal .form-group:before, .form-horizontal .post-password-form:before, .form-horizontal .form-group:after, .form-horizontal .post-password-form:after {
   content: " ";
   display: table;
 }
 /* line 19, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.form-horizontal .form-group:after {
+.form-horizontal .form-group:after, .form-horizontal .post-password-form:after {
   clear: both;
 }
 @media (min-width: 768px) {
@@ -4145,7 +4175,7 @@ select[multiple].input-lg,
 }
 
 /* line 9, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_buttons.scss */
-.btn {
+.btn, .post-password-form input[type="submit"] {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -4166,24 +4196,24 @@ select[multiple].input-lg,
   user-select: none;
 }
 /* line 26, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+.btn:focus, .post-password-form input[type="submit"]:focus, .btn.focus, .post-password-form input.focus[type="submit"], .btn:active:focus, .post-password-form input[type="submit"]:active:focus, .btn:active.focus, .post-password-form input[type="submit"]:active.focus, .btn.active:focus, .post-password-form input.active[type="submit"]:focus, .btn.active.focus, .post-password-form input.active.focus[type="submit"] {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 /* line 32, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:hover, .btn:focus, .btn.focus {
+.btn:hover, .post-password-form input[type="submit"]:hover, .btn:focus, .post-password-form input[type="submit"]:focus, .btn.focus, .post-password-form input.focus[type="submit"] {
   color: #333;
   text-decoration: none;
 }
 /* line 39, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:active, .btn.active {
+.btn:active, .post-password-form input[type="submit"]:active, .btn.active, .post-password-form input.active[type="submit"] {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 /* line 46, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_buttons.scss */
-.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+.btn.disabled, .post-password-form input.disabled[type="submit"], .btn[disabled], .post-password-form input[disabled][type="submit"], fieldset[disabled] .btn, fieldset[disabled] .post-password-form input[type="submit"], .post-password-form fieldset[disabled] input[type="submit"] {
   cursor: not-allowed;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -4242,46 +4272,46 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 /* line 71, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-primary {
+.btn-primary, .post-password-form input[type="submit"] {
   color: #fff;
   background-color: #337ab7;
   border-color: #2e6da4;
 }
 /* line 11, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:focus, .btn-primary.focus {
+.btn-primary:focus, .post-password-form input[type="submit"]:focus, .btn-primary.focus, .post-password-form input.focus[type="submit"] {
   color: #fff;
   background-color: #286090;
   border-color: #122b40;
 }
 /* line 17, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:hover {
+.btn-primary:hover, .post-password-form input[type="submit"]:hover {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 /* line 22, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+.btn-primary:active, .post-password-form input[type="submit"]:active, .btn-primary.active, .post-password-form input.active[type="submit"], .open > .btn-primary.dropdown-toggle, .post-password-form .open > input.dropdown-toggle[type="submit"] {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 /* line 29, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:active:hover, .btn-primary:active:focus, .btn-primary:active.focus, .btn-primary.active:hover, .btn-primary.active:focus, .btn-primary.active.focus, .open > .btn-primary.dropdown-toggle:hover, .open > .btn-primary.dropdown-toggle:focus, .open > .btn-primary.dropdown-toggle.focus {
+.btn-primary:active:hover, .post-password-form input[type="submit"]:active:hover, .btn-primary:active:focus, .post-password-form input[type="submit"]:active:focus, .btn-primary:active.focus, .post-password-form input[type="submit"]:active.focus, .btn-primary.active:hover, .post-password-form input.active[type="submit"]:hover, .btn-primary.active:focus, .post-password-form input.active[type="submit"]:focus, .btn-primary.active.focus, .post-password-form input.active.focus[type="submit"], .open > .btn-primary.dropdown-toggle:hover, .post-password-form .open > input.dropdown-toggle[type="submit"]:hover, .open > .btn-primary.dropdown-toggle:focus, .post-password-form .open > input.dropdown-toggle[type="submit"]:focus, .open > .btn-primary.dropdown-toggle.focus, .post-password-form .open > input.dropdown-toggle.focus[type="submit"] {
   color: #fff;
   background-color: #204d74;
   border-color: #122b40;
 }
 /* line 37, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+.btn-primary:active, .post-password-form input[type="submit"]:active, .btn-primary.active, .post-password-form input.active[type="submit"], .open > .btn-primary.dropdown-toggle, .post-password-form .open > input.dropdown-toggle[type="submit"] {
   background-image: none;
 }
 /* line 45, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled.focus, .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled].focus, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary.focus {
+.btn-primary.disabled:hover, .post-password-form input.disabled[type="submit"]:hover, .btn-primary.disabled:focus, .post-password-form input.disabled[type="submit"]:focus, .btn-primary.disabled.focus, .post-password-form input.disabled.focus[type="submit"], .btn-primary[disabled]:hover, .post-password-form input[disabled][type="submit"]:hover, .btn-primary[disabled]:focus, .post-password-form input[disabled][type="submit"]:focus, .btn-primary[disabled].focus, .post-password-form input[disabled].focus[type="submit"], fieldset[disabled] .btn-primary:hover, fieldset[disabled] .post-password-form input[type="submit"]:hover, .post-password-form fieldset[disabled] input[type="submit"]:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .post-password-form input[type="submit"]:focus, .post-password-form fieldset[disabled] input[type="submit"]:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .post-password-form input.focus[type="submit"], .post-password-form fieldset[disabled] input.focus[type="submit"] {
   background-color: #337ab7;
   border-color: #2e6da4;
 }
 /* line 53, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary .badge {
+.btn-primary .badge, .post-password-form input[type="submit"] .badge {
   color: #337ab7;
   background-color: #fff;
 }
@@ -4766,7 +4796,7 @@ a img.alignright > .dropdown-menu {
   padding-right: 0;
 }
 /* line 19, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group .form-control {
+.input-group .form-control, .input-group .post-password-form input[type="password"], .post-password-form .input-group input[type="password"] {
   position: relative;
   z-index: 2;
   float: left;
@@ -4774,20 +4804,24 @@ a img.alignright > .dropdown-menu {
   margin-bottom: 0;
 }
 /* line 33, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group .form-control:focus {
+.input-group .form-control:focus, .input-group .post-password-form input[type="password"]:focus, .post-password-form .input-group input[type="password"]:focus {
   z-index: 3;
 }
 
 /* line 58, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
 .input-group-addon,
 .input-group-btn,
-.input-group .form-control {
+.input-group .form-control,
+.input-group .post-password-form input[type="password"],
+.post-password-form .input-group input[type="password"] {
   display: table-cell;
 }
 /* line 63, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
 .input-group-addon:not(:first-child):not(:last-child),
 .input-group-btn:not(:first-child):not(:last-child),
-.input-group .form-control:not(:first-child):not(:last-child) {
+.input-group .form-control:not(:first-child):not(:last-child),
+.input-group .post-password-form input[type="password"]:not(:first-child):not(:last-child),
+.post-password-form .input-group input[type="password"]:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
 
@@ -4812,17 +4846,19 @@ a img.alignright > .dropdown-menu {
   border-radius: 4px;
 }
 /* line 89, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-addon.input-sm,
+.input-group-addon.input-sm, .post-password-form .input-group-sm > input.input-group-addon[type="password"],
 .input-group-sm > .input-group-addon,
-.input-group-sm > .input-group-btn > .input-group-addon.btn {
+.input-group-sm > .input-group-btn > .input-group-addon.btn,
+.post-password-form .input-group-sm > .input-group-btn > input.input-group-addon[type="submit"] {
   padding: 5px 10px;
   font-size: 14px;
   border-radius: 3px;
 }
 /* line 94, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-addon.input-lg,
+.input-group-addon.input-lg, .post-password-form .input-group-lg > input.input-group-addon[type="password"],
 .input-group-lg > .input-group-addon,
-.input-group-lg > .input-group-btn > .input-group-addon.btn {
+.input-group-lg > .input-group-btn > .input-group-addon.btn,
+.post-password-form .input-group-lg > .input-group-btn > input.input-group-addon[type="submit"] {
   padding: 10px 16px;
   font-size: 20px;
   border-radius: 6px;
@@ -4834,13 +4870,17 @@ a img.alignright > .dropdown-menu {
 }
 
 /* line 108, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group .form-control:first-child,
+.input-group .form-control:first-child, .input-group .post-password-form input[type="password"]:first-child, .post-password-form .input-group input[type="password"]:first-child,
 .input-group-addon:first-child,
 .input-group-btn:first-child > .btn,
+.post-password-form .input-group-btn:first-child > input[type="submit"],
 .input-group-btn:first-child > .btn-group > .btn,
+.post-password-form .input-group-btn:first-child > .btn-group > input[type="submit"],
 .input-group-btn:first-child > .dropdown-toggle,
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
-.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+.post-password-form .input-group-btn:last-child > input[type="submit"]:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
+.post-password-form .input-group-btn:last-child > .btn-group:not(:last-child) > input[type="submit"] {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
@@ -4851,13 +4891,17 @@ a img.alignright > .dropdown-menu {
 }
 
 /* line 120, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group .form-control:last-child,
+.input-group .form-control:last-child, .input-group .post-password-form input[type="password"]:last-child, .post-password-form .input-group input[type="password"]:last-child,
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
+.post-password-form .input-group-btn:last-child > input[type="submit"],
 .input-group-btn:last-child > .btn-group > .btn,
+.post-password-form .input-group-btn:last-child > .btn-group > input[type="submit"],
 .input-group-btn:last-child > .dropdown-toggle,
 .input-group-btn:first-child > .btn:not(:first-child),
-.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+.post-password-form .input-group-btn:first-child > input[type="submit"]:not(:first-child),
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn,
+.post-password-form .input-group-btn:first-child > .btn-group:not(:first-child) > input[type="submit"] {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -4874,24 +4918,24 @@ a img.alignright > .dropdown-menu {
   white-space: nowrap;
 }
 /* line 144, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn {
+.input-group-btn > .btn, .post-password-form .input-group-btn > input[type="submit"] {
   position: relative;
 }
 /* line 146, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn + .btn {
+.input-group-btn > .btn + .btn, .post-password-form .input-group-btn > input[type="submit"] + .btn, .post-password-form .input-group-btn > .btn + input[type="submit"], .post-password-form .input-group-btn > input[type="submit"] + input[type="submit"] {
   margin-left: -1px;
 }
 /* line 150, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn:hover, .input-group-btn > .btn:focus, .input-group-btn > .btn:active {
+.input-group-btn > .btn:hover, .post-password-form .input-group-btn > input[type="submit"]:hover, .input-group-btn > .btn:focus, .post-password-form .input-group-btn > input[type="submit"]:focus, .input-group-btn > .btn:active, .post-password-form .input-group-btn > input[type="submit"]:active {
   z-index: 2;
 }
 /* line 159, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn, .post-password-form .input-group-btn:first-child > input[type="submit"],
 .input-group-btn:first-child > .btn-group {
   margin-right: -1px;
 }
 /* line 165, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn, .post-password-form .input-group-btn:last-child > input[type="submit"],
 .input-group-btn:last-child > .btn-group {
   z-index: 2;
   margin-left: -1px;
@@ -5375,13 +5419,13 @@ a img.alignright > .dropdown-menu {
 }
 @media (min-width: 768px) {
   /* line 478, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-  .navbar-form .form-group {
+  .navbar-form .form-group, .navbar-form .post-password-form {
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle;
   }
   /* line 485, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-  .navbar-form .form-control {
+  .navbar-form .form-control, .navbar-form .post-password-form input[type="password"], .post-password-form .navbar-form input[type="password"] {
     display: inline-block;
     width: auto;
     vertical-align: middle;
@@ -5398,11 +5442,13 @@ a img.alignright > .dropdown-menu {
   /* line 500, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
   .navbar-form .input-group .input-group-addon,
   .navbar-form .input-group .input-group-btn,
-  .navbar-form .input-group .form-control {
+  .navbar-form .input-group .form-control,
+  .navbar-form .input-group .post-password-form input[type="password"],
+  .post-password-form .navbar-form .input-group input[type="password"] {
     width: auto;
   }
   /* line 508, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
-  .navbar-form .input-group > .form-control {
+  .navbar-form .input-group > .form-control, .navbar-form .post-password-form .input-group > input[type="password"], .post-password-form .navbar-form .input-group > input[type="password"] {
     width: 100%;
   }
   /* line 512, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss */
@@ -5436,11 +5482,11 @@ a img.alignright > .dropdown-menu {
 }
 @media (max-width: 767px) {
   /* line 298, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_navbar.scss */
-  .navbar-form .form-group {
+  .navbar-form .form-group, .navbar-form .post-password-form {
     margin-bottom: 5px;
   }
   /* line 302, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_navbar.scss */
-  .navbar-form .form-group:last-child {
+  .navbar-form .form-group:last-child, .navbar-form .post-password-form:last-child {
     margin-bottom: 0;
   }
 }
@@ -5936,7 +5982,7 @@ a img.alignright > .dropdown-menu {
   display: none;
 }
 /* line 25, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_labels.scss */
-.btn .label {
+.btn .label, .post-password-form input[type="submit"] .label {
   position: relative;
   top: -1px;
 }
@@ -6022,12 +6068,12 @@ a.label:hover, a.label:focus {
   display: none;
 }
 /* line 27, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_badges.scss */
-.btn .badge {
+.btn .badge, .post-password-form input[type="submit"] .badge {
   position: relative;
   top: -1px;
 }
 /* line 32, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_badges.scss */
-.btn-xs .badge, .btn-group-xs > .btn .badge {
+.btn-xs .badge, .btn-group-xs > .btn .badge, .post-password-form .btn-group-xs > input[type="submit"] .badge {
   top: 0;
   padding: 1px 5px;
 }
@@ -6427,7 +6473,7 @@ a .media > img.alignleft {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 /* line 229, ../../bower/bootstrap-sass/assets/stylesheets/bootstrap/_carousel.scss */
-.carousel-caption .btn {
+.carousel-caption .btn, .carousel-caption .post-password-form input[type="submit"], .post-password-form .carousel-caption input[type="submit"] {
   text-shadow: none;
 }
 
@@ -6836,7 +6882,7 @@ a img.alignleft {
 }
 
 /* line 5, ../../sass/global/_fix.scss */
-.comment-edit-link, .comment-reply-link, .btn-primary a {
+.comment-edit-link, .comment-reply-link, .btn-primary a, .post-password-form input[type="submit"] a {
   color: #FFFFFF !important;
 }
 
@@ -6906,136 +6952,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, a, p, li {
   .boxed {
     width: 1170px;
   }
-}
-
-/* line 1, ../../sass/global/_wordpressCss.scss */
-#wp-calendar {
-  width: 100%;
-}
-
-/* line 6, ../../sass/global/_wordpressCss.scss */
-.mejs-container {
-  margin-bottom: 1.5em;
-}
-
-/**
- * Class for Figure tag and figure caption tag
- * https://codex.wordpress.org/CSS
- */
-/* =WordPress Core
--------------------------------------------------------------- */
-/* line 26, ../../sass/global/_wordpressCss.scss */
-.aligncenter,
-div.aligncenter,
-a img.aligncenter {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* line 33, ../../sass/global/_wordpressCss.scss */
-.alignright,
-a img.alignright {
-  margin: 0 0 1em 1em;
-}
-
-/* line 40, ../../sass/global/_wordpressCss.scss */
-.alignleft,
-a img.alignleft {
-  margin: 0 1em 1em 0;
-}
-
-/* line 49, ../../sass/global/_wordpressCss.scss */
-.alignnone,
-a img.alignnone {
-  display: inline;
-  margin-bottom: 1em;
-  margin-right: 1em;
-  margin-top: 1em;
-}
-
-/**
- * Featured Image archive and singular
- */
-/* line 61, ../../sass/global/_wordpressCss.scss */
-.wp-post-image {
-  margin-bottom: 1em;
-}
-
-/* line 65, ../../sass/global/_wordpressCss.scss */
-.wp-caption {
-  display: block;
-  max-width: 100%;
-}
-/* line 73, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignnone {
-  margin: 0.3em 1.25em 1.25em 0;
-}
-/* line 76, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignleft {
-  margin: 0.3em 1.25em 1.25em 0;
-}
-/* line 78, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignleft .wp-caption-text {
-  text-align: left;
-}
-/* line 82, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignright {
-  margin: 0.3em 0 1.25em 1.25em;
-}
-/* line 84, ../../sass/global/_wordpressCss.scss */
-.wp-caption.alignright .wp-caption-text {
-  text-align: right;
-}
-/* line 88, ../../sass/global/_wordpressCss.scss */
-.wp-caption.aligncenter {
-  margin: 0.3em 1.25em;
-}
-/* line 90, ../../sass/global/_wordpressCss.scss */
-.wp-caption.aligncenter .wp-caption-text {
-  text-align: center;
-}
-/* line 102, ../../sass/global/_wordpressCss.scss */
-.wp-caption p.wp-caption-text,
-.wp-caption .wp-caption-text {
-  border: 1px solid #eeeeee;
-  border-top: none;
-  color: #777777;
-  font-size: 0.85em;
-  line-height: 1em;
-  margin: 0;
-  padding: 0.5em;
-}
-
-/* Text meant only for screen readers. */
-/* line 116, ../../sass/global/_wordpressCss.scss */
-.screen-reader-text {
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-}
-/* line 122, ../../sass/global/_wordpressCss.scss */
-.screen-reader-text:focus {
-  background-color: #f1f1f1;
-  border-radius: 3px;
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-  clip: auto !important;
-  color: #21759b;
-  display: block;
-  font-size: 14px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  height: auto;
-  left: 5px;
-  line-height: normal;
-  padding: 15px 23px 14px;
-  text-decoration: none;
-  top: 5px;
-  width: auto;
-  z-index: 100000;
-  /* Above WP toolbar. */
 }
 
 /**
@@ -7271,3 +7187,108 @@ a img.dropdown-submenu.alignleft > .dropdown-menu {
 /**
  * Snippet example for widget:
  */
+/* line 6, ../../sass/wordpress/_password_form.scss */
+.post-password-form input[type="submit"] {
+  margin-bottom: 5px;
+}
+
+/* line 1, ../../sass/wordpress/_wordpressCss.scss */
+#wp-calendar {
+  width: 100%;
+}
+
+/* line 6, ../../sass/wordpress/_wordpressCss.scss */
+.mejs-container {
+  margin-bottom: 1.5em;
+}
+
+/**
+ * Class for Figure tag and figure caption tag
+ * https://codex.wordpress.org/CSS
+ */
+/* =WordPress Core
+-------------------------------------------------------------- */
+/* line 26, ../../sass/wordpress/_wordpressCss.scss */
+.aligncenter,
+div.aligncenter,
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 33, ../../sass/wordpress/_wordpressCss.scss */
+.alignright,
+a img.alignright {
+  margin: 0 0 1em 1em;
+}
+
+/* line 40, ../../sass/wordpress/_wordpressCss.scss */
+.alignleft,
+a img.alignleft {
+  margin: 0 1em 1em 0;
+}
+
+/* line 49, ../../sass/wordpress/_wordpressCss.scss */
+.alignnone,
+a img.alignnone {
+  display: inline;
+  margin-bottom: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+}
+
+/**
+ * Featured Image archive and singular
+ */
+/* line 61, ../../sass/wordpress/_wordpressCss.scss */
+.wp-post-image {
+  margin-bottom: 1em;
+}
+
+/* line 65, ../../sass/wordpress/_wordpressCss.scss */
+.wp-caption {
+  display: block;
+  max-width: 100%;
+}
+/* line 73, ../../sass/wordpress/_wordpressCss.scss */
+.wp-caption.alignnone {
+  margin: 0.3em 1.25em 1.25em 0;
+}
+/* line 76, ../../sass/wordpress/_wordpressCss.scss */
+.wp-caption.alignleft {
+  margin: 0.3em 1.25em 1.25em 0;
+}
+/* line 78, ../../sass/wordpress/_wordpressCss.scss */
+.wp-caption.alignleft .wp-caption-text {
+  text-align: left;
+}
+/* line 82, ../../sass/wordpress/_wordpressCss.scss */
+.wp-caption.alignright {
+  margin: 0.3em 0 1.25em 1.25em;
+}
+/* line 84, ../../sass/wordpress/_wordpressCss.scss */
+.wp-caption.alignright .wp-caption-text {
+  text-align: right;
+}
+/* line 88, ../../sass/wordpress/_wordpressCss.scss */
+.wp-caption.aligncenter {
+  margin: 0.3em 1.25em;
+}
+/* line 90, ../../sass/wordpress/_wordpressCss.scss */
+.wp-caption.aligncenter .wp-caption-text {
+  text-align: center;
+}
+/* line 102, ../../sass/wordpress/_wordpressCss.scss */
+.wp-caption p.wp-caption-text,
+.wp-caption .wp-caption-text {
+  border: 1px solid #eeeeee;
+  border-top: none;
+  color: #777777;
+  font-size: 0.85em;
+  line-height: 1em;
+  margin: 0;
+  padding: 0.5em;
+}
+
+/* Text meant only for screen readers. */

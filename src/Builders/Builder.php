@@ -8,23 +8,25 @@ declare( strict_types = 1 );
 
 namespace ItalyStrap\Builders;
 
-use \ItalyStrap\Template\View_Interface;
-use ItalyStrap\Config\Config_Interface;
+use \Auryn\Injector;
+use \ItalyStrap\Template\View_Interface as View;
+use ItalyStrap\Config\Config_Interface as Config;
+use function \ItalyStrap\Factory\get_injector;
 
 class Builder implements Builder_Interface {
 
 	/**
-	 * @var View_Interface
+	 * @var View
 	 */
 	private $view;
 
 	/**
-	 * @var Config_Interface
+	 * @var Config
 	 */
 	private $config;
 
 	/**
-	 * @var \Auryn\Injector
+	 * @var Injector
 	 */
 	private $injector;
 
@@ -35,18 +37,18 @@ class Builder implements Builder_Interface {
 
 	/**
 	 * Builder constructor.
-	 * @param View_Interface $view
+	 * @param View $view
 	 */
-	public function __construct( View_Interface $view, Config_Interface $config ) {
+	public function __construct( View $view, Config $config ) {
 		$this->view = $view;
 		$this->config = $config;
 	}
 
 	/**
-	 * @param \Auryn\Injector $injector
+	 * @param Injector $injector
 	 * @return Builder
 	 */
-	public function set_injector( \Auryn\Injector $injector ) : self {
+	public function set_injector( Injector $injector ) : self {
 		$this->injector = $injector;
 		return $this;
 	}
@@ -109,6 +111,7 @@ class Builder implements Builder_Interface {
 	 *
 	 * @return string
 	 * @throws \Auryn\InjectionException
+	 * @throws \Exception
 	 */
 	private function render_from_callback( array $component ) : string {
 

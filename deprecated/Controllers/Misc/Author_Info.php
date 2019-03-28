@@ -92,7 +92,7 @@ class Author_Info extends Controller implements Subscriber_Interface  {
 		/**
 		 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
 		 */
-		if ( ! post_type_supports( $this->get_post_type(), 'author' ) ) {
+		if ( ! post_type_supports( get_post_type(), 'author' ) ) {
 			return false;
 		}
 

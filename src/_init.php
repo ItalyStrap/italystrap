@@ -21,7 +21,6 @@ $concretes = [
 	User\Contact_Methods::class,
 //	Schema\Word_Count::class,
 //	Schema\Time_Required::class,
-	Controllers\Posts\Parts\Password_Form::class, // Da errori se usato in structure
 ];
 
 if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {

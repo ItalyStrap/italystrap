@@ -4,7 +4,8 @@ namespace ItalyStrap;
 
 use \ItalyStrap\Config\Config_Interface;
 use function \ItalyStrap\Factory\get_config;
-use function ItalyStrap\Factory\get_injector;
+use function \ItalyStrap\Factory\get_injector;
+use function \ItalyStrap\Core\get_template_settings;
 
 /**
  * ====================================================================
@@ -20,26 +21,28 @@ return [
 		'breadcrumbs'	=> [
 			'hook'	=> 'italystrap_before_loop',
 			'priority'	=> 10, // Optional
-			'should_load'	=> function () {
+			'should_load'	=> function () : bool {
 				return current_theme_supports( 'breadcrumbs' )
 					&& in_array( CURRENT_TEMPLATE, explode( ',', get_config()->get( 'breadcrumbs_show_on' ) ), true )
-					&& ! \in_array( 'hide_breadcrumbs', Core\get_template_settings(), true );
+					&& ! \in_array( 'hide_breadcrumbs', get_template_settings(), true );
 			},
-			'callback'	=> function () {
+			'callback'	=> function () : string {
 				$args = array(
 					'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
 				);
 
+				ob_start();
 				do_action( 'do_breadcrumbs', $args );
+				return ob_get_clean();
 			},
 		],
 
 		'featured-image'	=> [
 			'hook'	=> 'italystrap_entry_content',
 			'priority'	=> 10, // Optional
-			'should_load'	=> function () {
+			'should_load'	=> function () : bool {
 				return \post_type_supports( \get_post_type(), 'thumbnail' )
-					&& ! \in_array( 'hide_thumb', Core\get_template_settings(), true );
+					&& ! \in_array( 'hide_thumb', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/featured-image',
 			'data'	=> function ( Config_Interface $config ) : Config_Interface {
@@ -57,7 +60,7 @@ return [
 			'priority'	=> 20, // Optional
 			'should_load'	=> function () : bool {
 				return \post_type_supports( \get_post_type(), 'title' )
-					&& ! \in_array( 'hide_title', Core\get_template_settings(), true );
+					&& ! \in_array( 'hide_title', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/title',
 		],
@@ -76,7 +79,7 @@ return [
 			'priority'	=> 30, // Optional
 			'should_load'	=> function () : bool {
 				return post_type_supports( get_post_type(), 'entry-meta' )
-					&& ! \in_array( 'hide_meta', Core\get_template_settings(), true );
+					&& ! \in_array( 'hide_meta', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/meta',
 		],
@@ -99,7 +102,7 @@ return [
 				 *       e con il controllo sopra sparisce il contenuto e non va bene.
 				 */
 				return post_type_supports( get_post_type(), 'editor' )
-					&& ! \in_array( 'hide_content', Core\get_template_settings(), true );
+					&& ! \in_array( 'hide_content', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/content',
 		],
@@ -226,7 +229,7 @@ return [
 			'hook'		=> 'italystrap_before_while',
 			'priority'	=> 20,
 			'view'		=> 'misc/archive-headline',
-			'should_load'	=> function () {
+			'should_load'	=> function () : bool {
 				return ( \is_archive() || \is_search() ) && ! \is_author();
 			},
 		],
@@ -234,13 +237,45 @@ return [
 		'author-info'	=> [
 			'hook'		=> 'italystrap_before_loop',
 			'priority'	=> 20,
-			'callback'	=> [ Controllers\Misc\Author_Info::class, 'render' ],
+			'view'		=> 'misc/author-info',
+			'should_load'	=> 'is_author',
+			'data'		=> function () : array {
+
+				$data = [];
+				global $author_name;
+				$data['author'] = array_key_exists( 'author_name', $_GET )
+					? get_user_by( 'slug', $author_name )
+					: get_userdata( absint( get_the_author_meta( 'ID' ) ) );
+
+
+				$data['contact'] = get_injector()->make( '\ItalyStrap\User\Contact_Method_List' );
+
+				return $data;
+			},
 		],
 
 		'author-info-1'	=> [
 			'hook'		=> 'italystrap_after_entry_content',
 			'priority'	=> 30,
-			'callback'	=> [ Controllers\Misc\Author_Info::class, 'render' ],
+			'view'		=> 'misc/author-info',
+			'should_load'	=> function () : bool {
+				return post_type_supports( get_post_type(), 'author' )
+					&& is_singular()
+					&& ! \in_array( 'hide_author', get_template_settings(), true );
+			},
+			'data'		=> function () : array {
+
+				$data = [];
+				global $author_name;
+				$data['author'] = array_key_exists( 'author_name', $_GET )
+					? get_user_by( 'slug', $author_name )
+					: get_userdata( absint( get_the_author_meta( 'ID' ) ) );
+
+
+				$data['contact'] = get_injector()->make( '\ItalyStrap\User\Contact_Method_List' );
+
+				return $data;
+			},
 		],
 
 	/**
@@ -266,13 +301,17 @@ return [
 
 		'header-image'	=> [
 			'hook'		=> 'italystrap_content_header',
-			'callback'	=> [ Controllers\Headers\Image::class, 'render' ],
+			'view'		=> 'headers/image',
+			'should_load'	=> '\has_header_image',
+			'data'		=> function () {
+				return get_injector()->make( Components\Headers\Image::class )->get_data();
+			},
 		],
 
 		'navbar'	=> [
 			'hook'		=> 'italystrap_after_header',
 			'view'		=> 'headers/navbar',
-			'data'	=> function () {
+			'data'	=> function () : array {
 				return [
 					'navbar'	=> get_injector()->make( '\ItalyStrap\Navbar\Navbar' ),
 				];
@@ -291,7 +330,7 @@ return [
 			'should_load'	=> function () : bool {
 				return \is_singular()
 					&& \post_type_supports( \get_post_type(), 'comments' )
-					&& ! \in_array( 'hide_comments', Core\get_template_settings(), true );
+					&& ! \in_array( 'hide_comments', get_template_settings(), true );
 			},
 		],
 

@@ -68,6 +68,9 @@ class View implements View_Interface {
 			throw new \Exception( 'The {$data} must be an array or an instance of \ItalyStrap\Config\Config_Interface', 0 );
 		}
 
+		/**
+		 * Thanks to Giuseppe Mazzapica https://github.com/gmazzap
+		 */
 		$renderer = \Closure::bind( function( $template_file ) {
 			ob_start();
 			include $template_file;

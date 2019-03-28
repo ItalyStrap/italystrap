@@ -70,14 +70,18 @@ if ( \have_comments() ) : ?>
 			$wp_list_comments_args = array(
 				'walker'        => \ItalyStrap\Factory\get_injector()->make( $comment_walker ),
 				'max_depth'     => 3, // See in WordPress option.
-				'avatar_size'   => 100,
+//				'avatar_size'   => 100,
+//				'callback'          => function ( \WP_Comment $comment, array $args, int $depth ) {
+//				    d( $comment, $args, $depth );
+//				    return '';
+//                },
 			);
 		} catch ( InjectionException $e ) {
 		    echo $e->getMessage();
 		}
 
 		\ItalyStrap\Core\comment_pagination();
-			echo '<ol class="parent list-unstyled">';
+			echo '<ol class="parent">';
 			\wp_list_comments( $wp_list_comments_args );
 			echo '</ol>';
 		\ItalyStrap\Core\comment_pagination();

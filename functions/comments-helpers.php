@@ -36,23 +36,21 @@ add_filter( 'cancel_comment_reply_link', __NAMESPACE__ . '\add_class_button_to_c
  *
  * @return string
  */
-function add_nofollow_and_bootstrap_button_css_to_reply_link( $link ) {
-
-	$search = [
-		'")\'>',
-		'comment-reply-link',
-	];
-
-	$replace = [
-		'")\' rel=\'nofollow\'>',
-		'comment-reply-link btn btn-primary btn-sm pull-right',
-	];
-
-	$link = str_replace( $search, $replace, $link );
-
-	return $link;
-}
-add_filter( 'comment_reply_link', __NAMESPACE__ . '\add_nofollow_and_bootstrap_button_css_to_reply_link' );
+//function add_nofollow_and_bootstrap_button_css_to_reply_link( $link ) {
+//
+//	$search = [
+//		'")\'>',
+//	];
+//
+//	$replace = [
+//		'")\' rel=\'nofollow\'>',
+//	];
+//
+//	$link = str_replace( $search, $replace, $link );
+//
+//	return $link;
+//}
+//add_filter( 'comment_reply_link', __NAMESPACE__ . '\add_nofollow_and_bootstrap_button_css_to_reply_link' );
 
 /**
  * Display a message if comments are closed
@@ -179,5 +177,5 @@ function comment_pagination(){
  * @return bool Return true if the comment is open.
  */
 function is_comment_reply() {
-	return (bool) is_singular() && comments_open() && get_option( 'thread_comments' );
+	return (bool) \is_singular() && \comments_open() && \get_option( 'thread_comments' );
 }

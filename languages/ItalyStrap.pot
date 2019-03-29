@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ItalyStrap\n"
-"POT-Creation-Date: 2017-10-11 15:48+0200\n"
+"POT-Creation-Date: 2019-03-29 20:33+0100\n"
 "PO-Revision-Date: 2015-04-07 19:09+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -28,37 +28,18 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-8: sass\n"
 "X-Poedit-SearchPathExcluded-9: vendor\n"
 
-#: comments.php:36
+#: _others/wp-h5bp-htaccess.php:23
 #, php-format
-msgid "One Response to &ldquo;%2$s&rdquo;"
+msgid "Please make sure your <a href=\"%s\">.htaccess</a> file is writable "
 msgstr ""
 
-#: comments.php:69
+#: comments.php:46
+#, php-format
+msgid "%1$s response to &ldquo;%2$s&rdquo;"
+msgstr ""
+
+#: comments.php:92
 msgid "There are no comments yet, why not be the first"
-msgstr ""
-
-#: config/config.php:205
-msgid "Default"
-msgstr ""
-
-#: config/config.php:209
-msgid "Sandwich"
-msgstr ""
-
-#: config/config.php:213
-msgid "Coffee"
-msgstr ""
-
-#: config/config.php:237 src/Init/Init_Theme.php:112
-msgid "Info Menu"
-msgstr ""
-
-#: config/config.php:248
-msgid "Social Links Menu"
-msgstr ""
-
-#: config/config.php:261 src/Init/Init_Theme.php:109
-msgid "Main Menu"
 msgstr ""
 
 #: config/customizer.php:38
@@ -69,15 +50,15 @@ msgstr ""
 msgid "Theme Image Options"
 msgstr ""
 
-#: config/customizer.php:53 src/Customizer/settings/customizer.php:210
+#: config/customizer.php:53 src/Customizer/settings/images.php:34
 msgid "Allows you to customize settings for ItalyStrap."
 msgstr ""
 
-#: config/customizer.php:69 src/Customizer/settings/customizer.php:233
+#: config/customizer.php:69 src/Customizer/settings/images.php:57
 msgid "Your Logo"
 msgstr ""
 
-#: config/customizer.php:70 src/Customizer/settings/customizer.php:234
+#: config/customizer.php:70 src/Customizer/settings/images.php:58
 msgid "Insert here your logo"
 msgstr ""
 
@@ -91,105 +72,12 @@ msgid ""
 "searching can help."
 msgstr ""
 
-#: config/default.php:126 src/Customizer/settings/customizer.php:110
+#: config/default.php:141 src/Customizer/settings/header.php:49
 msgid "Full witdh"
 msgstr ""
 
-#: config/default.php:127 src/Customizer/settings/customizer.php:111
+#: config/default.php:142 src/Customizer/settings/header.php:50
 msgid "Standard width"
-msgstr ""
-
-#: config/edd.php:27
-msgid "Theme License"
-msgstr ""
-
-#: config/edd.php:28
-msgid "Enter your theme license key."
-msgstr ""
-
-#: config/edd.php:29
-msgid "License Key"
-msgstr ""
-
-#: config/edd.php:30
-msgid "License Action"
-msgstr ""
-
-#: config/edd.php:31
-msgid "Deactivate License"
-msgstr ""
-
-#: config/edd.php:32
-msgid "Activate License"
-msgstr ""
-
-#: config/edd.php:33 config/edd.php:46
-msgid "License status is unknown."
-msgstr ""
-
-#: config/edd.php:34
-msgid "Renew?"
-msgstr ""
-
-#: config/edd.php:35
-msgid "unlimited"
-msgstr ""
-
-#: config/edd.php:36
-msgid "License key is active."
-msgstr ""
-
-#: config/edd.php:37
-#, php-format
-msgid "Expires %s."
-msgstr ""
-
-#: config/edd.php:38
-msgid "Lifetime License."
-msgstr ""
-
-#: config/edd.php:39
-#, php-format
-msgid "You have %1$s / %2$s sites activated."
-msgstr ""
-
-#: config/edd.php:40
-#, php-format
-msgid "License key expired %s."
-msgstr ""
-
-#: config/edd.php:41
-msgid "License key has expired."
-msgstr ""
-
-#: config/edd.php:42
-msgid "License keys do not match."
-msgstr ""
-
-#: config/edd.php:43
-msgid "License is inactive."
-msgstr ""
-
-#: config/edd.php:44
-msgid "License key is disabled."
-msgstr ""
-
-#: config/edd.php:45
-msgid "Site is inactive."
-msgstr ""
-
-#: config/edd.php:47
-msgid ""
-"Updating this theme will lose any customizations you have made. 'Cancel' to "
-"stop, 'OK' to update."
-msgstr ""
-
-#: config/edd.php:48
-#, php-format
-msgid ""
-"<strong>%1$s %2$s</strong> is available. <a href=\"%3$s\" class=\"thickbox\" "
-"title=\"%4s\">Check out what's new</a> or <a href=\"%5$s\"%6$s>update now</"
-"a>."
 msgstr ""
 
 #: config/layout.php:15
@@ -202,6 +90,10 @@ msgstr ""
 
 #: config/layout.php:20
 msgid "Full width, no sidebar"
+msgstr ""
+
+#: config/pager.php:15 config/pagination.php:15
+msgid "Page: "
 msgstr ""
 
 #: config/sidebars.php:22
@@ -240,331 +132,421 @@ msgstr ""
 msgid "Footer box 4 widget area."
 msgstr ""
 
-#: config/template-content.php:15
+#: config/template-content.php:14
 msgid "Hide breadcrumbs"
 msgstr ""
 
-#: config/template-content.php:16
+#: config/template-content.php:15
 msgid "Hide title"
 msgstr ""
 
-#: config/template-content.php:17
+#: config/template-content.php:16
 msgid "Hide meta info"
 msgstr ""
 
-#: config/template-content.php:18
+#: config/template-content.php:17
 msgid "Hide feautured image"
 msgstr ""
 
-#: config/template-content.php:19
+#: config/template-content.php:18
 msgid "Hide figure caption"
 msgstr ""
 
-#: config/template-content.php:20
+#: config/template-content.php:19
 msgid "Hide the content"
 msgstr ""
 
-#: config/template-content.php:21
+#: config/template-content.php:20
 msgid "Hide author box"
 msgstr ""
 
-#: config/template-content.php:23
+#: config/template-content.php:25
 msgid "Hide comments"
 msgstr ""
 
-#: config/template-content.php:24
+#: config/template-content.php:26
 msgid "Hide comments form"
 msgstr ""
 
-#: config/theme-width.php:16
-msgid "Standard container"
+#: config/theme-positions.php:9
+msgid "After the <code>&lt;/body&gt;</code>"
+msgstr ""
+
+#: config/theme-positions.php:11
+msgid "Before the header"
+msgstr ""
+
+#: config/theme-positions.php:12
+msgid "The content header"
+msgstr ""
+
+#: config/theme-positions.php:13
+msgid "After the header"
+msgstr ""
+
+#: config/theme-positions.php:15
+msgid "Before the Main Content"
+msgstr ""
+
+#: config/theme-positions.php:16
+msgid "Before the Content"
+msgstr ""
+
+#: config/theme-positions.php:18
+msgid "Before the Loop"
+msgstr ""
+
+#: config/theme-positions.php:19
+msgid "The Loop"
+msgstr ""
+
+#: config/theme-positions.php:20
+msgid "After the Loop"
+msgstr ""
+
+#: config/theme-positions.php:22
+msgid "After the Content"
+msgstr ""
+
+#: config/theme-positions.php:24
+msgid "After the Main Content"
+msgstr ""
+
+#: config/theme-positions.php:25
+msgid "In the footer open"
+msgstr ""
+
+#: config/theme-positions.php:26
+msgid "In the footer"
+msgstr ""
+
+#: config/theme-positions.php:27
+msgid "In the footer closed"
+msgstr ""
+
+#: config/theme-positions.php:29
+msgid "At the end of the page before the <code>&lt;/body&gt;</code>"
+msgstr ""
+
+#: config/theme-supports.php:226
+msgid "Default"
+msgstr ""
+
+#: config/theme-supports.php:230
+msgid "Sandwich"
+msgstr ""
+
+#: config/theme-supports.php:234
+msgid "Coffee"
+msgstr ""
+
+#: config/theme-supports.php:258 src/Init/Init_Theme.php:100
+msgid "Info Menu"
+msgstr ""
+
+#: config/theme-supports.php:269
+msgid "Social Links Menu"
+msgstr ""
+
+#: config/theme-supports.php:282 src/Init/Init_Theme.php:97
+msgid "Main Menu"
+msgstr ""
+
+#: config/theme-supports.php:313
+msgid "Primary"
+msgstr ""
+
+#: config/theme-supports.php:319
+msgid "Success"
+msgstr ""
+
+#: config/theme-supports.php:325
+msgid "Info"
+msgstr ""
+
+#: config/theme-supports.php:330
+msgid "Warning"
+msgstr ""
+
+#: config/theme-supports.php:335
+msgid "Danger"
+msgstr ""
+
+#: config/theme-supports.php:340
+msgid "Dark Gray"
+msgstr ""
+
+#: config/theme-supports.php:345
+msgid "Light Gray"
+msgstr ""
+
+#: config/theme-supports.php:350
+msgid "White"
+msgstr ""
+
+#: config/theme-supports.php:363
+msgid "Extra Small"
+msgstr ""
+
+#: config/theme-supports.php:364
+msgid "XS"
+msgstr ""
+
+#: config/theme-supports.php:369 src/Editors/config/style_formats.php:33
+msgid "Small"
+msgstr ""
+
+#: config/theme-supports.php:370
+msgid "S"
+msgstr ""
+
+#: config/theme-supports.php:375
+msgid "Normal"
+msgstr ""
+
+#: config/theme-supports.php:376
+msgid "M"
+msgstr ""
+
+#: config/theme-supports.php:381
+msgid "Large"
+msgstr ""
+
+#: config/theme-supports.php:382
+msgid "L"
+msgstr ""
+
+#: config/theme-supports.php:388
+msgid "Huge"
+msgstr ""
+
+#: config/theme-supports.php:389
+msgid "XL"
+msgstr ""
+
+#: config/theme-supports.php:394
+msgid "Extra Huge"
+msgstr ""
+
+#: config/theme-supports.php:395
+msgid "XXL"
+msgstr ""
+
+#: config/theme-supports.php:400 config/theme-supports.php:401
+#: src/Editors/config/style_formats.php:40
+msgid "H1"
 msgstr ""
 
 #: config/theme-width.php:17
+msgid "Standard container"
+msgstr ""
+
+#: config/theme-width.php:18
 msgid "Fluid container"
 msgstr ""
 
-#: functions/general-functions.php:36
-msgid "Search now"
-msgstr ""
-
-#: functions/general-functions.php:36
-#: src/Customizer/settings/breadcrumbs.php:54
-msgid "Search"
-msgstr ""
-
-#: functions/general-functions.php:299
+#: functions/comments-helpers.php:64
 msgid "Comments are closed."
 msgstr ""
 
-#: functions/general-functions.php:324
+#: functions/comments-helpers.php:91
 msgid "Name"
 msgstr ""
 
-#: functions/general-functions.php:324 functions/general-functions.php:327
+#: functions/comments-helpers.php:91 functions/comments-helpers.php:94
 msgid "(required)"
 msgstr ""
 
-#: functions/general-functions.php:324 functions/general-functions.php:327
+#: functions/comments-helpers.php:91 functions/comments-helpers.php:94
 msgid "(required) *"
 msgstr ""
 
-#: functions/general-functions.php:327
+#: functions/comments-helpers.php:94
 msgid "Email (will not be published)"
 msgstr ""
 
-#: functions/general-functions.php:330
+#: functions/comments-helpers.php:97
 msgid "Website"
 msgstr ""
 
-#: functions/general-functions.php:330
+#: functions/comments-helpers.php:97
 msgid "Website (optional)"
 msgstr ""
 
-#: functions/general-functions.php:341
+#: functions/comments-helpers.php:108
 msgid "Comment"
 msgstr ""
 
-#: functions/general-functions.php:341
+#: functions/comments-helpers.php:108
 msgid "Write your comment here"
 msgstr ""
 
-#: functions/general-functions.php:344
+#: functions/comments-helpers.php:111
 #, php-format
 msgid ""
-"Logged in as <a href=\"%1$s\" class=\"btn btn-primary btn-xs\">%2$s</a>. <a "
-"href=\"%3$s\" title=\"Log out of this account\" class=\"btn btn-warning btn-"
-"xs\">Log out?</a>"
+"Logged in as <a href=\"%1$s\" class=\"badge badge-primary\">%2$s</a> <a href="
+"\"%3$s\" title=\"Log out of this account\" class=\"badge badge-warning\">Log "
+"out?</a>"
 msgstr ""
 
-#: functions/general-functions.php:350
+#: functions/comments-helpers.php:117
 #, php-format
 msgid ""
 "You must be <a href=\"%s\" class=\"alert-link\">logged in</a> to post a "
 "comment."
 msgstr ""
 
-#: functions/general-functions.php:385
+#: functions/comments-helpers.php:152
 msgid "&laquo; Previous comments"
 msgstr ""
 
-#: functions/general-functions.php:386
+#: functions/comments-helpers.php:153
 msgid "Next comments &raquo;"
 msgstr ""
 
-#: functions/general-functions.php:490
-msgid "After the &lt;body&gt;"
+#: functions/edd.php:31
+#, php-format
+msgid "%s License"
 msgstr ""
 
-#: functions/general-functions.php:492
-msgid "Before the header"
+#: functions/general-functions.php:37
+msgid "Search now"
 msgstr ""
 
-#: functions/general-functions.php:493
-msgid "The content header"
+#: functions/general-functions.php:37
+#: src/Customizer/settings/breadcrumbs.php:58
+msgid "Search"
 msgstr ""
 
-#: functions/general-functions.php:494
-msgid "After the header"
-msgstr ""
-
-#: functions/general-functions.php:496
-msgid "Before the Main Content"
-msgstr ""
-
-#: functions/general-functions.php:497
-msgid "Before the Content"
-msgstr ""
-
-#: functions/general-functions.php:499
-msgid "Before the Loop"
-msgstr ""
-
-#: functions/general-functions.php:500
-msgid "The Loop"
-msgstr ""
-
-#: functions/general-functions.php:501
-msgid "After the Loop"
-msgstr ""
-
-#: functions/general-functions.php:503
-msgid "After the Content"
-msgstr ""
-
-#: functions/general-functions.php:505
-msgid "After the Main Content"
-msgstr ""
-
-#: functions/general-functions.php:506
-msgid "In the footer open"
-msgstr ""
-
-#: functions/general-functions.php:507
-msgid "In the footer"
-msgstr ""
-
-#: functions/general-functions.php:508
-msgid "In the footer closed"
-msgstr ""
-
-#: functions/general-functions.php:510
-msgid "At the end of the page before the <code>&lt;/body&gt;</code>"
-msgstr ""
-
-#: lib/images.php:196
+#: functions/images.php:202
 msgid "Image for 404 page"
 msgstr ""
 
-#: lib/pointer.php:38
+#: functions/pointer.php:37
 msgid "Welcome to the ItalyStrap theme"
 msgstr ""
 
-#: lib/pointer.php:41
+#: functions/pointer.php:42
 msgid ""
 "First off all install <a href=\"https://github.com/overclokk/ItalyStrap-child"
 "\" target=\"_blank\">ItalyStrap-child</a> and use it for any customization."
 msgstr ""
 
-#: lib/pointer.php:41
+#: functions/pointer.php:47
 msgid ""
 "Also read the Wiki <a href=\"https://github.com/overclokk/ItalyStrap-child/"
 "wiki/How-to-use-Child-Theme\" target=\"_blank\">How to use Child Theme</a>"
 msgstr ""
 
-#: lib/wp-h5bp-htaccess.php:19
-#, php-format
-msgid "Please make sure your <a href=\"%s\">.htaccess</a> file is writable "
+#: src/Builders/Builder.php:165
+msgid ""
+"If the callback is null you have to provide a file name to print for the "
+"View::class"
 msgstr ""
 
-#: src/Comments/Comments.php:183
-msgid "Post Author"
+#: src/Builders/Builder.php:192
+msgid "The hook name must be not empty"
 msgstr ""
 
-#: src/Comments/Comments.php:195 src/Comments/Comments.php:263
-#: src/Nav_Menu/Nav_Menu_Edit.php:133
-msgid "Edit"
-msgstr ""
-
-#: src/Comments/Comments.php:202 src/Comments/Comments.php:290
-msgid "Your comment is awaiting moderation."
-msgstr ""
-
-#: src/Comments/Comments.php:225
-msgid "Reply to "
-msgstr ""
-
-#: src/Comments/Comments.php:275
+#: src/Components/Comments/Comments.php:65
 #, php-format
 msgid "%s <span class=\"says\">says:</span>"
 msgstr ""
 
-#: src/Comments/Comments.php:281
+#: src/Components/Comments/Comments.php:71
 #, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: src/Comments/Comments.php:302
-#, php-format
-msgid "Reply to %s %s"
+#: src/Components/Comments/Comments.php:80
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: src/Components/Comments/Comments.php:89 src/Nav_Menu/Nav_Menu_Edit.php:133
+msgid "Edit"
 msgstr ""
 
 #. translators: %s: Name of current post
-#: src/Controllers/Posts/Parts/Edit_Post_Link.php:74
+#: src/Components/Contents/Edit_Post_Link.php:74
 #, php-format
 msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr ""
 
-#: src/Controllers/Posts/Parts/Edit_Post_Link.php:125
+#: src/Components/Contents/Edit_Post_Link.php:125
 msgid "Edit This"
 msgstr ""
 
-#: src/Controllers/Posts/Parts/Edit_Post_Link.php:127
+#: src/Components/Contents/Edit_Post_Link.php:127
 msgid "Delete post"
 msgstr ""
 
-#: src/Controllers/Posts/Parts/Link_Pages.php:62
-msgid "Pages:"
+#: src/Components/Navigations/Navbar.php:282
+msgid "Toggle navigation"
 msgstr ""
 
-#: src/Controllers/Posts/Parts/Pager.php:74
+#: src/Components/Navigations/Pager.php:85
 msgid "In post navigation"
 msgstr ""
 
-#: src/Controllers/Posts/Parts/Password_Form.php:62
-msgid "To view this protected post, enter the password below:"
-msgstr ""
-
-#: src/Controllers/Posts/Parts/Password_Form.php:64
-msgid "Password: "
-msgstr ""
-
-#: src/Controllers/Posts/Parts/Password_Form.php:65
-msgid "Enter password"
-msgstr ""
-
-#: src/Controllers/Posts/Parts/Password_Form.php:66
-msgid "Submit"
-msgstr ""
-
-#: src/Custom/Metabox/Register.php:95
+#: src/Custom/Metabox/Register.php:97
 msgid "Custom settings"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:104
+#: src/Custom/Metabox/Register.php:106
 msgid "Page container witdh settings"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:106
+#: src/Custom/Metabox/Register.php:108
 #, php-format
 msgid "Choose the width of the page container for this %s"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:112
+#: src/Custom/Metabox/Register.php:114
 #, php-format
 msgid "Default width set in %s"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:121
+#: src/Custom/Metabox/Register.php:123
 msgid "Layout settings"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:123
+#: src/Custom/Metabox/Register.php:125
 #, php-format
 msgid "Advance layout setting for this %s"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:129
+#: src/Custom/Metabox/Register.php:131
 #, php-format
 msgid "Default layout set in %s"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:138
+#: src/Custom/Metabox/Register.php:140
 msgid "Template settings"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:140
+#: src/Custom/Metabox/Register.php:142
 #, php-format
 msgid "Advance template content setting for this %s"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:152
+#: src/Custom/Metabox/Register.php:154
 msgid "Custom header"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:153
+#: src/Custom/Metabox/Register.php:155
 msgid "The image for the theme header"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:161
+#: src/Custom/Metabox/Register.php:163
 msgid "Add or upload image"
 msgstr ""
 
-#: src/Custom/Metabox/Register.php:179
+#: src/Custom/Metabox/Register.php:181
 msgid "Video URL"
 msgstr ""
 
-#: src/Customizer/Theme_Customizer.php:289
+#: src/Customizer/Customizer_Beta.php:305
+#: src/Customizer/Theme_Customizer.php:242
 msgid "Theme Options"
 msgstr ""
 
@@ -576,12 +558,12 @@ msgstr ""
 msgid "Customize the 404 page for this theme."
 msgstr ""
 
-#: src/Customizer/settings/404.php:42 src/Customizer/settings/404.php:121
-msgid "404 Page Text"
+#: src/Customizer/settings/404.php:42
+msgid "Show or hide 404 image"
 msgstr ""
 
-#: src/Customizer/settings/404.php:43 src/Customizer/settings/404.php:122
-msgid "The text for the content for the 404 page."
+#: src/Customizer/settings/404.php:43
+msgid "Show or hide the 404 image."
 msgstr ""
 
 #: src/Customizer/settings/404.php:49
@@ -611,6 +593,18 @@ msgstr ""
 msgid "Add a title for the 404 page."
 msgstr ""
 
+#: src/Customizer/settings/404.php:121
+msgid "404 Page Text"
+msgstr ""
+
+#: src/Customizer/settings/404.php:122
+msgid "The text for the content for the 404 page. HTML allowed."
+msgstr ""
+
+#: src/Customizer/settings/beta.php:31 src/Customizer/settings/beta.php:57
+msgid "Beta version"
+msgstr ""
+
 #: src/Customizer/settings/breadcrumbs.php:19
 msgid "Breadcrumbs"
 msgstr ""
@@ -619,75 +613,97 @@ msgstr ""
 msgid "Allows you to show the breadcrumbs on selected templates."
 msgstr ""
 
-#: src/Customizer/settings/breadcrumbs.php:48
+#: src/Customizer/settings/breadcrumbs.php:52
 msgid "404"
 msgstr ""
 
-#: src/Customizer/settings/breadcrumbs.php:49
+#: src/Customizer/settings/breadcrumbs.php:53
 msgid "Archive"
 msgstr ""
 
-#: src/Customizer/settings/breadcrumbs.php:50
+#: src/Customizer/settings/breadcrumbs.php:54
 msgid "Author"
 msgstr ""
 
-#: src/Customizer/settings/breadcrumbs.php:51
+#: src/Customizer/settings/breadcrumbs.php:55
 msgid "Front page"
 msgstr ""
 
-#: src/Customizer/settings/breadcrumbs.php:52
+#: src/Customizer/settings/breadcrumbs.php:56
 msgid "Home"
 msgstr ""
 
-#: src/Customizer/settings/breadcrumbs.php:53
+#: src/Customizer/settings/breadcrumbs.php:57
 msgid "Page"
 msgstr ""
 
-#: src/Customizer/settings/breadcrumbs.php:55
+#: src/Customizer/settings/breadcrumbs.php:59
 msgid "Single"
 msgstr ""
 
-#: src/Customizer/settings/breadcrumbs.php:63
+#: src/Customizer/settings/breadcrumbs.php:67
 msgid "Display breadcrumbs on"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:52
+#: src/Customizer/settings/colophon.php:31
+#: src/Customizer/settings/colophon.php:57
+msgid "Footer's Colophon"
+msgstr ""
+
+#: src/Customizer/settings/colophon.php:32
+#: src/Customizer/settings/colophon.php:58
+#: src/Customizer/settings/colophon.php:82
+#: src/Customizer/settings/colophon.php:106
+msgid "Add text for footer's colophon here"
+msgstr ""
+
+#: src/Customizer/settings/colophon.php:81
+#: src/Customizer/settings/colophon.php:105
+msgid "Footer's Colophon Position"
+msgstr ""
+
+#: src/Customizer/settings/colors.php:56
 msgid "Link Color"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:79
+#: src/Customizer/settings/colors.php:83
 msgid "Heading Color"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:104
-msgid "Container Width of the header"
+#: src/Customizer/settings/custom-css.php:31
+msgid "Additional CSS"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:150
+#: src/Customizer/settings/custom-css.php:32
+msgid "Add custom CSS here"
+msgstr ""
+
+#: src/Customizer/settings/custom-css.php:59
+msgid "Custom CSS"
+msgstr ""
+
+#: src/Customizer/settings/custom-css.php:60
+msgid "Insert here your custom CSS"
+msgstr ""
+
+#: src/Customizer/settings/customizer.php:37
 #, php-format
 msgid "%s Options"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:165
-#: src/Customizer/settings/customizer.php:190
-msgid "Layout"
+#: src/Customizer/settings/header.php:43
+msgid "Container Width of the header"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:168
-msgid ""
-"Allows you to customize the layout for all archive type pages. (Not page and "
-"post)."
+#: src/Customizer/settings/images.php:31
+msgid "Image"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:207
-msgid "Image Options"
-msgstr ""
-
-#: src/Customizer/settings/customizer.php:262
+#: src/Customizer/settings/images.php:86
 msgid "Default Image"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:263
+#: src/Customizer/settings/images.php:87
 msgid ""
 "Upload an image for the default image used for social sharing (must be at "
 "least 1200x600px for Facebook), it will also be displayed if no feautured "
@@ -695,47 +711,61 @@ msgid ""
 "feature."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:288
+#: src/Customizer/settings/images.php:112
 msgid "Archive post thumbnail size"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:289
+#: src/Customizer/settings/images.php:113
 msgid ""
 "Change image size of post thumbnail in archive, author, blog, category, "
 "search, and tag pages."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:313
+#: src/Customizer/settings/images.php:137
 msgid "Archive post thumbnail alignment"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:314
+#: src/Customizer/settings/images.php:138
 msgid ""
 "Change image alignment of post thumbnail in archive, author, blog, category, "
 "search, and tag pages."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:318
+#: src/Customizer/settings/images.php:142
 msgid "None"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:319
+#: src/Customizer/settings/images.php:143
 msgid "Center"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:320
+#: src/Customizer/settings/images.php:144
 msgid "Left"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:321
+#: src/Customizer/settings/images.php:145
 msgid "Right"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:336
+#: src/Customizer/settings/layout.php:31
+msgid "Layout"
+msgstr ""
+
+#: src/Customizer/settings/layout.php:34
+msgid ""
+"Allows you to customize the layout for all archive type pages. (Not page and "
+"post)."
+msgstr ""
+
+#: src/Customizer/settings/layout.php:56
+msgid "Layout (Global)"
+msgstr ""
+
+#: src/Customizer/settings/navbar.php:23
 msgid "Navbar Settings"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:339
+#: src/Customizer/settings/navbar.php:26
 msgid ""
 "Allows you to customize settings for the main navbar. Remember that this "
 "uses the Twitter Bootstrap Navbar style, if you want more info read the <a "
@@ -743,29 +773,29 @@ msgid ""
 "\">documentation</a>."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:360
+#: src/Customizer/settings/navbar.php:48
 msgid "Navbar type"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:361
+#: src/Customizer/settings/navbar.php:49
 msgid ""
 "Select the type of navbar. By default is the <code>navbar-default</code> "
 "(light grey)."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:365
+#: src/Customizer/settings/navbar.php:53
 msgid "Default navbar"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:366
+#: src/Customizer/settings/navbar.php:54
 msgid "Inverse navbar"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:388
+#: src/Customizer/settings/navbar.php:76
 msgid "Navbar position"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:389
+#: src/Customizer/settings/navbar.php:77
 msgid ""
 "Select the position of the navbar. By default is set to <code>relative top</"
 "code>, you can chose <code>fixed top</code>, <code>fixed bottom</code> or "
@@ -773,45 +803,45 @@ msgid ""
 "set the navbar <code>full width</code> for fixing the correct padding."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:393
+#: src/Customizer/settings/navbar.php:81
 msgid "Default relative top"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:394
-msgid "Fixed Top"
-msgstr ""
-
-#: src/Customizer/settings/customizer.php:395
-msgid "Fixed Bottom"
-msgstr ""
-
-#: src/Customizer/settings/customizer.php:396
+#: src/Customizer/settings/navbar.php:82
 msgid "Static Top"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:418
+#: src/Customizer/settings/navbar.php:83
+msgid "Fixed Top"
+msgstr ""
+
+#: src/Customizer/settings/navbar.php:84
+msgid "Fixed Bottom"
+msgstr ""
+
+#: src/Customizer/settings/navbar.php:106
 msgid "Navbar width"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:419
+#: src/Customizer/settings/navbar.php:107
 msgid ""
 "Select the nav_width of navbar, this enlarges the navbar to the windows size "
 "(use it also width Static Top option)."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:423
-msgid "Default boxed width"
+#: src/Customizer/settings/navbar.php:111
+msgid "Boxed"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:424
+#: src/Customizer/settings/navbar.php:112
 msgid "Full width"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:446
-msgid "Navbar menus width"
+#: src/Customizer/settings/navbar.php:134
+msgid "!!!!Navbar menus width"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:447
+#: src/Customizer/settings/navbar.php:135
 msgid ""
 "Select the menus_width, this is the width of the container of the 2 menu, "
 "main-menu and secondary-menu, with the full width the menus will enlarge to "
@@ -820,137 +850,76 @@ msgid ""
 "the default value."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:451
-msgid "The width of navbar wrapper"
+#: src/Customizer/settings/navbar.php:139
+msgid "Fluid"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:452
-msgid "The width of the content"
+#: src/Customizer/settings/navbar.php:140
+msgid "Container"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:476
-msgid "Your logo brand for nav menu"
-msgstr ""
-
-#: src/Customizer/settings/customizer.php:477
-msgid "Insert here your logo brand for nav menu"
-msgstr ""
-
-#: src/Customizer/settings/customizer.php:502
-msgid "Logo image size"
-msgstr ""
-
-#: src/Customizer/settings/customizer.php:529
+#: src/Customizer/settings/navbar.php:169
 msgid "Display the navbar brand"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:530
+#: src/Customizer/settings/navbar.php:170
 msgid ""
 "Select the type of navbar brand to visualize or select to hide navbar brand, "
 "if you select to visualize navbar with image you also have to select the "
 "image and the size of the image to visualize in the above controls."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:534
+#: src/Customizer/settings/navbar.php:174
 msgid "Hide navbar brand"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:535
+#: src/Customizer/settings/navbar.php:175
 msgid "Display navbar brand image"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:536
+#: src/Customizer/settings/navbar.php:176
 msgid "Display navbar brand name"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:537
+#: src/Customizer/settings/navbar.php:177
 msgid "Display navbar brand image and name"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:548
-msgid "Additional CSS"
+#: src/Customizer/settings/navbar.php:201
+msgid "Your logo brand for nav menu"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:549
-msgid "Add custom CSS here"
+#: src/Customizer/settings/navbar.php:202
+msgid "Insert here your logo brand for nav menu"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:576
-msgid "Custom CSS"
+#: src/Customizer/settings/navbar.php:227
+msgid "Logo image size"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:577
-msgid "Insert here your custom CSS"
+#: src/Customizer/settings/navbar.php:255
+msgid "Logo for mobile"
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:591
-#: src/Customizer/settings/customizer.php:617
-msgid "Footer's Colophon"
+#: src/Customizer/settings/navbar.php:256
+msgid ""
+"Insert here the logo for the mobile version of your site. You also have to "
+"make shure that the theme support it otherwise you have to add the CSS for "
+"visualiza the logo only on mobile."
 msgstr ""
 
-#: src/Customizer/settings/customizer.php:592
-#: src/Customizer/settings/customizer.php:618
-msgid "Add text for footer's colophon here"
-msgstr ""
-
-#: src/Customizer/settings/post-content-template.php:21
+#: src/Customizer/settings/post-content-template.php:25
 msgid "Post content template"
 msgstr ""
 
-#: src/Customizer/settings/post-content-template.php:24
+#: src/Customizer/settings/post-content-template.php:28
 msgid ""
 "Allows you to customize the post content template for all archive type "
 "pages. (Not page and post)."
 msgstr ""
 
-#: src/Customizer/settings/post-content-template.php:47
+#: src/Customizer/settings/post-content-template.php:51
 msgid "Template content settings"
-msgstr ""
-
-#: src/EDD/Theme_Updater_Admin.php:238
-msgid "Error"
-msgstr ""
-
-#: src/EDD/Theme_Updater_Admin.php:269 src/EDD/Theme_Updater_Admin.php:316
-#: src/EDD/Theme_Updater_Admin.php:369
-msgid "An error occurred, please try again."
-msgstr ""
-
-#: src/EDD/Theme_Updater_Admin.php:283
-#, php-format
-msgid "Your license key expired on %s."
-msgstr ""
-
-#: src/EDD/Theme_Updater_Admin.php:290
-msgid "Your license key has been disabled."
-msgstr ""
-
-#: src/EDD/Theme_Updater_Admin.php:295
-msgid "Invalid license."
-msgstr ""
-
-#: src/EDD/Theme_Updater_Admin.php:301
-msgid "Your license is not active for this URL."
-msgstr ""
-
-#: src/EDD/Theme_Updater_Admin.php:306
-#, php-format
-msgid "This appears to be an invalid license key for %s."
-msgstr ""
-
-#: src/EDD/Theme_Updater_Admin.php:311
-msgid "Your license key has reached its activation limit."
-msgstr ""
-
-#: src/Editors/Category.php:128 src/Editors/Category.php:144
-#: src/Nav_Menu/Nav_Menu_Edit.php:179
-msgid "Description"
-msgstr ""
-
-#: src/Editors/Category.php:131 src/Editors/Category.php:148
-msgid ""
-"The description is not prominent by default; however, some themes may show "
-"it."
 msgstr ""
 
 #: src/Editors/config/default_style_formats.php:17
@@ -999,14 +968,6 @@ msgstr ""
 
 #: src/Editors/config/style_formats.php:26
 msgid "Big"
-msgstr ""
-
-#: src/Editors/config/style_formats.php:33
-msgid "Small"
-msgstr ""
-
-#: src/Editors/config/style_formats.php:40
-msgid "H1"
 msgstr ""
 
 #: src/Editors/config/style_formats.php:48
@@ -1073,15 +1034,15 @@ msgstr ""
 msgid "Button block"
 msgstr ""
 
-#: src/Init/Init_Theme.php:110
+#: src/Init/Init_Theme.php:98
 msgid "Secondary Menu"
 msgstr ""
 
-#: src/Init/Init_Theme.php:111
+#: src/Init/Init_Theme.php:99
 msgid "Social Menu"
 msgstr ""
 
-#: src/Init/Init_Theme.php:113
+#: src/Init/Init_Theme.php:101
 msgid "Footer Menu"
 msgstr ""
 
@@ -1123,6 +1084,10 @@ msgstr ""
 
 #: src/Nav_Menu/Nav_Menu_Edit.php:173
 msgid "Link Relationship (XFN)"
+msgstr ""
+
+#: src/Nav_Menu/Nav_Menu_Edit.php:179
+msgid "Description"
 msgstr ""
 
 #: src/Nav_Menu/Nav_Menu_Edit.php:181
@@ -1168,20 +1133,8 @@ msgstr ""
 msgid "(current)"
 msgstr ""
 
-#: src/Navbar/Bootstrap_Nav_Menu.php:394
+#: src/Navbar/Bootstrap_Nav_Menu.php:404
 msgid "Add a menu"
-msgstr ""
-
-#: src/Navbar/Navbar.php:198
-msgid "Toggle navigation"
-msgstr ""
-
-#: src/Pagination/Pagination.php:58
-msgid "Page: "
-msgstr ""
-
-#: src/Pagination/Pagination.php:173
-msgid "navigation"
 msgstr ""
 
 #: src/Required_Plugins/Register.php:52
@@ -1273,55 +1226,35 @@ msgstr ""
 msgid "All plugins installed and activated successfully. %s"
 msgstr ""
 
-#: src/User/Contact_Methods_Base.php:40
-msgid "Url avatar"
-msgstr ""
-
-#: src/User/Contact_Methods_Base.php:41
-msgid "Skype"
-msgstr ""
-
-#: src/User/Contact_Methods_Base.php:42
-msgid "Twitter"
-msgstr ""
-
 #: src/User/Contact_Methods_Base.php:43
-msgid "Google Profile URL"
-msgstr ""
-
-#: src/User/Contact_Methods_Base.php:44
-msgid "Google Page URL"
-msgstr ""
-
-#: src/User/Contact_Methods_Base.php:45
-msgid "Facebook Profile URL"
-msgstr ""
-
-#: src/User/Contact_Methods_Base.php:46
-msgid "Facebook Page URL"
+msgid "Custom Url avatar"
 msgstr ""
 
 #: src/User/Contact_Methods_Base.php:47
+msgid "Skype"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:52
+msgid "Twitter"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:56
+msgid "Facebook Profile URL"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:60
+msgid "Facebook Page URL"
+msgstr ""
+
+#: src/User/Contact_Methods_Base.php:64
 msgid "LinkedIn"
 msgstr ""
 
-#: src/User/Contact_Methods_Base.php:48
+#: src/User/Contact_Methods_Base.php:68
 msgid "Pinterest"
 msgstr ""
 
-#: src/WooCommerce/WC_Nav_Menu.php:46 src/WooCommerce/WC_Nav_Menu.php:78
-msgid "View your shopping cart"
-msgstr ""
-
-#: src/WooCommerce/WC_Nav_Menu.php:64
-msgid "My Account"
-msgstr ""
-
-#: src/WooCommerce/WC_Nav_Menu.php:68
-msgid "Login / Register"
-msgstr ""
-
-#: templates/misc/archive-headline.php:22
+#: templates/misc/archive-headline.php:19
 #, php-format
 msgid "Search result of: %s"
 msgstr ""

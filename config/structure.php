@@ -136,16 +136,6 @@ return [
 			'callback'	=> [ Components\Navigations\Pagination::class, 'render' ], // Optional
 		],
 
-//		'password-form'	=> [
-//			'hook'	=> 'the_password_form',
-//			'callback'	=> Controllers\Posts\Parts\Password_Form::class, // Optional
-//		],
-//
-//		'password-form-excerp'	=> [
-//			'hook'	=> 'the_excerpt',
-//			'callback'	=> Controllers\Posts\Parts\Password_Form::class, // Optional
-//		],
-
 		'sidebar'	=> [
 			'hook'	=> 'italystrap_after_content',
 			'callback'	=> '\get_sidebar',

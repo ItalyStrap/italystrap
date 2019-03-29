@@ -106,7 +106,7 @@ class Edit_Post_Link  {
 	 * @return string          The post content with the links.
 	 */
 	public function append_to_content( $content = '' ) {
-d();
+
 		if ( is_archive() ) {
 			return $content;
 		}

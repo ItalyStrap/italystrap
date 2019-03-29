@@ -10,8 +10,7 @@ namespace ItalyStrap\Builders;
 
 use \Auryn\Injector;
 use \ItalyStrap\Template\View_Interface as View;
-use ItalyStrap\Config\Config_Interface as Config;
-use function \ItalyStrap\Factory\get_injector;
+use \ItalyStrap\Config\Config_Interface as Config;
 
 class Builder implements Builder_Interface {
 

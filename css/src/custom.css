@@ -7325,29 +7325,39 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, a, p, li {
 /**
  * Snippet example:
  */
+/* line 1, ../../sass/navigations/_link_pages.scss */
+.post-nav-links {
+  /**
+   * This is a span element
+   */
+  /**
+   * This is an a element
+   */
+}
+
 /**
  * Fix for dropdown menu with multilevel
  * @link http://bootsnipp.com/snippets/featured/multi-level-dropdown-menu-bs3
  *
  * Da finire di testare
  */
-/* line 11, ../../sass/header/_menu.scss */
+/* line 11, ../../sass/navigations/_navbar.scss */
 .dropdown-submenu {
   position: relative;
 }
-/* line 14, ../../sass/header/_menu.scss */
+/* line 14, ../../sass/navigations/_navbar.scss */
 .dropdown-submenu:hover > .dropdown-menu {
   display: block;
 }
-/* line 17, ../../sass/header/_menu.scss */
+/* line 17, ../../sass/navigations/_navbar.scss */
 .dropdown-submenu:hover > a:after {
   border-left-color: #fff;
 }
-/* line 21, ../../sass/header/_menu.scss */
+/* line 21, ../../sass/navigations/_navbar.scss */
 .dropdown-submenu.pull-left, .dropdown-submenu.alignleft {
   float: none;
 }
-/* line 23, ../../sass/header/_menu.scss */
+/* line 23, ../../sass/navigations/_navbar.scss */
 .dropdown-submenu.pull-left > .dropdown-menu, .dropdown-submenu.alignleft > .dropdown-menu,
 a img.dropdown-submenu.alignleft > .dropdown-menu {
   left: -100%;
@@ -7356,17 +7366,15 @@ a img.dropdown-submenu.alignleft > .dropdown-menu {
   -moz-border-radius: 6px 0 6px 6px;
   border-radius: 6px 0 6px 6px;
 }
-/* line 32, ../../sass/header/_menu.scss */
+/* line 32, ../../sass/navigations/_navbar.scss */
 .dropdown-submenu > .dropdown-menu {
   top: 0;
   left: 100%;
   margin-top: -6px;
   margin-left: -1px;
-  -webkit-border-radius: 0 6px 6px 6px;
-  -moz-border-radius: 0 6px 6px;
   border-radius: 0 6px 6px 6px;
 }
-/* line 42, ../../sass/header/_menu.scss */
+/* line 40, ../../sass/navigations/_navbar.scss */
 .dropdown-submenu > a:after {
   display: block;
   content: " ";
@@ -7381,7 +7389,7 @@ a img.dropdown-submenu.alignleft > .dropdown-menu {
   margin-right: -10px;
 }
 
-/* line 60, ../../sass/header/_menu.scss */
+/* line 58, ../../sass/navigations/_navbar.scss */
 .nav > .lang-item > a {
   padding-left: 0.5em;
   padding-right: 0.5em;
@@ -7458,7 +7466,7 @@ a img.dropdown-submenu.alignleft > .dropdown-menu {
   flex: 1 1 11.11111%;
 }
 
-/* line 3, ../../sass/_content.scss */
+/* line 3, ../../sass/content/_content.scss */
 .author-nick {
   margin-top: 0;
 }
@@ -7551,48 +7559,51 @@ a img.dropdown-submenu.alignleft > .dropdown-menu {
   background-position: -204px 0 !important;
 }
 
-/* line 10, ../../sass/comments/_comments-area.scss */
+/**
+ * Some basic style
+ */
+/* line 13, ../../sass/comments/_comments-area.scss */
 .comments-area ul .comment,
 .comments-area ol .comment {
   margin-top: calc(2 * 1rem);
 }
 
-/* line 17, ../../sass/comments/_comments-area.scss */
+/* line 20, ../../sass/comments/_comments-area.scss */
 .depth-2 {
   margin-left: 4rem;
 }
 
-/* line 17, ../../sass/comments/_comments-area.scss */
+/* line 20, ../../sass/comments/_comments-area.scss */
 .depth-3 {
   margin-left: 6rem;
 }
 
-/* line 17, ../../sass/comments/_comments-area.scss */
+/* line 20, ../../sass/comments/_comments-area.scss */
 .depth-4 {
   margin-left: 8rem;
 }
 
-/* line 17, ../../sass/comments/_comments-area.scss */
+/* line 20, ../../sass/comments/_comments-area.scss */
 .depth-5 {
   margin-left: 10rem;
 }
 
-/* line 17, ../../sass/comments/_comments-area.scss */
+/* line 20, ../../sass/comments/_comments-area.scss */
 .depth-6 {
   margin-left: 12rem;
 }
 
-/* line 17, ../../sass/comments/_comments-area.scss */
+/* line 20, ../../sass/comments/_comments-area.scss */
 .depth-7 {
   margin-left: 14rem;
 }
 
-/* line 17, ../../sass/comments/_comments-area.scss */
+/* line 20, ../../sass/comments/_comments-area.scss */
 .depth-8 {
   margin-left: 16rem;
 }
 
-/* line 17, ../../sass/comments/_comments-area.scss */
+/* line 20, ../../sass/comments/_comments-area.scss */
 .depth-9 {
   margin-left: 18rem;
 }

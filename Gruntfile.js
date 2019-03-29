@@ -367,11 +367,11 @@ module.exports = function(grunt) {
 		watch: { // https://github.com/gruntjs/grunt-contrib-watch
 			css: {
 				files: ['**/*.{scss,sass}'],
-				tasks: ['testcssbuild'],
+				tasks: ['css'],
 			},
 			js: {
 				files: ['src/js/*.js'],
-				tasks: ['testjsbuild'],
+				tasks: ['js'],
 			},
 			options: {
 				livereload: 9001,

@@ -121,6 +121,14 @@ return [
 	],
 
 	/**
+	 * Attributes for the icon bar.
+	 */
+	'italystrap_icon_bar'			=> function ( string $icon ) : string {
+		$icon = '<span class="icon-bar">&nbsp</span><span class="icon-bar">&nbsp</span><span class="icon-bar">&nbsp</span>';
+		return $icon;
+	},
+
+	/**
 	 * Attributes for the content element.
 	 */
 	'italystrap_content_attr'			=> [

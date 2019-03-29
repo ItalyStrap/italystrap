@@ -62,7 +62,7 @@ return [
 		Builder::class	=> [
 			':config'	=> Config_Factory::make( get_config_file_content( 'structure' ) ),
 		],
-		Navbar\Navbar::class	=> [
+		Components\Navigations\Navbar::class	=> [
 			':fallback_cb' => '\ItalyStrap\Navbar\Bootstrap_Nav_Menu::fallback',
 		],
 //		'\ItalyStrap\Navbar\Navbar'	=> [

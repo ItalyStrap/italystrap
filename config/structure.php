@@ -27,9 +27,9 @@ return [
 					&& ! \in_array( 'hide_breadcrumbs', get_template_settings(), true );
 			},
 			'callback'	=> function () : string {
-				$args = array(
-					'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
-				);
+				$args = [
+//					'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
+				];
 
 				ob_start();
 				do_action( 'do_breadcrumbs', $args );
@@ -63,15 +63,6 @@ return [
 					&& ! \in_array( 'hide_title', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/title',
-		],
-
-		'link-pages'	=> [
-			'hook'	=> 'italystrap_entry_content',
-			'priority'	=> 25, // Optional
-			'should_load'	=> function () : bool {
-				return is_single();
-			},
-			'callback'	=> [ Components\Navigations\Link_Pages::class, 'render' ], // Optional
 		],
 
 		'meta'	=> [
@@ -119,6 +110,15 @@ return [
 //			'callback'	=> [ Controllers\Posts\Parts\Edit_Post_Link::class, 'render' ], // Optional
 //		],
 
+		'link-pages'	=> [
+			'hook'	=> 'italystrap_entry_content',
+			'priority'	=> 70, // Optional
+			'should_load'	=> function () : bool {
+				return is_single();
+			},
+			'callback'	=> [ Components\Navigations\Link_Pages::class, 'render' ], // Optional
+		],
+
 		'pager'	=> [
 			'hook'	=> 'italystrap_after_entry_content',
 			'should_load'	=> function () : bool {
@@ -155,31 +155,31 @@ return [
 			/**
 			 * @TODO Maybe for WooCommerce, for now is only for remember
 			 */
-			'callback_to_develope'	=> function () {
-
-				/**
-				 * Don't load sidebar on pages that doesn't need it
-				 */
-				if ( 'full_width' === get_config()->get( 'site_layout' ) ) {
-					/**
-					 * This hook is usefull for example when you need to remove the
-					 * WooCommerce sidebar on full width page.
-					 *
-					 * @example
-					 * add_action( 'italystrap_full_width_layout', function () {
-					 *     remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
-					 * }, 10 );
-					 */
-					do_action( 'italystrap_full_width_layout' );
-					return;
-				}
-
-				\get_sidebar();
-
-		//		if ( in_array( $this->layout->get_layout_settings(), array(), true ) ) {
-		//			get_sidebar( 'secondary' );
-		//		}
-			}, // Optional
+//			'callback_to_develope'	=> function () {
+//
+//				/**
+//				 * Don't load sidebar on pages that doesn't need it
+//				 */
+//				if ( 'full_width' === get_config()->get( 'site_layout' ) ) {
+//					/**
+//					 * This hook is usefull for example when you need to remove the
+//					 * WooCommerce sidebar on full width page.
+//					 *
+//					 * @example
+//					 * add_action( 'italystrap_full_width_layout', function () {
+//					 *     remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+//					 * }, 10 );
+//					 */
+//					do_action( 'italystrap_full_width_layout' );
+//					return;
+//				}
+//
+//				\get_sidebar();
+//
+//		//		if ( in_array( $this->layout->get_layout_settings(), array(), true ) ) {
+//		//			get_sidebar( 'secondary' );
+//		//		}
+//			}, // Optional
 		],
 
 	'entry'	=> [
@@ -313,7 +313,7 @@ return [
 			'view'		=> 'headers/navbar',
 			'data'	=> function () : array {
 				return [
-					'navbar'	=> get_injector()->make( '\ItalyStrap\Navbar\Navbar' ),
+					'navbar'	=> get_injector()->make( '\ItalyStrap\Components\Navigations\Navbar' ),
 				];
 			},
 		],

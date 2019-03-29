@@ -2,7 +2,7 @@
 **Contributors:** [overclokk](https://profiles.wordpress.org/overclokk)  
 **Donate link:** https://italystrap.com  
 **Tags:** breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant  
-**Requires at least:** 5.0  
+**Requires at least:** 5.2  
 **Tested up to:** 5.2  
 **Stable tag:** 4.0.0-beta.6  
 **License:** GPLv2 or later  

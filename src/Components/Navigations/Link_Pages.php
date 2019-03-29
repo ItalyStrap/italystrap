@@ -20,7 +20,7 @@ class Link_Pages {
 	/**
 	 * Render the output of the controller.
 	 */
-	public function render() {
+	public function render() : string {
 
 		/**
 		 * Arguments for wp_link_pages
@@ -28,11 +28,10 @@ class Link_Pages {
 		 * @link https://developer.wordpress.org/reference/functions/wp_link_pages/
 		 * @var array
 		 */
-		$args = array(
-			'before'	=> '<p class="text-muted lead"><b>' . __( 'Pages:', 'italystrap' ) . '</b>',
-			'after'		=> '</p>',
+		$args = [
 			'echo'		=> false,
-		);
+		];
+
 		$args = apply_filters( 'italystrap_wp_link_pages_args', $args );
 
 		return wp_link_pages( $args );

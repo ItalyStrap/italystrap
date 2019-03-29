@@ -8,11 +8,11 @@
  * @since 4.0.0
  */
 
-namespace ItalyStrap\Navbar;
+namespace ItalyStrap\Components\Navigations;
 
-use ItalyStrap\Config\Config_Interface;
-use ItalyStrap\HTML;
-use Walker_Nav_Menu;
+use \ItalyStrap\Config\Config_Interface;
+use function \ItalyStrap\HTML\get_attr;
+use \Walker_Nav_Menu;
 
 /**
  * Template for Navbar like Botstrap CSS
@@ -252,10 +252,7 @@ class Navbar {
 	 */
 	public function get_toggle_button() {
 
-		$icon_bar = apply_filters(
-			'italystrap_icon_bar',
-			'<span class="icon-bar">&nbsp</span><span class="icon-bar">&nbsp</span><span class="icon-bar">&nbsp</span>'
-		);
+		$icon_bar = apply_filters( 'italystrap_icon_bar', '' );
 
 		$a = array(
 			'class' => 'navbar-toggle',
@@ -283,7 +280,7 @@ class Navbar {
 				'span',
 				['class' => 'sr-only screen-reader-text'],
 				esc_attr__( 'Toggle navigation', 'italystrap' )
-			) . $icon_bar
+			) . trim( $icon_bar )
 		);
 	}
 
@@ -420,26 +417,25 @@ class Navbar {
 	}
 
 	/**
-	 * @param  $context
-	 * @param  $tag
-	 * @param  array $attr
-	 * @param  $content
-	 *
+	 * @param string $context
+	 * @param string $tag
+	 * @param array $attr
+	 * @param string $content
 	 * @return string
 	 */
-	private function create_element( $context, $tag, array $attr, $content ) {
+	private function create_element( string $context, string $tag, array $attr, string $content ) : string {
 
-		if ( !is_string( $context ) ) {
-			throw new \InvalidArgumentException( 'The $context variable must be a string', 0 );
-		}
-
-		if ( !is_string( $tag ) ) {
-			throw new \InvalidArgumentException( 'The $tag variable must be a string', 0 );
-		}
-
-		if ( !is_string( $content ) ) {
-			throw new \InvalidArgumentException( 'The $content variable must be a string', 0 );
-		}
+//		if ( !is_string( $context ) ) {
+//			throw new \InvalidArgumentException( 'The $context variable must be a string', 0 );
+//		}
+//
+//		if ( !is_string( $tag ) ) {
+//			throw new \InvalidArgumentException( 'The $tag variable must be a string', 0 );
+//		}
+//
+//		if ( !is_string( $content ) ) {
+//			throw new \InvalidArgumentException( 'The $content variable must be a string', 0 );
+//		}
 
 		$content = (string)apply_filters( 'italystrap_' . $context . '_child', $content, $this->navbar_id );
 
@@ -447,7 +443,7 @@ class Navbar {
 			$content = '&nbsp;';
 		}
 
-		if ( (bool)apply_filters( 'italystrap_pre_' . $context, false ) ) {
+		if ( (bool) apply_filters( 'italystrap_pre_' . $context, false ) ) {
 			return $content;
 		}
 
@@ -472,7 +468,7 @@ class Navbar {
 	 * @return string          Return a string with HTML attributes
 	 */
 	private function get_attr( array $attr = [], $context = '' ) {
-		return HTML\get_attr( $context, $attr, false, $this->navbar_id );
+		return get_attr( $context, $attr, false, $this->navbar_id );
 	}
 
 	/**

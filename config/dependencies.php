@@ -86,7 +86,9 @@ return [
 	 * ==========================================================
 	 */
 	'define_param'			=> [
-		'theme_mods'	=> get_config()->all(),
+		'theme_mods'	=> function () : array {
+			return (array) get_config()->all();
+		},
 		':wp_query'		=> function () {
 			global $wp_query;
 			return $wp_query;

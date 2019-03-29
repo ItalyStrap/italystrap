@@ -16,7 +16,7 @@ if ( is_admin() ) {
 	return [];
 }
 
-$concretes = [
+$subscribers = [
 	Asset\Asset_Factory::class,
 	User\Contact_Methods::class,
 //	Schema\Word_Count::class,
@@ -24,7 +24,7 @@ $concretes = [
 ];
 
 if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
-	$concretes[] = Migrations\Old_Hooks::class;
+	$subscribers[] = Migrations\Old_Hooks::class;
 }
 
 /**
@@ -76,4 +76,4 @@ add_action( 'wp', function (){
 
 add_action( 'get_header', '\ItalyStrap\HTML\filter_attr' );
 
-return $concretes;
+return $subscribers;

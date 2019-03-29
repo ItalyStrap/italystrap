@@ -86,9 +86,7 @@ return [
 	 * ==========================================================
 	 */
 	'define_param'			=> [
-		'theme_mods'	=> function () : array {
-			return (array) get_config()->all();
-		},
+		'theme_mods'	=> get_config()->all(),
 		':wp_query'		=> function () {
 			global $wp_query;
 			return $wp_query;
@@ -136,15 +134,14 @@ return [
 	/**
 	 * ========================================================================
 	 *
-	 * Autoload Concrete Classes
+	 * Autoload Subscribers Classes
 	 * Loaded on admin and front-end
-	 * @TODO Maybe it should be called subscribers because they are subscribed and not only instantiated
 	 *
 	 * string
 	 *
 	 * ========================================================================
 	 */
-	'concretes'				=> [
+	'subscribers'				=> [
 //		'\ItalyStrap\Router\Router', // Anche questo da testare meglio
 		// '\ItalyStrap\Core\Router\Controller', // Da testare meglio
 		Customizer\Theme_Customizer::class,
@@ -157,6 +154,4 @@ return [
 		// This is the class that build the page
 		Builders\Director::class,
 	],
-
-//	'subscribers'			=> [],
 ];

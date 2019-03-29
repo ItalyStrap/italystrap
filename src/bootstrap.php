@@ -114,7 +114,6 @@ try {
 	 * @var array $dependencies
 	 */
 	$dependencies = get_config_file_content( 'dependencies' );
-	$subscribers = get_config_file_content( 'subscribers' );
 
 	/**
 	 * ========================================================================
@@ -125,15 +124,15 @@ try {
 	 *
 	 * @see _init & _init_admin
 	 */
-	$dependencies_admin = require '_init_admin.php';
-	$dependencies_front = require '_init.php';
+	$subscribers_admin = require '_init_admin.php';
+	$subscribers_front = require '_init.php';
 
 
 	$theme_loader = $injector->make( Theme_Test_Load::class );
 
 	$theme_loader->set_dependencies( $dependencies );
-	$theme_loader->add_concretes( $dependencies_admin );
-	$theme_loader->add_concretes( $dependencies_front );
+	$theme_loader->add_subscribers( $subscribers_admin );
+	$theme_loader->add_subscribers( $subscribers_front );
 
 	\add_action( 'italystrap_theme_load', [ $theme_loader, 'load' ] );
 

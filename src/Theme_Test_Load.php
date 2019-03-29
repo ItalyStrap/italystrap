@@ -23,8 +23,8 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 		$this->dependencies = $dependencies;
 	}
 
-	public function add_concretes( array $concrete = [] ) {
-		$this->dependencies[ 'concretes' ] = array_merge( $this->dependencies[ 'concretes' ], $concrete );
+	public function add_subscribers( array $subscribers = [] ) {
+		$this->dependencies[ 'subscribers' ] = array_merge( $this->dependencies[ 'subscribers' ], $subscribers );
 	}
 
 	public function before( Injector $injector ) {
@@ -76,16 +76,6 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 				echo $exception->getMessage();
 			}
 		}
-
-//		foreach ( $this->dependencies['execute'] as $callableOrMethodStr => $args ) {
-//			try {
-//				$injector->execute( $callableOrMethodStr, $args );
-//			} catch ( InjectionException $exception ) {
-//				echo $exception->getMessage();
-//			} catch ( \Exception $exception ) {
-//				echo $exception->getMessage();
-//			}
-//		}
 	}
 
 	/**
@@ -97,7 +87,7 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 		$event_manager = $injector->make( 'ItalyStrap\Event\Manager' );
 		$config = $injector->make( 'ItalyStrap\Config\Config' );
 
-		foreach ( $this->dependencies['concretes'] as $option_name => $concrete ) {
+		foreach ( $this->dependencies['subscribers'] as $option_name => $concrete ) {
 			try {
 
 				/**
@@ -108,12 +98,7 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 					continue;
 				}
 
-				if ( method_exists( $concrete, 'get_subscribed_events' ) ) {
-					$event_manager->add_subscriber( $injector->make( $concrete ) );
-				}
-//				else {
-//					$injector->make( $concrete );
-//				}
+				$event_manager->add_subscriber( $injector->make( $concrete ) );
 
 			} catch ( InjectionException $exception ) {
 				echo $exception->getMessage();

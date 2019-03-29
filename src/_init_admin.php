@@ -14,7 +14,7 @@ if ( ! is_admin() ) {
 	return [];
 }
 
-$concretes = [
+$subscribers = [
 	Editors\TinyMCE::class,
 	Custom\Metabox\Register::class,
 	User\Contact_Methods::class,
@@ -28,4 +28,4 @@ if ( isset( $register_metabox ) ) {
 	add_action( 'cmb2_admin_init', array( $register_metabox, 'register_widget_areas_fields' ) );
 }
 
-return $concretes;
+return $subscribers;

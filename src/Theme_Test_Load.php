@@ -27,7 +27,7 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 		$this->dependencies[ 'subscribers' ] = array_merge( $this->dependencies[ 'subscribers' ], $subscribers );
 	}
 
-	public function before( Injector $injector ) {
+	public function register( Injector $injector ) {
 
 		foreach ( $this->dependencies['sharing'] as $class ) {
 			try {
@@ -121,7 +121,7 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 
 //		@TODO add an action here
 
-		$this->before( $injector );
+		$this->register( $injector );
 		$this->apply( $injector );
 
 		$this->loaded = true;

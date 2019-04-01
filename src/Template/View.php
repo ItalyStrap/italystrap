@@ -72,9 +72,9 @@ class View implements View_Interface {
 		 * Thanks to Giuseppe Mazzapica https://github.com/gmazzap
 		 */
 		$renderer = \Closure::bind( function( $template_file ) {
-			ob_start();
+			\ob_start();
 			include $template_file;
-			return ob_get_clean();
+			return \ob_get_clean();
 		},
 			$storage
 		);

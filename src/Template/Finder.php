@@ -59,7 +59,7 @@ class Finder implements Finder_Interface {
 	 *
 	 * @return string The template filename if one is located.
 	 */
-	public function getRealPath( $slugs ) {
+	public function getRealPath( $slugs ) : string {
 
 		$slugs = (array) $slugs;
 
@@ -98,23 +98,25 @@ class Finder implements Finder_Interface {
 	 *
 	 * @return bool                        Return true if template exists
 	 */
-	private function has( array $templates ) {
+	private function has( array $templates ) : bool {
 
 		if ( empty( $this->files[ $templates[0] ] ) ) {
-			$this->files[ $templates[0] ] = locate_template( $templates, false, false );
+			$this->files[ $templates[0] ] = \locate_template( $templates, false, false );
 		}
 
-		return (bool) is_readable( $this->files[ $templates[0] ] );
+		return (bool) \is_readable( $this->files[ $templates[0] ] );
 	}
 
 	/**
 	 * @param array $templates
 	 * @return string
 	 */
-	private function get( array $templates ) {
+	private function get( array $templates ) : string {
 
 		if ( ! $this->has( $templates ) ) {
-			throw new \InvalidArgumentException( sprintf( 'The template %s does not exists', $templates[0] ) );
+			throw new \InvalidArgumentException(
+				\sprintf( 'The template %s does not exists', $templates[0] )
+			);
 		}
 
 		return (string) $this->files[ $templates[0] ];

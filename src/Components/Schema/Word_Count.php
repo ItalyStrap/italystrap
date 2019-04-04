@@ -10,7 +10,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Schema;
+namespace ItalyStrap\Components\Schema;
 
 use ItalyStrap\Event\Subscriber_Interface;
 

@@ -49,7 +49,7 @@ class Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 
 		parent::start_el( $item_output, $item, $depth, $args, $id );
 
-		$output .= preg_replace(
+		$output .= \preg_replace(
 		// NOTE: Check this regex from time to time!
 			'/(?=<(fieldset|p)[^>]+class="[^"]*field-move)/',
 			$this->get_fields( $item, $depth, $args ),
@@ -72,7 +72,7 @@ class Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 	 * @return string Form fields
 	 */
 	protected function get_fields( $item, int $depth, $args = [], int $id = 0 ) : string {
-		ob_start();
+		\ob_start();
 
 		/**
 		 * Get menu item custom fields from plugins/themes
@@ -88,7 +88,7 @@ class Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 		 *
 		 * @return string Custom fields HTML.
 		 */
-		do_action( 'wp_nav_menu_item_custom_fields', $item->ID, $item, $depth, $args, $id );
-		return ob_get_clean();
+		\do_action( 'wp_nav_menu_item_custom_fields', $item->ID, $item, $depth, $args, $id );
+		return \ob_get_clean();
 	}
 }

@@ -69,15 +69,15 @@ final class Item_Custom_Fields implements Subscriber_Interface {
 	public function _fields( $id, $item ) {
 
 		foreach ( $this->getFields() as $field ) :
-            $field = array_merge( $this->defaultField(), $field );
-			$key   = sprintf( $this->key_pattern, $field['id'] );
-			$id    = sprintf( 'edit-%s-%s', $key, $item->ID );
-			$name  = sprintf( '%s[%s]', $key, $item->ID );
-			$value = (string) get_post_meta( $item->ID, $key, true );
-			$class = sprintf( 'field-%s', $field['id'] );
+            $field = \array_merge( $this->defaultField(), $field );
+			$key   = \sprintf( $this->key_pattern, $field['id'] );
+			$id    = \sprintf( 'edit-%s-%s', $key, $item->ID );
+			$name  = \sprintf( '%s[%s]', $key, $item->ID );
+			$value = (string) \get_post_meta( $item->ID, $key, true );
+			$class = \sprintf( 'field-%s', $field['id'] );
 			?>
-            <p class="description description-wide <?php echo esc_attr( $class ) ?>">
-				<?php printf(
+            <p class="description description-wide <?php echo \esc_attr( $class ) ?>">
+				<?php \printf(
 					'<label for="%1$s">%2$s<br /><input' .  attr( $key,
                         [
 					        'type'  => $field['type'],
@@ -87,13 +87,13 @@ final class Item_Custom_Fields implements Subscriber_Interface {
                             'value' => '%4$s',
                         ]
                     ) . '/></label>',
-					esc_attr( $id ),
-					esc_html( $field['label'] ),
-					esc_attr( $name ),
-					esc_attr( $value )
+					\esc_attr( $id ),
+					\esc_html( $field['label'] ),
+					\esc_attr( $name ),
+					\esc_attr( $value )
 				) ?>
                 <br>
-                <?php echo esc_html( $field['desc'] ) ?>
+                <?php echo \esc_html( $field['desc'] ) ?>
             </p>
 		    <?php
 		endforeach;
@@ -111,7 +111,7 @@ final class Item_Custom_Fields implements Subscriber_Interface {
 
 		foreach ( $this->getFields() as $field  ) {
 		    $var = $field['id'];
-			$menu_item->$var = get_post_meta( $menu_item->ID, sprintf( $this->key_pattern, $var ), true );
+			$menu_item->$var = \get_post_meta( $menu_item->ID, sprintf( $this->key_pattern, $var ), true );
 		}
 
 		return $menu_item;
@@ -132,17 +132,17 @@ final class Item_Custom_Fields implements Subscriber_Interface {
 			return;
 		}
 
-		check_admin_referer( 'update-nav_menu', 'update-nav-menu-nonce' );
+		\check_admin_referer( 'update-nav_menu', 'update-nav-menu-nonce' );
 
 		foreach ( $this->getFields() as $field ) {
-			$key = sprintf( $this->key_pattern, $field['id'] );
+			$key = \sprintf( $this->key_pattern, $field['id'] );
 
 			if ( empty( $_POST[ $key ][ $menu_item_db_id ] ) ) {
-				delete_post_meta( $menu_item_db_id, $key );
+				\delete_post_meta( $menu_item_db_id, $key );
 				continue;
             }
 
-			update_post_meta( $menu_item_db_id, $key, sanitize_text_field( $_POST[ $key ][ $menu_item_db_id ] ) );
+			\update_post_meta( $menu_item_db_id, $key, sanitize_text_field( $_POST[ $key ][ $menu_item_db_id ] ) );
 		}
 	}
 
@@ -167,7 +167,7 @@ final class Item_Custom_Fields implements Subscriber_Interface {
 	 * @return array
 	 */
 	public function columns( $columns ) : array {
-		return array_merge( $columns, iterator_to_array( $this->getColumns() ) );
+		return \array_merge( $columns, iterator_to_array( $this->getColumns() ) );
 	}
 
 	/**
@@ -198,7 +198,7 @@ final class Item_Custom_Fields implements Subscriber_Interface {
 	 */
 	private function defaultField() : array {
 
-	    $uniqid = uniqid();
+	    $uniqid = \uniqid();
 
 	    return [
 			'type'  => 'text',

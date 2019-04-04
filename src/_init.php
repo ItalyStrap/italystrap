@@ -18,12 +18,11 @@ if ( is_admin() ) {
 
 $subscribers = [
 	Asset\Asset_Factory::class,
-	User\Contact_Methods::class,
-//	Schema\Word_Count::class,
-//	Schema\Time_Required::class,
+//	Components\Schema\Word_Count::class,
+//	Components\Schema\Time_Required::class,
 ];
 
-if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
+if ( class_exists( Migrations\Old_Hooks::class ) ) {
 	$subscribers[] = Migrations\Old_Hooks::class;
 }
 

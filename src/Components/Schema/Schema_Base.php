@@ -14,7 +14,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Schema;
+namespace ItalyStrap\Components\Schema;
 
 /**
  * Schema_Base

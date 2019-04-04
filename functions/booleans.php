@@ -1,6 +1,6 @@
 <?php
 
-namespace ItalyStrap\Bool;
+namespace ItalyStrap\Bools;
 
 use function \ItalyStrap\Core\get_template_settings;
 

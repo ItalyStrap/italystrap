@@ -149,7 +149,7 @@ return [
 		Init\Init_Theme::class,
 		Custom\Sidebars\Sidebars::class,
 		Custom\Image\Size::class,
-		Nav_Menu\Register_Nav_Menu_Edit::class,
+		Admin\Nav_Menu\Item_Custom_Fields::class,
 
 		// This is the class that build the page
 		Builders\Director::class,

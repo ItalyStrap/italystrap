@@ -112,7 +112,7 @@ class Init_Theme implements Subscriber_Interface {
 		 */
 		global $content_width;
 		if ( ! isset( $content_width ) ) {
-			$content_width = apply_filters( 'italystrap_content_width', $this->config->get( 'content_width' ) );
+			$content_width = $this->config->get( 'content_width' );
 		}
 	}
 

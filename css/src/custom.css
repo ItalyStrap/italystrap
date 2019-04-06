@@ -7723,4 +7723,14 @@ a img.alignnone {
   padding: 0.5em;
 }
 
+/* line 115, ../../sass/wordpress/_wordpressCss.scss */
+.size-auto,
+.size-full,
+.size-large,
+.size-medium,
+.size-thumbnail {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Text meant only for screen readers. */

@@ -120,7 +120,8 @@ class Asset_Factory implements Subscriber_Interface {
 				'handle'		=> 'jquery',
 				'file'			=> '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
 				'deps'			=> false,
-				'version'		=> $ver,
+//				'version'		=> $ver,
+				'version'		=> '2.1.1',
 				'in_footer'		=> true,
 				'pre_register'	=> true,
 				'deregister'	=> true, // This will deregister previous registered jQuery.

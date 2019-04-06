@@ -4,29 +4,42 @@ namespace ItalyStrap;
 
 use ItalyStrap\Config;
 
-use Auryn\Injector;
-use Auryn\ConfigException;
-use Auryn\InjectionException;
+use Auryn\{Injector, ConfigException, InjectionException};
+use ItalyStrap\Event\Manager;
+use ItalyStrap\Config\Config_Interface;
+use function ItalyStrap\Factory\{get_config, get_event_manager};
 
 final class Theme_Test_Load implements Loadable_Test_Interface {
 
 	/**
-	 * Flag to track if the plugin is loaded.
+	 * Flag to track if the theme is loaded.
 	 *
 	 * @var bool
 	 */
 	private $loaded;
 
+	/**
+	 * @var array
+	 */
 	private $dependencies = [];
 
+	/**
+	 * @param array $dependencies
+	 */
 	public function set_dependencies( array $dependencies ) {
 		$this->dependencies = $dependencies;
 	}
 
+	/**
+	 * @param array $subscribers
+	 */
 	public function add_subscribers( array $subscribers = [] ) {
-		$this->dependencies[ 'subscribers' ] = array_merge( $this->dependencies[ 'subscribers' ], $subscribers );
+		$this->dependencies[ 'subscribers' ] = \array_merge( $this->dependencies[ 'subscribers' ], $subscribers );
 	}
 
+	/**
+	 * @param Injector $injector
+	 */
 	public function register( Injector $injector ) {
 
 		foreach ( $this->dependencies['sharing'] as $class ) {
@@ -80,12 +93,10 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 
 	/**
 	 * @param Injector $injector
-	 * @throws InjectionException
+	 * @param Manager $event_manager
+	 * @param Config_Interface $config
 	 */
-	private function apply( Injector $injector ) {
-
-		$event_manager = $injector->make( 'ItalyStrap\Event\Manager' );
-		$config = $injector->make( 'ItalyStrap\Config\Config' );
+	private function apply( Injector $injector, Manager $event_manager, Config_Interface $config ) {
 
 		foreach ( $this->dependencies['subscribers'] as $option_name => $concrete ) {
 			try {
@@ -119,13 +130,16 @@ final class Theme_Test_Load implements Loadable_Test_Interface {
 			return;
 		}
 
-//		@TODO add an action here
+		$event_manager = get_event_manager();
+		$config = get_config();
+
+		// @TODO Maybe add an action here
 
 		$this->register( $injector );
-		$this->apply( $injector );
+		$this->apply( $injector, $event_manager, $config );
 
 		$this->loaded = true;
 
-//		@TODO add an action here
+		// @TODO Maybe add an action here
 	}
 }

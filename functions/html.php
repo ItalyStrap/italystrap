@@ -15,7 +15,10 @@ function filter_attr() {
 
 //		\ItalyStrap\HTML\Parse_Attr::$accepted_args = 5;
 
-		$parser =  \ItalyStrap\Factory\get_injector()->make( '\ItalyStrap\HTML\Parse_Attr', [ ':config' => $config ] );
+		$parser =  \ItalyStrap\Factory\get_injector()->make(
+			\ItalyStrap\Builders\Parse_Attr::class,
+			[ ':config' => $config ]
+		);
 		$parser->apply();
 
 	} catch ( \Auryn\InjectorException $exception ) {

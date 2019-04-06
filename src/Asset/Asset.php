@@ -19,8 +19,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ReflectionClass;
-use ItalyStrap\Config\Config;
+use \ReflectionClass;
+use \ItalyStrap\Config\Config_Interface as Config;
 
 /**
  * Class description
@@ -45,18 +45,16 @@ abstract class Asset implements Asset_Interface {
 	/**
 	 * Init the constructor
 	 *
-	 * @param array $config Configuration array.
+	 * @param Config $config Configuration array.
+	 * @throws \ReflectionException
 	 */
 	function __construct( Config $config ) {
 
 		/**
 		 * Credits:
 		 * @link https://coderwall.com/p/cpxxxw/php-get-class-name-without-namespace
-		 * @php54
-		 * $this->class_name =  ( new \ReflectionClass( $this ) )->getShortName();
 		 */
-		$class_name = new ReflectionClass( $this );
-		$this->class_name =  $class_name->getShortName();
+		$this->class_name =  ( new \ReflectionClass( $this ) )->getShortName();
 
 		/**
 		 * With this hook you can filter the enqueue script and style config

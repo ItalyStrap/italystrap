@@ -14,11 +14,9 @@
 namespace ItalyStrap;
 
 use Auryn\InjectorException;
-
-use ItalyStrap\Config\Config;
 use function ItalyStrap\Config\{get_config_file_content};
-use function ItalyStrap\Core\{set_default_constants, wp_parse_args_recursive};
-use function ItalyStrap\Factory\{get_injector};
+use function ItalyStrap\Core\{set_default_constants};
+use function ItalyStrap\Factory\{get_config, get_injector};
 
 /**
  * ========================================================================
@@ -58,15 +56,6 @@ foreach ( $autoload_theme_files as $file ) {
 	require __DIR__ . '/..' . $file;
 }
 
-//d( glob( __DIR__ . '/../functions/*.php' ) );
-
-/**
- * Get the Injector instance
- *
- * @var \Auryn\Injector
- */
-$injector = get_injector();
-
 /**
  * Set the default theme constant
  *
@@ -91,34 +80,9 @@ add_filter( 'template_include', '\ItalyStrap\Core\set_current_template_constants
 try {
 
 	/**
-	 * Just in case ACM is not active
-	 */
-	$injector->share( Config::class );
-	$config = $injector->make( Config::class );
-
-	if ( ! isset( $theme_mods ) ) {
-		$theme_mods = (array) \get_theme_mods();
-	}
-
-	$theme_mods = wp_parse_args_recursive(
-		$theme_mods,
-		get_config_file_content( 'default' )
-	);
-	$config->merge( $theme_mods );
-	$config->merge( $constants );
-
-	$theme_supports = get_config_file_content( 'theme-supports' );
-	$config->merge( $theme_supports );
-
-	/**
-	 * @var array $dependencies
-	 */
-	$dependencies = get_config_file_content( 'dependencies' );
-
-	/**
 	 * ========================================================================
 	 *
-	 * Autoload Concrete Classes
+	 * Autoload Subscribers Classes
 	 *
 	 * ========================================================================
 	 *
@@ -128,16 +92,29 @@ try {
 	$subscribers_front = require '_init.php';
 
 
-	$theme_loader = $injector->make( Theme_Test_Load::class );
+	$theme_loader = get_injector()->make( Theme_Test_Load::class );
 
-	$theme_loader->set_dependencies( $dependencies );
+	$theme_loader->set_dependencies( get_config_file_content( 'dependencies' ) );
 	$theme_loader->add_subscribers( $subscribers_admin );
 	$theme_loader->add_subscribers( $subscribers_front );
 
 	\add_action( 'italystrap_theme_load', [ $theme_loader, 'load' ] );
 
+
+	if ( ! isset( $theme_mods ) ) {
+		$theme_mods = (array) \get_theme_mods();
+	}
+	get_config()->merge(
+		get_config_file_content( 'default' ),
+		$theme_mods,
+		$constants,
+		get_config_file_content( 'theme-supports' )
+	);
+
+	unset( $theme_mods, $constants );
+
 } catch ( InjectorException $exception ) {
-	\_doing_it_wrong( \get_class( $injector ), $exception->getMessage(), '4.0.0' );
+	\_doing_it_wrong( \get_class( get_injector() ), $exception->getMessage(), '4.0.0' );
 } catch ( \Exception $exception ) {
 	\_doing_it_wrong( 'General error.', $exception->getMessage(), '4.0.0' );
 }
@@ -148,7 +125,7 @@ try {
 \add_action( 'after_setup_theme', function () {
 
 	/**
-	 * Injector from ACM if is active
+	 * Injector
 	 *
 	 * @var \Auryn\Injector
 	 */

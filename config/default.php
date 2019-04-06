@@ -12,7 +12,7 @@
 
 namespace ItalyStrap\Customizer;
 
-use ItalyStrap\Core;
+use function ItalyStrap\Core\{colophon_default_text,get_content_width};
 
 $theme_elements_config = array(
 	'container'	=> 1170,
@@ -29,8 +29,12 @@ return apply_filters(
 	[
 		/**
 		 * Future improvement
+		 *
+		 * @TODO Erano registrati entrambi gli hook, vedere se si rome qualcosa in altri temi
+		 * 'italystrap_post_types_layout_support'
+		 * 'italystrap_template_settings_metabox_object_types'
 		 */
-		'theme_support'				=> [
+		'theme_support'				=> \apply_filters( 'italystrap_post_types_layout_support', [
 			'supported_post_type'	=> [
 				'page',
 				'post',
@@ -40,7 +44,7 @@ return apply_filters(
 				'topic',
 				'reply',
 			]
-		],
+		] ),
 		'post_type_support'			=> [
 			'post'		=> ['post_navigation', 'entry-meta'],
 			'page'		=> ['post_navigation', 'entry-meta'],
@@ -115,7 +119,7 @@ return apply_filters(
 		/**
 		 * Default text for colophon
 		 */
-		'colophon'						=> apply_filters( 'italystrap_colophon_default_text', Core\colophon_default_text() ),
+		'colophon'						=> colophon_default_text(),
 		'colophon_action'				=> 'italystrap_footer',
 		'colophon_priority'				=> 20,
 
@@ -126,9 +130,16 @@ return apply_filters(
 //		'site_layout'					=> 'content_sidebar',
 		//( is_customize_preview() ? get_theme_mod('site_layout') : $this->theme_mods['site_layout'] );
 		// https://core.trac.wordpress.org/ticket/24844
-		'site_layout'					=> apply_filters( 'theme_mod_site_layout', 'content_sidebar' ),
+		'site_layout'					=> (string) \apply_filters( 'theme_mod_site_layout', 'content_sidebar' ),
 		'singular_layout'				=> 'content_sidebar',
-		'content_width'					=> Core\get_content_width( 1170, 12, 8, 30 ),
+		'content_width'					=> (int) \apply_filters( 'italystrap_content_width',
+			get_content_width(
+				1170,
+				12,
+				8,
+				30
+			)
+		),
 		'container_class'				=> 'container', // container-fluid.
 		'content_class'					=> 'col-md-8', // 7 - 6.
 		'sidebar_class'					=> 'col-md-4', // 3 - 3.
@@ -137,9 +148,9 @@ return apply_filters(
 
 		'layout'						=> [
 			'choices'	=> [
-				// 'none'				=> __( 'None', 'italystrap' ),
-				'container-fluid'	=> __( 'Full witdh', 'italystrap' ),
-				'container'			=> __( 'Standard width', 'italystrap' ),
+				// 'none'				=> \__( 'None', 'italystrap' ),
+				'container-fluid'	=> \__( 'Full witdh', 'italystrap' ),
+				'container'			=> \__( 'Standard width', 'italystrap' ),
 			]
 		],
 
@@ -271,6 +282,6 @@ return apply_filters(
 
 		'beta'	=> false,
 
-		'template_dir'	=> (string) apply_filters( 'italystrap_template_dir', 'templates' ),
+		'template_dir'	=> (string) \apply_filters( 'italystrap_template_dir', 'templates' ),
 	]
 );

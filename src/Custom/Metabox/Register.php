@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Config\Config_Interface as Config;
 use ItalyStrap\Event\Subscriber_Interface;
 
 /**
@@ -32,14 +33,13 @@ class Register implements Subscriber_Interface {
 	 */
 	public static function get_subscribed_events() {
 
-		return array(
+		return [
 			// 'hook_name'							=> 'method_name',
-			'cmb2_admin_init'	=> array(
+			'cmb2_admin_init'	=> [
 				'function_to_add'	=> 'register_metaboxes',
-			),
-		);
+			],
+		];
 	}
-// add_action( 'cmb2_admin_init', array( $metabox, 'register_metaboxes' ) );
 
 	/**
 	 * CMB prefix
@@ -60,21 +60,20 @@ class Register implements Subscriber_Interface {
 	/**
 	 * Init the constructor
 	 */
-	function __construct( $theme_mods ) {
+	function __construct( Config $config ) {
 
-		$this->config = $theme_mods;
+		$this->config = $config;
 
 		/**
 		 * Start with an underscore to hide fields from custom fields list
 		 *
 		 * @var string
 		 */
-		$this->prefix = 'italystrap';
+		$this->prefix = $config->get( 'prefix' );
 
-		$this->_prefix = '_' . $this->prefix;
+		$this->_prefix = $config->get( '_prefix' );
 
-		$this->object_types = apply_filters( 'italystrap_post_types_layout_support', $this->config['theme_support']['supported_post_type'] );
-
+		$this->object_types = $config->get( 'theme_support' )['supported_post_type'];
 	}
 
 	/**
@@ -83,8 +82,6 @@ class Register implements Subscriber_Interface {
 	 */
 	public function register_metaboxes() {
 
-		$template_settings_metabox_object_types = apply_filters( 'italystrap_template_settings_metabox_object_types', $this->object_types );
-
 		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : null;
 		$post_type = isset( $_GET['post_type'] ) ? esc_attr( $_GET['post_type'] ) : get_post_type( $post_id );
 
@@ -92,13 +89,13 @@ class Register implements Subscriber_Interface {
 		 * Metabox for the showing of the template parts
 		 */
 		$cmb = new_cmb2_box(
-			array(
+			[
 				'id'            => $this->prefix . '-template-settings-metabox',
 				'title'         => __( 'Custom settings', 'italystrap' ),
-				'object_types'  => $template_settings_metabox_object_types,
+				'object_types'  => $this->object_types,
 				'context'    => 'side',
 				'priority'   => 'low',
-			)
+			]
 		);
 
 		$cmb->add_field(

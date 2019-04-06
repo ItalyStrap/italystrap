@@ -6,7 +6,7 @@
  * Time: 21:48
  */
 
-namespace ItalyStrap\HTML;
+namespace ItalyStrap\Builders;
 
 use \ItalyStrap\Config\Config_Interface as Config;
 

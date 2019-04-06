@@ -10,17 +10,7 @@
  * @package ItalyStrap
  */
 
-use \ItalyStrap\Factory;
-
-$injector = Factory\get_injector();
-
-try {
-	$css_cb = $injector->make( '\ItalyStrap\Css\Css' );
-} catch ( \Auryn\InjectorException $exception ) {
-	echo $exception->getMessage();
-} catch ( \Exception $exception ) {
-	echo $exception->getMessage();
-}
+namespace ItalyStrap;
 
 
 /**
@@ -28,7 +18,7 @@ try {
  */
 $font_size_base = 14;
 
-return apply_filters( 'italystrap_theme_supports',
+return \apply_filters( 'italystrap_theme_supports',
 	[
 
 		/**
@@ -125,13 +115,8 @@ return apply_filters( 'italystrap_theme_supports',
 			 * );
 			 *
 			 * 'wp-head-callback' => null In case is printed from Theme customizer
-			 * @see ItalyStrap\Core\Css\Css::custom_background_cb()
 			 */
-			'custom-background'	=> apply_filters( 'custom_background_support',
-				[
-					'wp-head-callback' => [ $css_cb, 'custom_background_cb' ],
-				]
-			),
+			'custom-background'	=> \apply_filters( 'custom_background_support', [] ),
 
 			/**
 			 * @since 4.5 WordPress Core

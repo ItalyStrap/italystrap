@@ -37,7 +37,7 @@ return [
 	 * ==========================================================
 	 */
 	'aliases'				=> [
-		'\ItalyStrap\Config\Config_Interface'		=> Config\Config::class,
+//		'\ItalyStrap\Config\Config_Interface'		=> Config\Config::class,
 		'\ItalyStrap\Template\Finder_Interface'		=> Template\Finder::class,
 		'\ItalyStrap\Template\View_Interface'		=> Template\View::class,
 		'\Walker_Nav_Menu'							=> Navbar\Bootstrap_Nav_Menu::class,
@@ -84,6 +84,9 @@ return [
 	 * ==========================================================
 	 */
 	'define_param'			=> [
+//		':theme_mods'	=> function () : array {
+//			return get_config()->all();
+//		},
 		'theme_mods'	=> get_config()->all(),
 		':wp_query'		=> function () {
 			global $wp_query;

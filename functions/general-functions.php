@@ -72,16 +72,16 @@ function print_search_form_in_menu( $nav_menu, $args ) {
  */
 function colophon_default_text() {
 
-    $powered = sprintf(
+    $powered = \sprintf(
         '<a%s>ItalyStrap</a>',
         \ItalyStrap\HTML\get_attr( 'powered', [
                 'href'      => '//www.italystrap.it',
                 'rel'       => 'nofollow',
                 'itemprop'  => 'url',
         ] )
-    );
+	);
 
-    $developed = sprintf(
+	$developed = \sprintf(
         '<a%s>Overclokk.net</a>',
 		\ItalyStrap\HTML\get_attr( 'developed', [
 			'href'      => '//www.overclokk.net',
@@ -90,7 +90,7 @@ function colophon_default_text() {
 		] )
     );
 
-	return sprintf(
+    $output = \sprintf(
 		'<p class="text-muted small">&copy; <span itemprop="copyrightYear">%1$d</span> %2$s | This website uses %3$s powered by %5$s developed by %6$s %4$s</p>',
 		esc_attr( date( 'Y' ) ),
 		esc_attr( GET_BLOGINFO_NAME ),
@@ -100,6 +100,7 @@ function colophon_default_text() {
 		$developed
 	);
 
+	return \apply_filters( 'italystrap_colophon_default_text', $output );
 }
 
 /**
@@ -247,13 +248,14 @@ function get_content_class( $class = '' ) {
 /**
  * Get the content width
  *
- * @param  string $value [description]
- * @return string        [description]
+ * @param int $container_width
+ * @param int $column
+ * @param int $content_column_width
+ * @param int $gutter
+ * @return int [description]
  */
-function get_content_width( $container_width, $column, $content_column_width, $gutter ) {
-
+function get_content_width( int $container_width, int $column, int $content_column_width, int $gutter = 0 ) : int {
 	return $container_width / $column * $content_column_width - $gutter;
-
 }
 
 /**
@@ -268,27 +270,20 @@ function is_static_front_page() {
 }
 
 /**
- * WP Parse Args recusrive
+ * WP Parse Args recursive
  *
  * @link http://mekshq.com/recursive-wp-parse-args-wordpress-function/
  *
- * @param  array &$args    The array.
+ * @param  array $args    The array.
  * @param  array $defaults The default array.
  *
  * @return array           The array merged.
  */
-function wp_parse_args_recursive( &$args, $defaults ) {
-	$args = (array) $args;
-	$defaults = (array) $defaults;
-	$result = $defaults;
-	foreach ( $args as $k => &$v ) {
-		if ( is_array( $v ) && isset( $result[ $k ] ) ) {
-			$result[ $k ] = wp_parse_args_recursive( $v, $result[ $k ] );
-		} else {
-			$result[ $k ] = $v;
-		}
-	}
-	return $result;
+function wp_parse_args_recursive( $args, $defaults ) {
+
+	\_deprecated_function( __FUNCTION__, '4.0.0', 'array_replace_recursive' );
+
+	return \array_replace_recursive( $defaults, $args );
 }
 
 /**

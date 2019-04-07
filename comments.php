@@ -43,10 +43,11 @@ if ( \have_comments() ) : ?>
 			 */
             $comment_number = \get_comments_number();
             \printf(
+			    /* translators: 1: number of comments, 2: post title */
                 \_n( '%1$s response to &ldquo;%2$s&rdquo;', '%1$s responses to &ldquo;%2$s&rdquo;', $comment_number, 'italystrap' ),
                 \number_format_i18n( $comment_number ),
                 \get_the_title()
-            ); // XSS ok.
+            );
             ?>
         </h3>
 

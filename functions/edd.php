@@ -28,6 +28,7 @@ add_filter( 'italystrap_theme_updater', function ( array $edd_config ) {
 		],
 		'strings'	=> [
 			'theme-license'             => sprintf(
+				/* translators: %s: Theme name */
 				__( '%s License', 'italystrap' ),
 				ITALYSTRAP_THEME_NAME
 			),

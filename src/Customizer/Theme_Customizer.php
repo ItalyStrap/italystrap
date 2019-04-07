@@ -218,30 +218,17 @@ class Theme_Customizer implements Subscriber_Interface {
 	/**
 	 * Function for adding link to Theme Options in case ItalyStrap plugin is active
 	 *
-	 * @link http://snippets.webaware.com.au/snippets/add-an-external-link-to-the-wordpress-admin-menu/
 	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#focusing
 	 * autofocus[panel|section|control]=ID
 	 */
 	public function add_link_to_theme_option_page() {
 
-		if ( ! current_user_can( $this->capability ) ) {
-			return;
-		}
-
-		global $submenu;
-
-		/**
-		 * Link to customizer
-		 *
-		 * @link http://wptheming.com/2015/01/link-to-customizer-sections/
-		 *
-		 * @var string
-		 */
-		$url = admin_url( 'customize.php?autofocus[panel]=' . $this->panel );
-		$submenu['italystrap-dashboard'][] = array(
+		add_submenu_page(
+			'italystrap-dashboard',
+			__( 'Theme Options', 'italystrap' ),
 			__( 'Theme Options', 'italystrap' ),
 			$this->capability,
-			$url,
+			admin_url( 'customize.php?autofocus[panel]=' . $this->panel )
 		);
 	}
 }

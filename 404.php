@@ -10,8 +10,4 @@
 
 namespace ItalyStrap;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 italystrap();

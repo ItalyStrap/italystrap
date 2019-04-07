@@ -16,10 +16,6 @@
 
 namespace ItalyStrap;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 /**
  * Change the thumbnail size for the old template full-width.php
  *

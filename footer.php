@@ -5,10 +5,6 @@
 
 namespace ItalyStrap;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 do_action( 'italystrap_before_footer' );
 
 	?><footer <?php HTML\get_attr( 'footer', [], true ); ?>><?php

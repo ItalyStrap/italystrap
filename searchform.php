@@ -7,6 +7,7 @@
  */
 
 namespace ItalyStrap;
+
 ?>
 <div itemscope itemtype="https://schema.org/WebSite">
 	<meta itemprop="url" content="<?php echo esc_attr( HOME_URL ); ?>"/>

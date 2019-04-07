@@ -15,7 +15,7 @@ if ( ! is_admin() ) {
 }
 
 $subscribers = [
-	Editors\TinyMCE::class,
+	Admin\Editors\TinyMCE::class,
 	Custom\Metabox\Register::class,
 ];
 

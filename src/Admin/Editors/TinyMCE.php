@@ -11,7 +11,7 @@
  * @since   4.0.0
  */
 
-namespace ItalyStrap\Editors;
+namespace ItalyStrap\Admin\Editors;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -39,34 +39,36 @@ class TinyMCE implements Subscriber_Interface {
 		// add_filter( 'mce_external_plugins', array( $this, 'register_mce_external_plugins' ) );
 		/* Add CSS to TinyMCE Editor */
 		// add_filter( 'mce_css', array( $this, 'editor_css' ) );
-		return array(
+		return [
 			// 'hook_name'							=> 'method_name',
 			'mce_external_plugins'	=> 'register_mce_external_plugins',
 			'mce_css'				=> 'editor_css',
 			'mce_buttons_2'			=> 'reveal_hidden_tinymce_buttons',
-			'mce_buttons'			=> array(
-				'function_to_add'	=> 'break_page_button',
-				'priority'			=> 1,
-				'accepted_args'		=> 2,
-			),
-			'mce_buttons_4'	=> array(
-				'function_to_add'	=> 'mce_add_buttons_4_columns',
-				'priority'			=> 10,
-				'accepted_args'		=> 2,
-			),
-			'tiny_mce_before_init'	=> array(
-				'function_to_add'	=> 'add_new_format_to_mce',
-				'priority'			=> 999,
-				'accepted_args'		=> 2,
-			),
-		);
+			'mce_buttons'			=> [
+				'function_to_add'		=> 'break_page_button',
+				'priority'				=> 1,
+				'accepted_args'			=> 2,
+			],
+			'mce_buttons_4'			=> [
+				'function_to_add'		=> 'mce_add_buttons_4_columns',
+				'priority'				=> 10,
+				'accepted_args'			=> 2,
+			],
+			'tiny_mce_before_init'	=> [
+				'function_to_add'		=> 'add_new_format_to_mce',
+				'priority'				=> 999,
+				'accepted_args'			=> 2,
+			],
+		];
 	}
+
+	private $assets_mce_plugin_url = '';
 
 	/**
 	 * Contructor
 	 */
 	public function __construct() {
-		$this->assets_mce_plugin_url = TEMPLATEURL . '/src/Editors/mce-plugins';
+		$this->assets_mce_plugin_url = TEMPLATEURL . '/src/Admin/Editors/mce-plugins';
 	}
 
 	/**
@@ -91,7 +93,7 @@ class TinyMCE implements Subscriber_Interface {
 
 		/* Only if buttons, boxes, or columns active */
 		// if( fx_editor_is_custom_feature_active() && apply_filters( 'fx_editor_load_editor_css', true ) ){
-			$mce_css .= sprintf(
+			$mce_css .= \sprintf(
 				',%s',
 				$this->assets_mce_plugin_url . '/columns/editor.css'
 			);
@@ -114,7 +116,7 @@ class TinyMCE implements Subscriber_Interface {
 
 		/* Columns */
 		// if( fx_editor_get_option( 'columns', false ) ){
-			array_push( $buttons,
+			\array_push( $buttons,
 				'wpe_addon_col_12_12',
 				'wpe_addon_col_13_23',
 				'wpe_addon_col_23_13',
@@ -143,7 +145,7 @@ class TinyMCE implements Subscriber_Interface {
 		/**
 		 * Add style selector to the beginning of the toolbar
 		 */
-		array_unshift( $buttons, 'styleselect' );
+		\array_unshift( $buttons, 'styleselect' );
 
 		return $buttons;
 	}
@@ -178,7 +180,7 @@ class TinyMCE implements Subscriber_Interface {
 		/**
 		 * Add next page after more tag button
 		 */
-		array_splice( $buttons, 13, 0, 'wp_page' );
+		\array_splice( $buttons, 13, 0, 'wp_page' );
 
 		return $buttons;
 	}
@@ -207,13 +209,13 @@ class TinyMCE implements Subscriber_Interface {
 
 		$default = require __DIR__ . '/config/style_formats.php';
 
-		$default = apply_filters( 'italystrap_style_formats_config', $default );
+		$default = \apply_filters( 'italystrap_style_formats_config', $default );
 
 		// d( $config );
 		// d( $config['formats'] );
 		// d( $config['style_formats'] );
 
-		$config['style_formats'] = wp_json_encode( $default );
+		$config['style_formats'] = \wp_json_encode( $default );
 
 		// d( $config['style_formats'] );
 

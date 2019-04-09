@@ -103,6 +103,8 @@ class Navbar {
 		 * For this situation the container attribute is set to false because
 		 * we need the collapsable functionality of Bootstrap CSS.
 		 *
+		 * @todo  Non credo mi possa essere utile https://github.com/devaloka/nav-menu ma si potrebbe comunque creare una classe a parte per wp_nav_menu e togliere da qui.
+		 *
 		 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
 		 * @var array
 		 */

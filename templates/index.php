@@ -17,17 +17,20 @@
 
 namespace ItalyStrap;
 
+use function ItalyStrap\HTML\{open_tag_e, close_tag_e};
+
 \get_header();
 \do_action( 'italystrap_before_main' );
 /**
  * @todo Per il momento questa variabile non è utilizzata
  */
 $file_name = isset( $file_name ) ?: '';
+
+    open_tag_e( 'index', 'main', [ 'id' => $file_name ] );
+        open_tag_e( 'index-container', 'div', [ 'class' => 'container' ] );
+            open_tag_e( 'index-row', 'div', [ 'class' => 'row' ] );
+
 ?>
-<!-- Main Content -->
-	<main id="<?php echo \esc_attr( $file_name ); ?>">
-		<div class="container">
-			<div class="row">
 				<?php \do_action( 'italystrap_before_content' ); ?>
 				<div <?php HTML\get_attr( 'content', [], true ); ?>>
 
@@ -37,11 +40,12 @@ $file_name = isset( $file_name ) ?: '';
 
 					<?php \do_action( 'italystrap_after_loop' ); ?>
 
-				</div><!-- / .col-md-8 -->
+				</div>
 				<?php \do_action( 'italystrap_after_content' ); ?>
-			</div><!-- / .row -->
-		</div>
-	</main><!-- / main -->
 <?php
+            close_tag_e( 'index-row' );
+        close_tag_e( 'index-container' );
+    close_tag_e( 'index' );
+
 \do_action( 'italystrap_after_main' );
 \get_footer();

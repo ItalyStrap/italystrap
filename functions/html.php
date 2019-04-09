@@ -3,6 +3,72 @@
 namespace ItalyStrap\HTML;
 
 /**
+ * @return Tag
+ * @throws \Auryn\ConfigException
+ * @throws \Auryn\InjectionException
+ */
+function tag() : Tag {
+
+	static $tag = null;
+
+	Tag::$is_debug = \ItalyStrap\Core\is_debug();
+
+	if ( ! $tag ) {
+		return \ItalyStrap\Factory\get_injector()->share( Tag::class )->make( Tag::class );
+	}
+
+	return $tag;
+}
+
+/**
+ * @param string $context
+ * @param string $tag
+ * @param array $attr
+ * @param bool $is_void
+ * @return string
+ * @throws \Auryn\ConfigException
+ * @throws \Auryn\InjectionException
+ */
+function open_tag( string $context, string $tag, array $attr = [], $is_void = false ) : string {
+	return tag()->open( $context, $tag, $attr, $is_void );
+}
+
+function open_tag_e( string $context, string $tag, array $attr = [], $is_void = false ) {
+	echo tag()->open( $context, $tag, $attr, $is_void );
+}
+
+/**
+ * @param string $context
+ * @param string $tag
+ * @return string
+ * @throws \Auryn\ConfigException
+ * @throws \Auryn\InjectionException
+ */
+function close_tag( string $context ) : string {
+	return tag()->close( $context );
+}
+
+function close_tag_e( string $context ) {
+	echo tag()->close( $context );
+}
+
+/**
+ * @param string $context
+ * @param string $tag
+ * @param array $attr
+ * @return string
+ * @throws \Auryn\ConfigException
+ * @throws \Auryn\InjectionException
+ */
+function void_tag( string $context, string $tag, array $attr = [] ) : string {
+	return tag()->void( $context, $tag, $attr );
+}
+
+function void_tag_e( string $context, string $tag, array $attr = [] ) {
+	echo tag()->void( $context, $tag, $attr );
+}
+
+/**
  * @see the function call in _init.php file
  */
 function filter_attr() {

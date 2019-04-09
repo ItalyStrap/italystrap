@@ -24,7 +24,6 @@ return [
 		Config\Config::class,
 		Event\Manager::class,
 		Template\View::class,
-		Css\Css::class,
 	],
 
 	/**
@@ -148,7 +147,7 @@ return [
 		Admin\Nav_Menu\Item_Custom_Fields::class,
 		Customizer\Theme_Customizer::class,
 		Css\Css::class,
-		Init\Init_Theme::class,
+		Init_Theme::class,
 		Custom\Sidebars\Sidebars::class,
 		Custom\Image\Size::class,
 		User\Contact_Methods::class,

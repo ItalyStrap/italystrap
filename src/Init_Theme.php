@@ -11,7 +11,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Init;
+namespace ItalyStrap;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -160,8 +160,8 @@ class Init_Theme implements Subscriber_Interface {
 			? STYLESHEETURL . '/css/editor-style.css'
 			: TEMPLATEURL . '/css/editor-style.css';
 
-		$arg = apply_filters( 'italystrap_visual_editor_style', array( $style_url ) );
+		$arg = apply_filters( 'italystrap_visual_editor_style', [ $style_url ] );
 
-		add_editor_style( $arg );
+		\add_editor_style( $arg );
 	}
 }

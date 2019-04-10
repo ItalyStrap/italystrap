@@ -33,13 +33,20 @@ function open_tag( string $context, string $tag, array $attr = [], $is_void = fa
 	return tag()->open( $context, $tag, $attr, $is_void );
 }
 
+/**
+ * @param string $context
+ * @param string $tag
+ * @param array $attr
+ * @param bool $is_void
+ * @throws \Auryn\ConfigException
+ * @throws \Auryn\InjectionException
+ */
 function open_tag_e( string $context, string $tag, array $attr = [], $is_void = false ) {
 	echo tag()->open( $context, $tag, $attr, $is_void );
 }
 
 /**
  * @param string $context
- * @param string $tag
  * @return string
  * @throws \Auryn\ConfigException
  * @throws \Auryn\InjectionException
@@ -48,6 +55,11 @@ function close_tag( string $context ) : string {
 	return tag()->close( $context );
 }
 
+/**
+ * @param string $context
+ * @throws \Auryn\ConfigException
+ * @throws \Auryn\InjectionException
+ */
 function close_tag_e( string $context ) {
 	echo tag()->close( $context );
 }
@@ -64,6 +76,13 @@ function void_tag( string $context, string $tag, array $attr = [] ) : string {
 	return tag()->void( $context, $tag, $attr );
 }
 
+/**
+ * @param string $context
+ * @param string $tag
+ * @param array $attr
+ * @throws \Auryn\ConfigException
+ * @throws \Auryn\InjectionException
+ */
 function void_tag_e( string $context, string $tag, array $attr = [] ) {
 	echo tag()->void( $context, $tag, $attr );
 }

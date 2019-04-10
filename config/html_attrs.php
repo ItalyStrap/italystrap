@@ -131,6 +131,41 @@ return [
 	/**
 	 * Attributes for the content element.
 	 */
+//	'italystrap_index-container_tag'			=> function ( ...$args ) {
+//		return $args[0];
+//	},
+
+	/**
+	 * Attributes for the content element.
+	 */
+	'italystrap_index-container_attr'			=> [
+		'class'	=> 'container',
+	],
+
+	/**
+	 * Attributes for the content element.
+	 */
+//	'italystrap_index-row_tag'			=> function ( ...$args ) {
+//		return $args[0];
+//	},
+
+	/**
+	 * Attributes for the content element.
+	 */
+	'italystrap_index-row_attr'			=> [
+		'class'	=> 'row',
+	],
+
+	/**
+	 * Attributes for the content element.
+	 */
+	'italystrap_content_tag'			=> function ( ...$args ) {
+		return $args[0];
+	},
+
+	/**
+	 * Attributes for the content element.
+	 */
 	'italystrap_content_attr'			=> [
 		'class'	=> $classes[ $site_layout ]['content'],
 	],

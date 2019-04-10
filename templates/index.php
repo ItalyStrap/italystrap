@@ -21,28 +21,25 @@ use function ItalyStrap\HTML\{open_tag_e, close_tag_e};
 
 \get_header();
 \do_action( 'italystrap_before_main' );
-/**
- * @todo Per il momento questa variabile non è utilizzata
- */
-$file_name = isset( $file_name ) ?: '';
 
-    open_tag_e( 'index', 'main', [ 'id' => $file_name ] );
-        open_tag_e( 'index-container', 'div', [ 'class' => 'container' ] );
-            open_tag_e( 'index-row', 'div', [ 'class' => 'row' ] );
+    open_tag_e( 'index', 'main' );
+        open_tag_e( 'index-container', 'div' );
+            open_tag_e( 'index-row', 'div' );
 
-?>
-				<?php \do_action( 'italystrap_before_content' ); ?>
-				<div <?php HTML\get_attr( 'content', [], true ); ?>>
+                \do_action( 'italystrap_before_content' );
 
-					<?php \do_action( 'italystrap_before_loop' ); ?>
+                open_tag_e( 'content', 'div' );
 
-					<?php \do_action( 'italystrap_loop' ); ?>
+					\do_action( 'italystrap_before_loop' );
 
-					<?php \do_action( 'italystrap_after_loop' ); ?>
+					\do_action( 'italystrap_loop' );
 
-				</div>
-				<?php \do_action( 'italystrap_after_content' ); ?>
-<?php
+					\do_action( 'italystrap_after_loop' );
+
+                close_tag_e( 'content' );
+
+                \do_action( 'italystrap_after_content' );
+
             close_tag_e( 'index-row' );
         close_tag_e( 'index-container' );
     close_tag_e( 'index' );

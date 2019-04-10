@@ -25,7 +25,9 @@ class Tag {
 	public function open( string $context, string $tag, array $attr = [], $is_void = false ) : string {
 
 		try {
+
 			$this->set_tag( $context, $tag );
+
 		} catch ( \RuntimeException $e ) {
 			echo $e->getMessage();
 		} catch ( \Exception $e ) {
@@ -92,37 +94,62 @@ class Tag {
 		return $output;
 	}
 
+	/**
+	 * @todo Maybe future development
+	 *
+	 * @param string $context
+	 * @param string $tag
+	 * @param array $attr
+	 * @param string $content
+	 * @return string
+	 */
 	private function create_element( string $context, string $tag, array $attr, string $content ) : string {
 
-		$content = (string) \apply_filters( 'italystrap_' . $context . '_element', $content );
+		$content = (string) \apply_filters( "italystrap_{$context}_element_child", $content );
 
 		if ( empty( $content ) ) {
 			$content = '&nbsp;';
 		}
 
-		if ( (bool) \apply_filters( 'italystrap_pre_' . $context, false ) ) {
+		/**
+		 * It could be used for display the content without the wrapper
+		 */
+		if ( (bool) \apply_filters( "italystrap_pre_{$context}", false ) ) {
 			return $content;
 		}
 
 		$output = $this->open( $context, $tag, $attr ) . $context . $this->close( $context );
 
-		return apply_filters( 'italystrap_' . $context, $output );
+		return \apply_filters( "italystrap_{$context}_element_output", $output );
 	}
 
+	/**
+	 * @param string $context
+	 * @param string $tag
+	 * @return Tag
+	 */
 	private function set_tag( string $context, string $tag ) : self {
 
 		if ( $this->has_tag( $context ) ) {
 			throw new \RuntimeException( sprintf( 'The %s is already used', $context ) );
 		}
 
-		$this->tags[ $context ] = (string) \apply_filters( "italystrap_{$context}_tag", $tag );
+		$this->tags[ $context ] = (string) \apply_filters( "italystrap_{$context}_tag", $tag, $context, $this );
 		return $this;
 	}
 
+	/**
+	 * @param string $context
+	 * @return bool
+	 */
 	private function has_tag( string $context ) : bool {
 		return array_key_exists( $context, $this->tags );
 	}
 
+	/**
+	 * @param string $context
+	 * @return string
+	 */
 	private function get_tag( string $context ) : string {
 
 		if ( ! $this->has_tag( $context ) ) {
@@ -132,18 +159,27 @@ class Tag {
 		return $this->tags[ $context ];
 	}
 
+	/**
+	 * @param string $context
+	 * @return $this
+	 */
 	private function remove_tag( string $context ) {
 		unset( $this->tags[ $context] );
 		return $this;
 	}
 
+	/**
+	 * @param string $context
+	 * @param string $new_tag
+	 * @return $this
+	 */
 	private function change_tag( string $context, string $new_tag ) {
 		$this->tags[ $context] = $new_tag;
 		return $this;
 	}
 
 	/**
-	 * @todo Make a both for selfclose
+	 * @todo Maybe make a both for selfclose
 	 *
 	 * @param string $func_name
 	 * @param string $context
@@ -167,6 +203,9 @@ class Tag {
 		);
 	}
 
+	/**
+	 * @return bool
+	 */
 	private function is_debug () : bool {
 		return self::$is_debug;
 	}
@@ -181,9 +220,9 @@ class Tag {
 		}
 
 		try {
-			if ( count( $this->tags ) > 0 ) {
-				throw new \RuntimeException( sprintf(
-					'You missed to close this tags: { %s }',
+			if ( \count( $this->tags ) > 0 ) {
+				throw new \RuntimeException( \sprintf(
+					'You forgot to close this tags: { %s }',
 					\join( ' | ', $this->get_missed_close_tags() )
 				) );
 			}

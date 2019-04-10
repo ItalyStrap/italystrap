@@ -63,6 +63,10 @@ return [
 					&& ! \in_array( 'hide_title', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/title',
+//			'data'	=> function ( Config_Interface $config ) : Config_Interface {
+//					$config->push( 'title', \get_the_title() );
+//				return $config;
+//			},
 		],
 
 		'meta'	=> [

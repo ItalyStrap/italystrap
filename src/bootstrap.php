@@ -79,6 +79,9 @@ add_filter( 'template_include', '\ItalyStrap\Core\set_current_template_constants
 
 try {
 
+	$theme_loader = get_injector()->make( Loader::class );
+	$theme_loader->set_dependencies( get_config_file_content( 'dependencies' ) );
+
 	/**
 	 * ========================================================================
 	 *
@@ -91,10 +94,6 @@ try {
 	$subscribers_admin = require '_init_admin.php';
 	$subscribers_front = require '_init.php';
 
-
-	$theme_loader = get_injector()->make( Theme_Test_Load::class );
-
-	$theme_loader->set_dependencies( get_config_file_content( 'dependencies' ) );
 	$theme_loader->add_subscribers( $subscribers_admin );
 	$theme_loader->add_subscribers( $subscribers_front );
 

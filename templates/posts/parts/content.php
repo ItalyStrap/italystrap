@@ -9,4 +9,14 @@
 
 namespace ItalyStrap;
 
-?><div <?php HTML\get_attr( 'entry_content', [], true ); ?>><?php if ( \is_singular() ) { \the_content(); } else { \the_excerpt(); } ?></div>
+use function ItalyStrap\HTML\{open_tag_e, close_tag_e};
+
+open_tag_e( 'entry_content', 'div' );
+
+    if ( \is_singular() ) {
+        \the_content();
+    } else {
+        \the_excerpt();
+    }
+
+close_tag_e( 'entry_content' );

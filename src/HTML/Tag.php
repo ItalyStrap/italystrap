@@ -9,11 +9,29 @@
 namespace ItalyStrap\HTML;
 
 
-class Tag {
+class Tag implements Tag_Interface {
 
 	public static $is_debug = false;
 
+	/**
+	 * Array with tags indexed by $context.
+	 *
+	 * @var array
+	 */
 	private $tags = [];
+
+	/**
+	 * @var Attributes
+	 */
+	private $attr;
+
+	/**
+	 * Tag constructor.
+	 * @param Attributes $attributes
+	 */
+	public function __construct( Attributes $attributes ) {
+		$this->attr = $attributes;
+	}
 
 	/**
 	 * @param string $context
@@ -34,6 +52,8 @@ class Tag {
 			echo $e->getMessage();
 		}
 
+		$this->attr->add_attr( $context, $attr );
+
 		if ( ! $tag = $this->get_tag( $context ) ) {
 			return '';
 		}
@@ -47,7 +67,8 @@ class Tag {
 		$output = \sprintf(
 			'<%s%s%s>',
 			esc_attr( $tag ),
-			get_attr( $context, $attr ),
+//			get_attr( $context, $attr ),
+			$this->attr->render( $context ),
 			$self_close
 		);
 
@@ -97,30 +118,34 @@ class Tag {
 	/**
 	 * @todo Maybe future development
 	 *
+	 * @example :
+	 * <div>Some content</div>
+	 * <i class="fa fa-icon"></i>
+	 * Some content
+	 *
 	 * @param string $context
 	 * @param string $tag
 	 * @param array $attr
 	 * @param string $content
 	 * @return string
 	 */
-	private function create_element( string $context, string $tag, array $attr, string $content ) : string {
-
-		$content = (string) \apply_filters( "italystrap_{$context}_element_child", $content );
-
-		if ( empty( $content ) ) {
-			$content = '&nbsp;';
-		}
+	public function element( string $context, string $tag, array $attr, string $content = '' ) : string {
 
 		/**
-		 * It could be used for display the content without the wrapper
+		 * @todo Può essere utile un fitro qui?
 		 */
-		if ( (bool) \apply_filters( "italystrap_pre_{$context}", false ) ) {
+		$content = (string) \apply_filters( "italystrap_{$context}_element_content", $content, $context, $this );
+
+		/**
+		 * It could be used to display the content without the wrapper
+		 */
+		if ( (bool) \apply_filters( "italystrap_pre_{$context}", false, $context, $this ) ) {
 			return $content;
 		}
 
-		$output = $this->open( $context, $tag, $attr ) . $context . $this->close( $context );
+		$output = $this->open( $context, $tag, $attr ) . $content . $this->close( $context );
 
-		return \apply_filters( "italystrap_{$context}_element_output", $output );
+		return \apply_filters( "italystrap_{$context}_element_output", $output, $context, $this );
 	}
 
 	/**
@@ -211,10 +236,9 @@ class Tag {
 	}
 
 	/**
-	 *
+	 * @throws \Exception
 	 */
-	public function __destruct() {
-
+	public function check_non_closed_tags() {
 		if ( ! self::$is_debug ) {
 			return;
 		}
@@ -228,8 +252,10 @@ class Tag {
 			}
 		} catch ( \RuntimeException $e ) {
 			echo $e->getMessage();
+//			throw $e;
 		} catch ( \Exception $e ) {
 			echo $e->getMessage();
+//			throw $e;
 		}
 	}
 
@@ -247,4 +273,34 @@ class Tag {
 		}
 		return $output;
 	}
+
+	/**
+	 *
+	 */
+	public function __destruct() {
+		$this->check_non_closed_tags();
+	}
+
+	/**
+	 * @TODO Qualche idea da sviluppare in futuro
+	 * https://gitlab.com/byjoby/html-object-strings/blob/master/src/TagTrait.php
+	 */
+//	private function add_attr_if( string $context, bool $condition, array $attr = [] ) {
+//		// attribute[ $context ] = $attr;
+//	}
+
+	/**
+	 * Agginge una o più classi css
+	 */
+//	private function add_class( string $context, string $classes ) {
+//		// attribute[ $context ] = $attr;
+//	}
+
+	/**
+	 * Agginge una o più classi css
+	 */
+//	private function add_data( string $context, string $classes ) {
+//		// attribute[ $context ] = $attr;
+//	}
+
 }

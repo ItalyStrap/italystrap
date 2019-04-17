@@ -64,6 +64,17 @@ class HTML_TagTest extends \Codeception\TestCase\WPTestCase
 		$this->assertContains( '<input type="text"/>', $open );
     }
 
+	/**
+	 * @throws Exception
+	 */
+//	public function testExpectedException() {
+//
+//		$this->expectException( \RuntimeException::class );
+//
+//		$open = $this->get_instance()->open( 'test', 'div' );
+//		$this->get_instance()->check_non_closed_tags();
+//    }
+
     /**
 	 * @todo Make test for non close tags
 	 * @todo make test for tag in context called more than once

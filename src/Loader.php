@@ -9,7 +9,7 @@ use ItalyStrap\Event\Manager;
 use ItalyStrap\Config\Config_Interface;
 use function ItalyStrap\Factory\{get_config, get_event_manager};
 
-final class Theme_Test_Load implements Loadable_Test_Interface {
+final class Loader implements Loadable_Interface {
 
 	/**
 	 * Flag to track if the theme is loaded.

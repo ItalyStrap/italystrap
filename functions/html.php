@@ -3,6 +3,8 @@
 namespace ItalyStrap\HTML;
 
 /**
+ * @todo Factory provvisoria
+ *
  * @return Tag
  * @throws \Auryn\ConfigException
  * @throws \Auryn\InjectionException
@@ -11,9 +13,8 @@ function tag() : Tag {
 
 	static $tag = null;
 
-	Tag::$is_debug = \ItalyStrap\Core\is_debug();
-
 	if ( ! $tag ) {
+		Tag::$is_debug = \ItalyStrap\Core\is_debug();
 		return \ItalyStrap\Factory\get_injector()->share( Tag::class )->make( Tag::class );
 	}
 
@@ -30,7 +31,7 @@ function tag() : Tag {
  * @throws \Auryn\InjectionException
  */
 function open_tag( string $context, string $tag, array $attr = [], $is_void = false ) : string {
-	return tag()->open( $context, $tag, $attr, $is_void );
+	return tag()->open( ...\func_get_args() );
 }
 
 /**
@@ -42,7 +43,7 @@ function open_tag( string $context, string $tag, array $attr = [], $is_void = fa
  * @throws \Auryn\InjectionException
  */
 function open_tag_e( string $context, string $tag, array $attr = [], $is_void = false ) {
-	echo tag()->open( $context, $tag, $attr, $is_void );
+	echo tag()->open( ...\func_get_args() );
 }
 
 /**
@@ -73,7 +74,7 @@ function close_tag_e( string $context ) {
  * @throws \Auryn\InjectionException
  */
 function void_tag( string $context, string $tag, array $attr = [] ) : string {
-	return tag()->void( $context, $tag, $attr );
+	return tag()->void( ...\func_get_args() );
 }
 
 /**
@@ -84,7 +85,7 @@ function void_tag( string $context, string $tag, array $attr = [] ) : string {
  * @throws \Auryn\InjectionException
  */
 function void_tag_e( string $context, string $tag, array $attr = [] ) {
-	echo tag()->void( $context, $tag, $attr );
+	echo tag()->void( ...\func_get_args() );
 }
 
 /**
@@ -134,7 +135,7 @@ function filter_attr() {
  */
 function embed_wrap( $cache, $url, $attr, $post_ID ) {
 
-	if ( strpos( $cache, 'class="twitter-tweet"' ) ) {
+	if ( \strpos( $cache, 'class="twitter-tweet"' ) ) {
 		return $cache;
 	}
 
@@ -152,16 +153,16 @@ function embed_wrap( $cache, $url, $attr, $post_ID ) {
 		]
 	);
 
-	$elements = explode(' ', $cache );
+	$elements = \explode(' ', $cache );
 
-	if ( ! in_array( 'class', $elements, true ) ) {
-		array_splice( $elements, 1, 0, trim( $ifr_attr ) );
+	if ( ! \in_array( 'class', $elements, true ) ) {
+		\array_splice( $elements, 1, 0, \trim( $ifr_attr ) );
 	}
 
-	return sprintf(
+	return \sprintf(
 		'<div%s>%s</div>',
 		$container_attr,
-		implode( ' ', $elements )
+		\implode( ' ', $elements )
 	);
 }
 add_filter( 'embed_oembed_html', __NAMESPACE__ . '\embed_wrap', 10, 4 );

@@ -9,7 +9,7 @@
 namespace ItalyStrap;
 use Auryn\Injector;
 
-interface Loadable_Test_Interface {
+interface Loadable_Interface {
 
 	/**
 	 * @param Injector $injector

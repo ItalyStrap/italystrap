@@ -158,26 +158,6 @@ return apply_filters(
 		'breadcrumbs_show_on'			=> '',
 
 		/**
-		 * Display image size 740x370 in single and page
-		 */
-		// add_image_size( 'article-thumb', 740, 370, true);
-		/**
-		 * Display image size 253x126 in index and correlated
-		 */
-		// add_image_size( 'article-thumb-index', 253, 126, true);
-		/**
-		 * Display image size 1130x565 in full-width page
-		 */
-		// add_image_size( 'full-width', 1140, 9999 );
-
-		/**
-		 * Image size displayed in the navbar brand image
-		 *
-		 * @see Class Navbar::get_navbar_brand()
-		 */
-		// add_image_size( 'navbar-brand-image', 45, 45, true);
-
-		/**
 		 * col-md-12 1140
 		 * col-md-11 1043
 		 * col-md-10 945
@@ -253,7 +233,7 @@ return apply_filters(
 		 * $width * 3 / 4;
 		 */
 		'breakpoint'					=> [
-			// 'xs'	=> 480,
+//			 'xs'	=> 480,
 			// 'sm'	=> 768,
 			// 'md'	=> 992,
 			// 'lg'	=> 1200,

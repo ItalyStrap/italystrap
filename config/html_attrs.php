@@ -234,6 +234,13 @@ return [
 	/**
 	 * Attributes for the footer component.
 	 */
+	'italystrap_sidebar-1-wrapper_attr'	=> function ( array $attr ) : array {
+		return $attr;
+	},
+
+	/**
+	 * Attributes for the footer component.
+	 */
 	'italystrap_footer_attr'	=> [
 		'class'	=> 'site-footer',
 	],

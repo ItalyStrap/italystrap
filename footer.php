@@ -5,19 +5,24 @@
 
 namespace ItalyStrap;
 
-do_action( 'italystrap_before_footer' );
+use function ItalyStrap\HTML\{open_tag_e, close_tag_e};
 
-	?><footer <?php HTML\get_attr( 'footer', [], true ); ?>><?php
+\do_action( 'italystrap_before_footer' );
 
-		do_action( 'italystrap_footer' );
+    open_tag_e( 'footer', 'footer' );
 
-	?></footer><?php
+		\do_action( 'italystrap_footer' );
 
-do_action( 'italystrap_after_footer' );
+    close_tag_e( 'footer' );
 
-	?></div><!-- Wrapper -->
-<?php
-do_action( 'italystrap_after' );
-wp_footer(); ?>
-</body>
+\do_action( 'italystrap_after_footer' );
+
+close_tag_e( 'wrapper' );
+
+\do_action( 'italystrap_after' );
+
+\wp_footer();
+
+close_tag_e( 'body' );
+?>
 </html>

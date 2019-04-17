@@ -58,12 +58,14 @@ return [
 	 * ==========================================================
 	 */
 	'definitions'			=> [
+		Theme\Sidebars::class	=> [
+			':config'	=> Config_Factory::make( get_config_file_content( 'sidebars' ) ),
+		],
 		Builder::class	=> [
 			':config'	=> Config_Factory::make( get_config_file_content( 'structure' ) ),
 		],
 		Components\Navigations\Navbar::class	=> [
 			':fallback_cb' => [ Navbar\Bootstrap_Nav_Menu::class, 'fallback' ],
-//			':fallback_cb' => '\ItalyStrap\Navbar\Bootstrap_Nav_Menu::fallback',
 		],
 		Components\Navigations\Pagination::class	=> [
 			':config'	=> Config_Factory::make( get_config_file_content( 'pagination' ) ),
@@ -142,14 +144,16 @@ return [
 	 * ========================================================================
 	 */
 	'subscribers'				=> [
+
+		Theme\Starter::class,
+
+		Custom\Metabox\Register::class,
+
 //		'\ItalyStrap\Router\Router', // Anche questo da testare meglio
 		// '\ItalyStrap\Core\Router\Controller', // Da testare meglio
 		Admin\Nav_Menu\Item_Custom_Fields::class,
 		Customizer\Theme_Customizer::class,
 		Css\Css::class,
-		Init_Theme::class,
-		Custom\Sidebars\Sidebars::class,
-		Custom\Image\Size::class,
 		User\Contact_Methods::class,
 
 		// This is the class that build the page

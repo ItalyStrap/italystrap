@@ -26,7 +26,7 @@ class AssetTest extends \Codeception\TestCase\WPTestCase
 	 */
 	private function get_instance( $type ) {
 		$config = \ItalyStrap\Config\Config_Factory::make([]);
-		return \ItalyStrap\Factory\get_injector()->make( '\ItalyStrap\Asset\\' . $type, [ ':config' => $config ] );
+		return \ItalyStrap\Factory\injector()->make( '\ItalyStrap\Asset\\' . $type, [ ':config' => $config ] );
     }
 
     /**

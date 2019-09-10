@@ -4,7 +4,7 @@ namespace ItalyStrap;
 
 use \ItalyStrap\Config\Config_Interface;
 use function \ItalyStrap\Factory\get_config;
-use function \ItalyStrap\Factory\get_injector;
+use function \ItalyStrap\Factory\injector;
 use function \ItalyStrap\Core\get_template_settings;
 
 /**
@@ -242,7 +242,7 @@ return [
 					: get_userdata( absint( get_the_author_meta( 'ID' ) ) );
 
 
-				$data['contact'] = get_injector()->make( '\ItalyStrap\User\Contact_Method_List' );
+				$data['contact'] = injector()->make( '\ItalyStrap\User\Contact_Method_List' );
 
 				return $data;
 			},
@@ -266,7 +266,7 @@ return [
 					: get_userdata( absint( get_the_author_meta( 'ID' ) ) );
 
 
-				$data['contact'] = get_injector()->make( '\ItalyStrap\User\Contact_Method_List' );
+				$data['contact'] = injector()->make( '\ItalyStrap\User\Contact_Method_List' );
 
 				return $data;
 			},
@@ -298,7 +298,7 @@ return [
 			'view'		=> 'headers/image',
 			'should_load'	=> '\has_header_image',
 			'data'		=> function () {
-				return get_injector()->make( Components\Headers\Image::class )->get_data();
+				return injector()->make( Components\Headers\Image::class )->get_data();
 			},
 		],
 
@@ -307,7 +307,7 @@ return [
 			'view'		=> 'headers/navbar',
 			'data'	=> function () : array {
 				return [
-					'navbar'	=> get_injector()->make( '\ItalyStrap\Components\Navigations\Navbar' ),
+					'navbar'	=> injector()->make( '\ItalyStrap\Components\Navigations\Navbar' ),
 				];
 			},
 		],

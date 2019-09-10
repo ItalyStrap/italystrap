@@ -5,7 +5,7 @@ namespace ItalyStrap\Event;
 use Auryn\ConfigException;
 use Auryn\InjectionException;
 
-use function \ItalyStrap\Factory\get_injector;
+use function \ItalyStrap\Factory\injector;
 use function \ItalyStrap\Factory\get_event_manager;
 
 if ( ! function_exists( '\ItalyStrap\Event\add_subscriber' ) ) {
@@ -14,7 +14,7 @@ if ( ! function_exists( '\ItalyStrap\Event\add_subscriber' ) ) {
 
 		try {
 			get_event_manager()->add_subscriber(
-				get_injector()
+				injector()
 					->share( $name )
 					->make( $name, $args )
 			);
@@ -34,7 +34,7 @@ if ( ! function_exists( '\ItalyStrap\Event\remove_subscriber' ) ) {
 
 		try {
 			get_event_manager()->remove_subscriber(
-				get_injector()
+				injector()
 					->share( $name )
 					->make( $name )
 			);

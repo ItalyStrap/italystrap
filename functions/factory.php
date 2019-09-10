@@ -10,12 +10,12 @@ use ItalyStrap\Config\Config;
 use ItalyStrap\Event\Manager;
 use ItalyStrap\Template\View;
 
-if ( ! function_exists( '\ItalyStrap\Factory\get_injector' ) ) {
+if ( ! function_exists( '\ItalyStrap\Factory\injector' ) ) {
 
 	/**
 	 * @return Injector
 	 */
-	function get_injector() : Injector {
+	function injector() : Injector {
 
 		/**
 		 * Injector from ACM if is active
@@ -44,7 +44,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 
 		if ( ! $config ) {
 			try {
-				$config = get_injector()
+				$config = injector()
 					->alias( '\ItalyStrap\Config\Config_Interface',  \ItalyStrap\Config\Config::class )
 					->share( \ItalyStrap\Config\Config::class )
 					->make( \ItalyStrap\Config\Config::class );
@@ -72,7 +72,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_view' ) ) {
 
 		if ( ! $view ) {
 			try {
-				$view = get_injector()
+				$view = injector()
 					->share( \ItalyStrap\Template\View::class )
 					->make( \ItalyStrap\Template\View::class );
 			} catch ( ConfigException $configException ) {
@@ -99,7 +99,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_event_manager' ) ) {
 
 		if ( ! $event_manager ) {
 			try {
-				$event_manager = get_injector()
+				$event_manager = injector()
 					->share( \ItalyStrap\Event\Manager::class )
 					->make( \ItalyStrap\Event\Manager::class );
 			} catch ( ConfigException $configException ) {

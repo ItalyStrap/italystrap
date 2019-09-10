@@ -44,14 +44,27 @@ class Starter implements Subscriber_Interface {
 
 	private $config;
 	private $thumbnails;
+	private $support;
+	private $type_support;
+	private $nav_menus;
 
 	/**
 	 * Init some functionality
 	 */
-	public function __construct( Config_Interface $config, Thumbnails $thumbnails, Sidebars $sidebars ) {
+	public function __construct(
+		Config_Interface $config,
+		Thumbnails $thumbnails,
+		Sidebars $sidebars,
+		Support $support,
+		Type_Support $type_support,
+		Nav_Menus $nav_menus
+	) {
 		$this->config = $config;
 		$this->thumbnails = $thumbnails;
 		$this->sidebars = $sidebars;
+		$this->support = $support;
+		$this->type_support = $type_support;
+		$this->nav_menus = $nav_menus;
 	}
 
 	/**
@@ -68,6 +81,9 @@ class Starter implements Subscriber_Interface {
 		}
 	}
 
+	/**
+	 *
+	 */
 	private function italystrap_theme_load() {
 
 		/**
@@ -79,27 +95,17 @@ class Starter implements Subscriber_Interface {
 //			\load_child_theme_textdomain( 'CHILD', $this->config->get( 'CHILDPATH' ) . '/languages' );
 //		}
 
-		$this->add_theme_supports( (array) $this->config->get( 'add_theme_support' ) );
+		$this->support->register();
+
+		$this->thumbnails->register();
+
+		$this->nav_menus->register();
 
 		/**
 		 * Per ora la eseguo da qui
 		 * in futuro valutare posto migliore
 		 */
 		$this->add_editor_styles();
-
-		/**
-		 * This theme uses wp_nav_menu() in one location.
-		 */
-		$nav_menus_locations = [
-			'main-menu'			=> __( 'Main Menu', 'italystrap' ),
-			'secondary-menu'	=> __( 'Secondary Menu', 'italystrap' ),
-			'social-menu'		=> __( 'Social Menu', 'italystrap' ),
-			'info-menu'			=> __( 'Info Menu', 'italystrap' ),
-			'footer-menu'		=> __( 'Footer Menu', 'italystrap' ),
-		];
-		\register_nav_menus( \apply_filters( 'register_nav_menu_locations', $nav_menus_locations ) );
-
-		$this->thumbnails->register();
 	}
 
 	/**
@@ -114,27 +120,7 @@ class Starter implements Subscriber_Interface {
 	 * @fire on init
 	 */
 	private function init() {
-		foreach ( $this->config->get( 'post_type_support', [] ) as $post_type => $features ) {
-			\add_post_type_support( $post_type, $features );
-		}
-	}
-
-	/**
-	 * Add theme supports
-	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support
-	 *
-	 * @param  array $theme_supports An array with theme support list.
-	 */
-	private function add_theme_supports( array $theme_supports = array() ) {
-
-		foreach ( $theme_supports as $feature => $parameters ) {
-			if ( is_string( $parameters ) ) {
-				\add_theme_support( $parameters );
-			} else {
-				\add_theme_support( $feature, $parameters );
-			}
-		}
+		$this->type_support->register();
 	}
 
 	/**

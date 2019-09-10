@@ -69,7 +69,7 @@ if ( \have_comments() ) : ?>
 		 */
 		try {
 			$wp_list_comments_args = array(
-				'walker'        => \ItalyStrap\Factory\get_injector()->make( $comment_walker ),
+				'walker'        => \ItalyStrap\Factory\injector()->make( $comment_walker ),
 				'max_depth'     => 3, // See in WordPress option.
 //				'avatar_size'   => 100,
 //				'callback'          => function ( \WP_Comment $comment, array $args, int $depth ) {

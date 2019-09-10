@@ -16,7 +16,7 @@ namespace ItalyStrap;
 use Auryn\InjectorException;
 use function ItalyStrap\Config\{get_config_file_content};
 use function ItalyStrap\Core\{set_default_constants};
-use function ItalyStrap\Factory\{get_config, get_injector};
+use function ItalyStrap\Factory\{get_config, injector};
 
 /**
  * ========================================================================
@@ -48,7 +48,7 @@ $autoload_theme_files = [
  *
  * ========================================================================
  */
-if ( apply_filters( 'italystrap_load_deprecated', true ) ) {
+if ( apply_filters( 'italystrap_load_deprecated', false ) ) {
 	$autoload_theme_files[] = '/deprecated/autoload.php';
 }
 
@@ -79,7 +79,7 @@ add_filter( 'template_include', '\ItalyStrap\Core\set_current_template_constants
 
 try {
 
-	$theme_loader = get_injector()->make( Loader::class );
+	$theme_loader = injector()->make( Loader::class );
 	$theme_loader->set_dependencies( get_config_file_content( 'dependencies' ) );
 
 	/**
@@ -97,23 +97,30 @@ try {
 	$theme_loader->add_subscribers( $subscribers_admin );
 	$theme_loader->add_subscribers( $subscribers_front );
 
+	/**
+	 * ========================================================================
+	 *
+	 * Load the framework
+	 *
+	 * ========================================================================
+	 */
 	\add_action( 'italystrap_theme_load', [ $theme_loader, 'load' ] );
 
 
 	if ( ! isset( $theme_mods ) ) {
 		$theme_mods = (array) \get_theme_mods();
 	}
+
 	get_config()->merge(
 		get_config_file_content( 'default' ),
 		$theme_mods,
-		$constants,
-		get_config_file_content( 'theme-supports' )
+		$constants
 	);
 
 	unset( $theme_mods, $constants );
 
 } catch ( InjectorException $exception ) {
-	\_doing_it_wrong( \get_class( get_injector() ), $exception->getMessage(), '4.0.0' );
+	\_doing_it_wrong( \get_class( injector() ), $exception->getMessage(), '4.0.0' );
 } catch ( \Exception $exception ) {
 	\_doing_it_wrong( 'General error.', $exception->getMessage(), '4.0.0' );
 }
@@ -128,7 +135,7 @@ try {
 	 *
 	 * @var \Auryn\Injector
 	 */
-	$injector = get_injector();
+	$injector = injector();
 
 	/**
 	 * Fires before ItalyStrap theme load.

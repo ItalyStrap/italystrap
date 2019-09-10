@@ -15,7 +15,7 @@ function tag() : Tag {
 
 	if ( ! $tag ) {
 		Tag::$is_debug = \ItalyStrap\Core\is_debug();
-		return \ItalyStrap\Factory\get_injector()->share( Tag::class )->make( Tag::class );
+		return \ItalyStrap\Factory\injector()->share( Tag::class )->make( Tag::class );
 	}
 
 	return $tag;
@@ -101,10 +101,12 @@ function filter_attr() {
 
 //		\ItalyStrap\HTML\Parse_Attr::$accepted_args = 5;
 
-		$parser =  \ItalyStrap\Factory\get_injector()->make(
-			\ItalyStrap\Builders\Parse_Attr::class,
+		$parser =  \ItalyStrap\Factory\injector()->make(
+			\ItalyStrap\Builders\Parse_Attr::class
+			,
 			[ ':config' => $config ]
 		);
+
 		$parser->apply();
 
 	} catch ( \Auryn\InjectorException $exception ) {

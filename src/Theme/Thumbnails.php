@@ -12,7 +12,7 @@
 
 namespace ItalyStrap\Theme;
 
-use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Config\Config_Interface as Config;
 
 /**
  * Class definition
@@ -26,6 +26,9 @@ class Thumbnails implements Registrable {
 	 */
 	private $image_sizes = array();
 
+	/**
+	 * @var Config
+	 */
 	private $config;
 
 	/**
@@ -33,11 +36,40 @@ class Thumbnails implements Registrable {
 	 *
 	 * @param [type] $argument [description].
 	 */
-	function __construct( Config_Interface $config ) {
+	public function __construct( Config $config ) {
 
 		$this->config = $config;
 
 		$this->image_sizes = (array) $this->config->get('image_size');
+	}
+
+	/**
+	 * @param string $name
+	 * @param int $width
+	 * @param int $height
+	 * @param bool $crop
+	 * @return Thumbnails
+	 */
+	public function add_size( string $name, int $width = 0, int $height = 0, bool $crop = false  ) : self {
+		\add_image_size( ...\func_get_args() );
+		return $this;
+	}
+
+	/**
+	 * @param string $name
+	 * @return Thumbnails
+	 */
+	public function remove_size( string $name ) : self {
+		\remove_image_size( $name );
+		return $this;
+	}
+
+	/**
+	 * @param string $name
+	 * @return bool
+	 */
+	public function has_size( string $name ) : bool {
+		return \has_image_size( $name );
 	}
 
 	/**
@@ -63,7 +95,8 @@ class Thumbnails implements Registrable {
 		/**
 		 * 'post-thumbnails' is by default the size displayed for posts, pages and all archives.
 		 */
-		set_post_thumbnail_size( $content_width, $height );
+		\set_post_thumbnail_size( $content_width, $height );
+
 
 		/**
 		 * thumbnail_size_w
@@ -92,17 +125,21 @@ class Thumbnails implements Registrable {
 	 */
 	private function add_image_size() {
 
+		$default = [
+			'width'		=> 0,
+			'height'	=> 0,
+			'crop'		=> false,
+		];
+
 		foreach ( $this->image_sizes as $name => $params ) {
 
-			if ( ! isset( $params['width'] ) || ! isset( $params['height'] ) ) {
-				continue;
-			}
+			$params = \array_merge( $default, $params );
 
-			add_image_size(
+			$this->add_size(
 				$name,
 				(int) $params['width'],
 				(int) $params['height'],
-				isset( $params['crop'] ) ? (bool) $params['crop'] : false
+				\boolval( $params['crop'] ) ?? false
 			);
 		}
 	}
@@ -131,10 +168,12 @@ class Thumbnails implements Registrable {
 		 * inserita come parametro in modo da avere tutti i tagli con le stesse proporzioni.
 		 * Deve essere calcolata in base anche al gutter.
 		 */
-		foreach ( (array) $this->config->get('breakpoint', [] ) as $key => $width ) {
-			$this->image_sizes[ $key ]['width'] = (int) $width;
-			$this->image_sizes[ $key ]['height'] = 9999;
-			$this->image_sizes[ $key ]['crop'] = true;
+		foreach ( (array) $this->config->get('breakpoint', [] ) as $name => $width ) {
+			$this->image_sizes[ $name ] = [
+				'width'  => absint( $width ),
+				'height' => 9999,
+				'crop'   => true,
+			];
 		}
 	}
 

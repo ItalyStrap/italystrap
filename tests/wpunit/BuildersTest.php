@@ -2,7 +2,7 @@
 namespace ItalyStrap;
 
 use ItalyStrap\Builders\Builder;
-use function \ItalyStrap\Factory\get_injector;
+use function \ItalyStrap\Factory\injector;
 
 class BuildersTest extends \Codeception\TestCase\WPTestCase
 {
@@ -25,14 +25,14 @@ class BuildersTest extends \Codeception\TestCase\WPTestCase
 
 	private function get_instance() {
 
-		get_injector()->define( Builders\Builder::class,
+		injector()->define( Builders\Builder::class,
 			[
 				':config'	=> '\ItalyStrap\Config\Config',
 				':view'		=> '\ItalyStrap\Template\View',
 			]
 		);
 
-		return get_injector()->make( Builders\Builder::class );
+		return injector()->make( Builders\Builder::class );
     }
 
     // tests

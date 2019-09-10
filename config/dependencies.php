@@ -2,7 +2,6 @@
 
 namespace ItalyStrap;
 
-use ItalyStrap\Builders\Builder;
 use ItalyStrap\Config\Config_Factory;
 use function \ItalyStrap\Config\get_config_file_content;
 use function \ItalyStrap\Factory\get_config;
@@ -58,12 +57,36 @@ return [
 	 * ==========================================================
 	 */
 	'definitions'			=> [
+
 		Theme\Sidebars::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'sidebars' ) ),
+			':config'	=> Config_Factory::make( get_config_file_content( 'theme/sidebars' ) ),
 		],
-		Builder::class	=> [
+		Theme\Thumbnails::class	=> [
+			':config'	=> Config_Factory::make( get_config_file_content( 'theme/thumbnails' ) ),
+		],
+		Theme\Support::class	=> [
+			':config'	=> Config_Factory::make( get_config_file_content( 'theme/supports' ) ),
+		],
+		Theme\Type_Support::class	=> [
+			':config'	=> Config_Factory::make( get_config_file_content( 'theme/type-supports' ) ),
+		],
+		Theme\Nav_Menus::class	=> [
+			':config'	=> Config_Factory::make( get_config_file_content( 'theme/nav-menus' ) ),
+		],
+
+		Builders\Builder::class	=> [
 			':config'	=> Config_Factory::make( get_config_file_content( 'structure' ) ),
 		],
+
+//		Builders\Parse_Attr::class	=> [
+//			':config'	=> Config_Factory::make(
+//				array_replace_recursive(
+//					get_config_file_content( 'html_attrs' ),
+//					get_config_file_content( 'schema' )
+//				)
+//			),
+//		],
+
 		Components\Navigations\Navbar::class	=> [
 			':fallback_cb' => [ Navbar\Bootstrap_Nav_Menu::class, 'fallback' ],
 		],
@@ -125,9 +148,11 @@ return [
 	 * ========================================================================
 	 */
 	'preparations'			=> [
-		Builder::class	=> function( Builder $builder, \Auryn\Injector $injector ) {
+
+		Builders\Builder::class	=> function( Builders\Builder $builder, \Auryn\Injector $injector ) {
 			$builder->set_injector( $injector );
 		},
+
 		Template\Finder::class	=> function( Template\Finder $finder ) {
 			$finder->in( get_config()->get( 'template_dir' ) );
 		},

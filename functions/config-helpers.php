@@ -118,5 +118,13 @@ function get_config_file_content( string $name ) : array {
 		echo $exception->getMessage();
 	}
 
-	return (array) $config_file_content;
+	/**
+	 * // removes all NULL, FALSE and Empty Strings but leaves 0 (zero) values
+	 * https://php.net/manual/en/function.array-filter.php#111091
+	 */
+	return array_filter( $config_file_content, __NAMESPACE__ . '\_filter_null_value', ARRAY_FILTER_USE_BOTH );
+}
+
+function _filter_null_value( $val, $key ) {
+	return ! is_null( $val );
 }

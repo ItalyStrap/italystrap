@@ -45,6 +45,7 @@ class Director implements Subscriber_Interface {
 		return [
 //			'wp'	=> 'create_page', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
 			'italystrap_build'	=> 'create_page', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
+//			'italystrap_theme_loaded'	=> 'apply', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
 		];
 	}
 
@@ -54,12 +55,18 @@ class Director implements Subscriber_Interface {
 	private $builder;
 
 	/**
+	 * @var Parse_Attr
+	 */
+	private $parse_Attr;
+
+	/**
 	 * Director constructor.
 	 *
 	 * @param Builder_Interface $builder
 	 */
 	public function __construct( Builder_Interface $builder ) {
 		$this->builder = $builder;
+//		$this->parse_Attr = $parse_Attr;
 	}
 
 	/**
@@ -75,6 +82,13 @@ class Director implements Subscriber_Interface {
 		} catch ( \Exception $e ) {
 			echo $e->getMessage();
 		}
+	}
+
+	/**
+	 * Filter elements attr
+	 */
+	public function apply() {
+		$this->parse_Attr->apply();
 	}
 
 	/**

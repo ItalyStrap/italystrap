@@ -73,7 +73,20 @@ class Register implements Subscriber_Interface {
 
 		$this->_prefix = $config->get( '_prefix' );
 
-		$this->object_types = $config->get( 'theme_support' )['supported_post_type'];
+//		$this->object_types = $config->get( 'theme_support' )['supported_post_type'];
+		$this->supported_types = \apply_filters( 'italystrap_post_types_layout_support', [
+			'supported_post_type'	=> [
+				'page',
+				'post',
+				'download',
+				'product',
+				'forum',
+				'topic',
+				'reply',
+			]
+		] );
+
+		$this->object_types = $this->supported_types['supported_post_type'];
 	}
 
 	/**

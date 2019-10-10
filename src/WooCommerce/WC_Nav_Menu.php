@@ -35,6 +35,10 @@ class WC_Nav_Menu implements Subscriber_Interface {
 		);
 	}
 
+	public static function get_subscribed_events() {
+		return [];
+	}
+
 	function add_qta_number_to_chart_icon( $item_output, $item, $depth, $args ) {
 
 		// var_dump( $item_output );

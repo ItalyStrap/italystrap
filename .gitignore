@@ -25,6 +25,7 @@ bower
 
 vendor
 _others
+_template
 
 #tests*
 *.bat

@@ -35,3 +35,5 @@ backups
 #.env
 *.local
 #.travis.yml
+
+*.lock

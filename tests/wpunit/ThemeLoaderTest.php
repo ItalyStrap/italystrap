@@ -2,22 +2,26 @@
 
 class ThemeLoaderTest extends \Codeception\TestCase\WPTestCase
 {
+	/**
+	 * @var \WpunitTester
+	 */
+	protected $tester;
 
-    public function setUp()
-    {
-        // before
-        parent::setUp();
+	public function setUp(): void
+	{
+		// Before...
+		parent::setUp();
 
-        // your set up methods here
-    }
+		// Your set up methods here.
+	}
 
-    public function tearDown()
-    {
-        // your tear down methods here
+	public function tearDown(): void
+	{
+		// Your tear down methods here.
 
-        // then
-        parent::tearDown();
-    }
+		// Then...
+		parent::tearDown();
+	}
 
     // tests
     public function testItShouldBeActiveItalyStrap()

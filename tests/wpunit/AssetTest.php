@@ -2,20 +2,24 @@
 
 class AssetTest extends \Codeception\TestCase\WPTestCase
 {
-
-    public function setUp()
+    /**
+     * @var \WpunitTester
+     */
+    protected $tester;
+    
+    public function setUp(): void
     {
-        // before
+        // Before...
         parent::setUp();
 
-        // your set up methods here
+        // Your set up methods here.
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
-        // your tear down methods here
+        // Your tear down methods here.
 
-        // then
+        // Then...
         parent::tearDown();
     }
 
@@ -27,22 +31,23 @@ class AssetTest extends \Codeception\TestCase\WPTestCase
 	private function get_instance( $type ) {
 		$config = \ItalyStrap\Config\Config_Factory::make([]);
 		return \ItalyStrap\Factory\injector()->make( '\ItalyStrap\Asset\\' . $type, [ ':config' => $config ] );
-    }
+	}
 
-    /**
-     * @test
-     * style_it should be instantiatable
-     */
-    public function style_it_should_be_instantiatable() {
-        $this->assertInstanceOf( '\ItalyStrap\Asset\Style', $this->get_instance( 'Style' ) );
-    }
+	/**
+	 * @test
+	 * style_it should be instantiatable
+	 * @throws \Auryn\InjectionException
+	 */
+	public function style_it_should_be_instantiatable() {
+		$this->assertInstanceOf( '\ItalyStrap\Asset\Style', $this->get_instance( 'Style' ) );
+	}
 
-    /**
-     * @test
-     * script_it should be instantiatable
-     */
-    public function script_it_should_be_instantiatable() {
-        $this->assertInstanceOf( '\ItalyStrap\Asset\Script', $this->get_instance( 'Script' ) );
-    }
-
+	/**
+	 * @test
+	 * script_it should be instantiatable
+	 * @throws \Auryn\InjectionException
+	 */
+	public function script_it_should_be_instantiatable() {
+		$this->assertInstanceOf( '\ItalyStrap\Asset\Script', $this->get_instance( 'Script' ) );
+	}
 }

@@ -2,22 +2,26 @@
 
 class HTML_TagTest extends \Codeception\TestCase\WPTestCase
 {
+	/**
+	 * @var \WpunitTester
+	 */
+	protected $tester;
 
-    public function setUp()
-    {
-        // before
-        parent::setUp();
+	public function setUp(): void
+	{
+		// Before...
+		parent::setUp();
 
-        // your set up methods here
-    }
+		// Your set up methods here.
+	}
 
-    public function tearDown()
-    {
-        // your tear down methods here
+	public function tearDown(): void
+	{
+		// Your tear down methods here.
 
-        // then
-        parent::tearDown();
-    }
+		// Then...
+		parent::tearDown();
+	}
 
 	private function get_instance() {
 
@@ -42,14 +46,14 @@ class HTML_TagTest extends \Codeception\TestCase\WPTestCase
 		$open = $this->get_instance()->open( 'test', 'div' );
 		$close = $this->get_instance()->close( 'test' );
 
-		$this->assertContains( '<div>', $open );
-		$this->assertContains( '</div>', $close );
+		$this->assertStringContainsString( '<div>', $open );
+		$this->assertStringContainsString( '</div>', $close );
 
 		$open = $this->get_instance()->open( 'test2', 'div', [ 'class' => 'someClass' ] );
 		$close = $this->get_instance()->close( 'test2' );
 
-		$this->assertContains( '<div class="someClass">', $open );
-		$this->assertContains( '</div>', $close );
+		$this->assertStringContainsString( '<div class="someClass">', $open );
+		$this->assertStringContainsString( '</div>', $close );
 
     }
 
@@ -57,11 +61,11 @@ class HTML_TagTest extends \Codeception\TestCase\WPTestCase
 
 		$open = $this->get_instance()->void( 'test', 'input' );
 
-		$this->assertContains( '<input/>', $open );
+		$this->assertStringContainsString( '<input/>', $open );
 
 		$open = $this->get_instance()->void( 'test2', 'input', [ 'type' => 'text' ] );
 
-		$this->assertContains( '<input type="text"/>', $open );
+		$this->assertStringContainsString( '<input type="text"/>', $open );
     }
 
 	/**

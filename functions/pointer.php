@@ -7,7 +7,7 @@
 * http://wordimpress.com/create-wordpress-theme-activation-popup-message/
 * http://www.wpexplorer.com/making-themes-plugins-more-usable/
 */
- 
+declare(strict_types=1);
 function italystrap_enqueue_pointer_script_style( $hook_suffix ) {
  
     // Assume pointer shouldn't be shown

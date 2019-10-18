@@ -5,6 +5,7 @@
  * Date: 18/03/2019
  * Time: 15:14
  */
+declare(strict_types=1);
 
 namespace ItalyStrap\Builders;
 

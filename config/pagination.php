@@ -2,7 +2,7 @@
 /**
  * Default configuration for pagination
  */
-
+declare(strict_types=1);
 return [
 
 	/**

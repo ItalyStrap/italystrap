@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace ItalyStrap\Bools;
 
 use function \ItalyStrap\Core\get_template_settings;

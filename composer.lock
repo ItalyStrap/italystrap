@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51b15d8c6cce220b5831ef1cf979ca6e",
+    "content-hash": "265d83c69f2493261e440297ae05d59a",
     "packages": [
         {
             "name": "italystrap/config",
@@ -1094,6 +1094,45 @@
                 "whoops"
             ],
             "time": "2018-10-23T09:00:00+00:00"
+        },
+        {
+            "name": "giacocorsiglia/wordpress-stubs",
+            "version": "v5.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GiacoCorsiglia/wordpress-stubs.git",
+                "reference": "1c6f011f5c241bab7293315d7fb7fca27fe79473"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GiacoCorsiglia/wordpress-stubs/zipball/1c6f011f5c241bab7293315d7fb7fca27fe79473",
+                "reference": "1c6f011f5c241bab7293315d7fb7fca27fe79473",
+                "shasum": ""
+            },
+            "require-dev": {
+                "ext-gettext": "*",
+                "giacocorsiglia/stubs-generator": "^0.5.0",
+                "johnpbloch/wordpress": "5.1.1",
+                "php": "^7.1"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Giaco Corsiglia",
+                    "email": "GiacoCorsiglia@gmail.com"
+                }
+            ],
+            "description": "WordPress function, class, and global variable declaration stubs for easier static analysis.",
+            "homepage": "https://github.com/GiacoCorsiglia/wordpress-stubs",
+            "keywords": [
+                "static analysis",
+                "wordpress"
+            ],
+            "time": "2019-03-13T21:16:05+00:00"
         },
         {
             "name": "gumlet/php-image-resize",
@@ -5393,6 +5432,53 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2019-02-23T15:06:07+00:00"
+        },
+        {
+            "name": "szepeviktor/phpstan-wordpress",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
+                "reference": "f9f183a47e386408f8b534780dc120efd92b5df8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/f9f183a47e386408f8b534780dc120efd92b5df8",
+                "reference": "f9f183a47e386408f8b534780dc120efd92b5df8",
+                "shasum": ""
+            },
+            "require": {
+                "giacocorsiglia/wordpress-stubs": "^5.1",
+                "php": "~7.1",
+                "phpstan/phpstan": "^0.11.5"
+            },
+            "require-dev": {
+                "composer/composer": "^1.8.6",
+                "consistence/coding-standard": "^3.8",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "phpstan/phpstan-strict-rules": "^0.11",
+                "slevomat/coding-standard": "^5.0.4"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\WordPress\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "WordPress extensions for PHPStan",
+            "time": "2019-09-17T14:03:10+00:00"
         },
         {
             "name": "theseer/tokenizer",

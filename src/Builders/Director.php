@@ -6,10 +6,11 @@
  * Time: 12:39
  */
 
+declare(strict_types=1);
+
 namespace ItalyStrap\Builders;
 
 use ItalyStrap\Event\Subscriber_Interface;
-use function \ItalyStrap\Config\get_config_file_content;
 use function \ItalyStrap\Factory\get_event_manager;
 
 class Director implements Subscriber_Interface {

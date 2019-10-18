@@ -155,7 +155,7 @@ class Builder implements Builder_Interface {
 
 	/**
 	 * @param array $component
-	 * @return string|array
+	 * @return array
 	 */
 	private function get_the_view_relative_path( array $component ) : array {
 
@@ -194,11 +194,11 @@ class Builder implements Builder_Interface {
 	}
 
 	/**
-	 * @param $bool_Or_callable
+	 * @param bool|callable $bool_Or_callable
 	 * @return bool
 	 * @throws \Auryn\InjectionException
 	 */
-	private function should_load( $bool_Or_callable ) {
+	private function should_load( $bool_Or_callable ): bool {
 
 		if ( \is_bool( $bool_Or_callable ) ) {
 			return $bool_Or_callable;

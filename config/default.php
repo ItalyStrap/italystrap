@@ -9,7 +9,7 @@
  *
  * @package ItalyStrap
  */
-
+declare(strict_types=1);
 namespace ItalyStrap\Customizer;
 
 use function ItalyStrap\Core\{colophon_default_text,get_content_width};

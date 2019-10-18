@@ -8,11 +8,13 @@
  * @since 4.0.0 New class definitions
  */
 
+declare(strict_types=1);
+
 namespace ItalyStrap\Navbar;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
+//if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+//	die();
+//}
 
 use \Walker_Nav_Menu;
 
@@ -39,11 +41,13 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param int    $depth  Depth of menu item. Used for padding.
-	 * @param array  $args   An array of arguments. @see wp_nav_menu().
+	 * @see Walker::start_lvl()
+	 *
+	 * @param string   $output Used to append additional content (passed by reference).
+	 * @param int      $depth  Depth of menu item. Used for padding.
+	 * @param \stdClass $args   An object of wp_nav_menu() arguments.
 	 */
-	public function start_lvl( &$output, $depth = 0, $args = array() ) {
+	public function start_lvl( &$output, $depth = 0, $args = [] ) {
 		$indent = str_repeat( "\t", $depth );
 
 		$atts = array(
@@ -59,19 +63,16 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 	 *
 	 * @see Walker::start_el()
 	 *
-	 * @since 3.0.0
-	 * @since 4.4.0 'nav_menu_item_args' filter was added.
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param object $item   Menu item data object.
-	 * @param int    $depth  Depth of menu item. Used for padding.
-	 * @param array  $args   An array of arguments. @see wp_nav_menu().
-	 * @param int    $id     Current item ID.
+	 * @param string    $output Used to append additional content (passed by reference).
+	 * @param \WP_Post  $item   Menu item data object.
+	 * @param int       $depth  Depth of menu item. Used for padding.
+	 * @param \stdClass $args   An object of wp_nav_menu() arguments.
+	 * @param int       $id     Current item ID.
 	 */
-	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+	public function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 ) {
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
-		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes = empty( $item->classes ) ? [] : (array) $item->classes;
 		$classes[] = 'menu-item-' . $item->ID;
 		$classes[] = 'depth-el-' . $depth;
 
@@ -80,9 +81,9 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 		 *
 		 * @since 4.4.0
 		 *
-		 * @param array  $args  An array of arguments.
-		 * @param object $item  Menu item data object.
-		 * @param int    $depth Depth of menu item. Used for padding.
+		 * @param array    $args  An array of arguments.
+		 * @param \WP_Post $item  Menu item data object.
+		 * @param int      $depth Depth of menu item. Used for padding.
 		 */
 		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
 
@@ -367,7 +368,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 	 * menu manager the function with display nothing to a non-logged in user,
 	 * and will add a link to the WordPress menu manager if logged in as an admin.
 	 *
-	 * @param array $args passed from the wp_nav_menu function.
+	 * @param  array   $wp_nav_menu_args passed from the wp_nav_menu function.
 	 * @return string
 	 */
 	public static function fallback( $wp_nav_menu_args ) {

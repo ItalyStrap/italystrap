@@ -9,7 +9,7 @@
  *
  * @package ItalyStrap\Core
  */
-
+declare(strict_types=1);
 namespace ItalyStrap\Core;
 
 /**

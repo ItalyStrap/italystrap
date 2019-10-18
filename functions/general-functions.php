@@ -5,12 +5,8 @@
  * @package ItalyStrap
  * @since 4.0.0 ItalyStrap
  */
-
+declare(strict_types=1);
 namespace ItalyStrap\Core;
-
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
 
 use ItalyStrap\Config\Config;
 use ItalyStrap\HTML;
@@ -255,7 +251,7 @@ function get_content_class( $class = '' ) {
  * @return int [description]
  */
 function get_content_width( int $container_width, int $column, int $content_column_width, int $gutter = 0 ) : int {
-	return $container_width / $column * $content_column_width - $gutter;
+	return intval( $container_width / $column * $content_column_width - $gutter );
 }
 
 /**

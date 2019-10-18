@@ -2,7 +2,7 @@
 /**
  * Get the Injector instance
  */
-
+declare(strict_types=1);
 namespace ItalyStrap\Factory;
 
 use Auryn\{ConfigException, InjectionException, Injector};

@@ -73,7 +73,7 @@ abstract class Asset implements Asset_Interface {
 	 * @return bool
 	 */
 	public function is_enqueued() {
-		return wp_script_is( $config['handle'], 'enqueued' );
+		return wp_script_is( $this->config['handle'], 'enqueued' );
 	}
 
 	/**

@@ -19,7 +19,7 @@
  * @TODO In futuro fare refactoring di questo file
  * @package ItalyStrap
  */
-
+declare(strict_types=1);
 if ( ! function_exists( 'italystrap_get_the_custom_image_url' ) ) {
 	/**
 	 * Get the custom image URL from customizer

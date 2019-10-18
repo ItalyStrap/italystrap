@@ -16,18 +16,18 @@
  *
  * ===========================================================
  */
-
+declare(strict_types=1);
 $content_itemType = '';
 
 switch ( true ) {
 	case \ItalyStrap\Core\is_static_front_page():
-	case is_singular():
+	case \is_singular():
 		$content_itemType = 'https://schema.org/Article';
 		break;
-	case is_home():
+	case \is_home():
 		$content_itemType = 'https://schema.org/WebSite';
 		break;
-	case is_search():
+	case \is_search():
 		$content_itemType = 'https://schema.org/SearchResultsPage';
 		break;
 	default:

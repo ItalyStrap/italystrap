@@ -6,6 +6,8 @@
  * Time: 21:48
  */
 
+declare(strict_types=1);
+
 namespace ItalyStrap\Builders;
 
 use \ItalyStrap\Config\Config_Interface as Config;

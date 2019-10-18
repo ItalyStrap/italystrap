@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 add_filter( 'italystrap_theme_updater', function ( array $edd_config ) {
 
 	/**

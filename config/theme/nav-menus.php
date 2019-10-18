@@ -1,5 +1,6 @@
 <?php
-
+declare(strict_types=1);
+namespace ItalyStrap;
 return \apply_filters( 'register_nav_menu_locations',
 	[
 		'main-menu'			=> __( 'Main Menu', 'italystrap' ),

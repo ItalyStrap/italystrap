@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace ItalyStrap;
 
 use function \ItalyStrap\Factory\get_config;

@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace ItalyStrap;
 
 use ItalyStrap\Config\Config_Factory;
@@ -40,7 +40,7 @@ return [
 //		'\ItalyStrap\Config\Config_Interface'		=> Config\Config::class,
 		'\ItalyStrap\Template\Finder_Interface'		=> Template\Finder::class,
 		'\ItalyStrap\Template\View_Interface'		=> Template\View::class,
-		'\Walker_Nav_Menu'							=> Navbar\Bootstrap_Nav_Menu::class,
+		\Walker_Nav_Menu::class						=> Navbar\Bootstrap_Nav_Menu::class,
 		'\ItalyStrap\Builders\Builder_Interface'	=> Builders\Builder::class,
 	],
 

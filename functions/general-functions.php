@@ -11,6 +11,18 @@ namespace ItalyStrap\Core;
 use ItalyStrap\Config\Config;
 use ItalyStrap\HTML;
 
+if ( ! \function_exists( '\ItalyStrap\Core\is_debug' ) ) {
+
+	/**
+	 * Is Beta version
+	 *
+	 * @return bool Return true if ITALYSTRAP_BETA version is declared
+	 */
+	function is_debug() {
+		return (bool) defined( 'WP_DEBUG' ) && WP_DEBUG;
+	}
+}
+
 /**
  * New get_search_form function
  *

@@ -2,8 +2,10 @@
 declare(strict_types=1);
 namespace ItalyStrap;
 
+use ItalyStrap\Builders\Builder_Interface;
 use ItalyStrap\Config\Config_Factory;
-use function \ItalyStrap\Config\get_config_file_content;
+use ItalyStrap\Template\{Finder_Interface, View_Interface};
+use function ItalyStrap\Config\{get_config_file_content};
 use function \ItalyStrap\Factory\get_config;
 
 return [
@@ -37,11 +39,11 @@ return [
 	 * ==========================================================
 	 */
 	'aliases'				=> [
-//		'\ItalyStrap\Config\Config_Interface'		=> Config\Config::class,
-		'\ItalyStrap\Template\Finder_Interface'		=> Template\Finder::class,
-		'\ItalyStrap\Template\View_Interface'		=> Template\View::class,
-		\Walker_Nav_Menu::class						=> Navbar\Bootstrap_Nav_Menu::class,
-		'\ItalyStrap\Builders\Builder_Interface'	=> Builders\Builder::class,
+//		\ItalyStrap\Config\Config_Interface::class		=> Config\Config::class,
+		Finder_Interface::class		=> Template\Finder::class,
+		View_Interface::class		=> Template\View::class,
+		\Walker_Nav_Menu::class		=> Navbar\Bootstrap_Nav_Menu::class,
+		Builder_Interface::class	=> Builders\Builder::class,
 	],
 
 	/**
@@ -93,10 +95,10 @@ return [
 			':fallback_cb' => [ Navbar\Bootstrap_Nav_Menu::class, 'fallback' ],
 		],
 		Components\Navigations\Pagination::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'pagination' ) ),
+			':config'	=> Config_Factory::make( get_config_file_content( 'components/pagination' ) ),
 		],
 		Components\Navigations\Pager::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'pager' ) ),
+			':config'	=> Config_Factory::make( get_config_file_content( 'components/pager' ) ),
 		],
 	],
 

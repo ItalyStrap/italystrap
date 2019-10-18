@@ -25,7 +25,7 @@ class HTML_TagTest extends \Codeception\TestCase\WPTestCase
 
     	if ( ! $sut ) {
 			ItalyStrap\HTML\Tag::$is_debug = true;
-    		$sut = new ItalyStrap\HTML\Tag;
+    		$sut = new ItalyStrap\HTML\Tag( new ItalyStrap\HTML\Attributes() );
 		}
 
 		return $sut;

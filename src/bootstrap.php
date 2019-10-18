@@ -10,6 +10,7 @@
  *
  * @TODO https://github.com/understrap/understrap/issues/585
  */
+declare(strict_types=1);
 
 namespace ItalyStrap;
 

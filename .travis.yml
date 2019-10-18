@@ -8,6 +8,7 @@ notifications:
 
 php:
   - '7.1'
+  - '7.2'
   - nightly
 
 matrix:
@@ -30,8 +31,8 @@ addons:
     packages:
       - libjpeg-dev
       - libpng12-dev
-      - php5-fpm
-      - php5-mysql
+      - php7.0-fpm
+      - php7.0-mysql
       - nginx
   hosts:
     - wp.localhost
@@ -75,14 +76,13 @@ install:
   - wp rewrite structure '/%postname%/' --hard
   # update WordPress database to avoid prompts
   - wp core update-db
-  # copy the plugin in the WordPress plugin folder
-#  - cp -r $TRAVIS_BUILD_DIR $WP_FOLDER/wp-content/plugins/fields
+  # copy the theme in the WordPress themes folder
   - cp -r $TRAVIS_BUILD_DIR $WP_FOLDER/wp-content/themes/italystrap
-  # show the plugins folder contents to make sure the plugin folder is there
+  # show the themes folder contents to make sure the theme folder is there
   - ls $WP_FOLDER/wp-content/themes
-  # activate the plugin
+  # activate the theme
   - wp theme activate italystrap
-  # make sure the plugin is active on the site
+  # make sure the theme is active on the site
   - wp theme list --status=active
   # export a dump of the just installed database to the _data folder
   - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql
@@ -99,14 +99,14 @@ install:
 
 before_script:
   # restart Nnginx and PHP-FPM services
-  - sudo service php5-fpm restart
+  - sudo service php7.0-fpm restart
   - sudo service nginx restart
 
   # build Codeception modules
   - codecept build
 
 script:
-   - codecept run acceptance
+#   - codecept run acceptance
   # - codecept run functional
   # - codecept run integration
   # - codecept run unit

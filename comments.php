@@ -7,6 +7,7 @@
  * @package ItalyStrap
  * @since ItalyStrap 1.8.1
  */
+declare(strict_types=1);
 
 namespace ItalyStrap;
 

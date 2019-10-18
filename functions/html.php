@@ -1,13 +1,14 @@
 <?php
 declare(strict_types=1);
+
 namespace ItalyStrap\HTML;
 
 /**
- * @todo Factory provvisoria
- *
  * @return Tag
  * @throws \Auryn\ConfigException
  * @throws \Auryn\InjectionException
+ * @todo Factory provvisoria
+ *
  */
 function tag() : Tag {
 
@@ -39,11 +40,15 @@ function open_tag( string $context, string $tag, array $attr = [], $is_void = fa
  * @param string $tag
  * @param array $attr
  * @param bool $is_void
- * @throws \Auryn\ConfigException
- * @throws \Auryn\InjectionException
  */
 function open_tag_e( string $context, string $tag, array $attr = [], $is_void = false ) {
-	echo tag()->open( ...\func_get_args() );
+	try {
+		echo tag()->open( ...\func_get_args() );
+	} catch ( \Auryn\ConfigException $exception )  {
+		echo $exception->getMessage();
+	} catch ( \Auryn\InjectionException $exception )  {
+		echo $exception->getMessage();
+	}
 }
 
 /**
@@ -58,11 +63,15 @@ function close_tag( string $context ) : string {
 
 /**
  * @param string $context
- * @throws \Auryn\ConfigException
- * @throws \Auryn\InjectionException
  */
 function close_tag_e( string $context ) {
-	echo tag()->close( $context );
+	try {
+		echo tag()->close( $context );
+	} catch ( \Auryn\ConfigException $exception )  {
+		echo $exception->getMessage();
+	} catch ( \Auryn\InjectionException $exception )  {
+		echo $exception->getMessage();
+	}
 }
 
 /**

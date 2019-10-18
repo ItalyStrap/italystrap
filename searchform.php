@@ -5,6 +5,7 @@
  * Add markup for Sitelinks Search Box, @see link below for more informations
  * @link https://developers.google.com/structured-data/slsb-overview
  */
+declare(strict_types=1);
 
 namespace ItalyStrap;
 

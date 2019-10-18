@@ -2,6 +2,7 @@
 /**
  * The sidebar template file.
  */
+declare(strict_types=1);
 
 namespace ItalyStrap;
 

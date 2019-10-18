@@ -88,6 +88,7 @@ install:
   - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql
   # get back to the build folder
   - cd $TRAVIS_BUILD_DIR
+  - ls
   # open up the site folder to allow the PHP application to read/write/execute on it
   - sudo chmod -R 777 $WP_FOLDER
   # copy the Nginx configuration file to the available sites

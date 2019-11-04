@@ -45,7 +45,8 @@ abstract class Asset implements Asset_Interface {
 	/**
 	 * Init the constructor
 	 *
-	 * @param Config $config Configuration array.
+	 * @param Config $config Configuration array. Expects:
+	 * 	* handle
 	 * @throws \ReflectionException
 	 */
 	function __construct( Config $config ) {

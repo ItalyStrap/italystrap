@@ -57,7 +57,7 @@ class Finder implements Finder_Interface {
 	 *
 	 * @param string|array $slugs Template file(s) to search for, in order.
 	 *
-	 * @return string The template filename if one is located.
+	 * @return string Return the full path of the template filename if one is located.
 	 */
 	public function getRealPath( $slugs ) : string {
 
@@ -78,7 +78,7 @@ class Finder implements Finder_Interface {
 		 * @param string      $slug The slug name for the generic template.
 		 * @param string      $name The name of the specialized template.
 		 */
-		do_action( "italystrap_get_template_part_{$slugs[0]}", $slugs );
+		\do_action( "italystrap_get_template_part_{$slugs[0]}", $slugs );
 
 		$templates = [];
 
@@ -88,7 +88,7 @@ class Finder implements Finder_Interface {
 
 		$templates[] = "{$slugs[0]}.php";
 
-		return (string) $this->get( $templates );
+		return $this->get( $templates );
 	}
 
 	/**
@@ -96,7 +96,7 @@ class Finder implements Finder_Interface {
 	 *
 	 * @param array $templates Template file(s) to search for, in order.
 	 *
-	 * @return bool                        Return true if template exists
+	 * @return bool            Return true if template exists
 	 */
 	private function has( array $templates ) : bool {
 
@@ -104,12 +104,21 @@ class Finder implements Finder_Interface {
 			$this->files[ $templates[0] ] = \locate_template( $templates, false, false );
 		}
 
-		return (bool) \is_readable( $this->files[ $templates[0] ] );
+		/**
+		 * @todo Add some logic to load template from plugin in case the class is imported in that context
+		 * @see \WC_Template_Loader::template_loader() in WooCommerce\includes\class-wc-template-loader.php
+		 * Something like this:
+		 * if ( ! $this->files[ $templates[0] ] || WC_TEMPLATE_DEBUG_MODE ) {
+		 * 	$this->files[ $templates[0] ] = plugin_path() . $this->dir_name . $located_file_name . '.php';
+		 * }
+		 */
+
+		return \is_readable( $this->files[ $templates[0] ] );
 	}
 
 	/**
 	 * @param array $templates
-	 * @return string
+	 * @return string Return a full path of the file searched
 	 */
 	private function get( array $templates ) : string {
 
@@ -119,6 +128,6 @@ class Finder implements Finder_Interface {
 			);
 		}
 
-		return (string) $this->files[ $templates[0] ];
+		return $this->files[ $templates[0] ];
 	}
 }

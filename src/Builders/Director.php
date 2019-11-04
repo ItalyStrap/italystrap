@@ -88,9 +88,9 @@ class Director implements Subscriber_Interface {
 	/**
 	 * Filter elements attr
 	 */
-	public function apply() {
-		$this->parse_Attr->apply();
-	}
+//	public function apply() {
+//		$this->parse_Attr->apply();
+//	}
 
 	/**
 	 * Remove from hooks

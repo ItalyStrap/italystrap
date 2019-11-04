@@ -13,7 +13,8 @@
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
 		"italystrap/helpers": "^1.0",
-		"italystrap/config": "~2.0"
+		"italystrap/config": "~2.0",
+		"brain/hierarchy": "^2.4"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "~2.2",

@@ -12,6 +12,8 @@
  *
  * @package ItalyStrap
  */
+declare(strict_types=1);
+
 
 namespace ItalyStrap\Headers;
 

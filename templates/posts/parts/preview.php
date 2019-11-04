@@ -6,6 +6,7 @@
  * @since 1.0.0
  * @since 4.0.0 Code refactoring.
  */
+declare(strict_types=1);
 
 namespace ItalyStrap;
 
@@ -13,4 +14,4 @@ if ( ! \is_preview() ) {
 	return;
 }
 
-?><div <?php HTML\get_attr( 'preview', [], true ); ?>><?php \wp_kses_post( \_e( '<strong>Note:</strong> You are previewing this post. This post has not yet been published.', 'italystrap' ) ); ?></div>
+?><div <?php HTML\get_attr( 'preview', [], true ); ?>><?php echo \wp_kses_post( \__( '<strong>Note:</strong> You are previewing this post. This post has not yet been published.', 'italystrap' ) ); ?></div>

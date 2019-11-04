@@ -4,6 +4,8 @@
  * This file is for display the HTML tags header and nav
  */
 
+declare(strict_types=1);
+
 namespace ItalyStrap\Headers;
 
 ?><header class="header-wrapper">

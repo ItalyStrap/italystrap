@@ -8,6 +8,7 @@ declare( strict_types = 1 );
 
 namespace ItalyStrap\Builders;
 
+use Auryn\InjectionException;
 use \Auryn\Injector;
 use \ItalyStrap\Template\View_Interface as View;
 use \ItalyStrap\Config\Config_Interface as Config;
@@ -60,7 +61,7 @@ class Builder implements Builder_Interface {
 	public function build() {
 
 		if ( ! $this->injector ) {
-			throw new \Exception( sprintf(
+			throw new \RuntimeException( sprintf(
 				'You have to set the Injector with "%s::set_injector" before to load %s',
 					__CLASS__,
 				__METHOD__
@@ -109,7 +110,7 @@ class Builder implements Builder_Interface {
 	 * @param array $component
 	 *
 	 * @return string
-	 * @throws \Auryn\InjectionException
+	 * @throws InjectionException
 	 * @throws \Exception
 	 */
 	private function render_from_callback( array $component ) : string {
@@ -140,7 +141,7 @@ class Builder implements Builder_Interface {
 
 	/**
 	 * @param array $component
-	 * @throws \Auryn\InjectionException
+	 * @throws InjectionException
 	 */
 	private function set_data( array &$component ) {
 
@@ -196,7 +197,7 @@ class Builder implements Builder_Interface {
 	/**
 	 * @param bool|callable $bool_Or_callable
 	 * @return bool
-	 * @throws \Auryn\InjectionException
+	 * @throws InjectionException
 	 */
 	private function should_load( $bool_Or_callable ): bool {
 

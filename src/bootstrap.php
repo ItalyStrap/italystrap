@@ -28,30 +28,8 @@ use function ItalyStrap\Factory\{get_config, injector};
  */
 $autoload_theme_files = [
 	'/vendor/autoload.php',
-	'/functions/edd.php',
-	'/functions/default-constants.php',
-	'/functions/config-helpers.php',
-	'/functions/general-functions.php',
-	'/functions/comments-helpers.php',
-	'/functions/italystrap.php',
-	'/functions/factory.php',
-	'/functions/event.php',
-	'/functions/html.php',
-
-	'/functions/images.php',
-	'/functions/pointer.php',
+	'/functions/autoload.php',
 ];
-
-/**
- * ========================================================================
- *
- * Do you want to load deprecated files?
- *
- * ========================================================================
- */
-if ( apply_filters( 'italystrap_load_deprecated', false ) ) {
-	$autoload_theme_files[] = '/deprecated/autoload.php';
-}
 
 foreach ( $autoload_theme_files as $file ) {
 	require __DIR__ . '/..' . $file;
@@ -76,7 +54,7 @@ $constants = set_default_constants( get_config_file_content( 'constants' ) );
  *
  * ========================================================================
  */
-add_filter( 'template_include', '\ItalyStrap\Core\set_current_template_constants', 99998 );
+\add_filter( 'template_include', '\ItalyStrap\Core\set_current_template_constants', 99998 );
 
 try {
 
@@ -141,21 +119,21 @@ try {
 	/**
 	 * Fires before ItalyStrap theme load.
 	 *
-	 * @since 2.0.0
+	 * @since 4.0.0
 	 */
 	\do_action( 'italystrap_theme_will_load', $injector );
 
 	/**
 	 * Fires once ItalyStrap theme is loading.
 	 *
-	 * @since 2.0.0
+	 * @since 4.0.0
 	 */
 	\do_action( 'italystrap_theme_load', $injector );
 
 	/**
 	 * Fires once ItalyStrap theme has loaded.
 	 *
-	 * @since 2.0.0
+	 * @since 4.0.0
 	 */
 	\do_action( 'italystrap_theme_loaded', $injector );
 

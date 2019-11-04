@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="page-content"><?php
 
 	if ( \is_home() && \current_user_can( 'publish_posts' ) ) :

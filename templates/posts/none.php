@@ -8,6 +8,7 @@
  *
  * @todo Add to customizer custom 404 page
  */
+declare(strict_types=1);
 
 namespace ItalyStrap;
 

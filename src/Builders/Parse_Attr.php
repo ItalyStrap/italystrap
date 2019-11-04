@@ -35,7 +35,7 @@ class Parse_Attr {
 	}
 
 	/**
-	 *
+	 * @see \ItalyStrap\HTML\filter_attr()
 	 */
 	public function apply() {
 

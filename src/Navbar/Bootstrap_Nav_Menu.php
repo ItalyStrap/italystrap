@@ -12,10 +12,6 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navbar;
 
-//if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-//	die();
-//}
-
 use \Walker_Nav_Menu;
 
 /**

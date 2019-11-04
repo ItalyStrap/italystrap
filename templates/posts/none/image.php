@@ -19,6 +19,8 @@
  * @since 1.0.0
  * @since 4.0.0 Code refactoring.
  */
+declare(strict_types=1);
+
 
 namespace ItalyStrap;
 

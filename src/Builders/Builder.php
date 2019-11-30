@@ -10,7 +10,7 @@ namespace ItalyStrap\Builders;
 
 use Auryn\InjectionException;
 use \Auryn\Injector;
-use \ItalyStrap\Template\View_Interface as View;
+use \ItalyStrap\View\ViewInterface as View;
 use \ItalyStrap\Config\Config_Interface as Config;
 
 class Builder implements Builder_Interface {

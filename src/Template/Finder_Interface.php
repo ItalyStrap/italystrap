@@ -5,8 +5,9 @@
  * Date: 05/03/2019
  * Time: 07:58
  */
+declare(strict_types=1);
 
-namespace ItalyStrap\Template;
+namespace ItalyStrap\View;
 
 
 interface Finder_Interface

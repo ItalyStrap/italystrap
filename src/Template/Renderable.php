@@ -22,16 +22,6 @@ interface View_Interface {
 	 * @param  array|Config_Interface $data
 	 *
 	 * @return string              Return the file part rendered
-	 * @throws \Exception
 	 */
-	public function render( $slugs, $data = [] ) : string;
-
-	/**
-	 * Print the redered template.
-	 *
-	 * @param $slugs
-	 * @param array|Config_Interface $data
-	 * @throws \Exception
-	 */
-	public function output( $slugs, $data = [] );
+	public function render( $slugs, $data = [] ): string;
 }

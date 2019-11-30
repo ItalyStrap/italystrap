@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use \ItalyStrap\Template\View_Interface;
+use \ItalyStrap\View\ViewInterface;
 
 /**
  * Class description
@@ -28,9 +28,9 @@ class Widget_Area {
 
 	/**
 	 * Init the class
-	 * @param View_Interface $view
+	 * @param ViewInterface $view
 	 */
-	function __construct( View_Interface $view ) {
+	function __construct( ViewInterface $view ) {
 		$this->view = $view;
 	}
 

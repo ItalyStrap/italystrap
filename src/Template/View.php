@@ -2,12 +2,13 @@
 /**
  * View API: View Class
  *
- * @package ItalyStrap\Views
+ * @package ItalyStrap\View
  *
  * @since 4.0.0
  */
+declare(strict_types=1);
 
-namespace ItalyStrap\Template;
+namespace ItalyStrap\View;
 
 use \ItalyStrap\Config\Config_Interface;
 use \ItalyStrap\Config\Config_Factory as Config;
@@ -17,6 +18,9 @@ use \ItalyStrap\Config\Config_Factory as Config;
  */
 class View implements View_Interface {
 
+	/**
+	 * @var Finder_Interface
+	 */
 	private $finder;
 
 	public function __construct( Finder_Interface $finder ) {

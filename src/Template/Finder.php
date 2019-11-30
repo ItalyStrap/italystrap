@@ -5,14 +5,23 @@
  * Date: 05/03/2019
  * Time: 07:57
  */
+declare(strict_types=1);
 
-namespace ItalyStrap\Template;
+namespace ItalyStrap\View;
 
+use ItalyStrap\View\Exceptions\TemplateNotFoundException;
+use mysql_xdevapi\Exception;
 
-class Finder implements Finder_Interface {
+class Finder implements Finder_Interface, \Countable {
 
+	/**
+	 * @var string
+	 */
 	private $dir_name = '';
 
+	/**
+	 * @var array
+	 */
 	private $files = [];
 
 	/**
@@ -123,11 +132,24 @@ class Finder implements Finder_Interface {
 	private function get( array $templates ) : string {
 
 		if ( ! $this->has( $templates ) ) {
-			throw new \InvalidArgumentException(
+			throw new TemplateNotFoundException(
 				\sprintf( 'The template %s does not exists', $templates[0] )
 			);
 		}
 
 		return $this->files[ $templates[0] ];
+	}
+
+	/**
+	 * Count elements of an object
+	 * @link https://php.net/manual/en/countable.count.php
+	 * @return int The custom count as an integer.
+	 * </p>
+	 * <p>
+	 * The return value is cast to an integer.
+	 * @since 5.1.0
+	 */
+	public function count(): int {
+		return \count( $this->files );
 	}
 }

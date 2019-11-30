@@ -4,9 +4,9 @@ namespace ItalyStrap;
 
 use ItalyStrap\Builders\Builder_Interface;
 use ItalyStrap\Config\Config_Factory;
-use ItalyStrap\Template\{Finder_Interface, View_Interface};
+use ItalyStrap\View\{ViewFinderInterface, ViewInterface};
 use function ItalyStrap\Config\{get_config_file_content};
-use function \ItalyStrap\Factory\get_config;
+use function ItalyStrap\Factory\get_config;
 
 return [
 
@@ -26,7 +26,7 @@ return [
 		 */
 		Config\Config::class,
 		Event\Manager::class,
-		Template\View::class,
+		View\View::class,
 	],
 
 	/**
@@ -40,8 +40,8 @@ return [
 	 */
 	'aliases'				=> [
 //		\ItalyStrap\Config\Config_Interface::class		=> Config\Config::class,
-		Finder_Interface::class		=> Template\Finder::class,
-		View_Interface::class		=> Template\View::class,
+		ViewFinderInterface::class		=> View\ViewFinder::class,
+		ViewInterface::class		=> View\View::class,
 		\Walker_Nav_Menu::class		=> Navbar\Bootstrap_Nav_Menu::class,
 		Builder_Interface::class	=> Builders\Builder::class,
 	],
@@ -157,8 +157,13 @@ return [
 			$builder->set_injector( $injector );
 		},
 
-		Template\Finder::class	=> function( Template\Finder $finder ) {
-			$finder->in( get_config()->get( 'template_dir' ) );
+		View\ViewFinder::class	=> function( View\ViewFinderInterface $finder, \Auryn\Injector $injector ) {
+			$dirs = [
+				STYLESHEETPATH . '/' . get_config()->template_dir,
+				TEMPLATEPATH . '/' . get_config()->template_dir,
+			];
+
+			$finder->in( $dirs );
 		},
 	],
 

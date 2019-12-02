@@ -6,15 +6,16 @@ includes:
     - vendor/phpstan/phpstan/conf/bleedingEdge.neon
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-    level: max
+# TODO    level: max
+    level: 4
     inferPrivatePropertyTypeFromConstructor: true
     paths:
         - %currentWorkingDirectory%/src/
+    excludes_analyse:
+        - %currentWorkingDirectory%/src/Customizer/settings/
     autoload_files:
         # Procedural code
-        - %currentWorkingDirectory%/functions/factory.php
-    autoload_directories:
-        - %currentWorkingDirectory%/src/
+        - %currentWorkingDirectory%/functions/autoload.php
     ignoreErrors:
         # Uses func_get_args()
-        - '#^Function apply_filters(_ref_array)? invoked with [34567] parameters, 2 required\.$#'
+        - '#^Function apply_filters invoked with [34567] parameters, 2 required\.$#'

@@ -1,3 +1,4 @@
+```
 template/
 index.php
 ├── misc/
@@ -32,3 +33,4 @@ index.php
 └── Footers/
 	├── widget-area.php
 	└── colophon.php
+```

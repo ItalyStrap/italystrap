@@ -21,16 +21,14 @@
 		"lucatume/wp-browser": "~2.2",
 		"italystrap/debug": "~1.1",
 		"phpstan/phpstan": "^0.11.16",
-		"szepeviktor/phpstan-wordpress": "^0.2.1"
+		"szepeviktor/phpstan-wordpress": "^0.3.0"
 	},
 	"autoload": {
-		"classmap": [
-		],
 		"psr-4": {
 			"ItalyStrap\\": "src/"
 		}
 	},
-    "minimum-stability": "stable",
+	"minimum-stability": "stable",
 	"scripts": {
 		"test": [
 			".\\vendor\\bin\\phpstan analyse src/Builders --memory-limit=3G"

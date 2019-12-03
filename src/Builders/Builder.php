@@ -9,9 +9,9 @@ declare( strict_types = 1 );
 namespace ItalyStrap\Builders;
 
 use Auryn\InjectionException;
-use \Auryn\Injector;
-use \ItalyStrap\View\ViewInterface as View;
-use \ItalyStrap\Config\Config_Interface as Config;
+use Auryn\Injector;
+use ItalyStrap\View\ViewInterface as View;
+use ItalyStrap\Config\Config_Interface as Config;
 
 class Builder implements Builder_Interface {
 

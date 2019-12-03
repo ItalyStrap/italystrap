@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use ItalyStrap\Builders\Builder_Interface;
-use ItalyStrap\Config\Config_Factory;
+use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\View\{ViewFinderInterface, ViewInterface};
 use function ItalyStrap\Config\{get_config_file_content};
 use function ItalyStrap\Factory\get_config;
@@ -39,8 +39,7 @@ return [
 	 * ==========================================================
 	 */
 	'aliases'				=> [
-//		\ItalyStrap\Config\Config_Interface::class		=> Config\Config::class,
-		ViewFinderInterface::class		=> View\ViewFinder::class,
+		ViewFinderInterface::class	=> View\ViewFinder::class,
 		ViewInterface::class		=> View\View::class,
 		\Walker_Nav_Menu::class		=> Navbar\Bootstrap_Nav_Menu::class,
 		Builder_Interface::class	=> Builders\Builder::class,
@@ -63,23 +62,23 @@ return [
 	'definitions'			=> [
 
 		Theme\Sidebars::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'theme/sidebars' ) ),
+			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
 		],
 		Theme\Thumbnails::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'theme/thumbnails' ) ),
+			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/thumbnails' ) ),
 		],
 		Theme\Support::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'theme/supports' ) ),
+			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/supports' ) ),
 		],
 		Theme\Type_Support::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'theme/type-supports' ) ),
+			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/type-supports' ) ),
 		],
 		Theme\Nav_Menus::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'theme/nav-menus' ) ),
+			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/nav-menus' ) ),
 		],
 
 		Builders\Builder::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'structure' ) ),
+			':config'	=> ConfigFactory::make( get_config_file_content( 'structure' ) ),
 		],
 
 //		Builders\Parse_Attr::class	=> [
@@ -95,10 +94,10 @@ return [
 			':fallback_cb' => [ Navbar\Bootstrap_Nav_Menu::class, 'fallback' ],
 		],
 		Components\Navigations\Pagination::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'components/pagination' ) ),
+			':config'	=> ConfigFactory::make( get_config_file_content( 'components/pagination' ) ),
 		],
 		Components\Navigations\Pager::class	=> [
-			':config'	=> Config_Factory::make( get_config_file_content( 'components/pager' ) ),
+			':config'	=> ConfigFactory::make( get_config_file_content( 'components/pager' ) ),
 		],
 	],
 
@@ -116,11 +115,11 @@ return [
 //			return get_config()->all();
 //		},
 		'theme_mods'	=> get_config()->all(),
-		':wp_query'		=> function () {
+		':wp_query'		=> function (): \WP_Query {
 			global $wp_query;
 			return $wp_query;
 		},
-		':query'			=> function () {
+		':query'			=> function (): \WP_Query  {
 			global $wp_query;
 			return $wp_query;
 		},

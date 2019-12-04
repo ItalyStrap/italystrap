@@ -100,7 +100,6 @@ install:
   - sudo ln -s /etc/nginx/sites-available/$WP_DOMAIN /etc/nginx/sites-enabled/
 
 before_script:
-  - composer dumpautoload -o
   # restart Nnginx and PHP-FPM services
   - sudo service php7.0-fpm restart
   - sudo service nginx restart

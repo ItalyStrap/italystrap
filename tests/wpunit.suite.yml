@@ -18,6 +18,4 @@ modules:
             domain: "%TEST_SITE_WP_DOMAIN%"
             adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
             title: "ItalyStrap"            
-            theme: italystrap        
-            plugins: ['']
-            activatePlugins: ['']
+            theme: italystrap

@@ -23,7 +23,7 @@ services:
 cache:
   apt: true
   directories:
-#    - vendor
+    - vendor
     - $HOME/.composer/cache/files
 
 addons:
@@ -65,10 +65,8 @@ before_install:
   - export PATH=$PATH:$(pwd)/tools
   # prepend the `vendor/bin` folder the PATH
   - export PATH=vendor/bin:$PATH
-#  - ls
 
 install:
-#  - ls
    - composer install --prefer-dist
   # install WordPress
   - cd $WP_FOLDER

@@ -27,12 +27,12 @@ use function ItalyStrap\Factory\{get_config, injector};
  * ========================================================================
  */
 $autoload_theme_files = [
-	'/vendor/autoload.php',
-	'/functions/autoload.php',
+	'../vendor/autoload.php',
+	'../functions/autoload.php',
 ];
 
 foreach ( $autoload_theme_files as $file ) {
-	require_once __DIR__ . '/..' . $file;
+	require __DIR__ . DIRECTORY_SEPARATOR . $file;
 }
 
 /**

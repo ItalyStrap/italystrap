@@ -14,6 +14,8 @@ namespace ItalyStrap\Core;
 
 /**
  * Set default constant
+ * @param array $constant
+ * @return array
  */
 function set_default_constants( array $constant = [] ) {
 

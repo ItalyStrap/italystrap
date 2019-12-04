@@ -27,4 +27,4 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-require_once dirname( __FILE__ ) . '/src/bootstrap.php';
+require_once \dirname( __FILE__ ) . '/src/bootstrap.php';

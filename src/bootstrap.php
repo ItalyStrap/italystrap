@@ -32,7 +32,7 @@ $autoload_theme_files = [
 ];
 
 foreach ( $autoload_theme_files as $file ) {
-	require __DIR__ . '/..' . $file;
+	require_once __DIR__ . '/..' . $file;
 }
 
 /**

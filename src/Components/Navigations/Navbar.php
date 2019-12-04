@@ -61,6 +61,11 @@ class Navbar {
 	private $fallback_cb;
 
 	/**
+	 * @var array
+	 */
+	private $theme_mods;
+
+	/**
 	 * Init the constructor
 	 *
 	 * @param Config_Interface $config

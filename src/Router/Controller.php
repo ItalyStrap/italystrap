@@ -98,9 +98,9 @@ class Controller implements Subscriber_Interface {
 	 *
 	 * @param [type] $argument [description].
 	 */
-	function __construct( $argument = null ) {
-		// Code...
-	}
+//	function __construct( $argument = null ) {
+//		// Code...
+//	}
 
 	/**
 	 * Filter

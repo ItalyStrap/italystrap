@@ -53,6 +53,16 @@ class Asset_Factory implements Subscriber_Interface {
 	}
 
 	/**
+	 * @var Style
+	 */
+	private $style;
+
+	/**
+	 * @var Script
+	 */
+	private $script;
+
+	/**
 	 * Init script and style
 	 */
 	function add_style_and_script() {

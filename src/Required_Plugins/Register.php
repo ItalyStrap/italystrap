@@ -147,7 +147,7 @@ class Register {
 			/**
 			 * Default parent URL slug.
 			 */
-			'parent_slug'	=> 'themes.php',
+//			'parent_slug'	=> 'themes.php',
 
 			/**
 			 * Menu slug.

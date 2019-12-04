@@ -58,6 +58,16 @@ class Register implements Subscriber_Interface {
 	private $object_types = array();
 
 	/**
+	 * @var Config
+	 */
+	private $config;
+
+	/**
+	 * @var void
+	 */
+	private $supported_types;
+
+	/**
 	 * Init the constructor
 	 */
 	function __construct( Config $config ) {

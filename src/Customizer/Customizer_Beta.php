@@ -10,10 +10,6 @@
 
 namespace ItalyStrap\Customizer;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 use ItalyStrap\Event\Subscriber_Interface;
 
 use ItalyStrap\Core as Core;
@@ -89,9 +85,16 @@ class Customizer_Beta implements Subscriber_Interface {
 	private $size;
 
 	/**
-	 * Init the class
+	 * @var array
 	 */
-	function __construct( array $theme_mods = array(), Size $size ) {
+	private $config;
+
+	/**
+	 * Init the class
+	 * @param array $theme_mods
+	 * @param Size|null $size
+	 */
+	function __construct( array $theme_mods = array(), Size $size = null ) {
 
 		$this->theme_mods = $theme_mods;
 		$this->size = $size;
@@ -222,37 +225,37 @@ class Customizer_Beta implements Subscriber_Interface {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	public function FunctionName( WP_Customize_Manager $manager ) {
-	
-		$manager->add_section(
-			$id, // A unique slug-like string to use as an id. 
-			$args // An associative array containing arguments for the control. 
-				  // array(
-				  // 	'title'				=> '',
-				  // 	'priority'			=> '',
-				  // 	'description'		=> '',
-				  // 	'active_callback'	=> '',
-				  // )
-		);
-		$manager->add_settings(
-			$id, // A unique slug-like ID for the theme setting.
-			$args // An associative array containing arguments for the setting. 
-				  // array(
-				  // 	'default'				=> '',
-				  // 	'type'					=> '',
-				  // 	'capability'			=> '',
-				  // 	'theme_supports'		=> '',
-				  // 	'transport'				=> '',
-				  // 	'sanitize_callback'		=> '',
-				  // 	'sanitize_js_callback'	=> '',
-				  // )
-		);
-		$manager->add_control(
-			$id,
-			$args // or WP_Customize_Control object
-		);
-	
-	}
+//	public function FunctionName( WP_Customize_Manager $manager ) {
+//
+//		$manager->add_section(
+//			$id, // A unique slug-like string to use as an id.
+//			$args // An associative array containing arguments for the control.
+//				  // array(
+//				  // 	'title'				=> '',
+//				  // 	'priority'			=> '',
+//				  // 	'description'		=> '',
+//				  // 	'active_callback'	=> '',
+//				  // )
+//		);
+//		$manager->add_settings(
+//			$id, // A unique slug-like ID for the theme setting.
+//			$args // An associative array containing arguments for the setting.
+//				  // array(
+//				  // 	'default'				=> '',
+//				  // 	'type'					=> '',
+//				  // 	'capability'			=> '',
+//				  // 	'theme_supports'		=> '',
+//				  // 	'transport'				=> '',
+//				  // 	'sanitize_callback'		=> '',
+//				  // 	'sanitize_js_callback'	=> '',
+//				  // )
+//		);
+//		$manager->add_control(
+//			$id,
+//			$args // or WP_Customize_Control object
+//		);
+//
+//	}
 
 	/**
 	 * This outputs the javascript needed to automate the live settings preview.

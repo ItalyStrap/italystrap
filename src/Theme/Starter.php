@@ -49,7 +49,18 @@ class Starter implements Subscriber_Interface {
 	private $nav_menus;
 
 	/**
+	 * @var Sidebars
+	 */
+	private $sidebars;
+
+	/**
 	 * Init some functionality
+	 * @param Config_Interface $config
+	 * @param Thumbnails $thumbnails
+	 * @param Sidebars $sidebars
+	 * @param Support $support
+	 * @param Type_Support $type_support
+	 * @param Nav_Menus $nav_menus
 	 */
 	public function __construct(
 		Config_Interface $config,

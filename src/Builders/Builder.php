@@ -11,7 +11,7 @@ namespace ItalyStrap\Builders;
 use Auryn\InjectionException;
 use Auryn\Injector;
 use ItalyStrap\View\ViewInterface as View;
-use ItalyStrap\Config\ConfigInterface as Config;
+use ItalyStrap\Config\Config_Interface as Config;
 
 class Builder implements Builder_Interface {
 
@@ -38,6 +38,7 @@ class Builder implements Builder_Interface {
 	/**
 	 * Builder constructor.
 	 * @param View $view
+	 * @param Config $config
 	 */
 	public function __construct( View $view, Config $config ) {
 		$this->view = $view;

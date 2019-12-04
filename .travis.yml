@@ -8,8 +8,8 @@ notifications:
 
 php:
   - '7.2'
-  - '7.3'
-  - nightly
+#  - '7.3'
+#  - nightly
 
 matrix:
   fast_finish: true
@@ -23,7 +23,7 @@ services:
 cache:
   apt: true
   directories:
-    - vendor
+#    - vendor
     - $HOME/.composer/cache/files
 
 addons:
@@ -65,11 +65,11 @@ before_install:
   - export PATH=$PATH:$(pwd)/tools
   # prepend the `vendor/bin` folder the PATH
   - export PATH=vendor/bin:$PATH
-  - ls
+#  - ls
 
 install:
-  - ls
-  # - composer install --prefer-dist
+#  - ls
+   - composer install --prefer-dist
   # install WordPress
   - cd $WP_FOLDER
   - ls
@@ -102,7 +102,6 @@ install:
   - sudo ln -s /etc/nginx/sites-available/$WP_DOMAIN /etc/nginx/sites-enabled/
 
 before_script:
-  - composer install --prefer-dist
   # restart Nnginx and PHP-FPM services
   - sudo service php7.0-fpm restart
   - sudo service nginx restart
@@ -115,5 +114,5 @@ script:
   # - codecept run functional
   # - codecept run integration
   # - codecept run unit
-   - vendor/bin/codecept run wpunit
+   - codecept run wpunit
 #  - codecept run wpunit && codecept run acceptance

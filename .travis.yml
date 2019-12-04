@@ -65,9 +65,11 @@ before_install:
   - export PATH=$PATH:$(pwd)/tools
   # prepend the `vendor/bin` folder the PATH
   - export PATH=vendor/bin:$PATH
+  - ls
 
 install:
-  - composer install --prefer-dist
+  - ls
+  # - composer install --prefer-dist
   # install WordPress
   - cd $WP_FOLDER
   - ls
@@ -100,6 +102,7 @@ install:
   - sudo ln -s /etc/nginx/sites-available/$WP_DOMAIN /etc/nginx/sites-enabled/
 
 before_script:
+  - composer install --prefer-dist
   # restart Nnginx and PHP-FPM services
   - sudo service php7.0-fpm restart
   - sudo service nginx restart

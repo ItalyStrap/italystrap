@@ -9,6 +9,7 @@
  *
  * @package ItalyStrap
  */
+declare(strict_types=1);
 
 namespace ItalyStrap\Components\Navigations;
 
@@ -32,8 +33,8 @@ class Link_Pages {
 			'echo'		=> false,
 		];
 
-		$args = apply_filters( 'italystrap_wp_link_pages_args', $args );
+		$args = \apply_filters( 'italystrap_wp_link_pages_args', $args );
 
-		return wp_link_pages( $args );
+		return \wp_link_pages( $args );
 	}
 }

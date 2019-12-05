@@ -59,7 +59,7 @@ $constants = set_default_constants( get_config_file_content( 'constants' ) );
 try {
 
 	$theme_loader = injector()->make( Loader::class );
-	$theme_loader->set_dependencies( get_config_file_content( 'dependencies' ) );
+	$theme_loader->setDependencies( get_config_file_content( 'dependencies' ) );
 
 	/**
 	 * ========================================================================
@@ -73,8 +73,8 @@ try {
 	$subscribers_admin = require '_init_admin.php';
 	$subscribers_front = require '_init.php';
 
-	$theme_loader->add_subscribers( $subscribers_admin );
-	$theme_loader->add_subscribers( $subscribers_front );
+	$theme_loader->addSubscribers( $subscribers_admin );
+	$theme_loader->addSubscribers( $subscribers_front );
 
 	/**
 	 * ========================================================================
@@ -100,7 +100,7 @@ try {
 
 } catch ( InjectorException $exception ) {
 	\_doing_it_wrong( \get_class( injector() ), $exception->getMessage(), '4.0.0' );
-} catch ( \Exception $exception ) {
+} catch ( \Throwable $exception ) {
 	\_doing_it_wrong( 'General error.', $exception->getMessage(), '4.0.0' );
 }
 

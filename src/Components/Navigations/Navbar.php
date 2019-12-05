@@ -7,6 +7,7 @@
  * @package ItalyStrap\Core
  * @since 4.0.0
  */
+declare(strict_types=1);
 
 namespace ItalyStrap\Components\Navigations;
 
@@ -61,11 +62,6 @@ class Navbar {
 	private $fallback_cb;
 
 	/**
-	 * @var array
-	 */
-	private $theme_mods;
-
-	/**
 	 * Init the constructor
 	 *
 	 * @param Config_Interface $config
@@ -88,8 +84,6 @@ class Navbar {
 
 		$this->navbar_id = apply_filters( 'italystrap_navbar_id', 'italystrap-menu-' . $this->number );
 		$this->navbar_id = apply_filters( 'italystrap_navbar_id_' . $this->number, $this->navbar_id );
-
-		$this->theme_mods = $this->config->all();
 	}
 
 	/**
@@ -172,7 +166,7 @@ class Navbar {
 		/**
 		 * The ID of the logo image for navbar
 		 * By default in the customizer is set a url for the image instead of an integer
-		 * When it is choices an image than it will set an integer for $this->theme_mods['navbar_logo']
+		 * When it is choices an image than it will set an integer for $this->config['navbar_logo']
 		 *
 		 * @var integer
 		 */
@@ -180,7 +174,7 @@ class Navbar {
 
 		$brand = '';
 
-		if ( $attachment_id && 'display_image' === $this->theme_mods[ 'display_navbar_brand' ] ) {
+		if ( $attachment_id && 'display_image' === $this->config[ 'display_navbar_brand' ] ) {
 
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
@@ -191,11 +185,11 @@ class Navbar {
 			/**
 			 * Size default: navbar-brand-image
 			 */
-			$brand .= wp_get_attachment_image( $attachment_id, $this->theme_mods[ 'navbar_logo_image_size' ], false, $attr );
+			$brand .= wp_get_attachment_image( $attachment_id, $this->config[ 'navbar_logo_image_size' ], false, $attr );
 
 			$brand .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
 
-		} elseif ( $attachment_id && 'display_all' === $this->theme_mods[ 'display_navbar_brand' ] ) {
+		} elseif ( $attachment_id && 'display_all' === $this->config[ 'display_navbar_brand' ] ) {
 
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
@@ -206,7 +200,7 @@ class Navbar {
 			/**
 			 * Size default: navbar-brand-image
 			 */
-			$brand .= wp_get_attachment_image( $attachment_id, $this->theme_mods[ 'navbar_logo_image_size' ], false, $attr );
+			$brand .= wp_get_attachment_image( $attachment_id, $this->config[ 'navbar_logo_image_size' ], false, $attr );
 
 			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
 
@@ -228,7 +222,7 @@ class Navbar {
 	 */
 	public function get_navbar_brand( array $attr = array() ) {
 
-		if ( 'none' === $this->theme_mods[ 'display_navbar_brand' ] ) {
+		if ( 'none' === $this->config[ 'display_navbar_brand' ] ) {
 			return apply_filters( 'italystrap_navbar_brand_none', '', $this->navbar_id );
 		}
 
@@ -345,7 +339,7 @@ class Navbar {
 //		add_filter( 'italystrap_pre_last_container', '__return_true' );
 		$a = [
 			'id' => 'menus-container-' . $this->number,
-			'class' => $this->theme_mods[ 'navbar' ][ 'menus_width' ],
+			'class' => $this->config[ 'navbar' ][ 'menus_width' ],
 		];
 
 		return $this->create_element(
@@ -379,8 +373,8 @@ class Navbar {
 		$a = [
 			'class' => sprintf(
 				'navbar %s %s',
-				$this->theme_mods[ 'navbar' ][ 'type' ],
-				$this->theme_mods[ 'navbar' ][ 'position' ]
+				$this->config[ 'navbar' ][ 'type' ],
+				$this->config[ 'navbar' ][ 'position' ]
 			),
 			'itemscope' => true,
 			'itemtype' => 'https://schema.org/SiteNavigationElement',
@@ -406,7 +400,7 @@ class Navbar {
 	 */
 	public function get_nav_container() {
 
-//		if ( 'none' === $this->theme_mods[ 'navbar' ][ 'nav_width' ] ) {
+//		if ( 'none' === $this->config[ 'navbar' ][ 'nav_width' ] ) {
 //			return $this->get_navbar_container();
 //		}
 
@@ -416,7 +410,7 @@ class Navbar {
 			'id'	=> 'main-navbar-container-' . $this->navbar_id,
 			'class' => sprintf(
 				'navbar-wrapper %s',
-				$this->theme_mods[ 'navbar' ][ 'nav_width' ]
+				$this->config[ 'navbar' ][ 'nav_width' ]
 			),
 		];
 

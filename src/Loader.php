@@ -26,14 +26,14 @@ final class Loader implements Loadable_Interface {
 	/**
 	 * @param array $dependencies
 	 */
-	public function set_dependencies( array $dependencies ) {
+	public function setDependencies( array $dependencies ) {
 		$this->dependencies = $dependencies;
 	}
 
 	/**
 	 * @param array $subscribers
 	 */
-	public function add_subscribers( array $subscribers = [] ) {
+	public function addSubscribers( array $subscribers = [] ) {
 		$this->dependencies[ 'subscribers' ] = \array_merge( $this->dependencies[ 'subscribers' ], $subscribers );
 	}
 

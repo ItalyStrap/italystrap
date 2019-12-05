@@ -5,6 +5,7 @@
  * Date: 29/03/2019
  * Time: 16:41
  */
+declare(strict_types=1);
 
 namespace ItalyStrap\Components\Navigations;
 

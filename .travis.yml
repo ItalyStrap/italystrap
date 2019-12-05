@@ -78,7 +78,7 @@ install:
   # copy the theme in the WordPress themes folder
   - cp -r $TRAVIS_BUILD_DIR $WP_FOLDER/wp-content/themes/italystrap
   # show the themes folder contents to make sure the theme folder is there
-  - cd $WP_FOLDER/wp-content/themes
+  - cd $WP_FOLDER/wp-content/themes/italystrap
   - composer install --prefer-dist
   - ls
   # activate the theme

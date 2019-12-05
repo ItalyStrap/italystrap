@@ -65,7 +65,7 @@ before_install:
   - export PATH=vendor/bin:$PATH
 
 install:
-   - composer install --prefer-dist
+  - composer install --prefer-dist
   # install WordPress
   - cd $WP_FOLDER
   - ls
@@ -106,9 +106,9 @@ before_script:
   - codecept build
 
 script:
-#   - codecept run acceptance
-  # - codecept run functional
-  # - codecept run integration
-  # - codecept run unit
-   - codecept run wpunit
+#  - codecept run acceptance
+#  - codecept run functional
+#  - codecept run integration
+#  - codecept run unit
+  - codecept run wpunit
 #  - codecept run wpunit && codecept run acceptance

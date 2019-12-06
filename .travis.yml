@@ -63,7 +63,6 @@ before_install:
   - export PATH=vendor/bin:$PATH
 
 install:
-  - composer clear-cache
   # install WordPress
   - cd $WP_FOLDER
   - ls

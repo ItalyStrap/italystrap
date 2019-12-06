@@ -63,7 +63,7 @@ before_install:
   - export PATH=vendor/bin:$PATH
 
 install:
-  - composer install --prefer-dist --no-suggest
+  - composer clear-cache
   # install WordPress
   - cd $WP_FOLDER
   - ls
@@ -78,7 +78,7 @@ install:
   # show the themes folder contents to make sure the theme folder is there
   - cd $WP_FOLDER/wp-content/themes/italystrap
   - composer install --prefer-dist --no-suggest
-  - ls
+  - ls -l
   # activate the theme
   - wp theme activate italystrap
   # make sure the theme is active on the site
@@ -87,8 +87,8 @@ install:
   - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql
   # get back to the build folder
   - cd $TRAVIS_BUILD_DIR
-  - composer install --prefer-dist
-  - ls
+  - composer install --prefer-dist --no-suggest
+  - ls -l
   # open up the site folder to allow the PHP application to read/write/execute on it
   - sudo chmod -R 777 $WP_FOLDER
   # copy the Nginx configuration file to the available sites

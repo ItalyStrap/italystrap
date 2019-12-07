@@ -2,14 +2,11 @@
 
 class ThemeLoaderCest
 {
-    public function _before(AcceptanceTester $I)
+    public function _before( AcceptanceTester $I )
     {
 		$I->amOnPage( '/wp-admin' );
 		$I->tryToClick( 'Update WordPress Database', '.button-primary' );
 		$I->tryToClick( 'Continue', '.button-large' );
-
-//		$I->loginAsAdmin();
-//		$I->amOn
 
 		$I->wantTo( 'See the home page of ItalyStrap' );
 
@@ -17,10 +14,9 @@ class ThemeLoaderCest
 		$I->see('ItalyStrap', 'a');
     }
 
-	// tests
-
 	/**
 	 * @param AcceptanceTester $I
+	 * @test
 	 */
 	public function tryToTest( AcceptanceTester $I)
 	{
@@ -30,16 +26,18 @@ class ThemeLoaderCest
 		     'post_content' => $content,
 		] );
 
-		codecept_debug( $post_id );
-
 		$I->amOnPage( '/?p=' . $post_id );
-		$I->amOnPage( '/a-post' );
+		$I->see('A post');
 
-//		$I->see('A post');
+		$I->amOnPage( '/a-post' );
+		$I->see('A post');
+
+		$I->seeElement( 'h2', ['class' => 'entry-title'] );
+		$I->seeElement( 'div', ['class' => 'entry-content'] );
 	}
 
-	public function onSingular( AcceptanceTester $I ) {
-		$I->wantTo( 'See if single has come components' );
+	private function onSingular( AcceptanceTester $I ) {
+		$I->wantTo( 'See if single has some components' );
 
 		$content = implode( ' ', array_fill( 0, 274, 'lorem' ) );
 		$post_id = $I->havePostInDatabase( [
@@ -48,9 +46,9 @@ class ThemeLoaderCest
 			'post_type'		=> 'post',
 		] );
 
-//		$I->amOnPage("/?p={$post_id}");
+		$I->amOnPage("/?p={$post_id}");
 
-//		$I->seeElement( 'h1', ['class' => 'entry-title'] );
-//		$I->seeElement( 'div', ['class' => 'entry-content'] );
+		$I->seeElement( 'h1', ['class' => 'entry-title'] );
+		$I->seeElement( 'div', ['class' => 'entry-content'] );
 	}
 }

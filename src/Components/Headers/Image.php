@@ -77,7 +77,7 @@ class Image {
 	// full-width
 		$attr = array(
 			'class'		=> "center-block img-responsive img-fluid attachment-$id attachment-header size-header",
-			'alt'		=> esc_attr( GET_BLOGINFO_NAME ),
+			'alt'		=> esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) ),
 			'itemprop'	=> 'image',
 		);
 
@@ -90,9 +90,9 @@ class Image {
 	/**
 	 * Get the custom header image
 	 *
-	 * @param  obj    $image_obj The custom image object.
+	 * @param \stdClass    $image_obj The custom image object.
 	 *
-	 * @return string            The image HTML.
+	 * @return string      The image HTML.
 	 */
 	private function get_custom_header_image( \stdClass $image_obj, $size ) {
 

@@ -10,14 +10,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Controllers\Posts\Parts;
-
-use ItalyStrap\Controllers\Controller;
-use ItalyStrap\Event\Subscriber_Interface;
-
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
+namespace ItalyStrap\Components\Contents;
 
 /**
  * Class description

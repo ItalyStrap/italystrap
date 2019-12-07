@@ -276,6 +276,7 @@ class Tag implements Tag_Interface {
 
 	/**
 	 *
+	 * @throws \Exception
 	 */
 	public function __destruct() {
 		$this->check_non_closed_tags();

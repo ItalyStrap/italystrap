@@ -11,10 +11,7 @@
 namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Event\Subscriber_Interface;
-
-use ItalyStrap\Core as Core;
 use ItalyStrap\Image\Size;
-
 use WP_Customize_Manager;
 
 /**
@@ -92,7 +89,7 @@ class Customizer_Beta implements Subscriber_Interface {
 	/**
 	 * Init the class
 	 * @param array $theme_mods
-	 * @param Size|null $size
+	 * @param Size $size
 	 */
 	function __construct( array $theme_mods = array(), Size $size = null ) {
 

@@ -18,3 +18,5 @@ parameters:
     ignoreErrors:
         # Uses func_get_args()
         - '#^Function apply_filters invoked with [34567] parameters, 2 required\.$#'
+        - '#Access to an undefined property ItalyStrap\\Config\\Config::\$[a-zA-Z0-9_]+#'
+        - '#Access to an undefined property ItalyStrap\\Config\\ConfigInterface::\$[a-zA-Z0-9_]+#'

@@ -20,6 +20,7 @@ return [
 	 * ==========================================================
 	 */
 	'sharing'				=> [
+
 		/**
 		 * Make sure the config is shared.
 		 * Already shared in bootstrap.php or in ACM if is active.

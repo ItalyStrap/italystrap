@@ -13,7 +13,7 @@
 
 namespace ItalyStrap\Theme;
 
-use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Config\Config_Interface as Config;
 use ItalyStrap\Event\Subscriber_Interface;
 
 /**
@@ -55,7 +55,7 @@ class Starter implements Subscriber_Interface {
 
 	/**
 	 * Init some functionality
-	 * @param Config_Interface $config
+	 * @param Config $config
 	 * @param Thumbnails $thumbnails
 	 * @param Sidebars $sidebars
 	 * @param Support $support
@@ -63,7 +63,7 @@ class Starter implements Subscriber_Interface {
 	 * @param Nav_Menus $nav_menus
 	 */
 	public function __construct(
-		Config_Interface $config,
+		Config $config,
 		Thumbnails $thumbnails,
 		Sidebars $sidebars,
 		Support $support,
@@ -146,9 +146,9 @@ class Starter implements Subscriber_Interface {
 	 */
 	private function add_editor_styles() {
 
-		$style_url = file_exists( CHILDPATH . '/css/editor-style.css' )
-			? STYLESHEETURL . '/css/editor-style.css'
-			: TEMPLATEURL . '/css/editor-style.css';
+		$style_url = \file_exists( $this->config->get( 'CHILDPATH' ) . '/css/editor-style.css' )
+			? $this->config->get( 'STYLESHEETURL' ) . '/css/editor-style.css'
+			: $this->config->get( 'TEMPLATEURL' ) . '/css/editor-style.css';
 
 		$arg = \apply_filters( 'italystrap_visual_editor_style', [ $style_url ] );
 

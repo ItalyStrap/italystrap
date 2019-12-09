@@ -87,7 +87,7 @@ try {
 
 
 	if ( ! isset( $theme_mods ) ) {
-		$theme_mods = (array) \get_theme_git mods();
+		$theme_mods = (array) \get_theme_mods();
 	}
 
 	get_config()->merge(

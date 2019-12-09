@@ -12,13 +12,15 @@
 		"php" : ">=7.0",
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
-		"italystrap/helpers": "^1.0",
 		"italystrap/config": "~2.0",
+		"italystrap/helpers": "^1.0",
+		"italystrap/html": "^1.0",
 		"italystrap/view": "~1.0",
 		"brain/hierarchy": "^2.4"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "~2.2",
+		"lucatume/function-mocker-le": "^1.0",
 		"italystrap/debug": "*",
 		"phpstan/phpstan": "^0.11.16",
 		"szepeviktor/phpstan-wordpress": "^0.3.0"

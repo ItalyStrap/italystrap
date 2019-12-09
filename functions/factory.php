@@ -8,7 +8,6 @@ namespace ItalyStrap\Factory;
 use Auryn\{ConfigException, InjectionException, Injector};
 use ItalyStrap\Config\Config;
 use ItalyStrap\Event\Manager;
-use ItalyStrap\Template\View;
 
 if ( ! function_exists( '\ItalyStrap\Factory\injector' ) ) {
 
@@ -64,17 +63,17 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 if ( ! function_exists( '\ItalyStrap\Factory\get_view' ) ) {
 
 	/**
-	 * @return \ItalyStrap\Template\View
+	 * @return \ItalyStrap\View\View
 	 */
-	function get_view() : View {
+	function get_view(): \ItalyStrap\View\View {
 
 		static $view = null;
 
 		if ( ! $view ) {
 			try {
 				$view = injector()
-					->share( \ItalyStrap\Template\View::class )
-					->make( \ItalyStrap\Template\View::class );
+					->share( \ItalyStrap\View\View::class )
+					->make( \ItalyStrap\View\View::class );
 			} catch ( ConfigException $configException ) {
 				echo $configException->getMessage();
 			} catch ( InjectionException $injectionException ) {

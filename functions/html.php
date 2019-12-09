@@ -10,7 +10,7 @@ namespace ItalyStrap\HTML;
  * @todo Factory provvisoria
  *
  */
-function tag() : Tag {
+function tag(): Tag {
 
 	static $tag = null;
 

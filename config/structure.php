@@ -239,7 +239,7 @@ return [
 				global $author_name;
 				$data['author'] = \array_key_exists( 'author_name', $_GET )
 					? \get_user_by( 'slug', $author_name )
-					: \get_userdata( absint( get_the_author_meta( 'ID' ) ) );
+					: \get_userdata( \absint( \get_the_author_meta( 'ID' ) ) );
 
 
 				$data['contact'] = injector()->make( '\ItalyStrap\User\Contact_Method_List' );

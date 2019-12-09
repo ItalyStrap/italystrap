@@ -367,14 +367,3 @@ function get_theme_mods_in_customizer ( array $theme_mods = [] ) {
         }
     }
 }
-
-/**
- * This class has to be loaded before the init of all classes.
- * @TODO Required plugins
- *
- * @var \ItalyStrap\Admin\Required_Plugins\Register
- */
-// add_action( 'after_setup_theme', function() use ( $required_plugins ) {
-// 	$required_plugins = new \ItalyStrap\Required_Plugins\Register;
-// 	add_action( 'tgmpa_register', array( $required_plugins, 'init' ) );
-// }, 10, 1 );

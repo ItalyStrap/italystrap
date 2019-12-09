@@ -30,13 +30,17 @@ class ThemeLoaderCest
 		$I->see('A post');
 
 		$I->amOnPage( '/a-post' );
-//		$I->see('A post');
-//
-//		$I->seeElement( 'h2', ['class' => 'entry-title'] );
-//		$I->seeElement( 'div', ['class' => 'entry-content'] );
+		$I->see('A post');
+
+		$I->seeElement( 'h2', ['class' => 'entry-title'] );
+		$I->seeElement( 'div', ['class' => 'entry-content'] );
 	}
 
-	private function onSingular( AcceptanceTester $I ) {
+	/**
+	 * @test
+	 * @param AcceptanceTester $I
+	 */
+	public function onSingular( AcceptanceTester $I ) {
 		$I->wantTo( 'See if single has some components' );
 
 		$content = implode( ' ', array_fill( 0, 274, 'lorem' ) );

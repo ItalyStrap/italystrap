@@ -106,9 +106,9 @@ before_script:
   - codecept build
 
 script:
-  - codecept run acceptance --debug
+#  - codecept run acceptance --debug
 #  - codecept run functional
 #  - codecept run integration
 #  - codecept run unit
-  - codecept run wpunit
-#  - codecept run wpunit && codecept run acceptance
+#  - codecept run wpunit
+  - codecept run wpunit && codecept run unit

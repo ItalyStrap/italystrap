@@ -11,7 +11,7 @@ class ThemeLoaderCest
 		$I->wantTo( 'See the home page of ItalyStrap' );
 
 		$I->amOnPage('/');
-//		$I->see('ItalyStrap', 'a');
+		$I->see('ItalyStrap', 'a');
     }
 
 	/**
@@ -27,7 +27,7 @@ class ThemeLoaderCest
 		] );
 
 		$I->amOnPage( '/?p=' . $post_id );
-//		$I->see('A post');
+		$I->see('A post');
 
 		$I->amOnPage( '/a-post' );
 //		$I->see('A post');

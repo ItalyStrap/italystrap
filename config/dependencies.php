@@ -5,7 +5,7 @@ namespace ItalyStrap;
 use Auryn\Injector;
 use ItalyStrap\Builders\Builder_Interface;
 use ItalyStrap\Config\{Config, ConfigFactory, ConfigInterface};
-use ItalyStrap\Theme\{NavMenus, Sidebars, Support, Thumbnails, TypeSupport};
+use ItalyStrap\Theme\{NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
 use ItalyStrap\View\{ViewFinderInterface, ViewInterface};
 use function ItalyStrap\Config\{get_config_file_content};
 use function ItalyStrap\Factory\get_config;
@@ -180,14 +180,15 @@ return [
 	 */
 	'subscribers'				=> [
 
-		Theme\Starter::class,
-
 		/**
 		 * Register Theme stuff
 		 */
 		NavMenus::class,
 		Sidebars::class,
 		Support::class,
+		TextDomain::class,
+		Thumbnails::class,
+		TypeSupport::class,
 
 
 		Custom\Metabox\Register::class,

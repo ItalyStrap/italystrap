@@ -13,8 +13,6 @@ class SupportTest extends BaseTheme
 		return $sut;
 	}
 
-
-
 	/**
 	 * @test
 	 */

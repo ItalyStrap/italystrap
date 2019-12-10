@@ -4,8 +4,22 @@ declare(strict_types=1);
 namespace ItalyStrap\Theme;
 
 use \ItalyStrap\Config\ConfigInterface as Config;
+use ItalyStrap\Event\Subscriber_Interface;
 
-class TypeSupport implements Registrable {
+class TypeSupport implements Registrable, Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return [
+			'init'	=> self::CALLBACK,
+		];
+	}
 
 	/**
 	 * @var Config

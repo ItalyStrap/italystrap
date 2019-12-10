@@ -4,12 +4,31 @@ declare(strict_types=1);
 namespace ItalyStrap\Theme;
 
 use ItalyStrap\Config\ConfigInterface as Config;
+use ItalyStrap\Event\Manager as Event;
+use ItalyStrap\Event\Subscriber_Interface;
 
 /**
  * Class Thumbnails
  * @package ItalyStrap\Theme
  */
-class Thumbnails implements Registrable {
+class Thumbnails implements Registrable, Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return [
+			// 'hook_name'							=> 'method_name',
+			'italystrap_theme_load'	=> [
+				Event::CALLBACK	=> self::CALLBACK,
+				Event::PRIORITY	=> 20,
+			],
+		];
+	}
 
 	/**
 	 * Image size

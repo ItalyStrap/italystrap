@@ -1,43 +1,15 @@
 <?php
 declare(strict_types=1);
 
-class NavMenusTest extends \Codeception\TestCase\WPTestCase
+require_once 'BaseTheme.php';
+class NavMenusTest extends BaseTheme
 {
-    /**
-     * @var \WpunitTester
-     */
-    protected $tester;
-    
-    public function setUp(): void
-    {
-        // Before...
-        parent::setUp();
-
-        // Your set up methods here.
-    }
-
-    public function tearDown(): void
-    {
-        // Your tear down methods here.
-
-        // Then...
-        parent::tearDown();
-    }
-
-	private function getInstance( $paramConfig = [] ) {
+	protected function getInstance( $paramConfig = [] ) {
     	$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
 		$sut = new \ItalyStrap\Theme\NavMenus( $config );
 		$this->assertInstanceOf( \ItalyStrap\Theme\Registrable::class, $sut, '' );
 		$this->assertInstanceOf( \ItalyStrap\Theme\NavMenus::class, $sut, '' );
 		return $sut;
-    }
-
-	/**
-	 * @test
-	 */
-    public function ItShouldBeInstantiable()
-    {
-        $this->getInstance();
     }
 
 	/**
@@ -50,7 +22,6 @@ class NavMenusTest extends \Codeception\TestCase\WPTestCase
 				'new-menu'			=> __( 'Main Menu', 'italystrap' ),
 			];
 		} );
-
 
         $sut = $this->getInstance(
 			[

@@ -5,7 +5,7 @@ namespace ItalyStrap;
 use Auryn\Injector;
 use ItalyStrap\Builders\Builder_Interface;
 use ItalyStrap\Config\{Config, ConfigFactory, ConfigInterface};
-use ItalyStrap\Theme\{NavMenus, Register, Sidebars, Support, Thumbnails, TypeSupport};
+use ItalyStrap\Theme\{NavMenus, Sidebars, Support, Thumbnails, TypeSupport};
 use ItalyStrap\View\{ViewFinderInterface, ViewInterface};
 use function ItalyStrap\Config\{get_config_file_content};
 use function ItalyStrap\Factory\get_config;
@@ -166,16 +166,6 @@ return [
 
 			$finder->in( $dirs );
 		},
-		Register::class	=> function ( Register $register, Injector $injector ) {
-			$registrable = [];
-			$registrable[] = $injector->make( Thumbnails::class );
-			$registrable[] = $injector->make( Sidebars::class );
-			$registrable[] = $injector->make( Support::class );
-			$registrable[] = $injector->make( TypeSupport::class );
-			$registrable[] = $injector->make( NavMenus::class );
-
-			$register->withRegistrable( ...$registrable );
-		},
 	],
 
 	/**
@@ -195,7 +185,9 @@ return [
 		/**
 		 * Register Theme stuff
 		 */
-		Theme\NavMenus::class,
+		NavMenus::class,
+		Sidebars::class,
+		Support::class,
 
 
 		Custom\Metabox\Register::class,

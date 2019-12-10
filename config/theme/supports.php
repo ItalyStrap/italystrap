@@ -10,8 +10,8 @@
  * @package ItalyStrap
  */
 declare(strict_types=1);
-namespace ItalyStrap;
 
+namespace ItalyStrap;
 
 /**
  * @var int $font_size_base

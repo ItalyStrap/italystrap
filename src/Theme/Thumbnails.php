@@ -51,7 +51,7 @@ class Thumbnails implements Registrable, Subscriber_Interface {
 
 		$this->config = $config;
 
-		$this->image_sizes = (array) $this->config->get('image_size');
+		$this->image_sizes = (array) $this->config->sizes;
 	}
 
 	/**
@@ -98,7 +98,7 @@ class Thumbnails implements Registrable, Subscriber_Interface {
 		 */
 		global $content_width;
 		if ( ! isset( $content_width ) ) {
-			$content_width = $this->config->get( 'content_width' );
+			$content_width = $this->config->content_width;
 		}
 
 		$height = round( $content_width * 3 / 4 );

@@ -34,7 +34,7 @@ class Support implements Registrable, Subscriber_Interface {
 	/**
 	 * Init sidebars registration
 	 */
-	function __construct( Config $config ) {
+	public function __construct( Config $config ) {
 		$this->config = $config;
 	}
 

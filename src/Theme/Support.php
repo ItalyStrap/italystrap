@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-use \ItalyStrap\Config\Config_Interface as Config;
+use \ItalyStrap\Config\ConfigInterface as Config;
 
 class Support implements Registrable {
 
@@ -22,12 +23,10 @@ class Support implements Registrable {
 	 * Add theme supports
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support
-	 *
-	 * @param  array $theme_supports An array with theme support list.
 	 */
 	public function register() {
 		foreach ( (array) $this->config as $feature => $parameters ) {
-			if ( is_string( $parameters ) ) {
+			if ( \is_string( $parameters ) ) {
 				\add_theme_support( $parameters );
 			} else {
 				\add_theme_support( $feature, $parameters );

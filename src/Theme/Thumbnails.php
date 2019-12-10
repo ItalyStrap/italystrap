@@ -1,21 +1,13 @@
 <?php
-/**
- * Class Image size API
- *
- * This class handle the image size in WordPress
- *
- * @link [URL]
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
 use ItalyStrap\Config\Config_Interface as Config;
 
 /**
- * Class definition
+ * Class Thumbnails
+ * @package ItalyStrap\Theme
  */
 class Thumbnails implements Registrable {
 
@@ -50,7 +42,7 @@ class Thumbnails implements Registrable {
 	 * @param bool $crop
 	 * @return Thumbnails
 	 */
-	public function add_size( string $name, int $width = 0, int $height = 0, bool $crop = false  ) : self {
+	public function addSize( string $name, int $width = 0, int $height = 0, bool $crop = false  ) : self {
 		\add_image_size( ...\func_get_args() );
 		return $this;
 	}
@@ -59,7 +51,7 @@ class Thumbnails implements Registrable {
 	 * @param string $name
 	 * @return Thumbnails
 	 */
-	public function remove_size( string $name ) : self {
+	public function removeSize( string $name ) : self {
 		\remove_image_size( $name );
 		return $this;
 	}
@@ -68,7 +60,7 @@ class Thumbnails implements Registrable {
 	 * @param string $name
 	 * @return bool
 	 */
-	public function has_size( string $name ) : bool {
+	public function hasSize( string $name ) : bool {
 		return \has_image_size( $name );
 	}
 
@@ -115,15 +107,15 @@ class Thumbnails implements Registrable {
 		 * @link http://wordpress.stackexchange.com/questions/30965/set-default-image-sizes-in-wordpress-to-hard-crop
 		 */
 
-		$this->set_image_size_from_breakpoint();
+		$this->setImageSizeFromBreakpoint();
 
-		$this->add_image_size();
+		$this->addImageSize();
 	}
 
 	/**
 	 * Add image sizes
 	 */
-	private function add_image_size() {
+	private function addImageSize() {
 
 		$default = [
 			'width'		=> 0,
@@ -135,7 +127,7 @@ class Thumbnails implements Registrable {
 
 			$params = \array_merge( $default, $params );
 
-			$this->add_size(
+			$this->addSize(
 				$name,
 				(int) $params['width'],
 				(int) $params['height'],
@@ -147,7 +139,7 @@ class Thumbnails implements Registrable {
 	/**
 	 * Generate image size from breakpoint
 	 */
-	private function set_image_size_from_breakpoint() {
+	private function setImageSizeFromBreakpoint() {
 
 		/**
 		 * @todo Da sviluppare meglio
@@ -184,7 +176,7 @@ class Thumbnails implements Registrable {
 	 * @param $prop
 	 * @return int
 	 */
-	private function get_height( $width, $prop ) : int {
+	private function getHeight( $width, $prop ) : int {
 		return (int) $width / $prop;
 	}
 }

@@ -17,56 +17,10 @@ namespace ItalyStrap\Event;
  */
 class Manager {
 
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	private function add_event( $tag, $controller ) {
+	const CALLBACK = 'function_to_add';
+	const PRIORITY = 'priority';
+	const ACCEPTED_ARGS = 'accepted_args';
 
-		/**
-		 * 'function_name_callable'
-		 * array( $object, 'method' )
-		 */
-		if ( is_callable( $controller ) ) {
-			add_filter( $tag, $controller, 10, 1 );
-			return;
-		}
-
-		add_filter(
-			$tag,
-			$controller['function_to_add'],
-			isset( $controller['priority'] ) ? $controller['priority'] : 10,
-			isset( $controller['accepted_args'] ) ? $controller['accepted_args'] : 1
-		);
-	}
-
-	/**
-	 * Add events
-	 *
-	 * This is the old method for the events manager sobstitute with the new API from Carl Alexander.
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function add_events( Subscriber_Interface $class ) {
-
-		_deprecated_function( __METHOD__, '4.0.0', 'Events_Manager::add_subscriber()' );
-
-		$this->add_subscriber( $class );
-
-		// foreach ( $class->get_subscribed_events() as $tag => $controller ) {
-
-		// 	if ( is_array( $controller ) && isset( $controller['function_to_add'] ) ) {
-		// 		$controller['function_to_add'] = array( $class, $controller['function_to_add'] );
-		// 		$this->add_event( $tag, $controller );
-		// 	} elseif ( is_string( $controller ) ) {
-		// 		$this->add_event( $tag, array( $class, $controller ) );
-		// 	}
-		// }
-	}
- 
 	/**
 	 * Adds an event subscriber.
 	 *
@@ -90,9 +44,9 @@ class Manager {
 	 * @param mixed                $parameters
 	 */
 	private function add_subscriber_listener( Subscriber_Interface $subscriber, $event_name, $parameters ) {
-		if ( is_string( $parameters ) ) {
+		if ( \is_string( $parameters ) ) {
 			$this->add_listener( $event_name, array( $subscriber, $parameters ) );
-		} elseif ( is_array( $parameters ) && isset( $parameters['function_to_add'] ) ) {
+		} elseif ( \is_array( $parameters ) && isset( $parameters['function_to_add'] ) ) {
 			$this->add_listener(
 				$event_name,
 				array( $subscriber, $parameters['function_to_add'] ),
@@ -112,7 +66,7 @@ class Manager {
 	 * @param int      $accepted_args
 	 */
 	public function add_listener( $event_name, $listener, $priority = 10, $accepted_args = 1 ) {
-		add_filter( $event_name, $listener, $priority, $accepted_args );
+		\add_filter( $event_name, $listener, $priority, $accepted_args );
 	}
  
 	/**
@@ -138,8 +92,8 @@ class Manager {
 		}
 
 		foreach ( (array) $wp_filter[ $event_name ][ $priority ] as $method_name_regstered => $value ) {
-			if ( strpos( $method_name_regstered, $method_name ) !== false ) {
-				remove_filter( $event_name, $method_name_regstered, $priority );
+			if ( \strpos( $method_name_regstered, $method_name ) !== false ) {
+				\remove_filter( $event_name, $method_name_regstered, $priority );
 			}
 		}
 	}
@@ -167,9 +121,9 @@ class Manager {
 	 * @param mixed                $parameters
 	 */
 	private function remove_subscriber_listener( Subscriber_Interface $subscriber, $event_name, $parameters ) {
-		if ( is_string( $parameters ) ) {
+		if ( \is_string( $parameters ) ) {
 			$this->remove_listener( $event_name, array( $subscriber, $parameters ) );
-		} elseif ( is_array( $parameters ) && isset( $parameters['function_to_add'] ) ) {
+		} elseif ( \is_array( $parameters ) && isset( $parameters['function_to_add'] ) ) {
 			$this->remove_listener(
 				$event_name,
 				array( $subscriber, $parameters['function_to_add'] ),
@@ -187,7 +141,7 @@ class Manager {
 	 * @param int      $priority
 	 */
 	public function remove_listener( $event_name, $listener, $priority = 10 ) {
-		remove_filter( $event_name, $listener, $priority );
+		\remove_filter( $event_name, $listener, $priority );
 		// $this->plugin_api_manager->remove_callback( $event_name, $listener, $priority );
 	}
 }

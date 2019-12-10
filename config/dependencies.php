@@ -2,8 +2,10 @@
 declare(strict_types=1);
 namespace ItalyStrap;
 
+use Auryn\Injector;
 use ItalyStrap\Builders\Builder_Interface;
-use ItalyStrap\Config\ConfigFactory;
+use ItalyStrap\Config\{Config, ConfigFactory, ConfigInterface};
+use ItalyStrap\Theme\{NavMenus, Register, Sidebars, Support, Thumbnails, TypeSupport};
 use ItalyStrap\View\{ViewFinderInterface, ViewInterface};
 use function ItalyStrap\Config\{get_config_file_content};
 use function ItalyStrap\Factory\get_config;
@@ -25,7 +27,7 @@ return [
 		 * Make sure the config is shared.
 		 * Already shared in bootstrap.php or in ACM if is active.
 		 */
-		Config\Config::class,
+		Config::class,
 		Event\Manager::class,
 		View\View::class,
 	],
@@ -40,6 +42,7 @@ return [
 	 * ==========================================================
 	 */
 	'aliases'				=> [
+		ConfigInterface::class		=> Config::class,
 		ViewFinderInterface::class	=> View\ViewFinder::class,
 		ViewInterface::class		=> View\View::class,
 		\Walker_Nav_Menu::class		=> Navbar\Bootstrap_Nav_Menu::class,
@@ -71,10 +74,10 @@ return [
 		Theme\Support::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/supports' ) ),
 		],
-		Theme\Type_Support::class	=> [
+		Theme\TypeSupport::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/type-supports' ) ),
 		],
-		Theme\Nav_Menus::class	=> [
+		Theme\NavMenus::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/nav-menus' ) ),
 		],
 
@@ -152,18 +155,26 @@ return [
 	 * ========================================================================
 	 */
 	'preparations'			=> [
-
-		Builders\Builder::class	=> function( Builders\Builder $builder, \Auryn\Injector $injector ) {
+		Builders\Builder::class	=> function( Builders\Builder $builder, Injector $injector ) {
 			$builder->set_injector( $injector );
 		},
-
-		View\ViewFinder::class	=> function( View\ViewFinderInterface $finder, \Auryn\Injector $injector ) {
+		View\ViewFinder::class	=> function( View\ViewFinderInterface $finder, Injector $injector ) {
 			$dirs = [
 				STYLESHEETPATH . '/' . get_config()->template_dir,
 				TEMPLATEPATH . '/' . get_config()->template_dir,
 			];
 
 			$finder->in( $dirs );
+		},
+		Register::class	=> function ( Register $register, Injector $injector ) {
+			$registrable = [];
+			$registrable[] = $injector->make( Thumbnails::class );
+			$registrable[] = $injector->make( Sidebars::class );
+			$registrable[] = $injector->make( Support::class );
+			$registrable[] = $injector->make( TypeSupport::class );
+			$registrable[] = $injector->make( NavMenus::class );
+
+			$register->withRegistrable( ...$registrable );
 		},
 	],
 

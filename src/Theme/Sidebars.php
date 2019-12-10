@@ -1,24 +1,16 @@
 <?php
-/**
- * [Short Description (no period for file headers)]
- *
- * [Long Description.]
- *
- * @link [URL]
- * @since [x.x.x (if available)]
- *
- * @package [Plugin/Theme/Etc]
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-use \ItalyStrap\Config\Config_Interface as Config;
+use \ItalyStrap\Config\ConfigInterface as Config;
 use function ItalyStrap\HTML\{open_tag, close_tag};
 
 /**
-* Class for registering sidebars in template
-* There are a standard sidebar and 4 footer dynamic sidebars
-*/
+ * Class for registering sidebars in template
+ * There are a standard sidebar and 4 footer dynamic sidebars
+ * @package ItalyStrap\Theme
+ */
 class Sidebars implements Registrable {
 
 	/**
@@ -38,11 +30,11 @@ class Sidebars implements Registrable {
 	 */
 	public function register() {
 		foreach ( $this->config as $sidebar ) {
-			register_sidebar( $this->_default( $sidebar ) );
+			\register_sidebar( $this->_default( $sidebar ) );
 		}
 	}
 
-	public function _default( array $sidebar ) : array {
+	private function _default( array $sidebar ) : array {
 
 		$defaults = [
 			'name'          => '',
@@ -55,6 +47,6 @@ class Sidebars implements Registrable {
 			'after_title'	=> close_tag( $sidebar['id'] . '-title' ),
 		];
 
-		return array_merge( $defaults, $sidebar );
+		return \array_merge( $defaults, $sidebar );
 	}
 }

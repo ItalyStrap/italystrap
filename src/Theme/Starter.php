@@ -10,10 +10,12 @@
  *
  * @package ItalyStrap
  */
+declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-use ItalyStrap\Config\Config_Interface as Config;
+use ItalyStrap\Config\ConfigInterface as Config;
+use ItalyStrap\Event\Manager as Event;
 use ItalyStrap\Event\Subscriber_Interface;
 
 /**
@@ -34,14 +36,23 @@ class Starter implements Subscriber_Interface {
 		return [
 			// 'hook_name'							=> 'method_name',
 			'italystrap_theme_load'	=> [
-				'function_to_add'		=> 'start',
-				'priority'				=> 20,
+				Event::CALLBACK	=> 'start',
+				Event::PRIORITY	=> 20,
 			],
 			'init'					=> 'start',
 			'widgets_init'			=> 'start',
 		];
 	}
 
+
+	/**
+	 * @var array
+	 */
+	private $registrables = [];
+
+	/**
+	 * @var Config
+	 */
 	private $config;
 	private $thumbnails;
 	private $support;
@@ -59,16 +70,16 @@ class Starter implements Subscriber_Interface {
 	 * @param Thumbnails $thumbnails
 	 * @param Sidebars $sidebars
 	 * @param Support $support
-	 * @param Type_Support $type_support
-	 * @param Nav_Menus $nav_menus
+	 * @param TypeSupport $type_support
+	 * @param NavMenus $nav_menus
 	 */
 	public function __construct(
 		Config $config,
 		Thumbnails $thumbnails,
 		Sidebars $sidebars,
 		Support $support,
-		Type_Support $type_support,
-		Nav_Menus $nav_menus
+		TypeSupport $type_support,
+		NavMenus $nav_menus
 	) {
 		$this->config = $config;
 		$this->thumbnails = $thumbnails;

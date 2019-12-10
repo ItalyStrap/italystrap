@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-use \ItalyStrap\Config\Config_Interface as Config;
+use \ItalyStrap\Config\ConfigInterface as Config;
 
-class Type_Support implements Registrable {
+class TypeSupport implements Registrable {
 
 	/**
 	 * @var Config

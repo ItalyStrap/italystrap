@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-use \ItalyStrap\Config\Config_Interface as Config;
+use \ItalyStrap\Config\ConfigInterface as Config;
 
-class Nav_Menus implements Registrable {
+class NavMenus implements Registrable {
 
 	/**
 	 * @var Config

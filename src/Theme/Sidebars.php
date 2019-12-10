@@ -5,7 +5,8 @@ namespace ItalyStrap\Theme;
 
 use \ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\Subscriber_Interface;
-use function ItalyStrap\HTML\{open_tag, close_tag};
+use function ItalyStrap\HTML\open_tag;
+use function ItalyStrap\HTML\close_tag;
 
 /**
  * Class for registering sidebars in template

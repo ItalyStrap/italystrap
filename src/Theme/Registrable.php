@@ -8,9 +8,8 @@
 
 namespace ItalyStrap\Theme;
 
+interface Registrable {
 
-interface Registrable
-{
 	/**
 	 * Method name for filter callback
 	 */

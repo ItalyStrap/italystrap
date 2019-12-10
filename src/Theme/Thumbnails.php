@@ -143,7 +143,6 @@ class Thumbnails implements Registrable, Subscriber_Interface {
 		];
 
 		foreach ( $this->image_sizes as $name => $params ) {
-
 			$params = \array_merge( $default, $params );
 
 			$this->addSize(

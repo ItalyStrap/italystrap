@@ -192,10 +192,14 @@ return [
 
 		Theme\Starter::class,
 
+		/**
+		 * Register Theme stuff
+		 */
+		Theme\NavMenus::class,
+
+
 		Custom\Metabox\Register::class,
 
-//		'\ItalyStrap\Router\Router', // Anche questo da testare meglio
-		// '\ItalyStrap\Core\Router\Controller', // Da testare meglio
 		Admin\Nav_Menu\Item_Custom_Fields::class,
 		Customizer\Theme_Customizer::class,
 		Css\Css::class,

@@ -50,8 +50,8 @@ class EventTest extends \Codeception\TestCase\WPTestCase
 			public static function get_subscribed_events(): array {
 				return [
 					'italystrap_theme_load'	=> [
-						'function_to_add'	=> 'start',
-						'priority'	=> 20,
+						\ItalyStrap\Event\Manager::CALLBACK	=> 'start',
+						\ItalyStrap\Event\Manager::PRIORITY	=> 20,
 					]
 				];
 			}

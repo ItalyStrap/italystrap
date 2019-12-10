@@ -24,6 +24,11 @@ use ItalyStrap\Config\Config;
 class Asset_Factory implements Subscriber_Interface {
 
 	/**
+	 * @var Config
+	 */
+	private $config;
+
+	/**
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
 	 *
@@ -48,7 +53,7 @@ class Asset_Factory implements Subscriber_Interface {
 				'priority'			=> 100, // Priorità da testare
 				'accepted_args'		=> 2,
 			),
-			'wp_footer'	=> 'jquery_local_fallback',
+			'wp_footer'				=> 'jquery_local_fallback',
 		);
 	}
 
@@ -61,6 +66,10 @@ class Asset_Factory implements Subscriber_Interface {
 	 * @var Script
 	 */
 	private $script;
+
+	public function __construct( Config $config ) {
+		$this->config = $config;
+	}
 
 	/**
 	 * Init script and style

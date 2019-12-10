@@ -9,7 +9,7 @@ class EventTest extends \Codeception\Test\Unit
     protected function _before()
     {
 		\tad\FunctionMockerLe\define( 'add_filter', function ( $filtername, $value ) { return true; } );
-		\tad\FunctionMockerLe\define( 'remove_filter', function ( $filtername, $value ) { return true; } );
+		\tad\FunctionMockerLe\define( 'remove_filter', function ( $filtername ) { return true; } );
     }
 
     protected function _after()
@@ -33,21 +33,24 @@ class EventTest extends \Codeception\Test\Unit
 	/**
 	 * @test
 	 */
-    public function ItShouldBeinstantiablefgdfg()
+    public function ItShouldBeAddSubscriberWithoutErrors()
     {
 		$sut = $this->getIntance();
-		$sut->add_subscriber( new class implements \ItalyStrap\Event\Subscriber_Interface {
+
+		$subscriber = new class implements \ItalyStrap\Event\Subscriber_Interface {
 			/**
 			 * @inheritDoc
 			 */
 			public static function get_subscribed_events(): array {
 				return [
 					'italystrap_theme_load'	=> [
-						Event::CALLBACK	=> 'start',
-						Event::PRIORITY	=> 20,
+						\ItalyStrap\Event\Manager::CALLBACK	=> 'start',
+						\ItalyStrap\Event\Manager::PRIORITY	=> 20,
 					]
 				];
 			}
-		});
+		};
+
+		$sut->add_subscriber( $subscriber );
     }
 }

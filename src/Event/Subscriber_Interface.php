@@ -8,12 +8,9 @@
  *
  * @author Carl Alexander <contact@carlalexander.ca>
  */
+declare(strict_types=1);
 
 namespace ItalyStrap\Event;
-
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
 
 interface Subscriber_Interface {
     /**

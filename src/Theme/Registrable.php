@@ -12,6 +12,11 @@ namespace ItalyStrap\Theme;
 interface Registrable
 {
 	/**
+	 * Method name for filter callback
+	 */
+	const CALLBACK = 'register';
+
+	/**
 	 * The class that implements this can be registered
 	 */
 	public function register();

@@ -121,13 +121,13 @@ class Starter implements Subscriber_Interface {
 
 		$this->thumbnails->register();
 
-		$this->nav_menus->register();
+//		$this->nav_menus->register();
 
 		/**
 		 * Per ora la eseguo da qui
 		 * in futuro valutare posto migliore
 		 */
-		$this->add_editor_styles();
+//		$this->add_editor_styles();
 	}
 
 	/**

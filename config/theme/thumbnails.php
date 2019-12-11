@@ -20,6 +20,9 @@ use ItalyStrap\Theme\Thumbnails as T;
  * col-md-1 68
  */
 
+/**
+ * @see \ItalyStrap\Core\get_content_width()
+ */
 $container = 1170;
 $gutter = 30;
 $col = 12;
@@ -93,5 +96,5 @@ return [
 		// 'lg'	=> 1200,
 	],
 
-	'content_width'	=> get_config()->get( 'content_width' ),
+	'content_width'		=> get_config()->get( 'content_width' ),
 ];

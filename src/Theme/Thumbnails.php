@@ -121,12 +121,10 @@ class Thumbnails implements ThumbnailsInterface, Registrable, Subscriber_Interfa
 			$content_width = $this->config->content_width;
 		}
 
-		$height = round( $content_width * 3 / 4 );
-
 		/**
 		 * 'post-thumbnails' is by default the size displayed for posts, pages and all archives.
 		 */
-		\set_post_thumbnail_size( $content_width, \intval( $height ) );
+		\set_post_thumbnail_size( $content_width, \intval( $content_width * 3 / 4 ) );
 
 		$this->registerImageSize();
 	}
@@ -146,18 +144,6 @@ class Thumbnails implements ThumbnailsInterface, Registrable, Subscriber_Interfa
 			);
 		}  );
 	}
-
-	/**
-	 * Get height
-	 *
-	 * @param int $width
-	 * @param int $prop
-	 * @return int
-	 */
-	private function calculateHeight( int $width, int $prop ): int {
-		return \intval( $width / $prop );
-	}
-
 	/**
 	 * @return array
 	 */
@@ -170,6 +156,18 @@ class Thumbnails implements ThumbnailsInterface, Registrable, Subscriber_Interfa
 
 		return $default;
 	}
+
+	/**
+	 * Get height
+	 *
+	 * @param int $width
+	 * @param int $prop
+	 * @return int
+	 */
+	private function calculateHeight( int $width, int $prop ): int {
+		return \intval( $width / $prop );
+	}
+
 
 	/**
 	 * Generate image size from breakpoint

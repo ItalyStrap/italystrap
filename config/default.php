@@ -10,9 +10,12 @@
  * @package ItalyStrap
  */
 declare(strict_types=1);
-namespace ItalyStrap\Customizer;
+
+namespace ItalyStrap;
 
 use function ItalyStrap\Core\{colophon_default_text,get_content_width};
+
+$config = Factory\get_config();
 
 return apply_filters(
 	'italystrap_default_theme_config',
@@ -46,9 +49,9 @@ return apply_filters(
 		/**
 		 * Default images
 		 */
-		'logo'							=> TEMPLATEURL . '/img/logo.png',
-		'default_image'					=> TEMPLATEURL . '/img/italystrap-default-image.png',
-		'default_404'					=> TEMPLATEURL . '/img/404.png',
+		'logo'							=> $config->TEMPLATEURL . '/img/logo.png',
+		'default_image'					=> $config->TEMPLATEURL . '/img/italystrap-default-image.png',
+		'default_404'					=> $config->TEMPLATEURL . '/img/404.png',
 		'404_show_image'				=> 'show',
 		'404_image'						=> '',
 		'404_title'						=> esc_attr__( 'Nothing Found', 'italystrap' ),

@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 $current_theme_name = \wp_get_theme()->get( 'Name' );
-$prefix = \strtolower( $current_theme_name );
+$prefix = \strtolower( \strval( $current_theme_name ) );
 
 $get_template = \get_template();
 

@@ -159,9 +159,11 @@ return [
 			$builder->set_injector( $injector );
 		},
 		View\ViewFinder::class	=> function( View\ViewFinderInterface $finder, Injector $injector ) {
+			$config = get_config();
+
 			$dirs = [
-				STYLESHEETPATH . '/' . get_config()->template_dir,
-				TEMPLATEPATH . '/' . get_config()->template_dir,
+				$config->CHILDPATH . '/' . $config->template_dir,
+				$config->PARENTPATH . '/' . $config->template_dir,
 			];
 
 			$finder->in( $dirs );

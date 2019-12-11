@@ -10,6 +10,7 @@
  * @package ItalyStrap\Core
  */
 declare(strict_types=1);
+
 namespace ItalyStrap\Core;
 
 /**
@@ -20,8 +21,8 @@ namespace ItalyStrap\Core;
 function set_default_constants( array $constant = [] ) {
 
 	foreach ( $constant as $name => $value ) {
-		if ( ! defined( $name ) ) {
-			define( $name, $value );
+		if ( ! \defined( $name ) ) {
+			\define( $name, $value );
 		}
 	}
 
@@ -40,8 +41,8 @@ function set_default_constants( array $constant = [] ) {
  */
 function set_current_template_constants( $current_template ) {
 
-	define( 'CURRENT_TEMPLATE', basename( $current_template ) );
-	define( 'CURRENT_TEMPLATE_SLUG', str_replace( '.php', '', CURRENT_TEMPLATE ) );
+	\define( 'CURRENT_TEMPLATE', basename( $current_template ) );
+	\define( 'CURRENT_TEMPLATE_SLUG', str_replace( '.php', '', CURRENT_TEMPLATE ) );
 
 	return $current_template;
 }

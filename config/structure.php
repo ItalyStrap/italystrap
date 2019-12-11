@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace ItalyStrap;
 
-use \ItalyStrap\Config\Config_Interface;
+use \ItalyStrap\Config\ConfigInterface;
 use function \ItalyStrap\Factory\get_config;
 use function \ItalyStrap\Factory\injector;
 use function \ItalyStrap\Core\get_template_settings;
@@ -26,14 +26,14 @@ return [
 					&& \in_array( CURRENT_TEMPLATE, \explode( ',', get_config()->get( 'breadcrumbs_show_on' ) ), true )
 					&& ! \in_array( 'hide_breadcrumbs', get_template_settings(), true );
 			},
-			'callback'	=> function () : string {
+			'callback'	=> function (): string {
 				$args = [
 //					'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
 				];
 
 				\ob_start();
 				\do_action( 'do_breadcrumbs', $args );
-				return \ob_get_clean();
+				return \strval( \ob_get_clean() );
 			},
 		],
 
@@ -41,14 +41,14 @@ return [
 			'hook'	=> 'italystrap_entry_content',
 			'priority'	=> 10, // Optional
 			'should_load'	=> function () : bool {
-				return \post_type_supports( \get_post_type(), 'thumbnail' )
+				return \post_type_supports( \strval( \get_post_type() ), 'thumbnail' )
 					&& ! \in_array( 'hide_thumb', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/featured-image',
-			'data'	=> function ( Config_Interface $config ) : Config_Interface {
+			'data'	=> function ( ConfigInterface $config ) : ConfigInterface {
 				if ( \is_singular() ) {
-					$config->push( 'post_thumbnail_size', 'post-thumbnail' );
-					$config->push( 'post_thumbnail_alignment', 'aligncenter' );
+					$config->add( 'post_thumbnail_size', 'post-thumbnail' );
+					$config->add( 'post_thumbnail_alignment', 'aligncenter' );
 				}
 
 				return $config;
@@ -59,11 +59,11 @@ return [
 			'hook'	=> 'italystrap_entry_content',
 			'priority'	=> 20, // Optional
 			'should_load'	=> function () : bool {
-				return \post_type_supports( \get_post_type(), 'title' )
+				return \post_type_supports(  \strval( \get_post_type() ), 'title' )
 					&& ! \in_array( 'hide_title', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/title',
-//			'data'	=> function ( Config_Interface $config ) : Config_Interface {
+//			'data'	=> function ( ConfigInterface $config ) : ConfigInterface {
 //					$config->push( 'title', \get_the_title() );
 //				return $config;
 //			},
@@ -73,7 +73,7 @@ return [
 			'hook'	=> 'italystrap_entry_content',
 			'priority'	=> 30, // Optional
 			'should_load'	=> function () : bool {
-				return \post_type_supports( get_post_type(), 'entry-meta' )
+				return \post_type_supports(  \strval( \get_post_type() ), 'entry-meta' )
 					&& ! \in_array( 'hide_meta', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/meta',
@@ -96,7 +96,7 @@ return [
 				 * @todo Vadere di fare un controllo sulle pagine perchè ovviamente non hanno il riassunto
 				 *       e con il controllo sopra sparisce il contenuto e non va bene.
 				 */
-				return \post_type_supports( get_post_type(), 'editor' )
+				return \post_type_supports(  \strval( \get_post_type() ), 'editor' )
 					&& ! \in_array( 'hide_content', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/content',
@@ -126,7 +126,7 @@ return [
 		'pager'	=> [
 			'hook'	=> 'italystrap_after_entry_content',
 			'should_load'	=> function () : bool {
-				return \post_type_supports( \get_post_type(), 'post_navigation' )
+				return \post_type_supports(  \strval( \get_post_type() ), 'post_navigation' )
 					&& \is_single();
 			},
 			'callback'	=> [ Components\Navigations\Pager::class, 'render' ], // Optional
@@ -200,7 +200,7 @@ return [
 			'hook'			=> 'italystrap_entry_content_none',
 			'priority'		=> 20,
 			'view'			=> 'posts/none/title',
-			'data'			=> function ( Config_Interface $config ) : Config_Interface {
+			'data'			=> function ( ConfigInterface $config ) : ConfigInterface {
 				return $config;
 			},
 		],
@@ -209,7 +209,7 @@ return [
 			'hook'			=> 'italystrap_entry_content_none',
 			'priority'		=> 30,
 			'view'			=> 'posts/none/content',
-			'data'			=> function ( Config_Interface $config ) : Config_Interface {
+			'data'			=> function ( ConfigInterface $config ) : ConfigInterface {
 				return $config;
 			},
 		],
@@ -253,7 +253,7 @@ return [
 			'priority'	=> 30,
 			'view'		=> 'misc/author-info',
 			'should_load'	=> function () : bool {
-				return \post_type_supports( \get_post_type(), 'author' )
+				return \post_type_supports(  \strval( \get_post_type() ), 'author' )
 					&& \is_singular()
 					&& ! \in_array( 'hide_author', get_template_settings(), true );
 			},
@@ -323,7 +323,7 @@ return [
 			'callback'	=> '\comments_template',
 			'should_load'	=> function () : bool {
 				return \is_singular()
-					&& \post_type_supports( \get_post_type(), 'comments' )
+					&& \post_type_supports( \strval( \get_post_type() ), 'comments' )
 					&& ! \in_array( 'hide_comments', get_template_settings(), true );
 			},
 		],

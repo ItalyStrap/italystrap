@@ -45,6 +45,11 @@ foreach ( $autoload_theme_files as $file ) {
 $constants = set_default_constants( get_config_file_content( 'constants' ) );
 
 /**
+ * This need to be set as soon as possible
+ */
+get_config()->merge( $constants );
+
+/**
  * ========================================================================
  *
  * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
@@ -92,8 +97,7 @@ try {
 
 	get_config()->merge(
 		get_config_file_content( 'default' ),
-		$theme_mods,
-		$constants
+		$theme_mods
 	);
 
 	unset( $theme_mods, $constants );

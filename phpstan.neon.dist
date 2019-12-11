@@ -8,6 +8,7 @@ includes:
 parameters:
     level: 0
     inferPrivatePropertyTypeFromConstructor: true
+    reportUnmatchedIgnoredErrors: false
     paths:
         - %currentWorkingDirectory%/src/
     excludes_analyse:
@@ -19,6 +20,7 @@ parameters:
     ignoreErrors:
         # Uses func_get_args()
         - '#^Function apply_filters invoked with [34567] parameters, 2 required\.$#'
-        #- '#Access to an undefined property ItalyStrap\\Config\\Config::\$[a-zA-Z0-9_]+#'
-        #- '#Access to an undefined property ItalyStrap\\Config\\ConfigInterface::\$[a-zA-Z0-9_]+#'
+        - '#Access to an undefined property ItalyStrap\\Config\\Config::\$[a-zA-Z0-9_]+#'
+        - '#Access to an undefined property ItalyStrap\\Config\\ConfigInterface::\$[a-zA-Z0-9_]+#'
         - '#Class ItalyStrap\\Migrations\\Old_Hooks not found#'
+        - '#Argument of an invalid type ItalyStrap\\Config\\[a-zA-Z_]+ supplied for foreach, only iterables are supported.#'

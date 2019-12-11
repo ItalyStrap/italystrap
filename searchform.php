@@ -9,8 +9,13 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
+use function ItalyStrap\HTML\{close_tag_e, open_tag_e};
+
+open_tag_e( 'searchform-wrapper', 'div', [
+    'itemscope' => true,
+    'itemtype'  => 'https://schema.org/WebSite',
+] );
 ?>
-<div itemscope itemtype="https://schema.org/WebSite">
 	<meta itemprop="url" content="<?php echo esc_attr( HOME_URL ); ?>"/>
 	<form  role="search" method="get" id="searchform" class="search-form" action="<?php echo esc_attr( HOME_URL ); ?>" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
 		<meta itemprop="target" content="<?php echo esc_attr( HOME_URL ); ?>?s={s}"/>
@@ -22,4 +27,5 @@ namespace ItalyStrap;
 			</span>
 		</div>
 	</form>
-</div>
+<?php
+close_tag_e( 'searchform-wrapper' );

@@ -66,7 +66,7 @@ return [
 	'definitions'			=> [
 
 		Theme\Sidebars::class	=> [
-			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
+			 ':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
 		],
 		Theme\Thumbnails::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/thumbnails' ) ),

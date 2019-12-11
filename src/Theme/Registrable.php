@@ -16,7 +16,8 @@ interface Registrable {
 	const CALLBACK = 'register';
 
 	/**
-	 * The class that implements this can be registered
+	 * The register method is used to register theme things
+	 * like sidebars, menus, image size and so on.
 	 */
 	public function register();
 }

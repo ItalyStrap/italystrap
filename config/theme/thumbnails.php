@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use function \ItalyStrap\Factory\get_config;
+use ItalyStrap\Theme\Thumbnails as T;
 
 /**
  * col-md-12 1140
@@ -30,39 +31,40 @@ $col = 12;
 return [
 	'sizes'	=> [
 		'navbar-brand-image'	=> [
-			'width'		=> 45,
-			'height'	=> 45,
-			'crop'		=> true,
+			T::WIDTH	=> 45,
+			T::HEIGHT	=> 45,
+			T::CROP		=> true,
 		],
+
 		/**
 		 * La full-width serve solo per la pagina omonima
 		 * Si potrebbe invece settare "large" a 1140 (verificare se 1170 va bene) e risparmiare spazio avendo una immagine di meno poichè entrambe non vengono croppate
 		 * "large" può essere settata anche con altezza a 9999
 		 */
 		'full-width'			=> [
-			'width'		=> $container - $gutter,
-			'height'	=> 9999,
-			'crop'		=> false,
+			T::WIDTH	=> $container - $gutter,
+			T::HEIGHT	=> 9999,
+			T::CROP		=> false,
 		],
 		'one_half'			=> [
-			'width'		=> $container / 2 - $gutter,
-			'height'	=> ($container / 2 - $gutter) * 3 / 4,
-			'crop'		=> true,
+			T::WIDTH	=> $container / 2 - $gutter,
+			T::HEIGHT	=> ($container / 2 - $gutter) * 3 / 4,
+			T::CROP		=> true,
 		],
 		'one_third'			=> [
-			'width'		=> $container / 3 - $gutter,
-			'height'	=> ($container / 3 - $gutter) * 3 / 4,
-			'crop'		=> true,
+			T::WIDTH	=> $container / 3 - $gutter,
+			T::HEIGHT	=> ($container / 3 - $gutter) * 3 / 4,
+			T::CROP		=> true,
 		],
 		'one_fourth'			=> [
-			'width'		=> $container / 4 - $gutter,
-			'height'	=> ($container / 4 - $gutter) * 3 / 4,
-			'crop'		=> true,
+			T::WIDTH	=> $container / 4 - $gutter,
+			T::HEIGHT	=> ($container / 4 - $gutter) * 3 / 4,
+			T::CROP		=> true,
 		],
 		'one_six'			=> [
-			'width'		=> $container / 6 - $gutter,
-			'height'	=> ($container / 6 - $gutter) * 3 / 4,
-			'crop'		=> true,
+			T::WIDTH	=> $container / 6 - $gutter,
+			T::HEIGHT	=> ($container / 6 - $gutter) * 3 / 4,
+			T::CROP		=> true,
 		],
 	],
 

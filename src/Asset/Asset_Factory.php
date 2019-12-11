@@ -73,6 +73,7 @@ class Asset_Factory implements Subscriber_Interface {
 
 	/**
 	 * Init script and style
+	 * @todo Asset url from manifest file https://github.com/craigsimps/generico-asset-handler/blob/master/src/Asset.php
 	 */
 	function add_style_and_script() {
 

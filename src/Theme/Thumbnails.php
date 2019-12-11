@@ -11,7 +11,11 @@ use ItalyStrap\Event\Subscriber_Interface;
  * Class Thumbnails
  * @package ItalyStrap\Theme
  */
-class Thumbnails implements Registrable, Subscriber_Interface {
+class Thumbnails implements ThumbnailsInterface, Registrable, Subscriber_Interface {
+
+	const WIDTH = 'width';
+	const HEIGHT = 'height';
+	const CROP = 'crop';
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -45,7 +49,7 @@ class Thumbnails implements Registrable, Subscriber_Interface {
 	/**
 	 * Init the class
 	 *
-	 * @param [type] $argument [description].
+	 * @param Config $config
 	 */
 	public function __construct( Config $config ) {
 
@@ -55,36 +59,52 @@ class Thumbnails implements Registrable, Subscriber_Interface {
 	}
 
 	/**
-	 * @param string $name
-	 * @param int $width
-	 * @param int $height
-	 * @param bool $crop
-	 * @return Thumbnails
+	 * @inheritDoc
 	 */
-	public function addSize( string $name, int $width = 0, int $height = 0, bool $crop = false  ) : self {
+	public function addSize( string $name, int $width = 0, int $height = 0, bool $crop = false  ): self {
 		\add_image_size( ...\func_get_args() );
 		return $this;
 	}
 
 	/**
-	 * @param string $name
-	 * @return Thumbnails
+	 * @inheritDoc
 	 */
-	public function removeSize( string $name ) : self {
+	public function removeSize( string $name ): self {
 		\remove_image_size( $name );
 		return $this;
 	}
 
 	/**
-	 * @param string $name
-	 * @return bool
+	 * @inheritDoc
 	 */
-	public function hasSize( string $name ) : bool {
+	public function hasSize( string $name ): bool {
 		return \has_image_size( $name );
 	}
 
 	/**
 	 * Register image size
+	 *
+	 * thumbnail_size_w
+	 * thumbnail_size_h
+	 * thumbnail_crop
+	 * medium_size_h: The medium size height.
+	 * medium_size_w: The medium size width.
+	 * large_size_h: The large size height.
+	 * large_size_w: The large size width.
+	 *
+	 * @example update_option( 'large_size_h', 700 );
+	 * @link https://developer.wordpress.org/reference/functions/add_image_size/
+	 *
+	 * @example
+	 * 	add_image_size(
+	 * 		'medium',
+	 * 		get_option( 'medium_size_w' ),
+	 * 		get_option( 'medium_size_h' ),
+	 * 		true
+	 * ); // For cropping the default image size.
+	 *
+	 * Maybe first remove_image_size and then add_image_size it's better
+	 * @link http://wordpress.stackexchange.com/questions/30965/set-default-image-sizes-in-wordpress-to-hard-crop
 	 */
 	public function register() {
 
@@ -106,52 +126,49 @@ class Thumbnails implements Registrable, Subscriber_Interface {
 		/**
 		 * 'post-thumbnails' is by default the size displayed for posts, pages and all archives.
 		 */
-		\set_post_thumbnail_size( $content_width, $height );
+		\set_post_thumbnail_size( $content_width, \intval( $height ) );
 
-
-		/**
-		 * thumbnail_size_w
-		 * thumbnail_size_h
-		 * thumbnail_crop
-		 * medium_size_h: The medium size height.
-		 * medium_size_w: The medium size width.
-		 * large_size_h: The large size height.
-		 * large_size_w: The large size width.
-		 *
-		 * @example update_option( 'large_size_h', 700 );
-		 * @link https://developer.wordpress.org/reference/functions/add_image_size/
-		 *
-		 * @example add_image_size('medium', get_option( 'medium_size_w' ), get_option( 'medium_size_h' ), true ); // For cropping the default image size.
-		 * Maybe first remove_image_size and then add_image_size it's better
-		 * @link http://wordpress.stackexchange.com/questions/30965/set-default-image-sizes-in-wordpress-to-hard-crop
-		 */
-
-		$this->setImageSizeFromBreakpoint();
-
-		$this->addImageSize();
+		$this->registerImageSize();
 	}
 
 	/**
 	 * Add image sizes
 	 */
-	private function addImageSize() {
-
-		$default = [
-			'width'		=> 0,
-			'height'	=> 0,
-			'crop'		=> false,
-		];
-
-		foreach ( $this->image_sizes as $name => $params ) {
-			$params = \array_merge( $default, $params );
+	private function registerImageSize() {
+		\array_walk( $this->image_sizes, function ( $params, $name ) {
+			$params = \array_merge( $this->getDefaultImageParams(), $params );
 
 			$this->addSize(
 				$name,
-				(int) $params['width'],
-				(int) $params['height'],
-				\boolval( $params['crop'] ) ?? false
+				\intval( $params[ self::WIDTH ] ),
+				\intval( $params[ self::HEIGHT ] ),
+				\boolval( $params[ self::CROP ] ) ?? false
 			);
-		}
+		}  );
+	}
+
+	/**
+	 * Get height
+	 *
+	 * @param int $width
+	 * @param int $prop
+	 * @return int
+	 */
+	private function calculateHeight( int $width, int $prop ): int {
+		return \intval( $width / $prop );
+	}
+
+	/**
+	 * @return array
+	 */
+	private function getDefaultImageParams(): array {
+		$default = [
+			self::WIDTH		=> 0,
+			self::HEIGHT	=> 0,
+			self::CROP		=> false,
+		];
+
+		return $default;
 	}
 
 	/**
@@ -180,21 +197,10 @@ class Thumbnails implements Registrable, Subscriber_Interface {
 		 */
 		foreach ( (array) $this->config->get('breakpoint', [] ) as $name => $width ) {
 			$this->image_sizes[ $name ] = [
-				'width'  => absint( $width ),
-				'height' => 9999,
-				'crop'   => true,
+				self::WIDTH  => absint( $width ),
+				self::HEIGHT => 9999,
+				self::CROP   => true,
 			];
 		}
-	}
-
-	/**
-	 * Get height
-	 *
-	 * @param $width
-	 * @param $prop
-	 * @return int
-	 */
-	private function getHeight( $width, $prop ) : int {
-		return (int) $width / $prop;
 	}
 }

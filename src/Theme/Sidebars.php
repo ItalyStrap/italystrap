@@ -51,7 +51,7 @@ class Sidebars implements Registrable, Subscriber_Interface {
 	}
 
 	/**
-	 * Register Sidebar in template on widget_init
+	 * @inheritDoc
 	 */
 	public function register() {
 		foreach ( $this->config as $sidebar ) {
@@ -65,15 +65,18 @@ class Sidebars implements Registrable, Subscriber_Interface {
 	 */
 	private function defaultSidebarConfig( array $sidebar ) : array {
 
+		$widget_context = $sidebar['id'] . '-widget';
+		$title_context = $sidebar['id'] . '-title';
+
 		$defaults = [
 			self::NAME			=> '',
 			self::ID			=> '',
 			self::DESCRIPTION	=> '',
 			self::CLASS_NAME	=> '',
-			self::BEFORE_WIDGET	=> open_tag( $sidebar['id'] . '-wrapper', 'div', ['id' => '%1$s', 'class' => 'widget %2$s'] ),
-			self::AFTER_WIDGET	=> close_tag( $sidebar['id'] . '-wrapper' ),
-			self::BEFORE_TITLE	=> open_tag( $sidebar['id'] . '-title', 'h3', [ 'class' => 'widget-title' ] ),
-			self::AFTER_TITLE	=> close_tag( $sidebar['id'] . '-title' ),
+			self::BEFORE_WIDGET	=> open_tag( $widget_context, 'div', ['id' => '%1$s', 'class' => 'widget %2$s'] ),
+			self::AFTER_WIDGET	=> close_tag( $widget_context ),
+			self::BEFORE_TITLE	=> open_tag( $title_context, 'h3', [ 'class' => 'widget-title' ] ),
+			self::AFTER_TITLE	=> close_tag( $title_context ),
 		];
 
 		return \array_merge( $defaults, $sidebar );

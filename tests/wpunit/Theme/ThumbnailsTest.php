@@ -19,21 +19,20 @@ class ThumbnailsTest extends BaseTheme
 	 */
 	public function ItShouldRegister()
 	{
-//		$support = [
-//			'automatic-feed-links',
-//			'html5'	=> [
-//				'search-form',
-//				'comment-form',
-//				'comment-list',
-//				'gallery',
-//				'caption',
-//			],
-//		];
-//
-//		$sut = $this->getInstance( $support );
-//
-//		$sut->register();
-//
-//		$this->assertEqualSets( [$support['html5']], \get_theme_support( 'html5' ) );
+		$support = [
+			'sizes'	=> [
+				'navbar-brand-image'	=> [
+					\ItalyStrap\Theme\Thumbnails::WIDTH	=> 45,
+					\ItalyStrap\Theme\Thumbnails::HEIGHT	=> 45,
+					\ItalyStrap\Theme\Thumbnails::CROP		=> true,
+				],
+			],
+		];
+
+		$sut = $this->getInstance( $support );
+
+		$sut->register();
+
+		self::assertTrue( \has_image_size( 'navbar-brand-image' ), '' );
 	}
 }

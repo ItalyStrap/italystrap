@@ -116,7 +116,7 @@ function colophon_default_text() {
  *
  * @since 4.0.0 ItalyStrap
  *
- * @param \ItalyStrap\Config\Config_Interface $config
+ * @param \ItalyStrap\Config\ConfigInterface $config
  * @return string
  */
 function get_the_colophon() {
@@ -129,7 +129,7 @@ function get_the_colophon() {
  *
  * @since 4.0.0 ItalyStrap
  *
- * @param \ItalyStrap\Config\Config_Interface $config
+ * @param \ItalyStrap\Config\ConfigInterface $config
  */
 function the_colophon() {
 	echo get_the_colophon();

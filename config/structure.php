@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace ItalyStrap;
 
+use ItalyStrap\Builders\Builder;
 use \ItalyStrap\Config\ConfigInterface;
 use function \ItalyStrap\Factory\get_config;
 use function \ItalyStrap\Factory\injector;
@@ -19,7 +20,7 @@ use function \ItalyStrap\Core\get_template_settings;
 return [
 
 		'breadcrumbs'	=> [
-			'hook'	=> 'italystrap_before_loop',
+			Builder::EVENT_NAME	=> 'italystrap_before_loop',
 			'priority'	=> 10, // Optional
 			'should_load'	=> function () : bool {
 				return \current_theme_supports( 'breadcrumbs' )
@@ -38,7 +39,7 @@ return [
 		],
 
 		'featured-image'	=> [
-			'hook'	=> 'italystrap_entry_content',
+			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			'priority'	=> 10, // Optional
 			'should_load'	=> function () : bool {
 				return \post_type_supports( \strval( \get_post_type() ), 'thumbnail' )
@@ -56,7 +57,7 @@ return [
 		],
 
 		'title'	=> [
-			'hook'	=> 'italystrap_entry_content',
+			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			'priority'	=> 20, // Optional
 			'should_load'	=> function () : bool {
 				return \post_type_supports(  \strval( \get_post_type() ), 'title' )
@@ -70,7 +71,7 @@ return [
 		],
 
 		'meta'	=> [
-			'hook'	=> 'italystrap_entry_content',
+			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			'priority'	=> 30, // Optional
 			'should_load'	=> function () : bool {
 				return \post_type_supports(  \strval( \get_post_type() ), 'entry-meta' )
@@ -80,13 +81,13 @@ return [
 		],
 
 		'preview'	=> [
-			'hook'	=> 'italystrap_entry_content',
+			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			'priority'	=> 40, // Optional
 			'view'	=> 'posts/parts/preview',
 		],
 
 		'content'	=> [
-			'hook'	=> 'italystrap_entry_content',
+			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			'priority'	=> 50, // Optional
 			'should_load'	=> function () : bool {
 
@@ -103,19 +104,19 @@ return [
 		],
 
 		'modified'	=> [
-			'hook'	=> 'italystrap_entry_content',
+			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			'priority'	=> 60, // Optional
 			'view'	=> 'posts/parts/modified',
 		],
 
 //		'edit-post-link'	=> [
-//			'hook'	=> 'italystrap_after_entry_content',
+//			Builder::self::EVENT_NAME	=> 'italystrap_after_entry_content',
 //			'priority'	=> 999, // Optional
 //			'callback'	=> [ Controllers\Posts\Parts\Edit_Post_Link::class, 'render' ], // Optional
 //		],
 
 		'link-pages'	=> [
-			'hook'	=> 'italystrap_entry_content',
+			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			'priority'	=> 70, // Optional
 			'should_load'	=> function () : bool {
 				return \is_single();
@@ -124,7 +125,7 @@ return [
 		],
 
 		'pager'	=> [
-			'hook'	=> 'italystrap_after_entry_content',
+			Builder::EVENT_NAME	=> 'italystrap_after_entry_content',
 			'should_load'	=> function () : bool {
 				return \post_type_supports(  \strval( \get_post_type() ), 'post_navigation' )
 					&& \is_single();
@@ -133,7 +134,7 @@ return [
 		],
 
 		'pagination'	=> [
-			'hook'	=> 'italystrap_after_loop',
+			Builder::EVENT_NAME	=> 'italystrap_after_loop',
 			'should_load'	=> function () : bool {
 				return ! \is_404();
 			},
@@ -141,7 +142,7 @@ return [
 		],
 
 		'sidebar'	=> [
-			'hook'	=> 'italystrap_after_content',
+			Builder::EVENT_NAME	=> 'italystrap_after_content',
 			'callback'	=> '\get_sidebar',
 			'should_load'	=> function () : bool {
 				return 'full_width' !== get_config()->get( 'site_layout' );
@@ -177,7 +178,7 @@ return [
 		],
 
 	'entry'	=> [
-		'hook'	=> 'italystrap_entry',
+		Builder::EVENT_NAME	=> 'italystrap_entry',
 		'view'	=> 'posts/post',
 		'data'	=> function () : array {
 			return (array) \get_post( null, ARRAY_A );
@@ -192,12 +193,12 @@ return [
 		 * ====================================================================
 		 */
 		'none-image'	=> [
-			'hook'			=> 'italystrap_entry_content_none',
+			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
 			'view'			=> 'posts/none/image',
 		],
 
 		'none-title'	=> [
-			'hook'			=> 'italystrap_entry_content_none',
+			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
 			'priority'		=> 20,
 			'view'			=> 'posts/none/title',
 			'data'			=> function ( ConfigInterface $config ) : ConfigInterface {
@@ -206,7 +207,7 @@ return [
 		],
 
 		'none-content'	=> [
-			'hook'			=> 'italystrap_entry_content_none',
+			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
 			'priority'		=> 30,
 			'view'			=> 'posts/none/content',
 			'data'			=> function ( ConfigInterface $config ) : ConfigInterface {
@@ -215,12 +216,12 @@ return [
 		],
 
 	'none'	=> [
-		'hook'	=> 'italystrap_content_none',
+		Builder::EVENT_NAME	=> 'italystrap_content_none',
 		'view'	=> 'posts/none',
 	],
 
 		'archive-headline'	=> [
-			'hook'		=> 'italystrap_before_while',
+			Builder::EVENT_NAME		=> 'italystrap_before_while',
 			'priority'	=> 20,
 			'view'		=> 'misc/archive-headline',
 			'should_load'	=> function () : bool {
@@ -229,7 +230,7 @@ return [
 		],
 
 		'author-info'	=> [
-			'hook'		=> 'italystrap_before_loop',
+			Builder::EVENT_NAME		=> 'italystrap_before_loop',
 			'priority'	=> 20,
 			'view'		=> 'misc/author-info',
 			'should_load'	=> 'is_author',
@@ -249,7 +250,7 @@ return [
 		],
 		// @todo Rename the key with a better name
 		'author-info-1'	=> [
-			'hook'		=> 'italystrap_after_entry_content',
+			Builder::EVENT_NAME		=> 'italystrap_after_entry_content',
 			'priority'	=> 30,
 			'view'		=> 'misc/author-info',
 			'should_load'	=> function () : bool {
@@ -280,12 +281,12 @@ return [
 	 * ====================================================================
 	 */
 	'loop'	=> [
-		'hook'	=> 'italystrap_loop',
+		Builder::EVENT_NAME	=> 'italystrap_loop',
 		'view'	=> ['posts/loop'],
 	],
 
 		'navbar-top'	=> [
-			'hook'		=> 'italystrap_before_header',
+			Builder::EVENT_NAME		=> 'italystrap_before_header',
 			'view'		=> 'headers/navbar-top',
 			'should_load'	=> function () : bool {
 				return \has_nav_menu( 'info-menu' )
@@ -294,7 +295,7 @@ return [
 		],
 
 		'header-image'	=> [
-			'hook'		=> 'italystrap_content_header',
+			Builder::EVENT_NAME		=> 'italystrap_content_header',
 			'view'		=> 'headers/image',
 			'should_load'	=> '\has_header_image',
 			'data'		=> function () {
@@ -303,7 +304,7 @@ return [
 		],
 
 		'navbar'	=> [
-			'hook'		=> 'italystrap_after_header',
+			Builder::EVENT_NAME		=> 'italystrap_after_header',
 			'view'		=> 'headers/navbar',
 			'data'	=> function () : array {
 				return [
@@ -319,7 +320,7 @@ return [
 		 * "callback_args => [ 'file' => 'new_comment_template.php' ]"
 		 */
 		'comments'	=> [
-			'hook'		=> 'italystrap_after_loop',
+			Builder::EVENT_NAME		=> 'italystrap_after_loop',
 			'callback'	=> '\comments_template',
 			'should_load'	=> function () : bool {
 				return \is_singular()
@@ -329,13 +330,13 @@ return [
 		],
 
 		'footer-widget-area'	=> [
-			'hook'		=> 'italystrap_footer',
+			Builder::EVENT_NAME		=> 'italystrap_footer',
 			'view'		=> 'footers/widget-area',
 			'callback'	=> [ Components\Footers\Widget_Area::class, 'render' ],
 		],
 
 		'footer-colophon'	=> [
-			'hook'		=> get_config()->get( 'colophon_action' ),
+			Builder::EVENT_NAME		=> get_config()->get( 'colophon_action' ),
 			'priority'	=> get_config()->get( 'colophon_priority' ),
 			'view'		=> 'footers/colophon',
 		],
@@ -348,7 +349,7 @@ return [
 	 * ====================================================================
 	 */
 	'index'	=> [
-		'hook'	=> 'italystrap',
+		Builder::EVENT_NAME	=> 'italystrap',
 		'view'	=> 'index',
 	],
 ];

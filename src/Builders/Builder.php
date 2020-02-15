@@ -10,10 +10,13 @@ namespace ItalyStrap\Builders;
 
 use Auryn\InjectionException;
 use Auryn\Injector;
+use ItalyStrap\Event\HooksInterface as Hooks;
 use ItalyStrap\View\ViewInterface as View;
 use ItalyStrap\Config\ConfigInterface as Config;
 
 class Builder implements Builder_Interface {
+
+	const EVENT_NAME = 'event_name';
 
 	/**
 	 * @var View
@@ -27,22 +30,28 @@ class Builder implements Builder_Interface {
 
 	/**
 	 * @var Injector
-	 */
+*/
 	private $injector;
 
 	/**
 	 * @var array
 	 */
 	private $structure = [];
+	/**
+	 * @var Hooks
+	 */
+	private $hooks;
 
 	/**
 	 * Builder constructor.
 	 * @param View $view
 	 * @param Config $config
+	 * @param Hooks $hooks
 	 */
-	public function __construct( View $view, Config $config ) {
+	public function __construct( View $view, Config $config, Hooks $hooks ) {
 		$this->view = $view;
 		$this->config = $config;
+		$this->hooks = $hooks;
 	}
 
 	/**
@@ -70,7 +79,7 @@ class Builder implements Builder_Interface {
 		}
 
 		foreach ( $this->config as $component ) {
-			$this->is_valid_hook_name( $component );
+			$this->assertEventNameIsNotEmpty( $component );
 
 			/**
 			 * Merge with default
@@ -87,7 +96,7 @@ class Builder implements Builder_Interface {
 			$this->add_action( $component );
 
 //			foreach ( (array) $component['hooks'] as $hook ) {
-//				$this->add_action( $hook['hook'], $component, $hook['priority'] );
+//				$this->add_action( $hook['event_name'], $component, $hook['priority'] );
 //			}
 		}
 	}
@@ -97,12 +106,19 @@ class Builder implements Builder_Interface {
 	 */
 	private function add_action( array $component ) {
 
-		\add_action( $component['hook'], function ( ...$args ) use ( $component ) {
+		\add_action( $component['event_name'], function ( ...$args ) use ( $component ) {
 
 			$this->set_data( $component );
 
 			echo $this->render_from_callback( $component );
 		}, $component['priority'] );
+
+//		$this->hooks->addListener( $component['event_name'], function ( ...$args ) use ( $component ) {
+//
+//			$this->set_data( $component );
+//
+//			echo $this->render_from_callback( $component );
+//		}, $component['priority'] );
 	}
 
 	/**
@@ -173,7 +189,7 @@ class Builder implements Builder_Interface {
 	 */
 	private function get_default() : array {
 		return [
-			'hook'			=> '',
+			static::EVENT_NAME	=> '',
 			'view'			=> '', // Could be a string|array
 			'data'			=> [], // Could be array|callable
 			'priority'		=> 10, // Optional
@@ -186,10 +202,9 @@ class Builder implements Builder_Interface {
 	/**
 	 * @param array $component
 	 */
-	private function is_valid_hook_name( array $component ) {
-
-		if ( ! \array_key_exists( 'hook', $component ) || '' === $component['hook'] ) {
-			throw new \RuntimeException( \__( 'The hook name must be not empty', 'italystrap' ), 0 );
+	private function assertEventNameIsNotEmpty( array $component ) {
+		if ( ! \array_key_exists( 'event_name', $component ) || '' === $component['event_name'] ) {
+			throw new \RuntimeException( \__( 'The event name must be not empty', 'italystrap' ), 0 );
 		}
 	}
 

@@ -67,9 +67,7 @@ class Widget_Area {
 		$count = 0;
 
 		foreach ( $this->data['footer_sidebars'] as $value ) {
-
 			if ( ! empty( $sidebars_widgets[ $value ][0] ) ) {
-
 				$count++;
 			}
 		}

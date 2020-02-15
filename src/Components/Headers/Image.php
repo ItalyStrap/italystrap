@@ -83,8 +83,7 @@ class Image {
 
 		$attr = \apply_filters( 'italystrap_custom_header_image_attr', $attr );
 
-		return \wp_get_attachment_image( $id , $size, false, $attr );
-	
+		return \wp_get_attachment_image( $id, $size, false, $attr );
 	}
 
 	/**
@@ -145,6 +144,5 @@ class Image {
 		$this->data['output'] = $this->custom_header();
 
 		return $this->data;
-
 	}
 }

@@ -99,25 +99,20 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 		 * @link http://getbootstrap.com/components/#navbar-buttons
 		 */
 		if ( 0 === strcasecmp( $classes[0], 'divider' ) && 1 === $depth ) {
-
 			$_atts = array(
 				'role'	=> 'presentation',
 				'class'	=> 'divider',
 			);
 
 			$output .= $indent . '<li' . $this->get_attributes( $_atts ) . '>';
-
-		} else if ( 0 === strcasecmp( $classes[0], 'dropdown-header' ) && 1 === $depth ) {
-
+		} elseif ( 0 === strcasecmp( $classes[0], 'dropdown-header' ) && 1 === $depth ) {
 			$_atts = array(
 				'role'	=> 'presentation',
 				'class'	=> 'dropdown-header',
 			);
 
 			$output .= $indent . '<li' . $this->get_attributes( $_atts ) . '>' . esc_attr( $item->title );
-
-		} else if ( strcasecmp( $classes[0], 'disabled' ) === 0 ) {
-
+		} elseif ( strcasecmp( $classes[0], 'disabled' ) === 0 ) {
 			$_atts = array(
 				'role'	=> 'presentation',
 				'class'	=> 'disabled',
@@ -125,7 +120,6 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 
 			$output .= $indent . '<li' . $this->get_attributes( $_atts ) . '><a href="#">' . esc_attr( $item->title ) . '</a>';
 		} else {
-
 			$class_names = $value = '';
 
 			/**
@@ -168,7 +162,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 
 			if ( $class_names ) {
 				$_atts['class'] = 'nav-item ' . $class_names;
-			} 
+			}
 
 			/**
 			 * Filter the ID applied to a menu item's list item element.
@@ -198,17 +192,13 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 			 * If item has_children add atts to a.
 			 */
 			if ( $args->has_children && 0 === $depth ) {
-
 				$atts['href']   		= '#';
 				$atts['data-toggle']	= 'dropdown';
 				$atts['class']			= 'nav-link dropdown-toggle';
-
 			} else {
-
 				$atts['href']			= ! empty( $item->url ) ? $item->url : '';
 				$atts['itemprop']		= 'url';
 				$atts['class']			= 'nav-link'; // BT4
-
 			}
 
 			/**
@@ -270,15 +260,11 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 			 * property is NOT null we apply it as the class name for the glyphicon.
 			 */
 			if ( ! empty( $item->glyphicon ) ) {
-
 				$item_output .= '<a' . $this->get_attributes( $atts ) . '><span' . $this->get_attributes( array( 'class' => $item->glyphicon ) ) . '></span>&nbsp;';
-
 			} else {
-
 				$atts['itemprop'] = 'url';
 
 				$item_output .= '<a' . $this->get_attributes( $atts ) . '>';
-
 			}
 
 			$item_output .= $args->link_before . $title . $args->link_after . $current_text;
@@ -305,7 +291,6 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 			 * @param array  $args        An array of {@see wp_nav_menu()} arguments.
 			 */
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-
 		}
 	}
 
@@ -376,7 +361,6 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 		$output = '';
 
 		if ( $wp_nav_menu_args['container'] ) {
-
 			$output = sprintf(
 				'<%s%s>',
 				esc_attr( trim( $wp_nav_menu_args['container'] ) ),
@@ -402,7 +386,6 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
 		);
 
 		if ( $wp_nav_menu_args['container'] ) {
-
 			$output .= sprintf(
 				'</%s>',
 				esc_attr( trim( $wp_nav_menu_args['container'] ) )

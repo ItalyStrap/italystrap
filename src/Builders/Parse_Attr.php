@@ -12,7 +12,6 @@ namespace ItalyStrap\Builders;
 
 use \ItalyStrap\Config\ConfigInterface as Config;
 
-
 class Parse_Attr {
 
 	const ACCEPTED_ARGS = 3;
@@ -43,7 +42,6 @@ class Parse_Attr {
 		 * @var string|int|bool|array|callable $filter_attr
 		 */
 		foreach ( $this->config as $filter_name => $filter_attr ) {
-
 			if ( \is_callable( $filter_attr ) ) {
 				\add_filter( $filter_name, $filter_attr, 10, static::$accepted_args );
 				continue;

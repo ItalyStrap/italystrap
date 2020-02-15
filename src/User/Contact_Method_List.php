@@ -33,12 +33,11 @@ class Contact_Method_List extends Contact_Methods_Base {
 		];
 
 		foreach ( $this->new_contact_methods as $key => $value ) {
-
 //			if ( array_key_exists( $key, $list ) ) {
 //				continue;
 //			}
 
-d($key,$this->author->$key);
+			d($key, $this->author->$key);
 			if ( ! empty( $this->author->$key ) ) {
 				$list .= sprintf(
 					'<li><a href="%1$s" title="%3$s" rel="me" class="sprite32 %2$s32"><span class="sr-only">%3$s</span></a></li>',

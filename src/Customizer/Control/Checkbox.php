@@ -10,7 +10,7 @@ namespace ItalyStrap\Customizer\Control;
 use WP_Customize_Control;
 
 if ( ! class_exists( 'WP_Customize_Control' ) ) {
-	return NULL;
+	return null;
 }
 
 /**
@@ -44,5 +44,4 @@ class Checkbox extends WP_Customize_Control {
 		<input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>" />
 		<?php
 	}
-
 }

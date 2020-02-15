@@ -36,7 +36,7 @@ class Asset_Factory implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		return array(
 			// 'hook_name'				=> 'method_name',
@@ -91,7 +91,6 @@ class Asset_Factory implements SubscriberInterface {
 		$dev_dir = '';
 
 		if ( SCRIPT_DEBUG ) {
-
 			$ver = rand( 0, 100000 );
 			// $ver = filemtime($file);
 			// $suffix = '';
@@ -205,7 +204,6 @@ class Asset_Factory implements SubscriberInterface {
 			 */
 			echo '<script>window.jQuery || document.write(\'<script src="' . TEMPLATEURL . '/js/jquery.min.js"><\/script>\')</script>' . "\n";
 			$add_jquery_fallback = false;
-
 		}
 
 		if ( 'jquery' === $handle ) {

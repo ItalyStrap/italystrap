@@ -2,8 +2,8 @@
 declare(strict_types=1);
 
 require_once 'BaseTheme.php';
-class ThumbnailsTest extends BaseTheme
-{
+class ThumbnailsTest extends BaseTheme {
+
 	protected function getInstance( $paramConfig = [] ) {
 //		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
 		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
@@ -17,8 +17,7 @@ class ThumbnailsTest extends BaseTheme
 	/**
 	 * @test
 	 */
-	public function ItShouldRegister()
-	{
+	public function ItShouldRegister() {
 		$support = [
 			'sizes'	=> [
 				'navbar-brand-image'	=> [

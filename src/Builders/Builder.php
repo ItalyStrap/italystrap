@@ -64,13 +64,12 @@ class Builder implements Builder_Interface {
 		if ( ! $this->injector ) {
 			throw new \RuntimeException( sprintf(
 				'You have to set the Injector with "%s::set_injector" before to load %s',
-					__CLASS__,
+				__CLASS__,
 				__METHOD__
 			), 0 );
 		}
 
 		foreach ( $this->config as $component ) {
-
 			$this->is_valid_hook_name( $component );
 
 			/**
@@ -98,12 +97,11 @@ class Builder implements Builder_Interface {
 	 */
 	private function add_action( array $component ) {
 
-		\add_action( $component['hook'], function( ...$args ) use ( $component ) {
+		\add_action( $component['hook'], function ( ...$args ) use ( $component ) {
 
 			$this->set_data( $component );
 
 			echo $this->render_from_callback( $component );
-
 		}, $component['priority'] );
 	}
 

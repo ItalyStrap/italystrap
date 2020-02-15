@@ -31,7 +31,8 @@ $manager->get_setting( 'blogdescription' )->transport = 'postMessage';
 /**
  * Add new panel for ItalyStrap theme options
  */
-$manager->add_panel( $this->panel,
+$manager->add_panel(
+	$this->panel,
 	array(
 		'title'			=> sprintf(
 			__( '%s Options', 'italystrap' ),

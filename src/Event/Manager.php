@@ -24,7 +24,7 @@ class Manager {
 	/**
 	 * Adds an event subscriber.
 	 *
-	 * The event manager adds the given subscriber to the list of event listeners 
+	 * The event manager adds the given subscriber to the list of event listeners
 	 * for all the events that it wants to listen to.
 	 *
 	 * @param Subscriber_Interface $subscriber
@@ -101,7 +101,7 @@ class Manager {
 	/**
 	 * Removes an event subscriber.
 	 *
-	 * The event manager removes the given subscriber from the list of event listeners 
+	 * The event manager removes the given subscriber from the list of event listeners
 	 * for all the events that it wants to listen to.
 	 *
 	 * @param Subscriber_Interface $subscriber

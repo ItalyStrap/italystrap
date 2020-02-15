@@ -33,7 +33,7 @@ if ( \class_exists( Migrations\Old_Hooks::class ) ) {
  *
  * @priority PHP_INT_MIN Make sure it will be loaded ASAP at 'wp' hook
  */
-add_action( 'wp', function (){
+add_action( 'wp', function () {
 
 	$config = get_config();
 	$id = (int) \get_queried_object_id();
@@ -51,7 +51,8 @@ add_action( 'wp', function (){
 	 * @TODO Forse qui è meglio settare i valori con l'hook "italystrap" nel file di template per avere la possibilità di poter cambiare il valore in esecuzione
 	 */
 	if ( is_singular() ) {
-		$config->add( 'post_content_template',
+		$config->add(
+			'post_content_template',
 			(array) \get_post_meta( $id, '_italystrap_template_settings', true )
 		);
 	} else {
@@ -71,7 +72,6 @@ add_action( 'wp', function (){
 //	$config->add( 'site_layout',
 //		(string) apply_filters( 'italystrap_get_layout_settings', $config->get( 'site_layout', 'content_sidebar' ) )
 //	);
-
 }, PHP_INT_MIN );
 
 /**

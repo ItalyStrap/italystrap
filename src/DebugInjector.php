@@ -3,14 +3,13 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-
 use Auryn\ConfigException;
 use Auryn\InjectionException;
 use Auryn\Injector;
 use Throwable;
 
-class DebugInjector extends Empress\Injector
-{
+class DebugInjector extends Empress\Injector {
+
 	/**
 	 * @var Injector
 	 */

@@ -31,7 +31,7 @@ class Register implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		return [
 			// 'hook_name'							=> 'method_name',
@@ -202,11 +202,11 @@ class Register implements SubscriberInterface {
 					'desc'		=> sprintf(
 						'Enter a youtube, twitter, or instagram URL. Supports services listed at %s. This will be shown instead of feature image.',
 						'<a href="http://codex.wordpress.org/Embeds">http://codex.wordpress.org/Embeds</a>'
-						),
+					),
 					'default'	=> '',
 					'id'		=> $this->_prefix . '_featured_video',
 					'type'		=> 'text',
-				) 
+				)
 			);
 		}
 	}

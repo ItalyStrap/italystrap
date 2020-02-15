@@ -33,7 +33,7 @@ class Customizer_Beta implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
@@ -166,13 +166,11 @@ class Customizer_Beta implements SubscriberInterface {
 	public function register( WP_Customize_Manager $manager ) {
 
 		foreach ( $this->config as $panel_id => $args ) {
-
 			if ( 'panel' === $args['type'] ) {
 				$manager->add_panel( $panel_id, $args['args'] );
 			}
 
 			foreach ( $args['sections'] as $section_id => $section ) {
-
 				if ( 'panel' === $args['type'] ) {
 					$section['args']['panel'] = $panel_id;
 				}
@@ -180,7 +178,6 @@ class Customizer_Beta implements SubscriberInterface {
 				$manager->add_section( $section_id, $section['args'] );
 
 				foreach ( $section['config'] as $config_id => $config_val ) {
-
 					$manager->add_setting(
 						$config_id,
 						$this->get_setting_default( $config_val['setting'] )

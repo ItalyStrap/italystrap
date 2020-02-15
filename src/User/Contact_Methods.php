@@ -32,7 +32,7 @@ class Contact_Methods extends Contact_Methods_Base implements SubscriberInterfac
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
@@ -50,7 +50,7 @@ class Contact_Methods extends Contact_Methods_Base implements SubscriberInterfac
 
 		d($this->get_author()->avatar);
 
-		d($url,$id_or_email);
+		d($url, $id_or_email);
 		return $url;
 	}
 
@@ -74,7 +74,7 @@ class Contact_Methods extends Contact_Methods_Base implements SubscriberInterfac
 			}
 		}
 
-		return $contactmethods;	
+		return $contactmethods;
 	}
 
 	/**
@@ -91,7 +91,7 @@ class Contact_Methods extends Contact_Methods_Base implements SubscriberInterfac
 			}
 		}
 
-		return $contactmethods;	
+		return $contactmethods;
 	}
 
 	/**
@@ -105,6 +105,6 @@ class Contact_Methods extends Contact_Methods_Base implements SubscriberInterfac
 		$this->add_contact_methods( $contactmethods );
 		$this->remove_contact_methods( $contactmethods );
 
-		return $contactmethods;	
+		return $contactmethods;
 	}
 }

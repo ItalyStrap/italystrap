@@ -38,25 +38,25 @@ class Comments extends Walker_Comment {
 	 */
 	protected function html5_comment( $comment, $depth, $args ) {
 		$tag = 'div' === $args['style'] ? 'div' : 'li';
-?>
+		?>
 		<<?php echo $tag; ?> id="comment-<?php \comment_ID(); ?>" <?php \comment_class( $this->has_children ? 'parent' : '' ); ?>>
 			<article id="div-comment-<?php \comment_ID(); ?>" class="comment-body row" itemscope itemtype="https://schema.org/Comment">
 				<div class="col-sm-2">
 					<?php
 					/**
 					 * Di default dovrebbe essere a 32 quindi la if non serve, controllare
-                     *
-                     * @TODO https://schema.org/Person
+					 *
+					 * @TODO https://schema.org/Person
 					 */
 					$args['avatar_size'] = ( isset( $args['avatar_size'] ) ) ? $args['avatar_size'] : null ;
-					echo \italystrap_get_avatar( $comment, $args['avatar_size'], NULL, \get_comment_author(), 'img-circle img-responsive center-block' );?>
+					echo \italystrap_get_avatar( $comment, $args['avatar_size'], null, \get_comment_author(), 'img-circle img-responsive center-block' );?>
 				</div>
 				<section class="col-sm-10">
 					<footer class="comment-meta">
 						<?php
-							if ( $email =  \get_comment_author_email()) {
-							    echo '<meta  itemprop="image" content="' . \italystrap_get_avatar_url( $email ) . '"/>';
-							}
+						if ( $email =  \get_comment_author_email()) {
+							echo '<meta  itemprop="image" content="' . \italystrap_get_avatar_url( $email ) . '"/>';
+						}
 						?>
 					
 						<div class="comment-author vcard">
@@ -84,31 +84,32 @@ class Comments extends Walker_Comment {
 					<div class="comment-content" itemprop="text">
 						<?php \comment_text(); ?>
 					</div><!-- .comment-content -->
-                    <div>
-					<?php if ( \is_user_logged_in() && \current_user_can( 'manage_options' ) && 'pingback'!== $comment->comment_type ): ?>
+					<div>
+					<?php if ( \is_user_logged_in() && \current_user_can( 'manage_options' ) && 'pingback'!== $comment->comment_type ) : ?>
 						<a href="<?php echo \get_edit_comment_link(); ?>" class=""><?php echo __( 'Edit', 'italystrap' ) ; ?></a> |
 					<?php endif ?>
 
 					<?php
 					if ( 'pingback'!== $comment->comment_type ) {
 						$comment_reply_link_args = \apply_filters(
-						        'comment_reply_link_args',
-						        [
-//                                    'reply_text' => sprintf(
-//                                        __( 'Reply to %s', 'italystrap' ),
-//                                        $comment->comment_author
-//                                    ),
-                                    'add_below' => 'div-comment',
-                                    'depth'     => $depth,
-                                    'max_depth' => 1000,
-                                    'before'    => '<span class="reply">',
-                                    'after'     => '</span>'
-                                ] );
+							'comment_reply_link_args',
+							[
+							//                                    'reply_text' => sprintf(
+							//                                        __( 'Reply to %s', 'italystrap' ),
+							//                                        $comment->comment_author
+							//                                    ),
+									'add_below' => 'div-comment',
+									'depth'     => $depth,
+									'max_depth' => 1000,
+									'before'    => '<span class="reply">',
+									'after'     => '</span>'
+								]
+						);
 						\comment_reply_link( \array_merge( $args, $comment_reply_link_args ) );
 					} ?>
 					</div>
 				</section>
 			</article><!-- .comment-body -->
-<?php
+		<?php
 	}
 }

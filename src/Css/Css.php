@@ -32,7 +32,7 @@ class Css implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
@@ -137,8 +137,8 @@ class Css implements SubscriberInterface {
 		}
 
 		 printf(
-		 	'<style type="text/css">%s</style>',
-		 	wp_strip_all_tags( $this->minify_output( $this->style ) )
+			 '<style type="text/css">%s</style>',
+			 wp_strip_all_tags( $this->minify_output( $this->style ) )
 		 );
 	}
 

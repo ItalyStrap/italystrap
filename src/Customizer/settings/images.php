@@ -93,7 +93,7 @@ $manager->add_control(
 );
 
 /**
- * Change image size of post thumbnail in archive, author, blog, category, search, and tag pages. 
+ * Change image size of post thumbnail in archive, author, blog, category, search, and tag pages.
  */
 $manager->add_setting(
 	'post_thumbnail_size',
@@ -146,4 +146,3 @@ $manager->add_control(
 		),
 	)
 );
-

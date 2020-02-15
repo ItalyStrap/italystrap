@@ -23,7 +23,7 @@ class Thumbnails implements ThumbnailsInterface, Registrable, SubscriberInterfac
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		return [
 			// 'hook_name'							=> 'method_name',

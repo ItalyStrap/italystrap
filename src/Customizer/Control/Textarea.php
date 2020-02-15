@@ -19,11 +19,12 @@ use WP_Customize_Control;
  *
  */
 
-if ( ! class_exists( 'WP_Customize_Control' ) )
-	return NULL;
+if ( ! class_exists( 'WP_Customize_Control' ) ) {
+	return null;
+}
 
-class Textarea extends WP_Customize_Control
-{
+class Textarea extends WP_Customize_Control {
+
 	/**
 	 * Render the control's content.
 	 *
@@ -42,5 +43,4 @@ class Textarea extends WP_Customize_Control
 		</label>
 		<?php
 	}
-
 }

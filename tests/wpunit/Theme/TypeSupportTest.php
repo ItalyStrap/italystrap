@@ -2,8 +2,8 @@
 declare(strict_types=1);
 
 require_once 'BaseTheme.php';
-class TypeSupportTest extends BaseTheme
-{
+class TypeSupportTest extends BaseTheme {
+
 	protected function getInstance( $paramConfig = [] ) {
 //		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
 		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
@@ -17,8 +17,7 @@ class TypeSupportTest extends BaseTheme
 	/**
 	 * @test
 	 */
-	public function ItShouldRegister()
-	{
+	public function ItShouldRegister() {
 		$support = 	[
 			'post'		=> [ 'post_navigation', 'entry-meta' ],
 			'page'		=> [ 'post_navigation', 'entry-meta' ],
@@ -31,7 +30,7 @@ class TypeSupportTest extends BaseTheme
 
 		$all_post_type_support = \get_all_post_type_supports( 'post' );
 
-		self::assertArrayHasKey( 'post_navigation', $all_post_type_support,'' );
-		self::assertArrayHasKey( 'entry-meta', $all_post_type_support,'' );
+		self::assertArrayHasKey( 'post_navigation', $all_post_type_support, '' );
+		self::assertArrayHasKey( 'entry-meta', $all_post_type_support, '' );
 	}
 }

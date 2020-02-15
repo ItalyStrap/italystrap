@@ -90,7 +90,7 @@ class Pagination {
 		$html = '';
 		$tag = $this->config->get( 'item_tag', 'li' );
 
-		foreach ( $paginate as $key => $anchor ){
+		foreach ( $paginate as $key => $anchor ) {
 
 			/**
 			 * Add a css class to the anchor link or to the span tag of the element
@@ -114,7 +114,8 @@ class Pagination {
 		$html = sprintf(
 			'<%1$s%2$s>%3$s</%1$s>',
 			$this->config->get( 'list_tag', 'ul' ),
-			HTML\get_attr( 'pagination_list',
+			HTML\get_attr(
+				'pagination_list',
 				(array) $this->config->get( 'list_attr' )
 			),
 			$html

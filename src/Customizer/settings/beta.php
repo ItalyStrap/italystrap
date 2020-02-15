@@ -29,7 +29,7 @@ $manager->add_section(
 	'beta',
 	array(
 		'title'				=> __( 'Beta version', 'italystrap' ),
-//		'description'		=> __( 'Add text for footer\'s beta here', 'italystrap' ),
+	//		'description'		=> __( 'Add text for footer\'s beta here', 'italystrap' ),
 		'panel'				=> $this->panel, // Not typically needed.
 		'priority'			=> 160,
 		'capability'		=> $this->capability,
@@ -55,7 +55,7 @@ $manager->add_control(
 	'beta',
 	array(
 		'label'			=> __( 'Beta version', 'italystrap' ),
-//		'description'	=> __( 'Add text for footer\'s beta here', 'italystrap' ),
+	//		'description'	=> __( 'Add text for footer\'s beta here', 'italystrap' ),
 		'section'		=> 'beta',
 		'settings'		=> 'beta',
 		'priority'		=> 10,

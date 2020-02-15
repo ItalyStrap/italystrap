@@ -1,27 +1,25 @@
 <?php
 
-class EventTest extends \Codeception\TestCase\WPTestCase
-{
-    /**
-     * @var \WpunitTester
-     */
-    protected $tester;
-    
-    public function setUp(): void
-    {
-        // Before...
-        parent::setUp();
+class EventTest extends \Codeception\TestCase\WPTestCase {
 
-        // Your set up methods here.
-    }
+	/**
+	 * @var \WpunitTester
+	 */
+	protected $tester;
+	
+	public function setUp(): void {
+		// Before...
+		parent::setUp();
 
-    public function tearDown(): void
-    {
-        // Your tear down methods here.
+		// Your set up methods here.
+	}
 
-        // Then...
-        parent::tearDown();
-    }
+	public function tearDown(): void {
+		// Your tear down methods here.
+
+		// Then...
+		parent::tearDown();
+	}
 
 	public function getIntance() {
 		$sut = new \ItalyStrap\Event\Manager();
@@ -32,16 +30,14 @@ class EventTest extends \Codeception\TestCase\WPTestCase
 	/**
 	 * @test
 	 */
-	public function ItShouldBeinstantiable()
-	{
+	public function ItShouldBeinstantiable() {
 		$this->getIntance();
 	}
 
 	/**
 	 * @test
 	 */
-	public function ItShouldBeinstantiablefgdfg()
-	{
+	public function ItShouldBeinstantiablefgdfg() {
 		$sut = $this->getIntance();
 		$sut->add_subscriber( new class implements \ItalyStrap\Event\Subscriber_Interface {
 			/**

@@ -175,7 +175,6 @@ class Navbar {
 		$brand = '';
 
 		if ( $attachment_id && 'display_image' === $this->config[ 'display_navbar_brand' ] ) {
-
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
 				'alt' => esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
@@ -188,9 +187,7 @@ class Navbar {
 			$brand .= wp_get_attachment_image( $attachment_id, $this->config[ 'navbar_logo_image_size' ], false, $attr );
 
 			$brand .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
-
 		} elseif ( $attachment_id && 'display_all' === $this->config[ 'display_navbar_brand' ] ) {
-
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
 				'alt' => esc_attr( GET_BLOGINFO_NAME ) . ' - ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
@@ -203,11 +200,8 @@ class Navbar {
 			$brand .= wp_get_attachment_image( $attachment_id, $this->config[ 'navbar_logo_image_size' ], false, $attr );
 
 			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
-
 		} else {
-
 			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span><meta  itemprop="image" content="' . \italystrap_get_the_custom_image_url( 'logo', TEMPLATEURL . '/img/italystrap-logo.jpg' ) . '"/>';
-
 		}
 
 		return $brand;
@@ -386,7 +380,6 @@ class Navbar {
 			$a,
 			$this->get_last_container()
 		);
-
 	}
 
 	/**

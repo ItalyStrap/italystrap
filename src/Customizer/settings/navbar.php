@@ -139,9 +139,9 @@ $manager->add_control(
 			'container-fluid'	=> __( 'Fluid', 'italystrap' ),
 			'container'			=> __( 'Container', 'italystrap' ),
 		),
-//		'active_callback'	=> function ( $control ) {
-//			return $control->manager->get_setting('navbar[nav_width]')->value() == 'none';
-//		},
+	//		'active_callback'	=> function ( $control ) {
+	//			return $control->manager->get_setting('navbar[nav_width]')->value() == 'none';
+	//		},
 	)
 );
 
@@ -156,7 +156,7 @@ $manager->add_setting(
 		// 'default'			=> 'display_name',
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
-//		'transport'			=> 'refresh',
+	//		'transport'			=> 'refresh',
 		'transport'			=> 'postMessage',
 		'sanitize_callback'	=> 'sanitize_text_field',
 	)

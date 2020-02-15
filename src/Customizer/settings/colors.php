@@ -22,7 +22,6 @@ use	WP_Customize_Media_Control;
 use ItalyStrap\Core as Core;
 use	ItalyStrap\Customizer\Control\Textarea;
 
-
 $manager->get_setting( 'header_textcolor' )->transport = 'postMessage';
 $manager->get_setting( 'background_color' )->transport = 'postMessage';
 
@@ -87,4 +86,3 @@ $manager->add_control(
 		)
 	)
 );
-

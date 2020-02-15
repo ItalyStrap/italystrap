@@ -65,7 +65,7 @@ abstract class Asset implements Asset_Interface {
 		 *
 		 * @var array
 		 */
-		$this->config = apply_filters( 'italystrap_config_enqueue_' . strtolower( $this->class_name ) , $config->all() );
+		$this->config = apply_filters( 'italystrap_config_enqueue_' . strtolower( $this->class_name ), $config->all() );
 	}
 
 	/**
@@ -85,7 +85,6 @@ abstract class Asset implements Asset_Interface {
 	public function register_all() {
 
 		foreach ( $this->config as $config ) {
-
 			$config = wp_parse_args( $config, $this->get_default_structure() );
 
 			if ( isset( $config['deregister'] ) ) {
@@ -116,7 +115,8 @@ abstract class Asset implements Asset_Interface {
 	 *
 	 * @return null
 	 */
-	public function register() {}
+	public function register() {
+	}
 
 	/**
 	 * De-register each of the asset

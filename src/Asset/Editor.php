@@ -6,8 +6,8 @@ namespace ItalyStrap\Asset;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Config\Config;
 
-class Editor implements SubscriberInterface
-{
+class Editor implements SubscriberInterface {
+
 
 	/**
 	 * @var Config
@@ -22,7 +22,7 @@ class Editor implements SubscriberInterface
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		return array(
 			/**
@@ -62,5 +62,4 @@ class Editor implements SubscriberInterface
 
 		\add_editor_style( $arg );
 	}
-
 }

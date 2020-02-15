@@ -6,10 +6,12 @@ declare(strict_types=1);
 namespace ItalyStrap\Factory;
 
 use Auryn\{ConfigException, InjectionException};
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\DebugInjector;
 use ItalyStrap\Empress\Injector;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Event\Manager;
+use ItalyStrap\View\View;
 
 if ( ! function_exists( '\ItalyStrap\Factory\injector' ) ) {
 
@@ -39,7 +41,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\injector' ) ) {
 if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 
 	/**
-	 * @return \ItalyStrap\Config\Config
+	 * @return Config
 	 */
 	function get_config() : Config {
 
@@ -48,9 +50,9 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 		if ( ! $config ) {
 			try {
 				$config = injector()
-					->alias( \ItalyStrap\Config\ConfigInterface::class,  \ItalyStrap\Config\Config::class )
-					->share( \ItalyStrap\Config\Config::class )
-					->make( \ItalyStrap\Config\Config::class );
+					->alias( ConfigInterface::class,  Config::class )
+					->share( Config::class )
+					->make( Config::class );
 			} catch ( ConfigException $configException ) {
 				echo $configException->getMessage();
 			} catch ( InjectionException $injectionException ) {
@@ -67,17 +69,17 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 if ( ! function_exists( '\ItalyStrap\Factory\get_view' ) ) {
 
 	/**
-	 * @return \ItalyStrap\View\View
+	 * @return View
 	 */
-	function get_view(): \ItalyStrap\View\View {
+	function get_view(): View {
 
 		static $view = null;
 
 		if ( ! $view ) {
 			try {
 				$view = injector()
-					->share( \ItalyStrap\View\View::class )
-					->make( \ItalyStrap\View\View::class );
+					->share( View::class )
+					->make( View::class );
 			} catch ( ConfigException $configException ) {
 				echo $configException->getMessage();
 			} catch ( InjectionException $injectionException ) {

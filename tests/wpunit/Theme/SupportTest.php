@@ -2,8 +2,8 @@
 declare(strict_types=1);
 
 require_once 'BaseTheme.php';
-class SupportTest extends BaseTheme
-{
+class SupportTest extends BaseTheme {
+
 	protected function getInstance( $paramConfig = [] ) {
 //		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
 		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
@@ -16,8 +16,7 @@ class SupportTest extends BaseTheme
 	/**
 	 * @test
 	 */
-	public function ItShouldRegister()
-	{
+	public function ItShouldRegister() {
 		$support = [
 			'automatic-feed-links',
 			'html5'	=> [

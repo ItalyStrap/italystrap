@@ -39,7 +39,7 @@ class Theme_Customizer implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
@@ -190,7 +190,7 @@ class Theme_Customizer implements SubscriberInterface {
 			TEMPLATEURL . '/src/Customizer/js/src/customize-controls.js',
 			[
 				'jquery',
-//				'customize-preview',
+			//				'customize-preview',
 			],
 			null,
 			true

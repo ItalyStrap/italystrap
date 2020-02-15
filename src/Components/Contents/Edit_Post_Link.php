@@ -15,7 +15,7 @@ namespace ItalyStrap\Components\Contents;
 /**
  * Class description
  */
-class Edit_Post_Link  {
+class Edit_Post_Link {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with

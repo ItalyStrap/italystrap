@@ -23,9 +23,10 @@ use ItalyStrap\Event\EventResolverExtension;
 use ItalyStrap\Event\Hooks;
 use ItalyStrap\Event\HooksInterface;
 use Throwable;
-use function ItalyStrap\Config\{get_config_file_content};
-use function ItalyStrap\Core\{set_default_constants};
-use function ItalyStrap\Factory\{get_config, injector};
+use function ItalyStrap\Config\get_config_file_content;
+use function ItalyStrap\Core\set_default_constants;
+use function ItalyStrap\Factory\get_config;
+use function ItalyStrap\Factory\injector;
 
 /**
  * ========================================================================
@@ -70,7 +71,6 @@ get_config()->merge( $constants );
 \add_filter( 'template_include', '\ItalyStrap\Core\set_current_template_constants', 99998 );
 
 try {
-
 	$injector = injector();
 	$injector = new DebugInjector( $injector );
 	$injector->share( $injector );
@@ -84,8 +84,8 @@ try {
 	] );
 
 	$dependence_collection = get_config_file_content( 'dependencies' );
-	$dependence_collection[EventResolverExtension::KEY] = \array_merge(
-		$dependence_collection[EventResolverExtension::KEY],
+	$dependence_collection[ EventResolverExtension::KEY ] = \array_merge(
+		$dependence_collection[ EventResolverExtension::KEY ],
 		require '_init_admin.php',
 		require '_init.php'
 	);
@@ -121,7 +121,6 @@ try {
 	);
 
 	unset( $theme_mods, $constants );
-
 } catch ( InjectorException $exception ) {
 	\_doing_it_wrong( \get_class( $injector ), $exception->getMessage(), '4.0.0' );
 } catch ( Throwable $exception ) {
@@ -153,5 +152,4 @@ $hooks->addListener( 'after_setup_theme', function () use ( $injector, $hooks ) 
 	 * @since 4.0.0
 	 */
 	$hooks->execute( 'italystrap_theme_loaded', $injector );
-
 }, 20 );

@@ -1,9 +1,8 @@
-<?php 
+<?php
 
-class ThemeLoaderCest
-{
-    public function _before( AcceptanceTester $I )
-    {
+class ThemeLoaderCest {
+
+	public function _before( AcceptanceTester $I ) {
 		$I->amOnPage( '/wp-admin' );
 		$I->tryToClick( 'Update WordPress Database', '.button-primary' );
 		$I->tryToClick( 'Continue', '.button-large' );
@@ -12,18 +11,17 @@ class ThemeLoaderCest
 
 		$I->amOnPage('/');
 		$I->see('ItalyStrap', 'a');
-    }
+	}
 
 	/**
 	 * @param AcceptanceTester $I
 	 * @test
 	 */
-	public function tryToTest( AcceptanceTester $I )
-	{
+	public function tryToTest( AcceptanceTester $I ) {
 		$content = implode( ' ', array_fill( 0, 274, 'lorem' ) );
 		$post_id = $I->havePostInDatabase( [
-		     'post_title'   => 'A post',
-		     'post_content' => $content,
+			 'post_title'   => 'A post',
+			 'post_content' => $content,
 		] );
 
 		$I->amOnPage( '/?p=' . $post_id );

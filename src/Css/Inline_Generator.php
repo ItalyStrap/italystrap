@@ -66,5 +66,4 @@ class Inline_Generator {
 			$postfix
 		);
 	}
-
 }

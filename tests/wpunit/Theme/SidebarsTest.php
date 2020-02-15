@@ -2,12 +2,12 @@
 declare(strict_types=1);
 
 require_once 'BaseTheme.php';
-class SidebarsTest extends BaseTheme
-{
+class SidebarsTest extends BaseTheme {
+
 	protected function getInstance( $paramConfig = [] ) {
 //		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
 		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
-		$sut = new \ItalyStrap\Theme\Sidebars( $config );
+		$sut = new \ItalyStrap\Theme\Sidebars( $config, new \ItalyStrap\HTML\Tag( new \ItalyStrap\HTML\Attributes() ) );
 		$this->assertInstanceOf( \ItalyStrap\Theme\Registrable::class, $sut, '' );
 		$this->assertInstanceOf( \ItalyStrap\Theme\Sidebars::class, $sut, '' );
 		return $sut;
@@ -16,8 +16,7 @@ class SidebarsTest extends BaseTheme
 	/**
 	 * @test
 	 */
-	public function ItShouldRegister()
-	{
+	public function ItShouldRegister() {
 		$sidebar_id = 'custom-sidebar-for-test';
 
 		$sut = $this->getInstance(

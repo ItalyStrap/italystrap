@@ -1,27 +1,25 @@
 <?php
 
-class AssetTest extends \Codeception\TestCase\WPTestCase
-{
-    /**
-     * @var \WpunitTester
-     */
-    protected $tester;
-    
-    public function setUp(): void
-    {
-        // Before...
-        parent::setUp();
+class AssetTest extends \Codeception\TestCase\WPTestCase {
 
-        // Your set up methods here.
-    }
+	/**
+	 * @var \WpunitTester
+	 */
+	protected $tester;
+	
+	public function setUp(): void {
+		// Before...
+		parent::setUp();
 
-    public function tearDown(): void
-    {
-        // Your tear down methods here.
+		// Your set up methods here.
+	}
 
-        // Then...
-        parent::tearDown();
-    }
+	public function tearDown(): void {
+		// Your tear down methods here.
+
+		// Then...
+		parent::tearDown();
+	}
 
 	/**
 	 * @param $type

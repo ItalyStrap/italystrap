@@ -42,7 +42,7 @@ class Director implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 		return [
 //			'wp'	=> 'create_page', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
 			'italystrap_build'	=> 'create_page', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'

@@ -53,7 +53,7 @@ $manager->add_setting(
 
 $manager->add_control(
 	'colophon',
-		array(
+	array(
 			'label'			=> __( 'Footer\'s Colophon', 'italystrap' ),
 			'description'	=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
 			'section'		=> 'colophon',
@@ -77,7 +77,7 @@ $manager->add_setting(
 
 $manager->add_control(
 	'colophon_action',
-		array(
+	array(
 			'label'			=> __( 'Footer\'s Colophon Position', 'italystrap' ),
 			'description'	=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
 			'section'		=> 'colophon',
@@ -101,7 +101,7 @@ $manager->add_setting(
 
 $manager->add_control(
 	'colophon_priority',
-		array(
+	array(
 			'label'			=> __( 'Footer\'s Colophon Position', 'italystrap' ),
 			'description'	=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
 			'section'		=> 'colophon',

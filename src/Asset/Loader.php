@@ -28,7 +28,7 @@ class Loader {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		return array(
 			// 'hook_name'				=> 'method_name',
@@ -93,12 +93,10 @@ class Loader {
 		$dev_dir = '';
 
 		if ( WP_DEBUG ) {
-
 			$ver = rand( 0, 100000 );
 			// $ver = filemtime($file);
 			// $suffix = '';
 			// $dev_dir = 'src/'; // Sistemare il path corretto per i font
-
 		}
 
 		$config_styles = array(
@@ -192,7 +190,6 @@ class Loader {
 			 */
 			echo '<script>window.jQuery || document.write(\'<script src="' . TEMPLATEURL . '/js/jquery.min.js"><\/script>\')</script>' . "\n";
 			$add_jquery_fallback = false;
-
 		}
 
 		if ( 'jquery' === $handle ) {

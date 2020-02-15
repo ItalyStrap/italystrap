@@ -19,7 +19,7 @@ class TextDomain implements Registrable, SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		return [
 			// 'hook_name'							=> 'method_name',

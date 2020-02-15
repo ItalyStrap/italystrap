@@ -27,7 +27,7 @@ class Time_Required extends Schema_Base implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 
 		/**
 		 * Try 'the_content'

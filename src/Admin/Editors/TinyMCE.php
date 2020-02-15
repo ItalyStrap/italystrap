@@ -34,7 +34,7 @@ class TinyMCE implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): array {
 		/* Register TinyMCE External Plugins */
 		// add_filter( 'mce_external_plugins', array( $this, 'register_mce_external_plugins' ) );
 		/* Add CSS to TinyMCE Editor */
@@ -75,7 +75,7 @@ class TinyMCE implements SubscriberInterface {
 	 * Register MCE External Plugins
 	 * @since 0.1.0
 	 */
-	public function register_mce_external_plugins( array $plugins ){
+	public function register_mce_external_plugins( array $plugins ) {
 
 		/* Columns */
 		// if( true ){
@@ -89,7 +89,7 @@ class TinyMCE implements SubscriberInterface {
 	 * MCE/Editor CSS
 	 * @since 0.1.0
 	 */
-	public function editor_css( $mce_css ){
+	public function editor_css( $mce_css ) {
 
 		/* Only if buttons, boxes, or columns active */
 		// if( fx_editor_is_custom_feature_active() && apply_filters( 'fx_editor_load_editor_css', true ) ){
@@ -106,7 +106,7 @@ class TinyMCE implements SubscriberInterface {
 	 * Add button to 4th row in editor: Columns
 	 * @since 0.1.0
 	 */
-	public function mce_add_buttons_4_columns( array $buttons, $editor_id ){
+	public function mce_add_buttons_4_columns( array $buttons, $editor_id ) {
 
 		/* Make editor id filterable. Set to false to enable anywhere. */
 		// $columns_editor_ids = apply_filters( 'fx_editor_columns_editor_ids', false );
@@ -116,7 +116,8 @@ class TinyMCE implements SubscriberInterface {
 
 		/* Columns */
 		// if( fx_editor_get_option( 'columns', false ) ){
-			\array_push( $buttons,
+			\array_push(
+				$buttons,
 				'wpe_addon_col_12_12',
 				'wpe_addon_col_13_23',
 				'wpe_addon_col_23_13',

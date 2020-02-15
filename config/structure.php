@@ -4,6 +4,7 @@ namespace ItalyStrap;
 
 use ItalyStrap\Builders\Builder;
 use \ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Empress\Injector;
 use function \ItalyStrap\Factory\get_config;
 use function \ItalyStrap\Factory\injector;
 use function \ItalyStrap\Core\get_template_settings;
@@ -229,12 +230,15 @@ return [
 			},
 		],
 
+		/**
+		 * @TODO Refactor dupplicate code in 'data'
+		 */
 		'author-info'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_before_loop',
 			'priority'	=> 20,
 			'view'		=> 'misc/author-info',
 			'should_load'	=> 'is_author',
-			'data'		=> function () : array {
+			'data'		=> function ( Injector $injector ) : array {
 
 				$data = [];
 				global $author_name;
@@ -243,7 +247,7 @@ return [
 					: \get_userdata( \absint( \get_the_author_meta( 'ID' ) ) );
 
 
-				$data['contact'] = injector()->make( '\ItalyStrap\User\Contact_Method_List' );
+				$data['contact'] = $injector->make( '\ItalyStrap\User\Contact_Method_List' );
 
 				return $data;
 			},
@@ -258,7 +262,7 @@ return [
 					&& \is_singular()
 					&& ! \in_array( 'hide_author', get_template_settings(), true );
 			},
-			'data'		=> function () : array {
+			'data'		=> function ( Injector $injector ) : array {
 
 				$data = [];
 				global $author_name;
@@ -267,7 +271,7 @@ return [
 					: \get_userdata( \absint( \get_the_author_meta( 'ID' ) ) );
 
 
-				$data['contact'] = injector()->make( '\ItalyStrap\User\Contact_Method_List' );
+				$data['contact'] = $injector->make( '\ItalyStrap\User\Contact_Method_List' );
 
 				return $data;
 			},
@@ -298,17 +302,17 @@ return [
 			Builder::EVENT_NAME		=> 'italystrap_content_header',
 			'view'		=> 'headers/image',
 			'should_load'	=> '\has_header_image',
-			'data'		=> function () {
-				return injector()->make( Components\Headers\Image::class )->get_data();
+			'data'		=> function ( Injector $injector ) {
+				return $injector->make( Components\Headers\Image::class )->get_data();
 			},
 		],
 
 		'navbar'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_after_header',
 			'view'		=> 'headers/navbar',
-			'data'	=> function () : array {
+			'data'	=> function ( Injector $injector ) : array {
 				return [
-					'navbar'	=> injector()->make( '\ItalyStrap\Components\Navigations\Navbar' ),
+					'navbar'	=> $injector->make( '\ItalyStrap\Components\Navigations\Navbar' ),
 				];
 			},
 		],

@@ -16,7 +16,6 @@ $autoload_theme_files = [
 	'comments-helpers.php',
 	'italystrap.php',
 	'factory.php',
-	'event.php',
 	'html.php',
 
 	'images.php',

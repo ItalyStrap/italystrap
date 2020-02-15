@@ -12,7 +12,6 @@ namespace ItalyStrap\Builders;
 
 use ItalyStrap\Event\EventManager;
 use ItalyStrap\Event\SubscriberInterface;
-use function \ItalyStrap\Factory\get_event_manager;
 
 class Director implements SubscriberInterface {
 	/**

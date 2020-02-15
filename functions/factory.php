@@ -3,14 +3,13 @@
  * Get the Injector instance
  */
 declare(strict_types=1);
+
 namespace ItalyStrap\Factory;
 
 use Auryn\{ConfigException, InjectionException};
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\DebugInjector;
 use ItalyStrap\Empress\Injector;
 use ItalyStrap\Config\Config;
-use ItalyStrap\Event\Manager;
 use ItalyStrap\View\View;
 
 if ( ! function_exists( '\ItalyStrap\Factory\injector' ) ) {
@@ -90,32 +89,5 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_view' ) ) {
 		}
 
 		return $view;
-	}
-}
-
-if ( ! function_exists( '\ItalyStrap\Factory\get_event_manager' ) ) {
-
-	/**
-	 * @return \ItalyStrap\Event\Manager
-	 */
-	function get_event_manager() : Manager {
-
-		static $event_manager = null;
-
-		if ( ! $event_manager ) {
-			try {
-				$event_manager = injector()
-					->share( \ItalyStrap\Event\Manager::class )
-					->make( \ItalyStrap\Event\Manager::class );
-			} catch ( ConfigException $configException ) {
-				echo $configException->getMessage();
-			} catch ( InjectionException $injectionException ) {
-				echo $injectionException->getMessage();
-			} catch ( \Exception $exception ) {
-				echo $exception->getMessage();
-			}
-		}
-
-		return $event_manager;
 	}
 }

@@ -30,7 +30,7 @@ $featured_image_class = [
 ];
 
 if ( \has_post_thumbnail() ) { ?>
-	<figure <?php HTML\get_attr( 'featured_image', $featured_image_class, true ); ?>>
+	<figure <?php HTML\get_attr_e( 'featured_image', $featured_image_class, true ); ?>>
 		<?php
 
 		/**

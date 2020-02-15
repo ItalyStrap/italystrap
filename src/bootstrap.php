@@ -83,11 +83,14 @@ try {
 		':config'	=> get_config(),
 	] );
 
-	$dependencies = ConfigFactory::make(get_config_file_content( 'dependencies' ));
-	$dependencies->merge(
-		['subscribers' => require '_init_admin.php'],
-		['subscribers' => require '_init.php']
+	$dependence_collection = get_config_file_content( 'dependencies' );
+	$dependence_collection[EventResolverExtension::KEY] = \array_merge(
+		$dependence_collection[EventResolverExtension::KEY],
+		require '_init_admin.php',
+		require '_init.php'
 	);
+
+	$dependencies = ConfigFactory::make($dependence_collection);
 
 	$empress = $injector->make( AurynResolver::class, [
 		':dependencies'	=> $dependencies
@@ -95,24 +98,7 @@ try {
 
 	$empress->extend( $event_resolver );
 
-
-//	$theme_loader = injector()->make( Loader::class );
-//	$theme_loader->setDependencies( get_config_file_content( 'dependencies' ) );
-
-	/**
-	 * ========================================================================
-	 *
-	 * Autoload Subscribers Classes
-	 *
-	 * ========================================================================
-	 *
-	 * @see _init & _init_admin
-	 */
-//	$subscribers_admin = require '_init_admin.php';
-//	$subscribers_front = require '_init.php';
-
-//	$theme_loader->addSubscribers( $subscribers_admin );
-//	$theme_loader->addSubscribers( $subscribers_front );
+	$hooks = $injector->make( Hooks::class );
 
 	/**
 	 * ========================================================================
@@ -121,8 +107,7 @@ try {
 	 *
 	 * ========================================================================
 	 */
-//	\add_action( 'italystrap_theme_load', [ $theme_loader, 'load' ] );
-	\add_action( 'italystrap_theme_load', function () use ( $empress ) {
+	$hooks->addListener( 'italystrap_theme_load', function () use ( $empress ) {
 		$empress->resolve();
 	} );
 
@@ -146,27 +131,27 @@ try {
 /**
  * This will load the framework after setup theme
  */
-\add_action( 'after_setup_theme', function () use ( $injector ) {
+$hooks->addListener( 'after_setup_theme', function () use ( $injector, $hooks ) {
 
 	/**
 	 * Fires before ItalyStrap theme load.
 	 *
 	 * @since 4.0.0
 	 */
-	\do_action( 'italystrap_theme_will_load', $injector );
+	$hooks->execute( 'italystrap_theme_will_load', $injector );
 
 	/**
 	 * Fires once ItalyStrap theme is loading.
 	 *
 	 * @since 4.0.0
 	 */
-	\do_action( 'italystrap_theme_load', $injector );
+	$hooks->execute( 'italystrap_theme_load', $injector );
 
 	/**
 	 * Fires once ItalyStrap theme has loaded.
 	 *
 	 * @since 4.0.0
 	 */
-	\do_action( 'italystrap_theme_loaded', $injector );
+	$hooks->execute( 'italystrap_theme_loaded', $injector );
 
 }, 20 );

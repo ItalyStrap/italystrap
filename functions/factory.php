@@ -48,7 +48,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 		if ( ! $config ) {
 			try {
 				$config = injector()
-					->alias( '\ItalyStrap\Config\Config_Interface',  \ItalyStrap\Config\Config::class )
+					->alias( \ItalyStrap\Config\ConfigInterface::class,  \ItalyStrap\Config\Config::class )
 					->share( \ItalyStrap\Config\Config::class )
 					->make( \ItalyStrap\Config\Config::class );
 			} catch ( ConfigException $configException ) {

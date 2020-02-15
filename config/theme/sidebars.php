@@ -50,6 +50,5 @@ return apply_filters( 'italystrap_sidebars_registered',
 			S::ID				=> 'footer-box-4',
 			S::DESCRIPTION		=> __( 'Footer box 4 widget area.', 'italystrap' ),
 		],
-
 	]
 );

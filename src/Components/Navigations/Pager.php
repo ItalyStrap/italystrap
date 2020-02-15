@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Navigations;
 
-use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\HTML;
 
 class Pager {
@@ -24,10 +24,10 @@ class Pager {
 	/**
 	 * Pagination constructor.
 	 *
-	 * @param Config_Interface $config
+	 * @param ConfigInterface $config
 	 * @param \WP_Query|null $query
 	 */
-	public function __construct( Config_Interface $config ) {
+	public function __construct( ConfigInterface $config ) {
 		$this->config = $config;
 	}
 

@@ -4,15 +4,15 @@ declare(strict_types=1);
 namespace ItalyStrap\Theme;
 
 use ItalyStrap\Config\ConfigInterface as Config;
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Event\Manager as Event;
 
-class NavMenus implements Registrable, Subscriber_Interface {
+class NavMenus implements Registrable, SubscriberInterface {
 
 	/**
 	 * @inheritDoc
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array {
 		return [
 			// 'hook_name'							=> 'method_name',
 			'italystrap_theme_load'	=> [

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Navigations;
 
-use \ItalyStrap\Config\Config_Interface;
+use \ItalyStrap\Config\ConfigInterface;
 use function \ItalyStrap\HTML\get_attr;
 use \Walker_Nav_Menu;
 
@@ -44,7 +44,7 @@ class Navbar {
 	/**
 	 * Config instance
 	 *
-	 * @var Config_Interface
+	 * @var ConfigInterface
 	 */
 	private $config;
 
@@ -64,12 +64,12 @@ class Navbar {
 	/**
 	 * Init the constructor
 	 *
-	 * @param Config_Interface $config
+	 * @param ConfigInterface $config
 	 * @param Walker_Nav_Menu  $walker
 	 * @param callable|bool    $fallback_cb If the menu doesn't exists, a callback function will fire.
 	 * 										Default is 'wp_page_menu'. Set to false for no fallback.
 	 */
-	public function __construct( Config_Interface $config, Walker_Nav_Menu $walker, $fallback_cb = false ) {
+	public function __construct( ConfigInterface $config, Walker_Nav_Menu $walker, $fallback_cb = false ) {
 
 		$this->config = $config;
 		$this->walker = $walker;

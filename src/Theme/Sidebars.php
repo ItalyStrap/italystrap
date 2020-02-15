@@ -4,16 +4,15 @@ declare(strict_types=1);
 namespace ItalyStrap\Theme;
 
 use \ItalyStrap\Config\ConfigInterface as Config;
-use ItalyStrap\Event\Subscriber_Interface;
-use function ItalyStrap\HTML\open_tag;
-use function ItalyStrap\HTML\close_tag;
+use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\HTML\Tag;
 
 /**
  * Class for registering sidebars in template
  * There are a standard sidebar and 4 footer dynamic sidebars
  * @package ItalyStrap\Theme
  */
-class Sidebars implements Registrable, Subscriber_Interface {
+class Sidebars implements Registrable, SubscriberInterface {
 
 	const NAME = 'name';
 	const ID = 'id';
@@ -23,6 +22,10 @@ class Sidebars implements Registrable, Subscriber_Interface {
 	const AFTER_WIDGET = 'after_widget';
 	const BEFORE_TITLE = 'before_title';
 	const AFTER_TITLE = 'after_title';
+	/**
+	 * @var Tag
+	 */
+	private $tag;
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -30,7 +33,7 @@ class Sidebars implements Registrable, Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array {
 
 		return [
 			// 'hook_name'							=> 'method_name',
@@ -45,9 +48,12 @@ class Sidebars implements Registrable, Subscriber_Interface {
 
 	/**
 	 * Init sidebars registration
+	 * @param Config $config
+	 * @param Tag $tag
 	 */
-	public function __construct( Config $config ) {
+	public function __construct( Config $config, Tag $tag ) {
 		$this->config = $config;
+		$this->tag = $tag;
 	}
 
 	/**
@@ -73,10 +79,10 @@ class Sidebars implements Registrable, Subscriber_Interface {
 			self::ID			=> '',
 			self::DESCRIPTION	=> '',
 			self::CLASS_NAME	=> '',
-			self::BEFORE_WIDGET	=> open_tag( $widget_context, 'div', ['id' => '%1$s', 'class' => 'widget %2$s'] ),
-			self::AFTER_WIDGET	=> close_tag( $widget_context ),
-			self::BEFORE_TITLE	=> open_tag( $title_context, 'h3', [ 'class' => 'widget-title' ] ),
-			self::AFTER_TITLE	=> close_tag( $title_context ),
+			self::BEFORE_WIDGET	=> $this->tag->open( $widget_context, 'div', ['id' => '%1$s', 'class' => 'widget %2$s'] ),
+			self::AFTER_WIDGET	=> $this->tag->close( $widget_context ),
+			self::BEFORE_TITLE	=> $this->tag->open( $title_context, 'h3', [ 'class' => 'widget-title' ] ),
+			self::AFTER_TITLE	=> $this->tag->close( $title_context ),
 		];
 
 		return \array_merge( $defaults, $sidebar );

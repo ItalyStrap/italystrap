@@ -17,12 +17,12 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 
 /**
  * Contact Method Class
  */
-class Contact_Methods extends Contact_Methods_Base implements Subscriber_Interface {
+class Contact_Methods extends Contact_Methods_Base implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -32,7 +32,7 @@ class Contact_Methods extends Contact_Methods_Base implements Subscriber_Interfa
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return array(
 			// 'hook_name'							=> 'method_name',

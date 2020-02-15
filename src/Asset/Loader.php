@@ -28,7 +28,7 @@ class Loader {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return array(
 			// 'hook_name'				=> 'method_name',

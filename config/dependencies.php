@@ -4,7 +4,12 @@ namespace ItalyStrap;
 
 use Auryn\Injector;
 use ItalyStrap\Builders\Builder_Interface;
-use ItalyStrap\Config\{Config, ConfigFactory, ConfigInterface};
+use ItalyStrap\Config\{Config, Config_Interface, ConfigFactory, ConfigInterface};
+use ItalyStrap\Empress\AurynResolver;
+use ItalyStrap\Event\EventResolverExtension;
+use ItalyStrap\Event\Hooks;
+use ItalyStrap\HTML\Attributes;
+use ItalyStrap\HTML\Tag;
 use ItalyStrap\Theme\{NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
 use ItalyStrap\View\{ViewFinderInterface, ViewInterface};
 use function ItalyStrap\Config\{get_config_file_content};
@@ -21,7 +26,7 @@ return [
 	 *
 	 * ==========================================================
 	 */
-	'sharing'				=> [
+	AurynResolver::SHARING				=> [
 
 		/**
 		 * Make sure the config is shared.
@@ -29,7 +34,11 @@ return [
 		 */
 		Config::class,
 		Event\Manager::class,
+		Hooks::class,
+		Event\EventManager::class,
 		View\View::class,
+		Attributes::class,
+		Tag::class,
 	],
 
 	/**
@@ -41,8 +50,9 @@ return [
 	 *
 	 * ==========================================================
 	 */
-	'aliases'				=> [
+	AurynResolver::ALIASES				=> [
 		ConfigInterface::class		=> Config::class,
+		Config_Interface::class		=> Config::class,
 		ViewFinderInterface::class	=> View\ViewFinder::class,
 		ViewInterface::class		=> View\View::class,
 		\Walker_Nav_Menu::class		=> Navbar\Bootstrap_Nav_Menu::class,
@@ -63,7 +73,7 @@ return [
 	 *
 	 * ==========================================================
 	 */
-	'definitions'			=> [
+	AurynResolver::DEFINITIONS			=> [
 
 		Theme\Sidebars::class	=> [
 			 ':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
@@ -114,7 +124,7 @@ return [
 	 *
 	 * ==========================================================
 	 */
-	'define_param'			=> [
+	AurynResolver::DEFINE_PARAM			=> [
 //		':theme_mods'	=> function () : array {
 //			return get_config()->all();
 //		},
@@ -142,7 +152,7 @@ return [
 	 *
 	 * ========================================================================
 	 */
-	'delegations'			=> [],
+	AurynResolver::DELEGATIONS			=> [],
 
 	/**
 	 * ========================================================================
@@ -154,7 +164,7 @@ return [
 	 *
 	 * ========================================================================
 	 */
-	'preparations'			=> [
+	AurynResolver::PREPARATIONS			=> [
 		Builders\Builder::class	=> function( Builders\Builder $builder, Injector $injector ) {
 			$builder->set_injector( $injector );
 		},
@@ -176,11 +186,12 @@ return [
 	 * Autoload Subscribers Classes
 	 * Loaded on admin and front-end
 	 *
-	 * string
+	 * If you use key => value pair make sure to bind the key with an option name
+	 * to activate or deactivate the service from an option panel.
 	 *
 	 * ========================================================================
 	 */
-	'subscribers'				=> [
+	EventResolverExtension::KEY				=> [
 
 		/**
 		 * Register Theme stuff

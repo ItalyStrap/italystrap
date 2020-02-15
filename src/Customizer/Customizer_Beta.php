@@ -10,7 +10,7 @@
 
 namespace ItalyStrap\Customizer;
 
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Image\Size;
 use WP_Customize_Manager;
 
@@ -22,7 +22,7 @@ use WP_Customize_Manager;
  * @since ItalyStrap 1.0
  *
  */
-class Customizer_Beta implements Subscriber_Interface {
+class Customizer_Beta implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -33,7 +33,7 @@ class Customizer_Beta implements Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return array(
 			// 'hook_name'							=> 'method_name',

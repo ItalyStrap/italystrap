@@ -16,13 +16,13 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use \ItalyStrap\Event\Subscriber_Interface;
-use \ItalyStrap\Config\Config_Interface;
+use \ItalyStrap\Event\SubscriberInterface;
+use \ItalyStrap\Config\ConfigInterface;
 
 /**
  * CSS API Class
  */
-class Css implements Subscriber_Interface {
+class Css implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -32,7 +32,7 @@ class Css implements Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
@@ -64,7 +64,7 @@ class Css implements Subscriber_Interface {
 	/**
 	 * Theme config.
 	 *
-	 * @var Config_Interface
+	 * @var ConfigInterface
 	 */
 	private $config = array();
 
@@ -73,10 +73,10 @@ class Css implements Subscriber_Interface {
 	/**
 	 * [__construct description]
 	 *
-	 * @param Config_Interface $config
+	 * @param ConfigInterface $config
 	 * @param Inline_Generator $css
 	 */
-	function __construct( Config_Interface $config, Inline_Generator $css ) {
+	function __construct( ConfigInterface $config, Inline_Generator $css ) {
 		$this->config = $config;
 		$this->css = $css;
 	}

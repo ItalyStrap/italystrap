@@ -15,13 +15,13 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Config\Config_Interface as Config;
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Config\ConfigInterface as Config;
+use ItalyStrap\Event\SubscriberInterface;
 
 /**
  * Add some custom meta box in many areas of WordPress
  */
-class Register implements Subscriber_Interface {
+class Register implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -31,7 +31,7 @@ class Register implements Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return [
 			// 'hook_name'							=> 'method_name',

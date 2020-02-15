@@ -16,10 +16,12 @@
 		"php" : ">=7.0",
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
-		"italystrap/config": "~2.0",
+		"italystrap/empress": "^1.0",
+		"italystrap/event": "dev-master",
+		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
 		"italystrap/html": "^1.0",
-		"italystrap/view": "~1.0",
+		"italystrap/view": "^1.0",
 		"brain/hierarchy": "^2.4"
 	},
 	"require-dev": {

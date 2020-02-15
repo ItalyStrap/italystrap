@@ -10,7 +10,7 @@
 
 namespace ItalyStrap\Admin\Nav_Menu;
 
-use \ItalyStrap\Event\Subscriber_Interface;
+use \ItalyStrap\Event\SubscriberInterface;
 use function ItalyStrap\HTML\get_attr as attr;
 
 /**
@@ -28,7 +28,7 @@ use function ItalyStrap\HTML\get_attr as attr;
  * @since 4.0.0
  * @uses Walker_Nav_Menu_Edit
  */
-final class Item_Custom_Fields implements Subscriber_Interface {
+final class Item_Custom_Fields implements SubscriberInterface {
 
 	/**
 	 * Holds our custom fields
@@ -236,7 +236,7 @@ final class Item_Custom_Fields implements Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return [
 

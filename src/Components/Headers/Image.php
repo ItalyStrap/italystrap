@@ -12,7 +12,7 @@
 
 namespace ItalyStrap\Components\Headers;
 
-use \ItalyStrap\Config\Config_Interface as Config;
+use \ItalyStrap\Config\ConfigInterface as Config;
 
 /**
  * The Header_Image controller class

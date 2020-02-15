@@ -10,10 +10,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Builders;
 
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 use function \ItalyStrap\Factory\get_event_manager;
 
-class Director implements Subscriber_Interface {
+class Director implements SubscriberInterface {
 
 	/**
 	 * Returns an array of events (hooks) that this subscriber wants to register with
@@ -42,7 +42,7 @@ class Director implements Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 		return [
 //			'wp'	=> 'create_page', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
 			'italystrap_build'	=> 'create_page', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'

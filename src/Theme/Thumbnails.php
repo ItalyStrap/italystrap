@@ -5,13 +5,13 @@ namespace ItalyStrap\Theme;
 
 use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\Manager as Event;
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 
 /**
  * Class Thumbnails
  * @package ItalyStrap\Theme
  */
-class Thumbnails implements ThumbnailsInterface, Registrable, Subscriber_Interface {
+class Thumbnails implements ThumbnailsInterface, Registrable, SubscriberInterface {
 
 	const WIDTH = 'width';
 	const HEIGHT = 'height';
@@ -23,7 +23,7 @@ class Thumbnails implements ThumbnailsInterface, Registrable, Subscriber_Interfa
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return [
 			// 'hook_name'							=> 'method_name',

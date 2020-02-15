@@ -8,7 +8,7 @@
 
 namespace ItalyStrap\Css;
 
-use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Config\ConfigInterface;
 
 /**
  * Class Inline_Generator
@@ -21,7 +21,7 @@ class Inline_Generator {
 
 	private $config;
 
-	public function __construct( Config_Interface $config ) {
+	public function __construct( ConfigInterface $config ) {
 		$this->config = $config;
 	}
 

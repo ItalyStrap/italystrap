@@ -5,9 +5,9 @@ namespace ItalyStrap\Theme;
 
 use \ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\Manager as Event;
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 
-class Support implements Registrable, Subscriber_Interface {
+class Support implements Registrable, SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -15,7 +15,7 @@ class Support implements Registrable, Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return [
 			// 'hook_name'							=> 'method_name',

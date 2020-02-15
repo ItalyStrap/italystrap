@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Asset;
 
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Config\Config;
 
-class Editor implements Subscriber_Interface
+class Editor implements SubscriberInterface
 {
 
 	/**
@@ -22,7 +22,7 @@ class Editor implements Subscriber_Interface
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return array(
 			/**

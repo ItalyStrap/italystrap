@@ -5,7 +5,9 @@
 declare(strict_types=1);
 namespace ItalyStrap\Factory;
 
-use Auryn\{ConfigException, InjectionException, Injector};
+use Auryn\{ConfigException, InjectionException};
+use ItalyStrap\DebugInjector;
+use ItalyStrap\Empress\Injector;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Event\Manager;
 
@@ -13,16 +15,18 @@ if ( ! function_exists( '\ItalyStrap\Factory\injector' ) ) {
 
 	/**
 	 * @return Injector
+	 * @throws ConfigException
 	 */
-	function injector() : Injector {
+	function injector(): \Auryn\Injector {
 
 		/**
 		 * Injector from ACM if is active
 		 */
-		$injector = apply_filters( 'italystrap_injector', null );
+		$injector = apply_filters( 'italystrap_injector', false );
 
 		if ( ! $injector ) {
 			$injector = new Injector();
+			$injector->share($injector);
 			add_filter( 'italystrap_injector', function () use ( $injector ) {
 				return $injector;
 			} );

@@ -17,12 +17,12 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 
 /**
  * Improve WordPress text editor
  */
-class TinyMCE implements Subscriber_Interface {
+class TinyMCE implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -34,7 +34,7 @@ class TinyMCE implements Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 		/* Register TinyMCE External Plugins */
 		// add_filter( 'mce_external_plugins', array( $this, 'register_mce_external_plugins' ) );
 		/* Add CSS to TinyMCE Editor */

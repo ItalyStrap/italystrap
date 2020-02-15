@@ -15,13 +15,13 @@
 
 namespace ItalyStrap\Asset;
 
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Config\Config;
 
 /**
  * Asset_Loader
  */
-class Asset_Factory implements Subscriber_Interface {
+class Asset_Factory implements SubscriberInterface {
 
 	/**
 	 * @var Config
@@ -36,7 +36,7 @@ class Asset_Factory implements Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return array(
 			// 'hook_name'				=> 'method_name',

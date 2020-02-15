@@ -15,6 +15,14 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use Auryn\InjectorException;
+use ItalyStrap\Config\ConfigFactory;
+use ItalyStrap\Empress\AurynResolver;
+use ItalyStrap\Empress\Injector;
+use ItalyStrap\Event\EventManager;
+use ItalyStrap\Event\EventResolverExtension;
+use ItalyStrap\Event\Hooks;
+use ItalyStrap\Event\HooksInterface;
+use Throwable;
 use function ItalyStrap\Config\{get_config_file_content};
 use function ItalyStrap\Core\{set_default_constants};
 use function ItalyStrap\Factory\{get_config, injector};
@@ -63,8 +71,33 @@ get_config()->merge( $constants );
 
 try {
 
-	$theme_loader = injector()->make( Loader::class );
-	$theme_loader->setDependencies( get_config_file_content( 'dependencies' ) );
+	$injector = injector();
+	$injector = new DebugInjector( $injector );
+	$injector->share( $injector );
+
+	$injector->alias(HooksInterface::class, Hooks::class);
+	$injector->share( HooksInterface::class );
+	$injector->share( EventManager::class );
+
+	$event_resolver = $injector->make( EventResolverExtension::class, [
+		':config'	=> get_config(),
+	] );
+
+	$dependencies = ConfigFactory::make(get_config_file_content( 'dependencies' ));
+	$dependencies->merge(
+		['subscribers' => require '_init_admin.php'],
+		['subscribers' => require '_init.php']
+	);
+
+	$empress = $injector->make( AurynResolver::class, [
+		':dependencies'	=> $dependencies
+	] );
+
+	$empress->extend( $event_resolver );
+
+
+//	$theme_loader = injector()->make( Loader::class );
+//	$theme_loader->setDependencies( get_config_file_content( 'dependencies' ) );
 
 	/**
 	 * ========================================================================
@@ -75,11 +108,11 @@ try {
 	 *
 	 * @see _init & _init_admin
 	 */
-	$subscribers_admin = require '_init_admin.php';
-	$subscribers_front = require '_init.php';
+//	$subscribers_admin = require '_init_admin.php';
+//	$subscribers_front = require '_init.php';
 
-	$theme_loader->addSubscribers( $subscribers_admin );
-	$theme_loader->addSubscribers( $subscribers_front );
+//	$theme_loader->addSubscribers( $subscribers_admin );
+//	$theme_loader->addSubscribers( $subscribers_front );
 
 	/**
 	 * ========================================================================
@@ -88,8 +121,10 @@ try {
 	 *
 	 * ========================================================================
 	 */
-	\add_action( 'italystrap_theme_load', [ $theme_loader, 'load' ] );
-
+//	\add_action( 'italystrap_theme_load', [ $theme_loader, 'load' ] );
+	\add_action( 'italystrap_theme_load', function () use ( $empress ) {
+		$empress->resolve();
+	} );
 
 	if ( ! isset( $theme_mods ) ) {
 		$theme_mods = (array) \get_theme_mods();
@@ -103,22 +138,15 @@ try {
 	unset( $theme_mods, $constants );
 
 } catch ( InjectorException $exception ) {
-	\_doing_it_wrong( \get_class( injector() ), $exception->getMessage(), '4.0.0' );
-} catch ( \Throwable $exception ) {
+	\_doing_it_wrong( \get_class( $injector ), $exception->getMessage(), '4.0.0' );
+} catch ( Throwable $exception ) {
 	\_doing_it_wrong( 'General error.', $exception->getMessage(), '4.0.0' );
 }
 
 /**
  * This will load the framework after setup theme
  */
-\add_action( 'after_setup_theme', function () {
-
-	/**
-	 * Injector
-	 *
-	 * @var \Auryn\Injector
-	 */
-	$injector = injector();
+\add_action( 'after_setup_theme', function () use ( $injector ) {
 
 	/**
 	 * Fires before ItalyStrap theme load.

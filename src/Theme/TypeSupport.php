@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace ItalyStrap\Theme;
 
 use \ItalyStrap\Config\ConfigInterface as Config;
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 
-class TypeSupport implements Registrable, Subscriber_Interface {
+class TypeSupport implements Registrable, SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -14,7 +14,7 @@ class TypeSupport implements Registrable, Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		return [
 			'init'	=> self::CALLBACK,

@@ -12,12 +12,12 @@
 
 namespace ItalyStrap\Components\Schema;
 
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 
 /**
  * Word_Count
  */
-class Word_Count extends Schema_Base implements Subscriber_Interface {
+class Word_Count extends Schema_Base implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -27,7 +27,7 @@ class Word_Count extends Schema_Base implements Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array  {
 
 		/**
 		 * Try 'the_content'

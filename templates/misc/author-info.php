@@ -19,7 +19,7 @@ use ItalyStrap\HTML;
 
 /**
  * Author object
- * @var WP_User
+ * @var \WP_User
  */
 $author_info = $this->get( 'author' );
 //d($author_info);
@@ -40,7 +40,7 @@ if ( ! $author_info ) {
 //d(get_the_author_meta( 'ID' ));
 
 ?>
-<section <?php HTML\get_attr( 'author_info', array( 'class' => 'author-info well', 'itemprop' => 'author', 'itemscope' => true, 'itemtype' => 'https://schema.org/Person' ), true ); ?>>
+<section <?php HTML\get_attr_e( 'author_info', array( 'class' => 'author-info well', 'itemprop' => 'author', 'itemscope' => true, 'itemtype' => 'https://schema.org/Person' ) ); ?>>
 	<div class="row">
 		<div class="col-sm-2">
 			<?php

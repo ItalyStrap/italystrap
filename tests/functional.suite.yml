@@ -28,6 +28,9 @@ modules:
             adminUsername: '%ADMIN_USERNAME%'
             adminPassword: '%ADMIN_PASSWORD%'
             adminPath: '%WP_ADMIN_PATH%'
+            headers:
+                X_TEST_REQUEST: 1
+                X_WPBROWSER_REQUEST: 1
         WPFilesystem:
             wpRootFolder: '%WP_ROOT_FOLDER%'
             plugins: '/wp-content/plugins'

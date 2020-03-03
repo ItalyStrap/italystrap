@@ -18,10 +18,10 @@ use Auryn\InjectorException;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Empress\AurynResolver;
 use ItalyStrap\Empress\Injector;
-use ItalyStrap\Event\EventManager;
+use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\EventResolverExtension;
-use ItalyStrap\Event\Hooks;
-use ItalyStrap\Event\HooksInterface;
+use ItalyStrap\Event\EventDispatcher;
+use ItalyStrap\Event\EventDispatcherInterface;
 use Throwable;
 use function ItalyStrap\Config\get_config_file_content;
 use function ItalyStrap\Core\set_default_constants;
@@ -75,9 +75,9 @@ try {
 	$injector = new DebugInjector( $injector );
 	$injector->share( $injector );
 
-	$injector->alias(HooksInterface::class, Hooks::class);
-	$injector->share( HooksInterface::class );
-	$injector->share( EventManager::class );
+	$injector->alias(EventDispatcherInterface::class, EventDispatcher::class);
+	$injector->share( EventDispatcherInterface::class );
+	$injector->share( SubscriberRegister::class );
 
 	$event_resolver = $injector->make( EventResolverExtension::class, [
 		':config'	=> get_config(),
@@ -98,7 +98,7 @@ try {
 
 	$empress->extend( $event_resolver );
 
-	$hooks = $injector->make( Hooks::class );
+	$hooks = $injector->make( EventDispatcher::class );
 
 	/**
 	 * ========================================================================

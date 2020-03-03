@@ -6,12 +6,16 @@ use Auryn\Injector;
 use ItalyStrap\Builders\Builder_Interface;
 use ItalyStrap\Config\{Config, Config_Interface, ConfigFactory, ConfigInterface};
 use ItalyStrap\Empress\AurynResolver;
+use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventResolverExtension;
-use ItalyStrap\Event\Hooks;
+use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\SubscriberRegister;
+use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Theme\{NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
 use ItalyStrap\View\{ViewFinderInterface, ViewInterface};
+use Walker_Nav_Menu;
 use function ItalyStrap\Config\{get_config_file_content};
 use function ItalyStrap\Factory\get_config;
 
@@ -27,15 +31,15 @@ return [
 	 * ==========================================================
 	 */
 	AurynResolver::SHARING				=> [
+		EventDispatcherInterface::class,
+		SubscriberRegisterInterface::class,
 
 		/**
 		 * Make sure the config is shared.
 		 * Already shared in bootstrap.php or in ACM if is active.
 		 */
 		Config::class,
-		Event\Manager::class,
-		Hooks::class,
-		Event\EventManager::class,
+
 		View\View::class,
 		Attributes::class,
 		Tag::class,
@@ -51,11 +55,15 @@ return [
 	 * ==========================================================
 	 */
 	AurynResolver::ALIASES				=> [
+		EventDispatcherInterface::class		=> EventDispatcher::class,
+		SubscriberRegisterInterface::class	=> SubscriberRegister::class,
+
 		ConfigInterface::class		=> Config::class,
 		Config_Interface::class		=> Config::class,
+
 		ViewFinderInterface::class	=> View\ViewFinder::class,
 		ViewInterface::class		=> View\View::class,
-		\Walker_Nav_Menu::class		=> Navbar\Bootstrap_Nav_Menu::class,
+		Walker_Nav_Menu::class		=> Navbar\Bootstrap_Nav_Menu::class,
 		Builder_Interface::class	=> Builders\Builder::class,
 	],
 

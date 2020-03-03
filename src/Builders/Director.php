@@ -10,12 +10,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Builders;
 
-use ItalyStrap\Event\EventManager;
+use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
 class Director implements SubscriberInterface {
 	/**
-	 * @var EventManager
+	 * @var SubscriberRegisterInterface
 	 */
 	private $eventManager;
 
@@ -44,9 +44,9 @@ class Director implements SubscriberInterface {
 	 * Director constructor.
 	 *
 	 * @param Builder_Interface $builder
-	 * @param EventManager $eventManager
+	 * @param SubscriberRegisterInterface $eventManager
 	 */
-	public function __construct( Builder_Interface $builder, EventManager $eventManager ) {
+	public function __construct( Builder_Interface $builder, SubscriberRegisterInterface $eventManager ) {
 		$this->builder = $builder;
 //		$this->parse_Attr = $parse_Attr;
 		$this->eventManager = $eventManager;

@@ -3,11 +3,11 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use ItalyStrap\Builders\Builder;
-use \ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Empress\Injector;
-use function \ItalyStrap\Factory\get_config;
-use function \ItalyStrap\Factory\injector;
-use function \ItalyStrap\Core\get_template_settings;
+use ItalyStrap\Event\EventDispatcherInterface;
+use function ItalyStrap\Factory\get_config;
+use function ItalyStrap\Core\get_template_settings;
 
 /**
  * ====================================================================
@@ -23,18 +23,22 @@ return [
 		'breadcrumbs'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_before_loop',
 			'priority'	=> 10, // Optional
-			'should_load'	=> function () : bool {
+			'should_load'	=> function ( ConfigInterface $config ): bool {
 				return \current_theme_supports( 'breadcrumbs' )
-					&& \in_array( CURRENT_TEMPLATE, \explode( ',', get_config()->get( 'breadcrumbs_show_on' ) ), true )
+					&& \in_array(
+						CURRENT_TEMPLATE,
+						\explode( ',', $config->get( 'breadcrumbs_show_on', '' ) ),
+						true
+					)
 					&& ! \in_array( 'hide_breadcrumbs', get_template_settings(), true );
 			},
-			'callback'	=> function (): string {
+			'callback'	=> function ( EventDispatcherInterface $dispatcher ): string {
 				$args = [
 //					'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
 				];
 
 				\ob_start();
-				\do_action( 'do_breadcrumbs', $args );
+				$dispatcher->execute( 'do_breadcrumbs', $args );
 				return \strval( \ob_get_clean() );
 			},
 		],
@@ -145,8 +149,8 @@ return [
 		'sidebar'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_after_content',
 			'callback'	=> '\get_sidebar',
-			'should_load'	=> function () : bool {
-				return 'full_width' !== get_config()->get( 'site_layout' );
+			'should_load'	=> function ( ConfigInterface $config ) : bool {
+				return 'full_width' !== $config->get( 'site_layout' );
 			},
 			/**
 			 * @TODO Maybe for WooCommerce, for now is only for remember
@@ -156,7 +160,7 @@ return [
 //				/**
 //				 * Don't load sidebar on pages that doesn't need it
 //				 */
-//				if ( 'full_width' === get_config()->get( 'site_layout' ) ) {
+//				if ( 'full_width' === $config->get( 'site_layout' ) ) {
 //					/**
 //					 * This hook is usefull for example when you need to remove the
 //					 * WooCommerce sidebar on full width page.

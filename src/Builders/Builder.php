@@ -10,7 +10,7 @@ namespace ItalyStrap\Builders;
 
 use Auryn\InjectionException;
 use Auryn\Injector;
-use ItalyStrap\Event\HooksInterface as Hooks;
+use ItalyStrap\Event\EventDispatcherInterface as Dispatcher;
 use ItalyStrap\View\ViewInterface as View;
 use ItalyStrap\Config\ConfigInterface as Config;
 
@@ -38,20 +38,20 @@ class Builder implements Builder_Interface {
 	 */
 	private $structure = [];
 	/**
-	 * @var Hooks
+	 * @var Dispatcher
 	 */
-	private $hooks;
+	private $dispatcher;
 
 	/**
 	 * Builder constructor.
 	 * @param View $view
 	 * @param Config $config
-	 * @param Hooks $hooks
+	 * @param Dispatcher $dispatcher
 	 */
-	public function __construct( View $view, Config $config, Hooks $hooks ) {
+	public function __construct( View $view, Config $config, Dispatcher $dispatcher ) {
 		$this->view = $view;
 		$this->config = $config;
-		$this->hooks = $hooks;
+		$this->dispatcher = $dispatcher;
 	}
 
 	/**
@@ -113,7 +113,7 @@ class Builder implements Builder_Interface {
 			echo $this->render_from_callback( $component );
 		}, $component['priority'] );
 
-//		$this->hooks->addListener( $component['event_name'], function ( ...$args ) use ( $component ) {
+//		$this->dispatcher->addListener( $component['event_name'], function ( ...$args ) use ( $component ) {
 //
 //			$this->set_data( $component );
 //

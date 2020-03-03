@@ -27,9 +27,9 @@ class Parse_Attr {
 
 	/**
 	 * Parse_Attr constructor.
-	 * @param Config|null $config
+	 * @param Config $config
 	 */
-	public function __construct( Config $config = null ) {
+	public function __construct( Config $config ) {
 		$this->config = $config;
 	}
 

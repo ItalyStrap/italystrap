@@ -11,6 +11,7 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     paths:
         - %currentWorkingDirectory%/src/
+        - %currentWorkingDirectory%/config/
     excludes_analyse:
         - %currentWorkingDirectory%/src/Admin/
         - %currentWorkingDirectory%/src/Asset/

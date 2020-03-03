@@ -38,3 +38,5 @@ backups
 #.travis.yml
 
 *.lock
+
+infection.json

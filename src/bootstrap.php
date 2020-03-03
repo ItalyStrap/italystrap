@@ -84,8 +84,8 @@ try {
 	] );
 
 	$dependence_collection = get_config_file_content( 'dependencies' );
-	$dependence_collection[ EventResolverExtension::KEY ] = \array_merge(
-		$dependence_collection[ EventResolverExtension::KEY ],
+	$dependence_collection[ EventResolverExtension::SUBSCRIBERS ] = \array_merge(
+		$dependence_collection[ EventResolverExtension::SUBSCRIBERS ],
 		require '_init_admin.php',
 		require '_init.php'
 	);
@@ -98,7 +98,7 @@ try {
 
 	$empress->extend( $event_resolver );
 
-	$hooks = $injector->make( EventDispatcher::class );
+	$event_dispatcher = $injector->make( EventDispatcher::class );
 
 	/**
 	 * ========================================================================
@@ -107,7 +107,7 @@ try {
 	 *
 	 * ========================================================================
 	 */
-	$hooks->addListener( 'italystrap_theme_load', function () use ( $empress ) {
+	$event_dispatcher->addListener( 'italystrap_theme_load', function () use ( $empress ) {
 		$empress->resolve();
 	} );
 
@@ -121,35 +121,36 @@ try {
 	);
 
 	unset( $theme_mods, $constants );
-} catch ( InjectorException $exception ) {
-	\_doing_it_wrong( \get_class( $injector ), $exception->getMessage(), '4.0.0' );
-} catch ( Throwable $exception ) {
-	\_doing_it_wrong( 'General error.', $exception->getMessage(), '4.0.0' );
-}
 
 /**
  * This will load the framework after setup theme
  */
-$hooks->addListener( 'after_setup_theme', function () use ( $injector, $hooks ) {
+$event_dispatcher->addListener( 'after_setup_theme', function () use ( $injector, $event_dispatcher ) {
 
 	/**
 	 * Fires before ItalyStrap theme load.
 	 *
 	 * @since 4.0.0
 	 */
-	$hooks->execute( 'italystrap_theme_will_load', $injector );
+	$event_dispatcher->execute( 'italystrap_theme_will_load', $injector );
 
 	/**
 	 * Fires once ItalyStrap theme is loading.
 	 *
 	 * @since 4.0.0
 	 */
-	$hooks->execute( 'italystrap_theme_load', $injector );
+	$event_dispatcher->execute( 'italystrap_theme_load', $injector );
 
 	/**
 	 * Fires once ItalyStrap theme has loaded.
 	 *
 	 * @since 4.0.0
 	 */
-	$hooks->execute( 'italystrap_theme_loaded', $injector );
+	$event_dispatcher->execute( 'italystrap_theme_loaded', $injector );
 }, 20 );
+
+} catch ( InjectorException $exception ) {
+	\_doing_it_wrong( \get_class( injector() ), $exception->getMessage(), '4.0.0' );
+} catch ( Throwable $exception ) {
+	\_doing_it_wrong( 'General error.', $exception->getMessage(), '4.0.0' );
+}

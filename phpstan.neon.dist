@@ -6,14 +6,21 @@ includes:
     - vendor/phpstan/phpstan/conf/bleedingEdge.neon
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-    level: 0
+    level: 1
     inferPrivatePropertyTypeFromConstructor: true
     reportUnmatchedIgnoredErrors: false
     paths:
         - %currentWorkingDirectory%/src/
     excludes_analyse:
-        - %currentWorkingDirectory%/src/Customizer/
+        - %currentWorkingDirectory%/src/Admin/
         - %currentWorkingDirectory%/src/Asset/
+        - %currentWorkingDirectory%/src/Components/
+        - %currentWorkingDirectory%/src/Css/
+        - %currentWorkingDirectory%/src/Custom/
+        - %currentWorkingDirectory%/src/Customizer/
+        - %currentWorkingDirectory%/src/Event/
+        - %currentWorkingDirectory%/src/Navbar/
+        - %currentWorkingDirectory%/src/User/
     autoload_files:
         # Procedural code
         - %currentWorkingDirectory%/functions/autoload.php
@@ -24,3 +31,4 @@ parameters:
         - '#Access to an undefined property ItalyStrap\\Config\\ConfigInterface::\$[a-zA-Z0-9_]+#'
         - '#Class ItalyStrap\\Migrations\\Old_Hooks not found#'
         - '#Argument of an invalid type ItalyStrap\\Config\\[a-zA-Z_]+ supplied for foreach, only iterables are supported.#'
+        - '#Function new_cmb2_box not found#'

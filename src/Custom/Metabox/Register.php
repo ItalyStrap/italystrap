@@ -11,10 +11,6 @@
 
 namespace ItalyStrap\Custom\Metabox;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
 

@@ -17,6 +17,7 @@ class DebugInjector extends Empress\Injector {
 
 	public function __construct( Injector $injector ) {
 		$this->injector = $injector;
+		parent::__construct();
 	}
 
 	public function define( $name, array $args ) {

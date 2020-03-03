@@ -2,12 +2,12 @@
 
 use tad\FunctionMockerLe;
 
-class BuilderTest extends \Codeception\Test\Unit
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
+class BuilderTest extends \Codeception\Test\Unit {
+
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
 	/**
 	 * @var \Prophecy\Prophecy\ObjectProphecy
 	 */
@@ -53,18 +53,16 @@ class BuilderTest extends \Codeception\Test\Unit
 	 */
 	private $hooks;
 
-	protected function _before()
-    {
-    	FunctionMockerLe\undefineAll(['__']);
-    	$this->view = $this->prophesize( \ItalyStrap\View\ViewInterface::class );
-    	$this->config = $this->prophesize( \ItalyStrap\Config\ConfigInterface::class );
-    	$this->hooks = $this->prophesize( \ItalyStrap\Event\HooksInterface::class );
-    	$this->injector = $this->prophesize( \ItalyStrap\Empress\Injector::class );
-    }
+	protected function _before() {
+		FunctionMockerLe\undefineAll(['__']);
+		$this->view = $this->prophesize( \ItalyStrap\View\ViewInterface::class );
+		$this->config = $this->prophesize( \ItalyStrap\Config\ConfigInterface::class );
+		$this->hooks = $this->prophesize( \ItalyStrap\Event\HooksInterface::class );
+		$this->injector = $this->prophesize( \ItalyStrap\Empress\Injector::class );
+	}
 
-    protected function _after()
-    {
-    }
+	protected function _after() {
+	}
 
 	private function getInstance(): \ItalyStrap\Builders\Builder {
 		$sut = new \ItalyStrap\Builders\Builder(
@@ -74,26 +72,24 @@ class BuilderTest extends \Codeception\Test\Unit
 		);
 		$this->assertInstanceOf( \ItalyStrap\Builders\Builder::class, $sut, '' );
 		return $sut;
-    }
+	}
 
 	/**
 	 * @test
 	 */
-    public function itShouldBeInstantiable()
-    {
+	public function itShouldBeInstantiable() {
 		$sut = $this->getInstance();
-    }
+	}
 
 	/**
 	 * @test
 	 */
-    public function itShouldThrownExceptionIfEventNameIsNotProvided()
-    {
-    	FunctionMockerLe\define('__', function ( $text ) {
-    		return $text;
+	public function itShouldThrownExceptionIfEventNameIsNotProvided() {
+		FunctionMockerLe\define('__', function ( $text ) {
+			return $text;
 		});
 
-    	$this->config->getIterator()->willReturn(new \ArrayIterator([
+		$this->config->getIterator()->willReturn(new \ArrayIterator([
 			'some-component'	=> [
 				// event Name not provided
 			],
@@ -104,5 +100,5 @@ class BuilderTest extends \Codeception\Test\Unit
 
 		$this->expectException( \RuntimeException::class );
 		$sut->build();
-    }
+	}
 }

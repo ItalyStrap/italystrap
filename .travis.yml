@@ -106,9 +106,7 @@ before_script:
   - codecept build
 
 script:
-#  - codecept run acceptance --debug
-#  - codecept run functional
-#  - codecept run integration
-#  - codecept run unit
-#  - codecept run wpunit
+  - find ./src/ ./tests/ -type f -name '*.php' -print0 | xargs -0 -L 1 -P 4 -- php -l
+#  - vendor/bin/phpcs --ignore=./tests/_support/* ./src/ ./tests/
+  - vendor/bin/phpstan analyze
   - codecept run wpunit && codecept run unit

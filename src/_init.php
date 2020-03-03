@@ -11,9 +11,16 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
+use function add_action;
+use function class_exists;
+use function explode;
+use function get_post_meta;
+use function get_queried_object_id;
+use function is_admin;
+use function is_singular;
 use function ItalyStrap\Factory\get_config;
 
-if ( \is_admin() ) {
+if ( is_admin() ) {
 	return [];
 }
 
@@ -23,7 +30,7 @@ $subscribers = [
 //	Components\Schema\Time_Required::class,
 ];
 
-if ( \class_exists( Migrations\Old_Hooks::class ) ) {
+if ( class_exists( Migrations\Old_Hooks::class ) ) {
 	$subscribers[] = Migrations\Old_Hooks::class;
 }
 
@@ -36,7 +43,7 @@ if ( \class_exists( Migrations\Old_Hooks::class ) ) {
 add_action( 'wp', function () {
 
 	$config = get_config();
-	$id = (int) \get_queried_object_id();
+	$id = (int) get_queried_object_id();
 
 	/**
 	 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
@@ -53,19 +60,19 @@ add_action( 'wp', function () {
 	if ( is_singular() ) {
 		$config->add(
 			'post_content_template',
-			(array) \get_post_meta( $id, '_italystrap_template_settings', true )
+			(array) get_post_meta( $id, '_italystrap_template_settings', true )
 		);
 	} else {
 		$config->add(
 			'post_content_template',
-			\explode( ',', $config->get( 'post_content_template' ) )
+			explode( ',', $config->get( 'post_content_template' ) )
 		);
 	}
 
 	/**
 	 * If in page settings are setted then override the global settings for the layout.
 	 */
-	if ( $page_layout = (string) \get_post_meta( $id, '_italystrap_layout_settings', true ) ) {
+	if ( $page_layout = (string) get_post_meta( $id, '_italystrap_layout_settings', true ) ) {
 		$config->add( 'site_layout', $page_layout );
 	}
 
@@ -77,7 +84,7 @@ add_action( 'wp', function () {
 /**
  * @todo Questo va eseguito prima della registrazione delle sidebar se no non si può filtrare l'html dei widget
  */
-\add_action( 'after_setup_theme', '\ItalyStrap\HTML\filter_attr' );
+add_action( 'after_setup_theme', '\ItalyStrap\HTML\filter_attr' );
 //add_action( 'get_header', '\ItalyStrap\HTML\filter_attr' );
 
 return $subscribers;

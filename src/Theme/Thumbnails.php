@@ -6,6 +6,16 @@ namespace ItalyStrap\Theme;
 use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\Manager as Event;
 use ItalyStrap\Event\SubscriberInterface;
+use function absint;
+use function add_image_size;
+use function array_merge;
+use function array_walk;
+use function boolval;
+use function func_get_args;
+use function has_image_size;
+use function intval;
+use function remove_image_size;
+use function set_post_thumbnail_size;
 
 /**
  * Class Thumbnails
@@ -62,7 +72,7 @@ class Thumbnails implements ThumbnailsInterface, Registrable, SubscriberInterfac
 	 * @inheritDoc
 	 */
 	public function addSize( string $name, int $width = 0, int $height = 0, bool $crop = false  ): self {
-		\add_image_size( ...\func_get_args() );
+		add_image_size( ...func_get_args() );
 		return $this;
 	}
 
@@ -70,7 +80,7 @@ class Thumbnails implements ThumbnailsInterface, Registrable, SubscriberInterfac
 	 * @inheritDoc
 	 */
 	public function removeSize( string $name ): self {
-		\remove_image_size( $name );
+		remove_image_size( $name );
 		return $this;
 	}
 
@@ -78,7 +88,7 @@ class Thumbnails implements ThumbnailsInterface, Registrable, SubscriberInterfac
 	 * @inheritDoc
 	 */
 	public function hasSize( string $name ): bool {
-		return \has_image_size( $name );
+		return has_image_size( $name );
 	}
 
 	/**
@@ -124,7 +134,7 @@ class Thumbnails implements ThumbnailsInterface, Registrable, SubscriberInterfac
 		/**
 		 * 'post-thumbnails' is by default the size displayed for posts, pages and all archives.
 		 */
-		\set_post_thumbnail_size( $content_width, \intval( $content_width * 3 / 4 ) );
+		set_post_thumbnail_size( $content_width, intval( $content_width * 3 / 4 ) );
 
 		$this->registerImageSize();
 	}
@@ -133,14 +143,14 @@ class Thumbnails implements ThumbnailsInterface, Registrable, SubscriberInterfac
 	 * Add image sizes
 	 */
 	private function registerImageSize() {
-		\array_walk( $this->image_sizes, function ( $params, $name ) {
-			$params = \array_merge( $this->getDefaultImageParams(), $params );
+		array_walk( $this->image_sizes, function ( $params, $name ) {
+			$params = array_merge( $this->getDefaultImageParams(), $params );
 
 			$this->addSize(
 				$name,
-				\intval( $params[ self::WIDTH ] ),
-				\intval( $params[ self::HEIGHT ] ),
-				\boolval( $params[ self::CROP ] ) ?? false
+				intval( $params[ self::WIDTH ] ),
+				intval( $params[ self::HEIGHT ] ),
+				boolval( $params[ self::CROP ] ) ?? false
 			);
 		}  );
 	}
@@ -165,7 +175,7 @@ class Thumbnails implements ThumbnailsInterface, Registrable, SubscriberInterfac
 	 * @return int
 	 */
 	private function calculateHeight( int $width, int $prop ): int {
-		return \intval( $width / $prop );
+		return intval( $width / $prop );
 	}
 
 

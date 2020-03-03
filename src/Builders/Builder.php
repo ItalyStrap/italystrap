@@ -70,7 +70,7 @@ class Builder implements Builder_Interface {
 	 */
 	public function build() {
 
-		if ( ! $this->injector ) {
+		if ( ! $this->injector instanceof Injector ) {
 			throw new \RuntimeException( sprintf(
 				'You have to set the Injector with "%s::set_injector" before to load %s',
 				__CLASS__,

@@ -25,7 +25,9 @@ $subscribers = [
  * The $register_metabox is declared in plugin
  */
 if ( isset( $register_metabox ) ) {
-	\add_action( 'cmb2_admin_init', array( $register_metabox, 'register_widget_areas_fields' ) );
+	/** @var callable $callable */
+	$callable = [$register_metabox, 'register_widget_areas_fields'];
+	\add_action( 'cmb2_admin_init', $callable );
 }
 
 return $subscribers;

@@ -111,3 +111,5 @@ script:
   - vendor/bin/phpstan analyze
 #  - vendor/bin/psalm
   - codecept run wpunit && codecept run unit --coverage-text
+#  - vendor/bin/infection --threads=4
+#  - vendor/bin/phpbench run --report=performance

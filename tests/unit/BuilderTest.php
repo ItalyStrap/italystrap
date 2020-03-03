@@ -39,9 +39,9 @@ class BuilderTest extends \Codeception\Test\Unit {
 	}
 
 	/**
-	 * @return \ItalyStrap\Event\HooksInterface
+	 * @return \ItalyStrap\Event\EventDispatcherInterface
 	 */
-	public function getHooks(): \ItalyStrap\Event\HooksInterface {
+	public function getEvent(): \ItalyStrap\Event\EventDispatcherInterface {
 		return $this->hooks->reveal();
 	}
 	/**
@@ -57,7 +57,7 @@ class BuilderTest extends \Codeception\Test\Unit {
 		FunctionMockerLe\undefineAll(['__']);
 		$this->view = $this->prophesize( \ItalyStrap\View\ViewInterface::class );
 		$this->config = $this->prophesize( \ItalyStrap\Config\ConfigInterface::class );
-		$this->hooks = $this->prophesize( \ItalyStrap\Event\HooksInterface::class );
+		$this->hooks = $this->prophesize( \ItalyStrap\Event\EventDispatcherInterface::class );
 		$this->injector = $this->prophesize( \ItalyStrap\Empress\Injector::class );
 	}
 
@@ -68,7 +68,7 @@ class BuilderTest extends \Codeception\Test\Unit {
 		$sut = new \ItalyStrap\Builders\Builder(
 			$this->getView(),
 			$this->getConfig(),
-			$this->getHooks()
+			$this->getEvent()
 		);
 		$this->assertInstanceOf( \ItalyStrap\Builders\Builder::class, $sut, '' );
 		return $sut;

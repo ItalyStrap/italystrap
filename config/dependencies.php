@@ -199,7 +199,7 @@ return [
 	 *
 	 * ========================================================================
 	 */
-	EventResolverExtension::KEY				=> [
+	EventResolverExtension::SUBSCRIBERS				=> [
 
 		/**
 		 * Register Theme stuff

@@ -86,8 +86,8 @@ try {
 	$dependence_collection = get_config_file_content( 'dependencies' );
 	$dependence_collection[ EventResolverExtension::SUBSCRIBERS ] = \array_merge(
 		$dependence_collection[ EventResolverExtension::SUBSCRIBERS ],
-		require '_init_admin.php',
-		require '_init.php'
+		get_config_file_content( 'dependencies-admin' ),
+		get_config_file_content( 'dependencies-front' )
 	);
 
 	$dependencies = ConfigFactory::make($dependence_collection);

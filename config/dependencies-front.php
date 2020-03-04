@@ -65,12 +65,16 @@ add_action( 'wp', function () {
 	} else {
 		$config->add(
 			'post_content_template',
-			explode( ',', $config->get( 'post_content_template' ) )
+			explode( ',',
+				is_array( $config->get( 'post_content_template' ) )
+				? $config->get( 'post_content_template' )[0]
+				: $config->get( 'post_content_template' )
+			)
 		);
 	}
 
 	/**
-	 * If in page settings are setted then override the global settings for the layout.
+	 * If in page settings are set then override the global settings for the layout.
 	 */
 	if ( $page_layout = (string) get_post_meta( $id, '_italystrap_layout_settings', true ) ) {
 		$config->add( 'site_layout', $page_layout );

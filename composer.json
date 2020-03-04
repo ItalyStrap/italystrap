@@ -56,7 +56,7 @@
 		],
 		"cs": "\\vendor\\bin\\phpcs --standard=phpcs.xml src",
 		"metrics": [
-			"vendor/bin/phpmetrics --report-html='./tests/_output/report' ./src"
+			"vendor/bin/phpmetrics --junit --report-html='./tests/_output/report' ./src"
 		]
 	},
 	"support"    : {

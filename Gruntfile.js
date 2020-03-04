@@ -50,22 +50,6 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 
 		/**
-		 * Update all bower dependency
-		 * $ grunt bower
-		 */
-		// bower: { // https://www.npmjs.com/package/grunt-bower-installer
-		//     install: {
-		//         options: {
-		//             copy: false,
-		//         bowerOptions: {
-		//             forceLatest: true,
-		//             //production: true
-		//             }      
-		//         } 
-		//     }
-		// },
-
-		/**
 		 * Copy updated dependency
 		 * $ grunt copy
 		 */
@@ -134,7 +118,7 @@ module.exports = function(grunt) {
 		compass:{ // https://github.com/gruntjs/grunt-contrib-compass
 			dev:{
 				options: {
-					sassDir:['sass'],
+					sassDir:['assets/sass'],
 					cssDir:['css/src'],
 					environment: 'development',
 					// sourcemap: true,
@@ -143,7 +127,7 @@ module.exports = function(grunt) {
 			},
 			dist:{
 				options: {
-					sassDir:['sass'],
+					sassDir:['assets/sass'],
 					cssDir:['css'],
 					outputStyle: 'compressed',
 					importPath: 'bower/bootstrap-sass/assets/stylesheets'
@@ -168,26 +152,6 @@ module.exports = function(grunt) {
 				src: 'css/*.css'
 			}
 		},
-
-		/**
-		 * LESS IS DEPRECATED, USE COMPASS
-		 *
-		 * @type {Object}
-		 */
-		// less: { // https://github.com/gruntjs/grunt-contrib-less
-		// 	development: {
-		// 		options: {
-		// 			compress: true,
-		// 			yuicompress: true,
-		// 			optimization: 2
-		// 		},
-		// 		files: {
-		// 			'css/bootstrap.min.css': [
-		// 				'css/src/less/bootstrap.less'
-		// 				],
-		// 		  }
-		// 	}
-		// },
 
 		csslint: { // http://astainforth.com/blogs/grunt-part-2
 			files: ['css/src/*.css', '!css/bootstrap.min.css',],

@@ -5,8 +5,8 @@
 node_modules
 
 #Sass directory
-sass/.sass-cache
-sass
+assets/sass/.sass-cache
+assets/sass
 .sass-cache
 
 #Bower
@@ -38,3 +38,5 @@ backups
 #.travis.yml
 
 *.lock
+
+stty.exe.stackdump

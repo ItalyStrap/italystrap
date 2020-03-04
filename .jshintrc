@@ -5,6 +5,9 @@
 	"eqeqeq": true,
 	"undef": true,
 	"globals": {
-		"jQuery": true
+		"jQuery": true,
+		"module": true,
+		"require": true,
+		"__dirname": true
 	}
 }

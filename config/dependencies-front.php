@@ -25,7 +25,7 @@ if ( is_admin() ) {
 }
 
 $subscribers = [
-	Asset\Asset_Factory::class,
+	Theme\Assets::class,
 //	Components\Schema\Word_Count::class,
 //	Components\Schema\Time_Required::class,
 ];

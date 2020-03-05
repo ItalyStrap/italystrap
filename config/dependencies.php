@@ -3,6 +3,8 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use Auryn\Injector;
+use ItalyStrap\Asset\Script;
+use ItalyStrap\Asset\Style;
 use ItalyStrap\Builders\Builder_Interface;
 use ItalyStrap\Config\{Config, Config_Interface, ConfigFactory, ConfigInterface};
 use ItalyStrap\Empress\AurynResolver;
@@ -13,7 +15,7 @@ use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\Tag;
-use ItalyStrap\Theme\{NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
+use ItalyStrap\Theme\{Assets, NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
 use ItalyStrap\View\{ViewFinderInterface, ViewInterface};
 use Walker_Nav_Menu;
 use function ItalyStrap\Config\{get_config_file_content};
@@ -58,13 +60,13 @@ return [
 		EventDispatcherInterface::class		=> EventDispatcher::class,
 		SubscriberRegisterInterface::class	=> SubscriberRegister::class,
 
-		ConfigInterface::class		=> Config::class,
-		Config_Interface::class		=> Config::class,
+		ConfigInterface::class				=> Config::class,
+		Config_Interface::class				=> Config::class,
 
-		ViewFinderInterface::class	=> View\ViewFinder::class,
-		ViewInterface::class		=> View\View::class,
-		Walker_Nav_Menu::class		=> Navbar\Bootstrap_Nav_Menu::class,
-		Builder_Interface::class	=> Builders\Builder::class,
+		ViewFinderInterface::class			=> View\ViewFinder::class,
+		ViewInterface::class				=> View\View::class,
+		Walker_Nav_Menu::class				=> Navbar\Bootstrap_Nav_Menu::class,
+		Builder_Interface::class			=> Builders\Builder::class,
 	],
 
 	/**
@@ -173,6 +175,15 @@ return [
 	 * ========================================================================
 	 */
 	AurynResolver::PREPARATIONS			=> [
+		Theme\Assets::class		=> function ( Theme\Assets $assets, Injector $injector ) {
+			\add_action('wp_enqueue_scripts', function () use ($assets) {
+				$assets->withAssets(
+					new Style( ConfigFactory::make( get_config_file_content('theme/styles') ) ),
+					new Script( ConfigFactory::make( get_config_file_content('theme/scripts') ) )
+				);
+			}, 9);
+		},
+
 		Builders\Builder::class	=> function( Builders\Builder $builder, Injector $injector ) {
 			$builder->set_injector( $injector );
 		},

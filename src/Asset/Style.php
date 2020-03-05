@@ -15,10 +15,6 @@
 
 namespace ItalyStrap\Asset;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 /**
  * Child class API for Style
  */

@@ -30,27 +30,22 @@ class Asset_Factory implements SubscriberInterface {
 	private $config;
 
 	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
-	 * @hooked 'italystrap_before_loop' - 20
-	 *
 	 * @return array
 	 */
 	public function getSubscribedEvents(): array {
 
-		return array(
-			'wp_enqueue_scripts'	=> array(
+		return [
+			'wp_enqueue_scripts'	=> [
 				'function_to_add'	=> 'add_style_and_script',
 				// 'priority'			=> 9999999999, // Priorità da testare
-			),
-			'script_loader_src'		=> array(
+			],
+			'script_loader_src'		=> [
 				'function_to_add'	=> 'jquery_local_fallback',
 				'priority'			=> 100, // Priorità da testare
 				'accepted_args'		=> 2,
-			),
+			],
 			'wp_footer'				=> 'jquery_local_fallback',
-		);
+		];
 	}
 
 	/**
@@ -73,12 +68,10 @@ class Asset_Factory implements SubscriberInterface {
 	 */
 	function add_style_and_script() {
 
-		$config_styles = get_config_file_content('theme/styles');
-		$this->style = new Style( new Config( $config_styles ) );
+		$this->style = new Style( new Config( get_config_file_content('theme/styles') ) );
 		$this->style->register_all();
 
-		$config_scripts = get_config_file_content('theme/scripts');
-		$this->script = new Script( new Config( $config_scripts ) );
+		$this->script = new Script( new Config( get_config_file_content('theme/scripts') ) );
 		$this->script->register_all();
 	}
 

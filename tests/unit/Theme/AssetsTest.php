@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
-use ItalyStrap\Asset\Asset_Factory;
+use ItalyStrap\Asset\Asset;
+use ItalyStrap\Asset\Script;
+use ItalyStrap\Asset\Style;
 use ItalyStrap\Theme\Assets;
 use ItalyStrap\Theme\Registrable;
 
@@ -15,38 +17,54 @@ class AssetsTest extends BaseTheme
      * @var \UnitTester
      */
     protected $tester;
-    
-    protected function _before()
+	/**
+	 * @var \Prophecy\Prophecy\ObjectProphecy
+	 */
+	private $style;
+
+	/**
+	 * @return Style
+	 */
+	public function getStyle(): Style {
+		return $this->style->reveal();
+	}
+
+	/**
+	 * @return Script
+	 */
+	public function getScript(): Script {
+		return $this->script->reveal();
+	}
+	/**
+	 * @var \Prophecy\Prophecy\ObjectProphecy
+	 */
+	private $script;
+
+	protected function _before()
     {
-    	$consts = [
-    		'TEMPLATEURL'			=> '',
-    		'PARENTPATH'			=> '',
-    		'CHILDPATH'				=> '',
-    		'STYLESHEETURL'			=> '',
-    		'CURRENT_TEMPLATE_SLUG'	=> '',
-		];
-
-    	foreach ( $consts as $const => $val ) {
-    		if ( defined($const) ) {
-    			continue;
-			}
-
-    		define($const, $val);
-		}
+    	$this->style = $this->prophesize( Style::class );
+		$this->script = $this->prophesize( Script::class );
     }
 
     protected function _after()
     {
     }
 
-	protected function getInstance() {
+	protected function getInstance(): Assets {
 		$sut = new Assets();
 		$this->assertInstanceOf( Registrable::class, $sut, '');
 		return $sut;
 	}
 
-	public function testFactory() {
-		$fac = new Asset_Factory();
-		$fac->add_style_and_script();
+	/**
+	 * @test
+	 */
+	public function itShouldRegister() {
+		$sut = $this->getInstance();
+		$sut->withAssets(
+			$this->getStyle(),
+			$this->getScript()
+		);
+		$sut->register();
 	}
 }

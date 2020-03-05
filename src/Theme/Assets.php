@@ -3,29 +3,47 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-
+use ItalyStrap\Asset\Asset;
 use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\Event\Manager as Event;
 
 class Assets implements Registrable, SubscriberInterface
 {
+	/**
+	 * @var Asset
+	 */
+	private $style;
+	/**
+	 * @var Asset
+	 */
+	private $script;
 
 	/**
-	 * Assets constructor.
+	 * @var array Asset
 	 */
-	public function __construct() {
-	}
+	private $assets = [];
 
 	/**
 	 * @inheritDoc
 	 */
-	public function register() {
-		// TODO: Implement register() method.
+	public function register(): void {
+		\array_walk($this->assets, function ( Asset $asset, $key) {
+			$asset->register_all();
+		});
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getSubscribedEvents(): array {
-		// TODO: Implement getSubscribedEvents() method.
+		return [
+			'wp_enqueue_scripts'	=> [
+				Event::CALLBACK	=> static::CALLBACK,
+			],
+		];
+	}
+
+	public function withAssets( Asset ...$assets ) {
+		$this->assets = \array_merge($assets, $this->assets);
 	}
 }

@@ -15,10 +15,6 @@
 
 namespace ItalyStrap\Asset;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 use \ReflectionClass;
 use \ItalyStrap\Config\Config_Interface as Config;
 
@@ -79,8 +75,6 @@ abstract class Asset implements Asset_Interface {
 
 	/**
 	 * Register each of the asset (enqueues it)
-	 *
-	 * @return null
 	 */
 	public function register_all() {
 
@@ -112,8 +106,6 @@ abstract class Asset implements Asset_Interface {
 
 	/**
 	 * Register each of the asset (enqueues it)
-	 *
-	 * @return null
 	 */
 	public function register() {
 	}

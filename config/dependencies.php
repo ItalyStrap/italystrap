@@ -176,12 +176,20 @@ return [
 	 */
 	AurynResolver::PREPARATIONS			=> [
 		Theme\Assets::class		=> function ( Theme\Assets $assets, Injector $injector ) {
-			\add_action('wp_enqueue_scripts', function () use ($assets) {
+			$loaded = false;
+			\add_action('wp_enqueue_scripts', function () use ($assets, &$loaded) {
+				$loaded = true;
 				$assets->withAssets(
 					new Style( ConfigFactory::make( get_config_file_content('theme/styles') ) ),
 					new Script( ConfigFactory::make( get_config_file_content('theme/scripts') ) )
 				);
-			}, 9);
+			}, 1);
+
+			\add_action('shutdown', function () use (&$loaded){
+				if ( ! $loaded ) {
+					throw new \RuntimeException( 'Assets are not loaded properly' );
+				}
+			});
 		},
 
 		Builders\Builder::class	=> function( Builders\Builder $builder, Injector $injector ) {

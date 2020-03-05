@@ -69,4 +69,4 @@ $config_scripts = [
 	],
 ];
 
-return [];
+return $config_scripts;

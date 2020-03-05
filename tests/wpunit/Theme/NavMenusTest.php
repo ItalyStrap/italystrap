@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once 'BaseTheme.php';
+
 class NavMenusTest extends BaseTheme {
 
 	protected function getInstance( $paramConfig = [] ) {

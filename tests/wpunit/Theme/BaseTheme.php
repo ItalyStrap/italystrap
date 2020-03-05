@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 
-abstract class BaseTheme extends \Codeception\TestCase\WPTestCase {
+use Codeception\TestCase\WPTestCase;
+
+abstract class BaseTheme extends WPTestCase {
 
 	/**
 	 * @var \WpunitTester

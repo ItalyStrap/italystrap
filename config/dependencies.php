@@ -176,8 +176,10 @@ return [
 	 */
 	AurynResolver::PREPARATIONS			=> [
 		Theme\Assets::class		=> function ( Theme\Assets $assets, Injector $injector ) {
+
+			$event_dispatcher = $injector->make(EventDispatcher::class);
 			$loaded = false;
-			\add_action('wp_enqueue_scripts', function () use ($assets, &$loaded) {
+			$event_dispatcher->addListener('wp_enqueue_scripts', function () use ($assets, &$loaded) {
 				$loaded = true;
 				$assets->withAssets(
 					new Style( ConfigFactory::make( get_config_file_content('theme/styles') ) ),
@@ -185,7 +187,7 @@ return [
 				);
 			}, 1);
 
-			\add_action('shutdown', function () use (&$loaded){
+			$event_dispatcher->addListener('shutdown', function () use (&$loaded){
 				if ( ! $loaded ) {
 					throw new \RuntimeException( 'Assets are not loaded properly' );
 				}

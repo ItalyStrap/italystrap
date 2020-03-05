@@ -41,6 +41,8 @@
     "gulp-postcss": "^8.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "load-grunt-tasks": "^3.5.2",
-    "pixrem": "^5.0.0"
+    "pixrem": "^5.0.0",
+    "jasmine": "^3.5.0",
+    "qunit": "^2.9.3"
   }
 }

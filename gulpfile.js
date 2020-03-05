@@ -15,10 +15,9 @@ gulp.task('compass', function() {
             css: 'css/src',
             sass: 'sass'
         }));
-        // .pipe(gulp.dest('css/src'));
 });
 
-gulp.task('css', function () {
+gulp.task('postcss', function () {
     const browser = {
         overrideBrowserslist: ['last 2 version']
     };
@@ -40,4 +39,11 @@ gulp.task('css', function () {
         .pipe(postcss(plugins))
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('./assets/css'));
+});
+
+gulp.task('css', gulp.series('compass','postcss'));
+gulp.task('default', gulp.series('compass','postcss'));
+
+gulp.task('watch', function() {
+    gulp.watch(['./assets/sass/*.scss'], gulp.series('css'));
 });

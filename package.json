@@ -11,7 +11,8 @@
     "url": "https://github.com/ItalyStrap/italystrap.git"
   },
   "devDependencies": {
-    "autoprefixer-core": "^6.0.1",
+    "autoprefixer": "^9.7.4",
+    "cssnano": "^4.1.10",
     "grunt": "~1.0.1",
     "grunt-bump": "^0.8.0",
     "grunt-composer": "^0.4.5",
@@ -37,6 +38,9 @@
     "grunt-wp-readme-to-markdown": "^2.0.1",
     "gulp": "^4.0.2",
     "gulp-compass": "^2.1.0",
-    "load-grunt-tasks": "^3.5.2"
+    "gulp-postcss": "^8.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "load-grunt-tasks": "^3.5.2",
+    "pixrem": "^5.0.0"
   }
 }

@@ -1,14 +1,5 @@
 <?php
-/**
- * Edit_Post_Link Controller API
- *
- * This class renders the Edit_Post_Link output on the registered position.
- *
- * @link www.italystrap.com
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Components\Contents;
 

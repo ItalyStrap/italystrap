@@ -1,18 +1,7 @@
 <?php
-/**
- * Settings for Customizer
- *
- * @link https://github.com/WPTRT/code-examples
- *
- * @package ItalyStrap
- * @since 4.0.0
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
-
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
 
 use WP_Customize_Manager;
 use WP_Customize_Control;

@@ -1,21 +1,12 @@
 <?php
-/**
- * Time_Required API
- *
- * Class for the itemprop="timeRequired" of schema.org
- *
- * @link www.italystrap.com
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Components\Schema;
 
 use ItalyStrap\Event\SubscriberInterface;
 
 /**
- * Time_Required
+ * Class for the itemprop="timeRequired" of schema.org
  */
 class Time_Required extends Schema_Base implements SubscriberInterface {
 

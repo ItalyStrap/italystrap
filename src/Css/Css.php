@@ -1,20 +1,7 @@
 <?php
-/**
- * API for generating CSS with PHP
- *
- * This class manage the CSS creation and put it in the HTML of your page.
- *
- * @link www.italystrap.com
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Css;
-
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
 
 use \ItalyStrap\Event\SubscriberInterface;
 use \ItalyStrap\Config\ConfigInterface;

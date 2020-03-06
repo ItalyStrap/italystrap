@@ -1,21 +1,12 @@
 <?php
-/**
- * Word_Count API
- *
- * Class for the itemprop="wordCount" of schema.org
- *
- * @link www.italystrap.com
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Components\Schema;
 
 use ItalyStrap\Event\SubscriberInterface;
 
 /**
- * Word_Count
+ * Class for the itemprop="wordCount" of schema.org
  */
 class Word_Count extends Schema_Base implements SubscriberInterface {
 

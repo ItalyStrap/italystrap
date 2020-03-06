@@ -13,10 +13,6 @@
 
 namespace ItalyStrap\Admin\Editors;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 use ItalyStrap\Event\SubscriberInterface;
 
 /**

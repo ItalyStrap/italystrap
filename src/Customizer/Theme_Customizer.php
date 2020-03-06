@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Customizer API for ItalyStrap Theme Framework
  *
@@ -9,10 +11,6 @@
  */
 
 namespace ItalyStrap\Customizer;
-
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
 
 use ItalyStrap\Event\SubscriberInterface;
 

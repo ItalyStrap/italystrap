@@ -1,9 +1,4 @@
 <?php
-/**
- * Builder API
- *
- * This builder class build the page structure from a given configuration.
- */
 declare( strict_types = 1 );
 
 namespace ItalyStrap\Builders;

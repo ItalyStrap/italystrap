@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: fisso
- * Date: 18/03/2019
- * Time: 12:39
- */
-
 declare(strict_types=1);
 
 namespace ItalyStrap\Builders;

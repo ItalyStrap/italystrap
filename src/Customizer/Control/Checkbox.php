@@ -1,17 +1,9 @@
 <?php
-/**
- * Customizer for checkbox, extend the WP customizer
- *
- * @package ItalyStrap\Customizer
- * @since 4.0.0
- */
+declare(strict_types=1);
+
 namespace ItalyStrap\Customizer\Control;
 
 use WP_Customize_Control;
-
-if ( ! class_exists( 'WP_Customize_Control' ) ) {
-	return null;
-}
 
 /**
  * Class for single checkbox in the customizer

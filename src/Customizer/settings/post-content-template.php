@@ -1,14 +1,5 @@
 <?php
-/**
- * Customizer settings for template parts
- *
- * Setting
- *
- * @link http://italystrap.com
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Customizer\Control;
 

@@ -1,14 +1,5 @@
 <?php
-/**
- * Header_Image Controller API
- *
- * This class renders the Header_Image output on the registered position.
- *
- * @link www.italystrap.com
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Components\Headers;
 

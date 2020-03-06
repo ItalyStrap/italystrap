@@ -1,13 +1,5 @@
 <?php
-/**
- * Initialize custom meta box build with CMB2
- *
- * https://make.wordpress.org/core/2018/11/07/meta-box-compatibility-flags/
- *
- * @package ItalyStrap\Custom\Metabox
- * @version 1.0
- * @since   4.0.0
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Custom\Metabox;
 
@@ -15,7 +7,7 @@ use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
 
 /**
- * Add some custom meta box in many areas of WordPress
+ * https://make.wordpress.org/core/2018/11/07/meta-box-compatibility-flags/
  */
 class Register implements SubscriberInterface {
 

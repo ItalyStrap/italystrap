@@ -1,12 +1,5 @@
 <?php
-/**
- * Customizer settings for 404 page
- *
- * @link http://italystrap.com
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Customizer\Control;
 

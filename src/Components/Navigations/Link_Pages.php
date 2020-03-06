@@ -1,14 +1,4 @@
 <?php
-/**
- * Link_Pages Controller API
- *
- * This class renders the Link_Pages output on the registered position.
- *
- * @link www.italystrap.com
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
 declare(strict_types=1);
 
 namespace ItalyStrap\Components\Navigations;

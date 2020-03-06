@@ -1,26 +1,10 @@
 <?php
-/**
- * Footer_Widget_Area Controller API
- *
- * [Long Description.]
- *
- * @link www.italystrap.com
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Components\Footers;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
-}
-
 use \ItalyStrap\View\ViewInterface;
 
-/**
- * Class description
- */
 class Widget_Area {
 
 	private $data = [];
@@ -60,7 +44,7 @@ class Widget_Area {
 	 *
 	 * @see footer.php The file to display footer
 	 */
-	private function set_col() : int {
+	private function set_col(): int {
 
 		global $sidebars_widgets, $wp_registered_widgets, $wp_registered_widget_controls;
 
@@ -74,6 +58,6 @@ class Widget_Area {
 
 		$count = ( 0 === $count ) ? 1 : $count ;
 
-		return floor( 12 / $count );
+		return \intval( \floor( 12 / $count ) );
 	}
 }

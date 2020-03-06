@@ -1,23 +1,11 @@
 <?php
-/**
- * Schema_Base abstract API
- *
- * Class base for some schema.org itemprop
- *
- * @link https://schema.org/Article
- *
- * @link www.italystrap.com
- * @since 1.0.0
- * @since 2.1.0
- * @since 4.0.0 // OOP refactored
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Components\Schema;
 
 /**
  * Schema_Base
+ * @link https://schema.org/Article
  */
 class Schema_Base {
 

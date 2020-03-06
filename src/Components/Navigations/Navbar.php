@@ -1,12 +1,4 @@
 <?php
-/**
- * Navbar Menu template Class
- *
- * @example http://www.bootply.com/mQh8DyRfWY bootstrap navbar center logo
- *
- * @package ItalyStrap\Core
- * @since 4.0.0
- */
 declare(strict_types=1);
 
 namespace ItalyStrap\Components\Navigations;
@@ -17,6 +9,7 @@ use \Walker_Nav_Menu;
 
 /**
  * Template for Navbar like Botstrap CSS
+ * @example http://www.bootply.com/mQh8DyRfWY bootstrap navbar center logo
  */
 class Navbar {
 

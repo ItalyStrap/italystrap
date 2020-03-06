@@ -1,27 +1,9 @@
 <?php
-/**
- * [Short Description (no period for file headers)]
- *
- * [Long Description.]
- *
- * @link [URL]
- * @since [x.x.x (if available)]
- *
- * @package [Plugin/Theme/Etc]
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Customizer\Control;
 
 use WP_Customize_Control;
-
-/**
- * Customize for textarea, extend the WP customizer
- *
- */
-
-if ( ! class_exists( 'WP_Customize_Control' ) ) {
-	return null;
-}
 
 class Textarea extends WP_Customize_Control {
 

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: fisso
- * Date: 05/04/2019
- * Time: 15:12
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Css;
 

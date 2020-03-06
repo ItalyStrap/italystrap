@@ -1,4 +1,10 @@
 <?php
+declare(strict_types=1);
+
+namespace ItalyStrap\Components\Comments;
+
+use \Walker_Comment;
+
 /**
  * Walker Class for comments
  *
@@ -11,17 +17,6 @@
  * @todo Ho ancora un po di lavoro da fare con questa classe
  *       Per esempio pulire il codice HTML ritornato, è ancora troppo sporco
  *       Troppi ul
- *
- * @package ItalyStrap
- * @since 3.1.0
- */
-
-namespace ItalyStrap\Components\Comments;
-
-use \Walker_Comment;
-
-/**
- * ItalyStrap Walker Class
  */
 class Comments extends Walker_Comment {
 

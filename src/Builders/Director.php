@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Builders;
 
+use Auryn\Injector;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
@@ -11,6 +12,10 @@ class Director implements SubscriberInterface {
 	 * @var SubscriberRegisterInterface
 	 */
 	private $eventManager;
+	/**
+	 * @var Injector
+	 */
+	private $injector;
 
 	/**
 	 * @return array
@@ -38,11 +43,17 @@ class Director implements SubscriberInterface {
 	 *
 	 * @param BuilderInterface $builder
 	 * @param SubscriberRegisterInterface $eventManager
+	 * @param Injector $injector
 	 */
-	public function __construct( BuilderInterface $builder, SubscriberRegisterInterface $eventManager ) {
+	public function __construct(
+		BuilderInterface $builder,
+		SubscriberRegisterInterface $eventManager,
+		Injector $injector
+	) {
 		$this->builder = $builder;
 //		$this->parse_Attr = $parse_Attr;
 		$this->eventManager = $eventManager;
+		$this->injector = $injector;
 	}
 
 	/**
@@ -54,6 +65,7 @@ class Director implements SubscriberInterface {
 		 * Injector setter is run on dependencies.php
 		 */
 		try {
+//			$this->builder->set_injector($this->injector);
 			$this->builder->build();
 		} catch ( \Exception $e ) {
 			echo $e->getMessage();

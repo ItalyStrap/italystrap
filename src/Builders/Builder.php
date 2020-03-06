@@ -43,10 +43,11 @@ class Builder implements BuilderInterface {
 	 * @param Config $config
 	 * @param Dispatcher $dispatcher
 	 */
-	public function __construct( View $view, Config $config, Dispatcher $dispatcher ) {
+	public function __construct( View $view, Config $config, Dispatcher $dispatcher, Injector $injector ) {
 		$this->view = $view;
 		$this->config = $config;
 		$this->dispatcher = $dispatcher;
+		$this->injector = $injector;
 	}
 
 	/**

@@ -66,7 +66,7 @@ return [
 		ViewFinderInterface::class			=> View\ViewFinder::class,
 		ViewInterface::class				=> View\View::class,
 		Walker_Nav_Menu::class				=> Navbar\BootstrapNavMenu::class,
-		BuilderInterface::class			=> Builders\Builder::class,
+		BuilderInterface::class				=> Builders\Builder::class,
 	],
 
 	/**
@@ -201,6 +201,7 @@ return [
 		Builders\Builder::class	=> function( Builders\Builder $builder, Injector $injector ) {
 			$builder->set_injector( $injector );
 		},
+
 		View\ViewFinder::class	=> function( View\ViewFinderInterface $finder, Injector $injector ) {
 			$config = get_config();
 

@@ -68,7 +68,8 @@ class BuilderTest extends \Codeception\Test\Unit {
 		$sut = new \ItalyStrap\Builders\Builder(
 			$this->getView(),
 			$this->getConfig(),
-			$this->getEvent()
+			$this->getEvent(),
+			$this->getInjector()
 		);
 		$this->assertInstanceOf( \ItalyStrap\Builders\Builder::class, $sut, '' );
 		return $sut;

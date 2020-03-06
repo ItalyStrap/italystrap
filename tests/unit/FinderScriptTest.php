@@ -148,9 +148,9 @@ class FinderScriptTest extends \Codeception\Test\Unit
     }
 
 	/**
-	 * @test
+	 *
 	 */
-	public function test() {
+	public function checkHierarchy() {
 		$sut = $this->getInstance();
 		$sut->in(
 			[

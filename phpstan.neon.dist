@@ -22,6 +22,11 @@ parameters:
         - %currentWorkingDirectory%/src/Event/
         - %currentWorkingDirectory%/src/Navbar/
         - %currentWorkingDirectory%/src/User/
+        - %currentWorkingDirectory%/config/theme/scripts.php
+        - %currentWorkingDirectory%/config/theme/styles.php
+        - %currentWorkingDirectory%/config/customizer.php
+        - %currentWorkingDirectory%/config/html_attrs.php
+        - %currentWorkingDirectory%/config/structure.php
     autoload_files:
         # Procedural code
         - %currentWorkingDirectory%/functions/autoload.php

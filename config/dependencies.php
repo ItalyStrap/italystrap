@@ -189,8 +189,11 @@ return [
 			}, 1);
 
 			$event_dispatcher->addListener('shutdown', function () use (&$loaded){
-				if ( ! $loaded ) {
-					throw new \RuntimeException( 'Assets are not loaded properly' );
+				if ( ! $loaded && \function_exists( 'debug' ) ) {
+					\debug(\sprintf(
+						'Assets are not loaded properly, called in: %s',
+						__FILE__
+					));
 				}
 			});
 		},

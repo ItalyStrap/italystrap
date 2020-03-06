@@ -9,7 +9,7 @@ use ItalyStrap\Event\EventDispatcherInterface as Dispatcher;
 use ItalyStrap\View\ViewInterface as View;
 use ItalyStrap\Config\ConfigInterface as Config;
 
-class Builder implements Builder_Interface {
+class Builder implements BuilderInterface {
 
 	const EVENT_NAME = 'event_name';
 

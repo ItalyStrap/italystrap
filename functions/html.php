@@ -5,7 +5,7 @@ namespace ItalyStrap\HTML;
 
 /**
  * @see the function call in _init.php file
- * @see \ItalyStrap\Builders\Parse_Attr
+ * @see \ItalyStrap\Builders\ParseAttr
  */
 function filter_attr() {
 
@@ -18,7 +18,7 @@ function filter_attr() {
 //		\ItalyStrap\HTML\Parse_Attr::$accepted_args = 5;
 
 		$parser =  \ItalyStrap\Factory\injector()->make(
-			\ItalyStrap\Builders\Parse_Attr::class
+			\ItalyStrap\Builders\ParseAttr::class
 			,
 			[ ':config' => $config ]
 		);

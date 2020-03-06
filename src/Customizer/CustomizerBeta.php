@@ -13,9 +13,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Event\SubscriberInterface;
-
-use ItalyStrap\Config\Config;
-
+use ItalyStrap\Image\Size;
 use WP_Customize_Manager;
 
 /**
@@ -26,7 +24,7 @@ use WP_Customize_Manager;
  * @since ItalyStrap 1.0
  *
  */
-class Theme_Customizer implements SubscriberInterface {
+class CustomizerBeta implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -41,15 +39,12 @@ class Theme_Customizer implements SubscriberInterface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'customize_register'					=> array(
-				'function_to_add'	=> 'customize_register',
-				'priority'			=> 99,
+			'customize_register'		=> array(
+				'function_to_add'		=> 'customize_register',
+				'priority'				=> 99,
 			),
-			'customize_preview_init'				=> 'enqueue_script_on_live_preview',
-			'customize_controls_enqueue_scripts'	=> 'enqueue_script_on_customize_controls_enqueue_scripts',
-			'admin_menu'							=> 'add_link_to_theme_option_page',
-			// 'body_class'							=> 'body_class',
-			'italystrap_body_attr'					=> 'body_attr',
+			'customize_preview_init'	=> 'live_preview',
+			'admin_menu'				=> 'add_link_to_theme_option_page',
 		);
 	}
 
@@ -89,10 +84,19 @@ class Theme_Customizer implements SubscriberInterface {
 	private $size;
 
 	/**
-	 * Init the class
+	 * @var array
 	 */
-	function __construct( Config $config ) {
-		 $this->theme_mods = $config->all();
+	private $config;
+
+	/**
+	 * Init the class
+	 * @param array $theme_mods
+	 * @param Size $size
+	 */
+	function __construct( array $theme_mods = array(), Size $size = null ) {
+
+		$this->theme_mods = $theme_mods;
+		$this->size = $size;
 	}
 
 	/**
@@ -101,11 +105,12 @@ class Theme_Customizer implements SubscriberInterface {
 	 * This hooks into 'customize_register' (available as of WP 3.4) and allows
 	 * you to add new sections and controls to the Theme Customize screen.
 	 *
+	 * Note: To enable instant preview, we have to actually write a bit of custom
+	 * javascript. See live_preview() for more.
+	 *
 	 * @see add_action( 'customize_register', $func )
 	 * @see https://developer.wordpress.org/reference/hooks/customize_register
-	 * @see https://developer.wordpress.org/themes/customize-api/tools-for-improved-user-experience/
 	 * @link https://make.wordpress.org/core/2016/02/16/selective-refresh-in-the-customizer/
-	 * @link https://iamsteve.me/blog/entry/hero-area-series-wordpress-customizer-with-selective-refresh
 	 *
 	 * @link http://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/
 	 * @since ItalyStrap 1.0
@@ -117,10 +122,16 @@ class Theme_Customizer implements SubscriberInterface {
 	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/
 	 *
 	 * @param  WP_Customize_Manager $manager WP_Customize_Manager object.
+	 *
+	 * @return WP_Customize_Manager          Return the manager object
 	 */
 	public function customize_register( WP_Customize_Manager $manager ) {
 
 		$transport = $manager->selective_refresh ? 'postMessage' : 'refresh';
+
+		$this->config = (array) require PARENTPATH . '/config/customizer.php';
+
+		// $this->register( $manager );
 
 		$files = array(
 			'/settings/customizer.php',
@@ -149,8 +160,104 @@ class Theme_Customizer implements SubscriberInterface {
 	}
 
 	/**
+	 * Register
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function register( WP_Customize_Manager $manager ) {
+
+		foreach ( $this->config as $panel_id => $args ) {
+			if ( 'panel' === $args['type'] ) {
+				$manager->add_panel( $panel_id, $args['args'] );
+			}
+
+			foreach ( $args['sections'] as $section_id => $section ) {
+				if ( 'panel' === $args['type'] ) {
+					$section['args']['panel'] = $panel_id;
+				}
+
+				$manager->add_section( $section_id, $section['args'] );
+
+				foreach ( $section['config'] as $config_id => $config_val ) {
+					$manager->add_setting(
+						$config_id,
+						$this->get_setting_default( $config_val['setting'] )
+					);
+
+					// $class_name = 'WP_Customize_Media_Control';
+
+					// d( new $class_name( $manager, 'id', array() ) );
+
+					$manager->add_control( $config_val['control'] );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Get setting default
+	 *
+	 * @param  array $setting The setting array.
+	 *
+	 * @return array          The setting array with default.
+	 */
+	public function get_setting_default( array $setting = array() ) {
+
+		$defaults = array(
+			'default'			=> null,
+			'type'				=> 'theme_mod',
+			'capability'		=> $this->capability,
+			'transport'			=> 'postMessage',
+			'sanitize_callback'	=> 'sanitize_text_field',
+		);
+
+		return array_merge( $defaults, $setting );
+	}
+
+	/**
+	 * Function description
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+//	public function FunctionName( WP_Customize_Manager $manager ) {
+//
+//		$manager->add_section(
+//			$id, // A unique slug-like string to use as an id.
+//			$args // An associative array containing arguments for the control.
+//				  // array(
+//				  // 	'title'				=> '',
+//				  // 	'priority'			=> '',
+//				  // 	'description'		=> '',
+//				  // 	'active_callback'	=> '',
+//				  // )
+//		);
+//		$manager->add_settings(
+//			$id, // A unique slug-like ID for the theme setting.
+//			$args // An associative array containing arguments for the setting.
+//				  // array(
+//				  // 	'default'				=> '',
+//				  // 	'type'					=> '',
+//				  // 	'capability'			=> '',
+//				  // 	'theme_supports'		=> '',
+//				  // 	'transport'				=> '',
+//				  // 	'sanitize_callback'		=> '',
+//				  // 	'sanitize_js_callback'	=> '',
+//				  // )
+//		);
+//		$manager->add_control(
+//			$id,
+//			$args // or WP_Customize_Control object
+//		);
+//
+//	}
+
+	/**
 	 * This outputs the javascript needed to automate the live settings preview.
 	 * Also keep in mind that this function isn't necessary unless your settings.
+	 * are using 'transport'=>'postMessage' instead of the default 'transport'
+	 * => 'refresh'
 	 *
 	 * Used by hook: 'customize_preview_init'
 	 *
@@ -159,7 +266,7 @@ class Theme_Customizer implements SubscriberInterface {
 	 * @since ItalyStrap 1.0
 	 *
 	 */
-	public function enqueue_script_on_live_preview() {
+	public function live_preview() {
 
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
@@ -168,49 +275,6 @@ class Theme_Customizer implements SubscriberInterface {
 			null,
 			true
 		);
-	}
-
-	/**
-	 * This outputs the javascript needed to automate the live settings preview.
-	 * Also keep in mind that this function isn't necessary unless your settings.
-	 *
-	 * Used by hook: 'customize_preview_init'
-	 *
-	 * @see add_action( 'customize_preview_init', $func )
-	 *
-	 * @since ItalyStrap 1.0
-	 *
-	 */
-	public function enqueue_script_on_customize_controls_enqueue_scripts() {
-
-		wp_enqueue_script(
-			'italystrap-theme-customizer',
-			TEMPLATEURL . '/src/Customizer/js/src/customize-controls.js',
-			[
-				'jquery',
-			//				'customize-preview',
-			],
-			null,
-			true
-		);
-	}
-
-	/**
-	 * Used for the breadcrumbs display on customizer with javascript
-	 *
-	 * @param  array $classes body_class
-	 *
-	 * @return array          body_class
-	 */
-	public function body_attr( array $attr ) {
-
-		if ( ! is_customize_preview() ) {
-			return $attr;
-		}
-
-		$attr['data-current-template'] = CURRENT_TEMPLATE;
-
-		return $attr;
 	}
 
 	/**

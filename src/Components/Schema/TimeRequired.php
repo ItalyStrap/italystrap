@@ -8,7 +8,7 @@ use ItalyStrap\Event\SubscriberInterface;
 /**
  * Class for the itemprop="timeRequired" of schema.org
  */
-class Time_Required extends Schema_Base implements SubscriberInterface {
+class TimeRequired extends SchemaBase implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with

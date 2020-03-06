@@ -61,9 +61,9 @@ class Css implements SubscriberInterface {
 	 * [__construct description]
 	 *
 	 * @param ConfigInterface $config
-	 * @param Inline_Generator $css
+	 * @param InlineGenerator $css
 	 */
-	function __construct( ConfigInterface $config, Inline_Generator $css ) {
+	function __construct( ConfigInterface $config, InlineGenerator $css ) {
 		$this->config = $config;
 		$this->css = $css;
 	}

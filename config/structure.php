@@ -126,7 +126,7 @@ return [
 			'should_load'	=> function () : bool {
 				return \is_single();
 			},
-			'callback'	=> [ Components\Navigations\Link_Pages::class, 'render' ], // Optional
+			'callback'	=> [ Components\Navigations\LinkPages::class, 'render' ], // Optional
 		],
 
 		'pager'	=> [
@@ -251,7 +251,7 @@ return [
 					: \get_userdata( \absint( \get_the_author_meta( 'ID' ) ) );
 
 
-				$data['contact'] = $injector->make( '\ItalyStrap\User\Contact_Method_List' );
+				$data['contact'] = $injector->make( '\ItalyStrap\User\ContactMethodList' );
 
 				return $data;
 			},
@@ -275,7 +275,7 @@ return [
 					: \get_userdata( \absint( \get_the_author_meta( 'ID' ) ) );
 
 
-				$data['contact'] = $injector->make( '\ItalyStrap\User\Contact_Method_List' );
+				$data['contact'] = $injector->make( '\ItalyStrap\User\ContactMethodList' );
 
 				return $data;
 			},
@@ -340,7 +340,7 @@ return [
 		'footer-widget-area'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_footer',
 			'view'		=> 'footers/widget-area',
-			'callback'	=> [ Components\Footers\Widget_Area::class, 'render' ],
+			'callback'	=> [ Components\Footers\WidgetArea::class, 'render' ],
 		],
 
 		'footer-colophon'	=> [

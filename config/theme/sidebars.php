@@ -16,7 +16,7 @@ use ItalyStrap\Theme\Sidebars as S;
  * @todo In questi settings vengono registrate anche le widget_area
  *       del footer e la key viene usate per calcolare la larghezza della colonna.
  *       Vedi Classe Footer_Widget_area
- * @see \ItalyStrap\Components\Footers\Widget_Area
+ * @see \ItalyStrap\Components\Footers\WidgetArea
  */
 return apply_filters( 'italystrap_sidebars_registered',
 	[

@@ -12,7 +12,7 @@ use ItalyStrap\Config\ConfigInterface;
  *
  * @package ItalyStrap\Css
  */
-class Inline_Generator {
+class InlineGenerator {
 
 	private $config;
 

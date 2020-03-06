@@ -17,7 +17,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Headers;
 
-use ItalyStrap\Navbar\Bootstrap_Nav_Menu;
+use ItalyStrap\Navbar\BootstrapNavMenu;
 
 ?><nav id="top-nav" class="top-nav">
 	<div class="container">
@@ -35,7 +35,7 @@ use ItalyStrap\Navbar\Bootstrap_Nav_Menu;
 						'container_class'	=> 'pull-left float-left',
 						'fallback_cb'       => false,
 						'menu_class'		=> 'list-inline info-menu',
-						'walker'			=> new Bootstrap_Nav_Menu(),
+						'walker'			=> new BootstrapNavMenu(),
 					)
 				);
 				/**
@@ -51,7 +51,7 @@ use ItalyStrap\Navbar\Bootstrap_Nav_Menu;
 						'menu_class'		=> 'list-inline social-menu',
 						'link_before'		=> '<span class="item-title">',
 						'link_after'		=> '</span>',
-						'walker'			=> new Bootstrap_Nav_Menu(),
+						'walker'			=> new BootstrapNavMenu(),
 					)
 				);
 				?>

@@ -24,22 +24,22 @@ class Director implements SubscriberInterface {
 	}
 
 	/**
-	 * @var Builder_Interface
+	 * @var BuilderInterface
 	 */
 	private $builder;
 
 	/**
-	 * @var Parse_Attr
+	 * @var ParseAttr
 	 */
 	private $parse_Attr;
 
 	/**
 	 * Director constructor.
 	 *
-	 * @param Builder_Interface $builder
+	 * @param BuilderInterface $builder
 	 * @param SubscriberRegisterInterface $eventManager
 	 */
-	public function __construct( Builder_Interface $builder, SubscriberRegisterInterface $eventManager ) {
+	public function __construct( BuilderInterface $builder, SubscriberRegisterInterface $eventManager ) {
 		$this->builder = $builder;
 //		$this->parse_Attr = $parse_Attr;
 		$this->eventManager = $eventManager;

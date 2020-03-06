@@ -6,7 +6,7 @@ namespace ItalyStrap\Components\Navigations;
 /**
  * Class description
  */
-class Link_Pages {
+class LinkPages {
 
 	/**
 	 * Render the output of the controller.

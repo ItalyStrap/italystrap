@@ -17,7 +17,7 @@ namespace ItalyStrap\User;
 /**
  * Contact_Methods_Base Class
  */
-abstract class Contact_Methods_Base {
+abstract class ContactMethodsBase {
 
 	/**
 	 * New contact methods to add.

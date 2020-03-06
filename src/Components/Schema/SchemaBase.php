@@ -7,7 +7,7 @@ namespace ItalyStrap\Components\Schema;
  * Schema_Base
  * @link https://schema.org/Article
  */
-class Schema_Base {
+class SchemaBase {
 
 	/**
 	 * Number of total words in content

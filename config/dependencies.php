@@ -5,7 +5,7 @@ namespace ItalyStrap;
 use Auryn\Injector;
 use ItalyStrap\Asset\Script;
 use ItalyStrap\Asset\Style;
-use ItalyStrap\Builders\Builder_Interface;
+use ItalyStrap\Builders\BuilderInterface;
 use ItalyStrap\Config\{Config, Config_Interface, ConfigFactory, ConfigInterface};
 use ItalyStrap\Empress\AurynResolver;
 use ItalyStrap\Event\EventDispatcher;
@@ -65,8 +65,8 @@ return [
 
 		ViewFinderInterface::class			=> View\ViewFinder::class,
 		ViewInterface::class				=> View\View::class,
-		Walker_Nav_Menu::class				=> Navbar\Bootstrap_Nav_Menu::class,
-		Builder_Interface::class			=> Builders\Builder::class,
+		Walker_Nav_Menu::class				=> Navbar\BootstrapNavMenu::class,
+		BuilderInterface::class			=> Builders\Builder::class,
 	],
 
 	/**
@@ -115,7 +115,7 @@ return [
 //		],
 
 		Components\Navigations\Navbar::class	=> [
-			':fallback_cb' => [ Navbar\Bootstrap_Nav_Menu::class, 'fallback' ],
+			':fallback_cb' => [ Navbar\BootstrapNavMenu::class, 'fallback' ],
 		],
 		Components\Navigations\Pagination::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'components/pagination' ) ),
@@ -239,10 +239,10 @@ return [
 
 		Custom\Metabox\Register::class,
 
-		Admin\Nav_Menu\Item_Custom_Fields::class,
-		Customizer\Theme_Customizer::class,
+		Admin\Nav_Menu\ItemCustomFields::class,
+		Customizer\ThemeCustomizer::class,
 		Css\Css::class,
-		User\Contact_Methods::class,
+		User\ContactMethods::class,
 
 		// This is the class that build the page
 		Builders\Director::class,

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Builders;
 
-interface Builder_Interface {
+interface BuilderInterface {
 
 	/**
 	 * @param \Auryn\Injector $injector

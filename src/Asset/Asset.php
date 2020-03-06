@@ -22,7 +22,7 @@ use \ItalyStrap\Config\Config_Interface as Config;
  * Class description
  * @todo http://wordpress.stackexchange.com/questions/195864/most-elegant-way-to-enqueue-scripts-in-function-php-with-foreach-loop
  */
-abstract class Asset implements Asset_Interface {
+abstract class Asset implements AssetInterface {
 
 	/**
 	 * Configuration array

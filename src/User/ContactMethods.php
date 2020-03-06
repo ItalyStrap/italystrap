@@ -20,7 +20,7 @@ use ItalyStrap\Event\SubscriberInterface;
 /**
  * Contact Method Class
  */
-class Contact_Methods extends Contact_Methods_Base implements SubscriberInterface {
+class ContactMethods extends ContactMethodsBase implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with

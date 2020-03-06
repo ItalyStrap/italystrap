@@ -15,7 +15,7 @@
 
 namespace ItalyStrap\Asset;
 
-interface Asset_Interface {
+interface AssetInterface {
 
 	/**
 	 * Checks if an asset has been enqueued

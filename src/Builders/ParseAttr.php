@@ -5,7 +5,7 @@ namespace ItalyStrap\Builders;
 
 use \ItalyStrap\Config\ConfigInterface as Config;
 
-class Parse_Attr {
+class ParseAttr {
 
 	const ACCEPTED_ARGS = 3;
 

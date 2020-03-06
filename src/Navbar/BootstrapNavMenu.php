@@ -28,7 +28,7 @@ use \Walker_Nav_Menu;
  * @todo Sarebbe interessante aggiunger un autocomplete con le classi Bootstrap
  *       nel menù admin
  */
-class Bootstrap_Nav_Menu extends Walker_Nav_Menu {
+class BootstrapNavMenu extends Walker_Nav_Menu {
 
 	/**
 	 * Starts the list before the elements are added.

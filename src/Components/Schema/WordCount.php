@@ -8,7 +8,7 @@ use ItalyStrap\Event\SubscriberInterface;
 /**
  * Class for the itemprop="wordCount" of schema.org
  */
-class Word_Count extends Schema_Base implements SubscriberInterface {
+class WordCount extends SchemaBase implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with

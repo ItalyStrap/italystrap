@@ -28,7 +28,7 @@ use function ItalyStrap\HTML\get_attr as attr;
  * @since 4.0.0
  * @uses Walker_Nav_Menu_Edit
  */
-final class Item_Custom_Fields implements SubscriberInterface {
+final class ItemCustomFields implements SubscriberInterface {
 
 	/**
 	 * Holds our custom fields
@@ -156,7 +156,7 @@ final class Item_Custom_Fields implements SubscriberInterface {
 	 * @return string          The new walker class to use.
 	 */
 	public function register() {
-		return Nav_Menu_Edit::class;
+		return NavMenuEdit::class;
 	}
 
 	/**

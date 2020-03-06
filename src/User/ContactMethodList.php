@@ -16,7 +16,7 @@ namespace ItalyStrap\User;
 /**
  * Contact_Method_List
  */
-class Contact_Method_List extends Contact_Methods_Base {
+class ContactMethodList extends ContactMethodsBase {
 
 	/**
 	 * Get th list

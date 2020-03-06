@@ -178,6 +178,7 @@ return [
 		Theme\Assets::class		=> function ( Theme\Assets $assets, Injector $injector ) {
 
 			$event_dispatcher = $injector->make(EventDispatcher::class);
+
 			$loaded = false;
 			$event_dispatcher->addListener('wp_enqueue_scripts', function () use ($assets, &$loaded) {
 				$loaded = true;

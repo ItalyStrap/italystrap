@@ -63,6 +63,9 @@ class AssetsTest extends BaseTheme
 		$sut = $this->getInstance();
 		$sut->withAssets(
 			$this->getStyle(),
+			$this->getStyle(),
+			$this->getStyle(),
+			$this->getStyle(),
 			$this->getScript()
 		);
 		$sut->register();

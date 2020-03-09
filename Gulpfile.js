@@ -10,6 +10,9 @@ const cssnano = require('cssnano');
 const pixrem = require('pixrem');
 const sourcemaps = require('gulp-sourcemaps');
 
+const uglify = require('gulp-uglify');
+const rename = require('gulp-rename');
+
 const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
 
@@ -94,6 +97,15 @@ gulp.task('postcss', function () {
         .pipe(gulp.dest('./assets/css'));
 });
 
+gulp.task('script', function () {
+    return gulp.src('./assets/js/src/*.js')
+        // The gulp-uglify plugin won't update the filename
+        .pipe(uglify())
+        // So use gulp-rename to change the extension
+        .pipe(rename({ extname: '.min.js' }))
+        .pipe(gulp.dest('./assets/js'));
+});
+
 gulp.task('imagemin', function () {
     return gulp.src('assets/img/src/*')
         .pipe(imagemin(
@@ -133,15 +145,21 @@ gulp.task('cleanTemp', function () {
 });
 
 gulp.task('css', gulp.series('compass','postcss'));
+gulp.task('js', gulp.series('script'));
 gulp.task('img', gulp.series('imagemin','webp'));
 
 gulp.task('zip', gulp.series('copyTemp','compress','cleanTemp'));
 
-gulp.task('build', gulp.series('css','img','zip'));
+gulp.task('build', gulp.series('css','js','img','zip'));
 
 gulp.task('watch', function() {
     gulp.watch(['./assets/sass/*.scss'], gulp.series('css'));
+    gulp.watch(['./assets/js/src/*.js'], gulp.series('js'));
     gulp.watch(['./assets/img/src/*'], gulp.series('img'));
 });
 
-gulp.task('default', gulp.series('watch'));
+exports.default = function(cb) {
+    gulp.watch(['./assets/sass/*.scss'], gulp.series('css'));
+    gulp.watch(['./assets/img/src/*'], gulp.series('img'));
+    cb();
+};

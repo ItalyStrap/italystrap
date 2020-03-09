@@ -10,6 +10,7 @@
 		"require": true,
 		"__dirname": true,
 		"console": true,
-		"document": true
+		"document": true,
+		"exports": true
 	}
 }

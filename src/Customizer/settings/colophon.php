@@ -13,6 +13,7 @@ use	ItalyStrap\Customizer\Control\Textarea;
 
 /**
  * Define a new section for Footer colophon
+ * @var WP_Customize_Manager $manager
  */
 $manager->add_section(
 	'colophon',
@@ -28,6 +29,7 @@ $manager->add_section(
 
 /**
  * Add a textarea control for Colophon
+ * @var WP_Customize_Manager $manager
  */
 $manager->add_setting(
 	'colophon',
@@ -40,6 +42,9 @@ $manager->add_setting(
 	)
 );
 
+/**
+ * @var WP_Customize_Manager $manager
+ */
 $manager->add_control(
 	'colophon',
 	array(

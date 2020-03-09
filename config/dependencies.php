@@ -14,8 +14,10 @@ use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\HTML\Attributes;
+use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Theme\{Assets, NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
+use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\View\{ViewFinderInterface, ViewInterface};
 use Walker_Nav_Menu;
 use function ItalyStrap\Config\{get_config_file_content};
@@ -33,8 +35,8 @@ return [
 	 * ==========================================================
 	 */
 	AurynResolver::SHARING				=> [
-		EventDispatcherInterface::class,
-		SubscriberRegisterInterface::class,
+		EventDispatcher::class,
+		SubscriberRegister::class,
 
 		/**
 		 * Make sure the config is shared.
@@ -42,9 +44,9 @@ return [
 		 */
 		Config::class,
 
-		View\View::class,
 		Attributes::class,
 		Tag::class,
+		View\View::class,
 	],
 
 	/**
@@ -62,6 +64,9 @@ return [
 
 		ConfigInterface::class				=> Config::class,
 		Config_Interface::class				=> Config::class,
+
+		AttributesInterface::class			=> Attributes::class,
+		TagInterface::class					=> Tag::class,
 
 		ViewFinderInterface::class			=> View\ViewFinder::class,
 		ViewInterface::class				=> View\View::class,

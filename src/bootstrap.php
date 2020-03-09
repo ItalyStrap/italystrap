@@ -16,8 +16,7 @@ namespace ItalyStrap;
 
 use Auryn\InjectorException;
 use ItalyStrap\Config\ConfigFactory;
-use ItalyStrap\Empress\AurynResolver;
-use ItalyStrap\Empress\Injector;
+use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\EventResolverExtension;
 use ItalyStrap\Event\EventDispatcher;
@@ -75,8 +74,8 @@ try {
 	$injector = new DebugInjector( $injector );
 	$injector->share( $injector );
 
-	$injector->alias(EventDispatcherInterface::class, EventDispatcher::class);
-	$injector->share( EventDispatcherInterface::class );
+	$injector->alias( EventDispatcherInterface::class, EventDispatcher::class );
+	$injector->share( EventDispatcher::class );
 	$injector->share( SubscriberRegister::class );
 
 	$event_resolver = $injector->make( EventResolverExtension::class, [
@@ -92,7 +91,7 @@ try {
 
 	$dependencies = ConfigFactory::make($dependence_collection);
 
-	$empress = $injector->make( AurynResolver::class, [
+	$empress = $injector->make( AurynConfig::class, [
 		':dependencies'	=> $dependencies
 	] );
 

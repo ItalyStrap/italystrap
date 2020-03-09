@@ -122,8 +122,6 @@ class CustomizerBeta implements SubscriberInterface {
 	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/
 	 *
 	 * @param  WP_Customize_Manager $manager WP_Customize_Manager object.
-	 *
-	 * @return WP_Customize_Manager          Return the manager object
 	 */
 	public function customize_register( WP_Customize_Manager $manager ) {
 
@@ -160,10 +158,7 @@ class CustomizerBeta implements SubscriberInterface {
 	}
 
 	/**
-	 * Register
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param WP_Customize_Manager $manager
 	 */
 	public function register( WP_Customize_Manager $manager ) {
 

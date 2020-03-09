@@ -7474,7 +7474,7 @@ a img.dropdown-submenu.alignleft > .dropdown-menu {
 /* CSS SPRITE ICONE SOCIALI Pagina Autore*/
 /* line 5, ../../sass/meta/_sprite.scss */
 .sprite {
-  background: url("../img/css_sprite_social_icon.jpg") no-repeat !important;
+  background: url("../assets/img/css_sprite_social_icon.jpg") no-repeat !important;
   display: block;
   height: 64px;
   width: 64px;

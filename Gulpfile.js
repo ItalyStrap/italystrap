@@ -9,11 +9,14 @@ const cssnano = require('cssnano');
 const pixrem = require('pixrem');
 const sourcemaps = require('gulp-sourcemaps');
 
+const imagemin = require('gulp-imagemin');
+const webp = require('gulp-webp');
+
 const gulpCopy = require('gulp-copy');
 const zip = require('gulp-zip');
-var clean = require('gulp-clean');
+const clean = require('gulp-clean');
 
-const italystrap_theme = [
+const theme_src = [
     '**', // All
 
     /**
@@ -88,13 +91,34 @@ gulp.task('postcss', function () {
         .pipe(gulp.dest('./assets/css'));
 });
 
-gulp.task('copyTemp', function () {
-    return gulp
-        .src(italystrap_theme)
-        // .src('src/**')
-        .pipe(gulpCopy('../temp/' + pkg.name, {}));
+gulp.task('imagemin', function () {
+    return gulp.src('assets/img/src/*')
+        .pipe(imagemin(
+            [
+                imagemin.gifsicle({interlaced: true}),
+                imagemin.mozjpeg({quality: 75, progressive: true}),
+                imagemin.optipng({optimizationLevel: 5}),
+                imagemin.svgo({
+                    plugins: [
+                        {removeViewBox: true},
+                        {cleanupIDs: false}
+                    ]
+                }),
+            ]
+        ))
+        .pipe(gulp.dest('assets/img'));
+});
+gulp.task('webp', function () {
+    return gulp.src('assets/img/*')
+        .pipe(webp({quality: 50}))
+        .pipe(gulp.dest('assets/img'));
 });
 
+gulp.task('copyTemp', function () {
+    return gulp
+        .src(theme_src)
+        .pipe(gulpCopy('../temp/' + pkg.name, {}));
+});
 gulp.task('compress', function () {
     return gulp.src('../temp/**')
         .pipe(zip(pkg.name + ' ' + pkg.version + '-archive.zip', {}))
@@ -106,10 +130,13 @@ gulp.task('cleanTemp', function () {
 });
 
 gulp.task('css', gulp.series('compass','postcss'));
-gulp.task('zip', gulp.series('copyTemp','compress','cleanTemp'));
+gulp.task('img', gulp.series('imagemin','webp'));
 
-gulp.task('default', gulp.series('compass','postcss'));
+gulp.task('zip', gulp.series('copyTemp','compress','cleanTemp'));
 
 gulp.task('watch', function() {
     gulp.watch(['./assets/sass/*.scss'], gulp.series('css'));
+    gulp.watch(['./assets/img/src/*'], gulp.series('img'));
 });
+
+gulp.task('default', gulp.series('watch'));

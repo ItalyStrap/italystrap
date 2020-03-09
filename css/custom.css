@@ -6220,7 +6220,7 @@ a img.dropdown-submenu.alignleft > .dropdown-menu {
 
 /* CSS SPRITE ICONE SOCIALI Pagina Autore*/
 .sprite {
-  background: url("../img/css_sprite_social_icon.jpg") no-repeat !important;
+  background: url("../assets/img/src/css_sprite_social_icon.jpg") no-repeat !important;
   display: block;
   height: 64px;
   width: 64px;
@@ -6256,7 +6256,7 @@ a img.dropdown-submenu.alignleft > .dropdown-menu {
 
 /* CSS SPRITE ICONE SOCIALI Autore articoli*/
 .sprite32 {
-  background: url("../img/css_sprite_admin_comment_x32.png") no-repeat !important;
+  background: url("../assets/img/src/css_sprite_admin_comment_x32.png") no-repeat !important;
   display: block;
   height: 32px;
   width: 32px;

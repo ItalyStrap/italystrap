@@ -18,6 +18,7 @@ use \Walker_Nav_Menu_Edit;
  *
  * Based on {@link https://twitter.com/westonruter Weston Ruter}'s {@link https://gist.github.com/3802459 gist}
  * and on {@link https://github.com/Codeinwp/menu-item-custom-fields}
+ * @link https://make.wordpress.org/core/2020/02/25/wordpress-5-4-introduces-new-hooks-to-add-custom-fields-to-menu-items/
  *
  * @version 1.0.0
  * @author Dzikri Aziz <kvcrvt@gmail.com>

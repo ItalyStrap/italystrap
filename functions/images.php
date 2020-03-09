@@ -171,7 +171,6 @@ if ( ! function_exists( 'italystrap_get_404_image' ) ) {
 	/**
 	 * Get the image for 404 page
 	 * The image is set in the customizer
-	 * Default /img/404.jpg
 	 *
 	 * @link https://wordpress.org/support/topic/need-to-get-attachment-id-by-image-url
 	 * @see https://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata
@@ -188,14 +187,13 @@ if ( ! function_exists( 'italystrap_get_404_image' ) ) {
 		/**
 		 * Back compat with the old setting name
 		 */
-		$default_image = TEMPLATEURL . '/img/404.png';
+		$default_image = TEMPLATEURL . 'assets/img/404.png';
 
 		if ( empty( $theme_mods['404_image'] ) ) {
 			$theme_mods['404_image'] = $theme_mods['default_404'];
 			remove_theme_mod( 'default_404' ); // Remove the old value from database
 		}
 
-		// $image_404_url = TEMPLATEURL . '/img/404.jpg';
 		$image_404_url = $default_image;
 		$width = absint( $theme_mods['content_width'] );
 		$height = '';

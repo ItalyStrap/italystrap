@@ -9,6 +9,7 @@
 		"module": true,
 		"require": true,
 		"__dirname": true,
-		"console": true
+		"console": true,
+		"document": true
 	}
 }

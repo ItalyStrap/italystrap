@@ -49,5 +49,8 @@
     "load-grunt-tasks": "^3.5.2",
     "pixrem": "^5.0.0",
     "qunit": "^2.9.3"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1"
   }
 }

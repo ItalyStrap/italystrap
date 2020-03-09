@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const path = require('path');
 const fs = require('fs');
 const pkg = JSON.parse(fs.readFileSync('./package.json'));
+
 const compass = require('gulp-compass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -29,10 +30,12 @@ const theme_src = [
     '!bower/**',
     '!**/test*/**',
     '!future-inclusions/**',
-    '!sass/**',
-    '!css/src/**',
-    '!js/src/**',
-    '!_others',
+    '!**/sass/**',
+    '!**/css/src/**',
+    '!**/js/src/**',
+    '!**/img/src/**',
+    '!**/img/svg/**',
+    '!_others/**',
     '!_template/**',
 
     /**
@@ -133,6 +136,8 @@ gulp.task('css', gulp.series('compass','postcss'));
 gulp.task('img', gulp.series('imagemin','webp'));
 
 gulp.task('zip', gulp.series('copyTemp','compress','cleanTemp'));
+
+gulp.task('build', gulp.series('css','img','zip'));
 
 gulp.task('watch', function() {
     gulp.watch(['./assets/sass/*.scss'], gulp.series('css'));

@@ -12,6 +12,7 @@ const sourcemaps = require('gulp-sourcemaps');
 
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
+const concat = require('gulp-concat');
 
 const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
@@ -98,10 +99,22 @@ gulp.task('postcss', function () {
 });
 
 gulp.task('script', function () {
-    return gulp.src('./assets/js/src/*.js')
-        // The gulp-uglify plugin won't update the filename
+    return gulp.src([
+        './node_modules/bootstrap/js/dist/util.js',
+        './node_modules/bootstrap/js/dist/alert.js',
+        './node_modules/bootstrap/js/dist/button.js',
+        './node_modules/bootstrap/js/dist/carousel.js',
+        './node_modules/bootstrap/js/dist/collapse.js',
+        './node_modules/bootstrap/js/dist/dropdown.js',
+        './node_modules/bootstrap/js/dist/modal.js',
+        './node_modules/bootstrap/js/dist/scrollspy.js',
+        './node_modules/bootstrap/js/dist/tab.js',
+        './node_modules/bootstrap/js/dist/tooltip.js',
+        './node_modules/bootstrap/js/dist/popover.js',
+        './assets/js/src/custom.js',
+    ])
+        .pipe(concat('custom.js'))
         .pipe(uglify())
-        // So use gulp-rename to change the extension
         .pipe(rename({ extname: '.min.js' }))
         .pipe(gulp.dest('./assets/js'));
 });
@@ -130,8 +143,7 @@ gulp.task('webp', function () {
 });
 
 gulp.task('copyTemp', function () {
-    return gulp
-        .src(theme_src)
+    return gulp.src(theme_src)
         .pipe(gulpCopy('../temp/' + pkg.name, {}));
 });
 gulp.task('compress', function () {
@@ -160,6 +172,7 @@ gulp.task('watch', function() {
 
 exports.default = function(cb) {
     gulp.watch(['./assets/sass/*.scss'], gulp.series('css'));
+    gulp.watch(['./assets/js/src/*.js'], gulp.series('js'));
     gulp.watch(['./assets/img/src/*'], gulp.series('img'));
     cb();
 };

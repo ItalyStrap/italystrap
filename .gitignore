@@ -40,3 +40,4 @@ backups
 *.lock
 
 stty.exe.stackdump
+package-lock.json

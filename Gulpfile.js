@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const {src, task, series, dest, watch, parallel} = gulp;
 const path = require('path');
 const fs = require('fs');
 const pkg = JSON.parse(fs.readFileSync('./package.json'));
@@ -114,8 +115,10 @@ gulp.task('script', function () {
         './assets/js/src/custom.js',
     ])
         .pipe(concat('custom.js'))
+        .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(rename({ extname: '.min.js' }))
+        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('./assets/js'));
 });
 

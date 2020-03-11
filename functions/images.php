@@ -226,14 +226,7 @@ if ( ! function_exists( 'italystrap_get_404_image' ) ) {
 
 		$html = apply_filters( 'italystrap_404_image_html', $html );
 
-		/**
-		 * If is active ItalyStrap plugin
-		 */
-		if ( function_exists( 'italystrap_apply_lazyload' ) ) {
-			return italystrap_get_apply_lazyload( $html );
-		} else {
-			return $html;
-		}
+		return \apply_filters('italystrap_lazyload_images_in_this_content', $html);
 	}
 }
 
@@ -368,11 +361,7 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 				$image_html = '<img src="' . $image_attributes[0] . '" width="' . $image_attributes[1] . '" height="' . $image_attributes[2] . '" alt="' . $attr['alt'] . '" class="' . $attr['class'] . '">'; }
 		}
 
-		if ( function_exists( 'italystrap_get_apply_lazyload' ) ) {
-			$image_html = italystrap_get_apply_lazyload( $image_html ); }
-
-		return $image_html;
-
+		return \apply_filters('italystrap_lazyload_images_in_this_content', $image_html);
 	}
 }
 

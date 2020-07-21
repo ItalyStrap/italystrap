@@ -41,3 +41,5 @@ backups
 
 stty.exe.stackdump
 package-lock.json
+
+*.sample

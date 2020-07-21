@@ -29,7 +29,7 @@ $autoload_theme_files = [
  *
  * ========================================================================
  */
-if ( \apply_filters( 'italystrap_load_deprecated', false ) ) {
+if ( \function_exists('apply_filters') && \apply_filters( 'italystrap_load_deprecated', false ) ) {
 	$autoload_theme_files[] = '../deprecated/autoload.php';
 }
 

@@ -1,0 +1,19 @@
+{
+  "source": {
+    "directories": [
+      "src"
+    ]
+  },
+  "logs": {
+    "text": "php://stdout",
+    "badge": {
+      "branch": "master"
+    }
+  },
+  "timeout": 10,
+  "mutators": {
+    "@default": true
+  },
+  "testFramework": "codeception",
+  "testFrameworkOptions": "--skip=wpunit --skip=acceptance --skip=functional"
+}

@@ -213,12 +213,14 @@ return [
 			if ( \ItalyStrap\Core\is_debug() ) {
 				$event_dispatcher->addListener(
 					\Inpsyde\Assets\AssetManager::ACTION_SETUP,
-					function (\Inpsyde\Assets\AssetManager $asset_manager) use ($custom) {
+					function (
+						\Inpsyde\Assets\AssetManager $asset_manager
+					) use ($config, $custom) {
 						$assets = (new \Inpsyde\Assets\Loader\ArrayLoader)->load(
 							[
 								[
 									'handle'	=> CURRENT_TEMPLATE_SLUG . '-foo',
-									'url'		=> STYLESHEETURL . '/css/custom.css',
+									'url'		=> $config->get('STYLESHEETURL') . '/css/custom.css',
 									'filePath'	=> $custom->getRealPath(),
 									'version'	=> \ItalyStrap\Core\is_debug() ? \strval( rand( 0, 100000 ) ) : '',
 									'type'		=> \Inpsyde\Assets\Style::class

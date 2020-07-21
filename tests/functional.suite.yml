@@ -13,13 +13,13 @@ modules:
         - \Helper\Functional
     config:
         WPDb:
-            dsn: 'mysql:host=%TEST_SITE_DB_HOST%;dbname=%TEST_SITE_DB_NAME%'
+            dsn: '%TEST_SITE_DB_DSN%'
             user: '%TEST_SITE_DB_USER%'
             password: '%TEST_SITE_DB_PASSWORD%'
             dump: 'tests/_data/dump.sql'
             populate: true
             cleanup: true
-            waitlock: 0
+            waitlock: 10
             url: '%TEST_SITE_WP_URL%'
             urlReplacement: true
             tablePrefix: '%TEST_SITE_TABLE_PREFIX%'

@@ -15,8 +15,7 @@
 
 namespace ItalyStrap\Asset;
 
-use \ReflectionClass;
-use \ItalyStrap\Config\Config_Interface as Config;
+use \ItalyStrap\Config\ConfigInterface as Config;
 
 /**
  * Class description
@@ -62,6 +61,7 @@ abstract class Asset implements AssetInterface {
 		 * @var array
 		 */
 		$this->config = apply_filters( 'italystrap_config_enqueue_' . strtolower( $this->class_name ), $config->all() );
+//		$this->config = $config->all();
 	}
 
 	/**

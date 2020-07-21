@@ -33,16 +33,16 @@ if ( file_exists( CHILDPATH . '/js/' . CURRENT_TEMPLATE_SLUG . $min . '.js' ) ) 
 }
 
 $config_scripts = [
-	[
-		'handle'		=> 'jquery',
-		'file'			=> '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
-		'deps'			=> false,
-//				'version'		=> $ver,
-		'version'		=> '2.1.1',
-		'in_footer'		=> true,
-		'pre_register'	=> true,
-		'deregister'	=> true, // This will deregister previous registered jQuery.
-	],
+//	[
+//		'handle'		=> 'jquery',
+//		'file'			=> '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
+//		'deps'			=> false,
+////				'version'		=> $ver,
+//		'version'		=> '2.1.1',
+//		'in_footer'		=> true,
+//		'pre_register'	=> true,
+//		'deregister'	=> true, // This will deregister previous registered jQuery.
+//	],
 	[
 		'handle'		=> CURRENT_TEMPLATE_SLUG,
 		'file'			=> $script_file_url,

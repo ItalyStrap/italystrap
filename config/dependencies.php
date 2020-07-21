@@ -6,19 +6,26 @@ use Auryn\Injector;
 use ItalyStrap\Asset\Script;
 use ItalyStrap\Asset\Style;
 use ItalyStrap\Builders\BuilderInterface;
-use ItalyStrap\Config\{Config, Config_Interface, ConfigFactory, ConfigInterface};
-use ItalyStrap\Empress\AurynResolver;
+use ItalyStrap\Config\{Config, ConfigFactory, ConfigInterface};
+use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventResolverExtension;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscriberRegisterInterface;
+use ItalyStrap\Finder\FileInfoFactory;
+use ItalyStrap\Finder\FileInfoFactoryInterface;
+use ItalyStrap\Finder\FilesHierarchyIterator;
+use ItalyStrap\Finder\Finder;
+use ItalyStrap\Finder\FinderFactory;
+use ItalyStrap\Finder\FinderInterface;
+use ItalyStrap\Finder\SearchFileStrategy;
 use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Theme\{Assets, NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
 use ItalyStrap\HTML\TagInterface;
-use ItalyStrap\View\{ViewFinderInterface, ViewInterface};
+use ItalyStrap\View\ViewInterface;
 use Walker_Nav_Menu;
 use function ItalyStrap\Config\{get_config_file_content};
 use function ItalyStrap\Factory\get_config;
@@ -34,7 +41,7 @@ return [
 	 *
 	 * ==========================================================
 	 */
-	AurynResolver::SHARING				=> [
+	AurynConfig::SHARING				=> [
 		EventDispatcher::class,
 		SubscriberRegister::class,
 
@@ -58,17 +65,20 @@ return [
 	 *
 	 * ==========================================================
 	 */
-	AurynResolver::ALIASES				=> [
+	AurynConfig::ALIASES				=> [
 		EventDispatcherInterface::class		=> EventDispatcher::class,
 		SubscriberRegisterInterface::class	=> SubscriberRegister::class,
 
 		ConfigInterface::class				=> Config::class,
-		Config_Interface::class				=> Config::class,
+//		Config_Interface::class				=> Config::class,
 
 		AttributesInterface::class			=> Attributes::class,
 		TagInterface::class					=> Tag::class,
 
-		ViewFinderInterface::class			=> View\ViewFinder::class,
+		FileInfoFactoryInterface::class		=> FileInfoFactory::class,
+		SearchFileStrategy::class			=> FilesHierarchyIterator::class,
+		FinderInterface::class				=> Finder::class,
+
 		ViewInterface::class				=> View\View::class,
 		Walker_Nav_Menu::class				=> Navbar\BootstrapNavMenu::class,
 		BuilderInterface::class				=> Builders\Builder::class,
@@ -88,7 +98,7 @@ return [
 	 *
 	 * ==========================================================
 	 */
-	AurynResolver::DEFINITIONS			=> [
+	AurynConfig::DEFINITIONS			=> [
 
 		Theme\Sidebars::class	=> [
 			 ':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
@@ -139,7 +149,7 @@ return [
 	 *
 	 * ==========================================================
 	 */
-	AurynResolver::DEFINE_PARAM			=> [
+	AurynConfig::DEFINE_PARAM			=> [
 //		':theme_mods'	=> function () : array {
 //			return get_config()->all();
 //		},
@@ -167,7 +177,7 @@ return [
 	 *
 	 * ========================================================================
 	 */
-	AurynResolver::DELEGATIONS			=> [],
+	AurynConfig::DELEGATIONS			=> [],
 
 	/**
 	 * ========================================================================
@@ -179,19 +189,69 @@ return [
 	 *
 	 * ========================================================================
 	 */
-	AurynResolver::PREPARATIONS			=> [
-		Theme\Assets::class		=> function ( Theme\Assets $assets, Injector $injector ) {
+	AurynConfig::PREPARATIONS			=> [
+		Theme\Assets::class		=> function ( Theme\Assets $assets, Injector $injector ): void {
 
+			/** @var EventDispatcher $event_dispatcher */
 			$event_dispatcher = $injector->make(EventDispatcher::class);
+			/** @var Finder $finder */
+//			$finder = $injector->make( Finder::class );
+//			$finder = new Finder( new FilesHierarchyIterator( new FileInfoFactory() ) );
+			$finder = (new FinderFactory())->make();
+
+			$config = get_config();
+			$dirs = [
+				$config->CHILDPATH . '/css',
+				$config->CHILDPATH . '/assets/css',
+				$config->PARENTPATH . '/assets/css',
+			];
+
+			$finder->in($dirs);
+
+			$custom = $finder->firstFile('custom', 'css', '.');
+
+			if ( \ItalyStrap\Core\is_debug() ) {
+				$event_dispatcher->addListener(
+					\Inpsyde\Assets\AssetManager::ACTION_SETUP,
+					function (\Inpsyde\Assets\AssetManager $asset_manager) use ($custom) {
+						$assets = (new \Inpsyde\Assets\Loader\ArrayLoader)->load(
+							[
+								[
+									'handle'	=> CURRENT_TEMPLATE_SLUG . '-foo',
+									'url'		=> STYLESHEETURL . '/css/custom.css',
+									'filePath'	=> $custom->getRealPath(),
+									'version'	=> \ItalyStrap\Core\is_debug() ? \strval( rand( 0, 100000 ) ) : '',
+									'type'		=> \Inpsyde\Assets\Style::class
+								]
+							]
+						);
+						foreach ($assets as $asset ) {
+							$asset_manager->register( $asset );
+						}
+					}
+				);
+			}
 
 			$loaded = false;
-			$event_dispatcher->addListener('wp_enqueue_scripts', function () use ($assets, &$loaded) {
-				$loaded = true;
-				$assets->withAssets(
-					new Style( ConfigFactory::make( get_config_file_content('theme/styles') ) ),
-					new Script( ConfigFactory::make( get_config_file_content('theme/scripts') ) )
-				);
-			}, 1);
+			$event_dispatcher->addListener(
+				'wp_enqueue_scripts',
+				function () use ( $assets, &$loaded, $event_dispatcher ) {
+
+					$style = $event_dispatcher->filter(
+						'italystrap_config_enqueue_style',
+						get_config_file_content( 'theme/styles' )
+					);
+					$script = $event_dispatcher->filter(
+						'italystrap_config_enqueue_script',
+						get_config_file_content( 'theme/scripts' )
+					);
+
+					$loaded = true;
+					$assets->withAssets(
+						new Style( ConfigFactory::make( $style ) ),
+						new Script( ConfigFactory::make( $script ) )
+					);
+				}, 1 );
 
 			$event_dispatcher->addListener('shutdown', function () use (&$loaded){
 				if ( ! $loaded && \function_exists( 'debug' ) ) {
@@ -207,7 +267,7 @@ return [
 			$builder->set_injector( $injector );
 		},
 
-		View\ViewFinder::class	=> function( View\ViewFinderInterface $finder, Injector $injector ) {
+		Finder::class	=> function( FinderInterface $finder, Injector $injector ) {
 			$config = get_config();
 
 			$dirs = [

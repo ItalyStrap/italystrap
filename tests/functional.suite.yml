@@ -20,14 +20,14 @@ modules:
             populate: true
             cleanup: true
             waitlock: 0
-            url: '%WP_URL%'
+            url: '%TEST_SITE_WP_URL%'
             urlReplacement: true
-            tablePrefix: '%TABLE_SITE_PREFIX%'
+            tablePrefix: '%TEST_SITE_TABLE_PREFIX%'
         WPBrowser:
-            url: '%WP_URL%'
-            adminUsername: '%ADMIN_USERNAME%'
-            adminPassword: '%ADMIN_PASSWORD%'
-            adminPath: '%WP_ADMIN_PATH%'
+            url: '%TEST_SITE_WP_URL%'
+            adminUsername: '%TEST_SITE_ADMIN_USERNAME%'
+            adminPassword: '%TEST_SITE_ADMIN_PASSWORD%'
+            adminPath: '%TEST_SITE_WP_ADMIN_PATH%'
             headers:
                 X_TEST_REQUEST: 1
                 X_WPBROWSER_REQUEST: 1

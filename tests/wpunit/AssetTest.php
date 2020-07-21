@@ -48,4 +48,25 @@ class AssetTest extends \Codeception\TestCase\WPTestCase {
 	public function script_it_should_be_instantiatable() {
 		$this->assertInstanceOf( '\ItalyStrap\Asset\Script', $this->get_instance( 'Script' ) );
 	}
+
+	public function FilteredAssets() {
+		$config = \ItalyStrap\Config\Config_Factory::make([
+			'handle'		=> 'jquery',
+			'file'			=> '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
+			'deps'			=> false,
+//				'version'		=> $ver,
+			'version'		=> '2.1.1',
+			'in_footer'		=> true,
+			'pre_register'	=> true,
+			'deregister'	=> true, // This will deregister previous registered jQuery.
+		]);
+
+		\add_filter('italystrap_config_enqueue_script', function ($arg){
+			codecept_debug($arg);
+		});
+
+		$sut = \ItalyStrap\Factory\injector()->make( \ItalyStrap\Asset\Script::class, [ ':config' => $config ] );
+		$sut->register_all();
+		codecept_debug(\json_encode(\wp_script_is( 'jquery', 'registered' )));
+	}
 }

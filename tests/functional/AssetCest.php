@@ -8,6 +8,7 @@ use FunctionalTester;
 class AssetCest {
 
 	public function _before(FunctionalTester $I) {
+		$I->loginAsAdmin();
 	}
 
 	/**
@@ -24,5 +25,22 @@ class AssetCest {
 		$I->seeElement( ['id' => 'index-foo-css'] );
 		$I->seeElement( 'link', ['href' => $custom_css_url] );
 //		$I->seeElement( 'script', ['id' => 'custom-inline-js'] );
+	}
+
+	/**
+	 * @param FunctionalTester $I
+	 * @test
+	 */
+	public function itShouldHaveStylesheetLoadedInEditor(FunctionalTester $I) {
+		$I->wantTo( 'See the stylesheet loaded in editor' );
+
+		$randomPostId = $I->havePostInDatabase();
+
+		$I->amOnAdminPage('/post.php?post=' . $randomPostId . '&action=edit');
+
+		$I->seeResponseCodeIs( 200 );
+		$I->seeResponseContains('sourceMappingURL=');
+		$I->seeResponseContains('editor-style');
+		$I->seeResponseContains('block-editor');
 	}
 }

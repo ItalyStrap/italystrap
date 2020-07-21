@@ -23,4 +23,13 @@ class FunctionalTester extends \Codeception\Actor
     /**
      * Define custom actions here
      */
+
+	/**
+	 * @param $text
+	 * @return mixed|null
+	 * @throws Exception
+	 */
+	public function seeResponseContains( $text ){
+		return $this->getScenario()->runStep(new \Codeception\Step\Action('seeResponseContains', func_get_args()));
+	}
 }

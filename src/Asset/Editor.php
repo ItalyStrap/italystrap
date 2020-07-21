@@ -61,18 +61,38 @@ class Editor implements SubscriberInterface {
 	 */
 	public function add_editor_styles() {
 
-//		$this->finder->in(
-//			[
-//				$this->config->get( 'STYLESHEETURL' ),
-//				$this->config->get( 'TEMPLATEURL' )
-//			]
-//		);
+		$this->finder->names([
+			'../css/editor-style.css',
+			'../assets/css/editor-style.css',
+		]);
 
-		d( $this->finder->firstFile( '../css/editor-style', 'css' ) );
+		/** @var \SplFileInfo $editor_style */
+		$editor_style = '';
+		foreach ( $this->finder as $file ) {
+			$editor_style = $file;
+			break;
+		}
 
-		$style_url = \file_exists( $this->config->get( 'CHILDPATH' ) . '/css/editor-style.css' )
-			? $this->config->get( 'STYLESHEETURL' ) . '/css/editor-style.css'
-			: $this->config->get( 'TEMPLATEURL' ) . '/css/editor-style.css';
+//		$style_url = \file_exists( $this->config->get( 'CHILDPATH' ) . '/css/editor-style.css' )
+//			? $this->config->get( 'STYLESHEETURL' ) . '/assets/css/editor-style.css'
+//			: $this->config->get( 'TEMPLATEURL' ) . '/assets/css/editor-style.css';
+
+		/**
+		 * @TODO In fase di test bisogna verificare sia il papt to url per il child
+		 *       che per il parent theme, qui per esempio prendo tutto dal child
+		 *       e dovrebbe fare la fallback sul parent in caso il child non
+		 *       sia installato
+		 */
+		$style_url = \str_replace(
+			\strval( \realpath( $this->config->get( 'CHILDPATH' ) ) ), // Search
+			$this->config->get( 'STYLESHEETURL' ), // Replace
+			$editor_style->getRealPath()
+		);
+
+		/**
+		 * @TODO Make sure URL has not back slashes
+		 */
+		$style_url = \str_replace('\\', '/', $style_url);
 
 		$arg = \apply_filters( 'italystrap_visual_editor_style', [ $style_url ] );
 

@@ -61,7 +61,7 @@ class AssetTest extends \Codeception\TestCase\WPTestCase {
 			'deregister'	=> true, // This will deregister previous registered jQuery.
 		]);
 
-		\add_filter('italystrap_config_enqueue_script', function ($arg){
+		\add_filter('italystrap_config_enqueue_script', function ($arg) {
 			codecept_debug($arg);
 		});
 

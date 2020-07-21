@@ -11,12 +11,12 @@ use ItalyStrap\Theme\Registrable;
 
 require_once 'BaseTheme.php';
 
-class AssetsTest extends BaseTheme
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
+class AssetsTest extends BaseTheme {
+
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
 	/**
 	 * @var \Prophecy\Prophecy\ObjectProphecy
 	 */
@@ -40,15 +40,13 @@ class AssetsTest extends BaseTheme
 	 */
 	private $script;
 
-	protected function _before()
-    {
-    	$this->style = $this->prophesize( Style::class );
+	protected function _before() {
+		$this->style = $this->prophesize( Style::class );
 		$this->script = $this->prophesize( Script::class );
-    }
+	}
 
-    protected function _after()
-    {
-    }
+	protected function _after() {
+	}
 
 	protected function getInstance(): Assets {
 		$sut = new Assets();

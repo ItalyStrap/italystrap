@@ -2,36 +2,34 @@
 
 use ItalyStrap\View\Exceptions\ViewNotFoundException;
 
-class FinderScriptTest extends \Codeception\Test\Unit
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-    
-    protected function _before()
-    {
-    }
+class FinderScriptTest extends \Codeception\Test\Unit {
 
-    protected function _after()
-    {
-    }
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
+	
+	protected function _before() {
+	}
 
-	private function getInstance(  ) {
+	protected function _after() {
+	}
+
+	private function getInstance() {
 		$sut = new ItalyStrap\Finder\Finder(
 			new \ItalyStrap\Finder\FilesHierarchyIterator(
 				new \ItalyStrap\Finder\FileInfoFactory()
 			)
 		);
 		return $sut;
-    }
+	}
 
 	/**
 	 * @test
 	 */
 	public function instanceOk() {
 		$sut = $this->getInstance();
-    }
+	}
 
 	/**
 	 * @test
@@ -53,5 +51,5 @@ class FinderScriptTest extends \Codeception\Test\Unit
 		codecept_debug(PHP_EOL);
 		codecept_debug($file);
 		codecept_debug(\file_get_contents($file->getRealPath()));
-    }
+	}
 }

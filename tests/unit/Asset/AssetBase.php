@@ -10,12 +10,12 @@ use Prophecy\Prophecy\ObjectProphecy;
 use UnitTester;
 use function tad\FunctionMockerLe\undefineAll;
 
-abstract class AssetBase extends Unit
-{
-    /**
-     * @var UnitTester
-     */
-    protected $tester;
+abstract class AssetBase extends Unit {
+
+	/**
+	 * @var UnitTester
+	 */
+	protected $tester;
 
 	/**
 	 * @var ObjectProphecy
@@ -31,8 +31,7 @@ abstract class AssetBase extends Unit
 		return $this->config->reveal();
 	}
 
-	protected function _before()
-	{
+	protected function _before() {
 		$this->config = $this->prophesize( ConfigInterface::class);
 
 		\tad\FunctionMockerLe\define('apply_filters', function ($event_name, $arg) {
@@ -41,21 +40,19 @@ abstract class AssetBase extends Unit
 		});
 	}
 
-    protected function _after()
-    {
-    	undefineAll([
+	protected function _after() {
+		undefineAll([
 			'apply_filters',
 		]);
-    }
+	}
 
-    abstract protected function getInstance();
+	abstract protected function getInstance();
 
 	/**
 	 * @test
 	 */
-    public function instanceOk()
-    {
+	public function instanceOk() {
 		$sut = $this->getInstance();
 		$this->assertInstanceOf( Asset::class, $sut, '' );
-    }
+	}
 }

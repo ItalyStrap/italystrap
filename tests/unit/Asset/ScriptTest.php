@@ -5,32 +5,28 @@ namespace ItalyStrap\Tests;
 
 require_once 'AssetBase.php';
 
-class ScriptTest extends AssetBase
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-    
-    protected function _before()
-    {
-    	parent::_before();
-    }
+class ScriptTest extends AssetBase {
 
-    protected function _after()
-    {
-    	parent::_after();
-    }
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
+	
+	protected function _before() {
+		parent::_before();
+	}
 
-    // tests
-    public function testSomeFeature()
-    {
+	protected function _after() {
+		parent::_after();
+	}
 
-    }
+	// tests
+	public function testSomeFeature() {
+	}
 
 	protected function getInstance() {
 
-    	$this->config->all()->willReturn([]);
+		$this->config->all()->willReturn([]);
 
 		$sut = new \ItalyStrap\Asset\Script( $this->getConfig() );
 		$this->assertInstanceOf(\ItalyStrap\Asset\Script::class, $sut, '');

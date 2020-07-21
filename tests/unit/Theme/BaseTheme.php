@@ -5,19 +5,17 @@ namespace ItalyStrap\Tests;
 
 use Codeception\Test\Unit;
 
-abstract class BaseTheme extends Unit
-{
+abstract class BaseTheme extends Unit {
+
 	/**
 	 * @var \UnitTester
 	 */
 	protected $tester;
 
-	protected function _before()
-	{
+	protected function _before() {
 	}
 
-	protected function _after()
-	{
+	protected function _after() {
 	}
 
 	abstract protected function getInstance();
@@ -28,5 +26,4 @@ abstract class BaseTheme extends Unit
 	public function ItShouldBeInstantiable() {
 		$this->getInstance();
 	}
-
 }

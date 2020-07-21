@@ -7,8 +7,8 @@ use ItalyStrap\Asset\Asset;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Event\Manager as Event;
 
-class Assets implements Registrable, SubscriberInterface
-{
+class Assets implements Registrable, SubscriberInterface {
+
 	const ENQUEUE_EVENT_NAME = 'wp_enqueue_scripts';
 	/**
 	 * @var Asset

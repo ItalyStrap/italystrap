@@ -22,17 +22,6 @@ $autoload_theme_files = [
 	'pointer.php',
 ];
 
-/**
- * ========================================================================
- *
- * Do you want to load deprecated files?
- *
- * ========================================================================
- */
-if ( \function_exists('apply_filters') && \apply_filters( 'italystrap_load_deprecated', false ) ) {
-	$autoload_theme_files[] = '../deprecated/autoload.php';
-}
-
 foreach ( $autoload_theme_files as $file ) {
 	require __DIR__ . DIRECTORY_SEPARATOR .  $file;
 }

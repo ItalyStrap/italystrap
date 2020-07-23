@@ -1,5 +1,0 @@
-<?php
-
-/**
- * Autoload last deprecated
- */

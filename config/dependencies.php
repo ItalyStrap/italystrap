@@ -191,7 +191,7 @@ return [
 	 * ========================================================================
 	 */
 	AurynConfig::PREPARATIONS			=> [
-		AssetsManager::class		=> function ( AssetsManager $assets, Injector $injector ): void {
+		AssetsManager::class		=> function ( AssetsManager $assets_manager, Injector $injector ): void {
 
 			/** @var EventDispatcher $event_dispatcher */
 			$event_dispatcher = $injector->make(EventDispatcher::class);
@@ -221,6 +221,7 @@ return [
 								[
 									'handle'	=> CURRENT_TEMPLATE_SLUG . '-foo',
 									'url'		=> $config->get('STYLESHEETURL') . '/css/custom.css',
+//									'url'		=> '//italystrap.test' . '/css/custom.css',
 									'filePath'	=> $custom->getRealPath(),
 									'version'	=> \ItalyStrap\Core\is_debug() ? \strval( rand( 0, 100000 ) ) : '',
 									'type'		=> \Inpsyde\Assets\Style::class
@@ -238,19 +239,19 @@ return [
 			$loaded = false;
 			$event_dispatcher->addListener(
 				'wp_enqueue_scripts',
-				function () use ( $assets, &$loaded, $event_dispatcher ) {
+				function () use ( $assets_manager, &$loaded, $event_dispatcher ) {
 
 					$style = $event_dispatcher->filter(
 						'italystrap_config_enqueue_style',
-						get_config_file_content( 'theme/styles' )
+						get_config_file_content( 'assets/styles' )
 					);
 					$script = $event_dispatcher->filter(
 						'italystrap_config_enqueue_script',
-						get_config_file_content( 'theme/scripts' )
+						get_config_file_content( 'assets/scripts' )
 					);
 
 					$loaded = true;
-					$assets->withAssets(
+					$assets_manager->withAssets(
 						new Style( ConfigFactory::make( $style ) ),
 						new Script( ConfigFactory::make( $script ) )
 					);

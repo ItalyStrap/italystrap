@@ -62,8 +62,9 @@ class AssetCest {
 	 */
 	public function itShouldHaveCommentReply(FunctionalTester $I) {
 		$I->wantTo( 'See comment reply' );
-		$I->amOnAdminPage('/themes.php');
-//		$I->click( '', '' );
-		$I->fail('Comment Reply');
+
+		$randomPostId = $I->havePostInDatabase();
+		$I->amOnPage( "/?p={$randomPostId}" );
+		$I->seeInSource('comment-reply.js');
 	}
 }

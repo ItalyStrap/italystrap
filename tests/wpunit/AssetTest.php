@@ -6,11 +6,11 @@ namespace ItalyStrap\Tests;
 use Auryn\InjectionException;
 use Codeception\TestCase\WPTestCase;
 use ItalyStrap\Asset\Script;
+use ItalyStrap\Asset\Style;
 use ItalyStrap\Config\ConfigFactory;
 use WpunitTester;
 use function add_filter;
 use function ItalyStrap\Factory\injector;
-use function json_encode;
 use function wp_script_is;
 
 class AssetTest extends WPTestCase {
@@ -50,8 +50,8 @@ class AssetTest extends WPTestCase {
 	 * @throws InjectionException
 	 */
 	public function instanceOk() {
-		$this->assertInstanceOf( '\ItalyStrap\Asset\Style', $this->getInstance( 'Style' ) );
-		$this->assertInstanceOf( '\ItalyStrap\Asset\Script', $this->getInstance( 'Script' ) );
+		$this->assertInstanceOf( Style::class, $this->getInstance( 'Style' ) );
+		$this->assertInstanceOf( Script::class, $this->getInstance( 'Script' ) );
 	}
 
 	/**
@@ -71,11 +71,13 @@ class AssetTest extends WPTestCase {
 		]);
 
 		add_filter('italystrap_config_enqueue_script', function ($arg) {
-			codecept_debug($arg);
+			$this->assertArrayHasKey( 'handle', $arg, '' );
+			$this->assertStringContainsString('jquery', $arg['handle'], '');
 			return $arg;
 		});
 
-		$sut = injector()->make( Script::class, [ ':config' => $config ] );
+		$sut = new Style($config);
+
 		$sut->register_all();
 
 		$this->assertTrue(wp_script_is( 'jquery', 'registered' ), '');

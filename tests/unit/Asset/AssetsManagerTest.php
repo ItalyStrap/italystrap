@@ -5,12 +5,12 @@ use ItalyStrap\Asset\Script;
 use ItalyStrap\Asset\Style;
 use ItalyStrap\Theme\Registrable;
 
-class AssetsManagerTest extends \Codeception\Test\Unit
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
+class AssetsManagerTest extends \Codeception\Test\Unit {
+
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
 
 	/**
 	 * @var \Prophecy\Prophecy\ObjectProphecy

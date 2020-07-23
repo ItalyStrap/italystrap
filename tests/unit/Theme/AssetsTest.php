@@ -1,22 +1,18 @@
-<?php 
-class AssetsTest extends \Codeception\Test\Unit
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-    
-    protected function _before()
-    {
-    }
+<?php
+class AssetsTest extends \Codeception\Test\Unit {
 
-    protected function _after()
-    {
-    }
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
+	
+	protected function _before() {
+	}
 
-    // tests
-    public function testSomeFeature()
-    {
+	protected function _after() {
+	}
 
-    }
+	// tests
+	public function testSomeFeature() {
+	}
 }

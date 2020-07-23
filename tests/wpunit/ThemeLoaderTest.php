@@ -1,4 +1,7 @@
 <?php
+declare(strict_types=1);
+
+namespace ItalyStrap\Tests;
 
 class ThemeLoaderTest extends \Codeception\TestCase\WPTestCase {
 

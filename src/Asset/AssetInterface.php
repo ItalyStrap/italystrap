@@ -17,24 +17,4 @@ namespace ItalyStrap\Asset;
 
 interface AssetInterface {
 
-	/**
-	 * Checks if an asset has been enqueued
-	 *
-	 * @return bool
-	 */
-	public function is_enqueued();
-
-	/**
-	 * Register each of the asset (enqueues it)
-	 *
-	 * @return null
-	 */
-	public function register();
-
-	/**
-	 * De-register each of the asset
-	 *
-	 * @return null
-	 */
-	// public function deregister( $handle );
 }

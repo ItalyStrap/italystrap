@@ -9,7 +9,6 @@ use ItalyStrap\Finder\Finder;
 
 class Editor implements SubscriberInterface {
 
-
 	/**
 	 * @var Config
 	 */
@@ -78,10 +77,11 @@ class Editor implements SubscriberInterface {
 //			: $this->config->get( 'TEMPLATEURL' ) . '/assets/css/editor-style.css';
 
 		/**
-		 * @TODO In fase di test bisogna verificare sia il papt to url per il child
+		 * @TODO In fase di test bisogna verificare sia il path to url per il child
 		 *       che per il parent theme, qui per esempio prendo tutto dal child
 		 *       e dovrebbe fare la fallback sul parent in caso il child non
 		 *       sia installato
+		 * 		http:://italystrap.test\dir/dir\dir
 		 */
 		$style_url = \str_replace(
 			\strval( \realpath( $this->config->get( 'CHILDPATH' ) ) ), // Search

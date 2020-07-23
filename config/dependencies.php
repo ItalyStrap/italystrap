@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use Auryn\Injector;
+use ItalyStrap\Asset\AssetsManager;
 use ItalyStrap\Asset\Script;
 use ItalyStrap\Asset\Style;
 use ItalyStrap\Builders\BuilderInterface;
@@ -23,7 +24,7 @@ use ItalyStrap\Finder\SearchFileStrategy;
 use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
-use ItalyStrap\Theme\{Assets, NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
+use ItalyStrap\Theme\{NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
 use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\View\ViewInterface;
 use Walker_Nav_Menu;
@@ -190,13 +191,12 @@ return [
 	 * ========================================================================
 	 */
 	AurynConfig::PREPARATIONS			=> [
-		Theme\Assets::class		=> function ( Theme\Assets $assets, Injector $injector ): void {
+		AssetsManager::class		=> function ( AssetsManager $assets, Injector $injector ): void {
 
 			/** @var EventDispatcher $event_dispatcher */
 			$event_dispatcher = $injector->make(EventDispatcher::class);
+
 			/** @var Finder $finder */
-//			$finder = $injector->make( Finder::class );
-//			$finder = new Finder( new FilesHierarchyIterator( new FileInfoFactory() ) );
 			$finder = (new FinderFactory())->make();
 
 			$config = get_config();
@@ -227,6 +227,7 @@ return [
 								]
 							]
 						);
+
 						foreach ($assets as $asset ) {
 							$asset_manager->register( $asset );
 						}

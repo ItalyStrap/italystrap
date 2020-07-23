@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace ItalyStrap\Tests;
+
 require_once 'BaseTheme.php';
 class ThumbnailsTest extends BaseTheme {
 

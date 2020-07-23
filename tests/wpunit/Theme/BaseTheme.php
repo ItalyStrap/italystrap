@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace ItalyStrap\Tests;
+
 use Codeception\TestCase\WPTestCase;
 
 abstract class BaseTheme extends WPTestCase {
@@ -29,7 +31,7 @@ abstract class BaseTheme extends WPTestCase {
 	/**
 	 * @test
 	 */
-	public function ItShouldBeInstantiable() {
+	public function instanceOk() {
 		$this->getInstance();
 	}
 }

@@ -42,5 +42,28 @@ class AssetCest {
 		$I->seeResponseContains('sourceMappingURL=');
 		$I->seeResponseContains('editor-style');
 		$I->seeResponseContains('block-editor');
+
+//		$I->activatePlugin();
+	}
+
+	/**
+	 * @param FunctionalTester $I
+	 * @test
+	 */
+	public function itShouldActivateChildTheme(FunctionalTester $I) {
+		$I->wantTo( 'See the child theme activated' );
+		$I->amOnAdminPage('/themes.php');
+//		$I->click( '', '' );
+	}
+
+	/**
+	 * @param FunctionalTester $I
+	 * @test
+	 */
+	public function itShouldHaveCommentReply(FunctionalTester $I) {
+		$I->wantTo( 'See comment reply' );
+		$I->amOnAdminPage('/themes.php');
+//		$I->click( '', '' );
+		$I->fail('Comment Reply');
 	}
 }

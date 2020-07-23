@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace ItalyStrap\Tests;
+
 require_once 'BaseTheme.php';
 class TypeSupportTest extends BaseTheme {
 
@@ -12,7 +14,6 @@ class TypeSupportTest extends BaseTheme {
 		$this->assertInstanceOf( \ItalyStrap\Theme\TypeSupport::class, $sut, '' );
 		return $sut;
 	}
-
 
 	/**
 	 * @test

@@ -1,9 +1,22 @@
 <?php
+declare(strict_types=1);
 
-class AssetTest extends \Codeception\TestCase\WPTestCase {
+namespace ItalyStrap\Tests;
+
+use Auryn\InjectionException;
+use Codeception\TestCase\WPTestCase;
+use ItalyStrap\Asset\Script;
+use ItalyStrap\Config\ConfigFactory;
+use WpunitTester;
+use function add_filter;
+use function ItalyStrap\Factory\injector;
+use function json_encode;
+use function wp_script_is;
+
+class AssetTest extends WPTestCase {
 
 	/**
-	 * @var \WpunitTester
+	 * @var WpunitTester
 	 */
 	protected $tester;
 	
@@ -24,49 +37,47 @@ class AssetTest extends \Codeception\TestCase\WPTestCase {
 	/**
 	 * @param $type
 	 * @return mixed
-	 * @throws \Auryn\InjectionException
+	 * @throws InjectionException
 	 */
-	private function get_instance( $type ) {
-		$config = \ItalyStrap\Config\Config_Factory::make([]);
-		return \ItalyStrap\Factory\injector()->make( '\ItalyStrap\Asset\\' . $type, [ ':config' => $config ] );
+	private function getInstance( $type ) {
+		$config = ConfigFactory::make([]);
+		return injector()->make( '\ItalyStrap\Asset\\' . $type, [ ':config' => $config ] );
 	}
 
 	/**
 	 * @test
 	 * style_it should be instantiatable
-	 * @throws \Auryn\InjectionException
+	 * @throws InjectionException
 	 */
-	public function style_it_should_be_instantiatable() {
-		$this->assertInstanceOf( '\ItalyStrap\Asset\Style', $this->get_instance( 'Style' ) );
+	public function instanceOk() {
+		$this->assertInstanceOf( '\ItalyStrap\Asset\Style', $this->getInstance( 'Style' ) );
+		$this->assertInstanceOf( '\ItalyStrap\Asset\Script', $this->getInstance( 'Script' ) );
 	}
 
 	/**
 	 * @test
-	 * script_it should be instantiatable
-	 * @throws \Auryn\InjectionException
+	 * @throws InjectionException
+	 * @throws \Auryn\ConfigException
 	 */
-	public function script_it_should_be_instantiatable() {
-		$this->assertInstanceOf( '\ItalyStrap\Asset\Script', $this->get_instance( 'Script' ) );
-	}
-
-	public function FilteredAssets() {
-		$config = \ItalyStrap\Config\Config_Factory::make([
+	public function assetShouldBeFiltered() {
+		$config = ConfigFactory::make([
 			'handle'		=> 'jquery',
 			'file'			=> '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
 			'deps'			=> false,
-//				'version'		=> $ver,
 			'version'		=> '2.1.1',
 			'in_footer'		=> true,
 			'pre_register'	=> true,
-			'deregister'	=> true, // This will deregister previous registered jQuery.
+//			'deregister'	=> true, // This will deregister previous registered jQuery.
 		]);
 
-		\add_filter('italystrap_config_enqueue_script', function ($arg) {
+		add_filter('italystrap_config_enqueue_script', function ($arg) {
 			codecept_debug($arg);
+			return $arg;
 		});
 
-		$sut = \ItalyStrap\Factory\injector()->make( \ItalyStrap\Asset\Script::class, [ ':config' => $config ] );
+		$sut = injector()->make( Script::class, [ ':config' => $config ] );
 		$sut->register_all();
-		codecept_debug(\json_encode(\wp_script_is( 'jquery', 'registered' )));
+
+		$this->assertTrue(wp_script_is( 'jquery', 'registered' ), '');
 	}
 }

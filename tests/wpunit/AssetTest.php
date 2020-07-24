@@ -36,8 +36,6 @@ class AssetTest extends WPTestCase {
 
 	/**
 	 * @param $type
-	 * @return mixed
-	 * @throws InjectionException
 	 */
 	private function getInstance( $type ) {
 		$config = ConfigFactory::make([]);
@@ -47,7 +45,6 @@ class AssetTest extends WPTestCase {
 	/**
 	 * @test
 	 * style_it should be instantiatable
-	 * @throws InjectionException
 	 */
 	public function instanceOk() {
 		$this->assertInstanceOf( Style::class, $this->getInstance( 'Style' ) );
@@ -56,8 +53,6 @@ class AssetTest extends WPTestCase {
 
 	/**
 	 * @test
-	 * @throws InjectionException
-	 * @throws \Auryn\ConfigException
 	 */
 	public function assetShouldBeFiltered() {
 		$config = ConfigFactory::make([
@@ -82,4 +77,20 @@ class AssetTest extends WPTestCase {
 
 		$this->assertTrue(wp_script_is( 'jquery', 'registered' ), '');
 	}
+
+	/**
+	 * @test
+	 */
+//	public function assetShouldBeFilteredhdhfh() {
+//
+//		\add_action('after_setup_theme', function (){
+//			codecept_debug('CODECEPTION');
+//		});
+//
+//		\add_filter('italystrap_config_enqueue_script', function ($arg) {
+//			codecept_debug($arg);
+//			return $arg;
+//		});
+//
+//	}
 }

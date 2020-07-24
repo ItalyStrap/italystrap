@@ -11,15 +11,6 @@ class AssetsManager implements SubscriberInterface {
 	const ENQUEUE_EVENT_NAME = 'wp_enqueue_scripts';
 
 	/**
-	 * @var Asset
-	 */
-	private $style;
-	/**
-	 * @var Asset
-	 */
-	private $script;
-
-	/**
 	 * @var array Asset
 	 */
 	private $assets = [];

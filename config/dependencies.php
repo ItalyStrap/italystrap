@@ -193,6 +193,8 @@ return [
 	AurynConfig::PREPARATIONS			=> [
 		AssetsManager::class		=> function ( AssetsManager $assets_manager, Injector $injector ): void {
 
+			d($assets_manager);
+
 			/** @var EventDispatcher $event_dispatcher */
 			$event_dispatcher = $injector->make(EventDispatcher::class);
 
@@ -201,14 +203,14 @@ return [
 
 			$config = get_config();
 			$dirs = [
-				$config->CHILDPATH . '/css',
-				$config->CHILDPATH . '/assets/css',
-				$config->PARENTPATH . '/assets/css',
+				$config->CHILDPATH,
+				$config->CHILDPATH . '/assets',
+				$config->PARENTPATH . '/assets',
 			];
 
 			$finder->in($dirs);
 
-			$custom = $finder->firstFile('custom', 'css', '.');
+			$custom = $finder->firstFile('css/custom', 'css', '.');
 
 			if ( \ItalyStrap\Core\is_debug() ) {
 				$event_dispatcher->addListener(

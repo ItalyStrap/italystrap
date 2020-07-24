@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
+
+namespace ItalyStrap\Tests;
 
 use ItalyStrap\Asset\AssetsManager;
 use ItalyStrap\Asset\Script;
 use ItalyStrap\Asset\Style;
-use ItalyStrap\Theme\Registrable;
 
 class AssetsManagerTest extends \Codeception\Test\Unit {
 

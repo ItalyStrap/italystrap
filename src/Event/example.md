@@ -8,6 +8,7 @@
  * @since 4.0.0
  *
  * @package ItalyStrap
+ * @deprecated
  */
 
 namespace ItalyStrap\Core\Example;

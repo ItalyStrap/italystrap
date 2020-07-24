@@ -46,6 +46,7 @@ $config_scripts = [
 	[
 		'handle'		=> CURRENT_TEMPLATE_SLUG,
 		'file'			=> $script_file_url,
+		'url'			=> $script_file_url,
 		'deps'			=> ['jquery'],
 		'version'		=> filemtime( $script_file_path ),
 		'in_footer'		=> true,

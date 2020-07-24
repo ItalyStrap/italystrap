@@ -28,7 +28,8 @@
 		"italystrap/finder": "dev-master",
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
-		"brain/hierarchy": "^2.4"
+		"brain/hierarchy": "^2.4",
+		"italystrap/asset": "dev-master"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^2.4",

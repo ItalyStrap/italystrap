@@ -3,6 +3,8 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use Auryn\Injector;
+use ItalyStrap\Asset\AssetInterface;
+use ItalyStrap\Asset\AssetManager;
 use ItalyStrap\Asset\AssetsManagerOld;
 use ItalyStrap\Asset\ScriptOld;
 use ItalyStrap\Asset\StyleOld;
@@ -24,6 +26,7 @@ use ItalyStrap\Finder\SearchFileStrategy;
 use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
+use ItalyStrap\Asset\AssetsSubscriber;
 use ItalyStrap\Theme\{NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
 use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\View\ViewInterface;
@@ -191,8 +194,39 @@ return [
 	 * ========================================================================
 	 */
 	AurynConfig::PREPARATIONS			=> [
-		AssetsManagerOld::class		=> function ( AssetsManagerOld $assets_manager, Injector $injector ): void {
 
+		/**
+		 * This class is lazy loaded
+		 */
+		AssetManager::class			=> function ( AssetManager $manager, Injector $injector ) {
+
+			/** @var EventDispatcher $event_dispatcher */
+			$event_dispatcher = $injector->make(EventDispatcher::class);
+
+			$styles = $event_dispatcher->filter(
+				'italystrap_config_enqueue_style',
+				get_config_file_content( 'assets/styles' )
+			);
+
+			$scripts = $event_dispatcher->filter(
+				'italystrap_config_enqueue_script',
+				get_config_file_content( 'assets/scripts' )
+			);
+
+			foreach ( $styles as $style ) {
+				$assets[] = new \ItalyStrap\Asset\Style( ConfigFactory::make( $style ) );
+			}
+			foreach ( $scripts as $style ) {
+				$assets[] = new \ItalyStrap\Asset\Script( ConfigFactory::make( $style ) );
+			}
+
+			$manager->withAssets(...$assets);
+
+//			$event_dispatcher->addListener('shutdown', function (){
+//			});
+		},
+		AssetsManagerOld::class		=> function ( AssetsManagerOld $assets_manager, Injector $injector ): void {
+return;
 			/** @var EventDispatcher $event_dispatcher */
 			$event_dispatcher = $injector->make(EventDispatcher::class);
 
@@ -286,6 +320,21 @@ return [
 	/**
 	 * ========================================================================
 	 *
+	 * Lazyload Classes
+	 * Loaded on admin and front-end
+	 *
+	 * Useful if you need to load lazily your classes, for example
+	 * if you want classes are loaded only when are really needed.
+	 *
+	 * ========================================================================
+	 */
+	AurynConfig::PROXY					=> [
+		AssetManager::class,
+	],
+
+	/**
+	 * ========================================================================
+	 *
 	 * Autoload Subscribers Classes
 	 * Loaded on admin and front-end
 	 *
@@ -316,5 +365,11 @@ return [
 
 		// This is the class that build the page
 		Builders\Director::class,
+
+		/**
+		 * With this class I can layload the AssetManager::class
+		 * see above in the PROXY config.
+		 */
+		AssetsSubscriber::class,
 	],
 ];

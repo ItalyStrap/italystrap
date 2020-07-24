@@ -38,6 +38,7 @@ $config_styles = [
 	[
 		'handle'	=> CURRENT_TEMPLATE_SLUG,
 		'file'		=> $style_file_url,
+		'url'		=> $style_file_url,
 //		'version'	=> filemtime( $style_file_path ),
 		'media'		=> null,
 	],

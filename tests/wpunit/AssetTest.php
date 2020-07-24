@@ -47,8 +47,8 @@ class AssetTest extends WPTestCase {
 	 * style_it should be instantiatable
 	 */
 	public function instanceOk() {
-		$this->assertInstanceOf( StyleOld::class, $this->getInstance( 'Style' ) );
-		$this->assertInstanceOf( ScriptOld::class, $this->getInstance( 'Script' ) );
+		$this->assertInstanceOf( StyleOld::class, $this->getInstance( 'StyleOld' ) );
+		$this->assertInstanceOf( ScriptOld::class, $this->getInstance( 'ScriptOld' ) );
 	}
 
 	/**

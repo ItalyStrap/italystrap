@@ -15,6 +15,6 @@
 
 namespace ItalyStrap\Asset;
 
-interface AssetInterface {
+interface AssetOldInterface {
 
 }

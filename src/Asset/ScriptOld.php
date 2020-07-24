@@ -20,7 +20,7 @@ namespace ItalyStrap\Asset;
 /**
  * Child class API for Script
  */
-class Script extends Asset {
+class ScriptOld extends AssetOld {
 
 	/**
 	 * De-register the script

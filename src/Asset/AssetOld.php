@@ -21,7 +21,7 @@ use \ItalyStrap\Config\ConfigInterface as Config;
  * Class description
  * @todo http://wordpress.stackexchange.com/questions/195864/most-elegant-way-to-enqueue-scripts-in-function-php-with-foreach-loop
  */
-abstract class Asset implements AssetInterface {
+abstract class AssetOld implements AssetOldInterface {
 
 	/**
 	 * Configuration array
@@ -62,15 +62,6 @@ abstract class Asset implements AssetInterface {
 		 */
 		$this->config = apply_filters( 'italystrap_config_enqueue_' . strtolower( $this->class_name ), $config->all() );
 //		$this->config = $config->all();
-	}
-
-	/**
-	 * Checks if an asset has been enqueued
-	 *
-	 * @return bool
-	 */
-	public function is_enqueued() {
-		return wp_script_is( $this->config['handle'], 'enqueued' );
 	}
 
 	/**

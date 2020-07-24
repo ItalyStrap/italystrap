@@ -1,32 +1,18 @@
 <?php
-class StyleTest extends \Codeception\Test\Unit {
+declare(strict_types=1);
 
-	/**
-	 * @var \UnitTester
-	 */
-	protected $tester;
-	
-	protected function _before() {
-		\tad\FunctionMockerLe\define('apply_filters', function (...$arg) {
-		});
-	}
+namespace ItalyStrap\Tests;
 
-	protected function _after() {
-		\tad\FunctionMockerLe\undefineAll([
-			'apply_filters',
-		]);
-	}
+use ItalyStrap\Asset\AssetOld;
+use ItalyStrap\Asset\StyleOld;
+
+require_once 'AssetBase.php';
+
+class StyleTest extends AssetBase {
 
 	protected function getInstance() {
-		$sut = new \ItalyStrap\Asset\Style( \ItalyStrap\Config\ConfigFactory::make( [] ) );
-		$this->assertInstanceOf(\ItalyStrap\Asset\Asset::class, $sut, '');
+		$sut = new StyleOld( $this->getConfig() );
+		$this->assertInstanceOf( AssetOld::class, $sut, '');
 		return $sut;
-	}
-
-	/**
-	 * @test
-	 */
-	public function instanceOk() {
-		$sut = $this->getInstance();
 	}
 }

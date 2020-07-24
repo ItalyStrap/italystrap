@@ -5,8 +5,8 @@ namespace ItalyStrap\Tests;
 
 use Auryn\InjectionException;
 use Codeception\TestCase\WPTestCase;
-use ItalyStrap\Asset\Script;
-use ItalyStrap\Asset\Style;
+use ItalyStrap\Asset\ScriptOld;
+use ItalyStrap\Asset\StyleOld;
 use ItalyStrap\Config\ConfigFactory;
 use WpunitTester;
 use function add_filter;
@@ -47,8 +47,8 @@ class AssetTest extends WPTestCase {
 	 * style_it should be instantiatable
 	 */
 	public function instanceOk() {
-		$this->assertInstanceOf( Style::class, $this->getInstance( 'Style' ) );
-		$this->assertInstanceOf( Script::class, $this->getInstance( 'Script' ) );
+		$this->assertInstanceOf( StyleOld::class, $this->getInstance( 'Style' ) );
+		$this->assertInstanceOf( ScriptOld::class, $this->getInstance( 'Script' ) );
 	}
 
 	/**
@@ -71,7 +71,7 @@ class AssetTest extends WPTestCase {
 			return $arg;
 		});
 
-		$sut = new Style($config);
+		$sut = new StyleOld($config);
 
 		$sut->register_all();
 

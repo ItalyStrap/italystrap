@@ -3,9 +3,9 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use Auryn\Injector;
-use ItalyStrap\Asset\AssetsManager;
-use ItalyStrap\Asset\Script;
-use ItalyStrap\Asset\Style;
+use ItalyStrap\Asset\AssetsManagerOld;
+use ItalyStrap\Asset\ScriptOld;
+use ItalyStrap\Asset\StyleOld;
 use ItalyStrap\Builders\BuilderInterface;
 use ItalyStrap\Config\{Config, ConfigFactory, ConfigInterface};
 use ItalyStrap\Empress\AurynConfig;
@@ -191,9 +191,7 @@ return [
 	 * ========================================================================
 	 */
 	AurynConfig::PREPARATIONS			=> [
-		AssetsManager::class		=> function ( AssetsManager $assets_manager, Injector $injector ): void {
-
-			d($assets_manager);
+		AssetsManagerOld::class		=> function ( AssetsManagerOld $assets_manager, Injector $injector ): void {
 
 			/** @var EventDispatcher $event_dispatcher */
 			$event_dispatcher = $injector->make(EventDispatcher::class);
@@ -254,8 +252,8 @@ return [
 
 					$loaded = true;
 					$assets_manager->withAssets(
-						new Style( ConfigFactory::make( $style ) ),
-						new Script( ConfigFactory::make( $script ) )
+						new StyleOld( ConfigFactory::make( $style ) ),
+						new ScriptOld( ConfigFactory::make( $script ) )
 					);
 				}, 1 );
 

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use ItalyStrap\Asset\AssetsManager;
+use ItalyStrap\Asset\AssetsManagerOld;
 use function add_action;
 use function class_exists;
 use function explode;
@@ -26,7 +26,7 @@ if ( is_admin() ) {
 }
 
 $subscribers = [
-	AssetsManager::class,
+	AssetsManagerOld::class,
 //	Components\Schema\Word_Count::class,
 //	Components\Schema\Time_Required::class,
 ];

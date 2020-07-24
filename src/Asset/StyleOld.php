@@ -20,7 +20,7 @@ namespace ItalyStrap\Asset;
 /**
  * Child class API for Style
  */
-class Style extends Asset {
+class StyleOld extends AssetOld {
 
 	/**
 	 * De-register the style

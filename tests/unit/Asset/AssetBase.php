@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests;
 
 use Codeception\Test\Unit;
-use ItalyStrap\Asset\Asset;
+use ItalyStrap\Asset\AssetOld;
 use ItalyStrap\Config\ConfigInterface;
 use Prophecy\Prophecy\ObjectProphecy;
 use UnitTester;
@@ -52,7 +52,17 @@ abstract class AssetBase extends Unit {
 	 * @test
 	 */
 	public function instanceOk() {
+		$this->config->all()->willReturn([]);
 		$sut = $this->getInstance();
-		$this->assertInstanceOf( Asset::class, $sut, '' );
+		$this->assertInstanceOf( AssetOld::class, $sut, '' );
+	}
+
+	/**
+	 * @test
+	 */
+	public function applyFiltersIsCalled() {
+		$this->config->all()->willReturn([]);
+		$sut = $this->getInstance();
+		$this->assertSame(1, $this->apply_filters_called, '');
 	}
 }

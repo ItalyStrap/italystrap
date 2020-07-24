@@ -6,7 +6,7 @@ namespace ItalyStrap\Asset;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Event\Manager as Event;
 
-class AssetsManager implements SubscriberInterface {
+class AssetsManagerOld implements SubscriberInterface {
 
 	const ENQUEUE_EVENT_NAME = 'wp_enqueue_scripts';
 
@@ -26,7 +26,7 @@ class AssetsManager implements SubscriberInterface {
 		];
 	}
 
-	public function withAssets( Asset ...$assets ) {
+	public function withAssets( AssetOld ...$assets ) {
 		$this->assets = \array_merge($assets, $this->assets);
 	}
 
@@ -34,7 +34,7 @@ class AssetsManager implements SubscriberInterface {
 	 * @inheritDoc
 	 */
 	public function register(): void {
-		\array_walk($this->assets, function ( Asset $asset, $key) {
+		\array_walk($this->assets, function ( AssetOld $asset, $key) {
 			$asset->register_all();
 		});
 	}

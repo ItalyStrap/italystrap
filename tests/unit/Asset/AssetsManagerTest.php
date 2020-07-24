@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
-use ItalyStrap\Asset\AssetsManager;
-use ItalyStrap\Asset\Script;
-use ItalyStrap\Asset\Style;
+use ItalyStrap\Asset\AssetsManagerOld;
+use ItalyStrap\Asset\ScriptOld;
+use ItalyStrap\Asset\StyleOld;
 
 class AssetsManagerTest extends \Codeception\Test\Unit {
 
@@ -20,16 +20,16 @@ class AssetsManagerTest extends \Codeception\Test\Unit {
 	private $style;
 
 	/**
-	 * @return Style
+	 * @return StyleOld
 	 */
-	public function getStyle(): Style {
+	public function getStyle(): StyleOld {
 		return $this->style->reveal();
 	}
 
 	/**
-	 * @return Script
+	 * @return ScriptOld
 	 */
-	public function getScript(): Script {
+	public function getScript(): ScriptOld {
 		return $this->script->reveal();
 	}
 	/**
@@ -38,16 +38,16 @@ class AssetsManagerTest extends \Codeception\Test\Unit {
 	private $script;
 
 	protected function _before() {
-		$this->style = $this->prophesize( Style::class );
-		$this->script = $this->prophesize( Script::class );
+		$this->style = $this->prophesize( StyleOld::class );
+		$this->script = $this->prophesize( ScriptOld::class );
 	}
 
 	protected function _after() {
 	}
 
-	protected function getInstance(): AssetsManager {
-		$sut = new AssetsManager();
-		$this->assertInstanceOf( AssetsManager::class, $sut, '');
+	protected function getInstance(): AssetsManagerOld {
+		$sut = new AssetsManagerOld();
+		$this->assertInstanceOf( AssetsManagerOld::class, $sut, '');
 		return $sut;
 	}
 

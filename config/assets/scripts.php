@@ -13,10 +13,10 @@ use function wp_create_nonce;
 $min = '.min';
 $dev_dir = '';
 
-//if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
-//	$dev_dir = 'src/'; // Sistemare il path corretto per i font
-//	$min = '';
-//}
+if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
+	$dev_dir = 'src/';
+	$min = '';
+}
 
 return [
 	[

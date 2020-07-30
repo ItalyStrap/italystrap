@@ -70,6 +70,7 @@ gulp.task('compass', function() {
         .pipe(compass({
             project: path.join(__dirname, 'assets'),
             import_path: __dirname + '/bower/bootstrap-sass/assets/stylesheets',
+            // import_path: __dirname + '/node_modules/bootstrap/scss',
             css: 'css/src',
             sass: 'sass'
         }));
@@ -112,9 +113,10 @@ gulp.task('script', function () {
         './node_modules/bootstrap/js/dist/tab.js',
         './node_modules/bootstrap/js/dist/tooltip.js',
         './node_modules/bootstrap/js/dist/popover.js',
-        './assets/js/src/custom.js',
+        './assets/ts/index.js',
     ])
         .pipe(concat('custom.js'))
+        .pipe(gulp.dest('./assets/js/src'))
         .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(rename({ extname: '.min.js' }))

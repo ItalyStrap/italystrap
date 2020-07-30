@@ -290,9 +290,9 @@ Release Date:
 * Fix margin in gallery img class
 * Modify Favicon function for child theme or partent theme
 * Fix issue category icon viewed even if the content is not in category (meta.php)
-* Add custom.js file in js/src directory
+* Add custom.js.bak file in js/src directory
 * Move home.js in js/src
-* Add CSS stile for dropdown category in custom.js
+* Add CSS stile for dropdown category in custom.js.bak
 * Fix $content_width issue
 * Fix echo current page in CPT for Facebook open graph
 * Add is_preview() in single.php, page,php and footer.php (for footer only for analytics) (@link http://www.hongkiat.com/blog/wordpress-preview-mode/)

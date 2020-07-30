@@ -71,20 +71,39 @@ module.exports = function(grunt) {
 		},
 
 		uglify: { // https://github.com/gruntjs/grunt-contrib-uglify
-			admin: {
-			  files: [{
-				  expand: true,
-				  cwd: 'admin/js/src',
-				  // cwd: 'src/',
-				  src: '*.js',
-				  dest: 'admin/js'
-			  }]
+			// admin: {
+			//   files: [{
+			// 	  expand: true,
+			// 	  cwd: 'admin/js/src',
+			// 	  // cwd: 'src/',
+			// 	  src: '*.js',
+			// 	  dest: 'admin/js'
+			//   }]
+			// },
+			src: {
+				options: {
+					sourceMap: true,
+					beautify: true,
+				},
+				files: {
+					'assets/js/src/custom.js': [
+						bootstrap_js_path + 'transition.js',
+						bootstrap_js_path + 'alert.js',
+						bootstrap_js_path + 'button.js',
+						bootstrap_js_path + 'carousel.js',
+						bootstrap_js_path + 'collapse.js',
+						bootstrap_js_path + 'dropdown.js',
+						bootstrap_js_path + 'modal.js',
+						bootstrap_js_path + 'tooltip.js',
+						bootstrap_js_path + 'popover.js',
+						bootstrap_js_path + 'scrollspy.js',
+						bootstrap_js_path + 'tab.js',
+						bootstrap_js_path + 'affix.js',
+						'assets/ts/index.js' // <- Modify this
+					],
+				}
 			},
 			dist: {
-				options: {
-					sourceMap: true
-					// ,beautify: true
-				},
 				files: {
 					'assets/js/custom.min.js': [
 						bootstrap_js_path + 'transition.js',
@@ -99,7 +118,7 @@ module.exports = function(grunt) {
 						bootstrap_js_path + 'scrollspy.js',
 						bootstrap_js_path + 'tab.js',
 						bootstrap_js_path + 'affix.js',
-						'assets/js/src/custom.js' // <- Modify this
+						'assets/ts/index.js' // <- Modify this
 					],                   
 				}
 			}
@@ -328,11 +347,11 @@ module.exports = function(grunt) {
 
 		watch: { // https://github.com/gruntjs/grunt-contrib-watch
 			css: {
-				files: ['**/*.{scss,sass}'],
+				files: ['assets/sass/*.{scss,sass}'],
 				tasks: ['css'],
 			},
 			js: {
-				files: ['src/js/*.js'],
+				files: ['assets/ts/*.js'],
 				tasks: ['js'],
 			},
 			options: {
@@ -405,6 +424,9 @@ module.exports = function(grunt) {
 	//     'github-release',
 	//     ]
 	// );
+
+
+	grunt.registerTask('default', ['watch']);
 
 	/**
 	 * ========================================

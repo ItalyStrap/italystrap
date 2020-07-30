@@ -1,0 +1,125 @@
+#wp-calendar{
+    width: 100%;
+}
+
+// Margin bottom for Audio shortcode
+.mejs-container {
+    margin-bottom: 1.5em;
+}
+
+/**
+ * Class for Figure tag and figure caption tag
+ * https://codex.wordpress.org/CSS
+ */
+// .wp-caption{}
+// .wp-caption-text{}
+
+// .sticky{}
+// .gallery-caption{}
+// .bypostauthor{}
+// .alignright{}
+// .alignleft{}
+// .aligncenter{}
+
+/* =WordPress Core
+-------------------------------------------------------------- */
+.aligncenter,
+div.aligncenter,
+a img.aligncenter
+{
+    @include center-block;
+}
+
+.alignright,
+a img.alignright
+{
+    @extend .pull-right;
+    margin: 0 0 1em 1em;
+}
+
+.alignleft,
+a img.alignleft
+{
+    @extend .pull-left;
+    margin: 0 1em 1em 0;
+}
+
+//Immagiini caricate nei post normalmente
+
+.alignnone,
+a img.alignnone
+{
+    display: inline;
+    margin-bottom: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+/**
+ * Featured Image archive and singular
+ */
+.wp-post-image{
+    margin-bottom: 1em;
+}
+
+.wp-caption {
+    display: block;
+    max-width: 100%;
+    // background: #fff;
+    // border: 1px solid #f0f0f0;
+    // max-width: 96%; /* Image does not overflow the content area */
+    // padding: 0.3em 3px 10px;
+    // text-align: center;
+    &.alignnone {
+        margin: 0.3em 1.25em 1.25em 0;
+    }
+    &.alignleft {
+        margin: 0.3em 1.25em 1.25em 0;
+        .wp-caption-text {
+            text-align: left;
+        }
+    }
+    &.alignright {
+        margin: 0.3em 0 1.25em 1.25em;
+        .wp-caption-text {
+            text-align: right;
+        }
+    }
+    &.aligncenter {
+        margin: 0.3em 1.25em;
+        .wp-caption-text {
+            text-align: center;
+        }
+    }
+    // img {
+    //     border: 0 none;
+    //     height: auto;
+    //     margin: 0;
+    //     max-width: 98.5%;
+    //     padding: 0;
+    //     width: auto;
+    // }
+    p.wp-caption-text,
+    .wp-caption-text {
+        // background: #fff;
+        border: 1px solid $gray-lighter;
+        border-top: none;
+        color: $gray-light;
+        font-size: 0.85em;
+        line-height: 1em;
+        margin: 0;
+        padding: 0.5em;
+    }
+}
+
+/**
+ * @link https://codex.wordpress.org/Content_Width
+ */
+.size-auto,
+.size-full,
+.size-large,
+.size-medium,
+.size-thumbnail {
+    max-width: 100%;
+    height: auto;
+}

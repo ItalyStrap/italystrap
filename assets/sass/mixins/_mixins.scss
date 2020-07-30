@@ -1,0 +1,31 @@
+/// Register devices widths
+$devices: (
+    mobile-landscape: $screen-xs, // 480px
+    tablet: $screen-sm, // 768px
+    tablet-landscape: $screen-md, // 992px
+    laptop: $screen-lg, // 1200px
+    desktop: 1440px
+) !default;
+
+/// Verify that the breakpoint width is listed
+///
+/// @param {string} $breakpoint - breakpoint name
+/// @group mediaqueries
+@function get-breakpoint-width($breakpoint) {
+    @if map-has-key($devices, $breakpoint) {
+        @return map-get($devices, $breakpoint);
+    } @else {
+        @warn "Breakpoint #{$breakpoint} wasn't found in $devices.";
+    }
+}
+
+/// Min-width media query
+///
+/// @param {string} $breakpoint - breakpoint name
+/// @group mediaqueries
+@mixin at-least($breakpoint) {
+    $device-width: get-breakpoint-width($breakpoint);
+    @media screen and (min-width: $device-width) {
+        @content;
+    }
+}

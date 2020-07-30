@@ -1,0 +1,28 @@
+@import "compass/css3";
+@import "compass/utilities";
+@import "../../bower/susy/sass/susy";
+@import "../../bower/sassy-maps/sass/memo";
+@import "../../bower/breakpoint-sass/stylesheets/breakpoint";
+
+$susy: (
+  columns: 12,
+  container: auto,
+  // gutters: .25,
+  gutters: .50,
+  // gutter-position: inside,
+  gutter-position: split,
+);
+
+//
+// Variables
+// --------------------------------------------------
+
+$spacer: 1rem !default;
+
+$icon-font-path: '../fonts/';
+
+// Riga 52
+$font-size-base:          16px;
+
+// Tutte le aggiunte ulteriori a bootstrap
+$general_margin: $font-size-base * 2; // 36px

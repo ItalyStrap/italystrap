@@ -26,10 +26,10 @@
 		"italystrap/html": "^1.0",
 		"italystrap/view": "dev-master",
 		"italystrap/finder": "dev-master",
+		"italystrap/asset": "dev-master",
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
-		"brain/hierarchy": "^2.4",
-		"italystrap/asset": "dev-master"
+		"brain/hierarchy": "^2.4"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^2.4",

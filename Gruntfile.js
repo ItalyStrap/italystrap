@@ -82,11 +82,11 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				options: {
-					// sourceMap: true
+					sourceMap: true
 					// ,beautify: true
 				},
 				files: {
-					'js/custom.min.js': [
+					'assets/js/custom.min.js': [
 						bootstrap_js_path + 'transition.js',
 						bootstrap_js_path + 'alert.js',
 						bootstrap_js_path + 'button.js',
@@ -99,7 +99,7 @@ module.exports = function(grunt) {
 						bootstrap_js_path + 'scrollspy.js',
 						bootstrap_js_path + 'tab.js',
 						bootstrap_js_path + 'affix.js',
-						'js/src/custom.js' // <- Modify this
+						'assets/js/src/custom.js' // <- Modify this
 					],                   
 				}
 			}
@@ -108,9 +108,7 @@ module.exports = function(grunt) {
 		jshint: {
 			all: [
 				'Gruntfile.js',
-				'js/src/*.js',
-				'js/bootstrap.min.js',
-				'!js/jquery.min.js'
+				'assets/js/src/*.js',
 			],
 			options: true,
 		},
@@ -119,7 +117,7 @@ module.exports = function(grunt) {
 			dev:{
 				options: {
 					sassDir:['assets/sass'],
-					cssDir:['css/src'],
+					cssDir:['assets/css/src'],
 					environment: 'development',
 					// sourcemap: true,
 					importPath: 'bower/bootstrap-sass/assets/stylesheets'
@@ -128,7 +126,7 @@ module.exports = function(grunt) {
 			dist:{
 				options: {
 					sassDir:['assets/sass'],
-					cssDir:['css'],
+					cssDir:['assets/css'],
 					outputStyle: 'compressed',
 					importPath: 'bower/bootstrap-sass/assets/stylesheets'
 				}
@@ -143,18 +141,18 @@ module.exports = function(grunt) {
 		postcss: {
 			options: {
 				processors: [
-					// require('pixrem')(), // add fallbacks for rem units
-					require('autoprefixer')({browsers: 'last 5 versions'}), // add vendor prefixes
-				//     require('cssnano')() // minify the result
+					require('pixrem')(), // add fallbacks for rem units
+					require('autoprefixer')({overrideBrowserslist: 'last 5 versions'}), // add vendor prefixes
+					require('cssnano')() // minify the result
 				]
 			},
 			dist: {
-				src: 'css/*.css'
+				src: 'assets/css/*.css'
 			}
 		},
 
 		csslint: { // http://astainforth.com/blogs/grunt-part-2
-			files: ['css/src/*.css', '!css/bootstrap.min.css',],
+			files: ['assets/css/src/*.css'],
 			options: {
 				csslintrc: '.csslintrc'
 			}

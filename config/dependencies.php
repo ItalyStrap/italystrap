@@ -4,9 +4,16 @@ namespace ItalyStrap;
 
 use Auryn\Injector;
 use ItalyStrap\Asset\AssetInterface;
+use ItalyStrap\Asset\AssetLoader;
 use ItalyStrap\Asset\AssetManager;
 use ItalyStrap\Asset\AssetsManagerOld;
+use ItalyStrap\Asset\ConfigBuilder;
+use ItalyStrap\Asset\Debug\DebugScript;
+use ItalyStrap\Asset\Debug\DebugStyle;
+use ItalyStrap\Asset\Loader\GeneratorLoader;
+use ItalyStrap\Asset\Script;
 use ItalyStrap\Asset\ScriptOld;
+use ItalyStrap\Asset\Style;
 use ItalyStrap\Asset\StyleOld;
 use ItalyStrap\Builders\BuilderInterface;
 use ItalyStrap\Config\{Config, ConfigFactory, ConfigInterface};
@@ -213,92 +220,69 @@ return [
 				get_config_file_content( 'assets/scripts' )
 			);
 
-			foreach ( $styles as $style ) {
-				$assets[] = new \ItalyStrap\Asset\Style( ConfigFactory::make( $style ) );
-			}
-			foreach ( $scripts as $style ) {
-				$assets[] = new \ItalyStrap\Asset\Script( ConfigFactory::make( $style ) );
-			}
+			$css_finder = (new FinderFactory())->make();
+			$css_finder->in(
+				[
+					STYLESHEETPATH . '/assets/css/',
+					STYLESHEETPATH . '/css/',
+					TEMPLATEPATH . '/assets/css/',
+				]
+			);
+
+			$js_finder = (new FinderFactory())->make();
+			$js_finder->in(
+				[
+					STYLESHEETPATH . '/assets/js/',
+					STYLESHEETPATH . '/js/',
+					TEMPLATEPATH . '/assets/js/',
+				]
+			);
+
+			$injector->defineParam('base_url', \get_option( 'siteurl' ) . '/');
+			$injector->defineParam('base_path', ABSPATH);
+
+			$config_builder = $injector->make( ConfigBuilder::class );
+
+			$config_builder->withType(Style::EXTENSION,
+				\ItalyStrap\Core\is_debug() ? DebugStyle::class : Style::class
+			);
+			$config_builder->withFinderForType( Style::EXTENSION, $css_finder);
+
+			$config_builder->withType(Script::EXTENSION,
+				\ItalyStrap\Core\is_debug() ? DebugScript::class : Script::class
+			);
+			$config_builder->withFinderForType( Script::EXTENSION, $js_finder);
+
+			$config_builder->addConfig( $styles );
+			$config_builder->addConfig( $scripts );
+
+			$asset_loader = $injector->make( GeneratorLoader::class );
+			$assets = $asset_loader->load( $config_builder->parsedConfig() );
 
 			$manager->withAssets(...$assets);
 
-//			$event_dispatcher->addListener('shutdown', function (){
+//			$event_dispatcher->addListener('shutdown', function () use ( $assets ){
+//				/** @var AssetInterface $asset */
+//				foreach ( $assets as $asset ) {
+//					d( $asset->handle() );
+//					d( $asset->isEnqueued() );
+//					d( $asset->isRegistered() );
+//				}
 //			});
-		},
-		AssetsManagerOld::class		=> function ( AssetsManagerOld $assets_manager, Injector $injector ): void {
-return;
-			/** @var EventDispatcher $event_dispatcher */
-			$event_dispatcher = $injector->make(EventDispatcher::class);
 
-			/** @var Finder $finder */
-			$finder = (new FinderFactory())->make();
-
-			$config = get_config();
-			$dirs = [
-				$config->CHILDPATH,
-				$config->CHILDPATH . '/assets',
-				$config->PARENTPATH . '/assets',
-			];
-
-			$finder->in($dirs);
-
-			$custom = $finder->firstFile('css/custom', 'css', '.');
-
-			if ( \ItalyStrap\Core\is_debug() ) {
-				$event_dispatcher->addListener(
-					\Inpsyde\Assets\AssetManager::ACTION_SETUP,
-					function (
-						\Inpsyde\Assets\AssetManager $asset_manager
-					) use ($config, $custom) {
-						$assets = (new \Inpsyde\Assets\Loader\ArrayLoader)->load(
-							[
-								[
-									'handle'	=> CURRENT_TEMPLATE_SLUG . '-foo',
-									'url'		=> $config->get('STYLESHEETURL') . '/css/custom.css',
-//									'url'		=> '//italystrap.test' . '/css/custom.css',
-									'filePath'	=> $custom->getRealPath(),
-									'version'	=> \ItalyStrap\Core\is_debug() ? \strval( rand( 0, 100000 ) ) : '',
-									'type'		=> \Inpsyde\Assets\Style::class
-								]
-							]
-						);
-
-						foreach ($assets as $asset ) {
-							$asset_manager->register( $asset );
-						}
-					}
-				);
-			}
-
-			$loaded = false;
-			$event_dispatcher->addListener(
-				'wp_enqueue_scripts',
-				function () use ( $assets_manager, &$loaded, $event_dispatcher ) {
-
-					$style = $event_dispatcher->filter(
-						'italystrap_config_enqueue_style',
-						get_config_file_content( 'assets/styles' )
-					);
-					$script = $event_dispatcher->filter(
-						'italystrap_config_enqueue_script',
-						get_config_file_content( 'assets/scripts' )
-					);
-
-					$loaded = true;
-					$assets_manager->withAssets(
-						new StyleOld( ConfigFactory::make( $style ) ),
-						new ScriptOld( ConfigFactory::make( $script ) )
-					);
-				}, 1 );
-
-			$event_dispatcher->addListener('shutdown', function () use (&$loaded){
-				if ( ! $loaded && \function_exists( 'debug' ) ) {
-					\debug(\sprintf(
-						'Assets are not loaded properly, called in: %s',
-						__FILE__
-					));
-				}
-			});
+//			if ( \ItalyStrap\Core\is_debug() ) {
+//				$event_dispatcher->addListener(
+//					\Inpsyde\Assets\AssetManager::ACTION_SETUP,
+//					function (
+//						\Inpsyde\Assets\AssetManager $asset_manager
+//					) use ($config_builder) {
+////						'type'		=> \Inpsyde\Assets\Style::class
+////						$loader = new \ItalyStrap\Asset\Adapters\InpsydeGeneratorLoader();
+////						$assets = $loader->load( $config_builder->parsedConfig() );
+////						$asset_manager->register( $assets );
+//					}
+//				);
+//			}
 		},
 
 		Builders\Builder::class	=> function( Builders\Builder $builder, Injector $injector ) {

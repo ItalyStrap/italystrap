@@ -18,12 +18,20 @@ class AssetCest {
 	public function itShouldHaveStylesheetLoaded(FunctionalTester $I) {
 		$I->wantTo( 'See the stylesheet loaded' );
 
-		$custom_css_url = $_SERVER["TEST_SITE_WP_URL"] . '/wp-content/themes/italystrap/css/custom.css';
+//		$dev_dir = '';
+//
+//		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
+//			$dev_dir = 'src/'; // Sistemare il path corretto per i font
+//		}
+
+//		$custom_css_url = $_SERVER["TEST_SITE_WP_URL"] . \sprintf(
+//				'/wp-content/themes/italystrap/assets/css/%scustom.css',
+//				$dev_dir
+//		);
 
 		$I->amOnPage('/');
 		$I->seeElement( ['id' => 'index-css'] );
-//		$I->seeElement( ['id' => 'index-foo-css'] );
-		$I->seeElement( 'link', ['href' => $custom_css_url] );
+//		$I->seeElement( 'link', ['href' => $custom_css_url] );
 	}
 
 	/**
@@ -33,10 +41,8 @@ class AssetCest {
 	public function itShouldHaveScriptLoaded(FunctionalTester $I) {
 		$I->wantTo( 'See the script loaded' );
 
-		$custom_css_url = $_SERVER["TEST_SITE_WP_URL"] . '/wp-content/themes/italystrap/js/custom.js';
-
 		$I->amOnPage('/');
-		$I->seeInSource('italystrap/js/custom.min.js');
+		$I->seeInSource('italystrap/assets/js/custom.min.js');
 	}
 
 	/**

@@ -17,7 +17,7 @@ class TypeSupport implements Registrable, SubscriberInterface {
 	public function getSubscribedEvents(): array {
 
 		return [
-			'init'	=> self::CALLBACK,
+			'init'	=> self::REGISTER_CB,
 		];
 	}
 

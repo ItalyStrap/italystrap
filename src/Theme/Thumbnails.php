@@ -37,7 +37,7 @@ class Thumbnails implements ThumbnailsInterface, Registrable, SubscriberInterfac
 		return [
 			// 'hook_name'							=> 'method_name',
 			'italystrap_theme_load'	=> [
-				static::CALLBACK	=> self::CALLBACK,
+				static::CALLBACK	=> self::REGISTER_CB,
 				static::PRIORITY	=> 20,
 			],
 		];

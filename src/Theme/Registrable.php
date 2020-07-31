@@ -13,7 +13,7 @@ interface Registrable {
 	/**
 	 * Method name for filter callback
 	 */
-	const CALLBACK = 'register';
+	const REGISTER_CB = 'register';
 
 	/**
 	 * The register method is used to register theme things

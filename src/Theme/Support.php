@@ -19,7 +19,7 @@ class Support implements Registrable, SubscriberInterface {
 		return [
 			// 'hook_name'							=> 'method_name',
 			'italystrap_theme_load'	=> [
-				static::CALLBACK	=> static::CALLBACK,
+				static::CALLBACK	=> static::REGISTER_CB,
 				static::PRIORITY	=> 20,
 			],
 		];

@@ -37,7 +37,7 @@ class Sidebars implements Registrable, SubscriberInterface {
 
 		return [
 			// 'hook_name'							=> 'method_name',
-			'widgets_init'			=> static::CALLBACK,
+			'widgets_init'			=> static::REGISTER_CB,
 		];
 	}
 

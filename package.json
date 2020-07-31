@@ -51,9 +51,11 @@
     "jasmine": "^3.6.1",
     "load-grunt-tasks": "^3.5.2",
     "pixrem": "^5.0.0",
-    "qunit": "^2.10.1"
+    "qunit": "^2.10.1",
+    "webpack-stream": "^5.2.1"
   },
   "dependencies": {
-    "bootstrap": "^5.0.0-alpha1"
+    "bootstrap": "^5.0.0-alpha1",
+    "popper.js": "^1.16.1"
   }
 }

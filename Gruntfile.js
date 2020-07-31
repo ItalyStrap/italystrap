@@ -139,7 +139,7 @@ module.exports = function(grunt) {
 					cssDir:['assets/css/src'],
 					environment: 'development',
 					// sourcemap: true,
-					importPath: 'bower/bootstrap-sass/assets/stylesheets'
+					// importPath: 'bower/bootstrap-sass/assets/stylesheets'
 				}
 			},
 			dist:{
@@ -147,7 +147,7 @@ module.exports = function(grunt) {
 					sassDir:['assets/sass'],
 					cssDir:['assets/css'],
 					outputStyle: 'compressed',
-					importPath: 'bower/bootstrap-sass/assets/stylesheets'
+					// importPath: 'bower/bootstrap-sass/assets/stylesheets'
 				}
 			}
 		},

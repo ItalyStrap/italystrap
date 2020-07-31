@@ -69,7 +69,7 @@ gulp.task('compass', function() {
     return gulp.src('./assets/sass/*.scss')
         .pipe(compass({
             project: path.join(__dirname, 'assets'),
-            import_path: __dirname + '/bower/bootstrap-sass/assets/stylesheets',
+            // import_path: __dirname + '/bower/bootstrap-sass/assets/stylesheets',
             // import_path: __dirname + '/node_modules/bootstrap/scss',
             css: 'css/src',
             sass: 'sass'

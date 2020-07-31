@@ -1,3 +1,4 @@
+// import bootstrap from "bootstrap";
 jQuery.noConflict()(function($){
     "use strict";
     $(document).ready(function() {

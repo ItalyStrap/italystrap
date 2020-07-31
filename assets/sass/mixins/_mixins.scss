@@ -1,10 +1,19 @@
+@mixin is-make-container($val) {
+    @include make-container($val);
+}
+
 /// Register devices widths
 $devices: (
-    mobile-landscape: $screen-xs, // 480px
-    tablet: $screen-sm, // 768px
-    tablet-landscape: $screen-md, // 992px
-    laptop: $screen-lg, // 1200px
-    desktop: 1440px
+    //mobile-landscape: $screen-xs, // 480px
+    mobile-landscape: $grid-breakpoints(sm), // 480px
+    //tablet: $screen-sm, // 768px
+    tablet: $grid-breakpoints(md), // 768px
+    //tablet-landscape: $screen-md, // 992px
+    tablet-landscape: $grid-breakpoints(lg), // 992px
+    //laptop: $screen-lg, // 1200px
+    laptop: $grid-breakpoints(xl), // 1200px
+    //desktop: 1440px
+    desktop: $grid-breakpoints(xxl)
 ) !default;
 
 /// Verify that the breakpoint width is listed
@@ -23,9 +32,9 @@ $devices: (
 ///
 /// @param {string} $breakpoint - breakpoint name
 /// @group mediaqueries
-@mixin at-least($breakpoint) {
-    $device-width: get-breakpoint-width($breakpoint);
-    @media screen and (min-width: $device-width) {
-        @content;
-    }
-}
+//@mixin at-least($breakpoint) {
+//    $device-width: get-breakpoint-width($breakpoint);
+//    @media screen and (min-width: $device-width) {
+//        @content;
+//    }
+//}

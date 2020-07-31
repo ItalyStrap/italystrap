@@ -27,20 +27,24 @@
 div.aligncenter,
 a img.aligncenter
 {
-    @include center-block;
+    //@include center-block;
+    @extend .mx-auto;
+    @extend .d-block;
 }
 
 .alignright,
 a img.alignright
 {
-    @extend .pull-right;
+    //@extend .pull-right;
+    @extend .float-right;
     margin: 0 0 1em 1em;
 }
 
 .alignleft,
 a img.alignleft
 {
-    @extend .pull-left;
+    //@extend .pull-left;
+    @extend .float-left;
     margin: 0 1em 1em 0;
 }
 
@@ -102,9 +106,9 @@ a img.alignnone
     p.wp-caption-text,
     .wp-caption-text {
         // background: #fff;
-        border: 1px solid $gray-lighter;
+        border: 1px solid $gray-200;
         border-top: none;
-        color: $gray-light;
+        color: $gray-300;
         font-size: 0.85em;
         line-height: 1em;
         margin: 0;

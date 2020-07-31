@@ -5,7 +5,6 @@ namespace ItalyStrap\Theme;
 
 use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
-use ItalyStrap\Event\Manager as Event;
 
 class NavMenus implements Registrable, SubscriberInterface {
 
@@ -16,8 +15,8 @@ class NavMenus implements Registrable, SubscriberInterface {
 		return [
 			// 'hook_name'							=> 'method_name',
 			'italystrap_theme_load'	=> [
-				Event::CALLBACK	=> static::CALLBACK,
-				Event::PRIORITY	=> 20,
+				static::CALLBACK	=> static::CALLBACK,
+				static::PRIORITY	=> 20,
 			]
 		];
 	}

@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace ItalyStrap\Theme;
 
 use ItalyStrap\Config\ConfigInterface as Config;
-use ItalyStrap\Event\Manager as Event;
 use ItalyStrap\Event\SubscriberInterface;
 
 /**
@@ -24,8 +23,8 @@ class TextDomain implements Registrable, SubscriberInterface {
 		return [
 			// 'hook_name'							=> 'method_name',
 			'italystrap_theme_load'	=> [
-				Event::CALLBACK	=> self::CALLBACK,
-				Event::PRIORITY	=> 20,
+				static::CALLBACK	=> self::CALLBACK,
+				static::PRIORITY	=> 20,
 			],
 		];
 	}

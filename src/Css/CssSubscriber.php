@@ -9,7 +9,7 @@ use \ItalyStrap\Config\ConfigInterface;
 /**
  * CSS API Class
  */
-class Css implements SubscriberInterface {
+class CssSubscriber implements SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with

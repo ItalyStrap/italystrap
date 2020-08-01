@@ -12,7 +12,7 @@ use ItalyStrap\HTML\Tag;
  * There are a standard sidebar and 4 footer dynamic sidebars
  * @package ItalyStrap\Theme
  */
-class Sidebars implements Registrable, SubscriberInterface {
+class SidebarsSubscriber implements Registrable, SubscriberInterface {
 
 	const NAME = 'name';
 	const ID = 'id';
@@ -33,7 +33,9 @@ class Sidebars implements Registrable, SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array {
+	public function getSubscribedEvents(): iterable {
+
+		yield 'widgets_init'			=> static::REGISTER_CB;
 
 		return [
 			// 'hook_name'							=> 'method_name',

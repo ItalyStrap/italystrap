@@ -10,13 +10,13 @@ interface ThumbnailsInterface {
 	 * @param int $width
 	 * @param int $height
 	 * @param bool $crop
-	 * @return Thumbnails
+	 * @return ThumbnailsSubscriber
 	 */
 	public function addSize( string $name, int $width = 0, int $height = 0, bool $crop = false  );
 
 	/**
 	 * @param string $name
-	 * @return Thumbnails
+	 * @return ThumbnailsSubscriber
 	 */
 	public function removeSize( string $name );
 

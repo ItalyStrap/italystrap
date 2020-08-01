@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use function \ItalyStrap\Factory\get_config;
-use ItalyStrap\Theme\Thumbnails as T;
+use ItalyStrap\Theme\ThumbnailsSubscriber as T;
 
 /**
  * col-md-12 1140

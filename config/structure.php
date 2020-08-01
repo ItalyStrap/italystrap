@@ -6,6 +6,7 @@ use ItalyStrap\Builders\Builder;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Empress\Injector;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\SubscriberInterface as Subscriber;
 use function ItalyStrap\Factory\get_config;
 use function ItalyStrap\Core\get_template_settings;
 
@@ -22,7 +23,7 @@ return [
 
 		'breadcrumbs'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_before_loop',
-			'priority'	=> 10, // Optional
+			Subscriber::PRIORITY	=> 10, // Optional
 			'should_load'	=> function ( ConfigInterface $config ): bool {
 				return \current_theme_supports( 'breadcrumbs' )
 					&& \in_array(
@@ -38,14 +39,14 @@ return [
 				];
 
 				\ob_start();
-				$dispatcher->execute( 'do_breadcrumbs', $args );
+				$dispatcher->dispatch( 'do_breadcrumbs', $args );
 				return \strval( \ob_get_clean() );
 			},
 		],
 
 		'featured-image'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			'priority'	=> 10, // Optional
+			Subscriber::PRIORITY	=> 10, // Optional
 			'should_load'	=> function () : bool {
 				return \post_type_supports( \strval( \get_post_type() ), 'thumbnail' )
 					&& ! \in_array( 'hide_thumb', get_template_settings(), true );
@@ -63,7 +64,7 @@ return [
 
 		'title'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			'priority'	=> 20, // Optional
+			Subscriber::PRIORITY	=> 20, // Optional
 			'should_load'	=> function () : bool {
 				return \post_type_supports(  \strval( \get_post_type() ), 'title' )
 					&& ! \in_array( 'hide_title', get_template_settings(), true );
@@ -77,7 +78,7 @@ return [
 
 		'meta'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			'priority'	=> 30, // Optional
+			Subscriber::PRIORITY	=> 30, // Optional
 			'should_load'	=> function () : bool {
 				return \post_type_supports(  \strval( \get_post_type() ), 'entry-meta' )
 					&& ! \in_array( 'hide_meta', get_template_settings(), true );
@@ -87,13 +88,13 @@ return [
 
 		'preview'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			'priority'	=> 40, // Optional
+			Subscriber::PRIORITY	=> 40, // Optional
 			'view'	=> 'posts/parts/preview',
 		],
 
 		'content'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			'priority'	=> 50, // Optional
+			Subscriber::PRIORITY	=> 50, // Optional
 			'should_load'	=> function () : bool {
 
 				/**
@@ -110,19 +111,19 @@ return [
 
 		'modified'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			'priority'	=> 60, // Optional
+			Subscriber::PRIORITY	=> 60, // Optional
 			'view'	=> 'posts/parts/modified',
 		],
 
 //		'edit-post-link'	=> [
 //			Builder::self::EVENT_NAME	=> 'italystrap_after_entry_content',
-//			'priority'	=> 999, // Optional
+//			Subscriber::PRIORITY	=> 999, // Optional
 //			'callback'	=> [ Controllers\Posts\Parts\Edit_Post_Link::class, 'render' ], // Optional
 //		],
 
 		'link-pages'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			'priority'	=> 70, // Optional
+			Subscriber::PRIORITY	=> 70, // Optional
 			'should_load'	=> function () : bool {
 				return \is_single();
 			},
@@ -204,7 +205,7 @@ return [
 
 		'none-title'	=> [
 			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
-			'priority'		=> 20,
+			Subscriber::PRIORITY		=> 20,
 			'view'			=> 'posts/none/title',
 			'data'			=> function ( ConfigInterface $config ) : ConfigInterface {
 				return $config;
@@ -213,7 +214,7 @@ return [
 
 		'none-content'	=> [
 			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
-			'priority'		=> 30,
+			Subscriber::PRIORITY		=> 30,
 			'view'			=> 'posts/none/content',
 			'data'			=> function ( ConfigInterface $config ) : ConfigInterface {
 				return $config;
@@ -227,7 +228,7 @@ return [
 
 		'archive-headline'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_before_while',
-			'priority'	=> 20,
+			Subscriber::PRIORITY	=> 20,
 			'view'		=> 'misc/archive-headline',
 			'should_load'	=> function () : bool {
 				return ( \is_archive() || \is_search() ) && ! \is_author();
@@ -239,7 +240,7 @@ return [
 		 */
 		'author-info'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_before_loop',
-			'priority'	=> 20,
+			Subscriber::PRIORITY	=> 20,
 			'view'		=> 'misc/author-info',
 			'should_load'	=> 'is_author',
 			'data'		=> function ( Injector $injector ) : array {
@@ -259,7 +260,7 @@ return [
 		// @todo Rename the key with a better name
 		'author-info-1'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_after_entry_content',
-			'priority'	=> 30,
+			Subscriber::PRIORITY	=> 30,
 			'view'		=> 'misc/author-info',
 			'should_load'	=> function () : bool {
 				return \post_type_supports(  \strval( \get_post_type() ), 'author' )
@@ -345,7 +346,7 @@ return [
 
 		'footer-colophon'	=> [
 			Builder::EVENT_NAME		=> get_config()->get( 'colophon_action' ),
-			'priority'	=> get_config()->get( 'colophon_priority' ),
+			Subscriber::PRIORITY	=> get_config()->get( 'colophon_priority' ),
 			'view'		=> 'footers/colophon',
 		],
 

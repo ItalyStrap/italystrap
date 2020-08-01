@@ -6,12 +6,12 @@ namespace ItalyStrap\Theme;
 use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
 
-class NavMenus implements Registrable, SubscriberInterface {
+class NavMenusSubscriber implements Registrable, SubscriberInterface {
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getSubscribedEvents(): array {
+	public function getSubscribedEvents(): iterable {
 		return [
 			// 'hook_name'							=> 'method_name',
 			'italystrap_theme_load'	=> [
@@ -37,6 +37,6 @@ class NavMenus implements Registrable, SubscriberInterface {
 	 * The class that implements this can be registered
 	 */
 	public function register() {
-		\register_nav_menus( $this->config->all() );
+		\register_nav_menus( $this->config->toArray() );
 	}
 }

@@ -9,9 +9,9 @@ class ThumbnailsTest extends BaseTheme {
 	protected function getInstance( $paramConfig = [] ) {
 //		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
 		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
-		$sut = new \ItalyStrap\Theme\Thumbnails( $config );
+		$sut = new \ItalyStrap\Theme\ThumbnailsSubscriber( $config );
 		$this->assertInstanceOf( \ItalyStrap\Theme\Registrable::class, $sut, '' );
-		$this->assertInstanceOf( \ItalyStrap\Theme\Thumbnails::class, $sut, '' );
+		$this->assertInstanceOf( \ItalyStrap\Theme\ThumbnailsSubscriber::class, $sut, '' );
 		return $sut;
 	}
 
@@ -23,9 +23,9 @@ class ThumbnailsTest extends BaseTheme {
 		$support = [
 			'sizes'	=> [
 				'navbar-brand-image'	=> [
-					\ItalyStrap\Theme\Thumbnails::WIDTH	=> 45,
-					\ItalyStrap\Theme\Thumbnails::HEIGHT	=> 45,
-					\ItalyStrap\Theme\Thumbnails::CROP		=> true,
+					\ItalyStrap\Theme\ThumbnailsSubscriber::WIDTH	=> 45,
+					\ItalyStrap\Theme\ThumbnailsSubscriber::HEIGHT	=> 45,
+					\ItalyStrap\Theme\ThumbnailsSubscriber::CROP		=> true,
 				],
 			],
 		];

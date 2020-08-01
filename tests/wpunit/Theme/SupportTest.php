@@ -9,9 +9,9 @@ class SupportTest extends BaseTheme {
 	protected function getInstance( $paramConfig = [] ) {
 //		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
 		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
-		$sut = new \ItalyStrap\Theme\Support( $config );
+		$sut = new \ItalyStrap\Theme\SupportSubscriber( $config );
 		$this->assertInstanceOf( \ItalyStrap\Theme\Registrable::class, $sut, '' );
-		$this->assertInstanceOf( \ItalyStrap\Theme\Support::class, $sut, '' );
+		$this->assertInstanceOf( \ItalyStrap\Theme\SupportSubscriber::class, $sut, '' );
 		return $sut;
 	}
 

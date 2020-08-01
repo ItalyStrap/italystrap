@@ -2,12 +2,14 @@
 // Variables
 // --------------------------------------------------
 
-$spacer: 1rem !default;
+//$spacer: 1rem !default;
 
 //$icon-font-path: '../fonts/';
+$icon-font-path: '../../fonts/';
 
 // Riga 52
-$font-size-base:          1.05rem;
+//$font-size-base:          1.05rem;
+$font-size-base:          18px;
 
 // Tutte le aggiunte ulteriori a bootstrap
-$general_margin: $font-size-base * 2; // 36px
+//$general_margin: $font-size-base * 2; // 36px

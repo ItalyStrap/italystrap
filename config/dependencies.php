@@ -31,7 +31,7 @@ use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Asset\AssetsSubscriber;
-use ItalyStrap\Theme\{NavMenus, Sidebars, Support, TextDomain, Thumbnails, TypeSupport};
+use ItalyStrap\Theme\{NavMenusSubscriber, SidebarsSubscriber, SupportSubscriber, TextDomainSubscriber, ThumbnailsSubscriber, PostTypeSupportSubscriber};
 use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\View\ViewInterface;
 use Walker_Nav_Menu;
@@ -108,19 +108,19 @@ return [
 	 */
 	AurynConfig::DEFINITIONS			=> [
 
-		Theme\Sidebars::class	=> [
+		Theme\SidebarsSubscriber::class	=> [
 			 ':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
 		],
-		Theme\Thumbnails::class	=> [
+		Theme\ThumbnailsSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/thumbnails' ) ),
 		],
-		Theme\Support::class	=> [
+		Theme\SupportSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/supports' ) ),
 		],
-		Theme\TypeSupport::class	=> [
+		Theme\PostTypeSupportSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/type-supports' ) ),
 		],
-		Theme\NavMenus::class	=> [
+		Theme\NavMenusSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/nav-menus' ) ),
 		],
 
@@ -329,12 +329,12 @@ return [
 		/**
 		 * Register Theme stuff
 		 */
-		NavMenus::class,
-		Sidebars::class,
-		Support::class,
-		TextDomain::class,
-		Thumbnails::class,
-		TypeSupport::class,
+		NavMenusSubscriber::class,
+		SidebarsSubscriber::class,
+		SupportSubscriber::class,
+		TextDomainSubscriber::class,
+		ThumbnailsSubscriber::class,
+		PostTypeSupportSubscriber::class,
 
 
 		Custom\Metabox\Register::class,

@@ -9,9 +9,9 @@ class SidebarsTest extends BaseTheme {
 	protected function getInstance( $paramConfig = [] ) {
 //		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
 		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
-		$sut = new \ItalyStrap\Theme\Sidebars( $config, new \ItalyStrap\HTML\Tag( new \ItalyStrap\HTML\Attributes() ) );
+		$sut = new \ItalyStrap\Theme\SidebarsSubscriber( $config, new \ItalyStrap\HTML\Tag( new \ItalyStrap\HTML\Attributes() ) );
 		$this->assertInstanceOf( \ItalyStrap\Theme\Registrable::class, $sut, '' );
-		$this->assertInstanceOf( \ItalyStrap\Theme\Sidebars::class, $sut, '' );
+		$this->assertInstanceOf( \ItalyStrap\Theme\SidebarsSubscriber::class, $sut, '' );
 		return $sut;
 	}
 

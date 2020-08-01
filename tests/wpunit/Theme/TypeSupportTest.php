@@ -9,9 +9,9 @@ class TypeSupportTest extends BaseTheme {
 	protected function getInstance( $paramConfig = [] ) {
 //		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
 		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
-		$sut = new \ItalyStrap\Theme\TypeSupport( $config );
+		$sut = new \ItalyStrap\Theme\PostTypeSupportSubscriber( $config );
 		$this->assertInstanceOf( \ItalyStrap\Theme\Registrable::class, $sut, '' );
-		$this->assertInstanceOf( \ItalyStrap\Theme\TypeSupport::class, $sut, '' );
+		$this->assertInstanceOf( \ItalyStrap\Theme\PostTypeSupportSubscriber::class, $sut, '' );
 		return $sut;
 	}
 

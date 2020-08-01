@@ -10,7 +10,7 @@ use ItalyStrap\Event\SubscriberInterface;
  * Class TextDomain
  * @package ItalyStrap\Theme
  */
-class TextDomain implements Registrable, SubscriberInterface {
+class TextDomainSubscriber implements Registrable, SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with

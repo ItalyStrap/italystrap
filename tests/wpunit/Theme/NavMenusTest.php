@@ -9,9 +9,9 @@ class NavMenusTest extends BaseTheme {
 
 	protected function getInstance( $paramConfig = [] ) {
 		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
-		$sut = new \ItalyStrap\Theme\NavMenus( $config );
+		$sut = new \ItalyStrap\Theme\NavMenusSubscriber( $config );
 		$this->assertInstanceOf( \ItalyStrap\Theme\Registrable::class, $sut, '' );
-		$this->assertInstanceOf( \ItalyStrap\Theme\NavMenus::class, $sut, '' );
+		$this->assertInstanceOf( \ItalyStrap\Theme\NavMenusSubscriber::class, $sut, '' );
 		return $sut;
 	}
 

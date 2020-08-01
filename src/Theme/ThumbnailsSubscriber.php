@@ -20,7 +20,7 @@ use function set_post_thumbnail_size;
  * Class Thumbnails
  * @package ItalyStrap\Theme
  */
-class Thumbnails implements ThumbnailsInterface, Registrable, SubscriberInterface {
+class ThumbnailsSubscriber implements ThumbnailsInterface, Registrable, SubscriberInterface {
 
 	const WIDTH = 'width';
 	const HEIGHT = 'height';

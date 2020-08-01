@@ -6,7 +6,7 @@ namespace ItalyStrap\Theme;
 use \ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
 
-class Support implements Registrable, SubscriberInterface {
+class SupportSubscriber implements Registrable, SubscriberInterface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with

@@ -27,19 +27,12 @@ class ThumbnailsSubscriber implements ThumbnailsInterface, Registrable, Subscrib
 	const CROP = 'crop';
 
 	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
-	 * @return array
+	 * @inheritDoc
 	 */
-	public function getSubscribedEvents(): array {
-
-		return [
-			// 'hook_name'							=> 'method_name',
-			'italystrap_theme_load'	=> [
-				static::CALLBACK	=> self::REGISTER_CB,
-				static::PRIORITY	=> 20,
-			],
+	public function getSubscribedEvents(): iterable {
+		yield 'italystrap_theme_load'	=> [
+			static::CALLBACK	=> self::REGISTER_CB,
+			static::PRIORITY	=> 20,
 		];
 	}
 

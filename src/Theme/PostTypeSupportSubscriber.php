@@ -9,16 +9,10 @@ use ItalyStrap\Event\SubscriberInterface;
 class PostTypeSupportSubscriber implements Registrable, SubscriberInterface {
 
 	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
-	 * @return array
+	 * @inheritDoc
 	 */
-	public function getSubscribedEvents(): array {
-
-		return [
-			'init'	=> self::REGISTER_CB,
-		];
+	public function getSubscribedEvents(): iterable {
+		yield 'init'	=> self::REGISTER_CB;
 	}
 
 	/**

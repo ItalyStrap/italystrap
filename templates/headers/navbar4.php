@@ -71,7 +71,7 @@ namespace ItalyStrap\Headers;
 					'link_after'		=> '</span>',
 					'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
 					'depth'				=> 2,
-					'walker'			=> new Core\Bootstrap_Nav_Menu(),
+//					'walker'			=> new Core\Bootstrap_Nav_Menu(),
 					'theme_location'	=> 'main-menu',
 					'search'			=> false,
 				);
@@ -103,7 +103,7 @@ namespace ItalyStrap\Headers;
 						'link_after'		=> '</span>',
 						'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
 						'depth'				=> 2,
-						'walker'			=> new Core\Bootstrap_Nav_Menu(),
+//						'walker'			=> new Core\Bootstrap_Nav_Menu(),
 						'theme_location'	=> 'secondary-menu',
 						'search'			=> false,
 					);

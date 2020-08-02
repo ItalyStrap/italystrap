@@ -28,19 +28,10 @@ class SidebarsSubscriber implements Registrable, SubscriberInterface {
 	private $tag;
 
 	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
-	 * @return array
+	 * @inheritDoc
 	 */
 	public function getSubscribedEvents(): iterable {
-
 		yield 'widgets_init'			=> static::REGISTER_CB;
-
-		return [
-			// 'hook_name'							=> 'method_name',
-			'widgets_init'			=> static::REGISTER_CB,
-		];
 	}
 
 	/**

@@ -9,19 +9,12 @@ use ItalyStrap\Event\SubscriberInterface;
 class SupportSubscriber implements Registrable, SubscriberInterface {
 
 	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
-	 * @return array
+	 * @inheritDoc
 	 */
-	public function getSubscribedEvents(): array {
-
-		return [
-			// 'hook_name'							=> 'method_name',
-			'italystrap_theme_load'	=> [
-				static::CALLBACK	=> static::REGISTER_CB,
-				static::PRIORITY	=> 20,
-			],
+	public function getSubscribedEvents(): iterable {
+		yield 'italystrap_theme_load'	=> [
+			static::CALLBACK	=> static::REGISTER_CB,
+			static::PRIORITY	=> 20,
 		];
 	}
 

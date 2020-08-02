@@ -12,12 +12,9 @@ class NavMenusSubscriber implements Registrable, SubscriberInterface {
 	 * @inheritDoc
 	 */
 	public function getSubscribedEvents(): iterable {
-		return [
-			// 'hook_name'							=> 'method_name',
-			'italystrap_theme_load'	=> [
-				static::CALLBACK	=> static::REGISTER_CB,
-				static::PRIORITY	=> 20,
-			]
+		yield 'italystrap_theme_load'	=> [
+			static::CALLBACK	=> static::REGISTER_CB,
+			static::PRIORITY	=> 20,
 		];
 	}
 

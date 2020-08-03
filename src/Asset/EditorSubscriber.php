@@ -6,8 +6,14 @@ namespace ItalyStrap\Asset;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Finder\Finder;
+use SplFileInfo;
+use function add_editor_style;
+use function apply_filters;
+use function realpath;
+use function str_replace;
+use function strval;
 
-class Editor implements SubscriberInterface {
+class EditorSubscriber implements SubscriberInterface {
 
 	/**
 	 * @var Config
@@ -26,16 +32,9 @@ class Editor implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array {
-
-		return array(
-			/**
-			 * Per ora la eseguo da qui
-			 * in futuro valutare posto migliore
-			 */
-//			'italystrap_theme_load'	=> 'add_editor_styles',
-			'admin_init'	=> 'add_editor_styles',
-		);
+	public function getSubscribedEvents(): iterable {
+//		'italystrap_theme_load'	=> 'enqueue',
+		yield 'admin_init'	=> 'enqueue';
 	}
 
 	/**
@@ -58,14 +57,14 @@ class Editor implements SubscriberInterface {
 	 * @link http://codeboxr.com/blogs/adding-twitter-bootstrap-support-in-wordpress-visual-editor
 	 * @link https://www.google.it/search?q=wordpress+add+css+bootstrap+visual+editor&oq=wordpress+add+css+bootstrap+visual+editor&gs_l=serp.3...893578.895997.0.896668.10.10.0.0.0.3.388.1849.0j1j4j2.7.0....0...1c.1.52.serp..8.2.732.wb3nJL89Fxk
 	 */
-	public function add_editor_styles() {
+	public function enqueue() {
 
 		$this->finder->names([
 			'../css/editor-style.css',
 			'../assets/css/editor-style.css',
 		]);
 
-		/** @var \SplFileInfo $editor_style */
+		/** @var SplFileInfo $editor_style */
 		$editor_style = '';
 		foreach ( $this->finder as $file ) {
 			$editor_style = $file;
@@ -83,8 +82,8 @@ class Editor implements SubscriberInterface {
 		 *       sia installato
 		 * 		http:://italystrap.test\dir/dir\dir
 		 */
-		$style_url = \str_replace(
-			\strval( \realpath( $this->config->get( 'CHILDPATH' ) ) ), // Search
+		$style_url = str_replace(
+			strval( realpath( $this->config->get( 'CHILDPATH' ) ) ), // Search
 			$this->config->get( 'STYLESHEETURL' ), // Replace
 			$editor_style->getRealPath()
 		);
@@ -92,10 +91,10 @@ class Editor implements SubscriberInterface {
 		/**
 		 * @TODO Make sure URL has not back slashes
 		 */
-		$style_url = \str_replace('\\', '/', $style_url);
+		$style_url = str_replace('\\', '/', $style_url);
 
-		$arg = \apply_filters( 'italystrap_visual_editor_style', [ $style_url ] );
+		$arg = apply_filters( 'italystrap_visual_editor_style', [ $style_url ] );
 
-		\add_editor_style( $arg );
+		add_editor_style( $arg );
 	}
 }

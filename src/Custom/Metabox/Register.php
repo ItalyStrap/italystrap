@@ -156,7 +156,7 @@ class Register implements SubscriberInterface {
 			)
 		);
 
-		if ( current_theme_supports( 'custom-header' ) ) {
+		if ( current_theme_supports( 'custom-header' ) && get_theme_mod( 'header_image_data' ) ) {
 			$cmb->add_field(
 				array(
 					'name'			=> __( 'Custom header', 'italystrap' ),

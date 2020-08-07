@@ -17,23 +17,8 @@
  * ===========================================================
  */
 declare(strict_types=1);
-$content_itemType = '';
 
-switch ( true ) {
-	case \ItalyStrap\Core\is_static_front_page():
-	case \is_singular():
-		$content_itemType = 'https://schema.org/Article';
-		break;
-	case \is_home():
-		$content_itemType = 'https://schema.org/WebSite';
-		break;
-	case \is_search():
-		$content_itemType = 'https://schema.org/SearchResultsPage';
-		break;
-	default:
-		$content_itemType = 'https://schema.org/CollectionPage';
-		break;
-}
+use function ItalyStrap\HTML\content_item_type_experimental;
 
 return [
 	/**
@@ -41,7 +26,7 @@ return [
 	 */
 	'italystrap_content_attr'	=> [
 		'itemscope'	=> true,
-		'itemtype'	=> $content_itemType,
+		'itemtype'	=> content_item_type_experimental(),
 	],
 	'italystrap_entry_content_attr'	=> [
 		'itemprop' => 'articleBody'

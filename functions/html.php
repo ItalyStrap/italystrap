@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\HTML;
 
+use function ItalyStrap\Core\is_static_front_page;
 use function ItalyStrap\Factory\get_config;
 
 /**
@@ -81,6 +82,27 @@ if ( ! \function_exists( __NAMESPACE__ . '\build_site_layout_experimental' ) ) {
 
 		return $classes[ $site_layout ][ $type ];
 	}
+}
+
+function content_item_type_experimental(): string {
+
+	switch ( true ) {
+		case is_static_front_page():
+		case \is_singular():
+			$content_itemType = 'https://schema.org/Article';
+			break;
+		case \is_home():
+			$content_itemType = 'https://schema.org/WebSite';
+			break;
+		case \is_search():
+			$content_itemType = 'https://schema.org/SearchResultsPage';
+			break;
+		default:
+			$content_itemType = 'https://schema.org/CollectionPage';
+			break;
+	}
+
+	return $content_itemType;
 }
 
 /**

@@ -12,20 +12,17 @@ class Director implements SubscriberInterface {
 	 * @var SubscriberRegisterInterface
 	 */
 	private $eventManager;
-	/**
-	 * @var Injector
-	 */
-	private $injector;
 
 	/**
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array {
-		return [
-//			'wp'	=> 'createPage', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
-			'italystrap_build'	=> 'createPage', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
-//			'italystrap_theme_loaded'	=> 'apply', // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
-		];
+	public function getSubscribedEvents(): iterable {
+
+//			yield 'wp'	=> 'createPage'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
+			yield 'italystrap_build'	=> 'createPage'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
+//			yield 'italystrap_theme_loaded'	=> 'apply'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
+//			yield 'italystrap_theme_will_load'	=> 'apply'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
+
 	}
 
 	/**
@@ -47,13 +44,12 @@ class Director implements SubscriberInterface {
 	 */
 	public function __construct(
 		BuilderInterface $builder,
-		SubscriberRegisterInterface $eventManager,
-		Injector $injector
+		SubscriberRegisterInterface $eventManager
+//		ParseAttr $parse_Attr
 	) {
 		$this->builder = $builder;
-//		$this->parse_Attr = $parse_Attr;
 		$this->eventManager = $eventManager;
-		$this->injector = $injector;
+//		$this->parse_Attr = $parse_Attr;
 	}
 
 	/**
@@ -65,7 +61,7 @@ class Director implements SubscriberInterface {
 		 * Injector setter is run on dependencies.php
 		 */
 		try {
-//			$this->builder->set_injector($this->injector);
+//			$this->parse_Attr->apply();
 			$this->builder->build();
 		} catch ( \Exception $e ) {
 			echo $e->getMessage();

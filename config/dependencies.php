@@ -129,18 +129,18 @@ return [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/nav-menus' ) ),
 		],
 
-		Builders\Builder::class	=> [
-			':config'	=> ConfigFactory::make( get_config_file_content( 'structure' ) ),
-		],
-
-//		Builders\Parse_Attr::class	=> [
-//			':config'	=> Config_Factory::make(
+//		Builders\ParseAttr::class	=> [
+//			':config'	=> ConfigFactory::make(
 //				array_replace_recursive(
 //					get_config_file_content( 'html_attrs' ),
 //					get_config_file_content( 'schema' )
 //				)
 //			),
 //		],
+
+		Builders\Builder::class	=> [
+			':config'	=> ConfigFactory::make( get_config_file_content( 'structure' ) ),
+		],
 
 		Components\Navigations\Navbar::class	=> [
 			':fallback_cb' => [ Navbar\BootstrapNavMenu::class, 'fallback' ],

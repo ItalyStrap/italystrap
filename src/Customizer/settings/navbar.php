@@ -230,7 +230,7 @@ $manager->add_control(
 $manager->add_setting(
 	'navbar_logo_image_mobile',
 	array(
-		'default'			=> $this->theme_mods['navbar_logo_image_mobile'],
+		'default'			=> $this->theme_mods->get('navbar_logo_image_mobile'),
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'refresh',

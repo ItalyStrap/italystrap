@@ -92,7 +92,8 @@ class ThemeCustomizer implements SubscriberInterface {
 	 * Init the class
 	 */
 	function __construct( Config $config ) {
-		 $this->theme_mods = $config->all();
+//		 $this->theme_mods = $config->all();
+		 $this->theme_mods = $config;
 	}
 
 	/**

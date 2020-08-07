@@ -6,6 +6,9 @@ namespace ItalyStrap\Theme;
 use \ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\HTML\Tag;
+use function array_filter;
+use function array_merge;
+use function register_sidebar;
 
 /**
  * Class for registering sidebars in template
@@ -22,16 +25,23 @@ class SidebarsSubscriber implements Registrable, SubscriberInterface {
 	const AFTER_WIDGET = 'after_widget';
 	const BEFORE_TITLE = 'before_title';
 	const AFTER_TITLE = 'after_title';
+
 	/**
 	 * @var Tag
 	 */
 	private $tag;
 
 	/**
+	 * @var array<string>
+	 */
+	private $registered_sidebars;
+
+	/**
 	 * @inheritDoc
 	 */
 	public function getSubscribedEvents(): iterable {
 		yield 'widgets_init'			=> static::REGISTER_CB;
+		yield 'dynamic_sidebar_before'	=> 'parseDynamicSidebarBefore';
 	}
 
 	/**
@@ -52,10 +62,43 @@ class SidebarsSubscriber implements Registrable, SubscriberInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function register() {
-		foreach ( $this->config as $sidebar ) {
-			\register_sidebar( $this->defaultSidebarConfig( $sidebar ) );
+	public function register():void {
+		foreach ( $this->config as $key => $sidebar ) {
+//			$this->registered_sidebars[ $key ] = \register_sidebar( $this->defaultSidebarConfig( $sidebar ) );
+			$this->registered_sidebars[ $key ] = register_sidebar( $sidebar );
 		}
+	}
+
+	/**
+	 * @param int|string $index
+	 */
+	public function parseDynamicSidebarBefore( $index ): void {
+		/** @var array<string> $wp_registered_sidebars */
+		global $wp_registered_sidebars;
+		$wp_registered_sidebars[ $index ] = array_merge(
+			$wp_registered_sidebars[ $index ],
+			array_filter($this->getDefault($index))
+		);
+	}
+
+	/**
+	 * @param $id
+	 * @return array
+	 */
+	private function getDefault( $id ): array {
+		$widget_context = $id . '-widget';
+		$title_context = $id . '-title';
+
+		return [
+			self::NAME => '',
+			self::ID => '',
+			self::DESCRIPTION => '',
+			self::CLASS_NAME => '',
+			self::BEFORE_WIDGET => $this->tag->open( $widget_context, 'div', ['id' => '%1$s', 'class' => 'widget %2$s'] ),
+			self::AFTER_WIDGET => $this->tag->close( $widget_context ),
+			self::BEFORE_TITLE => $this->tag->open( $title_context, 'h3', ['class' => 'widgettitle widget-title'] ),
+			self::AFTER_TITLE => $this->tag->close( $title_context ),
+		];
 	}
 
 	/**
@@ -63,21 +106,7 @@ class SidebarsSubscriber implements Registrable, SubscriberInterface {
 	 * @return array
 	 */
 	private function defaultSidebarConfig( array $sidebar ) : array {
-
-		$widget_context = $sidebar['id'] . '-widget';
-		$title_context = $sidebar['id'] . '-title';
-
-		$defaults = [
-			self::NAME			=> '',
-			self::ID			=> '',
-			self::DESCRIPTION	=> '',
-			self::CLASS_NAME	=> '',
-			self::BEFORE_WIDGET	=> $this->tag->open( $widget_context, 'div', ['id' => '%1$s', 'class' => 'widget %2$s'] ),
-			self::AFTER_WIDGET	=> $this->tag->close( $widget_context ),
-			self::BEFORE_TITLE	=> $this->tag->open( $title_context, 'h3', [ 'class' => 'widget-title' ] ),
-			self::AFTER_TITLE	=> $this->tag->close( $title_context ),
-		];
-
-		return \array_merge( $defaults, $sidebar );
+		$defaults = $this->getDefault( $sidebar[ 'id' ] );
+		return array_merge( $defaults, $sidebar );
 	}
 }

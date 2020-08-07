@@ -108,19 +108,24 @@ return [
 	 */
 	AurynConfig::DEFINITIONS			=> [
 
-		Theme\SidebarsSubscriber::class	=> [
-			 ':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
+//		SidebarsSubscriber::class	=> [
+//			 ':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
+//		],
+		SidebarsSubscriber::class	=> [
+			 '+config'	=> function () {
+				return ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) );
+			 },
 		],
-		Theme\ThumbnailsSubscriber::class	=> [
+		ThumbnailsSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/thumbnails' ) ),
 		],
-		Theme\SupportSubscriber::class	=> [
+		SupportSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/supports' ) ),
 		],
-		Theme\PostTypeSupportSubscriber::class	=> [
+		PostTypeSupportSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/type-supports' ) ),
 		],
-		Theme\NavMenusSubscriber::class	=> [
+		NavMenusSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/nav-menus' ) ),
 		],
 
@@ -311,6 +316,7 @@ return [
 	 */
 	AurynConfig::PROXY					=> [
 		AssetManager::class,
+//		SidebarsSubscriber::class,
 	],
 
 	/**

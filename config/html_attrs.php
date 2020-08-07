@@ -17,53 +17,109 @@
  * ===========================================================
  */
 declare(strict_types=1);
-use \ItalyStrap\Factory;
 
-/**
- * @var \ItalyStrap\Config\Config $config
- */
-$config = Factory\get_config();
+namespace ItalyStrap;
+
+use function ItalyStrap\Factory\get_config;
+
+//$config = get_config();
 
 /**
  * @var string $site_layout
  */
-$site_layout = (string) $config->get( 'site_layout' );
+//$site_layout = (string) $config->get( 'site_layout' );
 
 /**
  * @var array $classes
  */
-$classes = [
-	'full_width'				=> [
-		'content'			=> $config->get('full_width'),
-		'sidebar'			=> '',
-		'sidebar_secondary'	=> '',
-	],
-	'content_sidebar'			=> [
-		'content'			=> $config->get('content_class'),
-		'sidebar'			=> $config->get('sidebar_class'),
-		'sidebar_secondary'	=> '',
-	],
-	'content_sidebar_sidebar'	=> [
-		'content'			=> 'col-md-7',
-		'sidebar'			=> 'col-md-3',
-		'sidebar_secondary'	=> 'col-md-2',
-	],
-	'sidebar_content_sidebar'	=> [
-		'content'			=> 'col-md-7 col-md-push-3',
-		'sidebar'			=> 'col-md-3 col-md-pull-7',
-		'sidebar_secondary'	=> 'col-md-2',
-	],
-	'sidebar_sidebar_content'	=> [
-		'content'			=> 'col-md-7 col-md-push-5',
-		'sidebar'			=> 'col-md-3 col-md-pull-7',
-		'sidebar_secondary'	=> 'col-md-2 col-md-pull-10',
-	],
-	'sidebar_content'			=> [
-		'content'			=> $config->get('content_class') . '  col-md-push-4',
-		'sidebar'			=> $config->get('sidebar_class') . '  col-md-pull-8',
-		'sidebar_secondary'	=> '',
-	],
-];
+//$classes = [
+//	'full_width'				=> [
+//		'content'			=> $config->get('full_width'),
+//		'sidebar'			=> '',
+//		'sidebar_secondary'	=> '',
+//	],
+//	'content_sidebar'			=> [
+//		'content'			=> $config->get('content_class'),
+//		'sidebar'			=> $config->get('sidebar_class'),
+//		'sidebar_secondary'	=> '',
+//	],
+//	'content_sidebar_sidebar'	=> [
+//		'content'			=> 'col-md-7',
+//		'sidebar'			=> 'col-md-3',
+//		'sidebar_secondary'	=> 'col-md-2',
+//	],
+//	'sidebar_content_sidebar'	=> [
+//		'content'			=> 'col-md-7 col-md-push-3',
+//		'sidebar'			=> 'col-md-3 col-md-pull-7',
+//		'sidebar_secondary'	=> 'col-md-2',
+//	],
+//	'sidebar_sidebar_content'	=> [
+//		'content'			=> 'col-md-7 col-md-push-5',
+//		'sidebar'			=> 'col-md-3 col-md-pull-7',
+//		'sidebar_secondary'	=> 'col-md-2 col-md-pull-10',
+//	],
+//	'sidebar_content'			=> [
+//		'content'			=> $config->get('content_class') . '  col-md-push-4',
+//		'sidebar'			=> $config->get('sidebar_class') . '  col-md-pull-8',
+//		'sidebar_secondary'	=> '',
+//	],
+//];
+
+if ( ! \function_exists( __NAMESPACE__ . '\build_site_layout' ) ) {
+	function build_site_layout( string $type ): string {
+
+		$config = get_config();
+
+		/**
+		 * @var string $site_layout
+		 */
+		$site_layout = (string) $config->get( 'site_layout' );
+
+		/**
+		 * @var array $classes
+		 */
+		$classes = [
+			'full_width'				=> [
+				'content'			=> $config->get('full_width'),
+				'sidebar'			=> '',
+				'sidebar_secondary'	=> '',
+			],
+			'content_sidebar'			=> [
+				'content'			=> $config->get('content_class'),
+				'sidebar'			=> $config->get('sidebar_class'),
+				'sidebar_secondary'	=> '',
+			],
+			'content_sidebar_sidebar'	=> [
+				'content'			=> 'col-md-7',
+				'sidebar'			=> 'col-md-3',
+				'sidebar_secondary'	=> 'col-md-2',
+			],
+			'sidebar_content_sidebar'	=> [
+				'content'			=> 'col-md-7 col-md-push-3',
+				'sidebar'			=> 'col-md-3 col-md-pull-7',
+				'sidebar_secondary'	=> 'col-md-2',
+			],
+			'sidebar_sidebar_content'	=> [
+				'content'			=> 'col-md-7 col-md-push-5',
+				'sidebar'			=> 'col-md-3 col-md-pull-7',
+				'sidebar_secondary'	=> 'col-md-2 col-md-pull-10',
+			],
+			'sidebar_content'			=> [
+				'content'			=> $config->get('content_class') . '  col-md-push-4',
+				'sidebar'			=> $config->get('sidebar_class') . '  col-md-pull-8',
+				'sidebar_secondary'	=> '',
+			],
+		];
+
+		return $classes[ $site_layout ][ $type ];
+	}
+}
+
+
+
+if ( ! \did_action('wp') ) {
+	throw new \RuntimeException( __( __FILE__ . ' must be loaded after wp hook', 'italystrap' ) );
+}
 
 /**
  * Make sure to apply this filters at wp action.
@@ -83,7 +139,7 @@ return [
 	/**
 	 * This is the <article ...> HTML attr.
 	 */
-	'post_class'	=> function ( array $classes ) use ( $config ) {
+	'post_class'	=> function ( array $classes ) {
 
 		/**
 		 * Remove the 'hentry' css class to prevents error in search console
@@ -101,6 +157,7 @@ return [
 			return $classes;
 		}
 
+		$config = get_config();
 		$classes[] = 'post-thumbnail-' . $config->get( 'post_thumbnail_alignment' );
 
 		return  $classes;
@@ -166,24 +223,36 @@ return [
 	/**
 	 * Attributes for the content element.
 	 */
-	'italystrap_content_attr'			=> [
-		'class'	=> $classes[ $site_layout ]['content'],
-	],
+	'italystrap_content_attr'			=> function ( array $attr ) {
+		$attr['class'] = build_site_layout('content');
+		return $attr;
+	},
+//	'italystrap_content_attr'			=> [
+//		'class'	=> $classes[ $site_layout ]['content'],
+//	],
 
 	/**
 	 * Attributes for the sidebar element.
 	 */
-	'italystrap_sidebar_attr'			=> [
-		'class'	=> $classes[ $site_layout ]['sidebar'],
-	],
+	'italystrap_sidebar_attr'			=> function ( array $attr ) {
+		$attr['class'] = build_site_layout('sidebar');
+		return $attr;
+	},
+//	'italystrap_sidebar_attr'			=> [
+//		'class'	=> $classes[ $site_layout ]['sidebar'],
+//	],
 
 	/**
 	 * Attributes for the sidebar element.
 	 * Secondary sidebar does not exist for now and the filter is only for example.
 	 */
-	'italystrap_sidebar_secondary_attr'	=> [
-		'class'	=> $classes[ $site_layout ]['sidebar_secondary'],
-	],
+//	'italystrap_sidebar_secondary_attr'	=> function ( array $attr ) {
+//		$attr['class'] = build_site_layout('sidebar_secondary');
+//		return $attr;
+//	},
+//	'italystrap_sidebar_secondary_attr'	=> [
+//		'class'	=> $classes[ $site_layout ]['sidebar_secondary'],
+//	],
 
 	/**
 	 * Post thumbnail size
@@ -192,7 +261,14 @@ return [
 	 *
 	 * @return string       The post_thumbnail_size full if layout is fullwidth
 	 */
-	'italystrap_post_thumbnail_size'	=> function ( $size ) use ( $site_layout ) {
+	'italystrap_post_thumbnail_size'	=> function ( $size ) {
+
+		$config = get_config();
+
+		/**
+		 * @var string $site_layout
+		 */
+		$site_layout = (string) $config->get( 'site_layout' );
 
 		if ( 'full_width' === $site_layout ) {
 			return 'full-width';
@@ -232,9 +308,18 @@ return [
 	},
 
 	/**
-	 * Attributes for the footer component.
+	 * Attributes for the sidebars component registered from this theme.
 	 */
-	'italystrap_sidebar-1-wrapper_attr'	=> function ( array $attr ) : array {
+//	'italystrap_sidebar-1-widget_tag'	=> function ( string $tag ): string {
+//		return $tag;
+//	},
+
+	/**
+	 * Attributes for the sidebars component registered from this theme.
+	 */
+	'italystrap_sidebar-1-widget_attr'	=> function ( array $attr ): array {
+		$attr['id'] = '%1$s';
+		$attr['class'] = 'widget %2$s col-sm-6 col-md-12';
 		return $attr;
 	},
 

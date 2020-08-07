@@ -18,7 +18,7 @@ use Auryn\InjectorException;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscriberRegister;
-use ItalyStrap\Event\EventResolverExtension;
+use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
 use Throwable;
@@ -71,31 +71,35 @@ get_config()->merge( $constants );
 
 try {
 	$injector = injector();
-	$injector = new DebugInjector( $injector );
+
+	if ( \ItalyStrap\Core\is_debug() ) {
+		$injector = new DebugInjector( $injector );
+	}
+
 	$injector->share( $injector );
 
 	$injector->alias( EventDispatcherInterface::class, EventDispatcher::class );
 	$injector->share( EventDispatcher::class );
 	$injector->share( SubscriberRegister::class );
 
-	$event_resolver = $injector->make( EventResolverExtension::class, [
+	$subscriber_config = $injector->make( SubscribersConfigExtension::class, [
 		':config'	=> get_config(),
 	] );
 
-	$dependence_collection = get_config_file_content( 'dependencies' );
-	$dependence_collection[ EventResolverExtension::SUBSCRIBERS ] = \array_merge(
-		$dependence_collection[ EventResolverExtension::SUBSCRIBERS ],
+	$dependencies_collection = get_config_file_content( 'dependencies' );
+	$dependencies_collection[ SubscribersConfigExtension::SUBSCRIBERS ] = \array_merge(
+		$dependencies_collection[ SubscribersConfigExtension::SUBSCRIBERS ],
 		get_config_file_content( 'dependencies-admin' ),
 		get_config_file_content( 'dependencies-front' )
 	);
 
-	$dependencies = ConfigFactory::make($dependence_collection);
+	$dependencies = ConfigFactory::make($dependencies_collection);
 
-	$empress = $injector->make( AurynConfig::class, [
+	$injector_config = $injector->make( AurynConfig::class, [
 		':dependencies'	=> $dependencies
 	] );
 
-	$empress->extend( $event_resolver );
+	$injector_config->extend( $subscriber_config );
 
 	$event_dispatcher = $injector->make( EventDispatcher::class );
 
@@ -106,8 +110,8 @@ try {
 	 *
 	 * ========================================================================
 	 */
-	$event_dispatcher->addListener( 'italystrap_theme_load', function () use ( $empress ) {
-		$empress->resolve();
+	$event_dispatcher->addListener( 'italystrap_theme_load', function () use ( $injector_config ) {
+		$injector_config->resolve();
 	} );
 
 	if ( ! isset( $theme_mods ) ) {

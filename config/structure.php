@@ -303,12 +303,12 @@ return [
 			},
 		],
 
-		'header-image'	=> [
+		'custom-header'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_content_header',
-			'view'		=> 'headers/image',
+			'view'		=> 'headers/custom-header',
 			'should_load'	=> '\has_header_image',
 			'data'		=> function ( Injector $injector ) {
-				return $injector->make( Components\Headers\Image::class )->get_data();
+				return $injector->make( Components\Headers\CustomHeader::class )->getData();
 			},
 		],
 

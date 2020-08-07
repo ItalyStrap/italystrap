@@ -13,7 +13,7 @@ function filter_attr() {
 		$schema = \ItalyStrap\Config\get_config_file_content( 'schema' );
 		$html_attrs = \ItalyStrap\Config\get_config_file_content( 'html_attrs' );
 
-		$config = \ItalyStrap\Config\Config_Factory::make( \array_replace_recursive( $schema, $html_attrs ) );
+		$config = \ItalyStrap\Config\ConfigFactory::make( \array_replace_recursive( $schema, $html_attrs ) );
 
 //		\ItalyStrap\HTML\Parse_Attr::$accepted_args = 5;
 

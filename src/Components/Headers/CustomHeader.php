@@ -8,7 +8,9 @@ use \ItalyStrap\Config\ConfigInterface as Config;
 /**
  * The Header_Image controller class
  */
-class Image {
+class CustomHeader {
+
+	public const OUTPUT = 'output';
 
 	private $data = [];
 	private $config;
@@ -122,17 +124,21 @@ class Image {
 			return $this->get_attachment_image( $this->post_meta_id, $size );
 		}
 
+		/**
+		 * @see the_custom_header_markup()
+		 */
 		return $this->get_custom_header_image( $this->custom_header, $size );
 	}
 
 	/**
 	 * @TODO get_header_image_tag( $attr = array() )
 	 */
-	public function get_data() : array {
+	public function getData() : array {
 
 		$this->_init_property();
 
-		$this->data['output'] = $this->custom_header();
+		$this->data[ static::OUTPUT ] = $this->custom_header();
+//		$this->data[ self::class ] = $this;
 
 		return $this->data;
 	}

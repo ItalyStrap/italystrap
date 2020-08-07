@@ -81,18 +81,19 @@ return \apply_filters( 'italystrap_theme_supports',
 		 * @var array
 		 */
 		'custom-header'	=> [
-			'default-image'          => '',
-			'width'                  => 1140,
-			'height'                 => 400,
-			'flex-height'            => true,
-			'flex-width'             => true,
-			'uploads'                => true,
-			'random-default'         => false,
-			'header-text'            => true,
-			'default-text-color'     => '',
-			'wp-head-callback'       => '',
-			'admin-head-callback'    => '',
-			'admin-preview-callback' => '',
+			'default-image'				=> '',
+			'width'						=> 1140,
+			'height'					=> 500,
+			'flex-height'				=> true,
+			'flex-width'				=> true,
+			'uploads'					=> true,
+			'random-default'			=> false,
+			'header-text'				=> true,
+			'default-text-color'		=> '000',
+			'wp-head-callback'			=> '',
+			'admin-head-callback'		=> '',
+			'admin-preview-callback'	=> '',
+			'video'						=> true,
 		],
 
 		/**
@@ -394,7 +395,7 @@ return \apply_filters( 'italystrap_theme_supports',
 		/**
 		 * Support for Gutenberg editor style
 		 * Then make sure you are loading the editor-style.css
-		 * @see \ItalyStrap\Init\Init_Theme.php
+		 * @see \ItalyStrap\Init\Init_Theme
 		 */
 		'editor-styles',
 

@@ -87,7 +87,7 @@ add_action( 'wp', function () {
 /**
  * @todo Questo va eseguito prima della registrazione delle sidebar se no non si può filtrare l'html dei widget
  */
-add_action( 'after_setup_theme', '\ItalyStrap\HTML\filter_attr' );
-//add_action( 'get_header', '\ItalyStrap\HTML\filter_attr' );
+//add_action( 'after_setup_theme', '\ItalyStrap\HTML\filter_attr' );
+add_action( 'wp', '\ItalyStrap\HTML\filter_attr' );
 
 return $subscribers;

@@ -25,15 +25,9 @@ class EditorSubscriber implements SubscriberInterface {
 	private $finder;
 
 	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
-	 * @hooked 'italystrap_before_loop' - 20
-	 *
-	 * @return array
+	 * @inheritDoc
 	 */
 	public function getSubscribedEvents(): iterable {
-//		'italystrap_theme_load'	=> 'enqueue',
 		yield 'admin_init'	=> 'enqueue';
 	}
 

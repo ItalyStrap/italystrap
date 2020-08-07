@@ -330,6 +330,7 @@ return [
 		 */
 		'comments'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_after_loop',
+			/** @see \comments_template() */
 			'callback'	=> '\comments_template',
 			'should_load'	=> function () : bool {
 				return \is_singular()

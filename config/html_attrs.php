@@ -129,9 +129,6 @@ return [
 		$attr['class'] = build_site_layout_experimental('content');
 		return $attr;
 	},
-//	'italystrap_content_attr'			=> [
-//		'class'	=> $classes[ $site_layout ]['content'],
-//	],
 
 	/**
 	 * Attributes for the sidebar element.
@@ -140,9 +137,6 @@ return [
 		$attr['class'] = build_site_layout_experimental('sidebar');
 		return $attr;
 	},
-//	'italystrap_sidebar_attr'			=> [
-//		'class'	=> $classes[ $site_layout ]['sidebar'],
-//	],
 
 	/**
 	 * Attributes for the sidebar element.
@@ -152,9 +146,6 @@ return [
 //		$attr['class'] = build_site_layout('sidebar_secondary');
 //		return $attr;
 //	},
-//	'italystrap_sidebar_secondary_attr'	=> [
-//		'class'	=> $classes[ $site_layout ]['sidebar_secondary'],
-//	],
 
 	/**
 	 * Post thumbnail size

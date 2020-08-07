@@ -82,7 +82,7 @@ class SidebarsSubscriber implements Registrable, SubscriberInterface {
 	}
 
 	/**
-	 * @param $id
+	 * @param int|string $id
 	 * @return array
 	 */
 	private function getDefault( $id ): array {

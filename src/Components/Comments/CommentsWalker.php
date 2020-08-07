@@ -18,7 +18,7 @@ use \Walker_Comment;
  *       Per esempio pulire il codice HTML ritornato, è ancora troppo sporco
  *       Troppi ul
  */
-class Comments extends Walker_Comment {
+class CommentsWalker extends Walker_Comment {
 
 	/**
 	 * Outputs a comment in the HTML5 format.

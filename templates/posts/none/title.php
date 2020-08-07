@@ -23,7 +23,7 @@ $headline_attr = [
 ];
 
 ?><header class="page-header">
-	<h1 <?php HTML\get_attr( 'entry_title', $headline_attr, true ); ?>>
+	<h1 <?php HTML\get_attr_e( 'entry_title', $headline_attr ); ?>>
 		<?php echo \esc_html( $this->get('404_title') ); ?>
 	</h1>
 </header>

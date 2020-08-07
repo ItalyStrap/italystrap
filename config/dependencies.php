@@ -16,10 +16,10 @@ use ItalyStrap\Builders\BuilderInterface;
 use ItalyStrap\Config\{Config, ConfigFactory, ConfigInterface};
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\EventDispatcher;
-use ItalyStrap\Event\EventResolverExtension;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscriberRegisterInterface;
+use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Finder\FileInfoFactory;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
 use ItalyStrap\Finder\FilesHierarchyIterator;
@@ -330,7 +330,7 @@ return [
 	 *
 	 * ========================================================================
 	 */
-	EventResolverExtension::SUBSCRIBERS				=> [
+	SubscribersConfigExtension::SUBSCRIBERS				=> [
 
 		/**
 		 * Register Theme stuff

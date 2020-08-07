@@ -31,7 +31,7 @@ $featured_image_class = array(
 );
 
 if ( \is_404() ) { ?>
-	<figure <?php HTML\get_attr( '404_image', $featured_image_class, true ); ?>>
+	<figure <?php HTML\get_attr_e( '404_image', $featured_image_class ); ?>>
 		<?php
 
 		echo \italystrap_get_404_image( 'img-responsive center-block' );

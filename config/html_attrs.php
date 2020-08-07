@@ -21,105 +21,7 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use function ItalyStrap\Factory\get_config;
-
-//$config = get_config();
-
-/**
- * @var string $site_layout
- */
-//$site_layout = (string) $config->get( 'site_layout' );
-
-/**
- * @var array $classes
- */
-//$classes = [
-//	'full_width'				=> [
-//		'content'			=> $config->get('full_width'),
-//		'sidebar'			=> '',
-//		'sidebar_secondary'	=> '',
-//	],
-//	'content_sidebar'			=> [
-//		'content'			=> $config->get('content_class'),
-//		'sidebar'			=> $config->get('sidebar_class'),
-//		'sidebar_secondary'	=> '',
-//	],
-//	'content_sidebar_sidebar'	=> [
-//		'content'			=> 'col-md-7',
-//		'sidebar'			=> 'col-md-3',
-//		'sidebar_secondary'	=> 'col-md-2',
-//	],
-//	'sidebar_content_sidebar'	=> [
-//		'content'			=> 'col-md-7 col-md-push-3',
-//		'sidebar'			=> 'col-md-3 col-md-pull-7',
-//		'sidebar_secondary'	=> 'col-md-2',
-//	],
-//	'sidebar_sidebar_content'	=> [
-//		'content'			=> 'col-md-7 col-md-push-5',
-//		'sidebar'			=> 'col-md-3 col-md-pull-7',
-//		'sidebar_secondary'	=> 'col-md-2 col-md-pull-10',
-//	],
-//	'sidebar_content'			=> [
-//		'content'			=> $config->get('content_class') . '  col-md-push-4',
-//		'sidebar'			=> $config->get('sidebar_class') . '  col-md-pull-8',
-//		'sidebar_secondary'	=> '',
-//	],
-//];
-
-if ( ! \function_exists( __NAMESPACE__ . '\build_site_layout' ) ) {
-	function build_site_layout( string $type ): string {
-
-		$config = get_config();
-
-		/**
-		 * @var string $site_layout
-		 */
-		$site_layout = (string) $config->get( 'site_layout' );
-
-		/**
-		 * @var array $classes
-		 */
-		$classes = [
-			'full_width'				=> [
-				'content'			=> $config->get('full_width'),
-				'sidebar'			=> '',
-				'sidebar_secondary'	=> '',
-			],
-			'content_sidebar'			=> [
-				'content'			=> $config->get('content_class'),
-				'sidebar'			=> $config->get('sidebar_class'),
-				'sidebar_secondary'	=> '',
-			],
-			'content_sidebar_sidebar'	=> [
-				'content'			=> 'col-md-7',
-				'sidebar'			=> 'col-md-3',
-				'sidebar_secondary'	=> 'col-md-2',
-			],
-			'sidebar_content_sidebar'	=> [
-				'content'			=> 'col-md-7 col-md-push-3',
-				'sidebar'			=> 'col-md-3 col-md-pull-7',
-				'sidebar_secondary'	=> 'col-md-2',
-			],
-			'sidebar_sidebar_content'	=> [
-				'content'			=> 'col-md-7 col-md-push-5',
-				'sidebar'			=> 'col-md-3 col-md-pull-7',
-				'sidebar_secondary'	=> 'col-md-2 col-md-pull-10',
-			],
-			'sidebar_content'			=> [
-				'content'			=> $config->get('content_class') . '  col-md-push-4',
-				'sidebar'			=> $config->get('sidebar_class') . '  col-md-pull-8',
-				'sidebar_secondary'	=> '',
-			],
-		];
-
-		return $classes[ $site_layout ][ $type ];
-	}
-}
-
-
-
-if ( ! \did_action('wp') ) {
-	throw new \RuntimeException( __( __FILE__ . ' must be loaded after wp hook', 'italystrap' ) );
-}
+use function ItalyStrap\HTML\build_site_layout_experimental;
 
 /**
  * Make sure to apply this filters at wp action.
@@ -224,7 +126,7 @@ return [
 	 * Attributes for the content element.
 	 */
 	'italystrap_content_attr'			=> function ( array $attr ) {
-		$attr['class'] = build_site_layout('content');
+		$attr['class'] = build_site_layout_experimental('content');
 		return $attr;
 	},
 //	'italystrap_content_attr'			=> [
@@ -235,7 +137,7 @@ return [
 	 * Attributes for the sidebar element.
 	 */
 	'italystrap_sidebar_attr'			=> function ( array $attr ) {
-		$attr['class'] = build_site_layout('sidebar');
+		$attr['class'] = build_site_layout_experimental('sidebar');
 		return $attr;
 	},
 //	'italystrap_sidebar_attr'			=> [

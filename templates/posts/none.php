@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 ?>
-<section id="post-not-found" <?php HTML\get_attr( 'section_none', ['class' => 'no-results not-found'], true ); ?>>
+<section id="post-not-found" <?php HTML\get_attr_e( 'section_none', ['class' => 'no-results not-found'] ); ?>>
 <?php
 	\do_action( 'italystrap_before_entry_content_none' );
 

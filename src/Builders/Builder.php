@@ -199,7 +199,7 @@ class Builder implements BuilderInterface {
 	 * @param array $component
 	 */
 	private function assertEventNameIsNotEmpty( array $component ) {
-		if ( ! \array_key_exists( 'event_name', $component ) || '' === $component['event_name'] ) {
+		if ( ! \array_key_exists(  static::EVENT_NAME , $component ) || '' === $component[ static::EVENT_NAME ] ) {
 			throw new \RuntimeException( \__( 'The event name must be not empty', 'italystrap' ), 0 );
 		}
 	}

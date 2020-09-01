@@ -26,6 +26,8 @@ use function ItalyStrap\HTML\build_site_layout_experimental;
 /**
  * Make sure to apply this filters at wp action.
  *
+ * @see \ItalyStrap\Builders\ParseAttr
+ *
  * @return array Return the filters with the value to append to.
  */
 return [
@@ -97,9 +99,12 @@ return [
 	/**
 	 * Attributes for the content element.
 	 */
-	'italystrap_index-container_attr'			=> [
-		'class'	=> 'container',
-	],
+	'italystrap_index-container_attr'			=> function ( array $attr ) {
+		$config = get_config();
+		$attr['class'] = $config->get('container_width');
+
+		return $attr;
+	},
 
 	/**
 	 * Attributes for the content element.

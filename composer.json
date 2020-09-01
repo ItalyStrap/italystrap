@@ -19,7 +19,7 @@
 	"minimum-stability": "stable",
 	"require": {
 		"php" : ">=7.2",
-		"italystrap/empress": "^1.0",
+		"italystrap/empress": "^1.1",
 		"italystrap/event": "dev-master",
 		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
@@ -29,7 +29,8 @@
 		"italystrap/asset": "dev-master",
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
-		"brain/hierarchy": "^2.4"
+		"brain/hierarchy": "^2.4",
+		"cmb2/cmb2": "2.6.0"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^2.4",
@@ -61,6 +62,11 @@
 	"autoload": {
 		"psr-4": {
 			"ItalyStrap\\": "src/"
+		}
+	},
+	"extra": {
+		"installer-paths": {
+			"vendor/{$name}/": ["cmb2/cmb2"]
 		}
 	},
 	"scripts": {

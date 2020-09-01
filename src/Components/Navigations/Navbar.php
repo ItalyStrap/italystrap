@@ -304,10 +304,10 @@ class Navbar {
 	 */
 	public function get_collapsable_menu() {
 
-		$a = array(
+		$a = [
 			'id' => $this->navbar_id,
 			'class' => 'navbar-collapse collapse',
-		);
+		];
 
 		return $this->create_element(
 			'collapsable_menu',

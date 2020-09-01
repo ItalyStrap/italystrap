@@ -1,53 +1,11 @@
-var bower_path = 'bower/';
-var bootstrap_path = bower_path + 'bootstrap-sass/assets/';
-var bootstrap_js_path = bootstrap_path + 'javascripts/bootstrap/';
-var bootstrap_fonts_path = bootstrap_path + 'fonts/bootstrap/';
+const bower_path = 'bower/';
+const bootstrap_path = bower_path + 'bootstrap-sass/assets/';
+const bootstrap_js_path = bootstrap_path + 'javascripts/bootstrap/';
+const bootstrap_fonts_path = bootstrap_path + 'fonts/bootstrap/';
 
-var italystrap_theme = [
-	'**', // All
+const config = require( './assets/tasks/config' );
 
-	/**
-	 * Directories
-	 */
-	'!.git/**',
-	'!.sass-cache/**',
-	'!node_modules/**',
-	'!backups/**',
-	'!bower/**',
-	'!**/test*/**',
-	'!future-inclusions/**',
-	'!sass/**',
-	'!css/src/**',
-	'!js/src/**',
-	'!_others',
-
-	/**
-	 * Files
-	 */
-	'!codecept',
-	'!.gitattributes',
-	'!.gitignore',
-	'!snippets.md',
-	'!bower.json',
-	'!Gruntfile.js',
-	'!Gulpfile.js',
-	'!package.json',
-	'!package-lock.json',
-	'!**/c3.php',
-	'!**/infection.*',
-	'!**/*.bat',
-	'!**/*.cmd',
-	'!**/*.dist',
-	'!**/*.lock',
-	'!**/*.neon',
-	'!**/*.phar',
-	'!**/*.yml',
-	'!**/*.zip',
-	'!**/*.xml',
-	'!**/*.map',
-];
-
-module.exports = function(grunt) {
+module.exports = grunt => {
 	'use strict';
 
 	/**
@@ -68,13 +26,6 @@ module.exports = function(grunt) {
 				cwd: bootstrap_fonts_path,
 				src: ['**'],
 				dest: 'fonts/',
-				filter: 'isFile',
-			},
-			jquery: {
-				expand: true, // https://github.com/gruntjs/grunt-contrib-copy/issues/90
-				cwd: bower_path + 'jquery/dist/',
-				src: ['jquery.min.js'],
-				dest: 'js/',
 				filter: 'isFile',
 			},
 		},
@@ -300,6 +251,11 @@ module.exports = function(grunt) {
 			}
 		},
 
+		exec: { // https://github.com/jharding/grunt-exec
+			composer_update: 'composer update --no-dev && composer dumpautoload -o',
+			composer_update_dev: 'composer update && composer dumpautoload',
+		},
+
 		compress: { // https://github.com/gruntjs/grunt-contrib-compress
 			main: {
 				options: {
@@ -307,7 +263,7 @@ module.exports = function(grunt) {
 				},
 				files: [
 					{
-						src: italystrap_theme, // What should be included in the zip
+						src: config.files, // What should be included in the zip
 						dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
@@ -319,7 +275,7 @@ module.exports = function(grunt) {
 				},
 				files: [
 					{
-						src: italystrap_theme, // What should be included in the zip
+						src: config.files, // What should be included in the zip
 						dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
@@ -331,7 +287,7 @@ module.exports = function(grunt) {
 				},
 				files: [
 					{
-						src: italystrap_theme, // What should be included in the zip
+						src: config.files, // What should be included in the zip
 						dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						filter: 'isFile',
 					},

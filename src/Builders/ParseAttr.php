@@ -5,6 +5,13 @@ namespace ItalyStrap\Builders;
 
 use \ItalyStrap\Config\ConfigInterface as Config;
 
+/**
+ * Class ParseAttr
+ *
+ * @TODO https://github.com/Rarst/advanced-hooks-api
+ *
+ * @package ItalyStrap\Builders
+ */
 class ParseAttr {
 
 	const ACCEPTED_ARGS = 3;

@@ -9,6 +9,10 @@ class AssetCest {
 
 	public function _before(FunctionalTester $I) {
 		$I->loginAsAdmin();
+
+//		$I->tryToClick( 'Update WordPress Database', '.button-primary' );
+//		$I->tryToClick( 'Continue', '.button-large' );
+
 	}
 
 	/**
@@ -42,7 +46,8 @@ class AssetCest {
 		$I->wantTo( 'See the script loaded' );
 
 		$I->amOnPage('/');
-		$I->seeInSource('italystrap/assets/js/custom.min.js');
+//		$I->seeInSource('italystrap/assets/js/custom.min.js');
+		$I->seeInSource('italystrap/assets/js/src/custom.js');
 	}
 
 	/**

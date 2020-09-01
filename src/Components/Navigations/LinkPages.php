@@ -3,11 +3,26 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Navigations;
 
+use ItalyStrap\Event\EventDispatcherInterface;
+use function wp_link_pages;
+
 /**
  * Class description
  */
 class LinkPages {
 
+	/**
+	 * @var EventDispatcherInterface
+	 */
+	private $dispatcher;
+
+	/**
+	 * LinkPages constructor.
+	 * @param EventDispatcherInterface $dispatcher
+	 */
+	public function __construct( EventDispatcherInterface $dispatcher ) {
+		$this->dispatcher = $dispatcher;
+	}
 	/**
 	 * Render the output of the controller.
 	 */
@@ -23,8 +38,8 @@ class LinkPages {
 			'echo'		=> false,
 		];
 
-		$args = \apply_filters( 'italystrap_wp_link_pages_args', $args );
+		$args = $this->dispatcher->filter( 'italystrap_wp_link_pages_args', $args );
 
-		return \wp_link_pages( $args );
+		return wp_link_pages( $args );
 	}
 }

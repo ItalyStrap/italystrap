@@ -5,6 +5,7 @@ namespace ItalyStrap\Custom\Metabox;
 
 use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
+use function new_cmb2_box;
 
 /**
  * https://make.wordpress.org/core/2018/11/07/meta-box-compatibility-flags/
@@ -19,14 +20,8 @@ class Register implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array {
-
-		return [
-			// 'hook_name'							=> 'method_name',
-			'cmb2_admin_init'	=> [
-				'function_to_add'	=> 'register_metaboxes',
-			],
-		];
+	public function getSubscribedEvents(): iterable {
+		yield 'cmb2_admin_init' => 'register_metaboxes';
 	}
 
 	/**
@@ -57,6 +52,7 @@ class Register implements SubscriberInterface {
 
 	/**
 	 * Init the constructor
+	 * @param Config $config
 	 */
 	function __construct( Config $config ) {
 
@@ -110,8 +106,8 @@ class Register implements SubscriberInterface {
 		);
 
 		$cmb->add_field(
-			array(
-				'name'				=> __( 'Page container witdh settings', 'italystrap' ),
+			[
+				'name'				=> __( 'Page container width settings', 'italystrap' ),
 				'desc'				=> sprintf(
 					__( 'Choose the width of the page container for this %s', 'italystrap' ),
 					$post_type
@@ -122,12 +118,12 @@ class Register implements SubscriberInterface {
 					__( 'Default width set in %s', 'italystrap' ),
 					''
 				),
-				'options'			=> apply_filters( 'italystrap_theme_width', array() ),
-			)
+				'options'			=> apply_filters( 'italystrap_theme_width', [] ),
+			]
 		);
 
 		$cmb->add_field(
-			array(
+			[
 				'name'				=> __( 'Layout settings', 'italystrap' ),
 				'desc'				=> sprintf(
 					__( 'Advance layout setting for this %s', 'italystrap' ),
@@ -140,11 +136,11 @@ class Register implements SubscriberInterface {
 					'link'
 				),
 				'options'			=> require PARENTPATH . '/config/layout.php',
-			)
+			]
 		);
 
 		$cmb->add_field(
-			array(
+			[
 				'name'		=> __( 'Template settings', 'italystrap' ),
 				'desc'		=> sprintf(
 					__( 'Advance template content setting for this %s', 'italystrap' ),
@@ -153,24 +149,24 @@ class Register implements SubscriberInterface {
 				'id'		=> $this->_prefix . '_template_settings',
 				'type'		=> 'multicheck',
 				'options'	=> require PARENTPATH . '/config/template-content.php',
-			)
+			]
 		);
 
 		if ( current_theme_supports( 'custom-header' ) && get_theme_mod( 'header_image_data' ) ) {
 			$cmb->add_field(
-				array(
+				[
 					'name'			=> __( 'Custom header', 'italystrap' ),
 					'desc'			=> __( 'The image for the theme header', 'italystrap' ),
 					'id'			=> $this->_prefix . '_custom_header',
 					'type'			=> 'file',
-					'options'		=> array(
+					'options'		=> [
 						'url'	=> false, // Hide the text input for the url
-					),
+					],
 					'default'		=> null,
-					'text'			=> array(
+					'text'			=> [
 						'add_upload_file_text' => __( 'Add or upload image', 'italystrap' )
-					),
-				)
+					],
+				]
 			);
 		}
 
@@ -185,7 +181,7 @@ class Register implements SubscriberInterface {
 			 * echo wp_oembed_get( $url );
 			 */
 			$cmb->add_field(
-				array(
+				[
 					'name'		=> __( 'Video URL', 'italystrap' ),
 					'desc'		=> sprintf(
 						'Enter a youtube, twitter, or instagram URL. Supports services listed at %s. This will be shown instead of feature image.',
@@ -194,7 +190,7 @@ class Register implements SubscriberInterface {
 					'default'	=> '',
 					'id'		=> $this->_prefix . '_featured_video',
 					'type'		=> 'text',
-				)
+				]
 			);
 		}
 	}

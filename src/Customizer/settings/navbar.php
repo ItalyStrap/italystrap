@@ -5,6 +5,8 @@ namespace ItalyStrap\Customizer\Control;
 
 use WP_Customize_Media_Control;
 
+/** @var \WP_Customize_Manager $manager */
+
 /**
  * Define a new section for theme image options
  */
@@ -24,13 +26,13 @@ $manager->add_section(
  */
 $manager->add_setting(
 	'navbar[type]',
-	array(
-		'default'			=> $this->theme_mods['navbar']['type'],
+	[
+		'default'			=> $this->theme_mods->get('navbar.type'),
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'postMessage',
 		'sanitize_callback'	=> 'sanitize_text_field',
-	)
+	]
 );
 $manager->add_control(
 	'italystrap_navbar[type]',
@@ -53,7 +55,7 @@ $manager->add_control(
 $manager->add_setting(
 	'navbar[position]',
 	array(
-		'default'			=> $this->theme_mods['navbar']['position'],
+		'default'			=> $this->theme_mods->get('navbar.position'),
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'postMessage',
@@ -83,7 +85,7 @@ $manager->add_control(
 $manager->add_setting(
 	'navbar[nav_width]',
 	array(
-		'default'			=> $this->theme_mods['navbar']['nav_width'],
+		'default'			=> $this->theme_mods->get('navbar.nav_width'),
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'postMessage',
@@ -111,7 +113,7 @@ $manager->add_control(
 $manager->add_setting(
 	'navbar[menus_width]',
 	array(
-		'default'			=> $this->theme_mods['navbar']['menus_width'],
+		'default'			=> $this->theme_mods->get('navbar.menus_width'),
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'postMessage',
@@ -143,7 +145,7 @@ $manager->add_setting(
 	// 'display_navbar_brand[test1]',
 	'display_navbar_brand',
 	array(
-		'default'			=> $this->theme_mods['display_navbar_brand'],
+		'default'			=> $this->theme_mods->get('display_navbar_brand'),
 		// 'default'			=> 'display_name',
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
@@ -176,7 +178,7 @@ $manager->add_control(
 $manager->add_setting(
 	'navbar_logo_image',
 	array(
-		'default'			=> $this->theme_mods['navbar_logo_image'],
+		'default'			=> $this->theme_mods->get('navbar_logo_image'),
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'refresh',
@@ -204,7 +206,7 @@ $manager->add_control(
 $manager->add_setting(
 	'navbar_logo_image_size',
 	array(
-		'default'			=> $this->theme_mods['navbar_logo_image_size'],
+		'default'			=> $this->theme_mods->get('navbar_logo_image_size'),
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'refresh',

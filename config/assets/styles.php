@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use ItalyStrap\Asset\Asset;
-use ItalyStrap\Asset\ConfigBuilder;
+use ItalyStrap\Asset\ConfigBuilder as AssetConfigBuilder;
 use function defined;
 
 $dev_dir = '';
@@ -16,7 +16,7 @@ if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
 return [
 	[
 		Asset::HANDLE				=> CURRENT_TEMPLATE_SLUG,
-		ConfigBuilder::FILE_NAME	=> [
+		AssetConfigBuilder::FILE_NAME	=> [
 			$dev_dir . CURRENT_TEMPLATE_SLUG . '.css',
 			$dev_dir . 'custom.css'
 		],

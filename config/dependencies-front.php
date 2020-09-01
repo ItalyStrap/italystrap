@@ -47,7 +47,7 @@ add_action( 'wp', function () {
 	/**
 	 * Front page ID get_option( 'page_on_front' ); PAGE_ON_FRONT
 	 * Home page ID get_option( 'page_for_posts' ); PAGE_FOR_POSTS
-	 * get_queried_object_id() before $post is sett
+	 * get_queried_object_id() before $post is set
 	 */
 	$config->add( 'current_page_id', $id );
 
@@ -77,6 +77,13 @@ add_action( 'wp', function () {
 	 */
 	if ( $page_layout = (string) get_post_meta( $id, '_italystrap_layout_settings', true ) ) {
 		$config->add( 'site_layout', $page_layout );
+	}
+
+	/**
+	 * If in page settings are set then override the global settings for the layout.
+	 */
+	if ( $container_width = (string) get_post_meta( $id, '_italystrap_width_settings', true ) ) {
+		$config->add( 'container_width', $container_width );
 	}
 
 //	$config->add( 'site_layout',

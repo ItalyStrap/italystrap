@@ -315,8 +315,9 @@ return [
 		'navbar'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_after_header',
 			'view'		=> 'headers/navbar',
-			'data'	=> function ( Injector $injector ) : array {
+			'data'	=> function ( Injector $injector, ConfigInterface $config ) : array {
 				return [
+					'mods'		=> $config,
 					'navbar'	=> $injector->make( '\ItalyStrap\Components\Navigations\Navbar' ),
 				];
 			},

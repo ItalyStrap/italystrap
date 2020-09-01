@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use ItalyStrap\Asset\Asset;
-use ItalyStrap\Asset\ConfigBuilder;
+use ItalyStrap\Asset\ConfigBuilder as AssetConfigBuilder;
 use ItalyStrap\Asset\Script;
 use function admin_url;
 use function defined;
@@ -21,7 +21,7 @@ if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
 return [
 	[
 		Asset::HANDLE				=> CURRENT_TEMPLATE_SLUG,
-		ConfigBuilder::FILE_NAME	=> [
+		AssetConfigBuilder::FILE_NAME	=> [
 			$dev_dir . CURRENT_TEMPLATE_SLUG . $min . '.js',
 			$dev_dir . 'custom' . $min . '.js',
 		],

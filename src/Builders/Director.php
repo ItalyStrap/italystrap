@@ -20,6 +20,8 @@ class Director implements SubscriberInterface {
 
 //			yield 'wp'	=> 'createPage'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
 			yield 'italystrap_build'	=> 'createPage'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
+//			yield 'template_redirect'	=> 'createPage'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
+//			yield 'get_header'	=> 'createPage'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
 //			yield 'italystrap_theme_loaded'	=> 'apply'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
 //			yield 'italystrap_theme_will_load'	=> 'apply'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
 

@@ -109,7 +109,8 @@ return apply_filters(
 				30
 			)
 		),
-		'container_class'				=> 'container', // container-fluid.
+		'container_width'				=> 'container', // container-fluid.
+		'container_class'				=> 'container', // container-fluid. // @TODO maybe not used
 		'content_class'					=> 'col-md-8', // 7 - 6.
 		'sidebar_class'					=> 'col-md-4', // 3 - 3.
 		'sidebar_secondary_class'		=> '', // 2 - 3.

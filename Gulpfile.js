@@ -22,48 +22,7 @@ const gulpCopy = require('gulp-copy');
 const zip = require('gulp-zip');
 const clean = require('gulp-clean');
 
-const theme_src = [
-    '**', // All
-
-    /**
-     * Directories
-     */
-    '!.git/**',
-    '!.sass-cache/**',
-    '!node_modules/**',
-    '!backups/**',
-    '!bower/**',
-    '!**/test*/**',
-    '!future-inclusions/**',
-    '!**/sass/**',
-    '!**/css/src/**',
-    '!**/js/src/**',
-    '!**/img/src/**',
-    '!**/img/svg/**',
-    '!_others/**',
-    '!_template/**',
-
-    /**
-     * Files
-     */
-    '!codecept',
-    '!.gitattributes',
-    '!.gitignore',
-    '!snippets.md',
-    '!bower.json',
-    '!Gruntfile.js',
-    '!Gulpfile.js',
-    '!package.json',
-    '!package-look.json',
-    '!*.bat',
-    '!*.lock',
-    '!*.yml',
-    '!*.zip',
-    '!**/*.map',
-    '!*.xml',
-    '!*.dist',
-    '!c3.php',
-];
+const config = require( './assets/tasks/config' );
 
 gulp.task('compass', function() {
     return gulp.src('./assets/sass/*.scss')
@@ -148,12 +107,12 @@ gulp.task('webp', function () {
 });
 
 gulp.task('copyTemp', function () {
-    return gulp.src(theme_src)
+    return gulp.src(config.files)
         .pipe(gulpCopy('../temp/' + pkg.name, {}));
 });
 gulp.task('compress', function () {
     return gulp.src('../temp/**')
-        .pipe(zip(pkg.name + ' ' + pkg.version + '-archive.zip', {}))
+        .pipe(zip(pkg.name + ' ' + pkg.version + '-archive-gulp.zip', {}))
         .pipe(gulp.dest('../'));
 });
 gulp.task('cleanTemp', function () {

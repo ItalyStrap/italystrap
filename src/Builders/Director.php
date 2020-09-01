@@ -18,12 +18,18 @@ class Director implements SubscriberInterface {
 	 */
 	public function getSubscribedEvents(): iterable {
 
-//			yield 'wp'	=> 'createPage'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
-			yield 'italystrap_build'	=> 'createPage'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
-//			yield 'template_redirect'	=> 'createPage'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
-//			yield 'get_header'	=> 'createPage'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
-//			yield 'italystrap_theme_loaded'	=> 'apply'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
-//			yield 'italystrap_theme_will_load'	=> 'apply'; // @TODO is it a good hook? Or I have to create one just before the 'italystrap'
+//			yield 'wp'	=> 'createPage';
+//			yield 'italystrap_build'	=> 'createPage';
+//			yield 'template_redirect'	=> 'createPage';
+
+			yield 'template_include'	=> [
+				self::CALLBACK	=> 'createPage',
+				self::PRIORITY	=> PHP_INT_MAX,
+			];
+
+//			yield 'get_header'	=> 'createPage';
+//			yield 'italystrap_theme_loaded'	=> 'apply';
+//			yield 'italystrap_theme_will_load'	=> 'apply';
 
 	}
 
@@ -57,7 +63,7 @@ class Director implements SubscriberInterface {
 	/**
 	 * Create the page
 	 */
-	public function createPage() {
+	public function createPage( $args = null ) {
 
 		/**
 		 * Injector setter is run on dependencies.php
@@ -68,6 +74,8 @@ class Director implements SubscriberInterface {
 		} catch ( \Exception $e ) {
 			echo $e->getMessage();
 		}
+
+		return $args;
 	}
 
 	/**

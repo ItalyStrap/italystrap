@@ -8,9 +8,11 @@ namespace ItalyStrap\Factory;
 
 use Auryn\{ConfigException, InjectionException};
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\DebugInjector;
 use ItalyStrap\Empress\Injector;
 use ItalyStrap\Config\Config;
 use ItalyStrap\View\View;
+use function ItalyStrap\Core\is_debug;
 
 if ( ! function_exists( '\ItalyStrap\Factory\injector' ) ) {
 
@@ -31,6 +33,10 @@ if ( ! function_exists( '\ItalyStrap\Factory\injector' ) ) {
 			add_filter( 'italystrap_injector', function () use ( $injector ) {
 				return $injector;
 			} );
+		}
+
+		if ( is_debug() ) {
+			$injector = new DebugInjector( $injector );
 		}
 
 		return $injector;

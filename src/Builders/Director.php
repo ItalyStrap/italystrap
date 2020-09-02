@@ -18,19 +18,11 @@ class Director implements SubscriberInterface {
 	 */
 	public function getSubscribedEvents(): iterable {
 
-//			yield 'wp'	=> 'createPage';
 //			yield 'italystrap_build'	=> 'createPage';
-//			yield 'template_redirect'	=> 'createPage';
-
 			yield 'template_include'	=> [
 				self::CALLBACK	=> 'createPage',
 				self::PRIORITY	=> PHP_INT_MAX,
 			];
-
-//			yield 'get_header'	=> 'createPage';
-//			yield 'italystrap_theme_loaded'	=> 'apply';
-//			yield 'italystrap_theme_will_load'	=> 'apply';
-
 	}
 
 	/**
@@ -62,8 +54,22 @@ class Director implements SubscriberInterface {
 
 	/**
 	 * Create the page
+	 * @param null $current_template
+	 * @return mixed|null
 	 */
-	public function createPage( $args = null ) {
+	public function createPage( $current_template = null ) {
+
+		/**
+		 * ========================================================================
+		 *
+		 * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
+		 * Make sure Router runs after 99998.
+		 *
+		 * @see \ItalyStrap\Core\set_current_template_constants()
+		 *
+		 * ========================================================================
+		 */
+		\ItalyStrap\Core\set_current_template_constants($current_template);
 
 		/**
 		 * Injector setter is run on dependencies.php
@@ -75,7 +81,7 @@ class Director implements SubscriberInterface {
 			echo $e->getMessage();
 		}
 
-		return $args;
+		return $current_template;
 	}
 
 	/**

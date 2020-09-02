@@ -2,13 +2,13 @@
 /**
  * ItalyStrap Bootstrap File
  *
- * This is the bootstrapping for the ItalyStrap framework.
+ * This is the bootstrapping file for the ItalyStrap framework.
  *
  *
  * @package ItalyStrap
  * @since 4.0.0
  *
- * @TODO https://github.com/understrap/understrap/issues/585
+ * @TODO https://github.com/understrap/understrap/issues/585 for gutenberg integration
  */
 declare(strict_types=1);
 
@@ -16,6 +16,7 @@ namespace ItalyStrap;
 
 use Auryn\InjectorException;
 use ItalyStrap\Config\ConfigFactory;
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscribersConfigExtension;
@@ -43,44 +44,48 @@ foreach ( $autoload_theme_files as $file ) {
 	require __DIR__ . DIRECTORY_SEPARATOR . $file;
 }
 
-/**
- * Set the default theme constant
- *
- * @see /config/constants.php
- *
- * @var array $constants
- */
-$constants = set_default_constants( get_config_file_content( 'constants' ) );
-
-/**
- * This need to be set as soon as possible
- */
-get_config()->merge( $constants );
-
-/**
- * ========================================================================
- *
- * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
- * Make sure Router runs after 99998.
- *
- * @see \ItalyStrap\Core\set_current_template_constants()
- *
- * ========================================================================
- */
-\add_filter( 'template_include', '\ItalyStrap\Core\set_current_template_constants', 99998 );
-
 try {
 	$injector = injector();
 
-	if ( \ItalyStrap\Core\is_debug() ) {
-		$injector = new DebugInjector( $injector );
-	}
-
 	$injector->share( $injector );
 
-	$injector->alias( EventDispatcherInterface::class, EventDispatcher::class );
-	$injector->share( EventDispatcher::class );
-	$injector->share( SubscriberRegister::class );
+	$injector
+		->alias( EventDispatcherInterface::class, EventDispatcher::class )
+		->share( EventDispatcher::class )
+		->share( SubscriberRegister::class );
+
+	/**
+	 * ========================================================================
+	 *
+	 * Set the default theme constant
+	 *
+	 * @see /config/constants.php
+	 *
+	 * @var array $constants
+	 *
+	 * ========================================================================
+	 */
+	$constants = set_default_constants( get_config_file_content( 'constants' ) );
+
+	/**
+	 * ========================================================================
+	 *
+	 * This need to be set as soon as possible
+	 *
+	 * ========================================================================
+	 */
+	get_config()->merge( $constants );
+
+	if ( ! isset( $theme_mods ) ) {
+		$theme_mods = (array) \get_theme_mods();
+	}
+
+	get_config()->merge(
+		get_config_file_content( 'default' ),
+		$theme_mods
+	);
+
+	unset( $theme_mods, $constants );
 
 	$subscriber_config = $injector->make( SubscribersConfigExtension::class, [
 		':config'	=> get_config(),
@@ -93,6 +98,7 @@ try {
 		get_config_file_content( 'dependencies-front' )
 	);
 
+	/** @var ConfigInterface $dependencies */
 	$dependencies = ConfigFactory::make($dependencies_collection);
 
 	$injector_config = $injector->make( AurynConfig::class, [
@@ -114,20 +120,13 @@ try {
 		$injector_config->resolve();
 	} );
 
-	if ( ! isset( $theme_mods ) ) {
-		$theme_mods = (array) \get_theme_mods();
-	}
-
-	get_config()->merge(
-		get_config_file_content( 'default' ),
-		$theme_mods
-	);
-
-	unset( $theme_mods, $constants );
-
-/**
- * This will load the framework after setup theme
- */
+	/**
+	 * ========================================================================
+	 *
+	 * This will load the framework after setup theme
+	 *
+	 * ========================================================================
+	 */
 	$event_dispatcher->addListener( 'after_setup_theme', function () use ( $injector, $event_dispatcher ) {
 
 		/**

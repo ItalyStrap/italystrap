@@ -6,6 +6,7 @@ namespace ItalyStrap\Builders;
 use Auryn\Injector;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Event\SubscriberInterface;
+use function ItalyStrap\Core\set_current_template_constants;
 
 class Director implements SubscriberInterface {
 	/**
@@ -69,7 +70,7 @@ class Director implements SubscriberInterface {
 		 *
 		 * ========================================================================
 		 */
-		\ItalyStrap\Core\set_current_template_constants($current_template);
+		set_current_template_constants($current_template);
 
 		/**
 		 * Injector setter is run on dependencies.php

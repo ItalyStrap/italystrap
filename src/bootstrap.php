@@ -67,22 +67,10 @@ try {
 	 */
 	$constants = set_default_constants( get_config_file_content( 'constants' ) );
 
-	/**
-	 * ========================================================================
-	 *
-	 * This need to be set as soon as possible
-	 *
-	 * ========================================================================
-	 */
-	get_config()->merge( $constants );
-
-	if ( ! isset( $theme_mods ) ) {
-		$theme_mods = (array) \get_theme_mods();
-	}
-
 	get_config()->merge(
+		$constants, // This need to be set as soon as possible
 		get_config_file_content( 'default' ),
-		$theme_mods
+		$theme_mods ?? (array) \get_theme_mods()
 	);
 
 	unset( $theme_mods, $constants );

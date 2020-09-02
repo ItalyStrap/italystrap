@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Builders;
 
-use Auryn\Injector;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use function ItalyStrap\Core\set_current_template_constants;
@@ -19,7 +18,6 @@ class Director implements SubscriberInterface {
 	 */
 	public function getSubscribedEvents(): iterable {
 
-//			yield 'italystrap_build'	=> 'createPage';
 			yield 'template_include'	=> [
 				self::CALLBACK	=> 'createPage',
 				self::PRIORITY	=> PHP_INT_MAX,
@@ -41,7 +39,6 @@ class Director implements SubscriberInterface {
 	 *
 	 * @param BuilderInterface $builder
 	 * @param SubscriberRegisterInterface $eventManager
-	 * @param Injector $injector
 	 */
 	public function __construct(
 		BuilderInterface $builder,
@@ -55,10 +52,10 @@ class Director implements SubscriberInterface {
 
 	/**
 	 * Create the page
-	 * @param null $current_template
-	 * @return mixed|null
+	 * @param string $current_template
+	 * @return string
 	 */
-	public function createPage( $current_template = null ) {
+	public function createPage( string $current_template = '' ): string {
 
 		/**
 		 * ========================================================================

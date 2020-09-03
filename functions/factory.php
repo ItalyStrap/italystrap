@@ -48,7 +48,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 	/**
 	 * @return Config
 	 */
-	function get_config() : Config {
+	function get_config() : ConfigInterface {
 
 		static $config = null;
 

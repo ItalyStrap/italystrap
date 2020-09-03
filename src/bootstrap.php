@@ -66,8 +66,14 @@ try {
 	 */
 	$constants = set_default_constants( get_config_file_content( 'constants' ) );
 
+	/**
+	 * Constants must be merged before default
+	 * because in default ther is a call for get_config
+	 * @TODO Remove get_config() dependency from inside the default array
+	 */
+	get_config()->merge($constants);
+
 	get_config()->merge(
-		$constants, // This need to be set as soon as possible
 		get_config_file_content( 'default' ),
 		$theme_mods ?? (array) \get_theme_mods()
 	);

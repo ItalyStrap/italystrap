@@ -8,6 +8,18 @@ use Auryn\InjectionException;
 use ItalyStrap\Empress\Injector;
 use Throwable;
 
+/**
+ * Only for reference:
+ * var_dump( get_class( $config ) );
+ * var_dump( class_implements( $config ) );
+ * var_dump($config instanceof ConfigInterface);
+ * var_dump( (new \ReflectionClass( $config ))->getFileName() );
+ * var_dump( \ItalyStrap\Factory\injector()->inspect( ConfigInterface::class, Injector::I_ALIASES));
+ * var_dump( \ItalyStrap\Factory\injector()->inspect(null, Injector::I_ALIASES));
+ *
+ * Class DebugInjector
+ * @package ItalyStrap
+ */
 class DebugInjector extends Empress\Injector {
 
 	/**

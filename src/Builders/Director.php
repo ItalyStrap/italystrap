@@ -11,7 +11,7 @@ class Director implements SubscriberInterface {
 	/**
 	 * @var SubscriberRegisterInterface
 	 */
-	private $eventManager;
+	private $subscriber_register;
 
 	/**
 	 * @return array
@@ -20,7 +20,7 @@ class Director implements SubscriberInterface {
 
 			yield 'template_include'	=> [
 				self::CALLBACK	=> 'createPage',
-				self::PRIORITY	=> PHP_INT_MAX,
+				self::PRIORITY	=> PHP_INT_MAX - 100,
 			];
 	}
 
@@ -46,7 +46,7 @@ class Director implements SubscriberInterface {
 //		ParseAttr $parse_Attr
 	) {
 		$this->builder = $builder;
-		$this->eventManager = $eventManager;
+		$this->subscriber_register = $eventManager;
 //		$this->parse_Attr = $parse_Attr;
 	}
 
@@ -61,7 +61,6 @@ class Director implements SubscriberInterface {
 		 * ========================================================================
 		 *
 		 * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
-		 * Make sure Router runs after 99998.
 		 *
 		 * @see \ItalyStrap\Core\set_current_template_constants()
 		 *
@@ -73,7 +72,6 @@ class Director implements SubscriberInterface {
 		 * Injector setter is run on dependencies.php
 		 */
 		try {
-//			$this->parse_Attr->apply();
 			$this->builder->build();
 		} catch ( \Exception $e ) {
 			echo $e->getMessage();
@@ -93,6 +91,6 @@ class Director implements SubscriberInterface {
 	 * Remove from hooks
 	 */
 	public function destroy() {
-		$this->eventManager->removeSubscriber( $this );
+		$this->subscriber_register->removeSubscriber( $this );
 	}
 }

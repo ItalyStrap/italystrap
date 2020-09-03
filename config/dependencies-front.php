@@ -11,14 +11,20 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
+use Auryn\InjectorException;
+use ItalyStrap\Builders\ParseAttr;
+use ItalyStrap\Config\ConfigFactory;
 use function add_action;
+use function array_replace_recursive;
 use function class_exists;
 use function explode;
 use function get_post_meta;
 use function get_queried_object_id;
 use function is_admin;
 use function is_singular;
+use function ItalyStrap\Config\get_config_file_content;
 use function ItalyStrap\Factory\get_config;
+use function ItalyStrap\Factory\injector;
 
 if ( is_admin() ) {
 	return [];
@@ -92,9 +98,36 @@ add_action( 'wp', function () {
 }, PHP_INT_MIN );
 
 /**
- * @todo Questo va eseguito prima della registrazione delle sidebar se no non si può filtrare l'html dei widget
+ * Questo va eseguito prima della registrazione delle sidebar
+ * se no non si può filtrare l'html dei widget
+ *
+ * @see \ItalyStrap\Builders\ParseAttr
  */
-add_action( 'after_setup_theme', '\ItalyStrap\HTML\filter_attr' );
-//add_action( 'wp', '\ItalyStrap\HTML\filter_attr' );
+//add_action('after_setup_theme', function (){
+add_action('widgets_init', function (){
+
+//	if ( \did_action('widgets_init') ) {
+//		throw new \RuntimeException('This ' . __FUNCTION__ . ' must run before register widget');
+//	}
+
+	try {
+		$schema = get_config_file_content( 'schema' );
+		$html_attrs = get_config_file_content( 'html_attrs' );
+
+		$config = ConfigFactory::make( array_replace_recursive( $schema, $html_attrs ) );
+
+		$parser =  injector()->make(
+			ParseAttr::class
+			,
+			[ ':config' => $config ]
+		);
+
+		$parser->apply();
+
+	} catch ( InjectorException $exception ) {
+		echo $exception->getMessage();
+	}
+
+}, -10);
 
 return $subscribers;

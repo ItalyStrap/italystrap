@@ -6,33 +6,6 @@ namespace ItalyStrap\HTML;
 use function ItalyStrap\Core\is_static_front_page;
 use function ItalyStrap\Factory\get_config;
 
-/**
- * @see the function call in _init.php file
- * @see \ItalyStrap\Builders\ParseAttr
- */
-function filter_attr() {
-
-	try {
-		$schema = \ItalyStrap\Config\get_config_file_content( 'schema' );
-		$html_attrs = \ItalyStrap\Config\get_config_file_content( 'html_attrs' );
-
-		$config = \ItalyStrap\Config\ConfigFactory::make( \array_replace_recursive( $schema, $html_attrs ) );
-
-//		\ItalyStrap\HTML\Parse_Attr::$accepted_args = 5;
-
-		$parser =  \ItalyStrap\Factory\injector()->make(
-			\ItalyStrap\Builders\ParseAttr::class
-			,
-			[ ':config' => $config ]
-		);
-
-		$parser->apply();
-
-	} catch ( \Auryn\InjectorException $exception ) {
-		echo $exception->getMessage();
-	}
-}
-
 if ( ! \function_exists( __NAMESPACE__ . '\build_site_layout_experimental' ) ) {
 	function build_site_layout_experimental( string $type ): string {
 

@@ -70,9 +70,10 @@ return [
 	/**
 	 * Attributes for the body element.
 	 */
-	'italystrap_body_attr'			=> [
-		'class'	=> join( ' ', get_body_class() ),
-	],
+	'italystrap_body_attr'			=>  function ( array $attr ) {
+		$attr['class'] = join( ' ', get_body_class() );
+		return  $attr ;
+	},
 
 	/**
 	 * Attributes for the body element.

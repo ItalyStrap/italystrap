@@ -19,7 +19,6 @@ $autoload_theme_files = [
 	'html.php',
 
 	'images.php',
-	'pointer.php',
 ];
 
 foreach ( $autoload_theme_files as $file ) {

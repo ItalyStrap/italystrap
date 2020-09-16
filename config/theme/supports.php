@@ -390,7 +390,7 @@ return \apply_filters( 'italystrap_theme_supports',
 		/**
 		 * If the theme support align-wide then activate it
 		 */
-//				'align-wide',
+//		'align-wide',
 
 		/**
 		 * Support for Gutenberg editor style

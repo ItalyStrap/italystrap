@@ -68,7 +68,7 @@ try {
 
 	/**
 	 * Constants must be merged before default
-	 * because in default ther is a call for get_config
+	 * because in default there is a call for get_config
 	 * @TODO Remove get_config() dependency from inside the default array
 	 */
 	get_config()->merge($constants);

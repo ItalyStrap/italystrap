@@ -29,14 +29,15 @@ if ( ! function_exists( '\ItalyStrap\Factory\injector' ) ) {
 
 		if ( ! $injector ) {
 			$injector = new Injector();
+
+			if ( is_debug() ) {
+				$injector = new DebugInjector( $injector );
+			}
+
 			$injector->share($injector);
 			add_filter( 'italystrap_injector', function () use ( $injector ) {
 				return $injector;
 			} );
-		}
-
-		if ( is_debug() ) {
-			$injector = new DebugInjector( $injector );
 		}
 
 		return $injector;
@@ -46,7 +47,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\injector' ) ) {
 if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 
 	/**
-	 * @return Config
+	 * @return ConfigInterface
 	 */
 	function get_config() : ConfigInterface {
 

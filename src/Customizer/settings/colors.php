@@ -3,14 +3,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
-use WP_Customize_Manager;
-use WP_Customize_Control;
 use WP_Customize_Color_Control;
-use	WP_Customize_Media_Control;
 
-use ItalyStrap\Core as Core;
-use	ItalyStrap\Customizer\Control\Textarea;
-
+/** @var \WP_Customize_Manager $manager */
 $manager->get_setting( 'header_textcolor' )->transport = 'postMessage';
 $manager->get_setting( 'background_color' )->transport = 'postMessage';
 

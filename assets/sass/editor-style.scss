@@ -136,10 +136,30 @@ $wp_border_color: #e5e5e5;
 	}
 }
 
-/** === Content Width === */
-.wp-block {
+/**
+ * === Content Width ===
+ * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+ * https://developer.wordpress.org/block-editor/developers/themes/theme-support/#changing-the-width-of-the-editor
+ */
+//.wp-block {
 	/*width: calc(100vw - (2 * 1rem));*/
-	max-width: 100%;
+	//max-width: 100%;
+//}
+
+/* Main column width */
+.wp-block {
+	max-width: 960px;
+}
+
+/* Width of "wide" blocks */
+.wp-block[data-align="wide"] {
+	max-width: 1080px;
+	//max-width: $;
+}
+
+/* Width of "full-wide" blocks */
+.wp-block[data-align="full"] {
+	max-width: none;
 }
 
 /*@media only screen and (min-width: 768px) {*/
@@ -154,9 +174,9 @@ $wp_border_color: #e5e5e5;
 /*}*/
 /*}*/
 
-.wp-block .wp-block {
-	width: 100%;
-}
+//.wp-block .wp-block {
+//	width: 100%;
+//}
 
 //.editor-block-list__block-edit {
 //	width: 100%;
@@ -182,18 +202,30 @@ $wp_border_color: #e5e5e5;
 
 
 /**
- * Custom
+ * Custom CSS for Gutenberg editor
+ */
+
+/**
+ * Post Title
  */
 .editor-post-title__block {
 	border: 1px solid #e9e9e9;
+	//padding: 0.5rem;
 }
-.editor-post-title__block .is-selected {
-	border: 1px solid #a0a0a0;
-}
+//.editor-post-title__block .is-selected {
+//	border: 1px solid #a0a0a0;
+//}
 
 .wp-block {
 	border: 1px solid #e9e9e9;
+	//padding: 0.5rem;
 }
 .is-selected {
-	border: 1px solid #a0a0a0 !important;
+	//border: 1px solid #a0a0a0 !important;
+	border-color: #a0a0a0 !important;
 }
+
+//.wp-block-social-link {
+//	width: unset !important;
+//	padding: 0;
+//}

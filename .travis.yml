@@ -7,6 +7,7 @@ notifications:
 
 php:
   - 7.2
+  - nightly
 
 matrix:
   fast_finish: true
@@ -76,7 +77,12 @@ install:
   - cp -r $TRAVIS_BUILD_DIR $WP_FOLDER/wp-content/themes/italystrap
   # show the themes folder contents to make sure the theme folder is there
   - cd $WP_FOLDER/wp-content/themes/italystrap
-  - composer install --prefer-dist --no-suggest
+  - |
+    if [ $TRAVIS_PHP_VERSION = 'nightly' ]; then
+      composer install --prefer-dist --no-suggest --ignore-platform-reqs;
+    else
+      composer install --prefer-dist --no-suggest
+    fi
   - ls -l
   # activate the theme
   - wp theme activate italystrap
@@ -86,7 +92,12 @@ install:
   - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql
   # get back to the build folder
   - cd $TRAVIS_BUILD_DIR
-  - composer install --prefer-dist --no-suggest
+  - |
+    if [ $TRAVIS_PHP_VERSION = 'nightly' ]; then
+      composer install --prefer-dist --no-suggest --ignore-platform-reqs;
+    else
+      composer install --prefer-dist --no-suggest
+    fi
   - ls -l
   # open up the site folder to allow the PHP application to read/write/execute on it
   - sudo chmod -R 777 $WP_FOLDER

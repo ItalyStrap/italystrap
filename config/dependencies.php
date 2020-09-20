@@ -222,23 +222,24 @@ return [
 				get_config_file_content( 'assets/scripts' )
 			);
 
-			$css_finder = (new FinderFactory())->make();
-			$css_finder->in(
-				[
-					STYLESHEETPATH . '/assets/css/',
-					STYLESHEETPATH . '/css/',
-					TEMPLATEPATH . '/assets/css/',
-				]
-			);
+			$experimental_assets_path_generator = function ( string $dir ): array {
+				$sub_dir = ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) ? 'src/' :  '';
 
-			$js_finder = (new FinderFactory())->make();
-			$js_finder->in(
-				[
-					STYLESHEETPATH . '/assets/js/',
-					STYLESHEETPATH . '/js/',
-					TEMPLATEPATH . '/assets/js/',
-				]
-			);
+				return \array_unique(
+					[
+						STYLESHEETPATH . '/assets/' . $dir,
+						STYLESHEETPATH . '/' . $dir, // This is added for avoid BC breaks
+						STYLESHEETPATH . '/' . $dir . $sub_dir, // This is added for avoid BC breaks
+						TEMPLATEPATH . '/assets/' . $dir,
+					]
+				);
+			};
+
+			$css_finder = ( new FinderFactory() )->make()
+				->in( $experimental_assets_path_generator('css/') );
+
+			$js_finder = ( new FinderFactory() )->make()
+				->in( $experimental_assets_path_generator('js/') );
 
 			$injector->defineParam('base_url', \get_option( 'siteurl' ) . '/');
 			$injector->defineParam('base_path', ABSPATH);
@@ -292,11 +293,11 @@ return [
 		},
 
 		Finder::class	=> function( FinderInterface $finder, Injector $injector ) {
-			$config = get_config();
+			$config = $injector->make(ConfigInterface::class );
 
 			$dirs = [
-				$config->CHILDPATH . '/' . $config->template_dir,
-				$config->PARENTPATH . '/' . $config->template_dir,
+				$config->get('CHILDPATH') . '/' . $config->get('template_dir'),
+				$config->get('PARENTPATH') . '/' . $config->get('template_dir'),
 			];
 
 			$finder->in( $dirs );

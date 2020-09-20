@@ -9,22 +9,23 @@ use ItalyStrap\Asset\Script;
 use function admin_url;
 use function defined;
 use function wp_create_nonce;
-
 $min = '.min';
-$dev_dir = '';
 
 if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
-	$dev_dir = 'src/';
 	$min = '';
 }
 
 return [
 	[
 		Asset::HANDLE				=> CURRENT_TEMPLATE_SLUG,
-		AssetConfigBuilder::FILE_NAME	=> [
-			$dev_dir . CURRENT_TEMPLATE_SLUG . $min . '.js',
-			$dev_dir . 'custom' . $min . '.js',
-		],
+		AssetConfigBuilder::FILE_NAME	=> \array_unique(
+			[
+				CURRENT_TEMPLATE_SLUG . $min . '.js',
+				CURRENT_TEMPLATE_SLUG . '.js',
+				'custom' . $min . '.js',
+				'custom.js',
+			]
+		),
 		Asset::DEPENDENCIES			=> ['jquery'],
 		Asset::IN_FOOTER			=> true,
 		Asset::LOCALIZE				=> [

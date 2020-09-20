@@ -6,19 +6,22 @@ namespace ItalyStrap;
 use ItalyStrap\Asset\Asset;
 use ItalyStrap\Asset\ConfigBuilder as AssetConfigBuilder;
 use function defined;
-
-$dev_dir = '';
+$min = '.min';
 
 if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
-	 $dev_dir = 'src/'; // Sistemare il path corretto per i font
+	$min = '';
 }
 
 return [
 	[
 		Asset::HANDLE				=> CURRENT_TEMPLATE_SLUG,
-		AssetConfigBuilder::FILE_NAME	=> [
-			$dev_dir . CURRENT_TEMPLATE_SLUG . '.css',
-			$dev_dir . 'custom.css'
-		],
+		AssetConfigBuilder::FILE_NAME	=> \array_unique(
+			[
+				CURRENT_TEMPLATE_SLUG . $min . '.css',
+				CURRENT_TEMPLATE_SLUG . '.css',
+				'custom' . $min . '.css',
+				'custom.css',
+			]
+		),
 	],
 ];

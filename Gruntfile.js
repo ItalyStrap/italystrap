@@ -5,6 +5,21 @@ const bootstrap_fonts_path = bootstrap_path + 'fonts/bootstrap/';
 
 const config = require( './assets/tasks/config' );
 
+const BOOTSTRAP_JS_FILES = [
+	bootstrap_js_path + 'transition.js',
+	bootstrap_js_path + 'alert.js',
+	bootstrap_js_path + 'button.js',
+	bootstrap_js_path + 'carousel.js',
+	bootstrap_js_path + 'collapse.js',
+	bootstrap_js_path + 'dropdown.js',
+	bootstrap_js_path + 'modal.js',
+	bootstrap_js_path + 'tooltip.js',
+	bootstrap_js_path + 'popover.js',
+	bootstrap_js_path + 'scrollspy.js',
+	bootstrap_js_path + 'tab.js',
+	bootstrap_js_path + 'affix.js',
+];
+
 module.exports = grunt => {
 	'use strict';
 
@@ -31,34 +46,14 @@ module.exports = grunt => {
 		},
 
 		uglify: { // https://github.com/gruntjs/grunt-contrib-uglify
-			// admin: {
-			//   files: [{
-			// 	  expand: true,
-			// 	  cwd: 'admin/js/src',
-			// 	  // cwd: 'src/',
-			// 	  src: '*.js',
-			// 	  dest: 'admin/js'
-			//   }]
-			// },
 			src: {
 				options: {
 					sourceMap: true,
 					beautify: true,
 				},
 				files: {
-					'assets/js/src/custom.js': [
-						bootstrap_js_path + 'transition.js',
-						bootstrap_js_path + 'alert.js',
-						bootstrap_js_path + 'button.js',
-						bootstrap_js_path + 'carousel.js',
-						bootstrap_js_path + 'collapse.js',
-						bootstrap_js_path + 'dropdown.js',
-						bootstrap_js_path + 'modal.js',
-						bootstrap_js_path + 'tooltip.js',
-						bootstrap_js_path + 'popover.js',
-						bootstrap_js_path + 'scrollspy.js',
-						bootstrap_js_path + 'tab.js',
-						bootstrap_js_path + 'affix.js',
+					'assets/js/custom.js': [
+						...BOOTSTRAP_JS_FILES,
 						'assets/ts/index.js' // <- Modify this
 					],
 				}
@@ -66,18 +61,7 @@ module.exports = grunt => {
 			dist: {
 				files: {
 					'assets/js/custom.min.js': [
-						bootstrap_js_path + 'transition.js',
-						bootstrap_js_path + 'alert.js',
-						bootstrap_js_path + 'button.js',
-						bootstrap_js_path + 'carousel.js',
-						bootstrap_js_path + 'collapse.js',
-						bootstrap_js_path + 'dropdown.js',
-						bootstrap_js_path + 'modal.js',
-						bootstrap_js_path + 'tooltip.js',
-						bootstrap_js_path + 'popover.js',
-						bootstrap_js_path + 'scrollspy.js',
-						bootstrap_js_path + 'tab.js',
-						bootstrap_js_path + 'affix.js',
+						...BOOTSTRAP_JS_FILES,
 						'assets/ts/index.js' // <- Modify this
 					],                   
 				}

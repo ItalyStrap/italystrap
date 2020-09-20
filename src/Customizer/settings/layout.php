@@ -56,7 +56,7 @@ $manager->add_setting(
 	'site_layout',
 	[
 		'default'			=> $this->theme_mods->get('content_sidebar'),
-//		'default'			=> 'content_sidebar',
+	//		'default'			=> 'content_sidebar',
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'refresh',

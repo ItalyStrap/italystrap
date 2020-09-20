@@ -114,7 +114,7 @@ add_action('widgets_init', function (){
 		$schema = get_config_file_content( 'schema' );
 		$html_attrs = get_config_file_content( 'html_attrs' );
 
-		$config = ConfigFactory::make( array_replace_recursive( $schema, $html_attrs ) );
+		$config = ConfigFactory::make( (array) array_replace_recursive( $schema, $html_attrs ) );
 
 		$parser =  injector()->make(
 			ParseAttr::class

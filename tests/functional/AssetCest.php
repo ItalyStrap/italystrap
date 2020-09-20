@@ -12,7 +12,6 @@ class AssetCest {
 
 //		$I->tryToClick( 'Update WordPress Database', '.button-primary' );
 //		$I->tryToClick( 'Continue', '.button-large' );
-
 	}
 
 	/**

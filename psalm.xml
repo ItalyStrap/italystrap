@@ -6,8 +6,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    autoloader="functions/autoload.php"
 >
     <projectFiles>
+        <directory name="functions" />
         <directory name="src" />
         <ignoreFiles>
             <directory name="vendor" />
@@ -17,7 +19,6 @@
             <directory name="src/Css" />
             <directory name="src/Custom" />
             <directory name="src/Customizer" />
-            <directory name="src/Event" />
             <directory name="src/Navbar" />
             <directory name="src/User" />
         </ignoreFiles>

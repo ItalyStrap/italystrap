@@ -78,6 +78,5 @@ class SidebarsTest extends BaseTheme {
 		Assert::assertStringContainsString('</div>', $sidebar['after_widget'], '');
 		Assert::assertStringContainsString('<h3 class="widgettitle widget-title">', $sidebar['before_title'], '');
 		Assert::assertStringContainsString('</h3>', $sidebar['after_title'], '');
-
 	}
 }

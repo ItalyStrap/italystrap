@@ -143,7 +143,6 @@ try {
 		 */
 		$event_dispatcher->dispatch( 'italystrap_theme_loaded', $injector );
 	}, 20 );
-
 } catch ( InjectorException $exception ) {
 	\_doing_it_wrong( \get_class( injector() ), $exception->getMessage(), \ITALYSTRAP_THEME_VERSION );
 } catch ( Throwable $exception ) {

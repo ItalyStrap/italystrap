@@ -43,7 +43,7 @@ class Director implements SubscriberInterface {
 	public function __construct(
 		BuilderInterface $builder,
 		SubscriberRegisterInterface $eventManager
-//		ParseAttr $parse_Attr
+		//		ParseAttr $parse_Attr
 	) {
 		$this->builder = $builder;
 		$this->subscriber_register = $eventManager;

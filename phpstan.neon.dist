@@ -40,3 +40,4 @@ parameters:
         - '#Constant CURRENT_TEMPLATE_SLUG not found#'
         - '#Constant STYLESHEETPATH not found#'
         - '#Constant TEMPLATEPATH not found#'
+        - '#Constant ITALYSTRAP_THEME_VERSION not found.#'

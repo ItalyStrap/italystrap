@@ -80,7 +80,7 @@
 			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"
 		],
 		"unit": [
-			"vendor\\bin\\codecept run unit && vendor\\bin\\infection --threads=8"
+			"vendor\\bin\\codecept run unit && vendor\\bin\\codecept run wpunit && vendor\\bin\\infection --threads=8"
 		],
 		"bench": [
 			"vendor\\bin\\phpbench run --report=performance"

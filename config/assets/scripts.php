@@ -22,6 +22,8 @@ return [
 			[
 				CURRENT_TEMPLATE_SLUG . $min . '.js',
 				CURRENT_TEMPLATE_SLUG . '.js',
+				'index' . $min . '.js',
+				'index.js',
 				'custom' . $min . '.js',
 				'custom.js',
 			]

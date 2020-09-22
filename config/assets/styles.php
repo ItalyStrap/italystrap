@@ -19,6 +19,8 @@ return [
 			[
 				CURRENT_TEMPLATE_SLUG . $min . '.css',
 				CURRENT_TEMPLATE_SLUG . '.css',
+				'index' . $min . '.css',
+				'index.css',
 				'custom' . $min . '.css',
 				'custom.css',
 			]

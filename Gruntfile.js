@@ -52,7 +52,7 @@ module.exports = grunt => {
 					beautify: true,
 				},
 				files: {
-					'assets/js/custom.js': [
+					'assets/js/index.js': [
 						...BOOTSTRAP_JS_FILES,
 						'assets/ts/index.js' // <- Modify this
 					],
@@ -60,7 +60,7 @@ module.exports = grunt => {
 			},
 			dist: {
 				files: {
-					'assets/js/custom.min.js': [
+					'assets/js/index.min.js': [
 						...BOOTSTRAP_JS_FILES,
 						'assets/ts/index.js' // <- Modify this
 					],                   
@@ -77,29 +77,39 @@ module.exports = grunt => {
 		},
 
 		compass:{ // https://github.com/gruntjs/grunt-contrib-compass
-			dev:{
-				options: {
-					sassDir:['assets/sass'],
-					cssDir:['assets/css/src'],
-					environment: 'development',
-					// sourcemap: true,
-					// importPath: 'bower/bootstrap-sass/assets/stylesheets'
-				}
+			options: {
+				force:true,
+				sassDir:'assets/sass',
+				cssDir:'assets/css',
+				imagesDir:'assets/img',
+				relativeAssets: true,
+				// fontsPath: './assets/fonts/',
+				// fontsDir: '../fonts/',
+				// importPath: bootstrap_path,
 			},
 			dist:{
 				options: {
-					sassDir:['assets/sass'],
-					cssDir:['assets/css'],
-					outputStyle: 'compressed',
+					environment: 'production',
+					specify: [
+						'assets/sass/*.min.scss',
+					],
 					// importPath: 'bower/bootstrap-sass/assets/stylesheets'
 				}
-			}
+			},
+			dev:{
+				options: {
+					sourcemap: true,
+					specify: [
+						'assets/sass/*.scss',
+						'!assets/sass/*.min.scss',
+					],
+					// importPath: 'bower/bootstrap-sass/assets/stylesheets'
+				}
+			},
 		},
 
 		/**
 		 * https://github.com/nDmitry/grunt-postcss
-		 *
-		 * @type {Object}
 		 */
 		postcss: {
 			options: {
@@ -110,7 +120,7 @@ module.exports = grunt => {
 				]
 			},
 			dist: {
-				src: 'assets/css/*.css'
+				src: 'assets/css/*.min.css'
 			}
 		},
 

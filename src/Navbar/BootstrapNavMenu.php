@@ -57,13 +57,13 @@ class BootstrapNavMenu extends Walker_Nav_Menu {
 	/**
 	 * Start the element output.
 	 *
+	 * @param string $output Used to append additional content (passed by reference).
+	 * @param \WP_Post $item Menu item data object.
+	 * @param int $depth Depth of menu item. Used for padding.
+	 * @param array $args An object of wp_nav_menu() arguments.
+	 * @param int $id Current item ID.
 	 * @see Walker::start_el()
 	 *
-	 * @param string    $output Used to append additional content (passed by reference).
-	 * @param \WP_Post  $item   Menu item data object.
-	 * @param int       $depth  Depth of menu item. Used for padding.
-	 * @param \stdClass $args   An object of wp_nav_menu() arguments.
-	 * @param int       $id     Current item ID.
 	 */
 	public function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 ) {
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
@@ -269,9 +269,11 @@ class BootstrapNavMenu extends Walker_Nav_Menu {
 
 			$item_output .= $args->link_before . $title . $args->link_after . $current_text;
 
+			$caret = apply_filters( 'italystrap_nav_menu_item_caret', '<span class="caret"></span>' );
+
 			$item_output .=
 				$args->has_children && 0 === $depth
-				? ' <span' . $this->get_attributes( array( 'class' => 'caret' ) ) . '></span></a>'
+				? $caret . '</a>'
 				: '</a>';
 
 			$item_output .= $args->after;

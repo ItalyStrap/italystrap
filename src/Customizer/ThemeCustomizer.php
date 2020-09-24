@@ -128,6 +128,7 @@ class ThemeCustomizer implements SubscriberInterface {
 			'/settings/custom-css.php',
 			'/settings/layout.php',
 			'/settings/header.php',
+			'/settings/brand.php',
 			'/settings/colors.php',
 			'/settings/navbar.php',
 			'/settings/breadcrumbs.php',

@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
+use ItalyStrap\Config\ConfigInterface;
 use WP_Customize_Manager;
-use WP_Customize_Control;
-use WP_Customize_Color_Control;
-use	WP_Customize_Media_Control;
+use WP_Customize_Media_Control;
 
-use ItalyStrap\Core as Core;
-use	ItalyStrap\Customizer\Control\Textarea;
+/** @var ConfigInterface $mods */
+$mods = $this->theme_mods;
 
 /**
  * Define a new section for theme image options
+ * @var WP_Customize_Manager $manager
  */
 $manager->add_section(
 	'italystrap_image_options',
@@ -21,34 +21,6 @@ $manager->add_section(
 		'panel'			=> $this->panel,
 		'capability'	=> $this->capability,
 		'description'	=> __( 'Allows you to customize settings for ItalyStrap.', 'italystrap' ),
-	)
-);
-
-/**
- * Register new settings to the WP database...
- */
-$manager->add_setting(
-	'logo',
-	array(
-		'default'			=> $this->theme_mods['logo'],
-		'type'				=> 'theme_mod',
-		'capability'		=> $this->capability,
-		'transport'			=> 'postMessage',
-		'sanitize_callback'	=> 'sanitize_text_field',
-	)
-);
-
-$manager->add_control(
-	new WP_Customize_Media_Control(
-		$manager,
-		'italystrap_logo',
-		array(
-			'label'			=> __( 'Your Logo', 'italystrap' ),
-			'description'	=> __( 'Insert here your logo', 'italystrap' ),
-			'section'		=> 'italystrap_image_options',
-			'settings'		=> 'logo',
-			'priority'		=> 10,
-		)
 	)
 );
 

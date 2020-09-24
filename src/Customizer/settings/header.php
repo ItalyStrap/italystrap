@@ -3,21 +3,19 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
-use WP_Customize_Manager;
-use WP_Customize_Control;
-use WP_Customize_Color_Control;
-use	WP_Customize_Media_Control;
+use ItalyStrap\Config\ConfigInterface;
 
-use ItalyStrap\Core as Core;
-use	ItalyStrap\Customizer\Control\Textarea;
+/** @var ConfigInterface $mods */
+$mods = $this->theme_mods;
 
 /**
  * Container Width of the header
+ * @var \WP_Customize_Manager $manager
  */
 $manager->add_setting(
 	'custom_header[container_width]',
 	array(
-		'default'			=> $this->theme_mods['custom_header']['container_width'],
+		'default'			=> $mods->get('custom_header.container_width'),
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'refresh',

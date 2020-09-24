@@ -187,6 +187,7 @@ class Navbar {
 				'itemprop' => 'image',
 				'style' => 'display:inline;margin-right:15px;',
 			);
+
 			/**
 			 * Size default: navbar-brand-image
 			 */
@@ -194,7 +195,9 @@ class Navbar {
 
 			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
 		} else {
-			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span><meta  itemprop="image" content="' . \italystrap_get_the_custom_image_url( 'logo', TEMPLATEURL . '/img/italystrap-logo.jpg' ) . '"/>';
+			$brand .= '<span class="brand-name" itemprop="name">'
+				. esc_attr( GET_BLOGINFO_NAME )
+				. '</span>';
 		}
 
 		return $brand;

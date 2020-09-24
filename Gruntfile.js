@@ -45,11 +45,18 @@ module.exports = grunt => {
 			},
 		},
 
+		ts: {
+			default: {
+				src: ['assets/ts/index.ts'],
+			},
+		},
+
 		uglify: { // https://github.com/gruntjs/grunt-contrib-uglify
 			src: {
 				options: {
 					sourceMap: true,
 					beautify: true,
+					mangle: false,
 				},
 				files: {
 					'assets/js/index.js': [
@@ -71,7 +78,7 @@ module.exports = grunt => {
 		jshint: {
 			all: [
 				'Gruntfile.js',
-				'assets/js/src/*.js',
+				'assets/js/*.js',
 			],
 			options: true,
 		},
@@ -437,9 +444,7 @@ module.exports = grunt => {
 	
 	grunt.registerTask(
 		'js',
-		[
-			'uglify',
-		]
+		['ts', 'uglify']
 	);
 
 	grunt.registerTask('testcssbuild', ['compass', 'csslint']);

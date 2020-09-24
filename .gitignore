@@ -16,6 +16,7 @@ bower
 
 #Temp file
 .gitattributes
+.tscache
 
 #bower.json
 

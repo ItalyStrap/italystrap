@@ -6,24 +6,11 @@ namespace ItalyStrap;
 use ItalyStrap\Asset\Asset;
 use ItalyStrap\Asset\ConfigBuilder as AssetConfigBuilder;
 use function defined;
-$min = '.min';
-
-if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
-	$min = '';
-}
+use function ItalyStrap\Core\experimental_generate_asset_index_filename;
 
 return [
 	[
 		Asset::HANDLE				=> CURRENT_TEMPLATE_SLUG,
-		AssetConfigBuilder::FILE_NAME	=> \array_unique(
-			[
-				CURRENT_TEMPLATE_SLUG . $min . '.css',
-				CURRENT_TEMPLATE_SLUG . '.css',
-				'index' . $min . '.css',
-				'index.css',
-				'custom' . $min . '.css',
-				'custom.css',
-			]
-		),
+		AssetConfigBuilder::FILE_NAME	=> experimental_generate_asset_index_filename( 'css' ),
 	],
 ];

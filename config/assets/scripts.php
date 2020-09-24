@@ -8,26 +8,13 @@ use ItalyStrap\Asset\ConfigBuilder as AssetConfigBuilder;
 use ItalyStrap\Asset\Script;
 use function admin_url;
 use function defined;
+use function ItalyStrap\Core\experimental_generate_asset_index_filename;
 use function wp_create_nonce;
-$min = '.min';
-
-if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
-	$min = '';
-}
 
 return [
 	[
 		Asset::HANDLE				=> CURRENT_TEMPLATE_SLUG,
-		AssetConfigBuilder::FILE_NAME	=> \array_unique(
-			[
-				CURRENT_TEMPLATE_SLUG . $min . '.js',
-				CURRENT_TEMPLATE_SLUG . '.js',
-				'index' . $min . '.js',
-				'index.js',
-				'custom' . $min . '.js',
-				'custom.js',
-			]
-		),
+		AssetConfigBuilder::FILE_NAME	=> experimental_generate_asset_index_filename( 'js' ),
 		Asset::DEPENDENCIES			=> ['jquery'],
 		Asset::IN_FOOTER			=> true,
 		Asset::LOCALIZE				=> [

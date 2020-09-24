@@ -8,9 +8,6 @@
 declare(strict_types=1);
 namespace ItalyStrap\Core;
 
-use ItalyStrap\Config\Config;
-use ItalyStrap\HTML;
-
 if ( ! \function_exists( '\ItalyStrap\Core\is_debug' ) ) {
 
 	/**
@@ -19,7 +16,7 @@ if ( ! \function_exists( '\ItalyStrap\Core\is_debug' ) ) {
 	 * @return bool Return true if ITALYSTRAP_BETA version is declared
 	 */
 	function is_debug() {
-		return (bool) defined( 'WP_DEBUG' ) && WP_DEBUG;
+		return (bool) \defined( 'WP_DEBUG' ) && WP_DEBUG;
 	}
 }
 
@@ -307,11 +304,11 @@ function register_theme_positions( array $new_position ) {
         $new_position
     );
 }
-add_filter( 'italystrap_theme_positions', __NAMESPACE__ . '\register_theme_positions' );
+\add_filter( 'italystrap_theme_positions', __NAMESPACE__ . '\register_theme_positions' );
 /**
  * This filter is deprecated. Use 'italystrap_theme_positions' instead.
  */
-add_filter( 'italystrap_widget_area_position', __NAMESPACE__ . '\register_theme_positions' );
+\add_filter( 'italystrap_widget_area_position', __NAMESPACE__ . '\register_theme_positions' );
 
 /**
  * Register theme width
@@ -325,7 +322,7 @@ function register_theme_width( array $new_width ) {
 
 	return array_merge( $with, $new_width );
 }
-add_filter( 'italystrap_theme_width', __NAMESPACE__ . '\register_theme_width' );
+\add_filter( 'italystrap_theme_width', __NAMESPACE__ . '\register_theme_width' );
 
 /**
  * Get the template parts settings.
@@ -366,4 +363,29 @@ function get_theme_mods_in_customizer ( array $theme_mods = [] ) {
             $theme_mods[ $key ] = apply_filters( 'theme_mod_' . $key, $value );
         }
     }
+}
+
+/**
+ * @internal
+ * @psalm-internal
+ * @param string $extension
+ * @return array
+ */
+function experimental_generate_asset_index_filename( string $extension ): array {
+	$min = '.min';
+
+	if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
+		$min = '';
+	}
+
+	return \array_unique(
+		[
+			CURRENT_TEMPLATE_SLUG . $min . '.' . $extension,
+			CURRENT_TEMPLATE_SLUG . '.' . $extension,
+			'index' . $min . '.' . $extension,
+			'index.' . $extension,
+			'custom' . $min . '.' . $extension,
+			'custom.' . $extension,
+		]
+	);
 }

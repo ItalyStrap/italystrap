@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Headers;
 
-use \ItalyStrap\Config\ConfigInterface as Config;
+use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\HTML\Attributes;
 
 /**
  * The Header_Image controller class
@@ -29,10 +30,16 @@ class CustomHeader {
 	 */
 	private $post_meta_id;
 
-	private $size = array();
+	private $size = [];
 
-	function __construct( Config $config ) {
+	/**
+	 * @var Attributes
+	 */
+	private $attributes;
+
+	function __construct( ConfigInterface $config, Attributes $attributes ) {
 		$this->config = $config;
+		$this->attributes = $attributes;
 	}
 
 	/**
@@ -91,11 +98,11 @@ class CustomHeader {
 		if ( ! isset( $image_obj->attachment_id ) ) {
 			return sprintf(
 				'<img%s>',
-				\ItalyStrap\HTML\get_attr( 'custom_header', [
-					'src'		=> $image_obj->url,
-					'width'		=> $image_obj->width,
-					'height'	=> $image_obj->height,
-					'alt'		=> $this->config->get( 'GET_BLOGINFO_NAME' ),
+				$this->attributes->render( 'custom_header', [
+					'src'		=> \esc_url( $image_obj->url ),
+					'width'		=> \esc_attr( $image_obj->width ),
+					'height'	=> \esc_attr( $image_obj->height ),
+					'alt'		=> \esc_html( $this->config->get( 'GET_BLOGINFO_NAME' ) ),
 				] )
 			);
 		}

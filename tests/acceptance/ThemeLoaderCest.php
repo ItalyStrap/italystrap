@@ -1,4 +1,9 @@
 <?php
+declare(strict_types=1);
+
+namespace ItalyStrap\Test;
+
+use AcceptanceTester;
 
 class ThemeLoaderCest {
 

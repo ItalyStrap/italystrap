@@ -318,7 +318,7 @@ return [
 			'data'	=> function ( Injector $injector, ConfigInterface $config ) : array {
 				return [
 					'mods'		=> $config,
-					'navbar'	=> $injector->make( '\ItalyStrap\Components\Navigations\Navbar' ),
+					'navbar'	=> $injector->make( Components\Navigations\Navbar::class ),
 				];
 			},
 		],

@@ -46,7 +46,7 @@ class AssetCest {
 
 		$I->amOnPage('/');
 //		$I->seeInSource('italystrap/assets/js/custom.min.js');
-		$I->seeInSource('italystrap/assets/js/src/custom.js');
+		$I->seeInSource('italystrap/assets/js/index.js');
 	}
 
 	/**

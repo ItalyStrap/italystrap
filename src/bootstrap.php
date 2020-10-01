@@ -80,12 +80,12 @@ try {
 
 	unset( $theme_mods, $constants );
 
-	$subscriber_config = $injector->make( SubscribersConfigExtension::class, [
-		':config'	=> get_config(),
-	] );
-
 	$injector_config = $injector->make( AurynConfig::class, [
 		':dependencies'	=> dependencies_collection()
+	] );
+
+	$subscriber_config = $injector->make( SubscribersConfigExtension::class, [
+		':config'	=> get_config(),
 	] );
 
 	$injector_config->extend( $subscriber_config );

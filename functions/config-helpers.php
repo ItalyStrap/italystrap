@@ -3,6 +3,8 @@ declare( strict_types = 1 );
 
 namespace ItalyStrap\Config;
 
+use ItalyStrap\Event\SubscribersConfigExtension;
+
 /**
  * @param  string $name
  *
@@ -81,4 +83,17 @@ function get_config_file_content( string $name ) : array {
 
 function _filter_null_value( $val, $key ) {
 	return ! is_null( $val );
+}
+
+function dependencies_collection(): ConfigInterface {
+
+	$dependencies_collection = get_config_file_content( 'dependencies' );
+	$dependencies_collection[ SubscribersConfigExtension::SUBSCRIBERS ] = \array_merge(
+		$dependencies_collection[ SubscribersConfigExtension::SUBSCRIBERS ],
+		get_config_file_content( 'dependencies-admin' ),
+		get_config_file_content( 'dependencies-front' )
+	);
+
+	/** @var ConfigInterface $dependencies */
+	return ConfigFactory::make( $dependencies_collection );
 }

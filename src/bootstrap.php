@@ -23,6 +23,7 @@ use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
 use Throwable;
+use function ItalyStrap\Config\dependencies_collection;
 use function ItalyStrap\Config\get_config_file_content;
 use function ItalyStrap\Core\set_default_constants;
 use function ItalyStrap\Factory\get_config;
@@ -48,7 +49,6 @@ try {
 	$injector = injector();
 
 	$injector
-		->share( $injector )
 		->alias( EventDispatcherInterface::class, EventDispatcher::class )
 		->share( EventDispatcher::class )
 		->share( SubscriberRegister::class );
@@ -84,18 +84,8 @@ try {
 		':config'	=> get_config(),
 	] );
 
-	$dependencies_collection = get_config_file_content( 'dependencies' );
-	$dependencies_collection[ SubscribersConfigExtension::SUBSCRIBERS ] = \array_merge(
-		$dependencies_collection[ SubscribersConfigExtension::SUBSCRIBERS ],
-		get_config_file_content( 'dependencies-admin' ),
-		get_config_file_content( 'dependencies-front' )
-	);
-
-	/** @var ConfigInterface $dependencies */
-	$dependencies = ConfigFactory::make($dependencies_collection);
-
 	$injector_config = $injector->make( AurynConfig::class, [
-		':dependencies'	=> $dependencies
+		':dependencies'	=> dependencies_collection()
 	] );
 
 	$injector_config->extend( $subscriber_config );

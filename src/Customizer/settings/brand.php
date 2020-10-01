@@ -18,7 +18,7 @@ $section_id = 'title_tagline';
 $manager->add_setting(
 	'separator',
 	[
-//		'sanitize_callback' => 'sanitize_text_field',
+	//		'sanitize_callback' => 'sanitize_text_field',
 	]
 );
 

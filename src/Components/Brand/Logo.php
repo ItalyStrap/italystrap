@@ -11,8 +11,8 @@ namespace ItalyStrap\Components\Brand;
  * $this->config->get( 'navbar_logo_image' )
  *
  */
-class Logo
-{
+class Logo {
+
 
 	/**
 	 * Logo constructor.

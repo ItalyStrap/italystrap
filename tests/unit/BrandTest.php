@@ -5,20 +5,18 @@ namespace ItalyStrap\Test;
 
 use ItalyStrap\Components\Brand\Logo;
 
-class BrandTest extends \Codeception\Test\Unit
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-    
-    protected function _before()
-    {
-    }
+class BrandTest extends \Codeception\Test\Unit {
 
-    protected function _after()
-    {
-    }
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
+	
+	protected function _before() {
+	}
+
+	protected function _after() {
+	}
 
 	private function getInstance(): Logo {
 		$sut = new Logo();
@@ -29,16 +27,14 @@ class BrandTest extends \Codeception\Test\Unit
 	/**
 	 * @test
 	 */
-    public function instanceOk()
-    {
+	public function instanceOk() {
 		$this->getInstance();
 	}
 
 	/**
 	 * @test
 	 */
-    public function itShouldRenderImageWithBrandLogo()
-    {
+	public function itShouldRenderImageWithBrandLogo() {
 		$sut = $this->getInstance();
 		$html = $sut->render();
 

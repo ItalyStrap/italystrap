@@ -96,6 +96,15 @@ return \apply_filters( 'italystrap_theme_supports',
 			'video'						=> true,
 		],
 
+		'custom-logo'	=> [
+			'height'      => 100,
+			'width'       => 400,
+			'flex-height' => true,
+			'flex-width'  => true,
+			'header-text' => array( 'site-title', 'site-description' ),
+			'unlink-homepage-logo' => true,
+		],
+
 		/**
 		 * Custom background support
 		 *
@@ -291,101 +300,101 @@ return \apply_filters( 'italystrap_theme_supports',
 		/**
 		 * @TODO Sistemare i colori di default per l'editor
 		 */
-		'editor-color-palette'	=> [
-			[
-				'name'  => __( 'Primary', 'italystrap' ),
-				'slug'  => 'primary',
-				//				'color' => twentynineteen_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 33 ),
-				'color' => '#337ab7',
-			],
-			[
-				'name'  => __( 'Success', 'italystrap' ),
-				'slug'  => 'success',
-				//				'color' => twentynineteen_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 23 ),
-				'color' => '#5cb85c',
-			],
-			[
-				'name'  => __( 'Info', 'italystrap' ),
-				'slug'  => 'info',
-				'color' => '#5bc0de',
-			],
-			[
-				'name'  => __( 'Warning', 'italystrap' ),
-				'slug'  => 'warning',
-				'color' => '#f0ad4e',
-			],
-			[
-				'name'  => __( 'Danger', 'italystrap' ),
-				'slug'  => 'danger',
-				'color' => '#d9534f',
-			],
-			[
-				'name'  => __( 'Dark Gray', 'italystrap' ),
-				'slug'  => 'dark-gray',
-				'color' => '#333',
-			],
-			[
-				'name'  => __( 'Light Gray', 'italystrap' ),
-				'slug'  => 'light-gray',
-				'color' => '#777',
-			],
-			[
-				'name'  => __( 'White', 'italystrap' ),
-				'slug'  => 'white',
-				'color' => '#FFF',
-			],
-		],
+//		'editor-color-palette'	=> [
+//			[
+//				'name'  => __( 'Primary', 'italystrap' ),
+//				'slug'  => 'primary',
+//				//				'color' => twentynineteen_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 33 ),
+//				'color' => '#337ab7',
+//			],
+//			[
+//				'name'  => __( 'Success', 'italystrap' ),
+//				'slug'  => 'success',
+//				//				'color' => twentynineteen_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 23 ),
+//				'color' => '#5cb85c',
+//			],
+//			[
+//				'name'  => __( 'Info', 'italystrap' ),
+//				'slug'  => 'info',
+//				'color' => '#5bc0de',
+//			],
+//			[
+//				'name'  => __( 'Warning', 'italystrap' ),
+//				'slug'  => 'warning',
+//				'color' => '#f0ad4e',
+//			],
+//			[
+//				'name'  => __( 'Danger', 'italystrap' ),
+//				'slug'  => 'danger',
+//				'color' => '#d9534f',
+//			],
+//			[
+//				'name'  => __( 'Dark Gray', 'italystrap' ),
+//				'slug'  => 'dark-gray',
+//				'color' => '#333',
+//			],
+//			[
+//				'name'  => __( 'Light Gray', 'italystrap' ),
+//				'slug'  => 'light-gray',
+//				'color' => '#777',
+//			],
+//			[
+//				'name'  => __( 'White', 'italystrap' ),
+//				'slug'  => 'white',
+//				'color' => '#FFF',
+//			],
+//		],
 
 		/**
 		 * You can disable the option to allow customize the font style in the editor
 		 */
 		//		'disable-custom-font-sizes',
 
-		'editor-font-sizes'	=> [
-			[
-				'name'      => __( 'Extra Small', 'italystrap' ),
-				'shortName' => __( 'XS', 'italystrap' ),
-				'size'      => ceil( $font_size_base * 0.75 ),
-				'slug'      => 'extra-small',
-			],
-			[
-				'name'      => __( 'Small', 'italystrap' ),
-				'shortName' => __( 'S', 'italystrap' ),
-				'size'      => ceil( $font_size_base * 0.85 ),
-				'slug'      => 'small',
-			],
-			[
-				'name'      => __( 'Normal', 'italystrap' ),
-				'shortName' => __( 'M', 'italystrap' ),
-				'size'      => $font_size_base,
-				'slug'      => 'normal',
-			],
-			[
-				'name'      => __( 'Large', 'italystrap' ),
-				'shortName' => __( 'L', 'italystrap' ),
-				'size'      => ceil( $font_size_base * 1.25 ),
-				//				'unit'		=> 'rem',
-				'slug'      => 'large',
-			],
-			[
-				'name'      => __( 'Huge', 'italystrap' ),
-				'shortName' => __( 'XL', 'italystrap' ),
-				'size'      => ceil( $font_size_base * 1.7 ),
-				'slug'      => 'huge',
-			],
-			[
-				'name'      => __( 'Extra Huge', 'italystrap' ),
-				'shortName' => __( 'XXL', 'italystrap' ),
-				'size'      => ceil( $font_size_base * 2.15 ),
-				'slug'      => 'extra-huge',
-			],
-			[
-				'name'      => __( 'H1', 'italystrap' ),
-				'shortName' => __( 'H1', 'italystrap' ),
-				'size'      => ceil( $font_size_base * 2.6 ),
-				'slug'      => 'h1',
-			],
-		],
+//		'editor-font-sizes'	=> [
+//			[
+//				'name'      => __( 'Extra Small', 'italystrap' ),
+//				'shortName' => __( 'XS', 'italystrap' ),
+//				'size'      => ceil( $font_size_base * 0.75 ),
+//				'slug'      => 'extra-small',
+//			],
+//			[
+//				'name'      => __( 'Small', 'italystrap' ),
+//				'shortName' => __( 'S', 'italystrap' ),
+//				'size'      => ceil( $font_size_base * 0.85 ),
+//				'slug'      => 'small',
+//			],
+//			[
+//				'name'      => __( 'Normal', 'italystrap' ),
+//				'shortName' => __( 'M', 'italystrap' ),
+//				'size'      => $font_size_base,
+//				'slug'      => 'normal',
+//			],
+//			[
+//				'name'      => __( 'Large', 'italystrap' ),
+//				'shortName' => __( 'L', 'italystrap' ),
+//				'size'      => ceil( $font_size_base * 1.25 ),
+//				//				'unit'		=> 'rem',
+//				'slug'      => 'large',
+//			],
+//			[
+//				'name'      => __( 'Huge', 'italystrap' ),
+//				'shortName' => __( 'XL', 'italystrap' ),
+//				'size'      => ceil( $font_size_base * 1.7 ),
+//				'slug'      => 'huge',
+//			],
+//			[
+//				'name'      => __( 'Extra Huge', 'italystrap' ),
+//				'shortName' => __( 'XXL', 'italystrap' ),
+//				'size'      => ceil( $font_size_base * 2.15 ),
+//				'slug'      => 'extra-huge',
+//			],
+//			[
+//				'name'      => __( 'H1', 'italystrap' ),
+//				'shortName' => __( 'H1', 'italystrap' ),
+//				'size'      => ceil( $font_size_base * 2.6 ),
+//				'slug'      => 'h1',
+//			],
+//		],
 
 		/**
 		 * If the theme support align-wide then activate it
@@ -425,5 +434,10 @@ return \apply_filters( 'italystrap_theme_supports',
 		 * https://make.wordpress.org/core/2018/06/05/whats-new-in-gutenberg-5th-june/
 		 */
 		//		'wp-block-styles',
+
+		/**
+		 * Only with Gutenberg plugin active
+		 */
+		'experimental-custom-spacing',
 	]
 );

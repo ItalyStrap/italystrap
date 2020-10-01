@@ -44,7 +44,7 @@ class DebugInjector extends Empress\Injector {
 		try {
 			return $this->injector->alias( $original, $alias );
 		} catch (ConfigException $e) {
-			d( $e, $original, $alias );
+//			d( $e, $original, $alias );
 			throw $e;
 		}
 	}
@@ -53,7 +53,7 @@ class DebugInjector extends Empress\Injector {
 		try {
 			return $this->injector->share( $nameOrInstance );
 		} catch (ConfigException $e) {
-			d( $e, $nameOrInstance );
+//			d( $e, $nameOrInstance );
 			throw $e;
 		}
 	}
@@ -62,7 +62,7 @@ class DebugInjector extends Empress\Injector {
 		try {
 			return $this->injector->prepare( $name, $callableOrMethodStr );
 		} catch (InjectionException $e) {
-			d( $e, $name, $callableOrMethodStr );
+//			d( $e, $name, $callableOrMethodStr );
 			throw $e;
 		}
 	}
@@ -71,7 +71,7 @@ class DebugInjector extends Empress\Injector {
 		try {
 			return $this->injector->delegate( $name, $callableOrMethodStr );
 		} catch (ConfigException $e) {
-			d( $e, $name, $callableOrMethodStr );
+//			d( $e, $name, $callableOrMethodStr );
 			throw $e;
 		}
 	}
@@ -88,7 +88,7 @@ class DebugInjector extends Empress\Injector {
 		try {
 			return $this->injector->make( $name, $args );
 		} catch (InjectionException $e) {
-			d( $e, $name, $args );
+//			d( $e, $name, $args );
 			throw $e;
 		}
 	}
@@ -97,7 +97,7 @@ class DebugInjector extends Empress\Injector {
 		try {
 			return $this->injector->execute( $callableOrMethodStr, $args );
 		} catch (InjectionException $e) {
-			d( $e, $callableOrMethodStr, $args );
+//			d( $e, $callableOrMethodStr, $args );
 			throw $e;
 		}
 	}
@@ -106,7 +106,7 @@ class DebugInjector extends Empress\Injector {
 		try {
 			return $this->injector->buildExecutable( $callableOrMethodStr );
 		} catch (Throwable $e) {
-			d( $e, $callableOrMethodStr );
+//			d( $e, $callableOrMethodStr );
 			throw $e;
 		}
 	}

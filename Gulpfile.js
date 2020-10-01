@@ -129,7 +129,7 @@ gulp.task('zip', gulp.series('copyTemp','compress','cleanTemp'));
 gulp.task('build', gulp.series('css','js','img','zip'));
 
 gulp.task('watch', function() {
-    gulp.watch(['./assets/sass/*.scss'], gulp.series('css'));
+    gulp.watch(['./assets/sass/**/*.scss'], gulp.series('css'));
     gulp.watch(['./assets/js/src/*.js'], gulp.series('js'));
     gulp.watch(['./assets/img/src/*'], gulp.series('img'));
 });

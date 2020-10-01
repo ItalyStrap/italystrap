@@ -6,6 +6,7 @@ const files = [
      */
     '!.git/**',
     '!.sass-cache/**',
+    '!.tscache/**',
     '!_others',
     '!node_modules/**',
     '!backups/**',

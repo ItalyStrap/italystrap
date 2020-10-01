@@ -255,6 +255,7 @@ module.exports = grunt => {
 		exec: { // https://github.com/jharding/grunt-exec
 			composer_update: 'composer update --no-dev && composer dumpautoload -o',
 			composer_update_dev: 'composer update && composer dumpautoload',
+			unit: 'codecept run unit --debug',
 		},
 
 		compress: { // https://github.com/gruntjs/grunt-contrib-compress
@@ -312,8 +313,16 @@ module.exports = grunt => {
 		},
 
 		watch: { // https://github.com/gruntjs/grunt-contrib-watch
+			php: {
+				files: [
+					'tests/unit/**/*.php',
+					'src/**/*.php',
+					'functions/**/*.php',
+				],
+				tasks: ['exec:unit'],
+			},
 			css: {
-				files: ['assets/sass/*.{scss,sass}'],
+				files: ['assets/sass/**/*.{scss,sass}'],
 				tasks: ['css'],
 			},
 			js: {
@@ -461,8 +470,8 @@ module.exports = grunt => {
 		return null;
 	});
 
-	grunt.event.on('watch', function(action, filepath) {
-		grunt.log.writeln(filepath + ' has ' + action);
+	grunt.event.on('watch', function(action, filepath, target) {
+		grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
 	});
 
 };

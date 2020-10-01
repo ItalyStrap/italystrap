@@ -79,10 +79,10 @@ return apply_filters(
 			 * navbar-default
 			 * navbar-inverse
 			 */
-			'type'			=> 'navbar-default',
-			'position'		=> 'navbar-relative-top',
-			'nav_width'		=> 'container', // This is the container of entire navbar.
-			'menus_width'	=> 'container-fluid', // This is the container of the 2 menus inside the nav container and the navbar_header brand and toggle.
+			'type'			=> 'navbar-inverse',
+			'position'		=> 'navbar-static-top',
+			'nav_width'		=> 'none', // This is the container of entire navbar.
+			'menus_width'	=> 'container', // This is the container of the 2 menus inside the nav container and the navbar_header brand and toggle.
 		],
 
 		/**

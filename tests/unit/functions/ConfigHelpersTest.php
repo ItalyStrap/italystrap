@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
-//require_once codecept_root_dir() . '/functions/config-helpers.php';
+use function codecept_root_dir;
+
+require_once codecept_root_dir() . '/functions/config-helpers.php';
+
 class ConfigHelpersTest extends \Codeception\Test\Unit {
 
 	/**

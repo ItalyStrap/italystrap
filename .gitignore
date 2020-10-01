@@ -43,3 +43,4 @@ stty.exe.stackdump
 package-lock.json
 
 *.sample
+c3.php

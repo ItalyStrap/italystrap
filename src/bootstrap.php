@@ -84,11 +84,7 @@ try {
 		':dependencies'	=> dependencies_collection()
 	] );
 
-	$subscriber_config = $injector->make( SubscribersConfigExtension::class, [
-		':config'	=> get_config(),
-	] );
-
-	$injector_config->extend( $subscriber_config );
+	$injector_config->extend( $injector->make( SubscribersConfigExtension::class ) );
 
 	$event_dispatcher = $injector->make( EventDispatcher::class );
 

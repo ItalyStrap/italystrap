@@ -118,12 +118,12 @@ open_tag_e('nav_container', 'div', [
 			 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
 			 * @var array
 			 */
-			$args = array(
+			$args = [
 				'menu'				=> '',
 				'container'			=> false, // WP Default div
 				'container_class'	=> false,
 				'container_id'		=> false,
-				'menu_class'		=> 'nav navbar-nav navbar-nav mr-auto mb-2 mb-lg-0',
+				'menu_class'		=> 'nav navbar-nav mr-auto mb-2 mb-lg-0',
 				'menu_id'			=> 'main-menu',
 				'echo'				=> true,
 				'fallback_cb'		=> 'Core\Bootstrap_Nav_Menu::fallback',
@@ -136,7 +136,7 @@ open_tag_e('nav_container', 'div', [
 			//					'walker'			=> new Core\Bootstrap_Nav_Menu(),
 				'theme_location'	=> 'main-menu',
 				'search'			=> false,
-			);
+			];
 
 			$args = apply_filters( 'italystrap_main_nav_menu_args', $args );
 
@@ -151,7 +151,7 @@ open_tag_e('nav_container', 'div', [
 				 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
 				 * @var array
 				 */
-				$args = array(
+				$args = [
 					'menu'				=> '',
 					'container'			=> false, // WP Default div
 					'container_class'	=> false,
@@ -169,7 +169,7 @@ open_tag_e('nav_container', 'div', [
 			//						'walker'			=> new Core\Bootstrap_Nav_Menu(),
 					'theme_location'	=> 'secondary-menu',
 					'search'			=> false,
-				);
+				];
 
 				$args = apply_filters( 'italystrap_secondary_nav_menu_args', $args );
 

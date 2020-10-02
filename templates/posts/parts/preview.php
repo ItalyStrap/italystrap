@@ -14,4 +14,4 @@ if ( ! \is_preview() ) {
 	return;
 }
 
-?><div <?php HTML\get_attr( 'preview', [], true ); ?>><?php echo \wp_kses_post( \__( '<strong>Note:</strong> You are previewing this post. This post has not yet been published.', 'italystrap' ) ); ?></div>
+?><div <?php HTML\get_attr_e( 'preview', [] ); ?>><?php echo \wp_kses_post( \__( '<strong>Note:</strong> You are previewing this post. This post has not yet been published.', 'italystrap' ) ); ?></div>

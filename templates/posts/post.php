@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 ?>
-<article<?php echo HTML\get_attr( 'entry', [ 'id' => \get_the_ID(), 'class' => \join( ' ', \get_post_class() ) ] ) ?>>
+<article<?php HTML\get_attr_e( 'entry', [ 'id' => \get_the_ID(), 'class' => \join( ' ', \get_post_class() ) ] ) ?>>
 <?php
 	\do_action( 'italystrap_before_entry_content' );
 

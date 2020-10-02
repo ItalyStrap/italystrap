@@ -3,12 +3,12 @@
 **Donate link:** https://italystrap.com  
 **Tags:** breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant  
 **Requires at least:** 5.2  
-**Tested up to:** 5.2  
-**Stable tag:** 4.0.0-beta.6  
+**Tested up to:** 5.6  
+**Stable tag:** 4.0.0-beta.7  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-Make your web site more powerfull.
+The Theme Framework for WordPress website.
 
 ## Description ##
 
@@ -18,7 +18,7 @@ Make your web site more powerfull.
 
 **[ItalyStrap WordPress Theme Framework](https://italystrap.com)** will add powerful features to your WordPRess site.
 
-ItalyStrap is a WordPress framework theme based on [HTML5 Boilerplate](http://html5boilerplate.com/), [Bootstrap](http://getbootstrap.com/), [Schema.org](https://schema.org/), [Open Graph](https://developers.facebook.com/docs/opengraph/), [Twitter cards](https://dev.twitter.com/docs/cards)
+ItalyStrap is a WordPress framework theme based on [HTML5 Boilerplate](http://html5boilerplate.com/), [Bootstrap](http://getbootstrap.com/), [Schema.org](https://schema.org/)
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
@@ -28,13 +28,15 @@ ItalyStrap is a WordPress framework theme based on [HTML5 Boilerplate](http://ht
 * SEO Friendly
 * HTML5 Bolierplate
 * CSS3
-* Twitter Bootstrap 3
+* Twitter Bootstrap
 * Schema.org
 * **Breadcrumbs.**
 
 ## Installation ##
 
-First of all you have to install the core plugin [Advanced Control Manager](https://wordpress.org/plugins/advanced-control-manager/)
+Install the [Advanced Control Manager](https://wordpress.org/plugins/advanced-control-manager/) plugin to add more feature.
+
+# For DEV #
 
 Clone the git repo of the theme:
 
@@ -52,27 +54,43 @@ Then [download the child cheme](https://github.com/ItalyStrap/ItalyStrap-child/a
 
 ## How to migrate from older version of 4.0.0 ##
 
+__Migration guide wcoming soon__
+
 Remember! This is a full refactoring of the theme, consider it like a new theme, if you have the old version you have to do a migration to the new version.
 
 **Do always a backup first**
 
-### In file functions.php add this constant ###
-```define( 'ITALYSTRAP_CHILD_PATH', get_stylesheet_directory_uri() );```
-
-### In file script.php ###
-Change all $pathchild variable to ITALYSTRAP_CHILD_PATH constant
-
-### Deprecated Class ###
-wp_bootstrap_navwalker is deprecated, use Bootstrap_Navwalker instead
-
-
 ## Frequently Asked Questions ##
-
 
 ## Screenshots ##
 
-
 ## Changelog ##
+
+### 4.0.0-beta.7 ###
+
+Release Date: Oct 2nd, 2020
+
+(Dev time 19 months)
+
+**This is a complete rebuild of the theme, it is a breaking changes, always do a backup first**
+
+* Bump PHP version, now minimum supported is 7.2
+* Improvements for the testing suite
+* New API for building the page structure (Experimental)
+* New API for parsing css attributes in hooks (Experimental)
+* New API for Components
+* New API for handling assets
+* Extract some modules to packagist
+* Refactored theme bootstrap
+* Removed all template files in root directory, now there's only the index.php, you can add others in a child theme.
+* Removed deprecation directory for now
+* Removed WooCommerce template (will be available in a child theme)
+* Removed display_breadcrumbs() function, now breadcrumbs are loaded on the hook 'do_breadcrumbs'
+* Removed the Tag_Cloud class
+* Fix: coding standard moved to psr-2
+* Fix: cleanup views files
+* Fix: removed dependency for Advanced Custom Manager
+* Some minor fix
 
 ### 4.0.0-beta.6 ###
 

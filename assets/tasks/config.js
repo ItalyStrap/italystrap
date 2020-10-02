@@ -8,6 +8,7 @@ const files = [
     '!.sass-cache/**',
     '!.tscache/**',
     '!_others',
+    '!_template',
     '!node_modules/**',
     '!backups/**',
     '!bower/**',

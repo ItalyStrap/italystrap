@@ -244,6 +244,7 @@ return [
 			$injector->defineParam('base_url', \get_option( 'siteurl' ) . '/');
 			$injector->defineParam('base_path', ABSPATH);
 
+			/** @var ConfigBuilder $config_builder */
 			$config_builder = $injector->make( ConfigBuilder::class );
 
 			$config_builder->withType(Style::EXTENSION,
@@ -260,7 +261,7 @@ return [
 			$config_builder->addConfig( $scripts );
 
 			$asset_loader = $injector->make( GeneratorLoader::class );
-			$assets = $asset_loader->load( $config_builder->parsedConfig() );
+			$assets = $asset_loader->load( $config_builder->parseConfig() );
 
 			$manager->withAssets(...$assets);
 
@@ -316,7 +317,7 @@ return [
 	 * ========================================================================
 	 */
 	AurynConfig::PROXY					=> [
-		AssetManager::class,
+//		AssetManager::class,
 //		SidebarsSubscriber::class,
 	],
 

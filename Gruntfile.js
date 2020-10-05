@@ -256,6 +256,7 @@ module.exports = grunt => {
 			composer_update: 'composer update --no-dev && composer dumpautoload -o',
 			composer_update_dev: 'composer update && composer dumpautoload',
 			unit: 'codecept run unit --debug',
+			wpunit: 'codecept run wpunit --debug',
 		},
 
 		compress: { // https://github.com/gruntjs/grunt-contrib-compress
@@ -313,13 +314,21 @@ module.exports = grunt => {
 		},
 
 		watch: { // https://github.com/gruntjs/grunt-contrib-watch
-			php: {
+			unit: {
 				files: [
 					'tests/unit/**/*.php',
 					'src/**/*.php',
 					'functions/**/*.php',
 				],
 				tasks: ['exec:unit'],
+			},
+			wpunit: {
+				files: [
+					'tests/wpunit/**/*.php',
+					// 'src/**/*.php',
+					// 'functions/**/*.php',
+				],
+				tasks: ['exec:wpunit'],
 			},
 			css: {
 				files: ['assets/sass/**/*.{scss,sass}'],

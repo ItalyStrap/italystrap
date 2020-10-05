@@ -101,7 +101,7 @@ return \apply_filters( 'italystrap_theme_supports',
 			'width'       => 400,
 			'flex-height' => true,
 			'flex-width'  => true,
-			'header-text' => array( 'site-title', 'site-description' ),
+			'header-text' => ['site-title', 'site-description'],
 			'unlink-homepage-logo' => true,
 		],
 

@@ -142,3 +142,31 @@ $manager->add_control(
 		//		},
 	]
 );
+
+/**
+ * Select the menus_width of navbar
+ */
+$manager->add_setting(
+	'navbar[main_menu_x_align]',
+	array(
+		'default'			=> $mods->get('navbar.main_menu_x_align'),
+		'type'				=> 'theme_mod',
+		'capability'		=> $this->capability,
+		'transport'			=> 'postMessage',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	)
+);
+$manager->add_control(
+	'italystrap_navbar[main_menu_x_align]',
+	[
+		'settings'	=> 'navbar[main_menu_x_align]',
+		'label'			=> __( 'Main menu align', 'italystrap' ),
+		'description'	=> __( 'Select the main menu alignment', 'italystrap' ),
+		'section'		=> 'italystrap_navbar_options',
+		'type'			=> 'radio',
+		'choices'		=> [
+			'navbar-left'	=> __( 'Left', 'italystrap' ),
+			'navbar-right'	=> __( 'Right', 'italystrap' ),
+		],
+	]
+);

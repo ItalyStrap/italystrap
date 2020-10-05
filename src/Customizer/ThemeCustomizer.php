@@ -37,20 +37,20 @@ class ThemeCustomizer implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array {
+	public function getSubscribedEvents(): iterable {
 
-		return array(
+		return [
 			// 'hook_name'							=> 'method_name',
-			'customize_register'					=> array(
+			'customize_register'					=> [
 				'function_to_add'	=> 'customize_register',
 				'priority'			=> 99,
-			),
+			],
 			'customize_preview_init'				=> 'enqueue_script_on_live_preview',
 			'customize_controls_enqueue_scripts'	=> 'enqueue_script_on_customize_controls_enqueue_scripts',
 			'admin_menu'							=> 'add_link_to_theme_option_page',
 			// 'body_class'							=> 'body_class',
 			'italystrap_body_attr'					=> 'body_attr',
-		);
+		];
 	}
 
 	/**
@@ -92,7 +92,6 @@ class ThemeCustomizer implements SubscriberInterface {
 	 * Init the class
 	 */
 	function __construct( Config $config ) {
-//		 $this->theme_mods = $config->all();
 		 $this->theme_mods = $config;
 	}
 

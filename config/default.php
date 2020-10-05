@@ -83,6 +83,7 @@ return apply_filters(
 			'position'		=> 'navbar-static-top',
 			'nav_width'		=> 'none', // This is the container of entire navbar.
 			'menus_width'	=> 'container', // This is the container of the 2 menus inside the nav container and the navbar_header brand and toggle.
+			'main_menu_x_align'	=> 'navbar-left',
 		],
 
 		/**

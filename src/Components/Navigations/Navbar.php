@@ -77,6 +77,7 @@ class Navbar {
 
 		$this->navbar_id = apply_filters( 'italystrap_navbar_id', 'italystrap-menu-' . $this->number );
 		$this->navbar_id = apply_filters( 'italystrap_navbar_id_' . $this->number, $this->navbar_id );
+		var_dump(\get_custom_logo());
 	}
 
 	/**
@@ -105,7 +106,10 @@ class Navbar {
 			'container'			=> false, // WP Default div.
 			'container_class'	=> false,
 			'container_id'		=> false,
-			'menu_class'		=> 'nav navbar-nav',
+			'menu_class'		=> \sprintf(
+				'nav navbar-nav %s',
+				$this->config->get('navbar.main_menu_x_align')
+			),
 			'menu_id'			=> 'main-menu',
 			'echo'				=> false,
 			'fallback_cb'		=> $this->fallback_cb,

@@ -96,6 +96,13 @@ function italystrap_toogle_control() {
 		} );
 	} );
 
+	// wp.customize( 'navbar[main_menu_x_align]', function( value ) {
+	// 	console.log(value);
+	// 	value.bind( function( newval ) {
+	// 		$('#main-menu').removeClass( 'navbar-left navbar-right' ).addClass( newval );
+	// 	} );
+	// } );
+
 	wp.customize( 'display_navbar_brand', function( value ) {
 		value.bind( function( newval ) {
 			console.log(newval);

@@ -123,7 +123,10 @@ open_tag_e('nav_container', 'div', [
 				'container'			=> false, // WP Default div
 				'container_class'	=> false,
 				'container_id'		=> false,
-				'menu_class'		=> 'nav navbar-nav mr-auto mb-2 mb-lg-0',
+				'menu_class'		=> \sprintf(
+					'nav navbar-nav %s mr-auto mb-2 mb-lg-0',
+					$config->get('mods.navbar.main_menu_x_align')
+				),
 				'menu_id'			=> 'main-menu',
 				'echo'				=> true,
 				'fallback_cb'		=> 'Core\Bootstrap_Nav_Menu::fallback',

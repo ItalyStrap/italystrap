@@ -15,8 +15,10 @@ class ExperimentalAssetsFileNameGeneratorFunctionTest extends \Codeception\Test\
 			return true;
 		});
 
-		$this->assertFileExists( codecept_absolute_path('/functions/general-functions.php') );
-		require_once codecept_absolute_path('/functions/general-functions.php');
+		$genreal_function_file = dirname( __FILE__ ) . '/../../../functions/general-functions.php';
+
+		$this->assertFileExists( $genreal_function_file );
+		require_once $genreal_function_file;
 	}
 
 	protected function _after() {

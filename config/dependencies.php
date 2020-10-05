@@ -212,16 +212,6 @@ return [
 			/** @var EventDispatcher $event_dispatcher */
 			$event_dispatcher = $injector->make(EventDispatcher::class);
 
-			$styles = $event_dispatcher->filter(
-				'italystrap_config_enqueue_style',
-				get_config_file_content( 'assets/styles' )
-			);
-
-			$scripts = $event_dispatcher->filter(
-				'italystrap_config_enqueue_script',
-				get_config_file_content( 'assets/scripts' )
-			);
-
 			$experimental_assets_path_generator = function ( string $dir ): array {
 				$sub_dir = ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) ? 'src/' :  '';
 
@@ -256,6 +246,16 @@ return [
 				\ItalyStrap\Core\is_debug() ? DebugScript::class : Script::class
 			);
 			$config_builder->withFinderForType( Script::EXTENSION, $js_finder);
+
+			$styles = $event_dispatcher->filter(
+				'italystrap_config_enqueue_style',
+				get_config_file_content( 'assets/styles' )
+			);
+
+			$scripts = $event_dispatcher->filter(
+				'italystrap_config_enqueue_script',
+				get_config_file_content( 'assets/scripts' )
+			);
 
 			$config_builder->addConfig( $styles );
 			$config_builder->addConfig( $scripts );
@@ -317,7 +317,7 @@ return [
 	 * ========================================================================
 	 */
 	AurynConfig::PROXY					=> [
-//		AssetManager::class,
+		AssetManager::class,
 //		SidebarsSubscriber::class,
 	],
 

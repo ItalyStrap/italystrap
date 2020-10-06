@@ -59,7 +59,9 @@ return [
 
 	/**
 	 * This is the item tag of the breadcrumbs
-	 * @example <li class="breadcrumb-item [...active]" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">...</li>
+	 * @example
+	 * <li class="breadcrumb-item [...active]" itemprop="itemListElement"
+	 * itemscope itemtype="https://schema.org/ListItem">...</li>
 	 */
 	'item_tag'					=> 'li',
 	'item_attr'					=> [

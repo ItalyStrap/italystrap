@@ -21,18 +21,19 @@ namespace ItalyStrap;
 use function do_action;
 use function get_footer;
 use function get_header;
-use function ItalyStrap\HTML\{open_tag_e, close_tag_e};
+use function ItalyStrap\HTML\open_tag_e;
+use function ItalyStrap\HTML\close_tag_e;
 
 get_header();
 do_action( 'italystrap_before_main' );
 
-    open_tag_e( 'index', 'main' );
-        open_tag_e( 'index-container', 'div' );
-            open_tag_e( 'index-row', 'div' );
+	open_tag_e( 'index', 'main' );
+		open_tag_e( 'index-container', 'div' );
+			open_tag_e( 'index-row', 'div' );
 
-                do_action( 'italystrap_before_content' );
+				do_action( 'italystrap_before_content' );
 
-                open_tag_e( 'content', 'div' );
+				open_tag_e( 'content', 'div' );
 
 					do_action( 'italystrap_before_loop' );
 
@@ -40,13 +41,13 @@ do_action( 'italystrap_before_main' );
 
 					do_action( 'italystrap_after_loop' );
 
-                close_tag_e( 'content' );
+				close_tag_e( 'content' );
 
-                do_action( 'italystrap_after_content' );
+				do_action( 'italystrap_after_content' );
 
-            close_tag_e( 'index-row' );
-        close_tag_e( 'index-container' );
-    close_tag_e( 'index' );
+			close_tag_e( 'index-row' );
+		close_tag_e( 'index-container' );
+	close_tag_e( 'index' );
 
 do_action( 'italystrap_after_main' );
 get_footer();

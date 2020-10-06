@@ -15,6 +15,7 @@ class Textarea extends WP_Customize_Control {
 	 * @since   10/16/2012
 	 * @return  void
 	 */
+	// phpcs:ignore
 	public function render_content() {
 		?>
 		<label>

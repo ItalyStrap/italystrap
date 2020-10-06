@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignoreFile
 declare(strict_types=1);
 
 namespace ItalyStrap\Components\Comments;
@@ -31,7 +31,7 @@ class CommentsWalker extends Walker_Comment {
 	 * @param int        $depth   Depth of the current comment.
 	 * @param array      $args    An array of arguments.
 	 */
-	protected function html5_comment( $comment, $depth, $args ) {
+	protected function html5_comment( $comment, $depth, $args ) {// phpcs:ignore
 		$tag = 'div' === $args['style'] ? 'div' : 'li';
 		?>
 		<<?php echo $tag; ?> id="comment-<?php \comment_ID(); ?>" <?php \comment_class( $this->has_children ? 'parent' : '' ); ?>>

@@ -62,7 +62,9 @@ if ( \is_404() ) { ?>
 		// 			'attachment-%1$s size-%1$s %1$s img-responsive',
 		// 			$size
 		// 		),
-		// 		'alt'		=> trim( strip_tags( get_post_meta( get_post_thumbnail_id( get_the_id() ), '_wp_attachment_image_alt', true ) ) ),
+		// 		'alt'		=>
+		//  trim( strip_tags( get_post_meta( get_post_thumbnail_id( get_the_id() ),
+		//'_wp_attachment_image_alt', true ) ) ),
 		// 		'itemprop'	=> 'image',
 		// 	),
 		// 	$context,
@@ -70,6 +72,6 @@ if ( \is_404() ) { ?>
 		// );
 
 		// the_post_thumbnail( $size, $attr );
-  		?>
+		?>
 	</figure>
 <?php }

@@ -1,12 +1,5 @@
 <?php
-/**
- * Handle the Navigation Menu API: Walker_Nav_Menu_Edit class.
- *
- * @package ItalyStrap\Core
- * @uses Walker_Nav_Menu
- *
- * @since 3.0.0
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Admin\Nav_Menu;
 
@@ -63,11 +56,11 @@ final class ItemCustomFields implements SubscriberInterface {
 		$this->setFields(
 			[
 				[
-					'type'  => 'text',
-					'id'    => 'glyphicon',
-					'name'  => 'glyphicon',
+					'type' => 'text',
+					'id' => 'glyphicon',
+					'name' => 'glyphicon',
 					'label' => __( 'Icon css class', 'italystrap' ),
-                    'desc'  => __( 'Example: fa fa-icon fa-3x', 'italystrap' ),
+					'desc' => __( 'Example: fa fa-icon fa-3x', 'italystrap' ),
 				],
 			]
 		);
@@ -79,36 +72,40 @@ final class ItemCustomFields implements SubscriberInterface {
 	 * @param int $id Nav menu ID.
 	 * @param object $item Menu item data object.
 	 */
-	public function _fields( $id, $item ) {
+	public function printFields( $id, $item ) {
 
-		foreach ( $this->getFields() as $field ) :
-            $field = array_merge( $this->defaultField(), $field );
-			$key   = sprintf( $this->key_pattern, $field['id'] );
-			$id    = sprintf( 'edit-%s-%s', $key, $item->ID );
-			$name  = sprintf( '%s[%s]', $key, $item->ID );
-			$value = (string) get_post_meta( $item->ID, $key, true );
-			$class = sprintf( 'field-%s', $field['id'] );
+		foreach ($this->getFields() as $field) :
+			$field = array_merge( $this->defaultField(), $field );
+			$key = sprintf( $this->key_pattern, $field[ 'id' ] );
+			$id = sprintf( 'edit-%s-%s', $key, $item->ID );
+			$name = sprintf( '%s[%s]', $key, $item->ID );
+			$value = (string)get_post_meta( $item->ID, $key, true );
+			$class = sprintf( 'field-%s', $field[ 'id' ] );
 			?>
-            <p class="description description-wide <?php echo esc_attr( $class ) ?>">
-				<?php printf(
-					'<label for="%1$s">%2$s<br /><input' .  attr( $key,
-                        [
-					        'type'  => $field['type'],
-                            'id'    => '%1$s',
-                            'class' => 'widefat %1$s',
-                            'name'  => '%3$s',
-                            'value' => '%4$s',
-                        ]
-                    ) . '/></label>',
+			<p class="description description-wide <?php echo esc_attr( $class ) ?>">
+				<?php
+					$attributes = attr(
+						$key,
+						[
+							'type' => $field[ 'type' ],
+							'id' => '%1$s',
+							'class' => 'widefat %1$s',
+							'name' => '%3$s',
+							'value' => '%4$s',
+						]
+					);
+
+				printf(
+					'<label for="%1$s">%2$s<br /><input' . $attributes . '/></label>',
 					esc_attr( $id ),
-					esc_html( $field['label'] ),
+					esc_html( $field[ 'label' ] ),
 					esc_attr( $name ),
 					esc_attr( $value )
 				) ?>
-                <br>
-                <?php echo esc_html( $field['desc'] ) ?>
-            </p>
-		    <?php
+				<br>
+				<?php echo esc_html( $field[ 'desc' ] ) ?>
+			</p>
+			<?php
 		endforeach;
 	}
 
@@ -116,14 +113,14 @@ final class ItemCustomFields implements SubscriberInterface {
 	 * Add custom fields to $item nav object
 	 * in order to be used in custom Walker
 	 *
-	 * @param  WP_Post|WP_Term $menu_item Menu item data object.
-     *
+	 * @param WP_Post|WP_Term $menu_item Menu item data object.
+	 *
 	 * @return WP_Post|WP_Term            New menu item data object.
 	 */
-	function add_custom_nav_fields( $menu_item ) {
+	public function addCustomNavFields( $menu_item ) {
 
-		foreach ( $this->getFields() as $field  ) {
-		    $var = $field['id'];
+		foreach ($this->getFields() as $field) {
+			$var = $field[ 'id' ];
 			$menu_item->$var = get_post_meta( $menu_item->ID, sprintf( $this->key_pattern, $var ), true );
 		}
 
@@ -135,11 +132,11 @@ final class ItemCustomFields implements SubscriberInterface {
 	 *
 	 * @wp_hook action wp_update_nav_menu_item
 	 *
-	 * @param int   $menu_id         Nav menu ID
-	 * @param int   $menu_item_db_id Menu item ID
-	 * @param array $menu_item_args  Menu item data
+	 * @param int $menu_id Nav menu ID
+	 * @param int $menu_item_db_id Menu item ID
+	 * @param array $menu_item_args Menu item data
 	 */
-	public function _save( int $menu_id, int $menu_item_db_id, array $menu_item_args ) {
+	public function saveFields( int $menu_id, int $menu_item_db_id, array $menu_item_args ) {
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			return;
@@ -147,13 +144,13 @@ final class ItemCustomFields implements SubscriberInterface {
 
 		check_admin_referer( 'update-nav_menu', 'update-nav-menu-nonce' );
 
-		foreach ( $this->getFields() as $field ) {
-			$key = sprintf( $this->key_pattern, $field['id'] );
+		foreach ($this->getFields() as $field) {
+			$key = sprintf( $this->key_pattern, $field[ 'id' ] );
 
 			if ( empty( $_POST[ $key ][ $menu_item_db_id ] ) ) {
 				delete_post_meta( $menu_item_db_id, $key );
 				continue;
-            }
+			}
 
 			update_post_meta( $menu_item_db_id, $key, sanitize_text_field( $_POST[ $key ][ $menu_item_db_id ] ) );
 		}
@@ -162,9 +159,9 @@ final class ItemCustomFields implements SubscriberInterface {
 	/**
 	 * Define new Walker edit
 	 *
-	 * @param  string $class   The walker class to use.
+	 * @param string $class The walker class to use.
 	 *                         Default 'Walker_Nav_Menu_Edit'.
-	 * @param  int    $menu_id The menu id, derived from $_POST['menu'].
+	 * @param int $menu_id The menu id, derived from $_POST['menu'].
 	 *
 	 * @return string          The new walker class to use.
 	 */
@@ -176,10 +173,10 @@ final class ItemCustomFields implements SubscriberInterface {
 	 * Add our fields to the screen options toggle
 	 *
 	 * @param array $columns Menu item columns
-     *
+	 *
 	 * @return array
 	 */
-	public function columns( $columns ) : array {
+	public function columns( $columns ): array {
 		return array_merge( $columns, iterator_to_array( $this->getColumns() ) );
 	}
 
@@ -187,10 +184,10 @@ final class ItemCustomFields implements SubscriberInterface {
 	 * @return Generator
 	 */
 	private function getColumns() {
-	    foreach ( $this->getFields() as $field ) {
-			yield $field['id'] => $field['label'];
-        }
-    }
+		foreach ($this->getFields() as $field) {
+			yield $field[ 'id' ] => $field[ 'label' ];
+		}
+	}
 
 	/**
 	 * @return array
@@ -209,18 +206,18 @@ final class ItemCustomFields implements SubscriberInterface {
 	/**
 	 * @return array
 	 */
-	private function defaultField() : array {
+	private function defaultField(): array {
 
-	    $uniqid = uniqid();
+		$uniqid = uniqid();
 
-	    return [
-			'type'  => 'text',
-			'id'    => $uniqid,
-			'name'  => $uniqid,
+		return [
+			'type' => 'text',
+			'id' => $uniqid,
+			'name' => $uniqid,
 			'label' => __( 'Label not provided', 'italystrap' ),
-			'desc'  => '',
+			'desc' => '',
 		];
-    }
+	}
 
 	/**
 	 * Returns an array of events (hooks) that this subscriber wants to register with
@@ -249,48 +246,79 @@ final class ItemCustomFields implements SubscriberInterface {
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array  {
+	public function getSubscribedEvents(): iterable {
 
-		return [
+		/**
+		 * Add new checkboxes to the "Screen options" menu
+		 */
+		yield 'manage_nav-menus_columns'      => [
+			SubscriberInterface::CALLBACK       => 'columns',
+			SubscriberInterface::PRIORITY       => 11,
+		];
+
+		/**
+		 * Add the value fro new custom fields to the object in the Nav Walker
+		 */
+		yield 'wp_setup_nav_menu_item'        => 'addCustomNavFields';
+
+		/**
+		 * Save the value
+		 */
+		yield 'wp_update_nav_menu_item'       => [
+			SubscriberInterface::CALLBACK       => 'saveFields',
+			SubscriberInterface::PRIORITY       => 10,
+			SubscriberInterface::ACCEPTED_ARGS  => 3,
+		];
+
+		/**
+		 * Display the added custom fields
+		 */
+		yield 'wp_nav_menu_item_custom_fields' => [
+			SubscriberInterface::CALLBACK       => 'printFields',
+			SubscriberInterface::PRIORITY       => 10,
+			SubscriberInterface::ACCEPTED_ARGS  => 5,
+		];
+
+//		return [
 
 			/**
 			 * Register new class for Menu Edit
 			 */
-			'wp_edit_nav_menu_walker'	=> [
-				'function_to_add'  => 'register',
-				'accepted_args'		=> 2,
-			],
+//			'wp_edit_nav_menu_walker' => [
+//				SubscriberInterface::CALLBACK => 'register',
+//				'accepted_args' => 2,
+//			],
 
 			/**
 			 * Add new checkboxes to the "Screen options" menu
 			 */
-			'manage_nav-menus_columns'  => [
-				'function_to_add'  => 'columns',
-				'priority'			=> 11,
-			],
+//			'manage_nav-menus_columns'      => [
+//				SubscriberInterface::CALLBACK       => 'columns',
+//				SubscriberInterface::PRIORITY       => 11,
+//			],
 
 			/**
 			 * Add the value fro new custom fields to the object in the Nav Walker
 			 */
-			'wp_setup_nav_menu_item'	=> 'add_custom_nav_fields',
+//			'wp_setup_nav_menu_item'        => 'addCustomNavFields',
 
 			/**
 			 * Save the value
 			 */
-			'wp_update_nav_menu_item'	=> [
-				'function_to_add'	=> '_save',
-				'priority'			=> 10,
-				'accepted_args'		=> 3,
-			],
+//			'wp_update_nav_menu_item'       => [
+//				SubscriberInterface::CALLBACK       => 'saveFields',
+//				SubscriberInterface::PRIORITY       => 10,
+//				SubscriberInterface::ACCEPTED_ARGS  => 3,
+//			],
 
 			/**
 			 * Display the added custom fields
 			 */
-			'wp_nav_menu_item_custom_fields'	=> [
-				'function_to_add'	=> '_fields',
-				'priority'			=> 10,
-				'accepted_args'		=> 5,
-			],
-		];
+//			'wp_nav_menu_item_custom_fields' => [
+//				SubscriberInterface::CALLBACK       => 'printFields',
+//				SubscriberInterface::PRIORITY       => 10,
+//				SubscriberInterface::ACCEPTED_ARGS  => 5,
+//			],
+//		];
 	}
 }

@@ -66,7 +66,7 @@ class BrandTest extends Unit {
 	 */
 	public function itShouldRenderImageWithBrandLogo() {
 		$this->custom_logo->render()->willReturn(
-			'<a href="site/url" class="navbar-brand" title="title" rel="home"><span>Brand</span></a>'
+			'<a href="site/url" class="navbar-brand" title="title" rel="home"><img src="" alt="" /></a>'
 		);
 
 		$sut = $this->getInstance();
@@ -75,7 +75,7 @@ class BrandTest extends Unit {
 		$this->assertNotEmpty( $html, '' );
 		$this->assertEquals(
 			$html,
-			'<a href="site/url" class="navbar-brand" title="title" rel="home"><span>Brand</span></a>',
+			'<a href="site/url" class="navbar-brand" title="title" rel="home"><img src="" alt="" /></a>',
 			''
 		);
 	}

@@ -38,7 +38,7 @@ abstract class ContactMethodsBase {
 	/**
 	 * Init the Class
 	 */
-	function __construct() {
+	public function __construct() {
 
 		$this->new_contact_methods = [
 			'avatar'			=> [
@@ -78,13 +78,13 @@ abstract class ContactMethodsBase {
 			'aim',
 		];
 
-		$this->set_author();
+		$this->setAuthor();
 	}
 
 	/**
 	 * Set author info from database
 	 */
-	public function set_author() {
+	public function setAuthor() {
 
 		global $author_name;
 
@@ -100,10 +100,10 @@ abstract class ContactMethodsBase {
 	/**
 	 * @return \WP_User
 	 */
-	public function get_author() {
+	public function getAuthor() {
 
 		if ( ! $this->author ) {
-			$this->set_author();
+			$this->setAuthor();
 		}
 
 		return $this->author;

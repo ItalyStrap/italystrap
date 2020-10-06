@@ -32,26 +32,26 @@ class TinyMCE implements SubscriberInterface {
 	 */
 	public function getSubscribedEvents(): array {
 		/* Register TinyMCE External Plugins */
-		// add_filter( 'mce_external_plugins', array( $this, 'register_mce_external_plugins' ) );
+		// add_filter( 'mce_external_plugins', array( $this, 'registerMceExternalPlugins' ) );
 		/* Add CSS to TinyMCE Editor */
 		// add_filter( 'mce_css', array( $this, 'editor_css' ) );
 		return [
 			// 'hook_name'							=> 'method_name',
-			'mce_external_plugins'	=> 'register_mce_external_plugins',
-			'mce_css'				=> 'editor_css',
-			'mce_buttons_2'			=> 'reveal_hidden_tinymce_buttons',
+			'mce_external_plugins'	=> 'registerMceExternalPlugins',
+			'mce_css'				=> 'editorCss',
+			'mce_buttons_2'			=> 'revealHiddenTinymceButtons',
 			'mce_buttons'			=> [
-				'function_to_add'		=> 'break_page_button',
+				'function_to_add'		=> 'breakPageButton',
 				'priority'				=> 1,
 				'accepted_args'			=> 2,
 			],
 			'mce_buttons_4'			=> [
-				'function_to_add'		=> 'mce_add_buttons_4_columns',
+				'function_to_add'		=> 'mceAddButtons4Columns',
 				'priority'				=> 10,
 				'accepted_args'			=> 2,
 			],
 			'tiny_mce_before_init'	=> [
-				'function_to_add'		=> 'add_new_format_to_mce',
+				'function_to_add'		=> 'addNewFormatToMce',
 				'priority'				=> 999,
 				'accepted_args'			=> 2,
 			],
@@ -71,7 +71,7 @@ class TinyMCE implements SubscriberInterface {
 	 * Register MCE External Plugins
 	 * @since 0.1.0
 	 */
-	public function register_mce_external_plugins( array $plugins ) {
+	public function registerMceExternalPlugins( array $plugins ) {
 
 		/* Columns */
 		// if( true ){
@@ -85,7 +85,7 @@ class TinyMCE implements SubscriberInterface {
 	 * MCE/Editor CSS
 	 * @since 0.1.0
 	 */
-	public function editor_css( $mce_css ) {
+	public function editorCss( $mce_css ) {
 
 		/* Only if buttons, boxes, or columns active */
 		// if( fx_editor_is_custom_feature_active() && apply_filters( 'fx_editor_load_editor_css', true ) ){
@@ -102,7 +102,7 @@ class TinyMCE implements SubscriberInterface {
 	 * Add button to 4th row in editor: Columns
 	 * @since 0.1.0
 	 */
-	public function mce_add_buttons_4_columns( array $buttons, $editor_id ) {
+	public function mceAddButtons4Columns( array $buttons, $editor_id ) {
 
 		/* Make editor id filterable. Set to false to enable anywhere. */
 		// $columns_editor_ids = apply_filters( 'fx_editor_columns_editor_ids', false );
@@ -137,7 +137,7 @@ class TinyMCE implements SubscriberInterface {
 	 *
 	 * @return array          Array with new buttons.
 	 */
-	public function reveal_hidden_tinymce_buttons( array $buttons ) {
+	public function revealHiddenTinymceButtons( array $buttons ) {
 
 		/**
 		 * Add style selector to the beginning of the toolbar
@@ -163,7 +163,7 @@ class TinyMCE implements SubscriberInterface {
 	 *
 	 * @return array             Array with new buttons.
 	 */
-	public function break_page_button( array $buttons, $editor_id ) {
+	public function breakPageButton( array $buttons, $editor_id ) {
 
 		// $buttons[] = 'fontselect';
 
@@ -200,7 +200,7 @@ class TinyMCE implements SubscriberInterface {
 	 *
 	 * @return array             The new array.
 	 */
-	public function add_new_format_to_mce( array $config, $editor_id ) {
+	public function addNewFormatToMce( array $config, $editor_id ) {
 
 		$config['style_formats_merge'] = true;
 

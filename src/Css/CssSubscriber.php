@@ -28,7 +28,7 @@ class CssSubscriber implements SubscriberInterface {
 				'priority'			=> 11,
 			),
 			'italystrap_custom_inline_style'	=> array(
-				'function_to_add'	=> 'maybe_render',
+				'function_to_add'	=> 'maybeRender',
 				'priority'			=> PHP_INT_MAX,
 			),
 		);
@@ -63,7 +63,7 @@ class CssSubscriber implements SubscriberInterface {
 	 * @param ConfigInterface $config
 	 * @param InlineGenerator $css
 	 */
-	function __construct( ConfigInterface $config, InlineGenerator $css ) {
+	public function __construct( ConfigInterface $config, InlineGenerator $css ) {
 		$this->config = $config;
 		$this->css = $css;
 	}
@@ -100,15 +100,25 @@ class CssSubscriber implements SubscriberInterface {
 		// $custom_css = isset( $this->theme_mods['custom_css'] ) ? $this->theme_mods['custom_css'] : '' ;
 		$custom_css = '';
 
-		$this->style .= $this->css->generate_css( '#site-title a', 'color', 'header_textcolor', '#' );
+		$this->style .= $this->css->generateCss(
+			'#site-title a',
+			'color',
+			'header_textcolor',
+			'#'
+		);
 
-		$this->style .= $this->css->generate_css( 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading', 'color', 'hx_textcolor' );
+		$this->style .= $this->css->generateCss(
+			'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading',
+			'color',
+			'hx_textcolor'
+		);
 		/**
 		 * $css .= $this->css->generate_css('body.custom-background', 'background-color', 'background_color', '#');
 		 */
-		$this->style .= $this->css->generate_css( 'a', 'color', 'link_textcolor' );
+		$this->style .= $this->css->generateCss( 'a', 'color', 'link_textcolor' );
 		/**
-		 * $css .= $this->css->generate_css('.widget-title,.footer-widget-title', 'border-bottom-color', 'link_textcolor');
+		 * $css .= $this->css->generate_css(
+		 * '.widget-title,.footer-widget-title', 'border-bottom-color', 'link_textcolor');
 		 */
 
 		$this->style .= $custom_css;
@@ -125,7 +135,7 @@ class CssSubscriber implements SubscriberInterface {
 
 		 printf(
 			 '<style type="text/css">%s</style>',
-			 wp_strip_all_tags( $this->minify_output( $this->style ) )
+			 wp_strip_all_tags( $this->minifyOutput( $this->style ) )
 		 );
 	}
 
@@ -133,7 +143,7 @@ class CssSubscriber implements SubscriberInterface {
 	 * @param string $css
 	 * @return string
 	 */
-	public function maybe_render( string $css ) : string {
+	public function maybeRender( string $css ) : string {
 		return $this->style . $css;
 	}
 
@@ -144,7 +154,7 @@ class CssSubscriber implements SubscriberInterface {
 	 *
 	 * @return string      The CSS minified
 	 */
-	public function minify_output( string $css ) : string {
+	public function minifyOutput( string $css ) : string {
 
 		return $css = str_replace(
 			[

@@ -49,7 +49,7 @@ return [
 		 * Remove the 'hentry' css class to prevents error in search console
 		 */
 		foreach ( $classes as $key => $class ) {
-			if( 'hentry' === $class ) {
+			if ( 'hentry' === $class ) {
 				unset( $classes[ $key ] );
 			}
 		}
@@ -86,7 +86,8 @@ return [
 	 * Attributes for the icon bar.
 	 */
 	'italystrap_icon_bar'			=> function ( string $icon ) : string {
-		$icon = '<span class="icon-bar">&nbsp</span><span class="icon-bar">&nbsp</span><span class="icon-bar">&nbsp</span>';
+		$icon =
+			'<span class="icon-bar">&nbsp</span><span class="icon-bar">&nbsp</span><span class="icon-bar">&nbsp</span>';
 		return $icon;
 	},
 

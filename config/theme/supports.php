@@ -23,7 +23,8 @@ $font_size_base = 14;
  *
  * @link http://codex.wordpress.org/Function_Reference/add_theme_support
  */
-return \apply_filters( 'italystrap_theme_supports',
+return \apply_filters(
+	'italystrap_theme_supports',
 	[
 		/**
 		 * Add default posts and comments RSS feed links to head.
@@ -102,7 +103,7 @@ return \apply_filters( 'italystrap_theme_supports',
 			'flex-height' => true,
 			'flex-width'  => true,
 			'header-text' => ['site-title', 'site-description'],
-			'unlink-homepage-logo' => true,
+	//			'unlink-homepage-logo' => true,
 		],
 
 		/**
@@ -130,13 +131,6 @@ return \apply_filters( 'italystrap_theme_supports',
 		 * @see https://make.wordpress.org/core/2016/03/22/implementing-selective-refresh-support-for-widgets/
 		 */
 		'customize-selective-refresh-widgets',
-
-		/**
-		 * Add support to WooCommerce
-		 *
-		 * @since 4.0.0
-		 */
-//			'woocommerce',
 
 		/**
 		 * Add support for the builtin breadcrumbs
@@ -249,7 +243,8 @@ return \apply_filters( 'italystrap_theme_supports',
 				'info-menu' => [
 					'name' => __( 'Info Menu', 'italystrap' ),
 					'items' => [
-						'link_home', // Note that the core "home" page is actually a link in case a static front page is not used.
+						'link_home', // Note that the core "home" page is actually a
+									//link in case a static front page is not used.
 						'page_about',
 						'page_blog',
 						'page_contact',
@@ -273,7 +268,8 @@ return \apply_filters( 'italystrap_theme_supports',
 				'main-menu' => [
 					'name' => __( 'Main Menu', 'italystrap' ),
 					'items' => [
-						'link_home', // Note that the core "home" page is actually a link in case a static front page is not used.
+						'link_home', // Note that the core "home" page is actually a
+									//link in case a static front page is not used.
 						'page_about',
 						'page_blog',
 						'page_contact',
@@ -300,106 +296,112 @@ return \apply_filters( 'italystrap_theme_supports',
 		/**
 		 * @TODO Sistemare i colori di default per l'editor
 		 */
-//		'editor-color-palette'	=> [
-//			[
-//				'name'  => __( 'Primary', 'italystrap' ),
-//				'slug'  => 'primary',
-//				//				'color' => twentynineteen_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 33 ),
-//				'color' => '#337ab7',
-//			],
-//			[
-//				'name'  => __( 'Success', 'italystrap' ),
-//				'slug'  => 'success',
-//				//				'color' => twentynineteen_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 23 ),
-//				'color' => '#5cb85c',
-//			],
-//			[
-//				'name'  => __( 'Info', 'italystrap' ),
-//				'slug'  => 'info',
-//				'color' => '#5bc0de',
-//			],
-//			[
-//				'name'  => __( 'Warning', 'italystrap' ),
-//				'slug'  => 'warning',
-//				'color' => '#f0ad4e',
-//			],
-//			[
-//				'name'  => __( 'Danger', 'italystrap' ),
-//				'slug'  => 'danger',
-//				'color' => '#d9534f',
-//			],
-//			[
-//				'name'  => __( 'Dark Gray', 'italystrap' ),
-//				'slug'  => 'dark-gray',
-//				'color' => '#333',
-//			],
-//			[
-//				'name'  => __( 'Light Gray', 'italystrap' ),
-//				'slug'  => 'light-gray',
-//				'color' => '#777',
-//			],
-//			[
-//				'name'  => __( 'White', 'italystrap' ),
-//				'slug'  => 'white',
-//				'color' => '#FFF',
-//			],
-//		],
+	//			'editor-color-palette'	=> [
+	//				[
+	//					'name'  => __( 'Primary', 'italystrap' ),
+	//					'slug'  => 'primary',
+	////					'color' => twentynineteen_hsl_hex(
+	////						'default' === get_theme_mod( 'primary_color' )
+	////							? 199
+	////							: get_theme_mod( 'primary_color_hue', 199 ), 100, 33 ),
+	//					'color' => '#337ab7',
+	//				],
+	//				[
+	//					'name'  => __( 'Success', 'italystrap' ),
+	//					'slug'  => 'success',
+	////					'color' => twentynineteen_hsl_hex(
+	////						'default' === get_theme_mod( 'primary_color' )
+	////							? 199
+	////							: get_theme_mod( 'primary_color_hue', 199 ), 100, 23 ),
+	//					'color' => '#5cb85c',
+	//				],
+	//				[
+	//					'name'  => __( 'Info', 'italystrap' ),
+	//					'slug'  => 'info',
+	//					'color' => '#5bc0de',
+	//				],
+	//				[
+	//					'name'  => __( 'Warning', 'italystrap' ),
+	//					'slug'  => 'warning',
+	//					'color' => '#f0ad4e',
+	//				],
+	//				[
+	//					'name'  => __( 'Danger', 'italystrap' ),
+	//					'slug'  => 'danger',
+	//					'color' => '#d9534f',
+	//				],
+	//				[
+	//					'name'  => __( 'Dark Gray', 'italystrap' ),
+	//					'slug'  => 'dark-gray',
+	//					'color' => '#333',
+	//				],
+	//				[
+	//					'name'  => __( 'Light Gray', 'italystrap' ),
+	//					'slug'  => 'light-gray',
+	//					'color' => '#777',
+	//				],
+	//				[
+	//					'name'  => __( 'White', 'italystrap' ),
+	//					'slug'  => 'white',
+	//					'color' => '#FFF',
+	//				],
+	//			],
 
 		/**
 		 * You can disable the option to allow customize the font style in the editor
 		 */
 		//		'disable-custom-font-sizes',
 
-//		'editor-font-sizes'	=> [
-//			[
-//				'name'      => __( 'Extra Small', 'italystrap' ),
-//				'shortName' => __( 'XS', 'italystrap' ),
-//				'size'      => ceil( $font_size_base * 0.75 ),
-//				'slug'      => 'extra-small',
-//			],
-//			[
-//				'name'      => __( 'Small', 'italystrap' ),
-//				'shortName' => __( 'S', 'italystrap' ),
-//				'size'      => ceil( $font_size_base * 0.85 ),
-//				'slug'      => 'small',
-//			],
-//			[
-//				'name'      => __( 'Normal', 'italystrap' ),
-//				'shortName' => __( 'M', 'italystrap' ),
-//				'size'      => $font_size_base,
-//				'slug'      => 'normal',
-//			],
-//			[
-//				'name'      => __( 'Large', 'italystrap' ),
-//				'shortName' => __( 'L', 'italystrap' ),
-//				'size'      => ceil( $font_size_base * 1.25 ),
-//				//				'unit'		=> 'rem',
-//				'slug'      => 'large',
-//			],
-//			[
-//				'name'      => __( 'Huge', 'italystrap' ),
-//				'shortName' => __( 'XL', 'italystrap' ),
-//				'size'      => ceil( $font_size_base * 1.7 ),
-//				'slug'      => 'huge',
-//			],
-//			[
-//				'name'      => __( 'Extra Huge', 'italystrap' ),
-//				'shortName' => __( 'XXL', 'italystrap' ),
-//				'size'      => ceil( $font_size_base * 2.15 ),
-//				'slug'      => 'extra-huge',
-//			],
-//			[
-//				'name'      => __( 'H1', 'italystrap' ),
-//				'shortName' => __( 'H1', 'italystrap' ),
-//				'size'      => ceil( $font_size_base * 2.6 ),
-//				'slug'      => 'h1',
-//			],
-//		],
+	//		'editor-font-sizes'	=> [
+	//			[
+	//				'name'      => __( 'Extra Small', 'italystrap' ),
+	//				'shortName' => __( 'XS', 'italystrap' ),
+	//				'size'      => ceil( $font_size_base * 0.75 ),
+	//				'slug'      => 'extra-small',
+	//			],
+	//			[
+	//				'name'      => __( 'Small', 'italystrap' ),
+	//				'shortName' => __( 'S', 'italystrap' ),
+	//				'size'      => ceil( $font_size_base * 0.85 ),
+	//				'slug'      => 'small',
+	//			],
+	//			[
+	//				'name'      => __( 'Normal', 'italystrap' ),
+	//				'shortName' => __( 'M', 'italystrap' ),
+	//				'size'      => $font_size_base,
+	//				'slug'      => 'normal',
+	//			],
+	//			[
+	//				'name'      => __( 'Large', 'italystrap' ),
+	//				'shortName' => __( 'L', 'italystrap' ),
+	//				'size'      => ceil( $font_size_base * 1.25 ),
+	//				//				'unit'		=> 'rem',
+	//				'slug'      => 'large',
+	//			],
+	//			[
+	//				'name'      => __( 'Huge', 'italystrap' ),
+	//				'shortName' => __( 'XL', 'italystrap' ),
+	//				'size'      => ceil( $font_size_base * 1.7 ),
+	//				'slug'      => 'huge',
+	//			],
+	//			[
+	//				'name'      => __( 'Extra Huge', 'italystrap' ),
+	//				'shortName' => __( 'XXL', 'italystrap' ),
+	//				'size'      => ceil( $font_size_base * 2.15 ),
+	//				'slug'      => 'extra-huge',
+	//			],
+	//			[
+	//				'name'      => __( 'H1', 'italystrap' ),
+	//				'shortName' => __( 'H1', 'italystrap' ),
+	//				'size'      => ceil( $font_size_base * 2.6 ),
+	//				'slug'      => 'h1',
+	//			],
+	//		],
 
 		/**
 		 * If the theme support align-wide then activate it
 		 */
-//		'align-wide',
+	//		'align-wide',
 
 		/**
 		 * Support for Gutenberg editor style
@@ -439,5 +441,5 @@ return \apply_filters( 'italystrap_theme_supports',
 		 * Only with Gutenberg plugin active
 		 */
 		'experimental-custom-spacing',
-	]
+	 ]
 );

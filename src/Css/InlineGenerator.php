@@ -8,7 +8,8 @@ use ItalyStrap\Config\ConfigInterface;
 /**
  * Class Inline_Generator
  *
- * @todo maybe it could be an idea to integrate with some fluent methods like this one https://github.com/izica/php-styles
+ * @todo maybe it could be an idea to integrate with
+ * 		some fluent methods like this one https://github.com/izica/php-styles
  *
  * @package ItalyStrap\Css
  */
@@ -36,7 +37,7 @@ class InlineGenerator {
 	 * @return string           Returns a single line of CSS with selectors,
 	 *                          property and value.
 	 */
-	public function generate_css( $selector, $property, $mod_name, $prefix = '', $postfix = '' ) : string {
+	public function generateCss( $selector, $property, $mod_name, $prefix = '', $postfix = '' ) : string {
 
 		/**
 		 * Get theme mod by mod_name

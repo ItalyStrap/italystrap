@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
+
 namespace ItalyStrap;
+
 return \apply_filters(
 	'italystrap_post_types_supports',
 	[

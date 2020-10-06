@@ -16,7 +16,7 @@ class EditPostLink {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents() {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
@@ -30,7 +30,7 @@ class EditPostLink {
 			// 	'priority'			=> 20,
 			// ),
 			// 'the_content'	=> array(
-			// 	'function_to_add'	=> 'append_to_content',
+			// 	'function_to_add'	=> 'appendToContent',
 			// 	'priority'			=> 99999999,
 			// ),
 		);
@@ -45,7 +45,7 @@ class EditPostLink {
 			return;
 		}
 		d();
-		echo $this->append_to_content();
+		echo $this->appendToContent();
 		return;
 
 		/**
@@ -89,7 +89,7 @@ class EditPostLink {
 	 *
 	 * @return string          The post content with the links.
 	 */
-	public function append_to_content( $content = '' ) {
+	public function appendToContent( $content = '' ) {
 
 		if ( is_archive() ) {
 			return $content;

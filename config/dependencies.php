@@ -13,7 +13,9 @@ use ItalyStrap\Asset\Loader\GeneratorLoader;
 use ItalyStrap\Asset\Script;
 use ItalyStrap\Asset\Style;
 use ItalyStrap\Builders\BuilderInterface;
-use ItalyStrap\Config\{Config, ConfigFactory, ConfigInterface};
+use ItalyStrap\Config\Config;
+use ItalyStrap\Config\ConfigFactory;
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
@@ -31,11 +33,16 @@ use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Asset\AssetsSubscriber;
-use ItalyStrap\Theme\{NavMenusSubscriber, SidebarsSubscriber, SupportSubscriber, TextDomainSubscriber, ThumbnailsSubscriber, PostTypeSupportSubscriber};
+use ItalyStrap\Theme\NavMenusSubscriber;
+use ItalyStrap\Theme\SidebarsSubscriber;
+use ItalyStrap\Theme\SupportSubscriber;
+use ItalyStrap\Theme\TextDomainSubscriber;
+use ItalyStrap\Theme\ThumbnailsSubscriber;
+use ItalyStrap\Theme\PostTypeSupportSubscriber;
 use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\View\ViewInterface;
 use Walker_Nav_Menu;
-use function ItalyStrap\Config\{get_config_file_content};
+use function ItalyStrap\Config\get_config_file_content;
 use function ItalyStrap\Factory\get_config;
 
 return [
@@ -171,7 +178,7 @@ return [
 			global $wp_query;
 			return $wp_query;
 		},
-		':query'			=> function (): \WP_Query  {
+		':query'			=> function (): \WP_Query {
 			global $wp_query;
 			return $wp_query;
 		},
@@ -237,12 +244,14 @@ return [
 			/** @var ConfigBuilder $config_builder */
 			$config_builder = $injector->make( ConfigBuilder::class );
 
-			$config_builder->withType(Style::EXTENSION,
+			$config_builder->withType(
+				Style::EXTENSION,
 				\ItalyStrap\Core\is_debug() ? DebugStyle::class : Style::class
 			);
 			$config_builder->withFinderForType( Style::EXTENSION, $css_finder);
 
-			$config_builder->withType(Script::EXTENSION,
+			$config_builder->withType(
+				Script::EXTENSION,
 				\ItalyStrap\Core\is_debug() ? DebugScript::class : Script::class
 			);
 			$config_builder->withFinderForType( Script::EXTENSION, $js_finder);
@@ -289,11 +298,11 @@ return [
 //			}
 		},
 
-		Builders\Builder::class	=> function( Builders\Builder $builder, Injector $injector ) {
-			$builder->set_injector( $injector );
+		Builders\Builder::class	=> function ( Builders\Builder $builder, Injector $injector ) {
+			$builder->setInjector( $injector );
 		},
 
-		Finder::class	=> function( FinderInterface $finder, Injector $injector ) {
+		Finder::class	=> function ( FinderInterface $finder, Injector $injector ) {
 			$config = $injector->make(ConfigInterface::class );
 
 			$dirs = [

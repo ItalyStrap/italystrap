@@ -60,7 +60,8 @@ add_action( 'wp', function () {
 	/**
 	 * If we are in singular page then load the template settings from post_meta
 	 * If we are not in singular pages load the global post_content_template
-	 * @TODO Forse qui è meglio settare i valori con l'hook "italystrap" nel file di template per avere la possibilità di poter cambiare il valore in esecuzione
+	 * @TODO Forse qui è meglio settare i valori con l'hook "italystrap" nel file
+	 * 		di template per avere la possibilità di poter cambiare il valore in esecuzione
 	 */
 	if ( is_singular() ) {
 		$config->add(
@@ -70,7 +71,8 @@ add_action( 'wp', function () {
 	} else {
 		$config->add(
 			'post_content_template',
-			explode( ',',
+			explode(
+				',',
 				is_array( $config->get( 'post_content_template' ) )
 				? $config->get( 'post_content_template' )[0]
 				: $config->get( 'post_content_template' )
@@ -104,7 +106,7 @@ add_action( 'wp', function () {
  * @see \ItalyStrap\Builders\ParseAttr
  */
 //add_action('after_setup_theme', function (){
-add_action('widgets_init', function (){
+add_action('widgets_init', function () {
 
 //	if ( \did_action('widgets_init') ) {
 //		throw new \RuntimeException('This ' . __FUNCTION__ . ' must run before register widget');
@@ -117,17 +119,14 @@ add_action('widgets_init', function (){
 		$config = ConfigFactory::make( (array) array_replace_recursive( $schema, $html_attrs ) );
 
 		$parser =  injector()->make(
-			ParseAttr::class
-			,
+			ParseAttr::class,
 			[ ':config' => $config ]
 		);
 
 		$parser->apply();
-
 	} catch ( InjectorException $exception ) {
 		echo $exception->getMessage();
 	}
-
 }, -10);
 
 return $subscribers;

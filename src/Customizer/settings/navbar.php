@@ -20,7 +20,9 @@ $manager->add_section(
 		'title'			=> __( 'Navbar Settings', 'italystrap' ), // Visible title of section.
 		'panel'			=> $this->panel,
 		'capability'	=> $this->capability,
+		// phpcs:disable
 		'description'	=> __( 'Allows you to customize settings for the main navbar. Remember that this uses the Twitter Bootstrap Navbar style, if you want more info read the <a href="http://getbootstrap.com/components/#navbar" target="_blank">documentation</a>.', 'italystrap' ),
+		// phpcs:enabl
 		'description_hidden'	=> true,
 	]
 );
@@ -72,7 +74,9 @@ $manager->add_control(
 	[
 		'settings'	=> 'navbar[position]',
 		'label'			=> __( 'Navbar vertical position', 'italystrap' ),
+		// phpcs:disable
 		'description'	=> __( 'Select the position of the navbar. By default is set to "relative top", you can chose "fixed top", "fixed bottom" or "static top", with the "static top" you also have to set the navbar "full width" for fixing the correct padding.', 'italystrap' ),
+		// phpcs:enable
 		'section'		=> 'italystrap_navbar_options',
 		'type'			=> 'radio',
 		'choices'		=> [
@@ -102,7 +106,9 @@ $manager->add_control(
 	[
 		'settings'	=> 'navbar[nav_width]',
 		'label'			=> __( 'Navbar width', 'italystrap' ),
+		// phpcs:disable
 		'description'	=> __( 'Select the nav_width of navbar, this enlarges the navbar to the windows size (use it also width Static Top option).', 'italystrap' ),
+		// phpcs:enable
 		'section'		=> 'italystrap_navbar_options',
 		'type'			=> 'radio',
 		'choices'		=> [
@@ -130,7 +136,9 @@ $manager->add_control(
 	[
 		'settings'	=> 'navbar[menus_width]',
 		'label'			=> __( 'Navbar menus width', 'italystrap' ),
+		// phpcs:disable
 		'description'	=> __( 'Select the menus_width, this is the width of the container of the 2 menu, main-menu and secondary-menu, with the full width the menus will enlarge to the widnows size, with the "width of the content" they will sized like the size of the content. If you have select the "default boxed width" leave the default value.', 'italystrap' ),
+		// phpcs:enable
 		'section'		=> 'italystrap_navbar_options',
 		'type'			=> 'radio',
 		'choices'		=> [

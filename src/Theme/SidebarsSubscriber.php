@@ -94,9 +94,17 @@ class SidebarsSubscriber implements Registrable, SubscriberInterface {
 			self::ID => '',
 			self::DESCRIPTION => '',
 			self::CLASS_NAME => '',
-			self::BEFORE_WIDGET => $this->tag->open( $widget_context, 'div', ['id' => '%1$s', 'class' => 'widget %2$s'] ),
+			self::BEFORE_WIDGET => $this->tag->open(
+				$widget_context,
+				'div',
+				['id' => '%1$s', 'class' => 'widget %2$s']
+			),
 			self::AFTER_WIDGET => $this->tag->close( $widget_context ),
-			self::BEFORE_TITLE => $this->tag->open( $title_context, 'h3', ['class' => 'widgettitle widget-title'] ),
+			self::BEFORE_TITLE => $this->tag->open(
+				$title_context,
+				'h3',
+				['class' => 'widgettitle widget-title']
+			),
 			self::AFTER_TITLE => $this->tag->close( $title_context ),
 		];
 	}

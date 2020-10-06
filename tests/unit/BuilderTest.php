@@ -97,7 +97,7 @@ class BuilderTest extends \Codeception\Test\Unit {
 		]));
 
 		$sut = $this->getInstance();
-		$sut->set_injector( $this->getInjector() );
+		$sut->setInjector( $this->getInjector() );
 
 		$this->expectException( \RuntimeException::class );
 		$sut->build();

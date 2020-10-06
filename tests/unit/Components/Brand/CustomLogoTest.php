@@ -146,7 +146,7 @@ class CustomLogoTest extends Unit {
 				$method_name = Str::camel($args[0]);
 				if ( ! \method_exists( $unit, $method_name ) ) {
 					$unit->fail(\sprintf(
-						'Method "%s" does not exists',
+						'Method "%s" does not exist',
 						$method_name
 					));
 				}

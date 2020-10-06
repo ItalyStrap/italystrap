@@ -50,17 +50,17 @@ class Pagination {
 	 *
 	 * @return array        Return the paginate link
 	 */
-	private function get_paginate_link() {
+	private function getPaginateLink() {
 
-		if ( $this->get_max_num_pages() <= 1 ) {
+		if ( $this->getMaxNumPages() <= 1 ) {
 			return [];
 		}
 
 		$args = array(
-			'base'					=> $this->get_pagenum_link(),
+			'base'					=> $this->getPagenumLink(),
 			'format'				=> '?paged=%#%',
-			'current'				=> $this->get_current_page(),
-			'total'					=> $this->get_max_num_pages(),
+			'current'				=> $this->getCurrentPage(),
+			'total'					=> $this->getMaxNumPages(),
 			'type'					=> 'array',
 			'before_page_number'	=> $this->config->get( 'before_page_number' ),
 //			'prev_text'         	=> $this->config->get( 'prev_text', null ),
@@ -81,7 +81,7 @@ class Pagination {
 	 */
 	public function render() {
 
-		$paginate = $this->get_paginate_link();
+		$paginate = $this->getPaginateLink();
 
 		if ( empty( $paginate ) ) {
 			return '';
@@ -136,14 +136,14 @@ class Pagination {
 	 *
 	 * @return int
 	 */
-	private function get_max_num_pages() {
+	private function getMaxNumPages() {
 		return (int) $this->query->max_num_pages;
 	}
 
 	/**
 	 * @return int
 	 */
-	private function get_current_page() {
+	private function getCurrentPage() {
 
 		static $current = null;
 
@@ -159,7 +159,7 @@ class Pagination {
 	 *
 	 * @return string
 	 */
-	private function get_pagenum_link() {
+	private function getPagenumLink() {
 
 		return str_replace(
 			$this->big,

@@ -23,9 +23,9 @@ class ContactMethodList extends ContactMethodsBase {
 	 *
 	 * @return string        [description]
 	 */
-	private function get_list() {
+	private function getList() {
 
-		$this->set_author();
+		$this->setAuthor();
 
 		$list = '';
 
@@ -33,6 +33,10 @@ class ContactMethodList extends ContactMethodsBase {
 			'avatar',
 		];
 
+		$li =
+			<<<'LI'
+<li><a href="%1$s" title="%3$s" rel="me" class="sprite32 %2$s32"><span class="sr-only">%3$s</span></a></li>
+LI;
 		foreach ( $this->new_contact_methods as $key => $value ) {
 //			if ( array_key_exists( $key, $list ) ) {
 //				continue;
@@ -41,7 +45,7 @@ class ContactMethodList extends ContactMethodsBase {
 			d($key, $this->author->$key);
 			if ( ! empty( $this->author->$key ) ) {
 				$list .= sprintf(
-					'<li><a href="%1$s" title="%3$s" rel="me" class="sprite32 %2$s32"><span class="sr-only">%3$s</span></a></li>',
+					$li,
 					esc_url( $this->author->get( $key ), ( isset( $value['protocol'] ) ? $value['protocol'] : null ) ),
 					$value['icon'],
 					$value['label']
@@ -57,7 +61,7 @@ class ContactMethodList extends ContactMethodsBase {
 	 */
 	public function render() {
 
-		$get_list = $this->get_list();
+		$get_list = $this->getList();
 
 		if ( empty( $get_list ) ) {
 			return '';
@@ -65,7 +69,7 @@ class ContactMethodList extends ContactMethodsBase {
 
 		return sprintf(
 			'<ul class="list-inline">%s</ul>',
-			$this->get_list()
+			$this->getList()
 		);
 	}
 }

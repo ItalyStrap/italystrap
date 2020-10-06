@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 /**
  * Navigation Menu API: Walker_Nav_Menu_Edit class.
  *

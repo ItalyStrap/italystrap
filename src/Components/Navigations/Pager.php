@@ -30,7 +30,7 @@ class Pager {
 	 *
 	 * @return array        Return the paginate link
 	 */
-	private function get_paginate_link() {
+	private function getPaginateLink() {
 
 		/**
 		 * Arguments for previous_post_link() and next_post_link()

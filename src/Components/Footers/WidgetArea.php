@@ -14,7 +14,7 @@ class WidgetArea {
 	 * Init the class
 	 * @param ViewInterface $view
 	 */
-	function __construct( ViewInterface $view ) {
+	public function __construct( ViewInterface $view ) {
 		$this->view = $view;
 	}
 
@@ -34,7 +34,7 @@ class WidgetArea {
 			]
 		);
 
-		$this->data['col'] = $this->set_col();
+		$this->data['col'] = $this->setCol();
 
 		echo $this->view->render( $view, $this->data );
 	}
@@ -44,7 +44,7 @@ class WidgetArea {
 	 *
 	 * @see footer.php The file to display footer
 	 */
-	private function set_col(): int {
+	private function setCol(): int {
 
 		global $sidebars_widgets, $wp_registered_widgets, $wp_registered_widget_controls;
 

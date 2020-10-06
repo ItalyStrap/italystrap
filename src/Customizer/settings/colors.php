@@ -23,7 +23,8 @@ $manager->add_setting(
 		'default'			=> $this->theme_mods['link_textcolor'], // Default setting/value to save.
 		'type'				=> 'theme_mod', // Is this an 'option' or a 'theme_mod'?
 		'capability'		=> $this->capability, // Optional. Special permissions for accessing this setting.
-		'transport'			=> 'postMessage', // What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+		// What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+		'transport'			=> 'postMessage',
 		'sanitize_callback'	=> 'sanitize_hex_color',
 		)
 );
@@ -37,7 +38,8 @@ $manager->add_control(
 		'italystrap_link_textcolor', // Set a unique ID for the control.
 		array(
 			'label'		=> __( 'Link Color', 'italystrap' ), // Admin-visible name of the control.
-			'section'	=> 'colors', // ID of the section this control should render in (can be one of yours, or a WordPress default section).
+			// ID of the section this control should render in (can be one of yours, or a WordPress default section).
+			'section'	=> 'colors',
 			'settings'	=> 'link_textcolor', // Which setting to load and manipulate (serialized is okay).
 			'priority'	=> 10, // Determines the order this control appears in for the specified section.
 		)

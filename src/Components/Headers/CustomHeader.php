@@ -37,7 +37,7 @@ class CustomHeader {
 	 */
 	private $attributes;
 
-	function __construct( ConfigInterface $config, Attributes $attributes ) {
+	public function __construct( ConfigInterface $config, Attributes $attributes ) {
 		$this->config = $config;
 		$this->attributes = $attributes;
 	}
@@ -45,7 +45,7 @@ class CustomHeader {
 	/**
 	 * Init property
 	 */
-	private function _init_property() {
+	private function initProperty() {
 
 		/**
 		 * ID of the custom header image for post_type
@@ -73,7 +73,7 @@ class CustomHeader {
 	 *
 	 * @return string       HTML img element or empty string on failure.
 	 */
-	private function get_attachment_image( $id, $size = 'full', array $attr = [] ) {
+	private function getAttachmentImage( $id, $size = 'full', array $attr = [] ) {
 	// full-width
 		$attr = array(
 			'class'		=> "center-block img-responsive img-fluid attachment-$id attachment-header size-header",
@@ -93,7 +93,7 @@ class CustomHeader {
 	 *
 	 * @return string      The image HTML.
 	 */
-	private function get_custom_header_image( \stdClass $image_obj, $size ) {
+	private function getCustomHeaderImage( \stdClass $image_obj, $size ) {
 
 		if ( ! isset( $image_obj->attachment_id ) ) {
 			return sprintf(
@@ -109,7 +109,7 @@ class CustomHeader {
 
 		$id = $image_obj->attachment_id;
 
-		$output = $this->get_attachment_image( $id );
+		$output = $this->getAttachmentImage( $id );
 
 		return apply_filters( 'italystrap_custom_header_image', $output );
 	}
@@ -117,7 +117,7 @@ class CustomHeader {
 	/**
 	 * The Custom Header
 	 */
-	private function custom_header() {
+	private function customHeader() {
 
 		$this->size = array(
 			'container'			=> 'full-width',
@@ -128,13 +128,13 @@ class CustomHeader {
 		$size = $this->size[ $this->config->get('custom_header')['container_width'] ];
 
 		if ( ! empty( $this->post_meta_id ) ) {
-			return $this->get_attachment_image( $this->post_meta_id, $size );
+			return $this->getAttachmentImage( $this->post_meta_id, $size );
 		}
 
 		/**
 		 * @see the_custom_header_markup()
 		 */
-		return $this->get_custom_header_image( $this->custom_header, $size );
+		return $this->getCustomHeaderImage( $this->custom_header, $size );
 	}
 
 	/**
@@ -142,9 +142,9 @@ class CustomHeader {
 	 */
 	public function getData() : array {
 
-		$this->_init_property();
+		$this->initProperty();
 
-		$this->data[ static::OUTPUT ] = $this->custom_header();
+		$this->data[ static::OUTPUT ] = $this->customHeader();
 //		$this->data[ self::class ] = $this;
 
 		return $this->data;

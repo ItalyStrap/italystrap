@@ -42,39 +42,6 @@ class Brand {
 	}
 
 	/**
-	 * Get the HTML for description
-	 *
-	 * @param  array $attr The navbar brand attributes.
-	 *
-	 * @return string       Return the HTML for description
-	 */
-	private function navbarBrand( array $attr = array() ) {
-
-		if ( 'none' === $this->config[ 'display_navbar_brand' ] ) {
-			return apply_filters( 'italystrap_navbar_brand_none', '', $this->navbar_id );
-		}
-
-		$default = array(
-			'class' => 'navbar-brand',
-			'href' => esc_url( $this->config->get( 'HOME_URL' ) ),
-			'title' => sprintf(
-				'%s  -  %s',
-				$this->config->get( 'GET_BLOGINFO_NAME' ),
-				$this->config->get( 'GET_BLOGINFO_DESCRIPTION' )
-			),
-			'rel' => 'home',
-			'itemprop' => 'url',
-		);
-
-		return $this->create_element(
-			'navbar_brand',
-			'a',
-			array_merge( $default, $attr ),
-			$this->get_brand()
-		);
-	}
-
-	/**
 	 * Get Brand
 	 *
 	 * @return string Return the HTML for brand name and/or image.
@@ -93,7 +60,10 @@ class Brand {
 		 *
 		 * @var integer
 		 */
-		$attachment_id = (int)apply_filters( 'italystrap_navbar_logo_image_id', $this->config->get( 'navbar_logo_image' ) );
+		$attachment_id = (int)apply_filters(
+			'italystrap_navbar_logo_image_id',
+			$this->config->get( 'navbar_logo_image' )
+		);
 
 		$brand = '';
 
@@ -107,7 +77,12 @@ class Brand {
 			/**
 			 * Size default: navbar-brand-image
 			 */
-			$brand .= wp_get_attachment_image( $attachment_id, $this->config[ 'navbar_logo_image_size' ], false, $attr );
+			$brand .= wp_get_attachment_image(
+				$attachment_id,
+				$this->config[ 'navbar_logo_image_size' ],
+				false,
+				$attr
+			);
 
 			$brand .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
 		} elseif ( $attachment_id && 'display_all' === $this->config[ 'display_navbar_brand' ] ) {
@@ -121,7 +96,12 @@ class Brand {
 			/**
 			 * Size default: navbar-brand-image
 			 */
-			$brand .= wp_get_attachment_image( $attachment_id, $this->config[ 'navbar_logo_image_size' ], false, $attr );
+			$brand .= wp_get_attachment_image(
+				$attachment_id,
+				$this->config[ 'navbar_logo_image_size' ],
+				false,
+				$attr
+			);
 
 			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
 		} else {

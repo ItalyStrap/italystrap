@@ -9,7 +9,7 @@ interface BuilderInterface {
 	 * @param \Auryn\Injector $injector
 	 * @return Builder
 	 */
-	public function set_injector( \Auryn\Injector $injector );
+	public function setInjector( \Auryn\Injector $injector );
 
 	/**
 	 * Build the page

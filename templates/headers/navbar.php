@@ -89,7 +89,7 @@ open_tag_e('nav_container', 'div', [
  *  = BS3 navbar-toggle
  * >= BS4 navbar-toggler
  */
-		?>
+			?>
 			<button
 				class="navbar-toggler navbar-toggle"
 				type="button"
@@ -177,11 +177,10 @@ open_tag_e('nav_container', 'div', [
 				$args = apply_filters( 'italystrap_secondary_nav_menu_args', $args );
 
 				wp_nav_menu( $args );
-
 			endif;
 
 			close_tag_e('collapsable_menu');
-		close_tag_e('nav-inner-container');
-	close_tag_e('navbar_container');
+			close_tag_e('nav-inner-container');
+			close_tag_e('navbar_container');
 
-close_tag_e('nav_container');
+			close_tag_e('nav_container');

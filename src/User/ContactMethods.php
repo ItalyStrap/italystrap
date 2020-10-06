@@ -39,21 +39,21 @@ class ContactMethods extends ContactMethodsBase implements SubscriberInterface {
 //				'function_to_add'	=> 'avatar_url',
 //				'accepted_args'     => 2,
 //			),
-			'kses_allowed_protocols'	=> 'allowed_protocols',
+			'kses_allowed_protocols'	=> 'allowedProtocols',
 		);
 	}
 
 
-	public function avatar_url( $url, $id_or_email ) {
+	public function avatarUrl( $url, $id_or_email ) {
 
-		d($this->get_author()->avatar);
+		d($this->getAuthor()->avatar);
 
 		d($url, $id_or_email);
 		return $url;
 	}
 
 
-	public function allowed_protocols( $protocols) {
+	public function allowedProtocols( $protocols) {
 		$protocols[] = 'skype';
 		return $protocols;
 	}
@@ -64,7 +64,7 @@ class ContactMethods extends ContactMethodsBase implements SubscriberInterface {
 	 * @param  array $contactmethods The array with user contact methods.
 	 * @return array                 Return the new array.
 	 */
-	public function add_contact_methods( array &$contactmethods ) {
+	public function addContactMethods( array &$contactmethods ) {
 
 		foreach ( $this->new_contact_methods as $key => $value ) {
 			if ( ! array_key_exists( $key, $contactmethods ) ) {
@@ -81,7 +81,7 @@ class ContactMethods extends ContactMethodsBase implements SubscriberInterface {
 	 * @param  array $contactmethods The array with user contact methods.
 	 * @return array                 Return the new array.
 	 */
-	public function remove_contact_methods( array &$contactmethods ) {
+	public function removeContactMethods( array &$contactmethods ) {
 
 		foreach ( $this->contact_methods_to_remove as $key => $value ) {
 			if ( isset( $contactmethods[ $key ] ) ) {
@@ -100,8 +100,8 @@ class ContactMethods extends ContactMethodsBase implements SubscriberInterface {
 	 */
 	public function run( array $contactmethods ) {
 
-		$this->add_contact_methods( $contactmethods );
-		$this->remove_contact_methods( $contactmethods );
+		$this->addContactMethods( $contactmethods );
+		$this->removeContactMethods( $contactmethods );
 
 		return $contactmethods;
 	}

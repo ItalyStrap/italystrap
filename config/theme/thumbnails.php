@@ -41,7 +41,8 @@ return [
 
 		/**
 		 * La full-width serve solo per la pagina omonima
-		 * Si potrebbe invece settare "large" a 1140 (verificare se 1170 va bene) e risparmiare spazio avendo una immagine di meno poichè entrambe non vengono croppate
+		 * Si potrebbe invece settare "large" a 1140 (verificare se 1170 va bene) e risparmiare
+		 * spazio avendo una immagine di meno poichè entrambe non vengono croppate
 		 * "large" può essere settata anche con altezza a 9999
 		 */
 		'full-width'			=> [

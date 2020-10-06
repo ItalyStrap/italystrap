@@ -44,7 +44,7 @@ class WordCount extends SchemaBase implements SubscriberInterface {
 			return $content;
 		}
 
-		$this->set_words_count();
+		$this->setWordsCount();
 
 		$meta = '';
 	

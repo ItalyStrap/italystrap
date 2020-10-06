@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Navigations;
 
+use ItalyStrap\Components\Brand\Brand;
 use \ItalyStrap\Config\ConfigInterface;
 use function \ItalyStrap\HTML\get_attr;
 use \Walker_Nav_Menu;
@@ -53,16 +54,26 @@ class Navbar {
 	 * 						Default is 'wp_page_menu'. Set to false for no fallback.
 	 */
 	private $fallback_cb;
+	/**
+	 * @var Brand
+	 */
+	private $brand;
 
 	/**
 	 * Init the constructor
 	 *
 	 * @param ConfigInterface $config
-	 * @param Walker_Nav_Menu  $walker
-	 * @param callable|bool    $fallback_cb If the menu doesn't exists, a callback function will fire.
-	 * 										Default is 'wp_page_menu'. Set to false for no fallback.
+	 * @param Walker_Nav_Menu $walker
+	 * @param callable|bool $fallback_cb If the menu doesn't exists, a callback function will fire.
+	 *                                        Default is 'wp_page_menu'. Set to false for no fallback.
+	 * @param Brand $brand
 	 */
-	public function __construct( ConfigInterface $config, Walker_Nav_Menu $walker, $fallback_cb = false ) {
+	public function __construct(
+		ConfigInterface $config,
+		Walker_Nav_Menu $walker,
+		Brand $brand,
+		$fallback_cb = false
+	) {
 
 		$this->config = $config;
 		$this->walker = $walker;
@@ -77,7 +88,8 @@ class Navbar {
 
 		$this->navbar_id = apply_filters( 'italystrap_navbar_id', 'italystrap-menu-' . $this->number );
 		$this->navbar_id = apply_filters( 'italystrap_navbar_id_' . $this->number, $this->navbar_id );
-		var_dump(\get_custom_logo());
+
+		$this->brand = $brand;
 	}
 
 	/**
@@ -87,7 +99,7 @@ class Navbar {
 	 *
 	 * @return string      Return the wp_nav_menu HTML
 	 */
-	public function get_wp_nav_menu( array $args = [] ) {
+	public function get_wp_nav_menu( array $args = [] ) {// phpcs:ignore
 
 		/**
 		 * Arguments for wp_nav_menu()
@@ -96,7 +108,8 @@ class Navbar {
 		 * For this situation the container attribute is set to false because
 		 * we need the collapsable functionality of Bootstrap CSS.
 		 *
-		 * @todo  Non credo mi possa essere utile https://github.com/devaloka/nav-menu ma si potrebbe comunque creare una classe a parte per wp_nav_menu e togliere da qui.
+		 * @todo  Non credo mi possa essere utile https://github.com/devaloka/nav-menu ma si
+		 * 		potrebbe comunque creare una classe a parte per wp_nav_menu e togliere da qui.
 		 *
 		 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
 		 * @var array
@@ -137,7 +150,7 @@ class Navbar {
 	 *
 	 * @return string      Return the secondary wp_nav_menu HTML
 	 */
-	public function get_secondary_wp_nav_menu() {
+	public function get_secondary_wp_nav_menu() {// phpcs:ignore
 
 		if ( ! has_nav_menu( 'secondary-menu' ) ) {
 			return '';
@@ -158,7 +171,7 @@ class Navbar {
 	 *
 	 * @return string Return the HTML for brand name and/or image.
 	 */
-	public function get_brand() {
+	public function get_brand() {// phpcs:ignore
 
 		/**
 		 * The ID of the logo image for navbar
@@ -167,7 +180,10 @@ class Navbar {
 		 *
 		 * @var integer
 		 */
-		$attachment_id = (int)apply_filters( 'italystrap_navbar_logo_image_id', $this->config->get( 'navbar_logo_image' ) );
+		$attachment_id = (int)apply_filters(
+			'italystrap_navbar_logo_image_id',
+			$this->config->get( 'navbar_logo_image' )
+		);
 
 		$brand = '';
 
@@ -181,7 +197,12 @@ class Navbar {
 			/**
 			 * Size default: navbar-brand-image
 			 */
-			$brand .= wp_get_attachment_image( $attachment_id, $this->config[ 'navbar_logo_image_size' ], false, $attr );
+			$brand .= wp_get_attachment_image(
+				$attachment_id,
+				$this->config[ 'navbar_logo_image_size' ],
+				false,
+				$attr
+			);
 
 			$brand .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
 		} elseif ( $attachment_id && 'display_all' === $this->config[ 'display_navbar_brand' ] ) {
@@ -195,7 +216,12 @@ class Navbar {
 			/**
 			 * Size default: navbar-brand-image
 			 */
-			$brand .= wp_get_attachment_image( $attachment_id, $this->config[ 'navbar_logo_image_size' ], false, $attr );
+			$brand .= wp_get_attachment_image(
+				$attachment_id,
+				$this->config[ 'navbar_logo_image_size' ],
+				false,
+				$attr
+			);
 
 			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
 		} else {
@@ -214,11 +240,13 @@ class Navbar {
 	 *
 	 * @return string       Return the HTML for description
 	 */
-	public function get_navbar_brand( array $attr = array() ) {
+	public function get_navbar_brand( array $attr = array() ) {// phpcs:ignore
 
 		if ( 'none' === $this->config[ 'display_navbar_brand' ] ) {
 			return apply_filters( 'italystrap_navbar_brand_none', '', $this->navbar_id );
 		}
+
+//		return	$this->brand->render();
 
 		$default = array(
 			'class' => 'navbar-brand',
@@ -232,7 +260,7 @@ class Navbar {
 			'itemprop' => 'url',
 		);
 
-		return $this->create_element(
+		return $this->createElement(
 			'navbar_brand',
 			'a',
 			array_merge( $default, $attr ),
@@ -245,7 +273,7 @@ class Navbar {
 	 *
 	 * @return string Return the HTML for toggle button
 	 */
-	public function get_toggle_button() {
+	public function get_toggle_button() {// phpcs:ignore
 
 		$icon_bar = apply_filters( 'italystrap_icon_bar', '' );
 
@@ -266,11 +294,11 @@ class Navbar {
 		/**
 		 * '<button%s><span class="sr-only">%s</span>%s</button>'
 		 */
-		return $this->create_element(
+		return $this->createElement(
 			'toggle_button',
 			'button',
 			$a,
-			$this->create_element(
+			$this->createElement(
 				'toggle_button_content',
 				'span',
 				['class' => 'sr-only screen-reader-text'],
@@ -284,7 +312,7 @@ class Navbar {
 	 *
 	 * @return string Return the HTML for Navbar Header
 	 */
-	public function get_navbar_header() {
+	public function get_navbar_header() {// phpcs:ignore
 
 		$a = [
 			'class' => 'navbar-header',
@@ -293,7 +321,7 @@ class Navbar {
 			'itemtype' => 'https://schema.org/Organization',
 		];
 
-		return $this->create_element(
+		return $this->createElement(
 			'navbar_header',
 			'div',
 			$a,
@@ -309,14 +337,14 @@ class Navbar {
 	 *
 	 * @return string Return the HTML
 	 */
-	public function get_collapsable_menu() {
+	public function get_collapsable_menu() {// phpcs:ignore
 
 		$a = [
 			'id' => $this->navbar_id,
 			'class' => 'navbar-collapse collapse',
 		];
 
-		return $this->create_element(
+		return $this->createElement(
 			'collapsable_menu',
 			'div',
 			$a,
@@ -329,14 +357,14 @@ class Navbar {
 	 *
 	 * @return string The html output.
 	 */
-	public function get_last_container() {
+	public function get_last_container() {// phpcs:ignore
 //		add_filter( 'italystrap_pre_last_container', '__return_true' );
 		$a = [
 			'id' => 'menus-container-' . $this->number,
 			'class' => $this->config[ 'navbar' ][ 'menus_width' ],
 		];
 
-		return $this->create_element(
+		return $this->createElement(
 			'last_container',
 			'div',
 			$a,
@@ -362,7 +390,7 @@ class Navbar {
 	 *
 	 * @return string The navbar string.
 	 */
-	public function get_navbar_container() {
+	public function get_navbar_container() {// phpcs:ignore
 
 		$a = [
 			'class' => sprintf(
@@ -374,7 +402,7 @@ class Navbar {
 			'itemtype' => 'https://schema.org/SiteNavigationElement',
 		];
 
-		return $this->create_element(
+		return $this->createElement(
 			'navbar_container',
 			'nav',
 			$a,
@@ -391,7 +419,7 @@ class Navbar {
 	 *
 	 * @return string Return the entire navbar.
 	 */
-	public function get_nav_container() {
+	public function get_nav_container() {// phpcs:ignore
 
 //		if ( 'none' === $this->config[ 'navbar' ][ 'nav_width' ] ) {
 //			return $this->get_navbar_container();
@@ -407,7 +435,7 @@ class Navbar {
 			),
 		];
 
-		return $this->create_element( 'nav_container', 'div', $a, $this->get_navbar_container() );
+		return $this->createElement( 'nav_container', 'div', $a, $this->get_navbar_container() );
 	}
 
 	/**
@@ -417,7 +445,7 @@ class Navbar {
 	 * @param string $content
 	 * @return string
 	 */
-	private function create_element( string $context, string $tag, array $attr, string $content ) : string {
+	private function createElement( string $context, string $tag, array $attr, string $content ) : string {
 
 //		if ( !is_string( $context ) ) {
 //			throw new \InvalidArgumentException( 'The $context variable must be a string', 0 );
@@ -446,7 +474,7 @@ class Navbar {
 		$output = sprintf(
 			'<%1$s%2$s>%3$s</%1$s>',
 			esc_attr( $tag ),
-			$this->get_attr( $attr, $context ),
+			$this->getAttr( $attr, $context ),
 			$content
 		);
 
@@ -461,7 +489,7 @@ class Navbar {
 	 *
 	 * @return string          Return a string with HTML attributes
 	 */
-	private function get_attr( array $attr = [], $context = '' ) {
+	private function getAttr( array $attr = [], $context = '' ) {
 		return get_attr( $context, $attr, false, $this->navbar_id );
 	}
 

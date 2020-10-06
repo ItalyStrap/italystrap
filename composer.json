@@ -75,7 +75,7 @@
 			"test"
 		],
 		"cs": [
-			"vendor\\bin\\phpcbf -p --ignore=./tests/_support/* ./src/ ./tests/ && vendor\\bin\\phpcs -p --ignore=./tests/_support/* ./src/ ./tests/"
+			"vendor\\bin\\phpcbf -p --ignore=./tests/_support/* ./config/ ./functions/ ./src/ ./templates/ ./tests/ && vendor\\bin\\phpcs -p --ignore=./tests/_support/* ./config/ ./functions/ ./src/ ./templates/ ./tests/"
 		],
 		"analyze": [
 			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"

@@ -14,13 +14,16 @@ use	ItalyStrap\Customizer\Control\Textarea;
 /**
  * Define a new section for theme image options
  */
+/** @var \WP_Customize_Manager $manager */
 $manager->add_section(
 	'italystrap_layout_options',
 	[
 		'title'			=> __( 'Layout', 'italystrap' ), // Visible title of section.
 		'panel'			=> $this->panel,
 		'capability'	=> $this->capability,
+		// phpcs:disable
 		'description'	=> __( 'Allows you to customize the layout for all archive type pages. (Not page and post).', 'italystrap' ),
+		// phpcs:enable
 	]
 );
 

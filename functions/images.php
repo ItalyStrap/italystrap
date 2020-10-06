@@ -47,7 +47,8 @@ if ( ! function_exists( 'italystrap_get_the_custom_image_url' ) ) {
 			$image = wp_get_attachment_url( $theme_mods[ $key ] );
 		} elseif ( $theme_mods[ $key ] ) {
 			$image = $theme_mods[ $key ];
-		} else { $image = $default;
+		} else {
+			$image = $default;
 		}
 
 		return esc_url( $image );
@@ -63,11 +64,9 @@ if ( ! function_exists( 'italystrap_thumb_url' ) ) {
 	function italystrap_thumb_url() {
 
 		if ( has_post_thumbnail() ) {
-
 			$post_thumbnail_id = get_post_thumbnail_id();
 			$image_attributes = wp_get_attachment_image_src( $post_thumbnail_id, 'full' );
 			echo $image_attributes[0];
-
 		} else {
 			echo italystrap_get_the_custom_image_url( 'default_image' );
 		}
@@ -120,7 +119,6 @@ if ( ! function_exists( 'italystrap_get_avatar_url' ) ) {
 
 		$hash = md5( strtolower( trim( $email ) ) );
 		return 'http://gravatar.com/avatar/' . $hash;
-
 	}
 }
 
@@ -142,7 +140,7 @@ if ( ! function_exists( 'italystrap_get_avatar' ) ) {
 		$avatar = get_avatar( $id_or_email, $size, $default, $alt );
 
 		if ( $class ) {
-			$avatar = str_replace( 'photo', "photo $class" , $avatar );
+			$avatar = str_replace( 'photo', "photo $class", $avatar );
 		}
 
 		return $avatar;
@@ -159,7 +157,7 @@ if ( ! function_exists( 'italystrap_add_image_class' ) ) {
 		$class .= ' img-responsive';
 		return $class;
 	}
-	add_filter( 'get_image_tag_class','italystrap_add_image_class' );
+	add_filter( 'get_image_tag_class', 'italystrap_add_image_class' );
 }
 
 /**
@@ -200,7 +198,6 @@ if ( ! function_exists( 'italystrap_get_404_image' ) ) {
 		$alt = __( 'Image for 404 page', 'italystrap' ) . ' ' . esc_attr( GET_BLOGINFO_NAME );
 
 		if ( is_numeric( $theme_mods['404_image'] ) ) {
-
 			$size = apply_filters( 'italystrap_404_image_size', $theme_mods['post_thumbnail_size'] );
 
 			$id = (int) $theme_mods['404_image'];
@@ -247,7 +244,6 @@ if ( ! function_exists( 'italystrap_get_ID_image_from_url' ) ) {
 		$id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM %s WHERE guid=%s", [ $wpdb->posts, $url ] ) );
 
 		return absint( $id );
-
 	}
 }
 
@@ -358,7 +354,8 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 			 * Se l'immagine nel post è più piccola del 10% la mostra altrimenti no.
 			 */
 			if ( $image_attributes[1] >= $default_width / 1.1 ) {
-				$image_html = '<img src="' . $image_attributes[0] . '" width="' . $image_attributes[1] . '" height="' . $image_attributes[2] . '" alt="' . $attr['alt'] . '" class="' . $attr['class'] . '">'; }
+				$image_html = '<img src="' . $image_attributes[0] . '" width="' . $image_attributes[1] . '" height="' . $image_attributes[2] . '" alt="' . $attr['alt'] . '" class="' . $attr['class'] . '">';
+			}
 		}
 
 		return \apply_filters('italystrap_lazyload_images_in_this_content', $image_html);
@@ -367,7 +364,7 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 
 if ( ! function_exists( 'italystrap_the_post_thumbnail' ) ) {
 	function italystrap_the_post_thumbnail( $size = 'post-thumbnail', $attr = '', $default_width = '', $default_height = '' ) {
-		echo italystrap_get_the_post_thumbnail( null, $size, $attr,  $default_width, $default_height );
+		echo italystrap_get_the_post_thumbnail( null, $size, $attr, $default_width, $default_height );
 	}
 }
 
@@ -523,8 +520,6 @@ if ( ! function_exists( 'italystrap_new_caption_style' ) ) {
 		}
 
 		return $html;
-
-
 	}
 // add_filter( 'img_caption_shortcode', 'italystrap_new_caption_style', 10, 3 );
 }

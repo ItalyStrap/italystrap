@@ -54,7 +54,7 @@ class Builder implements BuilderInterface {
 	 * @param Injector $injector
 	 * @return Builder
 	 */
-	public function set_injector( Injector $injector ) : self {
+	public function setInjector( Injector $injector ) : self {
 		$this->injector = $injector;
 		return $this;
 	}
@@ -80,16 +80,16 @@ class Builder implements BuilderInterface {
 			/**
 			 * Merge with default
 			 */
-			$component = \array_merge( $this->get_default(), $component );
+			$component = \array_merge( $this->getDefault(), $component );
 
 			/**
 			 * If it should not be loaded bail out
 			 */
-			if ( ! $this->should_load( $component['should_load'] ) ) {
+			if ( ! $this->shouldLoad( $component['should_load'] ) ) {
 				continue;
 			}
 
-			$this->add_action( $component );
+			$this->addAction( $component );
 
 //			foreach ( (array) $component['hooks'] as $hook ) {
 //				$this->add_action( $hook['event_name'], $component, $hook['priority'] );
@@ -100,13 +100,13 @@ class Builder implements BuilderInterface {
 	/**
 	 * @param array $component
 	 */
-	private function add_action( array $component ) {
+	private function addAction( array $component ) {
 
 		\add_action( $component['event_name'], function ( ...$args ) use ( $component ) {
 
-			$this->set_data( $component );
+			$this->setData( $component );
 
-			echo $this->render_from_callback( $component );
+			echo $this->renderFromCallback( $component );
 		}, $component['priority'] );
 
 //		$this->dispatcher->addListener( $component['event_name'], function ( ...$args ) use ( $component ) {
@@ -124,7 +124,7 @@ class Builder implements BuilderInterface {
 	 * @throws InjectionException
 	 * @throws \Exception
 	 */
-	private function render_from_callback( array $component ) : string {
+	private function renderFromCallback( array $component ) : string {
 
 		/**
 		 * If callback is not defined we need to return a view
@@ -132,13 +132,13 @@ class Builder implements BuilderInterface {
 		 */
 		if ( ! $component['callback'] ) {
 			return (string) $this->view->render(
-				$this->get_the_view_relative_path( $component ),
+				$this->getTheViewRelativePath( $component ),
 				$component['data']
 			);
 		}
 
 		$args = [
-			':view' 		=> $this->get_the_view_relative_path( $component ),
+			':view' 		=> $this->getTheViewRelativePath( $component ),
 			':data' 		=> $component['data'],
 			':component'	=> $component,
 		];
@@ -154,7 +154,7 @@ class Builder implements BuilderInterface {
 	 * @param array $component
 	 * @throws InjectionException
 	 */
-	private function set_data( array &$component ) {
+	private function setData( array &$component ) {
 
 		/**
 		 * Define the data array from optional callable
@@ -169,13 +169,14 @@ class Builder implements BuilderInterface {
 	 * @param array $component
 	 * @return array
 	 */
-	private function get_the_view_relative_path( array $component ) : array {
+	private function getTheViewRelativePath( array $component ) : array {
 
 		$view = (array) $component['view'];
-
+		// phpcs:disable
 		if ( ! isset( $view[0] ) ) {
 			throw new \InvalidArgumentException( \__( 'If the callback is null you have to provide a file name to print for the View::class', 'italystrap' ), 0 );
 		}
+		// phpcs:enable
 
 		return (array) $view;
 	}
@@ -183,7 +184,7 @@ class Builder implements BuilderInterface {
 	/**
 	 * @return array
 	 */
-	private function get_default() : array {
+	private function getDefault() : array {
 		return [
 			static::EVENT_NAME	=> '',
 			'view'			=> '', // Could be a string|array
@@ -209,7 +210,7 @@ class Builder implements BuilderInterface {
 	 * @return bool
 	 * @throws InjectionException
 	 */
-	private function should_load( $bool_Or_callable ): bool {
+	private function shouldLoad( $bool_Or_callable ): bool {
 
 		if ( \is_bool( $bool_Or_callable ) ) {
 			return $bool_Or_callable;

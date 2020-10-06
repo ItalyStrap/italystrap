@@ -40,7 +40,7 @@ class TimeRequired extends SchemaBase implements SubscriberInterface {
 	 */
 	public function render( $content = '' ) {
 
-		$this->set_words_count();
+		$this->setWordsCount();
 
 		$meta = '';
 

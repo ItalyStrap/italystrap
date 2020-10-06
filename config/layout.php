@@ -10,7 +10,8 @@
  * @package ItalyStrap
  */
 declare(strict_types=1);
-$layout = apply_filters( 'italystrap_layout_settings',
+$layout = apply_filters(
+	'italystrap_layout_settings',
 	[
 		'content_sidebar'			=> \__( 'Content Sidebar', 'italystrap' ),
 		// 'content_sidebar_sidebar'	=> \__( 'Content Sidebar Sidebar', 'italystrap' ),
@@ -18,7 +19,7 @@ $layout = apply_filters( 'italystrap_layout_settings',
 		// 'sidebar_sidebar_content'	=> \__( 'Sidebar Sidebar content', 'italystrap' ),
 		'sidebar_content'			=> \__( 'Sidebar Content', 'italystrap' ),
 		'full_width'				=> \__( 'Full width, no sidebar', 'italystrap' ),
-	]
+	 ]
 );
 
 return $layout;

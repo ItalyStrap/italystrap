@@ -48,11 +48,11 @@ class ParseAttr {
 			}
 
 			if ( ! \is_array( $filter_attr ) ) {
-				\add_filter( $filter_name, [ $this, 'parse_scalar' ], 10, static::$accepted_args );
+				\add_filter( $filter_name, [ $this, 'parseScalar'], 10, static::$accepted_args );
 				continue;
 			}
 
-			\add_filter( $filter_name, [ $this, 'parse_array' ], 10, static::$accepted_args );
+			\add_filter( $filter_name, [ $this, 'parseArray'], 10, static::$accepted_args );
 		}
 	}
 
@@ -60,7 +60,7 @@ class ParseAttr {
 	 * @param array $attr
 	 * @return array
 	 */
-	public function parse_array( array $attr ) {
+	public function parseArray( array $attr ) {
 		return \array_merge( $attr, $this->config->get( \current_filter(), [] ) );
 	}
 
@@ -68,7 +68,7 @@ class ParseAttr {
 	 * @param  string|int|bool $value
 	 * @return string|int|bool
 	 */
-	public function parse_scalar( $value ) {
+	public function parseScalar( $value ) {
 		return $this->config->get( \current_filter(), $value );
 	}
 }

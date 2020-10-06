@@ -38,11 +38,27 @@ namespace ItalyStrap\Headers;
 				</button>
 				<?php if ( $logo_url = false ) : ?>
 					<a class="navbar-brand" href="<?php echo esc_attr( HOME_URL ); ?>">
-						<img alt="<?php echo esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ); ?>" src="<?php echo esc_html( $logo_url ); ?>" width="214px" height="45px" class="img-responsive">
+						<img
+								alt="<?php echo esc_attr( GET_BLOGINFO_NAME )
+									. ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ); ?>"
+								src="<?php echo esc_html( $logo_url ); ?>"
+								width="214px"
+								height="45px"
+								class="img-responsive"
+						>
 					</a>
 				<?php else : ?>
 					<span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-						<a class="navbar-brand" href="<?php echo esc_attr( HOME_URL ); ?>" title="<?php echo esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ); ?>" rel="home" itemprop="url"><span itemprop="name"><?php echo esc_attr( GET_BLOGINFO_NAME ); ?></span></a>
+						<a
+								class="navbar-brand"
+								href="<?php echo esc_attr( HOME_URL ); ?>"
+								title="<?php echo esc_attr( GET_BLOGINFO_NAME )
+									. ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ); ?>"
+								rel="home"
+								itemprop="url"
+						>
+							<span itemprop="name"><?php echo esc_attr( GET_BLOGINFO_NAME ); ?></span>
+						</a>
 						<meta  itemprop="image" content="<?php echo italystrap_logo();?>"/>
 					</span>
 				<?php endif; ?>
@@ -111,7 +127,6 @@ namespace ItalyStrap\Headers;
 					$args = apply_filters( 'italystrap_secondary_nav_menu_args', $args );
 
 					wp_nav_menu( $args );
-
 				endif;
 				?>
 			</div>
@@ -121,7 +136,15 @@ namespace ItalyStrap\Headers;
 	<?php do_action( 'nav_closed' ); ?>
 </nav>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+	<button
+			class="navbar-toggler"
+			type="button"
+			data-toggle="collapse"
+			data-target="#navbarTogglerDemo01"
+			aria-controls="navbarTogglerDemo01"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+	>
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">

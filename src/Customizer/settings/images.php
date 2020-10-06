@@ -45,7 +45,9 @@ $manager->add_control(
 		'italystrap_default_image',
 		array(
 			'label'			=> __( 'Default Image', 'italystrap' ),
+			// phpcs:disable
 			'description'	=> __( 'Upload an image for the default image used for social sharing (must be at least 1200x600px for Facebook), it will also be displayed if no feautured image will be added in your content page/post if the theme supports this feature.', 'italystrap' ),
+			// phpcs:enable
 			'section'		=> 'italystrap_image_options',
 			'settings'		=> 'default_image',
 			'priority'		=> 10,
@@ -71,7 +73,9 @@ $manager->add_control(
 	array(
 		'settings'		=> 'post_thumbnail_size',
 		'label'			=> __( 'Archive post thumbnail size', 'italystrap' ),
+		// phpcs:disable
 		'description'	=> __( 'Change image size of post thumbnail in archive, author, blog, category, search, and tag pages.', 'italystrap' ),
+		// phpcs:enable
 		'section'		=> 'italystrap_image_options',
 		'type'			=> 'select',
 		'choices'		=> apply_filters( 'image_size_names_choose', [] ),
@@ -96,7 +100,9 @@ $manager->add_control(
 	array(
 		'settings'		=> 'post_thumbnail_alignment',
 		'label'			=> __( 'Archive post thumbnail alignment', 'italystrap' ),
+		// phpcs:disable
 		'description'	=> __( 'Change image alignment of post thumbnail in archive, author, blog, category, search, and tag pages.', 'italystrap' ),
+		// phpcs:enable
 		'section'		=> 'italystrap_image_options',
 		'type'			=> 'select',
 		'choices'		=> array(

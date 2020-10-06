@@ -10,14 +10,15 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use function ItalyStrap\HTML\{open_tag_e, close_tag_e};
+use function ItalyStrap\HTML\open_tag_e;
+use function ItalyStrap\HTML\close_tag_e;
 
 open_tag_e( 'entry_content', 'div' );
 
-    if ( \is_singular() ) {
-        \the_content();
-    } else {
-        \the_excerpt();
-    }
+if ( \is_singular() ) {
+	\the_content();
+} else {
+	\the_excerpt();
+}
 
 close_tag_e( 'entry_content' );

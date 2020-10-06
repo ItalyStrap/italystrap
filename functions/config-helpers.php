@@ -67,7 +67,6 @@ function get_config_file_content( string $name ) : array {
 			$child_config_file_content = (array) require $child_config_file_path;
 			$config_file_content = array_replace_recursive( $config_file_content, $child_config_file_content );
 		}
-
 	} catch ( \InvalidArgumentException $exception ) {
 		echo $exception->getMessage();
 	} catch ( \Exception $exception ) {

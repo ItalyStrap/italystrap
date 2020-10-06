@@ -21,7 +21,7 @@ class Register implements SubscriberInterface {
 	 * @return array
 	 */
 	public function getSubscribedEvents(): iterable {
-		yield 'cmb2_admin_init' => 'register_metaboxes';
+		yield 'cmb2_admin_init' => 'registerMetaboxes';
 	}
 
 	/**
@@ -36,6 +36,7 @@ class Register implements SubscriberInterface {
 	 *
 	 * @var string
 	 */
+	// phpcs:ignore
 	private $_prefix;
 
 	private $object_types = array();
@@ -54,7 +55,7 @@ class Register implements SubscriberInterface {
 	 * Init the constructor
 	 * @param Config $config
 	 */
-	function __construct( Config $config ) {
+	public function __construct( Config $config ) {
 
 		$this->config = $config;
 
@@ -87,7 +88,7 @@ class Register implements SubscriberInterface {
 	 * Hook in and add a demo metabox.
 	 * Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
 	 */
-	public function register_metaboxes() {
+	public function registerMetaboxes() {
 
 		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : null;
 		$post_type = isset( $_GET['post_type'] ) ? esc_attr( $_GET['post_type'] ) : get_post_type( $post_id );
@@ -183,10 +184,12 @@ class Register implements SubscriberInterface {
 			$cmb->add_field(
 				[
 					'name'		=> __( 'Video URL', 'italystrap' ),
+					// phpcs:disable
 					'desc'		=> sprintf(
 						'Enter a youtube, twitter, or instagram URL. Supports services listed at %s. This will be shown instead of feature image.',
 						'<a href="http://codex.wordpress.org/Embeds">http://codex.wordpress.org/Embeds</a>'
 					),
+					// phpcs:enable
 					'default'	=> '',
 					'id'		=> $this->_prefix . '_featured_video',
 					'type'		=> 'text',

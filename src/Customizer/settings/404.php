@@ -8,6 +8,7 @@ use WP_Customize_Media_Control;
 /**
  * Define a new section for theme image options
  */
+/** @var \WP_Customize_Manager $manager */
 $manager->add_section(
 	'italystrap_404',
 	array(
@@ -63,10 +64,12 @@ $manager->add_control(
 		'italystrap_404_image',
 		array(
 			'label'			=> __( 'Default 404 Image', 'italystrap' ),
+			// phpcs:disable
 			'description'	=> sprintf(
 				__( 'This is a default 404 image, it will be displayed in 404 page (must be at least %dpx width)', 'italystrap' ),
 				$this->theme_mods['content_width']
 			),
+			// phpcs:enable
 			'section'		=> 'italystrap_404',
 			'settings'		=> '404_image',
 			'priority'		=> 10,

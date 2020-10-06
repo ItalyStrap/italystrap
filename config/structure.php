@@ -183,13 +183,13 @@ return [
 //			}, // Optional
 		],
 
-	'entry'	=> [
+		'entry'	=> [
 		Builder::EVENT_NAME	=> 'italystrap_entry',
 		'view'	=> 'posts/post',
 		'data'	=> function () : array {
 			return (array) \get_post( null, ARRAY_A );
 		},
-	],
+		],
 
 		/**
 		 * ====================================================================
@@ -221,10 +221,10 @@ return [
 			},
 		],
 
-	'none'	=> [
+		'none'	=> [
 		Builder::EVENT_NAME	=> 'italystrap_content_none',
 		'view'	=> 'posts/none',
-	],
+		],
 
 		'archive-headline'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_before_while',
@@ -289,10 +289,10 @@ return [
 	 *
 	 * ====================================================================
 	 */
-	'loop'	=> [
+		'loop'	=> [
 		Builder::EVENT_NAME	=> 'italystrap_loop',
 		'view'	=> ['posts/loop'],
-	],
+		],
 
 		'navbar-top'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_before_header',
@@ -359,8 +359,8 @@ return [
 	 *
 	 * ====================================================================
 	 */
-	'index'	=> [
+		'index'	=> [
 		Builder::EVENT_NAME	=> 'italystrap',
 		'view'	=> 'index',
-	],
+		],
 ];

@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 /**
  * Navigation Menu template functions for Bootstrap CSS
  *

@@ -19,7 +19,7 @@ class SchemaBase {
 	/**
 	 * set_words_count
 	 */
-	protected function set_words_count() {
+	protected function setWordsCount() {
 		if ( empty( self::$words_count ) ) {
 			self::$words_count = (int) str_word_count( get_the_content() );
 		}

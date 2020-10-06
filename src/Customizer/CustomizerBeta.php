@@ -40,11 +40,11 @@ class CustomizerBeta implements SubscriberInterface {
 		return array(
 			// 'hook_name'							=> 'method_name',
 			'customize_register'		=> array(
-				'function_to_add'		=> 'customize_register',
+				'function_to_add'		=> 'customizeRegister',
 				'priority'				=> 99,
 			),
-			'customize_preview_init'	=> 'live_preview',
-			'admin_menu'				=> 'add_link_to_theme_option_page',
+			'customize_preview_init'	=> 'livePreview',
+			'admin_menu'				=> 'addLinkToThemeOptionPage',
 		);
 	}
 
@@ -93,8 +93,7 @@ class CustomizerBeta implements SubscriberInterface {
 	 * @param array $theme_mods
 	 * @param Size $size
 	 */
-	function __construct( array $theme_mods = array(), Size $size = null ) {
-
+	public function __construct( array $theme_mods = array(), Size $size = null ) {
 		$this->theme_mods = $theme_mods;
 		$this->size = $size;
 	}
@@ -106,7 +105,7 @@ class CustomizerBeta implements SubscriberInterface {
 	 * you to add new sections and controls to the Theme Customize screen.
 	 *
 	 * Note: To enable instant preview, we have to actually write a bit of custom
-	 * javascript. See live_preview() for more.
+	 * javascript. See livePreview() for more.
 	 *
 	 * @see add_action( 'customize_register', $func )
 	 * @see https://developer.wordpress.org/reference/hooks/customize_register
@@ -123,7 +122,7 @@ class CustomizerBeta implements SubscriberInterface {
 	 *
 	 * @param  WP_Customize_Manager $manager WP_Customize_Manager object.
 	 */
-	public function customize_register( WP_Customize_Manager $manager ) {
+	public function customizeRegister( WP_Customize_Manager $manager ) {
 
 		$transport = $manager->selective_refresh ? 'postMessage' : 'refresh';
 
@@ -177,7 +176,7 @@ class CustomizerBeta implements SubscriberInterface {
 				foreach ( $section['config'] as $config_id => $config_val ) {
 					$manager->add_setting(
 						$config_id,
-						$this->get_setting_default( $config_val['setting'] )
+						$this->getSettingDefault( $config_val['setting'] )
 					);
 
 					// $class_name = 'WP_Customize_Media_Control';
@@ -197,7 +196,7 @@ class CustomizerBeta implements SubscriberInterface {
 	 *
 	 * @return array          The setting array with default.
 	 */
-	public function get_setting_default( array $setting = array() ) {
+	public function getSettingDefault( array $setting = array() ) {
 
 		$defaults = array(
 			'default'			=> null,
@@ -261,7 +260,7 @@ class CustomizerBeta implements SubscriberInterface {
 	 * @since ItalyStrap 1.0
 	 *
 	 */
-	public function live_preview() {
+	public function livePreview() {
 
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
@@ -278,7 +277,7 @@ class CustomizerBeta implements SubscriberInterface {
 	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#focusing
 	 * autofocus[panel|section|control]=ID
 	 */
-	public function add_link_to_theme_option_page() {
+	public function addLinkToThemeOptionPage() {
 
 		add_submenu_page(
 			'italystrap-dashboard',

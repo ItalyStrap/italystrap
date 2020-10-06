@@ -54,6 +54,9 @@ class CustomLogo {
 			'get_custom_logo_image_attributes',
 			function ( array $custom_logo_attr, int $custom_logo_id, int $blog_id ) {
 				$custom_logo_attr = \array_merge( $this->default_attributes, $custom_logo_attr );
+				/**
+				 * @todo img-brand img-responsive center-block
+				 */
 				$custom_logo_attr['class'] = $custom_logo_attr['class'] . ' ' . $this->image_attributes['class'];
 			//			$custom_logo_attr['itemprop'] = 'image';
 				return $custom_logo_attr;
@@ -68,6 +71,9 @@ class CustomLogo {
 			'get_custom_logo',
 			function ( string $html, int $blog_id ) {
 				$html = \str_replace('custom-logo-link', 'custom-logo-link navbar-brand', $html);
+				/**
+				 * @todo If is home maybe there is no url
+				 */
 			//				$html = \str_replace('rel="home"', 'rel="home" itemprop="url"', $html);
 				return $html;
 			},

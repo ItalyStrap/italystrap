@@ -42,14 +42,14 @@ class ThemeCustomizer implements SubscriberInterface {
 		return [
 			// 'hook_name'							=> 'method_name',
 			'customize_register'					=> [
-				'function_to_add'	=> 'customize_register',
+				'function_to_add'	=> 'customizeRegister',
 				'priority'			=> 99,
 			],
-			'customize_preview_init'				=> 'enqueue_script_on_live_preview',
-			'customize_controls_enqueue_scripts'	=> 'enqueue_script_on_customize_controls_enqueue_scripts',
-			'admin_menu'							=> 'add_link_to_theme_option_page',
+			'customize_preview_init'				=> 'enqueueScriptOnLivePreview',
+			'customize_controls_enqueue_scripts'	=> 'enqueueScriptOnCustomizeControlsEnqueueScripts',
+			'admin_menu'							=> 'addLinkToThemeOptionPage',
 			// 'body_class'							=> 'body_class',
-			'italystrap_body_attr'					=> 'body_attr',
+			'italystrap_body_attr'					=> 'bodyAttr',
 		];
 	}
 
@@ -91,7 +91,7 @@ class ThemeCustomizer implements SubscriberInterface {
 	/**
 	 * Init the class
 	 */
-	function __construct( Config $config ) {
+	public function __construct( Config $config ) {
 		 $this->theme_mods = $config;
 	}
 
@@ -118,7 +118,7 @@ class ThemeCustomizer implements SubscriberInterface {
 	 *
 	 * @param  WP_Customize_Manager $manager WP_Customize_Manager object.
 	 */
-	public function customize_register( WP_Customize_Manager $manager ) {
+	public function customizeRegister( WP_Customize_Manager $manager ) {
 
 		$transport = $manager->selective_refresh ? 'postMessage' : 'refresh';
 
@@ -160,7 +160,7 @@ class ThemeCustomizer implements SubscriberInterface {
 	 * @since ItalyStrap 1.0
 	 *
 	 */
-	public function enqueue_script_on_live_preview() {
+	public function enqueueScriptOnLivePreview() {
 
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
@@ -182,7 +182,7 @@ class ThemeCustomizer implements SubscriberInterface {
 	 * @since ItalyStrap 1.0
 	 *
 	 */
-	public function enqueue_script_on_customize_controls_enqueue_scripts() {
+	public function enqueueScriptOnCustomizeControlsEnqueueScripts() {
 
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
@@ -203,7 +203,7 @@ class ThemeCustomizer implements SubscriberInterface {
 	 *
 	 * @return array          body_class
 	 */
-	public function body_attr( array $attr ) {
+	public function bodyAttr( array $attr ) {
 
 		if ( ! is_customize_preview() ) {
 			return $attr;
@@ -220,7 +220,7 @@ class ThemeCustomizer implements SubscriberInterface {
 	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#focusing
 	 * autofocus[panel|section|control]=ID
 	 */
-	public function add_link_to_theme_option_page() {
+	public function addLinkToThemeOptionPage() {
 
 		add_submenu_page(
 			'italystrap-dashboard',

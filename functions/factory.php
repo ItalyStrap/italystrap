@@ -6,7 +6,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Factory;
 
-use Auryn\{ConfigException, InjectionException, Injector as AurynInjector};
+use Auryn\ConfigException;
+use Auryn\InjectionException;
+use Auryn\Injector as AurynInjector;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\DebugInjector;
 use ItalyStrap\Empress\Injector as EmpressInjector;
@@ -65,7 +67,7 @@ if ( ! function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 		if ( ! $config ) {
 			try {
 				$config = injector()
-					->alias( ConfigInterface::class,  Config::class )
+					->alias( ConfigInterface::class, Config::class )
 					->share( Config::class )
 					->make( Config::class );
 			} catch ( ConfigException $configException ) {

@@ -33,7 +33,7 @@ $manager->add_control(
 			'priority'		=> 80,
 		]
 	) extends \WP_Customize_Control {
-
+        // phpcs:disable
 		protected function render_content() {
 			?>
 			<style>
@@ -44,6 +44,7 @@ $manager->add_control(
 			<?php
 			echo '<label><br><hr class="ciao"><br></label>';
 		}
+		// phpcs:enable
 	}
 );
 
@@ -94,7 +95,9 @@ $manager->add_control(
 		// 'settings'	=> 'display_navbar_brand[test1]',
 		'settings'		=> 'display_navbar_brand',
 		'label'			=> __( 'Display the navbar brand', 'italystrap' ),
+		// phpcs:disable
 		'description'	=> __( 'Select the type of navbar brand to visualize or select to hide navbar brand, if you select to visualize navbar with image you also have to select the image and the size of the image to visualize in the above controls.', 'italystrap' ),
+		// phpcs:enable
 		'section'		=> $section_id,
 		'type'			=> 'radio',
 		'priority'		=> 80,
@@ -182,7 +185,9 @@ $manager->add_control(
 		'italystrap_navbar_logo_image_mobile',
 		array(
 			'label'			=> __( 'Logo for mobile', 'italystrap' ),
+			// phpcs:disable
 			'description'	=> __( 'Insert here the logo for the mobile version of your site. You also have to make shure that the theme support it otherwise you have to add the CSS for visualiza the logo only on mobile.', 'italystrap' ),
+			// phpcs:enable
 			'section'		=> $section_id,
 			'settings'		=> 'navbar_logo_image_mobile',
 			'priority'		=> 80,

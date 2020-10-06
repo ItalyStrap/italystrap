@@ -42,7 +42,6 @@ function get_search_form() {
 	$form = '<div itemscope itemtype="https://schema.org/WebSite"><meta itemprop="url" content="' . esc_attr( HOME_URL ) . '"/><form class="navbar-form navbar-right" role="search" method="get" action="' . esc_attr( HOME_URL ) . '" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction"><meta itemprop="target" content="' . esc_attr( HOME_URL ) . '?s={s}"/><div class="input-group input-group-sm"><input type="search" placeholder="' . __( 'Search now', 'italystrap' ) . '" value="' . $get_search_query . '" name="s" class="form-control" itemprop="query-input"><span class="input-group-btn"><button type="submit" class="btn btn-default" value="' . __( 'Search', 'italystrap' ) . '"><i class="glyphicon glyphicon-search"></i></button></span></div></form></div>';
 
 	return apply_filters( 'italystrap_search_form', $form, $get_search_query );
-
 }
 
 /**
@@ -77,25 +76,25 @@ function print_search_form_in_menu( $nav_menu, $args ) {
  */
 function colophon_default_text() {
 
-    $powered = \sprintf(
-        '<a%s>ItalyStrap</a>',
-        \ItalyStrap\HTML\get_attr( 'powered', [
-                'href'      => '//www.italystrap.it',
-                'rel'       => 'nofollow',
-                'itemprop'  => 'url',
-        ] )
+	$powered = \sprintf(
+		'<a%s>ItalyStrap</a>',
+		\ItalyStrap\HTML\get_attr( 'powered', [
+				'href'      => '//www.italystrap.it',
+				'rel'       => 'nofollow',
+				'itemprop'  => 'url',
+		] )
 	);
 
 	$developed = \sprintf(
-        '<a%s>Overclokk.net</a>',
+		'<a%s>Overclokk.net</a>',
 		\ItalyStrap\HTML\get_attr( 'developed', [
 			'href'      => '//www.overclokk.net',
 			'rel'       => 'nofollow',
 			'itemprop'  => 'url',
 		] )
-    );
+	);
 
-    $output = \sprintf(
+	$output = \sprintf(
 		'<p class="text-muted small">&copy; <span itemprop="copyrightYear">%1$d</span> %2$s | This website uses %3$s powered by %5$s developed by %6$s %4$s</p>',
 		esc_attr( date( 'Y' ) ),
 		esc_attr( GET_BLOGINFO_NAME ),
@@ -167,16 +166,13 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 		$attr = (array) apply_filters( "italystrap_{$context}_attr", $attr, $context, $args );
 
 		foreach ( $attr as $key => $value ) {
-
 			if ( empty( $value ) ) {
 				continue;
 			}
 
 			if ( true === $value ) {
-
 				$html .= ' ' . esc_html( $key );
 			} else {
-
 				$html .= sprintf(
 					' %s="%s"',
 					esc_html( $key ),
@@ -186,7 +182,7 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 		}
 
 		/**
-		 * This filters the output of the html attributes. 
+		 * This filters the output of the html attributes.
 		 *
 		 * @param  string $html    The HTML attr output.
 		 * @param  array  $attr    The array with all HTML attributes to render.
@@ -247,7 +243,6 @@ function get_content_class( $class = '' ) {
 	$classes = apply_filters( 'italystrap_content_class', $classes, $class );
 
 	return  array_flip( array_flip( $classes ) );
-
 }
 
 /**
@@ -271,7 +266,6 @@ function get_content_width( int $container_width, int $column, int $content_colu
 function is_static_front_page() {
 
 	return (bool) is_front_page() && ! is_home();
-
 }
 
 /**
@@ -301,8 +295,8 @@ function register_theme_positions( array $new_position ) {
 
 	return array_merge(
 		\ItalyStrap\Config\get_config_file_content( 'theme-positions' ),
-        $new_position
-    );
+		$new_position
+	);
 }
 \add_filter( 'italystrap_theme_positions', __NAMESPACE__ . '\register_theme_positions' );
 /**
@@ -357,12 +351,12 @@ function get_template_settings() {
  * @TODO Da sviluppare per il customizer
  * https://core.trac.wordpress.org/ticket/24844
  */
-function get_theme_mods_in_customizer ( array $theme_mods = [] ) {
-    if ( is_customize_preview() ) {
-        foreach ( $theme_mods as $key => $value ) {
-            $theme_mods[ $key ] = apply_filters( 'theme_mod_' . $key, $value );
-        }
-    }
+function get_theme_mods_in_customizer( array $theme_mods = [] ) {
+	if ( is_customize_preview() ) {
+		foreach ( $theme_mods as $key => $value ) {
+			$theme_mods[ $key ] = apply_filters( 'theme_mod_' . $key, $value );
+		}
+	}
 }
 
 /**

@@ -13,7 +13,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use function ItalyStrap\Core\{colophon_default_text,get_content_width};
+use function ItalyStrap\Core\colophon_default_text;
+use function ItalyStrap\Core\get_content_width;
 
 $config = Factory\get_config();
 
@@ -55,8 +56,11 @@ return apply_filters(
 		'404_show_image'				=> 'show',
 		'404_image'						=> '',
 		'404_title'						=> esc_attr__( 'Nothing Found', 'italystrap' ),
-		'404_content'					=> esc_attr__( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'italystrap' ),
-
+		'404_content'					=>
+			esc_attr__(
+				'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.',
+				'italystrap'
+			),
 		'post_thumbnail_size'			=> 'post-thumbnail',
 		'post_thumbnail_alignment'		=> 'alignnone',
 
@@ -82,7 +86,8 @@ return apply_filters(
 			'type'			=> 'navbar-inverse',
 			'position'		=> 'navbar-static-top',
 			'nav_width'		=> 'none', // This is the container of entire navbar.
-			'menus_width'	=> 'container', // This is the container of the 2 menus inside the nav container and the navbar_header brand and toggle.
+			'menus_width'	=> 'container', // This is the container of the 2 menus inside the nav container
+											//and the navbar_header brand and toggle.
 			'main_menu_x_align'	=> 'navbar-left',
 		],
 
@@ -97,12 +102,13 @@ return apply_filters(
 		 * Layout configuration
 		 * It's still in alpha version
 		 */
-//		'site_layout'					=> 'content_sidebar',
+	//		'site_layout'					=> 'content_sidebar',
 		//( is_customize_preview() ? get_theme_mod('site_layout') : $this->theme_mods['site_layout'] );
 		// https://core.trac.wordpress.org/ticket/24844
 		'site_layout'					=> (string) \apply_filters( 'theme_mod_site_layout', 'content_sidebar' ),
 		'singular_layout'				=> 'content_sidebar',
-		'content_width'					=> (int) \apply_filters( 'italystrap_content_width',
+		'content_width'					=> (int) \apply_filters(
+			'italystrap_content_width',
 			get_content_width(
 				1170,
 				12,

@@ -6,18 +6,23 @@ namespace ItalyStrap\Customizer\Control;
 if ( ! class_exists( '\ItalyStrap\Customizer\Control\Multicheck' ) ) {
 	return;
 }
+/** @var \WP_Customize_Manager $manager */
 
 /**
  * Define a new section for theme image options
  */
 $manager->add_section(
 	'italystrap_post_content_template_options',
-	array(
+	[
 		'title'			=> __( 'Post content template', 'italystrap' ),
 		'panel'			=> $this->panel,
 		'capability'	=> $this->capability,
-		'description'	=> __( 'Allows you to customize the post content template for all archive type pages. (Not page and post).', 'italystrap' ),
-	)
+		'description'	=>
+			__(
+				'Allows you to customize the post content template for all archive type pages. (Not page and post).',
+				'italystrap'
+			),
+	]
 );
 
 /**

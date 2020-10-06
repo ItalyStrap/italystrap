@@ -73,6 +73,7 @@ class CustomLogoTest extends \Codeception\TestCase\WPTestCase {
 		$sut = $this->getInstance();
 		$custom_logo = $sut->render();
 
+
 		$this->assertStringContainsString(
 			// phpcs:disable
 			\sprintf(

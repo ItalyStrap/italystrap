@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 /**
  * General Template functions
  *
@@ -6,6 +7,7 @@
  * @since 4.0.0 ItalyStrap
  */
 declare(strict_types=1);
+
 namespace ItalyStrap\Core;
 
 if ( ! \function_exists( '\ItalyStrap\Core\is_debug' ) ) {
@@ -39,7 +41,9 @@ function get_search_form() {
 	 */
 	$get_search_query = is_search() ? get_search_query() : '' ;
 
+	// phpcs:disable
 	$form = '<div itemscope itemtype="https://schema.org/WebSite"><meta itemprop="url" content="' . esc_attr( HOME_URL ) . '"/><form class="navbar-form navbar-right" role="search" method="get" action="' . esc_attr( HOME_URL ) . '" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction"><meta itemprop="target" content="' . esc_attr( HOME_URL ) . '?s={s}"/><div class="input-group input-group-sm"><input type="search" placeholder="' . __( 'Search now', 'italystrap' ) . '" value="' . $get_search_query . '" name="s" class="form-control" itemprop="query-input"><span class="input-group-btn"><button type="submit" class="btn btn-default" value="' . __( 'Search', 'italystrap' ) . '"><i class="glyphicon glyphicon-search"></i></button></span></div></form></div>';
+	// phpcs:enable
 
 	return apply_filters( 'italystrap_search_form', $form, $get_search_query );
 }
@@ -94,6 +98,7 @@ function colophon_default_text() {
 		] )
 	);
 
+	// phpcs:disable
 	$output = \sprintf(
 		'<p class="text-muted small">&copy; <span itemprop="copyrightYear">%1$d</span> %2$s | This website uses %3$s powered by %5$s developed by %6$s %4$s</p>',
 		esc_attr( date( 'Y' ) ),
@@ -103,6 +108,7 @@ function colophon_default_text() {
 		$powered,
 		$developed
 	);
+	// phpcs:enable
 
 	return \apply_filters( 'italystrap_colophon_default_text', $output );
 }
@@ -339,7 +345,9 @@ function get_template_settings() {
 		 *
 		 * @var [type]
 		 */
-//			$parts = ! is_singular() ? (array) self::$post_content_template : (array) get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
+//			$parts = ! is_singular()
+//? (array) self::$post_content_template
+//: (array) get_post_meta( $this->get_the_ID(), '_italystrap_template_settings', true );
 		$parts = (array) \ItalyStrap\Factory\get_config()->get('post_content_template');
 	}
 

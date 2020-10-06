@@ -1,5 +1,7 @@
 <?php
+// phpcs:ignoreFile
 declare(strict_types=1);
+
 namespace ItalyStrap\Core;
 
 /**
@@ -86,9 +88,11 @@ function comment_form_args( $comment_author, $user_identity ) {
 	 * @var array
 	 */
 	$comment_field = array(
-
 		'author'	=>
-			'<div class="form-group comment-form-author"><label for="author" class="sr-only">' . __( 'Name', 'italystrap' ) . ' ' . ( $req ? __( '(required)', 'italystrap') . '<span class="required">*</span>' : '' ) . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="text" class="form-control" name="author" id="author" value="' . esc_attr( $comment_author ) . '" placeholder="' . __('Name', 'italystrap') . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '" tabindex="1"' . ( $req ? 'aria-required="true"' : '') . ' title="' . __( 'Name', 'italystrap' ) . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '"/></div></div>',
+			'<div class="form-group comment-form-author"><label for="author" class="sr-only">'
+			. __( 'Name', 'italystrap' ) . ' ' . ( $req ? __( '(required)', 'italystrap')
+				. '<span class="required">*</span>' : '' )
+			. '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="text" class="form-control" name="author" id="author" value="' . esc_attr( $comment_author ) . '" placeholder="' . __('Name', 'italystrap') . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '" tabindex="1"' . ( $req ? 'aria-required="true"' : '') . ' title="' . __( 'Name', 'italystrap' ) . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '"/></div></div>',
 
 		'email'		=>
 			'<div class="form-group comment-form-email"><label for="email" class="sr-only">' . __( 'Email (will not be published)', 'italystrap' ) . ' ' . ( $req ? __( '(required)', 'italystrap') . '<span class="required">*</span>' : '' ) . '</label><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input type="email" class="form-control" name="email" id="email" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . __( 'Email (will not be published)', 'italystrap' ) . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '" tabindex="2" aria-describedby="email-notes" ' . $aria_req . $html_req  . ' title="' . __( 'Email (will not be published)', 'italystrap' ) . ' ' . ( $req ? __('(required) *', 'italystrap') : '' ) . '" /></div></div>',

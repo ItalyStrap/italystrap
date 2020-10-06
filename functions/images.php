@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 /**
  * For file size @see image_size.php
  *
@@ -20,6 +21,7 @@
  * @package ItalyStrap
  */
 declare(strict_types=1);
+
 if ( ! function_exists( 'italystrap_get_the_custom_image_url' ) ) {
 	/**
 	 * Get the custom image URL from customizer
@@ -151,7 +153,8 @@ if ( ! function_exists( 'italystrap_add_image_class' ) ) {
 	/**
 	 *
 	 * Add img-responsive css class when new images are upload
-	 * For old image install Search regex plugin and replace '<img class="' to '<img class="img-responsive ' without apostrophe mark ;-)
+	 * For old image install Search regex plugin and replace
+	 * '<img class="' to '<img class="img-responsive ' without apostrophe mark ;-)
 	 */
 	function italystrap_add_image_class( $class ) {
 		$class .= ' img-responsive';
@@ -255,7 +258,8 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 	 * Viene inserita l'ultima immagine associata ad un post, per visualizzarne un'altra
 	 * bisogna cancellare la prima e inserire la nuova.
 	 *
-	 * @todo In questa funzione creare una if per stampare o ritornare il codice, per farlo aggiungere un parametro alla funzione o all'array, esempio:
+	 * @todo In questa funzione creare una if per stampare o ritornare il codice,
+	 * 		per farlo aggiungere un parametro alla funzione o all'array, esempio:
 	 * if (true)
 	 *    return
 	 * else
@@ -269,7 +273,14 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 	 * @param $default_height Deve essere un numero intero corrispondente all'altezza' dell'immagine di default
 	 * @return string
 	 */
-	function italystrap_get_the_post_thumbnail( $postID = null, $size = 'post-thumbnail', $attr = array(), $default_width = 0, $default_height = 0, $default_image = '' ) {
+	function italystrap_get_the_post_thumbnail(
+		$postID = null,
+		$size = 'post-thumbnail',
+		$attr = array(),
+		$default_width = 0,
+		$default_height = 0,
+		$default_image = ''
+	) {
 
 		/**
 		 * If has feautured image return that
@@ -331,7 +342,12 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 		 *
 		 * @var string
 		 */
-		$default_image = '<img src="' . $default_image . '" width="' . $default_width . 'px" height="' . $default_height . 'px" alt="' . $attr['alt'] . '" class="' . $attr['class'] . '">';
+		$default_image = '<img src="'
+			. $default_image . '" width="'
+			. $default_width . 'px" height="'
+			. $default_height . 'px" alt="'
+			. $attr['alt'] . '" class="'
+			. $attr['class'] . '">';
 
 		/**
 		 * Set the default image
@@ -354,7 +370,12 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 			 * Se l'immagine nel post è più piccola del 10% la mostra altrimenti no.
 			 */
 			if ( $image_attributes[1] >= $default_width / 1.1 ) {
-				$image_html = '<img src="' . $image_attributes[0] . '" width="' . $image_attributes[1] . '" height="' . $image_attributes[2] . '" alt="' . $attr['alt'] . '" class="' . $attr['class'] . '">';
+				$image_html = '<img src="'
+					. $image_attributes[0] . '" width="'
+					. $image_attributes[1] . '" height="'
+					. $image_attributes[2] . '" alt="'
+					. $attr['alt'] . '" class="'
+					. $attr['class'] . '">';
 			}
 		}
 
@@ -363,7 +384,12 @@ if ( ! function_exists( 'italystrap_get_the_post_thumbnail' ) ) {
 }
 
 if ( ! function_exists( 'italystrap_the_post_thumbnail' ) ) {
-	function italystrap_the_post_thumbnail( $size = 'post-thumbnail', $attr = '', $default_width = '', $default_height = '' ) {
+	function italystrap_the_post_thumbnail(
+		$size = 'post-thumbnail',
+		$attr = '',
+		$default_width = '',
+		$default_height = ''
+	) {
 		echo italystrap_get_the_post_thumbnail( null, $size, $attr, $default_width, $default_height );
 	}
 }
@@ -513,7 +539,8 @@ if ( ! function_exists( 'italystrap_new_caption_style' ) ) {
 
 		if ( $html5 ) {
 			$html = '<figure ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
-				. do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
+				. do_shortcode( $content )
+				. '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
 		} else {
 			$html = '<div ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
 				. do_shortcode( $content ) . '<p class="wp-caption-text">' . $atts['caption'] . '</p></div>';

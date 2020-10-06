@@ -8,7 +8,9 @@ use ItalyStrap\Theme\Registrable;
 use function add_filter;
 use function has_nav_menu;
 
+// phpcs:disable
 require_once 'BaseTheme.php';
+// phpcs:enable
 
 class NavMenusTest extends BaseTheme {
 
@@ -22,7 +24,7 @@ class NavMenusTest extends BaseTheme {
 	/**
 	 * @test
 	 */
-	public function ItShouldRegister() {
+	public function itShouldRegister() {
 		$should_load = 0;
 		add_filter( 'theme_mod_nav_menu_locations', function ( $default ) use ( &$should_load ) {
 			$should_load++;

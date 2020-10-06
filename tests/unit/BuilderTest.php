@@ -1,4 +1,7 @@
 <?php
+declare(strict_types=1);
+
+namespace ItalyStrap\Test;
 
 use tad\FunctionMockerLe;
 
@@ -53,6 +56,7 @@ class BuilderTest extends \Codeception\Test\Unit {
 	 */
 	private $hooks;
 
+	// phpcs:ignore
 	protected function _before() {
 		FunctionMockerLe\undefineAll(['__']);
 		$this->view = $this->prophesize( \ItalyStrap\View\ViewInterface::class );
@@ -61,6 +65,7 @@ class BuilderTest extends \Codeception\Test\Unit {
 		$this->injector = $this->prophesize( \ItalyStrap\Empress\Injector::class );
 	}
 
+	// phpcs:ignore
 	protected function _after() {
 	}
 

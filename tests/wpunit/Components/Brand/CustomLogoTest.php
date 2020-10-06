@@ -1,4 +1,7 @@
 <?php
+declare(strict_types=1);
+
+namespace ItalyStrap\Test;
 
 use ItalyStrap\Components\Brand\CustomLogo;
 
@@ -24,7 +27,7 @@ class CustomLogoTest extends \Codeception\TestCase\WPTestCase {
 	}
 
 	// Tests
-	public function test_it_works() {
+	public function testItWorks() {
 		$post = static::factory()->post->create_and_get();
 		
 		$this->assertInstanceOf(\WP_Post::class, $post);
@@ -71,10 +74,12 @@ class CustomLogoTest extends \Codeception\TestCase\WPTestCase {
 		$custom_logo = $sut->render();
 
 		$this->assertStringContainsString(
+			// phpcs:disable
 			\sprintf(
 				'<a href="%1$s/" class="custom-logo-link navbar-brand" rel="home"><img width="100" height="100" src="%1$s/wp-content/uploads/image.jpg" class="custom-logo " alt="ItalyStrap" /></a>',
 				$_SERVER[ 'TEST_SITE_WP_URL' ]
 			),
+			// phpcs:enable
 			$custom_logo,
 			''
 		);

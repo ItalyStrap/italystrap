@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
+// phpcs:disable
 require_once 'BaseTheme.php';
+// phpcs:enable
+
 class ThumbnailsTest extends BaseTheme {
 
 	protected function getInstance( $paramConfig = [] ) {
@@ -19,7 +22,7 @@ class ThumbnailsTest extends BaseTheme {
 	/**
 	 * @test
 	 */
-	public function ItShouldRegister() {
+	public function itShouldRegister() {
 		$support = [
 			'sizes'	=> [
 				'navbar-brand-image'	=> [

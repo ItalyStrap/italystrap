@@ -13,7 +13,9 @@ use function tad\FunctionMocker\replace;
 use function tad\FunctionMocker\setUp;
 use function tad\FunctionMocker\tearDown;
 
+// phpcs:disable
 require_once codecept_root_dir() . '/functions/factory.php';
+// phpcs:enable
 
 final class FactoryInjectorTest extends Unit {
 
@@ -46,6 +48,7 @@ final class FactoryInjectorTest extends Unit {
 		$this->add_filter_called = 0;
 	}
 
+	// phpcs:ignore
 	protected function _before() {
 		setUp();
 
@@ -53,11 +56,13 @@ final class FactoryInjectorTest extends Unit {
 
 		$this->resetFilterCountCallState();
 
+		// phpcs:ignore
 		\tad\FunctionMockerLe\define('apply_filters', function ( ...$args ) {
 			$this->apply_filters_called++;
 			return $this->injector;
 		});
 
+		// phpcs:ignore
 		\tad\FunctionMockerLe\define('add_filter', function ( ...$args ) {
 			$this->add_filter_called++;
 			$callable = $args[1];
@@ -65,6 +70,7 @@ final class FactoryInjectorTest extends Unit {
 		});
 	}
 
+	// phpcs:ignore
 	protected function _after() {
 		tearDown();
 	}

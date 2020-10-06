@@ -7,6 +7,7 @@ use AcceptanceTester;
 
 class ThemeLoaderCest {
 
+	// phpcs:ignore
 	public function _before( AcceptanceTester $I ) {
 		$I->amOnPage( '/wp-admin' );
 		$I->tryToClick( 'Update WordPress Database', '.button-primary' );

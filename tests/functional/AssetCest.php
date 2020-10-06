@@ -7,6 +7,7 @@ use FunctionalTester;
 
 class AssetCest {
 
+	// phpcs:ignore
 	public function _before(FunctionalTester $I) {
 		$I->loginAsAdmin();
 

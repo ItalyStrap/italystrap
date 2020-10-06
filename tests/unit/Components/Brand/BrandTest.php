@@ -40,11 +40,13 @@ class BrandTest extends Unit {
 		return $this->config->reveal();
 	}
 
+	// phpcs:ignore
 	protected function _before() {
 		$this->config = $this->prophesize( ConfigInterface::class );
 		$this->custom_logo = $this->prophesize( CustomLogo::class );
 	}
 
+	// phpcs:ignore
 	protected function _after() {
 	}
 

@@ -11,7 +11,10 @@ use ItalyStrap\Theme\SidebarsSubscriber;
 use PHPUnit\Framework\Assert;
 use function is_registered_sidebar;
 
+// phpcs:disable
 require_once 'BaseTheme.php';
+// phpcs:enable
+
 class SidebarsTest extends BaseTheme {
 
 	protected function getInstance() {
@@ -24,7 +27,7 @@ class SidebarsTest extends BaseTheme {
 	/**
 	 * @test
 	 */
-	public function ItShouldRegister() {
+	public function itShouldRegister() {
 		$sidebar_id = 'custom-sidebar-for-test';
 
 		$this->config->getIterator()->willReturn( new ArrayIterator(
@@ -47,7 +50,7 @@ class SidebarsTest extends BaseTheme {
 	/**
 	 * @test
 	 */
-	public function ItParseDynamicSidebarBefore() {
+	public function itParseDynamicSidebarBefore() {
 		$sidebar_id = 'custom-sidebar-for-test';
 
 		$this->config->getIterator()->willReturn( new ArrayIterator(

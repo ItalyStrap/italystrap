@@ -1,4 +1,7 @@
 <?php
+declare(strict_types=1);
+
+namespace ItalyStrap\Test;
 
 use ItalyStrap\View\Exceptions\ViewNotFoundException;
 
@@ -8,15 +11,17 @@ class FinderScriptTest extends \Codeception\Test\Unit {
 	 * @var \UnitTester
 	 */
 	protected $tester;
-	
+
+	// phpcs:ignore
 	protected function _before() {
 	}
 
+	// phpcs:ignore
 	protected function _after() {
 	}
 
 	private function getInstance() {
-		$sut = new ItalyStrap\Finder\Finder(
+		$sut = new \ItalyStrap\Finder\Finder(
 			new \ItalyStrap\Finder\FilesHierarchyIterator(
 				new \ItalyStrap\Finder\FileInfoFactory()
 			)

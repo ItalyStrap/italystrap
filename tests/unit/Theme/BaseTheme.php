@@ -12,9 +12,11 @@ abstract class BaseTheme extends Unit {
 	 */
 	protected $tester;
 
+	// phpcs:ignore
 	protected function _before() {
 	}
 
+	// phpcs:ignore
 	protected function _after() {
 	}
 
@@ -23,7 +25,7 @@ abstract class BaseTheme extends Unit {
 	/**
 	 * @test
 	 */
-	public function ItShouldBeInstantiable() {
+	public function itShouldBeInstantiable() {
 		$this->getInstance();
 	}
 }

@@ -9,10 +9,12 @@ class ExperimentalBlockContentGeneratorTest extends \Codeception\Test\Unit {
 	 * @var \UnitTester
 	 */
 	protected $tester;
-	
+
+	// phpcs:ignore
 	protected function _before() {
 	}
 
+	// phpcs:ignore
 	protected function _after() {
 	}
 

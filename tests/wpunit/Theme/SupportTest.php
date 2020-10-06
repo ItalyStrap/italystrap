@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
+// phpcs:disable
 require_once 'BaseTheme.php';
+// phpcs:enable
+
 class SupportTest extends BaseTheme {
 
 	protected function getInstance( $paramConfig = [] ) {
@@ -18,7 +21,7 @@ class SupportTest extends BaseTheme {
 	/**
 	 * @test
 	 */
-	public function ItShouldRegister() {
+	public function itShouldRegister() {
 		$support = [
 			'automatic-feed-links',
 			'html5'	=> [

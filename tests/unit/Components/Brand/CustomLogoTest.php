@@ -1,4 +1,7 @@
 <?php
+declare(strict_types=1);
+
+namespace ItalyStrap\Test;
 
 use Codeception\Test\Unit;
 use Illuminate\Support\Str;
@@ -38,7 +41,9 @@ class CustomLogoTest extends Unit {
 		return $this->dispatcher->reveal();
 	}
 
+	// phpcs:ignore
 	protected function _before() {
+		// phpcs:ignore
 		\tad\FunctionMockerLe\define('get_custom_logo', function (): string {
 			$image = wp_get_attachment_image(1, 'thumbnail', false, []);
 
@@ -49,6 +54,7 @@ class CustomLogoTest extends Unit {
 			return $this->get_custom_logo_return_value;
 		});
 
+		// phpcs:ignore
 		\tad\FunctionMockerLe\define(
 			'wp_get_attachment_image',
 			function ( $attachment_id, $size = 'thumbnail', $icon = false, $attr = '') {
@@ -59,6 +65,7 @@ class CustomLogoTest extends Unit {
 		$this->dispatcher = $this->prophesize( EventDispatcherInterface::class );
 	}
 
+	// phpcs:ignore
 	protected function _after() {
 	}
 
@@ -106,10 +113,12 @@ class CustomLogoTest extends Unit {
 	}
 
 	public function getCustomLogo( $args ) {
+		// phpcs:disable
 		$html = \sprintf(
 			'<a href="%1$s/" class="custom-logo-link" rel="home"><img width="100" height="100" src="%1$s/wp-content/uploads/image.jpg" class="custom-logo " alt="ItalyStrap" /></a>',
 			$_SERVER[ 'TEST_SITE_WP_URL' ]
 		);
+		// phpcs:enable
 		$custom_logo = call_user_func( $args[1], $html, 1 );
 
 		$this->assertStringContainsString('custom-logo-link navbar-brand', $custom_logo, '');

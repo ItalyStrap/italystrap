@@ -9,8 +9,10 @@ class ExperimentalAssetsFileNameGeneratorFunctionTest extends \Codeception\Test\
 	 * @var \UnitTester
 	 */
 	protected $tester;
-	
+
+	// phpcs:ignore
 	protected function _before() {
+		// phpcs:ignore
 		\tad\FunctionMockerLe\define('add_filter', function (...$args) {
 			return true;
 		});
@@ -21,6 +23,7 @@ class ExperimentalAssetsFileNameGeneratorFunctionTest extends \Codeception\Test\
 		require_once $genreal_function_file;
 	}
 
+	// phpcs:ignore
 	protected function _after() {
 	}
 

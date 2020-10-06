@@ -52,8 +52,6 @@ final class FactoryInjectorTest extends Unit {
 	protected function _before() {
 		setUp();
 
-		replace('\ItalyStrap\Core\is_debug', $this->is_debug );
-
 		$this->resetFilterCountCallState();
 
 		// phpcs:ignore
@@ -79,6 +77,9 @@ final class FactoryInjectorTest extends Unit {
 	 * @test
 	 */
 	public function instanceOkWithFilterFalse() {
+		$this->is_debug = false;
+		replace('\ItalyStrap\Core\is_debug', $this->is_debug );
+
 		$this->injector = false;
 		$injector = injector();
 
@@ -94,6 +95,9 @@ final class FactoryInjectorTest extends Unit {
 	 * @test
 	 */
 	public function instanceOkWithFilterReturnPrevInstanceOfAuryn() {
+		$this->is_debug = false;
+		replace('\ItalyStrap\Core\is_debug', $this->is_debug );
+
 		$this->injector = new AurynInjector();
 		$injector = injector();
 
@@ -109,6 +113,9 @@ final class FactoryInjectorTest extends Unit {
 	 * @test
 	 */
 	public function instanceOkWithFilterReturnPrevInstanceOfEmpress() {
+		$this->is_debug = false;
+		replace('\ItalyStrap\Core\is_debug', $this->is_debug );
+
 		$this->injector = new EmpressInjector();
 		$injector = injector();
 
@@ -124,6 +131,9 @@ final class FactoryInjectorTest extends Unit {
 	 * @test
 	 */
 	public function assertReturnSameInstance() {
+		$this->is_debug = false;
+		replace('\ItalyStrap\Core\is_debug', $this->is_debug );
+
 		$injector = injector();
 		$another_injector = injector();
 

@@ -1,7 +1,8 @@
 {
   "source": {
     "directories": [
-      "src"
+      "src",
+      "functions"
     ]
   },
   "logs": {

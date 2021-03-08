@@ -50,6 +50,7 @@ return \apply_filters(
 			'comment-list',
 			'gallery',
 			'caption',
+			'script',
 		],
 
 		/**

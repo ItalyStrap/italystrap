@@ -1,0 +1,48 @@
+name: Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  tests:
+    name: Test on PHP ${{ matrix.php-versions }}
+
+    runs-on: ubuntu-16.04
+    continue-on-error: ${{ matrix.php-versions == '8.1' }}
+
+    strategy:
+      matrix:
+        php-versions: [ '7.2', '7.3', '7.4', '8.0', '8.1' ]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        coverage: xdebug2
+        # extensions: gd, zip
+        tools: composer:v1
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --ignore-platform-reqs
+
+    - name: Run test suite
+      run: vendor/bin/codecept run unit
+
+    #- name: Run infection suite
+      #run: vendor/bin/infection --threads=4

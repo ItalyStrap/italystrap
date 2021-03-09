@@ -15,9 +15,14 @@ use Prophecy\Prophecy\ObjectProphecy;
 class CustomLogoTest extends Unit {
 
 	/**
-	 * @var UnitTester
+	 * @var \UnitTester
 	 */
 	protected $tester;
+
+	/**
+	 * @var \Prophecy\Prophet
+	 */
+	private $prophet;
 
 	/**
 	 * @var string
@@ -43,6 +48,7 @@ class CustomLogoTest extends Unit {
 
 	// phpcs:ignore
 	protected function _before() {
+		$this->prophet = new \Prophecy\Prophet;
 		// phpcs:ignore
 		\tad\FunctionMockerLe\define('get_custom_logo', function (): string {
 			$image = wp_get_attachment_image(1, 'thumbnail', false, []);
@@ -62,7 +68,7 @@ class CustomLogoTest extends Unit {
 			}
 		);
 
-		$this->dispatcher = $this->prophesize( EventDispatcherInterface::class );
+		$this->dispatcher = $this->prophet->prophesize( EventDispatcherInterface::class );
 	}
 
 	// phpcs:ignore

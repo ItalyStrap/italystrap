@@ -11,10 +11,17 @@ class BuilderTest extends \Codeception\Test\Unit {
 	 * @var \UnitTester
 	 */
 	protected $tester;
+
+	/**
+	 * @var \Prophecy\Prophet
+	 */
+	private $prophet;
+
 	/**
 	 * @var \Prophecy\Prophecy\ObjectProphecy
 	 */
 	private $view;
+
 	/**
 	 * @var \Prophecy\Prophecy\ObjectProphecy
 	 */
@@ -51,6 +58,7 @@ class BuilderTest extends \Codeception\Test\Unit {
 	 * @var \Prophecy\Prophecy\ObjectProphecy
 	 */
 	private $config;
+
 	/**
 	 * @var \Prophecy\Prophecy\ObjectProphecy
 	 */

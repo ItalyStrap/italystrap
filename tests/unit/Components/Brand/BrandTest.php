@@ -18,6 +18,11 @@ class BrandTest extends Unit {
 	protected $tester;
 
 	/**
+	 * @var \Prophecy\Prophet
+	 */
+	private $prophet;
+
+	/**
 	 * @var ObjectProphecy config
 	 */
 	private $config;
@@ -42,8 +47,9 @@ class BrandTest extends Unit {
 
 	// phpcs:ignore
 	protected function _before() {
-		$this->config = $this->prophesize( ConfigInterface::class );
-		$this->custom_logo = $this->prophesize( CustomLogo::class );
+		$this->prophet = new \Prophecy\Prophet;
+		$this->config = $this->prophet->prophesize( ConfigInterface::class );
+		$this->custom_logo = $this->prophet->prophesize( CustomLogo::class );
 	}
 
 	// phpcs:ignore

@@ -58,11 +58,12 @@ class BuilderTest extends \Codeception\Test\Unit {
 
 	// phpcs:ignore
 	protected function _before() {
+		$this->prophet = new \Prophecy\Prophet;
 		FunctionMockerLe\undefineAll(['__']);
-		$this->view = $this->prophesize( \ItalyStrap\View\ViewInterface::class );
-		$this->config = $this->prophesize( \ItalyStrap\Config\ConfigInterface::class );
-		$this->hooks = $this->prophesize( \ItalyStrap\Event\EventDispatcherInterface::class );
-		$this->injector = $this->prophesize( \ItalyStrap\Empress\Injector::class );
+		$this->view = $this->prophet->prophesize( \ItalyStrap\View\ViewInterface::class );
+		$this->config = $this->prophet->prophesize( \ItalyStrap\Config\ConfigInterface::class );
+		$this->hooks = $this->prophet->prophesize( \ItalyStrap\Event\EventDispatcherInterface::class );
+		$this->injector = $this->prophet->prophesize( \ItalyStrap\Empress\Injector::class );
 	}
 
 	// phpcs:ignore

@@ -1,4 +1,16 @@
 name: Test
+env:
+  WP_FOLDER_PATH: "/tmp/wordpress"
+  TOOLS_FOLDER_PATH: "~/tools"
+  WP_VERSION: "latest"
+  DB_NAME: "test"
+  TEST_DB_NAME: "wploader"
+
+  WP_URL: "http://wp.localhost"
+  WP_DOMAIN: "wp.localhost"
+  WP_TABLE_PREFIX: "wp_"
+  WP_ADMIN_USERNAME: "admin"
+  WP_ADMIN_PASSWORD: "admin"
 
 on:
   push:
@@ -21,6 +33,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Start database server
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -e "create database IF NOT EXISTS ${{env.DB_NAME}};" -uroot -proot
+        mysql -e "create database IF NOT EXISTS ${{env.TEST_DB_NAME}};" -uroot -proot
+
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
@@ -40,6 +58,28 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --ignore-platform-reqs
+
+    - name: Install WP-CLI
+      run: |
+        mkdir ${{env.TOOLS_FOLDER_PATH}}
+        # install wp-cli in the `tools` folder
+        wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -P ${{env.TOOLS_FOLDER_PATH}}
+        chmod +x ${{env.TOOLS_FOLDER_PATH}}/wp-cli.phar && mv ${{env.TOOLS_FOLDER_PATH}}/wp-cli.phar ${{env.TOOLS_FOLDER_PATH}}/wp
+        # prepend the `tools` folder to the PATH
+        # https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#adding-a-system-path
+        echo ${{env.TOOLS_FOLDER_PATH}} >> $GITHUB_PATH
+        # prepend the `vendor/bin` folder to the PATH
+        echo "vendor/bin" >> $GITHUB_PATH
+
+    - name: Install WordPress
+      run: |
+        mkdir -p ${{env.WP_FOLDER_PATH}}
+        cd $WP_FOLDER_PATH
+        wp core download --version=$WP_VERSION
+        wp config create --dbname="${{env.DB_NAME}}" --dbuser="root" --dbpass="root" --dbhost="127.0.0.1" --dbprefix="${{env.WP_TABLE_PREFIX}}"
+        wp core install --url="${{env.WP_URL}}" --title="Test" --admin_user="${{env.WP_ADMIN_USERNAME}}" --admin_password="${{env.WP_ADMIN_PASSWORD}}" --admin_email="admin@${{env.WP_DOMAIN}}" --skip-email
+        wp rewrite structure '/%postname%/' --hard
+        ls
 
     - name: Run test suite
       run: vendor/bin/codecept run unit

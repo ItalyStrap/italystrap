@@ -28,6 +28,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          coverage: xdebug2
+          # extensions: gd, zip
+          tools: composer:v1
+
+      - uses: ramsey/composer-install@v1
+        with:
+          composer-options: "--prefer-dist --ignore-platform-reqs"
+
       - name: Start database server
         run: |
           sudo /etc/init.d/mysql start
@@ -62,18 +74,6 @@ jobs:
           wp db export $GITHUB_WORKSPACE/tests/_data/dump.sql
           cd $GITHUB_WORKSPACE
           sudo chmod -R 777 $WP_FOLDER_PATH
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          coverage: xdebug2
-          # extensions: gd, zip
-          tools: composer:v1
-
-      - uses: ramsey/composer-install@v1
-        with:
-          composer-options: "--prefer-dist --ignore-platform-reqs"
 
       - name: Run test suite
         run: vendor/bin/codecept run wpunit

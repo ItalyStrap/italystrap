@@ -31,8 +31,6 @@ if ( is_admin() ) {
 }
 
 $subscribers = [
-//	Components\Schema\Word_Count::class,
-//	Components\Schema\Time_Required::class,
 ];
 
 if ( class_exists( Migrations\Old_Hooks::class ) ) {

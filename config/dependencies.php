@@ -359,7 +359,6 @@ return [
 		Admin\Nav_Menu\ItemCustomFields::class,
 		Customizer\ThemeCustomizer::class,
 		Css\CssSubscriber::class,
-		User\ContactMethods::class,
 
 		// This is the class that build the page
 		Builders\Director::class,

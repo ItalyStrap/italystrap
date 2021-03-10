@@ -13,19 +13,11 @@ namespace ItalyStrap\Misc;
 
 use ItalyStrap\HTML;
 
-//d($_GET['author_name']);
-//d( $this->get( 'author' ) );
-//d( $this->get( 'contact' )->render() );
-
 /**
  * Author object
  * @var \WP_User
  */
 $author_info = $this->get( 'author' );
-//d($author_info);
-//d($author_info->get( 'description' ));
-
-$contact = $this->get('contact');
 
 /**
  * Check if $author_info exist
@@ -33,11 +25,6 @@ $contact = $this->get('contact');
 if ( ! $author_info ) {
 	return;
 }
-
-//d($author_info);
-//d($author_info->get( 'avatar' ));
-//d($author_info->get( 'ID' ));
-//d(get_the_author_meta( 'ID' ));
 
 ?>
 <section <?php HTML\get_attr_e(
@@ -89,58 +76,6 @@ if ( ! $author_info ) {
 					</a>
 				</p>
 			<?php } ?>
-
-			<?php // echo $this->contact->render(); ?>
-
-			<ul class="list-inline">
-				<?php
-				if ( $author_info->twitter ) { ?>
-					<li>
-						<a
-								href="<?php echo \esc_html( $author_info->twitter ); ?>"
-								title="Twitter"
-								rel="me" class="sprite32 twitter32">&nbsp;</a>
-					</li>
-				<?php }
-				if ( $author_info->fb_profile ) { ?>
-					<li>
-						<a
-								href="<?php echo \esc_html( $author_info->fb_profile ); ?>"
-								title="Facebook"
-								rel="me"
-								class="sprite32 facebook32">&nbsp;</a>
-					</li>
-				<?php }
-				if ( $author_info->skype ) { ?>
-					<li>
-						<a
-								href="skype:<?php echo \esc_attr( $author_info->skype ); ?>?chat"
-								title="skype"
-								rel="me"
-								class="sprite32 skype32">&nbsp;</a>
-					</li>
-				<?php }
-				if ( $author_info->linkedIn ) { ?>
-					<li>
-						<a
-								href="<?php echo \esc_html( $author_info->linkedIn ); ?>"
-								title="linkedIn"
-								rel="me"
-								class="sprite32 linkedin32">&nbsp;</a>
-					</li>
-				<?php }
-				if ( $author_info->pinterest ) { ?>
-					<li>
-						<a
-								href="<?php echo \esc_html( $author_info->pinterest ); ?>"
-								title="pinterest"
-								rel="me"
-								class="sprite32 pinterest32">&nbsp;</a>
-					</li>
-				<?php }
-				?>
-			</ul>
-
 		</div><!-- / .col-sm-10 -->
 	</div><!-- / .row schema -->
 </section>

@@ -54,21 +54,21 @@ jobs:
           wp config create --dbname="${{env.DB_NAME}}" --dbuser="root" --dbpass="root" --dbhost="127.0.0.1" --dbprefix="${{env.WP_TABLE_PREFIX}}"
           wp core install --url="${{env.WP_URL}}" --title="Test" --admin_user="${{env.WP_ADMIN_USERNAME}}" --admin_password="${{env.WP_ADMIN_PASSWORD}}" --admin_email="admin@${{env.WP_DOMAIN}}" --skip-email
           wp rewrite structure '/%postname%/' --hard
-          # update WordPress database to avoid prompts
+#         update WordPress database to avoid prompts
           wp core update-db
-          # copy the theme in the WordPress themer folder
+#           copy the theme in the WordPress themer folder
           cp -r $GITHUB_WORKSPACE $WP_FOLDER_PATH/wp-content/themes/italystrap
-          # show the themes folder contents to make sure the theme folder is there
+#           show the themes folder contents to make sure the theme folder is there
           ls $WP_FOLDER_PATH/wp-content/themes
-          # activate the theme
+#           activate the theme
           wp theme activate italystrap
-          # make sure the plugin is active on the site
+#           make sure the plugin is active on the site
           wp theme list --status=active
-          # export a dump of the just installed database to the _data folder
+#           export a dump of the just installed database to the _data folder
           wp db export $GITHUB_WORKSPACE/tests/_data/dump.sql
-          # get back to the build folder
+#           get back to the build folder
           cd $GITHUB_WORKSPACE
-          # open up the site folder to allow the PHP application to read/write/execute on it
+#           open up the site folder to allow the PHP application to read/write/execute on it
           sudo chmod -R 777 $WP_FOLDER_PATH
 
       - name: Setup PHP

@@ -1,4 +1,5 @@
-name: Test
+name: Integration + E2E
+
 env:
   WP_FOLDER_PATH: "/tmp/wordpress"
   TOOLS_FOLDER_PATH: "~/tools"

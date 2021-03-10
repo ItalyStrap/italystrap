@@ -1,88 +1,43 @@
-name: Test
-env:
-  WP_FOLDER_PATH: "/tmp/wordpress"
-  TOOLS_FOLDER_PATH: "~/tools"
-  WP_VERSION: "latest"
-  DB_NAME: "test"
-  TEST_DB_NAME: "wploader"
-
-  WP_URL: "http://wp.localhost"
-  WP_DOMAIN: "wp.localhost"
-  WP_TABLE_PREFIX: "wp_"
-  WP_ADMIN_USERNAME: "admin"
-  WP_ADMIN_PASSWORD: "admin"
+name: Unit Test
 
 on:
   push:
-    branches: [ master, Dev ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, Dev ]
+    branches: [ master ]
 
 jobs:
   tests:
-    name: Test on PHP ${{ matrix.php-versions }}
+    name: Test on PHP ${{ matrix.php_versions }}
 
     runs-on: ubuntu-16.04
-    continue-on-error: ${{ matrix.php-versions == '8.1' }}
+    continue-on-error: ${{ matrix.php_versions == '8.1' }}
 
     strategy:
       matrix:
-        php-versions: [ '7.2', '7.3', '7.4', '8.0', '8.1' ]
+        php_versions: [ '7.2', '7.3', '7.4', '8.0', '8.1' ]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Start database server
-      run: |
-        sudo /etc/init.d/mysql start
-        mysql -e "create database IF NOT EXISTS ${{env.DB_NAME}};" -uroot -proot
-        mysql -e "create database IF NOT EXISTS ${{env.TEST_DB_NAME}};" -uroot -proot
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php_versions }}
+          coverage: xdebug2
+          # extensions: gd, zip
+          tools: composer:v1
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-versions }}
-        coverage: xdebug2
-        # extensions: gd, zip
-        tools: composer:v1
+      - uses: ramsey/composer-install@v1
+        with:
+          composer-options: "--prefer-dist --ignore-platform-reqs"
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      - name: Run test suite
+        run: vendor/bin/codecept run unit --coverage-text
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --ignore-platform-reqs
+      - name: Run infection suite
+        run: vendor/bin/infection --threads=4
 
-    - name: Install WP-CLI
-      run: |
-        mkdir ${{env.TOOLS_FOLDER_PATH}}
-        # install wp-cli in the `tools` folder
-        wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -P ${{env.TOOLS_FOLDER_PATH}}
-        chmod +x ${{env.TOOLS_FOLDER_PATH}}/wp-cli.phar && mv ${{env.TOOLS_FOLDER_PATH}}/wp-cli.phar ${{env.TOOLS_FOLDER_PATH}}/wp
-        # prepend the `tools` folder to the PATH
-        # https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#adding-a-system-path
-        echo ${{env.TOOLS_FOLDER_PATH}} >> $GITHUB_PATH
-        # prepend the `vendor/bin` folder to the PATH
-        echo "vendor/bin" >> $GITHUB_PATH
-
-    - name: Install WordPress
-      run: |
-        mkdir -p ${{env.WP_FOLDER_PATH}}
-        cd $WP_FOLDER_PATH
-        wp core download --version=$WP_VERSION
-        wp config create --dbname="${{env.DB_NAME}}" --dbuser="root" --dbpass="root" --dbhost="127.0.0.1" --dbprefix="${{env.WP_TABLE_PREFIX}}"
-        wp core install --url="${{env.WP_URL}}" --title="Test" --admin_user="${{env.WP_ADMIN_USERNAME}}" --admin_password="${{env.WP_ADMIN_PASSWORD}}" --admin_email="admin@${{env.WP_DOMAIN}}" --skip-email
-        wp rewrite structure '/%postname%/' --hard
-        ls
-
-    - name: Run test suite
-      run: vendor/bin/codecept run unit
-
-    #- name: Run infection suite
-      #run: vendor/bin/infection --threads=4
+#      - name: Run PHPBench suite
+#        run: vendor/bin/phpbench run --report=performance

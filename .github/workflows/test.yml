@@ -1,5 +1,18 @@
 name: Unit Test
 
+env:
+  WP_FOLDER_PATH: "/tmp/wordpress"
+  TOOLS_FOLDER_PATH: "~/tools"
+  WP_VERSION: "latest"
+  DB_NAME: "test"
+  TEST_DB_NAME: "wploader"
+
+  WP_URL: "http://wp.localhost"
+  WP_DOMAIN: "wp.localhost"
+  WP_TABLE_PREFIX: "wp_"
+  WP_ADMIN_USERNAME: "admin"
+  WP_ADMIN_PASSWORD: "admin"
+
 on:
   push:
     branches: [ master, Dev ]
@@ -32,6 +45,24 @@ jobs:
       - uses: ramsey/composer-install@v1
         with:
           composer-options: "--prefer-dist --ignore-platform-reqs"
+
+      - name: Install WP-CLI
+        run: |
+          mkdir ${{env.TOOLS_FOLDER_PATH}}
+          # install wp-cli in the `tools` folder
+          wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -P ${{env.TOOLS_FOLDER_PATH}}
+          chmod +x ${{env.TOOLS_FOLDER_PATH}}/wp-cli.phar && mv ${{env.TOOLS_FOLDER_PATH}}/wp-cli.phar ${{env.TOOLS_FOLDER_PATH}}/wp
+          # prepend the `tools` folder to the PATH
+          # https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#adding-a-system-path
+          echo ${{env.TOOLS_FOLDER_PATH}} >> $GITHUB_PATH
+          # prepend the `vendor/bin` folder to the PATH
+          echo "vendor/bin" >> $GITHUB_PATH
+
+      - name: Install WordPress
+        run: |
+          mkdir -p ${{env.WP_FOLDER_PATH}}
+          cd $WP_FOLDER_PATH
+          wp core download --version=$WP_VERSION
 
       - name: Run test suite
         run: vendor/bin/codecept run unit --coverage-text

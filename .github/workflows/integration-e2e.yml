@@ -1,4 +1,4 @@
-name: Integration + E2E
+name: Integration
 
 env:
   WP_FOLDER_PATH: "/tmp/wordpress"
@@ -20,7 +20,7 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
+  integration:
 
     runs-on: ubuntu-latest
 

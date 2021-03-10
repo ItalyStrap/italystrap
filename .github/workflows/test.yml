@@ -64,6 +64,9 @@ jobs:
           cd $WP_FOLDER_PATH
           wp core download --version=$WP_VERSION
 
+      - name: Folder permission for _output
+        run: sudo chmod -R 777 "/tests/_output"
+
       - name: Run test suite
         run: vendor/bin/codecept run unit --coverage-text
 

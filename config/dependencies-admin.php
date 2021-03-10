@@ -16,7 +16,6 @@ if ( ! \is_admin() ) {
 }
 
 $subscribers = [
-	Admin\Editors\TinyMCE::class,
 	Asset\EditorSubscriber::class
 ];
 

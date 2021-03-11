@@ -65,7 +65,7 @@ jobs:
           wp core download --version=$WP_VERSION
 
       - name: Folder permission for _output
-        run: ls "/tests"
+        run: ls
 
       - name: Folder permission for _output
         run: sudo chmod -R 777 "/tests/_output"

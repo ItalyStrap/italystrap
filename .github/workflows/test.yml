@@ -64,8 +64,8 @@ jobs:
           cd $WP_FOLDER_PATH
           wp core download --version=$WP_VERSION
 
-      - name: Folder permission for _output
-        run: ls tests
+#      - name: Folder permission for _output
+#        run: ls tests
 
       - name: Folder permission for _output
         run: sudo chmod -R 777 tests/_output
@@ -73,8 +73,8 @@ jobs:
       - name: Run test suite
         run: vendor/bin/codecept run unit --coverage-text
 
-      - name: Run infection suite
-        run: vendor/bin/infection --threads=4
+#      - name: Run infection suite
+#        run: vendor/bin/infection --threads=4
 
 #      - name: Run PHPBench suite
 #        run: vendor/bin/phpbench run --report=performance

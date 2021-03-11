@@ -364,7 +364,7 @@ return [
 		Builders\Director::class,
 
 		/**
-		 * With this class I can layload the AssetManager::class
+		 * With this class I can lazyload the AssetManager::class
 		 * see above in the PROXY config.
 		 */
 		AssetsSubscriber::class,

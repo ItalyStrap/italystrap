@@ -32,8 +32,6 @@ use function post_password_required;
 use function printf;
 use function wp_list_comments;
 
-//d(get_defined_vars());
-
 /**
  * @link https://codex.wordpress.org/Function_Reference/post_type_supports
  */

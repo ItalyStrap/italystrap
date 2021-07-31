@@ -7150,16 +7150,18 @@ body.wp-autoresize {
 /* line 150, ../sass/editor-style.scss */
 .wp-block {
   max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Width of "wide" blocks */
-/* line 155, ../sass/editor-style.scss */
+/* line 157, ../sass/editor-style.scss */
 .wp-block[data-align="wide"] {
   max-width: 1080px;
 }
 
 /* Width of "full-wide" blocks */
-/* line 161, ../sass/editor-style.scss */
+/* line 163, ../sass/editor-style.scss */
 .wp-block[data-align="full"] {
   max-width: none;
 }
@@ -7180,19 +7182,25 @@ body.wp-autoresize {
 /**
  * Post Title
  */
-/* line 211, ../sass/editor-style.scss */
+/* line 213, ../sass/editor-style.scss */
 .editor-post-title__block {
   border: 1px solid #e9e9e9;
 }
 
-/* line 219, ../sass/editor-style.scss */
+/* line 221, ../sass/editor-style.scss */
 .wp-block {
   border: 1px solid #e9e9e9;
 }
 
-/* line 223, ../sass/editor-style.scss */
+/* line 225, ../sass/editor-style.scss */
 .is-selected {
   border-color: #a0a0a0 !important;
+}
+
+/* line 235, ../sass/editor-style.scss */
+p {
+  font-size: 18px;
+  line-height: 1.45;
 }
 
 /*# sourceMappingURL=editor-style.css.map */

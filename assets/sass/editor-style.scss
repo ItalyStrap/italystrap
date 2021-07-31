@@ -149,6 +149,8 @@ $wp_border_color: #e5e5e5;
 /* Main column width */
 .wp-block {
 	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /* Width of "wide" blocks */
@@ -229,3 +231,8 @@ $wp_border_color: #e5e5e5;
 //	width: unset !important;
 //	padding: 0;
 //}
+
+p {
+	font-size: 18px;
+	line-height: 1.45;
+}

@@ -59,8 +59,13 @@
 		"symfony/asset": "^5.0",
 		"inpsyde/assets": "^2.1",
 		"lucatume/function-mocker": "^1.3",
-		"phpspec/prophecy-phpunit": "^1.1"
+		"phpspec/prophecy-phpunit": "^1.1",
+		"italystrap/theme-json-generator": "dev-master"
 	},
+	"repositories": [{
+		"type": "vcs",
+		"url": "https://github.com/ItalyStrap/theme-json-generator.git"
+	}],
 	"autoload": {
 		"psr-4": {
 			"ItalyStrap\\": "src/"

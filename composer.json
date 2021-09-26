@@ -62,18 +62,25 @@
 		"phpspec/prophecy-phpunit": "^1.1",
 		"italystrap/theme-json-generator": "dev-master"
 	},
-	"repositories": [{
-		"type": "vcs",
-		"url": "https://github.com/ItalyStrap/theme-json-generator.git"
-	}],
 	"autoload": {
 		"psr-4": {
 			"ItalyStrap\\": "src/"
 		}
 	},
+	"autoload-dev": {
+		"classmap": [
+			"tests/"
+		],
+		"psr-4": {
+			"ItalyStrap\\Tests\\": "tests/"
+		}
+	},
 	"extra": {
 		"installer-paths": {
 			"vendor/{$name}/": ["cmb2/cmb2"]
+		},
+		"theme-json": {
+			"callable": "\\ItalyStrap\\Theme\\JsonData::getJsonData"
 		}
 	},
 	"scripts": {
@@ -87,7 +94,12 @@
 			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"
 		],
 		"unit": [
-			"vendor\\bin\\codecept run unit && vendor\\bin\\codecept run wpunit && vendor\\bin\\infection --threads=8"
+			"vendor\\bin\\codecept run unit && vendor\\bin\\codecept run wpunit && vendor\\bin\\infection --threads=8",
+			"@clean"
+		],
+		"unit:debug": [
+			"vendor\\bin\\codecept run unit --debug",
+			"@clean"
 		],
 		"bench": [
 			"vendor\\bin\\phpbench run --report=performance"
@@ -100,6 +112,9 @@
 		],
 		"clean": [
 			"vendor\\bin\\codecept clean"
+		],
+		"theme-json": [
+			"\\ItalyStrap\\ThemeJsonGenerator\\ComposerPlugin::run"
 		]
 	},
 	"support"    : {

@@ -4,12 +4,6 @@ const path = require('path');
 const fs = require('fs');
 const pkg = JSON.parse(fs.readFileSync('./package.json'));
 
-/**
- * @TODO Read json config for sass files
- * https://stackoverflow.com/questions/55077889/how-can-i-use-sass-variables-from-json-file
- */
-const jsonImporter = require('node-sass-json-importer');
-
 const compass = require('gulp-compass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');

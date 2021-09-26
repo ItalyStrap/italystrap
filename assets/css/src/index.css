@@ -6033,3 +6033,7 @@ main {
 .author-nick {
   margin-top: 0;
 }
+
+.text-custom {
+  font-size: var(--wp--preset--font-size);
+}

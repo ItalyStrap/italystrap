@@ -66,6 +66,7 @@
 		"inpsyde/assets": "^2.1",
 		"lucatume/function-mocker": "^1.3",
 		"phpspec/prophecy-phpunit": "^1.1",
+		"bordoni/phpass": "^0.3.5",
 		"italystrap/theme-json-generator": "dev-master"
 	},
 	"autoload": {

@@ -58,13 +58,30 @@ __Migration guide wcoming soon__
 
 Remember! This is a full refactoring of the theme, consider it like a new theme, if you have the old version you have to do a migration to the new version.
 
-**Do always a backup first**
+**Always Do a backup first**
 
 == Frequently Asked Questions ==
 
 == Screenshots ==
 
 == Changelog ==
+
+= 4.0.0-beta.8 =
+
+Release Date: Set 27th, 2021
+
+(Dev time 12 months)
+
+**This is the latest version with PHP 7.2 support**
+
+* Updated Composer dependencies
+* Custom Logo API
+* Fixed some style issue on menu
+* Some coding styles refactoring
+* Initial support for GitHub actions
+* Removed some bad code in User Info API
+* Remove unused stuff never used
+* Start moving to FSE support
 
 = 4.0.0-beta.7 =
 

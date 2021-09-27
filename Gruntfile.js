@@ -472,6 +472,9 @@ module.exports = grunt => {
 	grunt.registerTask('bootstrap', ['uglify:bootstrapJS', 'compass']);
 
 
+	grunt.registerTask('readme', ['wp_readme_to_markdown']);
+
+
 	grunt.registerTask('test', ['jshint', 'csslint']);
 	grunt.registerTask('build', ['uglify', 'compass']);
 

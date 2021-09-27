@@ -19,7 +19,7 @@
 	"minimum-stability": "stable",
 	"require": {
 		"php" : ">=7.2",
-		"italystrap/empress": "^1.1",
+		"italystrap/empress": "dev-master",
 		"italystrap/event": "dev-master",
 		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
@@ -29,12 +29,18 @@
 		"italystrap/asset": "dev-master",
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
-		"brain/hierarchy": "^2.4",
 		"cmb2/cmb2": "2.6.0"
 	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "E:\\xampp\\htdocs\\moduli\\wp-content\\plugins\\empress"
+		}
+	],
 	"require-dev": {
-		"lucatume/wp-browser": "^2.4",
-		"lucatume/function-mocker-le": "^1.0",
+		"lucatume/wp-browser": "^2.6.0",
+		"lucatume/function-mocker-le": "^1.0.0",
+		"lucatume/function-mocker": "^1.3",
 		"codeception/c3": "2.*",
 		"codeception/module-asserts": "^1.0",
 		"codeception/module-phpbrowser": "^1.0",
@@ -43,24 +49,22 @@
 		"codeception/module-filesystem": "^1.0",
 		"codeception/module-cli": "^1.0",
 		"codeception/util-universalframework": "^1.0",
-		"brianium/paratest": "^4.0",
+		"phpspec/prophecy-phpunit": "^2.0.0",
 		"italystrap/debug": "^2.0",
-		"victorjonsson/markdowndocs": "^1.3",
-		"wptrt/wpthemereview": "*",
+		"italystrap/theme-json-generator": "dev-master",
 		"squizlabs/php_codesniffer": "*",
 		"phpcompatibility/php-compatibility": "*",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"phpstan/phpstan": "^0.11.16",
-		"szepeviktor/phpstan-wordpress": "^0.3.0",
-		"vimeo/psalm": "^3.9",
+		"phpstan/phpstan": "^0.12",
+		"szepeviktor/phpstan-wordpress": "^0.5",
+		"vimeo/psalm": "^4.8",
 		"phpbench/phpbench": "@dev",
-		"infection/infection": "^0.15.3",
-		"phpmetrics/phpmetrics": "^2.5",
+		"infection/infection": "^0.25.0",
+		"infection/codeception-adapter": "^0.4.0",
+		"phpmetrics/phpmetrics": "^2.7.0",
+		"brianium/paratest": "^6.0.0",
 		"symfony/asset": "^5.0",
-		"inpsyde/assets": "^2.1",
-		"lucatume/function-mocker": "^1.3",
-		"phpspec/prophecy-phpunit": "^1.1",
-		"italystrap/theme-json-generator": "dev-master"
+		"inpsyde/assets": "^2.1"
 	},
 	"autoload": {
 		"psr-4": {
@@ -83,6 +87,9 @@
 			"callable": "\\ItalyStrap\\Theme\\JsonData::getJsonData"
 		}
 	},
+	"suggest": {
+		"brain/hierarchy": ""
+	},
 	"scripts": {
 		"test": [
 			"test"
@@ -94,7 +101,11 @@
 			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"
 		],
 		"unit": [
-			"vendor\\bin\\codecept run unit && vendor\\bin\\codecept run wpunit && vendor\\bin\\infection --threads=8",
+			"vendor\\bin\\codecept run unit && vendor\\bin\\infection --threads=8",
+			"@clean"
+		],
+		"wpunit": [
+			"vendor\\bin\\codecept run wpunit && vendor\\bin\\infection --threads=8",
 			"@clean"
 		],
 		"unit:debug": [

@@ -10,7 +10,9 @@
  */
 
 namespace ItalyStrap\Admin\Nav_Menu;
-
+/**
+ * @infection-ignore-all
+ */
 use \Walker_Nav_Menu_Edit;
 
 /**

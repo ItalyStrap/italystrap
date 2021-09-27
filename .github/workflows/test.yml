@@ -23,7 +23,7 @@ jobs:
   tests:
     name: Test on PHP ${{ matrix.php_versions }}
 
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     continue-on-error: ${{ matrix.php_versions == '8.1' }}
 
     strategy:

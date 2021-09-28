@@ -18,8 +18,8 @@
 	],
 	"minimum-stability": "stable",
 	"require": {
-		"php" : ">=7.2",
-		"italystrap/empress": "dev-master",
+		"php" : ">=7.4",
+		"italystrap/empress": "~2.0.0",
 		"italystrap/event": "dev-master",
 		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
@@ -31,12 +31,6 @@
 		"overclokk/minimum-requirements": "dev-master",
 		"cmb2/cmb2": "2.6.0"
 	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "E:\\xampp\\htdocs\\moduli\\wp-content\\plugins\\empress"
-		}
-	],
 	"require-dev": {
 		"lucatume/wp-browser": "^2.6.0",
 		"lucatume/function-mocker-le": "^1.0.0",
@@ -64,7 +58,8 @@
 		"phpmetrics/phpmetrics": "^2.7.0",
 		"brianium/paratest": "^6.0.0",
 		"symfony/asset": "^5.0",
-		"inpsyde/assets": "^2.1"
+		"inpsyde/assets": "^2.1",
+		"downshiftorg/wp-http": "^2.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -106,6 +101,10 @@
 		],
 		"wpunit": [
 			"vendor\\bin\\codecept run wpunit && vendor\\bin\\infection --threads=8",
+			"@clean"
+		],
+		"wpunit:debug": [
+			"vendor\\bin\\codecept run wpunit --debug",
 			"@clean"
 		],
 		"unit:debug": [

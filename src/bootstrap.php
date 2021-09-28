@@ -22,6 +22,7 @@ use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Theme\License;
 use Throwable;
 use function ItalyStrap\Config\dependencies_collection;
 use function ItalyStrap\Config\get_config_file_content;
@@ -87,6 +88,11 @@ try {
 	$injector_config->extend( $injector->make( SubscribersConfigExtension::class ) );
 
 	$event_dispatcher = $injector->make( EventDispatcher::class );
+
+	/**
+	 * Register the license for this theme
+	 */
+	( $injector->make( License::class ) )->register();
 
 	/**
 	 * ========================================================================

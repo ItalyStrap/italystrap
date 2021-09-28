@@ -3,8 +3,6 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use Auryn\Injector;
-use ItalyStrap\Asset\AssetInterface;
-use ItalyStrap\Asset\AssetLoader;
 use ItalyStrap\Asset\AssetManager;
 use ItalyStrap\Asset\ConfigBuilder;
 use ItalyStrap\Asset\Debug\DebugScript;

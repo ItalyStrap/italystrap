@@ -21,7 +21,7 @@ The Theme Framework for WordPress website.
 
 ItalyStrap is a WordPress framework theme based on [HTML5 Boilerplate](http://html5boilerplate.com/), [Bootstrap](http://getbootstrap.com/), [Schema.org](https://schema.org/)
 
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Build Status](https://github.com/ItalyStrap/italystrap/actions/workflows/test.yml/badge.svg)](https://github.com/ItalyStrap/italystrap/actions)
 
 **Features include:**
 

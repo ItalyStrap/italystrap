@@ -9,7 +9,6 @@ declare(strict_types=1);
  * ========================================================================
  */
 $autoload_theme_files = [
-	'edd.php',
 	'default-constants.php',
 	'config-helpers.php',
 	'general-functions.php',

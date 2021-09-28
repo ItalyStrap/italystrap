@@ -53,8 +53,8 @@ class FinderScriptTest extends \Codeception\Test\Unit {
 
 		$file = $sut->firstFile(['old', 'min'], 'css');
 		$file = $sut->firstFile(['style', 'min'], 'css');
-		codecept_debug(PHP_EOL);
-		codecept_debug($file);
-		codecept_debug(\file_get_contents($file->getRealPath()));
+//		codecept_debug(PHP_EOL);
+//		codecept_debug($file);
+//		codecept_debug(\file_get_contents($file->getRealPath()));
 	}
 }

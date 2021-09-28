@@ -19,6 +19,7 @@ return apply_filters(
 		'ITALYSTRAP_THEME'				=> true,
 		'ITALYSTRAP_THEME_NAME'			=> \wp_get_theme( $get_template )->display( 'Name' ),
 		'ITALYSTRAP_THEME_VERSION'		=> \wp_get_theme( $get_template )->display( 'Version' ),
+		'ITALYSTRAP_THEME_AUTHOR'		=> \wp_get_theme( $get_template )->display( 'Author', false ),
 		'ITALYSTRAP_CURRENT_THEME_NAME'	=> $current_theme_name,
 		'PREFIX'						=> $prefix,
 		'_PREFIX'						=> '_' . $prefix,

@@ -68,7 +68,6 @@ jobs:
           wp rewrite structure '/%postname%/' --hard
           wp core update-db
           cp -r $GITHUB_WORKSPACE $WP_FOLDER_PATH/wp-content/themes/italystrap
-          echo "Theme installed"
           ls $WP_FOLDER_PATH/wp-content/themes
           ls $WP_FOLDER_PATH/wp-content/themes/italystrap/vendor
           wp theme activate italystrap

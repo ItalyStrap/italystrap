@@ -5,6 +5,7 @@ namespace ItalyStrap\Tests;
 
 use Codeception\TestCase\WPTestCase;
 use ItalyStrap\Config\ConfigInterface;
+use Prophecy\Prophet;
 use WpunitTester;
 
 abstract class BaseTheme extends WPTestCase {
@@ -27,8 +28,10 @@ abstract class BaseTheme extends WPTestCase {
 		// Before...
 		parent::setUp();
 
+		$this->prophet = new Prophet;
+
 		// Your set up methods here.
-		$this->config = $this->prophesize( ConfigInterface::class );
+		$this->config = $this->prophet->prophesize( ConfigInterface::class );
 	}
 
 	public function tearDown(): void {
@@ -43,7 +46,7 @@ abstract class BaseTheme extends WPTestCase {
 	/**
 	 * @test
 	 */
-	public function instanceOk() {
+	public function itShouldBeInstantiable() {
 		$this->getInstance();
 	}
 }

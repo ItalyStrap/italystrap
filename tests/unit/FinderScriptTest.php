@@ -3,12 +3,20 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Test;
 
-use ItalyStrap\View\Exceptions\ViewNotFoundException;
+use Codeception\Test\Unit;
+use ItalyStrap\Finder\FileInfoFactory;
+use ItalyStrap\Finder\FilesHierarchyIterator;
+use ItalyStrap\Finder\Finder;
+use ItalyStrap\Tests\InstantiableTrait;
+use UnitTester;
+use function codecept_data_dir;
 
-class FinderScriptTest extends \Codeception\Test\Unit {
+class FinderScriptTest extends Unit {
+
+	use InstantiableTrait;
 
 	/**
-	 * @var \UnitTester
+	 * @var UnitTester
 	 */
 	protected $tester;
 
@@ -21,19 +29,12 @@ class FinderScriptTest extends \Codeception\Test\Unit {
 	}
 
 	private function getInstance() {
-		$sut = new \ItalyStrap\Finder\Finder(
-			new \ItalyStrap\Finder\FilesHierarchyIterator(
-				new \ItalyStrap\Finder\FileInfoFactory()
+		$sut = new Finder(
+			new FilesHierarchyIterator(
+				new FileInfoFactory()
 			)
 		);
 		return $sut;
-	}
-
-	/**
-	 * @test
-	 */
-	public function instanceOk() {
-		$sut = $this->getInstance();
 	}
 
 	/**

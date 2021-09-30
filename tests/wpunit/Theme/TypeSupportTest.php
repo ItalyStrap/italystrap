@@ -19,7 +19,7 @@ class TypeSupportTest extends BaseTheme {
 	}
 
 	/**
-	 * @test
+	 *
 	 */
 	public function itShouldRegister() {
 		$support = 	[

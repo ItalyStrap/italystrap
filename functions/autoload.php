@@ -9,7 +9,7 @@ declare(strict_types=1);
  * ========================================================================
  */
 $autoload_theme_files = [
-	'default-constants.php',
+	'constants-generator.php',
 	'config-helpers.php',
 	'general-functions.php',
 	'comments-helpers.php',

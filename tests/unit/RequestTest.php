@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
+use Codeception\Test\Unit;
 use GuzzleHttp\Psr7\Utils;
 
-class RequestTest extends \Codeception\Test\Unit
+class RequestTest extends Unit
 {
     /**
      * @var \UnitTester

@@ -1,11 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace ItalyStrap\Test;
+namespace ItalyStrap\Tests;
 
 use tad\FunctionMockerLe;
 
 class BuilderTest extends \Codeception\Test\Unit {
+
+	use InstantiableTrait;
 
 	/**
 	 * @var \UnitTester
@@ -87,13 +89,6 @@ class BuilderTest extends \Codeception\Test\Unit {
 		);
 		$this->assertInstanceOf( \ItalyStrap\Builders\Builder::class, $sut, '' );
 		return $sut;
-	}
-
-	/**
-	 * @test
-	 */
-	public function itShouldBeInstantiable() {
-		$sut = $this->getInstance();
 	}
 
 	/**

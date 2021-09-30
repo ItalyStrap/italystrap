@@ -8,9 +8,13 @@ require_once $_SERVER['WP_ROOT_FOLDER'] . '/wp-includes/class-wp-walker.php';
 require_once $_SERVER['WP_ROOT_FOLDER'] . '/wp-includes/class-walker-nav-menu.php';
 // phpcs:enable
 
+use Codeception\Test\Unit;
+use ItalyStrap\Tests\InstantiableTrait;
 use \Walker_Nav_Menu;
 
-class WalkerNavMenuTest extends \Codeception\Test\Unit {
+class WalkerNavMenuTest extends Unit {
+
+	use InstantiableTrait;
 
 	/**
 	 * @var \UnitTester
@@ -25,9 +29,8 @@ class WalkerNavMenuTest extends \Codeception\Test\Unit {
 	protected function _after() {
 	}
 
-	// tests
-	public function testSomeFeature() {
-		$walker = new \ItalyStrap\Navbar\BootstrapNavMenu();
-//		codecept_debug( $walker );
+	protected function getInstance() {
+		$sut = new \ItalyStrap\Navbar\BootstrapNavMenu();
+		return $sut;
 	}
 }

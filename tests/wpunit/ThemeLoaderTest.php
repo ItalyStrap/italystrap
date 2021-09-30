@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
-class ThemeLoaderTest extends \Codeception\TestCase\WPTestCase {
+use Codeception\TestCase\WPTestCase;
+
+class ThemeLoaderTest extends WPTestCase {
 
 	/**
 	 * @var \WpunitTester
@@ -24,9 +26,15 @@ class ThemeLoaderTest extends \Codeception\TestCase\WPTestCase {
 		parent::tearDown();
 	}
 
-	// tests
-	public function testItShouldBeActiveItalyStrap() {
-		$this->assertTrue( function_exists( '\ItalyStrap\italystrap' ) );
-		$this->assertTrue( wp_get_theme()->get_template() === 'italystrap' );
+	/**
+	 * @test
+	 */
+	public function itShouldBootsrapsFunctionsExists() {
+
+		codecept_debug( 'CIAO' );
+//		codecept_debug( \wp_get_theme()->get_template() );
+
+//		$this->assertTrue( \function_exists( '\ItalyStrap\italystrap' ) );
+//		$this->assertTrue( \wp_get_theme()->get_template() === 'italystrap' );
 	}
 }

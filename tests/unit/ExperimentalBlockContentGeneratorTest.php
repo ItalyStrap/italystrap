@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Test;
 
-class ExperimentalBlockContentGeneratorTest extends \Codeception\Test\Unit {
+use Codeception\Test\Unit;
+
+class ExperimentalBlockContentGeneratorTest extends Unit {
 
 	/**
 	 * @var \UnitTester
@@ -16,9 +18,5 @@ class ExperimentalBlockContentGeneratorTest extends \Codeception\Test\Unit {
 
 	// phpcs:ignore
 	protected function _after() {
-	}
-
-	// tests
-	public function testSomeFeature() {
 	}
 }

@@ -132,4 +132,4 @@ function embed_wrap( $cache, $url, $attr, $post_ID ) {
 		\implode( ' ', $elements )
 	);
 }
-add_filter( 'embed_oembed_html', __NAMESPACE__ . '\embed_wrap', 10, 4 );
+\add_filter( 'embed_oembed_html', __NAMESPACE__ . '\embed_wrap', 10, 4 );

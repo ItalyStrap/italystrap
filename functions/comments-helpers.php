@@ -25,7 +25,7 @@ function add_class_button_to_cancel_reply( $formatted_link ) {
 
 	return str_replace( '<a ', $replace, $formatted_link);
 }
-add_filter( 'cancel_comment_reply_link', __NAMESPACE__ . '\add_class_button_to_cancel_reply', 10 );
+\add_filter( 'cancel_comment_reply_link', __NAMESPACE__ . '\add_class_button_to_cancel_reply', 10 );
 
 /**
  * Add a rel="nofollow" and Bootstrap button class to the comment reply links
@@ -66,7 +66,7 @@ function display_message_if_comments_are_closed() {
 	echo '<div class="alert alert-warning">' . __( 'Comments are closed.', 'italystrap' ) . '</div>';
 	return '';
 }
-add_action( 'comment_form_comments_closed', __NAMESPACE__ . '\display_message_if_comments_are_closed' );
+\add_action( 'comment_form_comments_closed', __NAMESPACE__ . '\display_message_if_comments_are_closed' );
 
 
 /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Test;
 
 use ItalyStrap\Components\Brand\CustomLogo;
+use ItalyStrap\Event\EventDispatcher;
 
 class CustomLogoTest extends \Codeception\TestCase\WPTestCase {
 
@@ -26,15 +27,8 @@ class CustomLogoTest extends \Codeception\TestCase\WPTestCase {
 		parent::tearDown();
 	}
 
-	// Tests
-	public function testItWorks() {
-		$post = static::factory()->post->create_and_get();
-		
-		$this->assertInstanceOf(\WP_Post::class, $post);
-	}
-
 	private function getInstance(): CustomLogo {
-		$sut = new CustomLogo( new \ItalyStrap\Event\EventDispatcher() );
+		$sut = new CustomLogo( new EventDispatcher() );
 		return $sut;
 	}
 

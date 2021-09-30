@@ -62,7 +62,7 @@ jobs:
         run: |
           mkdir -p ${{env.WP_FOLDER_PATH}}
           cd $WP_FOLDER_PATH
-          wp core download --version=${{env.$WP_VERSION}}
+          wp core download --version=${{env.WP_VERSION}}
           wp config create --dbname="${{env.DB_NAME}}" --dbuser="root" --dbpass="root" --dbhost="127.0.0.1" --dbprefix="${{env.WP_TABLE_PREFIX}}"
           wp core install --url="${{env.WP_URL}}" --title="Test" --admin_user="${{env.WP_ADMIN_USERNAME}}" --admin_password="${{env.WP_ADMIN_PASSWORD}}" --admin_email="admin@${{env.WP_DOMAIN}}" --skip-email
           wp rewrite structure '/%postname%/' --hard

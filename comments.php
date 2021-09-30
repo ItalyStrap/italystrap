@@ -14,6 +14,7 @@ namespace ItalyStrap;
 use Auryn\ConfigException;
 use Auryn\InjectionException;
 use ItalyStrap\Components\Comments\CommentsWalker;
+use ItalyStrap\Experimental\CommentHelperSubscriber;
 use function _n;
 use function apply_filters;
 use function comment_form;
@@ -23,8 +24,6 @@ use function get_comments_number;
 use function get_the_title;
 use function have_comments;
 use function in_array;
-use function ItalyStrap\Core\comment_form_args;
-use function ItalyStrap\Core\comment_pagination;
 use function ItalyStrap\Factory\get_config;
 use function ItalyStrap\Factory\injector;
 use function number_format_i18n;
@@ -48,6 +47,7 @@ if ( post_password_required() ) {
 }
 
 $template_settings = (array) get_config()->get('post_content_template');
+$comment_helper = injector()->make( CommentHelperSubscriber::class );
 
 /**
  * If there are comments
@@ -101,11 +101,11 @@ if ( have_comments() ) : ?>
 			echo $e->getMessage();
 		}
 
-		comment_pagination();
+		$comment_helper->comment_pagination();
 			echo '<ol class="parent">';
 		        wp_list_comments( $wp_list_comments_args );
 			echo '</ol>';
-		comment_pagination();
+		$comment_helper->comment_pagination();
 		?>
 	</section><!-- /#comments -->
 <?php elseif ( comments_open() && ! in_array( 'hide_comments', $template_settings, true ) ) : ?>
@@ -143,7 +143,7 @@ if ( have_comments() ) : ?>
 	 * comment_form_after
 	 * comment_form_comments_closed
 	 */
-	comment_form( comment_form_args( $comment_author, $user_identity ) );
+	comment_form( $comment_helper->comment_form_args( $comment_author, $user_identity ) );
 	?>
 </section>
 <?php endif;

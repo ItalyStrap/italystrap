@@ -341,6 +341,8 @@ return [
 	 */
 	SubscribersConfigExtension::SUBSCRIBERS				=> [
 
+		\ItalyStrap\Experimental\CommentHelperSubscriber::class,
+
 		/**
 		 * Register Theme stuff
 		 */

@@ -3,10 +3,16 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Test;
 
-class ExperimentalAssetsFileNameGeneratorFunctionTest extends \Codeception\Test\Unit {
+use Codeception\Test\Unit;
+use UnitTester;
+use function define;
+use function function_exists;
+use function Italystrap\Core\experimental_generate_asset_index_filename;
+
+class ExperimentalAssetsFileNameGeneratorFunctionTest extends Unit {
 
 	/**
-	 * @var \UnitTester
+	 * @var UnitTester
 	 */
 	protected $tester;
 
@@ -17,10 +23,15 @@ class ExperimentalAssetsFileNameGeneratorFunctionTest extends \Codeception\Test\
 			return true;
 		});
 
-		$genreal_function_file = dirname( __FILE__ ) . '/../../../functions/general-functions.php';
+		$genreal_function_file = codecept_absolute_path('functions/asset-helpers.php');
 
-		$this->assertFileExists( $genreal_function_file );
+		$this->assertFileExists( $genreal_function_file, "The {$genreal_function_file} file does not exists" );
 		require_once $genreal_function_file;
+
+		$this->assertTrue(
+			function_exists( '\Italystrap\Core\experimental_generate_asset_index_filename' ),
+			'experimental_generate_asset_index_filename function does not exists'
+		);
 	}
 
 	// phpcs:ignore
@@ -32,14 +43,14 @@ class ExperimentalAssetsFileNameGeneratorFunctionTest extends \Codeception\Test\
 	 */
 	public function itShouldReturnOnlyIndexAndCustomWithScriptDebugTrue() {
 		if ( ! defined( 'CURRENT_TEMPLATE_SLUG' ) ) {
-			\define( 'CURRENT_TEMPLATE_SLUG', 'front-page' );
+			define( 'CURRENT_TEMPLATE_SLUG', 'front-page' );
 		}
 
 		if ( ! defined( 'SCRIPT_DEBUG' ) ) {
-			\define( 'SCRIPT_DEBUG', false );
+			define( 'SCRIPT_DEBUG', false );
 		}
 
-		$files = \Italystrap\Core\experimental_generate_asset_index_filename( 'js' );
+		$files = experimental_generate_asset_index_filename( 'js' );
 		$this->assertIsArray($files, '');
 //    	codecept_debug( $files );
 	}
@@ -49,15 +60,15 @@ class ExperimentalAssetsFileNameGeneratorFunctionTest extends \Codeception\Test\
 	 */
 	public function itShouldReturnOnlyIndexAndCustomWithScriptDebugTruep() {
 		if ( ! defined( 'CURRENT_TEMPLATE_SLUG' ) ) {
-			\define( 'CURRENT_TEMPLATE_SLUG', 'front-page' );
+			define( 'CURRENT_TEMPLATE_SLUG', 'front-page' );
 			codecept_debug('RUN');
 		}
 
 		if ( ! defined( 'SCRIPT_DEBUG' ) ) {
-			\define( 'SCRIPT_DEBUG', true );
+			define( 'SCRIPT_DEBUG', true );
 		}
 
-		$files = \Italystrap\Core\experimental_generate_asset_index_filename( 'js' );
+		$files = experimental_generate_asset_index_filename( 'js' );
 		$this->assertIsArray($files, '');
 //    	codecept_debug( $files );
 	}

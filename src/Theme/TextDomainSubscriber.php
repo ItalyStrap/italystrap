@@ -10,7 +10,7 @@ use ItalyStrap\Event\SubscriberInterface;
  * Class TextDomain
  * @package ItalyStrap\Theme
  */
-class TextDomainSubscriber implements Registrable, SubscriberInterface {
+final class TextDomainSubscriber implements Registrable, SubscriberInterface {
 
 	/**
 	 * @inheritDoc

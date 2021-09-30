@@ -15,7 +15,7 @@ use function register_sidebar;
  * There are a standard sidebar and 4 footer dynamic sidebars
  * @package ItalyStrap\Theme
  */
-class SidebarsSubscriber implements Registrable, SubscriberInterface {
+final class SidebarsSubscriber implements Registrable, SubscriberInterface {
 
 	const NAME = 'name';
 	const ID = 'id';

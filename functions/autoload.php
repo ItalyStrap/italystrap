@@ -9,10 +9,11 @@ declare(strict_types=1);
  * ========================================================================
  */
 $autoload_theme_files = [
+	'core-booleans.php',
 	'constants-generator.php',
+	'asset-helpers.php',
 	'config-helpers.php',
 	'general-functions.php',
-	'comments-helpers.php',
 	'italystrap.php',
 	'factory.php',
 	'html.php',

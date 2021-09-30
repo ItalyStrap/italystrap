@@ -7,7 +7,7 @@ use ItalyStrap\Config\Config;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\SubscriberInterface;
 
-class License implements Registrable, SubscriberInterface {
+final class License implements Registrable, SubscriberInterface {
 
 	public function getSubscribedEvents(): iterable {
 		yield 'after_setup_theme'	=> [

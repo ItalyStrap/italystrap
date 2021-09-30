@@ -5,7 +5,7 @@ namespace ItalyStrap\Theme;
 
 use ItalyStrap\ThemeJsonGenerator\SectionNames;
 
-class JsonData
+final class JsonData
 {
 	public static function getJsonData(): array {
 		return [

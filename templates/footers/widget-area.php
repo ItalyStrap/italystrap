@@ -2,8 +2,6 @@
 /**
  * The template part for displaying Colophon
  *
- * @uses get_the_colophon( $theme_mods )
- *
  * @package ItalyStrap
  * @since 4.0.0
  */

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use function ItalyStrap\Core\colophon_default_text;
 use function ItalyStrap\Core\get_content_width;
 
 $config = Factory\get_config();
@@ -94,7 +93,7 @@ return apply_filters(
 		/**
 		 * Default text for colophon
 		 */
-		'colophon'						=> colophon_default_text(),
+		'colophon'						=> '',
 		'colophon_action'				=> 'italystrap_footer',
 		'colophon_priority'				=> 20,
 

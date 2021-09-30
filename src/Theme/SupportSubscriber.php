@@ -6,7 +6,7 @@ namespace ItalyStrap\Theme;
 use \ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
 
-class SupportSubscriber implements Registrable, SubscriberInterface {
+final class SupportSubscriber implements Registrable, SubscriberInterface {
 
 	/**
 	 * @inheritDoc

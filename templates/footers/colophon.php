@@ -2,8 +2,6 @@
 /**
  * The template part for displaying Colophon
  *
- * @uses get_the_colophon( $theme_mods )
- *
  * @package ItalyStrap
  * @since 4.0.0
  */
@@ -11,14 +9,20 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use function ItalyStrap\Core\the_colophon;
+use function apply_filters;
+use function ItalyStrap\Factory\get_config;
+use function wp_kses_post;
 
 ?><!-- #copyright -->
 <div id="colophon" class="colophon">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 colophon-entry-content">
-				<?php the_colophon(); // XSS ok.	?>
+				<?php
+                apply_filters( 'italystrap_colophon_output',
+                    wp_kses_post( get_config()->get( 'colophon', '' ) )
+                ); // XSS ok.
+                ?>
 			</div>
 		</div>
 	</div>

@@ -34,9 +34,9 @@ jobs:
           php-version: 7.4
           coverage: xdebug2
           # extensions: gd, zip
-          tools: composer:v1
+          tools: composer:v2
 
-      - uses: ramsey/composer-install@v1
+      - uses: ramsey/composer-install@v2
         with:
           composer-options: "--prefer-dist --ignore-platform-reqs"
 
@@ -62,13 +62,15 @@ jobs:
         run: |
           mkdir -p ${{env.WP_FOLDER_PATH}}
           cd $WP_FOLDER_PATH
-          wp core download --version=$WP_VERSION
+          wp core download --version=${{env.$WP_VERSION}}
           wp config create --dbname="${{env.DB_NAME}}" --dbuser="root" --dbpass="root" --dbhost="127.0.0.1" --dbprefix="${{env.WP_TABLE_PREFIX}}"
           wp core install --url="${{env.WP_URL}}" --title="Test" --admin_user="${{env.WP_ADMIN_USERNAME}}" --admin_password="${{env.WP_ADMIN_PASSWORD}}" --admin_email="admin@${{env.WP_DOMAIN}}" --skip-email
           wp rewrite structure '/%postname%/' --hard
           wp core update-db
           cp -r $GITHUB_WORKSPACE $WP_FOLDER_PATH/wp-content/themes/italystrap
+          echo "Theme installed"
           ls $WP_FOLDER_PATH/wp-content/themes
+          ls $WP_FOLDER_PATH/wp-content/themes/italystrap/vendor
           wp theme activate italystrap
           wp theme list --status=active
           wp db export $GITHUB_WORKSPACE/tests/_data/dump.sql

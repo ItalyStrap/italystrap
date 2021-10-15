@@ -7,7 +7,7 @@ use tad\FunctionMockerLe;
 
 class BuilderTest extends \Codeception\Test\Unit {
 
-	use InstantiableTrait;
+	use BaseUnitTrait;
 
 	/**
 	 * @var \UnitTester

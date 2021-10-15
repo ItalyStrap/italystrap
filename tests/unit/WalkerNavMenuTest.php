@@ -9,12 +9,12 @@ require_once $_SERVER['WP_ROOT_FOLDER'] . '/wp-includes/class-walker-nav-menu.ph
 // phpcs:enable
 
 use Codeception\Test\Unit;
-use ItalyStrap\Tests\InstantiableTrait;
+use ItalyStrap\Tests\BaseUnitTrait;
 use \Walker_Nav_Menu;
 
 class WalkerNavMenuTest extends Unit {
 
-	use InstantiableTrait;
+	use BaseUnitTrait;
 
 	/**
 	 * @var \UnitTester

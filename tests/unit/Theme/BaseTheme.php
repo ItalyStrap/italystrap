@@ -9,7 +9,7 @@ use Prophecy\Prophet;
 
 abstract class BaseTheme extends Unit {
 
-	use InstantiableTrait;
+	use BaseUnitTrait;
 
 	/**
 	 * @var \UnitTester

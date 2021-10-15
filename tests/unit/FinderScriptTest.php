@@ -7,13 +7,13 @@ use Codeception\Test\Unit;
 use ItalyStrap\Finder\FileInfoFactory;
 use ItalyStrap\Finder\FilesHierarchyIterator;
 use ItalyStrap\Finder\Finder;
-use ItalyStrap\Tests\InstantiableTrait;
+use ItalyStrap\Tests\BaseUnitTrait;
 use UnitTester;
 use function codecept_data_dir;
 
 class FinderScriptTest extends Unit {
 
-	use InstantiableTrait;
+	use BaseUnitTrait;
 
 	/**
 	 * @var UnitTester

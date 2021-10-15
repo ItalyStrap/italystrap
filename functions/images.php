@@ -182,7 +182,7 @@ if ( ! function_exists( 'italystrap_get_404_image' ) ) {
 		$theme_mods = \ItalyStrap\Factory\get_config();
 
 		if ( 'show' !== $theme_mods['404_show_image'] ) {
-			return;
+			return '';
 		}
 
 		/**

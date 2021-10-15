@@ -5,6 +5,9 @@ namespace ItalyStrap\Components\Footers;
 
 use \ItalyStrap\View\ViewInterface;
 
+/**
+ * @deprecated
+ */
 class WidgetArea {
 
 	private $data = [];

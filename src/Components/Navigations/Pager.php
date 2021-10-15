@@ -6,6 +6,9 @@ namespace ItalyStrap\Components\Navigations;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\HTML;
 
+/**
+ * @deprecated
+ */
 class Pager {
 
 	/**

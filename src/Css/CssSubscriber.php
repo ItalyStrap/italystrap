@@ -7,7 +7,7 @@ use \ItalyStrap\Event\SubscriberInterface;
 use \ItalyStrap\Config\ConfigInterface;
 
 /**
- * CSS API Class
+ * @deprecated
  */
 class CssSubscriber implements SubscriberInterface {
 

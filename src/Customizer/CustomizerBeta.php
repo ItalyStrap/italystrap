@@ -8,6 +8,7 @@ declare(strict_types=1);
  * @since 3.0.0
  *
  * @package ItalyStrap\Customizer
+ * @deprecated
  */
 
 namespace ItalyStrap\Customizer;
@@ -22,7 +23,7 @@ use WP_Customize_Manager;
  * https://paulund.co.uk/custom-wordpress-controls
  *
  * @since ItalyStrap 1.0
- *
+ * @deprecated
  */
 class CustomizerBeta implements SubscriberInterface {
 

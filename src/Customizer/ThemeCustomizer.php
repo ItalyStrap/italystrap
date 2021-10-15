@@ -24,7 +24,7 @@ use WP_Customize_Manager;
  * https://paulund.co.uk/custom-wordpress-controls
  *
  * @since ItalyStrap 1.0
- *
+ * @deprecated
  */
 class ThemeCustomizer implements SubscriberInterface {
 

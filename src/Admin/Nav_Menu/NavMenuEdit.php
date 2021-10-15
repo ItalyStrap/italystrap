@@ -30,6 +30,7 @@ use \Walker_Nav_Menu_Edit;
  * @package ItalyStrap
  * @since 4.0.0
  * @uses Walker_Nav_Menu_Edit
+ * @deprecated
  */
 class NavMenuEdit extends Walker_Nav_Menu_Edit {
 

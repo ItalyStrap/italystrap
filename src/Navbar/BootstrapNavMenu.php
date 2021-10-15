@@ -28,6 +28,7 @@ use \Walker_Nav_Menu;
  *       usare la sua classe css invece
  * @todo Sarebbe interessante aggiunger un autocomplete con le classi Bootstrap
  *       nel menù admin
+ * @deprecated
  */
 class BootstrapNavMenu extends Walker_Nav_Menu {
 

@@ -17,6 +17,7 @@ use \Walker_Comment;
  * @todo Ho ancora un po di lavoro da fare con questa classe
  *       Per esempio pulire il codice HTML ritornato, è ancora troppo sporco
  *       Troppi ul
+ * @deprecated
  */
 class CommentsWalker extends Walker_Comment {
 

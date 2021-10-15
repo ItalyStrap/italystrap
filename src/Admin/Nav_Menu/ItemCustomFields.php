@@ -33,6 +33,7 @@ use function update_post_meta;
  * @package ItalyStrap
  * @since 4.0.0
  * @uses Walker_Nav_Menu_Edit
+ * @deprecated
  */
 final class ItemCustomFields implements SubscriberInterface {
 

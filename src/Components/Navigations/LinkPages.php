@@ -8,6 +8,7 @@ use function wp_link_pages;
 
 /**
  * Class description
+ * @deprecated
  */
 class LinkPages {
 

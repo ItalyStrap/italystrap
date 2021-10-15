@@ -9,6 +9,7 @@ use function new_cmb2_box;
 
 /**
  * https://make.wordpress.org/core/2018/11/07/meta-box-compatibility-flags/
+ * @deprecated
  */
 class Register implements SubscriberInterface {
 

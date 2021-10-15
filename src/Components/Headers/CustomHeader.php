@@ -8,6 +8,7 @@ use ItalyStrap\HTML\Attributes;
 
 /**
  * The Header_Image controller class
+ * @deprecated
  */
 class CustomHeader {
 

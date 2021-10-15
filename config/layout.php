@@ -8,6 +8,7 @@
  * @since 4.0.0
  *
  * @package ItalyStrap
+ * @deprecated
  */
 declare(strict_types=1);
 $layout = apply_filters(

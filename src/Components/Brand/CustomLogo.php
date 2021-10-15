@@ -7,6 +7,9 @@ use ItalyStrap\Event\EventDispatcherInterface;
 use function get_custom_logo;
 use function strval;
 
+/**
+ * @deprecated
+ */
 class CustomLogo {
 
 	/**

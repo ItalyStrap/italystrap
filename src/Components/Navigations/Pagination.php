@@ -8,6 +8,7 @@ use ItalyStrap\HTML;
 
 /**
  * Pagination Class
+ * @deprecated
  */
 class Pagination {
 

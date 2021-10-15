@@ -12,6 +12,7 @@ use ItalyStrap\Config\ConfigInterface;
  * ID
  * $this->config->get( 'navbar_logo_image' )
  *
+ * @deprecated
  */
 class Brand {
 

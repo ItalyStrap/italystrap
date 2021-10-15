@@ -11,6 +11,7 @@ use \Walker_Nav_Menu;
 /**
  * Template for Navbar like Botstrap CSS
  * @example http://www.bootply.com/mQh8DyRfWY bootstrap navbar center logo
+ * @deprecated
  */
 class Navbar {
 

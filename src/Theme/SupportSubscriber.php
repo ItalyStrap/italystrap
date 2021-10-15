@@ -24,10 +24,16 @@ final class SupportSubscriber implements Registrable, SubscriberInterface {
 	private $config;
 
 	/**
+	 * @var Support
+	 */
+	private Support $support;
+
+	/**
 	 * Init sidebars registration
 	 */
-	public function __construct( Config $config ) {
+	public function __construct( Config $config, Support $support ) {
 		$this->config = $config;
+		$this->support = $support;
 	}
 
 	/**
@@ -38,9 +44,9 @@ final class SupportSubscriber implements Registrable, SubscriberInterface {
 	public function register() {
 		foreach ( $this->config as $feature => $parameters ) {
 			if ( \is_string( $parameters ) ) {
-				\add_theme_support( $parameters );
+				$this->support->add( $parameters );
 			} else {
-				\add_theme_support( $feature, $parameters );
+				$this->support->add( $feature, $parameters );
 			}
 		}
 	}

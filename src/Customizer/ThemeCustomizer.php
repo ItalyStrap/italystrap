@@ -17,6 +17,7 @@ use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Config\Config;
 
 use WP_Customize_Manager;
+use function ItalyStrap\Bools\experimental_is_block_theme;
 
 /**
  * Contains methods for customizing the theme customization screen.
@@ -120,6 +121,13 @@ class ThemeCustomizer implements SubscriberInterface {
 	 */
 	public function customizeRegister( WP_Customize_Manager $manager ) {
 
+		/**
+		 * Do not load for new Editor
+		 */
+		if ( experimental_is_block_theme() ) {
+			return;
+		}
+
 		$transport = $manager->selective_refresh ? 'postMessage' : 'refresh';
 
 		$files = array(
@@ -162,6 +170,13 @@ class ThemeCustomizer implements SubscriberInterface {
 	 */
 	public function enqueueScriptOnLivePreview() {
 
+		/**
+		 * Do not load for new Editor
+		 */
+		if ( experimental_is_block_theme() ) {
+			return;
+		}
+
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
 			TEMPLATEURL . '/src/Customizer/js/src/theme-customizer.js',
@@ -184,6 +199,13 @@ class ThemeCustomizer implements SubscriberInterface {
 	 */
 	public function enqueueScriptOnCustomizeControlsEnqueueScripts() {
 
+		/**
+		 * Do not load for new Editor
+		 */
+		if ( experimental_is_block_theme() ) {
+			return;
+		}
+
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
 			TEMPLATEURL . '/src/Customizer/js/src/customize-controls.js',
@@ -205,6 +227,13 @@ class ThemeCustomizer implements SubscriberInterface {
 	 */
 	public function bodyAttr( array $attr ) {
 
+		/**
+		 * Do not load for new Editor
+		 */
+		if ( experimental_is_block_theme() ) {
+			return $attr;
+		}
+
 		if ( ! is_customize_preview() ) {
 			return $attr;
 		}
@@ -221,6 +250,13 @@ class ThemeCustomizer implements SubscriberInterface {
 	 * autofocus[panel|section|control]=ID
 	 */
 	public function addLinkToThemeOptionPage() {
+
+		/**
+		 * Do not load for new Editor
+		 */
+		if ( experimental_is_block_theme() ) {
+			return;
+		}
 
 		add_submenu_page(
 			'italystrap-dashboard',

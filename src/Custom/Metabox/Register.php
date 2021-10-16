@@ -5,6 +5,7 @@ namespace ItalyStrap\Custom\Metabox;
 
 use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
+use function ItalyStrap\Bools\experimental_is_block_theme;
 use function new_cmb2_box;
 
 /**
@@ -90,6 +91,13 @@ class Register implements SubscriberInterface {
 	 * Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
 	 */
 	public function registerMetaboxes() {
+
+		/**
+		 * Do not load for new Editor
+		 */
+		if ( experimental_is_block_theme() ) {
+			return;
+		}
 
 		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : null;
 		$post_type = isset( $_GET['post_type'] ) ? esc_attr( $_GET['post_type'] ) : get_post_type( $post_id );

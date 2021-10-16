@@ -10,6 +10,7 @@ declare(strict_types=1);
  */
 $autoload_theme_files = [
 	'core-booleans.php',
+	'booleans.php',
 	'constants-generator.php',
 	'asset-helpers.php',
 	'config-helpers.php',

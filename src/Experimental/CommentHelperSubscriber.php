@@ -11,7 +11,10 @@ class CommentHelperSubscriber implements SubscriberInterface
 
 	public function getSubscribedEvents(): iterable {
 
-		yield 'cancel_comment_reply_link' => 'add_class_button_to_cancel_reply';
+	    /*
+	     * this closes issue N° #31
+	     */
+//		yield 'cancel_comment_reply_link' => 'add_class_button_to_cancel_reply';
 
 		yield 'comment_form_comments_closed' => 'display_message_if_comments_are_closed';
 	}

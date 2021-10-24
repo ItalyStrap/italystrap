@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Experimental;
 
-
 use ItalyStrap\Event\SubscriberInterface;
 
+/**
+ * @deprecated
+ */
 class CommentHelperSubscriber implements SubscriberInterface
 {
 

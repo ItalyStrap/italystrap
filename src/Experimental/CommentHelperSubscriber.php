@@ -30,7 +30,7 @@ class CommentHelperSubscriber implements SubscriberInterface
 			\ItalyStrap\HTML\get_attr(
 				'cancel_comment_reply_class',
 				[
-					'class'	=> 'btn btn-danger btn-xs ciao',
+					'class'	=> 'btn btn-danger btn-xs',
 				]
 			)
 		);
@@ -91,7 +91,7 @@ class CommentHelperSubscriber implements SubscriberInterface
 				'<div class="form-group comment-form-comment"><label for="comment" class="sr-only">' . _x( 'Comment', 'noun', 'italystrap' ) . '</label><textarea class="form-control" name="comment" id="comment" placeholder="' . __( 'Write your comment here', 'italystrap') . '" tabindex="4" rows="6" aria-required="true" title="' . __( 'Write your comment here', 'italystrap' ) . '"></textarea></div>',
 			'logged_in_as'		=>
 				'<p class="logged-in-as">' . sprintf(
-					__( 'Logged in as <a href="%1$s" class="badge badge-primary">%2$s</a> <a href="%3$s" title="Log out of this account" class="badge badge-warning">Log out?</a>', 'italystrap' ),
+					__( 'Logged in as <a href="%1$s" class="">%2$s</a> <a href="%3$s" title="Log out of this account" class="">Log out?</a>', 'italystrap' ),
 					get_edit_user_link(),
 					$user_identity,
 					wp_logout_url( apply_filters( 'the_permalink', get_permalink() ) )

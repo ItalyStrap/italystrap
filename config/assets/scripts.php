@@ -15,7 +15,7 @@ return [
 	[
 		Asset::HANDLE				=> CURRENT_TEMPLATE_SLUG,
 		AssetConfigBuilder::FILE_NAME	=> experimental_generate_asset_index_filename( 'js' ),
-		Asset::DEPENDENCIES			=> ['jquery'],
+//		Asset::DEPENDENCIES			=> ['jquery'],
 		Asset::IN_FOOTER			=> true,
 		Asset::LOCALIZE				=> [
 			Script::OBJECT_NAME	=> 'pluginParams',

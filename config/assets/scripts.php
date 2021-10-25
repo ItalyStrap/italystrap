@@ -26,8 +26,4 @@ return [
 			],
 		],
 	],
-	[
-		Asset::HANDLE				=> 'comment-reply',
-		Asset::SHOULD_LOAD			=> 'ItalyStrap\Core\is_comment_reply',
-	],
 ];

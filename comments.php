@@ -86,7 +86,7 @@ if ( have_comments() ) : ?>
 		 * @var array
 		 */
 		try {
-			$wp_list_comments_args = array(
+			$wp_list_comments_args = [
 				'walker'        => injector()->make( $comment_walker ),
 				'max_depth'     => 3, // See in WordPress option.
 //				'avatar_size'   => 100,
@@ -94,7 +94,7 @@ if ( have_comments() ) : ?>
 //				    d( $comment, $args, $depth );
 //				    return '';
 //                },
-			);
+			];
 		} catch ( InjectionException $e ) {
 		    echo $e->getMessage();
 		} catch (ConfigException $e) {
@@ -147,3 +147,7 @@ if ( have_comments() ) : ?>
 	?>
 </section>
 <?php endif;
+
+if ( \ItalyStrap\Core\is_comment_reply() ) {
+	\wp_enqueue_script( 'comment-reply' );
+}

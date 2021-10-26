@@ -7,7 +7,6 @@ use ItalyStrap\Asset\Asset;
 use ItalyStrap\Asset\ConfigBuilder as AssetConfigBuilder;
 use ItalyStrap\Asset\Script;
 use function admin_url;
-use function defined;
 use function ItalyStrap\Core\experimental_generate_asset_index_filename;
 use function wp_create_nonce;
 

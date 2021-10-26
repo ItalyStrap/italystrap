@@ -79,7 +79,8 @@
 			"vendor/{$name}/": ["cmb2/cmb2"]
 		},
 		"theme-json": {
-			"callable": "\\ItalyStrap\\Theme\\JsonData::getJsonData"
+			"callable": "\\ItalyStrap\\Theme\\JsonData::getJsonData",
+			"path-for-theme-sass": "assets/sass/"
 		}
 	},
 	"suggest": {
@@ -89,33 +90,44 @@
 		"test": [
 			"test"
 		],
+		"test:all": [
+			"@cs",
+			"@analyze",
+			"@unit",
+			"@wpunit",
+			"@infection"
+		],
 		"cs": [
 			"vendor\\bin\\phpcbf -p --ignore=./tests/_support/* ./config/ ./functions/ ./src/ ./templates/ ./tests/ && vendor\\bin\\phpcs -p --ignore=./tests/_support/* ./config/ ./functions/ ./src/ ./templates/ ./tests/"
 		],
 		"analyze": [
 			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"
 		],
+		"infection": [
+			"vendor\\bin\\infection --threads=8"
+		],
 		"unit": [
-			"vendor\\bin\\codecept run unit && vendor\\bin\\infection --threads=8",
-			"@clean"
-		],
-		"wpunit": [
-			"vendor\\bin\\codecept run wpunit && vendor\\bin\\infection --threads=8",
-			"@clean"
-		],
-		"wpunit:debug": [
-			"vendor\\bin\\codecept run wpunit --debug",
+			"vendor\\bin\\codecept run unit",
 			"@clean"
 		],
 		"unit:debug": [
 			"vendor\\bin\\codecept run unit --debug",
 			"@clean"
 		],
+		"wpunit": [
+			"vendor\\bin\\codecept run wpunit",
+			"@clean"
+		],
+		"wpunit:debug": [
+			"vendor\\bin\\codecept run wpunit --debug",
+			"@clean"
+		],
 		"bench": [
 			"vendor\\bin\\phpbench run --report=performance"
 		],
 		"metrics": [
-			"vendor\\bin\\phpmetrics --report-html='./tests/_output/report' ./src"
+			"vendor\\bin\\phpmetrics --report-html='./tests/_output/report' ./src",
+			"@clean"
 		],
 		"insights": [
 			"vendor\\bin\\phpinsights"
@@ -123,7 +135,7 @@
 		"clean": [
 			"vendor\\bin\\codecept clean"
 		],
-		"theme-json": [
+		"theme:json": [
 			"\\ItalyStrap\\ThemeJsonGenerator\\ComposerPlugin::run"
 		]
 	},

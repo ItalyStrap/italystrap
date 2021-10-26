@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
-use function codecept_root_dir;
+use ItalyStrap\Finder\FinderInterface;
+use function ItalyStrap\Config\config_files_finder;
+use function ItalyStrap\Config\get_config_file_content;
 
-// phpcs:disable
-require_once codecept_root_dir() . '/functions/config-helpers.php';
-// phpcs:enable
+require_once \codecept_root_dir() . 'functions/config-helpers.php';
 
 class ConfigHelpersTest extends \Codeception\Test\Unit {
 
@@ -18,6 +18,11 @@ class ConfigHelpersTest extends \Codeception\Test\Unit {
 
 	// phpcs:ignore
 	protected function _before() {
+
+		$_data = \codecept_data_dir( 'fixtures/config' );
+
+		\tad\FunctionMockerLe\define( 'get_stylesheet_directory', fn() => $_data . '/child-theme' );
+		\tad\FunctionMockerLe\define( 'get_template_directory', fn() => $_data . '/parent-theme' );
 	}
 
 	// phpcs:ignore
@@ -27,8 +32,19 @@ class ConfigHelpersTest extends \Codeception\Test\Unit {
 	/**
 	 * @test
 	 */
+	public function itShouldReturnFinderObject() {
+		$sut = config_files_finder();
+		$this->assertInstanceOf( FinderInterface::class, $sut, '' );
+	}
+
+	/**
+	 * @test
+	 */
 	public function getConfigFileContent() {
-//		$config = \ItalyStrap\Config\get_config_file_content( 'default' );
-//		codecept_debug($config);
+		$config = get_config_file_content( 'default' );
+		$this->assertArrayHasKey( 'from-parent', $config, '' );
+		$this->assertEquals([
+			'from-parent'	=> 'override by child',
+		], $config, '');
 	}
 }

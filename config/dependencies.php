@@ -41,6 +41,7 @@ use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\View\ViewInterface;
 use Walker_Nav_Menu;
 use function ItalyStrap\Config\get_config_file_content;
+use function ItalyStrap\Config\get_config_file_content_last;
 use function ItalyStrap\Factory\get_config;
 
 return [
@@ -256,12 +257,12 @@ return [
 
 			$styles = $event_dispatcher->filter(
 				'italystrap_config_enqueue_style',
-				get_config_file_content( 'assets/styles' )
+				get_config_file_content_last( 'assets/styles' )
 			);
 
 			$scripts = $event_dispatcher->filter(
 				'italystrap_config_enqueue_script',
-				get_config_file_content( 'assets/scripts' )
+				get_config_file_content_last( 'assets/scripts' )
 			);
 
 			$config_builder->addConfig( $styles );

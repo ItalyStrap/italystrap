@@ -255,11 +255,18 @@ return [
 			);
 			$config_builder->withFinderForType( Script::EXTENSION, $js_finder);
 
+			/**
+			 * @todo Maybe I can add a check for forcing child to load its own assets
+			 * 		 is_child() ? [] : get_config_file_content_last( 'assets/[styles|scripts]' )
+			 * 		 because assetss should not be loaded from parent by default.
+			 * @var array<int, mixed>
+			 */
 			$styles = $event_dispatcher->filter(
 				'italystrap_config_enqueue_style',
 				get_config_file_content_last( 'assets/styles' )
 			);
 
+			/** @var array<int, mixed> $scripts */
 			$scripts = $event_dispatcher->filter(
 				'italystrap_config_enqueue_script',
 				get_config_file_content_last( 'assets/scripts' )

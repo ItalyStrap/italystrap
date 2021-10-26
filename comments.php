@@ -110,7 +110,7 @@ if ( have_comments() ) : ?>
 	</section><!-- /#comments -->
 <?php elseif ( comments_open() && ! in_array( 'hide_comments', $template_settings, true ) ) : ?>
 	<section id="comments" class="comments-area">
-		<h3 id="comments-title"><?php esc_html_e( 'There are no comments yet, why not be the first', 'italystrap' ); ?></h3>
+		<h3 id="comments-title" class="comments-title"><?php esc_html_e( 'There are no comments yet, why not be the first', 'italystrap' ); ?></h3>
 	</section>
 <?php endif;  // End have_comments(). ?>
 

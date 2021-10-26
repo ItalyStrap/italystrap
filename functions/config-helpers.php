@@ -60,6 +60,10 @@ function get_config_file_content_last( string $name ) : array {
 }
 
 /**
+ * This function return a Finder object
+ * with config dirs with this order:
+ * 0 => Parent
+ * 1 => Child
  * @return FinderInterface
  */
 function config_files_finder(): FinderInterface {

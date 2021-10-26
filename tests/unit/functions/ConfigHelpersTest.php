@@ -6,6 +6,7 @@ namespace ItalyStrap\Tests;
 use ItalyStrap\Finder\FinderInterface;
 use function ItalyStrap\Config\config_files_finder;
 use function ItalyStrap\Config\get_config_file_content;
+use function ItalyStrap\Config\get_config_file_content_last;
 
 require_once \codecept_root_dir() . 'functions/config-helpers.php';
 
@@ -42,6 +43,17 @@ class ConfigHelpersTest extends \Codeception\Test\Unit {
 	 */
 	public function getConfigFileContent() {
 		$config = get_config_file_content( 'default' );
+		$this->assertArrayHasKey( 'from-parent', $config, '' );
+		$this->assertEquals([
+			'from-parent'	=> 'override by child',
+		], $config, '');
+	}
+
+	/**
+	 * @test
+	 */
+	public function getConfigFileContentLast() {
+		$config = get_config_file_content_last( 'default' );
 		$this->assertArrayHasKey( 'from-parent', $config, '' );
 		$this->assertEquals([
 			'from-parent'	=> 'override by child',

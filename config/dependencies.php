@@ -84,7 +84,6 @@ return [
 		SubscriberRegisterInterface::class	=> SubscriberRegister::class,
 
 		ConfigInterface::class				=> Config::class,
-//		Config_Interface::class				=> Config::class,
 
 		AttributesInterface::class			=> Attributes::class,
 		TagInterface::class					=> Tag::class,
@@ -114,13 +113,8 @@ return [
 	 */
 	AurynConfig::DEFINITIONS			=> [
 
-//		SidebarsSubscriber::class	=> [
-//			 ':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
-//		],
 		SidebarsSubscriber::class	=> [
-			 '+config'	=> function () {
-				return ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) );
-			 },
+			 ':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
 		],
 		ThumbnailsSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/thumbnails' ) ),
@@ -145,6 +139,18 @@ return [
 //		],
 
 		Builders\Builder::class	=> [
+			'+view'	=> static function (): ViewInterface {
+				$injector = \ItalyStrap\Factory\injector();
+				$config = $injector->make( ConfigInterface::class );
+
+				$finder = $injector->make( FinderInterface::class )
+					->in( [
+						$config->get('CHILDPATH') . '/' . $config->get('template_dir'),
+						$config->get('PARENTPATH') . '/' . $config->get('template_dir'),
+					] );
+
+				return $injector->make( ViewInterface::class, [ ':finder' => $finder ] );
+			},
 			':config'	=> ConfigFactory::make( get_config_file_content( 'structure' ) ),
 		],
 
@@ -169,15 +175,12 @@ return [
 	 * ==========================================================
 	 */
 	AurynConfig::DEFINE_PARAM			=> [
-//		':theme_mods'	=> function () : array {
-//			return get_config()->all();
-//		},
 		'theme_mods'	=> get_config()->all(),
-		':wp_query'		=> function (): \WP_Query {
+		':wp_query'		=> static function (): \WP_Query {
 			global $wp_query;
 			return $wp_query;
 		},
-		':query'			=> function (): \WP_Query {
+		':query'			=> static function (): \WP_Query {
 			global $wp_query;
 			return $wp_query;
 		},
@@ -213,12 +216,12 @@ return [
 		/**
 		 * This class is lazy loaded
 		 */
-		AssetManager::class			=> function ( AssetManager $manager, Injector $injector ) {
+		AssetManager::class			=> static function ( AssetManager $manager, Injector $injector ) {
 
 			/** @var EventDispatcher $event_dispatcher */
 			$event_dispatcher = $injector->make(EventDispatcher::class);
 
-			$experimental_assets_path_generator = function ( string $dir ): array {
+			$experimental_assets_path_generator = static function ( string $dir ): array {
 				$sub_dir = ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) ? 'src/' :  '';
 
 				return \array_unique(
@@ -279,45 +282,11 @@ return [
 			$assets = $asset_loader->load( $config_builder->parseConfig() );
 
 			$manager->withAssets(...$assets);
-
-//			$event_dispatcher->addListener('shutdown', function () use ( $assets ){
-//				/** @var AssetInterface $asset */
-//				foreach ( $assets as $asset ) {
-//					d( $asset->handle() );
-//					d( $asset->isEnqueued() );
-//					d( $asset->isRegistered() );
-//				}
-//			});
-
-//			if ( \ItalyStrap\Core\is_debug() ) {
-//				$event_dispatcher->addListener(
-//					\Inpsyde\Assets\AssetManager::ACTION_SETUP,
-//					function (
-//						\Inpsyde\Assets\AssetManager $asset_manager
-//					) use ($config_builder) {
-////						'type'		=> \Inpsyde\Assets\Style::class
-////						$loader = new \ItalyStrap\Asset\Adapters\InpsydeGeneratorLoader();
-////						$assets = $loader->load( $config_builder->parsedConfig() );
-////						$asset_manager->register( $assets );
-//					}
-//				);
-//			}
 		},
 
-		Builders\Builder::class	=> function ( Builders\Builder $builder, Injector $injector ) {
-			$builder->setInjector( $injector );
-		},
-
-		Finder::class	=> function ( FinderInterface $finder, Injector $injector ) {
-			$config = $injector->make(ConfigInterface::class );
-
-			$dirs = [
-				$config->get('CHILDPATH') . '/' . $config->get('template_dir'),
-				$config->get('PARENTPATH') . '/' . $config->get('template_dir'),
-			];
-
-			$finder->in( $dirs );
-		},
+//		Builders\Builder::class	=> static function ( Builders\Builder $builder, Injector $injector ) {
+//			$builder->setInjector( $injector );
+//		},
 	],
 
 	/**

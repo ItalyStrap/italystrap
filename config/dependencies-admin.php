@@ -15,10 +15,6 @@ if ( ! \is_admin() ) {
 	return [];
 }
 
-$subscribers = [
-	Asset\EditorSubscriber::class
-];
-
 /**
  * Add fields to widget areas
  * The $register_metabox is declared in plugin
@@ -29,4 +25,4 @@ if ( isset( $register_metabox ) ) {
 	\add_action( 'cmb2_admin_init', $callable );
 }
 
-return $subscribers;
+return [];

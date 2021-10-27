@@ -49,12 +49,12 @@ return apply_filters(
 		/**
 		 * Default images
 		 */
-		'logo'							=> $config->TEMPLATEURL . '/assets/img/logo.png',
-		'default_image'					=> $config->TEMPLATEURL . '/assets/img/italystrap-default-image.png',
-		'default_404'					=> $config->TEMPLATEURL . '/assets/img/404.png',
+		'logo'							=> $config->get( 'TEMPLATEURL' ) . '/assets/img/logo.png',
+		'default_image'					=> $config->get( 'TEMPLATEURL' ) . '/assets/img/italystrap-default-image.png',
+		'default_404'					=> $config->get( 'TEMPLATEURL' ) . '/assets/img/404.png',
 
 		'404_show_image'				=> 'show',
-		'404_image'						=> $config->TEMPLATEURL . '/assets/img/404.png',
+		'404_image'						=> $config->get( 'TEMPLATEURL' ) . '/assets/img/404.png',
 		'404_title'						=> esc_attr__( 'Nothing Found', 'italystrap' ),
 		'404_content'					=>
 			esc_attr__(

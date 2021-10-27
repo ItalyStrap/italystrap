@@ -7,16 +7,12 @@
  *
  * @package ItalyStrap
  * @since 4.0.0
- *
- * @TODO https://github.com/understrap/understrap/issues/585 for gutenberg integration
  */
 declare(strict_types=1);
 
 namespace ItalyStrap;
 
 use Auryn\InjectorException;
-use ItalyStrap\Config\ConfigFactory;
-use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscribersConfigExtension;
@@ -72,9 +68,10 @@ try {
 	 * because in default there is a call for get_config
 	 * @TODO Remove get_config() dependency from inside the default array
 	 */
-	get_config()->merge($constants);
+//	get_config()->merge($constants);
 
 	get_config()->merge(
+		$constants,
 		get_config_file_content( 'default' ),
 		$theme_mods ?? (array) \get_theme_mods()
 	);

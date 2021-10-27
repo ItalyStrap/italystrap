@@ -7,6 +7,7 @@ use ItalyStrap\Asset\AssetManager;
 use ItalyStrap\Asset\ConfigBuilder;
 use ItalyStrap\Asset\Debug\DebugScript;
 use ItalyStrap\Asset\Debug\DebugStyle;
+use ItalyStrap\Asset\EditorSubscriber;
 use ItalyStrap\Asset\Loader\GeneratorLoader;
 use ItalyStrap\Asset\Script;
 use ItalyStrap\Asset\Style;
@@ -137,6 +138,25 @@ return [
 //				)
 //			),
 //		],
+
+		EditorSubscriber::class => [
+			'+finder'	=> static function () {
+				$injector = \ItalyStrap\Factory\injector();
+				$config = $injector->make( ConfigInterface::class );
+				$finder =  $injector->make( FinderInterface::class )
+					->in( [
+						$config->get('CHILDPATH') . '/assets/',
+						$config->get('PARENTPATH') . '/assets/',
+					] );
+
+				$finder->names([
+					'../css/editor-style.css',
+					'../assets/css/editor-style.css',
+				]);
+
+				return $finder;
+			},
+		],
 
 		Builders\Builder::class	=> [
 			'+view'	=> static function (): ViewInterface {
@@ -347,5 +367,6 @@ return [
 		 * see above in the PROXY config.
 		 */
 		AssetsSubscriber::class,
+		Asset\EditorSubscriber::class,
 	],
 ];

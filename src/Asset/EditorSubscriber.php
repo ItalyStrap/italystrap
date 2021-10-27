@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Asset;
 
+use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Finder\Finder;
 use SplFileInfo;
 use function add_editor_style;
-use function apply_filters;
 use function realpath;
 use function str_replace;
 use function strval;
@@ -18,11 +18,13 @@ class EditorSubscriber implements SubscriberInterface {
 	/**
 	 * @var Config
 	 */
-	private $config;
+	private Config $config;
 	/**
 	 * @var Finder
 	 */
-	private $finder;
+	private Finder $finder;
+
+	private EventDispatcher $dispatcher;
 
 	/**
 	 * @inheritDoc
@@ -36,9 +38,10 @@ class EditorSubscriber implements SubscriberInterface {
 	 * @param Config $config
 	 * @param Finder $finder
 	 */
-	public function __construct( Config $config, Finder $finder ) {
+	public function __construct( Config $config, Finder $finder, EventDispatcher $dispatcher ) {
 		$this->config = $config;
 		$this->finder = $finder;
+		$this->dispatcher = $dispatcher;
 	}
 
 	/**
@@ -53,21 +56,12 @@ class EditorSubscriber implements SubscriberInterface {
 	 */
 	public function enqueue() {
 
-		$this->finder->names([
-			'../css/editor-style.css',
-			'../assets/css/editor-style.css',
-		]);
-
 		/** @var SplFileInfo $editor_style */
 		$editor_style = '';
 		foreach ( $this->finder as $file ) {
 			$editor_style = $file;
 			break;
 		}
-
-//		$style_url = \file_exists( $this->config->get( 'CHILDPATH' ) . '/css/editor-style.css' )
-//			? $this->config->get( 'STYLESHEETURL' ) . '/assets/css/editor-style.css'
-//			: $this->config->get( 'TEMPLATEURL' ) . '/assets/css/editor-style.css';
 
 		/**
 		 * @TODO In fase di test bisogna verificare sia il path to url per il child
@@ -87,7 +81,7 @@ class EditorSubscriber implements SubscriberInterface {
 		 */
 		$style_url = str_replace('\\', '/', $style_url);
 
-		$arg = apply_filters( 'italystrap_visual_editor_style', [ $style_url ] );
+		$arg = $this->dispatcher->filter( 'italystrap_visual_editor_style', [ $style_url ] );
 
 		add_editor_style( $arg );
 	}

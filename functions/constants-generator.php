@@ -4,7 +4,6 @@
  *
  * Define default constant to use in the theme framework
  *
- * @link [URL]
  * @since 4.0.0
  *
  * @package ItalyStrap\Core
@@ -18,7 +17,7 @@ namespace ItalyStrap\Core;
  * @param array $constant
  * @return array
  */
-function set_default_constants( array $constant = [] ) {
+function set_default_constants( array $constant = [] ): array {
 
 	foreach ( $constant as $name => $value ) {
 		if ( ! \defined( $name ) ) {
@@ -39,7 +38,7 @@ function set_default_constants( array $constant = [] ) {
  *
  * @return string
  */
-function set_current_template_constants( $current_template ) {
+function set_current_template_constants( $current_template ): string {
 
 	\define( 'CURRENT_TEMPLATE', basename( $current_template ) );
 	\define( 'CURRENT_TEMPLATE_SLUG', str_replace( '.php', '', CURRENT_TEMPLATE ) );

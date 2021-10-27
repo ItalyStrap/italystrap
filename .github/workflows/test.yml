@@ -46,32 +46,35 @@ jobs:
         with:
           composer-options: "--prefer-dist --ignore-platform-reqs"
 
-      - name: Install WP-CLI
-        run: |
-          mkdir ${{env.TOOLS_FOLDER_PATH}}
-          # install wp-cli in the `tools` folder
-          wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -P ${{env.TOOLS_FOLDER_PATH}}
-          chmod +x ${{env.TOOLS_FOLDER_PATH}}/wp-cli.phar && mv ${{env.TOOLS_FOLDER_PATH}}/wp-cli.phar ${{env.TOOLS_FOLDER_PATH}}/wp
-          # prepend the `tools` folder to the PATH
-          # https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#adding-a-system-path
-          echo ${{env.TOOLS_FOLDER_PATH}} >> $GITHUB_PATH
-          # prepend the `vendor/bin` folder to the PATH
-          echo "vendor/bin" >> $GITHUB_PATH
-
-      - name: Install WordPress
-        run: |
-          mkdir -p ${{env.WP_FOLDER_PATH}}
-          cd $WP_FOLDER_PATH
-          wp core download --version=$WP_VERSION
-
-#      - name: Folder permission for _output
-#        run: ls tests
-
-      - name: Folder permission for _output
-        run: sudo chmod -R 777 tests/_output
-
       - name: Run test suite
         run: vendor/bin/codecept run unit --coverage-text
+
+#      - name: Install WP-CLI
+#        run: |
+#          mkdir ${{env.TOOLS_FOLDER_PATH}}
+#          # install wp-cli in the `tools` folder
+#          wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -P ${{env.TOOLS_FOLDER_PATH}}
+#          chmod +x ${{env.TOOLS_FOLDER_PATH}}/wp-cli.phar && mv ${{env.TOOLS_FOLDER_PATH}}/wp-cli.phar ${{env.TOOLS_FOLDER_PATH}}/wp
+#          # prepend the `tools` folder to the PATH
+#          # https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#adding-a-system-path
+#          echo ${{env.TOOLS_FOLDER_PATH}} >> $GITHUB_PATH
+#          # prepend the `vendor/bin` folder to the PATH
+#          echo "vendor/bin" >> $GITHUB_PATH
+#
+#      - name: Install WordPress
+#        run: |
+#          mkdir -p ${{env.WP_FOLDER_PATH}}
+#          cd $WP_FOLDER_PATH
+#          wp core download --version=$WP_VERSION
+#
+##      - name: Folder permission for _output
+##        run: ls tests
+#
+#      - name: Folder permission for _output
+#        run: sudo chmod -R 777 tests/_output
+#
+#      - name: Run test suite
+#        run: vendor/bin/codecept run unit --coverage-text
 
 #      - name: Run infection suite
 #        run: vendor/bin/infection --threads=4

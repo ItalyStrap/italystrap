@@ -45,15 +45,10 @@ class CommentsWalker extends Walker_Comment {
 					 * @TODO https://schema.org/Person
 					 */
 					$args['avatar_size'] = ( isset( $args['avatar_size'] ) ) ? $args['avatar_size'] : null ;
-					echo \italystrap_get_avatar( $comment, $args['avatar_size'], null, \get_comment_author(), 'img-circle img-responsive center-block' );?>
+					echo \get_avatar( $comment, $args['avatar_size'], null, \get_comment_author(), ['class' => 'img-circle img-responsive center-block'] );?>
 				</div>
 				<section class="col-sm-10">
 					<footer class="comment-meta">
-						<?php
-						if ( $email =  \get_comment_author_email()) {
-							echo '<meta  itemprop="image" content="' . \italystrap_get_avatar_url( $email ) . '"/>';
-						}
-						?>
 					
 						<div class="comment-author vcard">
 					

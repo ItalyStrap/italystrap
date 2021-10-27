@@ -34,7 +34,7 @@ if ( \is_404() ) { ?>
 	<figure <?php HTML\get_attr_e( '404_image', $featured_image_class ); ?>>
 		<?php
 
-		echo \italystrap_get_404_image( 'img-responsive center-block' );
+		echo Image\get_404_image( 'img-responsive center-block' );
 
 		/**
 		 * Filter the post thumbnail size with context

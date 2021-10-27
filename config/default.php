@@ -52,14 +52,16 @@ return apply_filters(
 		'logo'							=> $config->TEMPLATEURL . '/assets/img/logo.png',
 		'default_image'					=> $config->TEMPLATEURL . '/assets/img/italystrap-default-image.png',
 		'default_404'					=> $config->TEMPLATEURL . '/assets/img/404.png',
+
 		'404_show_image'				=> 'show',
-		'404_image'						=> '',
+		'404_image'						=> $config->TEMPLATEURL . '/assets/img/404.png',
 		'404_title'						=> esc_attr__( 'Nothing Found', 'italystrap' ),
 		'404_content'					=>
 			esc_attr__(
 				'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.',
 				'italystrap'
 			),
+
 		'post_thumbnail_size'			=> 'post-thumbnail',
 		'post_thumbnail_alignment'		=> 'alignnone',
 

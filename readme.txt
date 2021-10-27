@@ -19,19 +19,12 @@ The Theme Framework for WordPress website.
 
 **[ItalyStrap WordPress Theme Framework](https://italystrap.com)** will add powerful features to your WordPRess site.
 
-ItalyStrap is a WordPress framework theme based on [HTML5 Boilerplate](http://html5boilerplate.com/), [Bootstrap](http://getbootstrap.com/), [Schema.org](https://schema.org/)
-
-[![Build Status](https://github.com/ItalyStrap/italystrap/actions/workflows/test.yml/badge.svg)](https://github.com/ItalyStrap/italystrap/actions)
+[![Unit Test](https://github.com/ItalyStrap/italystrap/actions/workflows/test.yml/badge.svg)](https://github.com/ItalyStrap/italystrap/actions/workflows/test.yml)
 
 **Features include:**
 
 * WPO Friendly
 * SEO Friendly
-* HTML5 Bolierplate
-* CSS3
-* Twitter Bootstrap
-* Schema.org
-* **Breadcrumbs.**
 
 == Installation ==
 
@@ -47,15 +40,15 @@ Clone the git repo of the theme:
 
 Install composer dependencies:
 
-`composer install --no-dev`
+`composer install --no-dev -o`
 
 or [download the zip file](https://github.com/ItalyStrap/italystrap/releases/latest), unzip it, place it in your folder themes `/wp-content/themes/` directory and activate it via Admin > Appearance > Themes
 
-Then [download the child cheme](https://github.com/ItalyStrap/ItalyStrap-child/archive/master.zip) and use it for your customizations.
+Then [download the child cheme](https://github.com/ItalyStrap/ciao/archive/master.zip) and use it for your customizations.
 
 == How to migrate from older version of 4.0.0 ==
 
-__Migration guide wcoming soon__
+__Migration guide coming soon__
 
 Remember! This is a full refactoring of the theme, consider it like a new theme, if you have the old version you have to do a migration to the new version.
 

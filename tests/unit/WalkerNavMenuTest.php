@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace ItalyStrap\Test;
 
 // phpcs:disable
-require_once $_SERVER['WP_ROOT_FOLDER'] . '/wp-includes/class-wp-walker.php';
-require_once $_SERVER['WP_ROOT_FOLDER'] . '/wp-includes/class-walker-nav-menu.php';
+//require_once $_SERVER['WP_ROOT_FOLDER'] . '/wp-includes/class-wp-walker.php';
+//require_once $_SERVER['WP_ROOT_FOLDER'] . '/wp-includes/class-walker-nav-menu.php';
 // phpcs:enable
 
 use Codeception\Test\Unit;
@@ -14,7 +14,7 @@ use \Walker_Nav_Menu;
 
 class WalkerNavMenuTest extends Unit {
 
-	use BaseUnitTrait;
+//	use BaseUnitTrait;
 
 	/**
 	 * @var \UnitTester

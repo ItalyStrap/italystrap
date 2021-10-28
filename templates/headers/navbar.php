@@ -135,7 +135,7 @@ open_tag_e('nav_container', 'div', [
 				'link_before'		=> '<span class="item-title" itemprop="name">',
 				'link_after'		=> '</span>',
 				'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
-				'depth'				=> 2,
+				'depth'				=> 10,
 			//					'walker'			=> new Core\Bootstrap_Nav_Menu(),
 				'theme_location'	=> 'main-menu',
 				'search'			=> false,

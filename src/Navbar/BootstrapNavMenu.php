@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navbar;
 
+use ItalyStrap\Event\EventDispatcher;
 use \Walker_Nav_Menu;
 
 /**
@@ -32,6 +33,10 @@ use \Walker_Nav_Menu;
  */
 class BootstrapNavMenu extends Walker_Nav_Menu {
 
+	public function __construct( EventDispatcher $dispatcher = null ) {
+		$this->dispatcher = $dispatcher ?? new EventDispatcher();
+	}
+
 	/**
 	 * Starts the list before the elements are added.
 	 *
@@ -46,14 +51,25 @@ class BootstrapNavMenu extends Walker_Nav_Menu {
 	 * @param \stdClass $args   An object of wp_nav_menu() arguments.
 	 */
 	public function start_lvl( &$output, $depth = 0, $args = [] ) {
-		$indent = str_repeat( "\t", $depth );
 
-		$atts = array(
-			'role'	=> 'menu',
-			'class'	=> ( 0 === $depth ) ? 'dropdown-menu sub-menu depth-lvl-' . $depth : 'sub-sub-menu depth-lvl-' . $depth,
-		);
+		$listener = static function ( $classes, $args, $depth ) {
 
-		$output .= "\n" . $indent . '<ul' . $this->get_attributes( $atts ) . '>' . "\n";
+			if ( 0 === $depth ) {
+				$classes[] = ' dropdown-menu';
+			} else {
+				$classes[] = ' sub-sub-menu';
+			}
+
+			$classes[] = 'depth-lvl-' . $depth;
+
+			return $classes;
+		};
+
+		$this->dispatcher->addListener( 'nav_menu_submenu_css_class', $listener, 10, 3 );
+		parent::start_lvl( $output, $depth, $args );
+		$this->dispatcher->removeListener( 'nav_menu_submenu_css_class', $listener );
+
+		$output = \str_replace( 'class=', 'role="menu" class=', $output );
 	}
 
 	/**

@@ -9,7 +9,7 @@
 declare(strict_types=1);
 
 namespace ItalyStrap;
-
+d( $this );
 ?>
 <article<?php HTML\get_attr_e( 'entry', [ 'id' => \get_the_ID(), 'class' => \join( ' ', \get_post_class() ) ] ) ?>>
 <?php

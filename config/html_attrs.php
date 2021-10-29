@@ -191,23 +191,6 @@ return [
 	],
 
 	/**
-	 * Attributes for the entry content component.
-	 */
-	'italystrap_entry_content_attr'	=> [
-		'class' => 'entry-content'
-	],
-
-	/**
-	 * Attributes for the entry content component.
-	 */
-	'italystrap_post_thumbnail_attr'	=> function ( array $attr ) {
-
-		$attr['class'] = $attr['class'] . ' img-responsive img-fluid';
-
-		return $attr;
-	},
-
-	/**
 	 * Attributes for the sidebars component registered from this theme.
 	 */
 //	'italystrap_sidebar-1-widget_tag'	=> function ( string $tag ): string {

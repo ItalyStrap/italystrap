@@ -19,7 +19,7 @@ $html_tag = \is_singular() ? 'h1' : 'h2';
 $title_prop = \is_singular() ? 'headline' : 'name';
 
 ?><header class="page-header entry-header">
-	<?php open_tag_e( 'entry_title', $html_tag, ['class'	=> 'entry-title'] ); ?>
+	<?php open_tag_e( 'entry_title', $html_tag, ['class'	=> 'entry-title wp-block-post-title'] ); ?>
 		<a itemprop="url" href="<?php \the_permalink(); ?>" title="<?php \the_title_attribute() ?>" rel="bookmark">
 			<span itemprop="<?php echo $title_prop; ?>"><?php \the_title(); ?></span>
 		</a>

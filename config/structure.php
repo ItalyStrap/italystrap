@@ -24,7 +24,7 @@ return [
 		'breadcrumbs'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_before_loop',
 			Subscriber::PRIORITY	=> 10, // Optional
-			'should_load'	=> function ( ConfigInterface $config ): bool {
+			'should_load'	=> static function ( ConfigInterface $config ): bool {
 				return \current_theme_supports( 'breadcrumbs' )
 					&& \in_array(
 						CURRENT_TEMPLATE,
@@ -33,7 +33,7 @@ return [
 					)
 					&& ! \in_array( 'hide_breadcrumbs', get_template_settings(), true );
 			},
-			'callback'	=> function ( EventDispatcherInterface $dispatcher ): string {
+			'callback'	=> static function ( EventDispatcherInterface $dispatcher ): string {
 				$args = [
 //					'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
 				];
@@ -47,12 +47,12 @@ return [
 		'featured-image'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			Subscriber::PRIORITY	=> 10, // Optional
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 				return \post_type_supports( \strval( \get_post_type() ), 'thumbnail' )
 					&& ! \in_array( 'hide_thumb', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/featured-image',
-			'data'	=> function ( ConfigInterface $config ) : ConfigInterface {
+			'data'	=> static function ( ConfigInterface $config ) : ConfigInterface {
 				if ( \is_singular() ) {
 					$config->add( 'post_thumbnail_size', 'post-thumbnail' );
 					$config->add( 'post_thumbnail_alignment', 'aligncenter' );
@@ -65,12 +65,12 @@ return [
 		'title'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			Subscriber::PRIORITY	=> 20, // Optional
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 				return \post_type_supports(  \strval( \get_post_type() ), 'title' )
 					&& ! \in_array( 'hide_title', get_template_settings(), true );
 			},
 			'view'	=> 'posts/parts/title',
-//			'data'	=> function ( ConfigInterface $config ) : ConfigInterface {
+//			'data'	=> static function ( ConfigInterface $config ) : ConfigInterface {
 //					$config->push( 'title', \get_the_title() );
 //				return $config;
 //			},
@@ -79,7 +79,7 @@ return [
 		'meta'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			Subscriber::PRIORITY	=> 30, // Optional
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 				return \post_type_supports(  \strval( \get_post_type() ), 'entry-meta' )
 					&& ! \in_array( 'hide_meta', get_template_settings(), true );
 			},
@@ -95,7 +95,7 @@ return [
 		'content'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			Subscriber::PRIORITY	=> 50, // Optional
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 
 				/**
 				 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
@@ -124,7 +124,7 @@ return [
 		'link-pages'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			Subscriber::PRIORITY	=> 70, // Optional
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 				return \is_single();
 			},
 			'callback'	=> [ Components\Navigations\LinkPages::class, 'render' ], // Optional
@@ -132,7 +132,7 @@ return [
 
 		'pager'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_after_entry_content',
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 				return \post_type_supports(  \strval( \get_post_type() ), 'post_navigation' )
 					&& \is_single();
 			},
@@ -141,7 +141,7 @@ return [
 
 		'pagination'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_after_loop',
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 				return ! \is_404();
 			},
 			'callback'	=> [ Components\Navigations\Pagination::class, 'render' ], // Optional
@@ -150,13 +150,13 @@ return [
 		'sidebar'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_after_content',
 			'callback'	=> '\get_sidebar',
-			'should_load'	=> function ( ConfigInterface $config ) : bool {
+			'should_load'	=> static function ( ConfigInterface $config ) : bool {
 				return 'full_width' !== $config->get( 'site_layout' );
 			},
 			/**
 			 * @TODO Maybe for WooCommerce, for now is only for remember
 			 */
-//			'callback_to_develope'	=> function () {
+//			'callback_to_develope'	=> static function () {
 //
 //				/**
 //				 * Don't load sidebar on pages that doesn't need it
@@ -167,7 +167,7 @@ return [
 //					 * WooCommerce sidebar on full width page.
 //					 *
 //					 * @example
-//					 * add_action( 'italystrap_full_width_layout', function () {
+//					 * add_action( 'italystrap_full_width_layout', static function () {
 //					 *     remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 //					 * }, 10 );
 //					 */
@@ -186,7 +186,7 @@ return [
 		'entry'	=> [
 		Builder::EVENT_NAME	=> 'italystrap_entry',
 		'view'	=> 'posts/post',
-		'data'	=> function () : array {
+		'data'	=> static function () : array {
 			return (array) \get_post( null, ARRAY_A );
 		},
 		],
@@ -207,7 +207,7 @@ return [
 			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
 			Subscriber::PRIORITY		=> 20,
 			'view'			=> 'posts/none/title',
-			'data'			=> function ( ConfigInterface $config ) : ConfigInterface {
+			'data'			=> static function ( ConfigInterface $config ) : ConfigInterface {
 				return $config;
 			},
 		],
@@ -216,7 +216,7 @@ return [
 			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
 			Subscriber::PRIORITY		=> 30,
 			'view'			=> 'posts/none/content',
-			'data'			=> function ( ConfigInterface $config ) : ConfigInterface {
+			'data'			=> static function ( ConfigInterface $config ) : ConfigInterface {
 				return $config;
 			},
 		],
@@ -230,7 +230,7 @@ return [
 			Builder::EVENT_NAME		=> 'italystrap_before_while',
 			Subscriber::PRIORITY	=> 20,
 			'view'		=> 'misc/archive-headline',
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 				return ( \is_archive() || \is_search() ) && ! \is_author();
 			},
 		],
@@ -243,7 +243,7 @@ return [
 			Subscriber::PRIORITY	=> 20,
 			'view'		=> 'misc/author-info',
 			'should_load'	=> 'is_author',
-			'data'		=> function ( Injector $injector ) : array {
+			'data'		=> static function ( Injector $injector ) : array {
 
 				$data = [];
 				global $author_name;
@@ -259,12 +259,12 @@ return [
 			Builder::EVENT_NAME		=> 'italystrap_after_entry_content',
 			Subscriber::PRIORITY	=> 30,
 			'view'		=> 'misc/author-info',
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 				return \post_type_supports(  \strval( \get_post_type() ), 'author' )
 					&& \is_singular()
 					&& ! \in_array( 'hide_author', get_template_settings(), true );
 			},
-			'data'		=> function ( Injector $injector ) : array {
+			'data'		=> static function ( Injector $injector ) : array {
 
 				$data = [];
 				global $author_name;
@@ -291,7 +291,7 @@ return [
 		'navbar-top'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_before_header',
 			'view'		=> 'headers/navbar-top',
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 				return \has_nav_menu( 'info-menu' )
 					&& \has_nav_menu( 'social-menu' );
 			},
@@ -301,7 +301,7 @@ return [
 			Builder::EVENT_NAME		=> 'italystrap_content_header',
 			'view'		=> 'headers/custom-header',
 			'should_load'	=> '\has_header_image',
-			'data'		=> function ( Injector $injector ) {
+			'data'		=> static function ( Injector $injector ) {
 				return $injector->make( Components\Headers\CustomHeader::class )->getData();
 			},
 		],
@@ -309,7 +309,7 @@ return [
 		'navbar'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_after_header',
 			'view'		=> 'headers/navbar',
-			'data'	=> function ( Injector $injector, ConfigInterface $config ) : array {
+			'data'	=> static function ( Injector $injector, ConfigInterface $config ) : array {
 				return [
 					'mods'		=> $config,
 					'navbar'	=> $injector->make( Components\Navigations\Navbar::class ),
@@ -327,7 +327,7 @@ return [
 			Builder::EVENT_NAME		=> 'italystrap_after_loop',
 			/** @see \comments_template() */
 			'callback'	=> '\comments_template',
-			'should_load'	=> function () : bool {
+			'should_load'	=> static function () : bool {
 				return \is_singular()
 					&& \post_type_supports( \strval( \get_post_type() ), 'comments' )
 					&& ! \in_array( 'hide_comments', get_template_settings(), true );

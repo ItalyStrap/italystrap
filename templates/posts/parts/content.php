@@ -13,7 +13,7 @@ namespace ItalyStrap;
 use function ItalyStrap\HTML\open_tag_e;
 use function ItalyStrap\HTML\close_tag_e;
 
-open_tag_e( 'entry_content', 'div' );
+open_tag_e( 'entry_content', 'div', [ 'class' => 'entry-content wp-block-post-content' ] );
 
 if ( \is_singular() ) {
 	\the_content();

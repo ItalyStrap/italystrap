@@ -1,0 +1,44 @@
+name: 🧪 Unit Test
+
+on:
+  push:
+    branches: [ master, Dev ]
+  pull_request:
+    branches: [ master, Dev ]
+
+jobs:
+  unit_tests:
+
+    name: 🐘 Unit Test on PHP ${{ matrix.php_versions }}
+
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.php_versions == '8.1' }}
+
+    strategy:
+      matrix:
+        php_versions: [ '7.4' ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php_versions }}
+          coverage: xdebug2
+          # extensions: gd, zip
+          tools: composer:v2
+
+      - uses: ramsey/composer-install@v1
+        with:
+          composer-options: "--prefer-dist --ignore-platform-reqs"
+
+      - name: Run test suite
+        run: vendor/bin/codecept run unit --coverage-text
+
+#      - name: Run infection suite
+#        run: vendor/bin/infection --threads=4
+
+#      - name: Run PHPBench suite
+#        run: vendor/bin/phpbench run --report=performance

@@ -1,3 +1,41 @@
 {
-    "version": 1
+    "version": 1,
+    "styles": {
+        "blocks": {
+            "core/post-title": {
+                "color": {
+                    "text": "inherit"
+                },
+                "typography": {
+                    "fontSize": "35px"
+                },
+                "elements": {
+                    "link": {
+                        "color": {
+                            "text": "inherit",
+                            "background": "transparent"
+                        }
+                    }
+                }
+            },
+            "core/site-logo": {
+                "spacing": {
+                    "margin": "0 0 0 0",
+                    "padding": "0 0 0 0"
+                }
+            },
+            "core/image": {
+                "spacing": {
+                    "margin": "1rem 0 0px 0"
+                }
+            },
+            "core/post-featured-image": [],
+            "core/gallery": [],
+            "core/post-content": {
+                "color": {
+                    "text": "inherit"
+                }
+            }
+        }
+    }
 }

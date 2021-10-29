@@ -26,7 +26,11 @@ namespace ItalyStrap;
 $context = null;
 
 $featured_image_class = [
-	'class' => \trim( 'featured-image ' . $this->get( 'post_thumbnail_alignment' ) ),
+	'class' => \trim(
+	        'featured-image '
+            . $this->get( 'post_thumbnail_alignment' )
+            . ' wp-block-post-featured-image'
+    ),
 ];
 
 if ( \has_post_thumbnail() ) { ?>
@@ -57,7 +61,7 @@ if ( \has_post_thumbnail() ) { ?>
 			'italystrap_post_thumbnail_attr',
 			[
 				'class'		=> \sprintf(
-					'attachment-%1$s size-%1$s %1$s',
+					'attachment-%1$s size-%1$s %1$s img-responsive img-fluid',
 					$size
 				),
 				'alt'		=>

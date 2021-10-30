@@ -34,11 +34,10 @@ elseif ( \is_search() ) :
 		'italystrap'
 	); ?></p><?php
 
-		\get_search_form();
+	echo \do_blocks( '<!-- wp:search {"buttonUseIcon":true} /-->' );
 else :
 	?><p class="404-content"><?php echo \wp_kses_post( $this->get('404_content') ); ?></p><?php
-
-		\get_search_form();
+		echo \do_blocks( '<!-- wp:search {"buttonUseIcon":true} /-->' );
 endif;
 
 ?>

@@ -333,7 +333,6 @@ class Navbar {
 	/**
 	 * Get the collapsable HTML menu
 	 *
-	 * @TODO $output .= get_search_form();
 	 * http://bootsnipp.com/snippets/featured/expanding-search-button-in-css
 	 *
 	 * @return string Return the HTML

@@ -32,46 +32,6 @@ $featured_image_class = array(
 
 if ( \is_404() ) { ?>
 	<figure <?php HTML\get_attr_e( '404_image', $featured_image_class ); ?>>
-		<?php
-
-		echo Image\get_404_image( 'img-responsive center-block' );
-
-		/**
-		 * Filter the post thumbnail size with context
-		 * You can use the built in 'post_thumbnail_size' filter as well but without the context
-		 *
-		 * @param string $size    The size of the post_thumbnail. (Default: 'post-thumbnail')
-		 * @param string $context The context in wich this function is called.
-		 *
-		 * @var string
-		 */
-		// $size = apply_filters( 'italystrap_post_thumbnail_size', $this->theme_mod['post_thumbnail_size'], $context );
-
-		/**
-		 * Filter the post thumbnail attributes with context
-		 *
-		 * @param array  $attr    The attributes of the post_thumbnail.
-		 * @param string $context The context in wich this function is called.
-		 * @param string $size    The size of the post_thumbnail.
-		 *
-		 * @var array
-		 */
-		// $attr = apply_filters( 'italystrap_post_thumbnail_attr',
-		// 	array(
-		// 		'class'		=> sprintf(
-		// 			'attachment-%1$s size-%1$s %1$s img-responsive',
-		// 			$size
-		// 		),
-		// 		'alt'		=>
-		//  trim( strip_tags( get_post_meta( get_post_thumbnail_id( get_the_id() ),
-		//'_wp_attachment_image_alt', true ) ) ),
-		// 		'itemprop'	=> 'image',
-		// 	),
-		// 	$context,
-		// 	$size
-		// );
-
-		// the_post_thumbnail( $size, $attr );
-		?>
+		<?php echo Image\get_404_image( 'img-responsive center-block' ); ?>
 	</figure>
 <?php }

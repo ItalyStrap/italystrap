@@ -7267,6 +7267,26 @@ main {
   margin-top: 0;
 }
 
+/**
+ * @fix
+ * This is only for transitioning of the comments to the FSE
+ Remember to remove this when FSE is fully integrated
+ Testing:
+ Go to http://italystrap.test/template-comments/
+ And see if the comments are right positioned without avatar to overlap
+ left border respect of the content.
+ */
+/* line 10, ../sass/comments/_comments-area.scss */
+.wp-block-post-comments {
+  max-width: calc( 700px - 3.25em );
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/**
+ * Some basic style
+ */
+/*Stile per la form dei commenti*/
 /* line 36, ../sass/index.scss */
 .text-custom {
   font-size: var(--wp--preset--font-size);

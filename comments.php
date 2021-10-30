@@ -11,24 +11,23 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use Auryn\ConfigException;
-use Auryn\InjectionException;
-use ItalyStrap\Components\Comments\CommentsWalker;
-use ItalyStrap\Experimental\CommentHelperSubscriber;
+use ItalyStrap\Event\EventDispatcher;
 use function _n;
-use function apply_filters;
-use function comment_form;
-use function comments_open;
-use function esc_html_e;
+use function do_blocks;
+use function get_comment_pages_count;
 use function get_comments_number;
+use function get_option;
 use function get_the_title;
 use function have_comments;
 use function in_array;
 use function ItalyStrap\Factory\get_config;
 use function ItalyStrap\Factory\injector;
 use function number_format_i18n;
+use function ob_get_clean;
+use function ob_start;
 use function post_password_required;
 use function printf;
+use function the_comments_pagination;
 use function wp_list_comments;
 
 /**
@@ -46,108 +45,63 @@ if ( post_password_required() ) {
 	return;
 }
 
+$event_dispatcher = injector()->make( EventDispatcher::class );
 $template_settings = (array) get_config()->get('post_content_template');
-$comment_helper = injector()->make( CommentHelperSubscriber::class );
 
-/**
- * If there are comments
- */
-if ( have_comments() ) : ?>
-	<section id="comments" class="comments-area">
-		<h3 class="comments-title">
-            <?php
-			/**
-			 * The comment number
-			 */
-            $comment_number = get_comments_number();
-            printf(
-			    /* translators: 1: number of comments, 2: post title */
-                _n( '%1$s response to &ldquo;%2$s&rdquo;', '%1$s responses to &ldquo;%2$s&rdquo;', $comment_number, 'italystrap' ),
-                number_format_i18n( $comment_number ),
-                get_the_title()
-            );
-            ?>
-        </h3>
+if ( ! have_comments() ) {
+    return;
+}
+?>
+<section id="comments" class="comments-area">
+    <h3 class="comments-title">
+        <?php
+        /**
+         * The comment number
+         */
+        $comment_number = get_comments_number();
+        printf(
+            /* translators: 1: number of comments, 2: post title */
+            _n( '%1$s response to &ldquo;%2$s&rdquo;', '%1$s responses to &ldquo;%2$s&rdquo;', $comment_number, 'italystrap' ),
+            number_format_i18n( $comment_number ),
+            get_the_title()
+        );
+        ?>
+    </h3>
+    <?php
+    // DRY
+    $comment_pagination = '';
+    if ( get_comment_pages_count() > 1 && get_option('page_comments') ) {
+        ob_start();
+        the_comments_pagination(
+            [
+                'prev_text'	=> __( '&laquo; Previous comments', 'italystrap' ),
+                'next_text'	=> __( 'Next comments &raquo;', 'italystrap' ),
+            ]
+        );
+        $comment_pagination = ob_get_clean();
+    }
 
-		<?php
-		/**
-		 * This is an experimental filter
-		 * The name of a custom Walker Comment
-		 *
-		 * @var string
-		 */
-		$comment_walker = apply_filters( 'comment_walker', CommentsWalker::class );
-
-		/**
-		 * Arguments for wp_list_comments()
-		 *
-		 * filter 'wp_list_comments_args' since WP 4.0.0
-		 *
-		 * @var array
-		 */
-		try {
-			$wp_list_comments_args = [
-				'walker'        => injector()->make( $comment_walker ),
-				'max_depth'     => 3, // See in WordPress option.
-//				'avatar_size'   => 100,
-//				'callback'          => function ( \WP_Comment $comment, array $args, int $depth ) {
-//				    d( $comment, $args, $depth );
-//				    return '';
-//                },
-			];
-		} catch ( InjectionException $e ) {
-		    echo $e->getMessage();
-		} catch (ConfigException $e) {
-			echo $e->getMessage();
-		}
-
-		$comment_helper->comment_pagination();
-			echo '<ol class="parent">';
-		        wp_list_comments( $wp_list_comments_args );
-			echo '</ol>';
-		$comment_helper->comment_pagination();
-		?>
-	</section><!-- /#comments -->
-<?php elseif ( comments_open() && ! in_array( 'hide_comments', $template_settings, true ) ) : ?>
-	<section id="comments" class="comments-area">
-		<h3 id="comments-title" class="comments-title"><?php esc_html_e( 'There are no comments yet, why not be the first', 'italystrap' ); ?></h3>
-	</section>
-<?php endif;  // End have_comments(). ?>
-
-<?php if ( ! in_array( 'hide_comments_form', $template_settings, true )  ) : ?>
-<section class="form-actions">
-	<?php
+    echo $comment_pagination;
+    echo '<ol class="commentlist">';
 	/**
-	 * Standard comment form with custom arguments
-	 *
-	 * @see /core/class-italystrap-comments.php
-	 * @link https://codex.wordpress.org/Function_Reference/comment_form
-	 * @since ItalyStrap 3.1
-	 *
-	 *  - Uses filter hooks
-	 * comment_form_default_fields
-	 * the_permalink
-	 * comment_form_defaults
-	 * comment_form_logged_in
-	 * comment_form_field_{$name}
-	 * comment_form_field_comment
-	 *
-	 *  - Pluggable actions
-	 * comment_form_before
-	 * comment_form_must_log_in_after
-	 * comment_form_top
-	 * comment_form_logged_in_after
-	 * comment_form_before_fields
-	 * comment_form_after_fields
-	 * comment_form
-	 * comment_form_after
-	 * comment_form_comments_closed
+	 * 'max_depth'     => 3 is set in WordPress option
 	 */
-	comment_form( $comment_helper->comment_form_args( $comment_author, $user_identity ) );
-	?>
-</section>
-<?php endif;
+	wp_list_comments();
+    echo '</ol>';
+	echo $comment_pagination;
 
-if ( \ItalyStrap\Core\is_comment_reply() ) {
-	\wp_enqueue_script( 'comment-reply' );
+?>
+</section>
+<?php  // End have_comments().
+
+if ( ! in_array( 'hide_comments_form', $template_settings, true )  ) {
+
+	$event_dispatcher->addListener(
+		'comment_form_comments_closed',
+		static function () {
+			echo '<p class="no-comments">' . __( 'Comments are closed.', 'italystrap' ) . '</p>';
+		}
+	);
+
+	echo do_blocks( '<!-- wp:post-comments-form /-->' );
 }

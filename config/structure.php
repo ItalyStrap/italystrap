@@ -326,7 +326,9 @@ return [
 		'comments'	=> [
 			Builder::EVENT_NAME		=> 'italystrap_after_loop',
 			/** @see \comments_template() */
-			'callback'	=> '\comments_template',
+			'callback'	=> static function () {
+				echo \do_blocks( '<!-- wp:post-comments /-->' );
+			},
 			'should_load'	=> static function () : bool {
 				return \is_singular()
 					&& \post_type_supports( \strval( \get_post_type() ), 'comments' )

@@ -338,7 +338,6 @@ return [
 	 */
 	SubscribersConfigExtension::SUBSCRIBERS				=> [
 
-		\ItalyStrap\Experimental\CommentHelperSubscriber::class,
 		\ItalyStrap\Experimental\ExperimentalCustomizerOptionWithAndPosition::class,
 		\ItalyStrap\Experimental\OembedWrapper::class,
 

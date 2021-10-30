@@ -33,6 +33,8 @@ $featured_image_class = [
     ),
 ];
 
+//echo \do_blocks( '<!-- wp:post-featured-image {"align":"left"}  /-->' );
+
 if ( \has_post_thumbnail() ) { ?>
 	<figure <?php HTML\get_attr_e( 'featured_image', $featured_image_class, true ); ?>>
 		<?php

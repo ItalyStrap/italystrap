@@ -123,13 +123,6 @@ class Pagination {
 		);
 
 		return _navigation_markup( $html );
-
-//		return sprintf(
-//			'<span class="clearfix">&nbsp;</span><nav aria-label="%s %s">%s</nav>',
-//			ucfirst( get_post_type() ),
-//			__( 'navigation', 'italystrap' ),
-//			apply_filters( 'italystrap_pagination_html', $html, $this )
-//		);
 	}
 
 	/**

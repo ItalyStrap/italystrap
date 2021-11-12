@@ -90,5 +90,6 @@ jobs:
       - name: Run test suite
         run: |
           cd $WP_FOLDER_PATH/wp-content/themes/italystrap
+          ls $WP_FOLDER_PATH/wp-content/themes/italystrap/vendor/bin
           # vendor/bin/codecept run wpunit
-          composer run wpunit
+          # composer run wpunit

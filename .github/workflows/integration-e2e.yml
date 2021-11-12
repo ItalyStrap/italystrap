@@ -65,7 +65,7 @@ jobs:
           wp core update-db
           cp -r $GITHUB_WORKSPACE $WP_FOLDER_PATH/wp-content/themes/italystrap
           ls $WP_FOLDER_PATH/wp-content/themes
-          ls $WP_FOLDER_PATH/wp-content/themes/italystrap/vendor
+          # ls $WP_FOLDER_PATH/wp-content/themes/italystrap/vendor
           wp theme activate italystrap
           wp theme list --status=active
           wp db export $GITHUB_WORKSPACE/tests/_data/dump.sql

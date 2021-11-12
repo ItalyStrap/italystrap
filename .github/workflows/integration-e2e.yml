@@ -78,12 +78,14 @@ jobs:
 
       - name: Activate ItalyStrap
         run: |
-          # ls $WP_FOLDER_PATH/wp-content/themes/italystrap/vendor
+          cd $WP_FOLDER_PATH
           wp theme activate italystrap
           wp theme list --status=active
-          wp db export $GITHUB_WORKSPACE/tests/_data/dump.sql
+          # wp db export $GITHUB_WORKSPACE/tests/_data/dump.sql
+          # wp db export $WP_FOLDER_PATH/wp-content/themes/italystrap/tests/_data/dump.sql
           cd $GITHUB_WORKSPACE
           sudo chmod -R 777 $WP_FOLDER_PATH
+          cd $WP_FOLDER_PATH/wp-content/themes/italystrap
 
       - name: Run test suite
         run: vendor/bin/codecept run wpunit

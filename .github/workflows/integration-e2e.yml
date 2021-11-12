@@ -66,15 +66,25 @@ jobs:
           cp -r $GITHUB_WORKSPACE $WP_FOLDER_PATH/wp-content/themes/italystrap
           ls $WP_FOLDER_PATH/wp-content/themes
           # ls $WP_FOLDER_PATH/wp-content/themes/italystrap/vendor
+          # wp theme activate italystrap
+          # wp theme list --status=active
+          # wp db export $GITHUB_WORKSPACE/tests/_data/dump.sql
+          # cd $GITHUB_WORKSPACE
+          # sudo chmod -R 777 $WP_FOLDER_PATH
+
+      - uses: ramsey/composer-install@v1
+        with:
+          composer-options: "--prefer-dist --ignore-platform-reqs --working-dir=${{env.WP_FOLDER_PATH}}/wp-content/themes/italystrap"
+
+      - name: Activate ItalyStrap
+        run: |
+          cwd
+          # ls $WP_FOLDER_PATH/wp-content/themes/italystrap/vendor
           wp theme activate italystrap
           wp theme list --status=active
           wp db export $GITHUB_WORKSPACE/tests/_data/dump.sql
           cd $GITHUB_WORKSPACE
           sudo chmod -R 777 $WP_FOLDER_PATH
-
-      - uses: ramsey/composer-install@v1
-        with:
-          composer-options: "--prefer-dist --ignore-platform-reqs --working-dir=${{env.WP_FOLDER_PATH}}/wp-content/themes/italystrap"
 
       - name: Run test suite
         run: vendor/bin/codecept run wpunit

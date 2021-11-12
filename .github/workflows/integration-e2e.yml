@@ -42,7 +42,6 @@ jobs:
 
       - name: Start database server
         run: |
-          mysqld_safe --skip-grant-tables
           mysql -u root root
           sudo /etc/init.d/mysql start
           mysql -e "create database IF NOT EXISTS ${{env.DB_NAME}};" -uroot -proot

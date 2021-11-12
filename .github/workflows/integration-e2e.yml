@@ -85,7 +85,10 @@ jobs:
           # wp db export $WP_FOLDER_PATH/wp-content/themes/italystrap/tests/_data/dump.sql
           cd $GITHUB_WORKSPACE
           sudo chmod -R 777 $WP_FOLDER_PATH
-          cd $WP_FOLDER_PATH/wp-content/themes/italystrap
+          # cd $WP_FOLDER_PATH/wp-content/themes/italystrap
 
       - name: Run test suite
-        run: vendor/bin/codecept run wpunit
+        run: |
+          cd $WP_FOLDER_PATH/wp-content/themes/italystrap
+          # vendor/bin/codecept run wpunit
+          composer run wpunit

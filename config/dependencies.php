@@ -180,9 +180,6 @@ return [
 		Components\Navigations\Pagination::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'components/pagination' ) ),
 		],
-		Components\Navigations\Pager::class	=> [
-			':config'	=> ConfigFactory::make( get_config_file_content( 'components/pager' ) ),
-		],
 	],
 
 	/**

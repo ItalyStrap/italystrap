@@ -135,19 +135,9 @@ return \apply_filters(
 
 		/**
 		 * Add support for the builtin breadcrumbs
+		 * @see in structure.php
 		 */
 		'breadcrumbs',
-
-
-		/**
-		 * Add support for the builtin breadcrumbs
-		 */
-		'custom_404',
-
-		/**
-		 * Beta 4.0.0
-		 */
-		'bootstrap3',
 
 		/**
 		 * Define and register starter content to showcase the theme on new sites.
@@ -288,71 +278,6 @@ return \apply_filters(
 		 * @since WordPress 5.0
 		===================================*/
 
-		/**
-		 * You can disable the option to allow customize the colors in the editor
-		 */
-		//		'disable-custom-colors',
-
-
-		/**
-		 * @TODO Sistemare i colori di default per l'editor
-		 */
-	//			'editor-color-palette'	=> [
-	//				[
-	//					'name'  => __( 'Primary', 'italystrap' ),
-	//					'slug'  => 'primary',
-	////					'color' => twentynineteen_hsl_hex(
-	////						'default' === get_theme_mod( 'primary_color' )
-	////							? 199
-	////							: get_theme_mod( 'primary_color_hue', 199 ), 100, 33 ),
-	//					'color' => '#337ab7',
-	//				],
-	//				[
-	//					'name'  => __( 'Success', 'italystrap' ),
-	//					'slug'  => 'success',
-	////					'color' => twentynineteen_hsl_hex(
-	////						'default' === get_theme_mod( 'primary_color' )
-	////							? 199
-	////							: get_theme_mod( 'primary_color_hue', 199 ), 100, 23 ),
-	//					'color' => '#5cb85c',
-	//				],
-	//				[
-	//					'name'  => __( 'Info', 'italystrap' ),
-	//					'slug'  => 'info',
-	//					'color' => '#5bc0de',
-	//				],
-	//				[
-	//					'name'  => __( 'Warning', 'italystrap' ),
-	//					'slug'  => 'warning',
-	//					'color' => '#f0ad4e',
-	//				],
-	//				[
-	//					'name'  => __( 'Danger', 'italystrap' ),
-	//					'slug'  => 'danger',
-	//					'color' => '#d9534f',
-	//				],
-	//				[
-	//					'name'  => __( 'Dark Gray', 'italystrap' ),
-	//					'slug'  => 'dark-gray',
-	//					'color' => '#333',
-	//				],
-	//				[
-	//					'name'  => __( 'Light Gray', 'italystrap' ),
-	//					'slug'  => 'light-gray',
-	//					'color' => '#777',
-	//				],
-	//				[
-	//					'name'  => __( 'White', 'italystrap' ),
-	//					'slug'  => 'white',
-	//					'color' => '#FFF',
-	//				],
-	//			],
-
-		/**
-		 * You can disable the option to allow customize the font style in the editor
-		 */
-		//		'disable-custom-font-sizes',
-
 	//		'editor-font-sizes'	=> [
 	//			[
 	//				'name'      => __( 'Extra Small', 'italystrap' ),
@@ -407,7 +332,6 @@ return \apply_filters(
 		/**
 		 * Support for Gutenberg editor style
 		 * Then make sure you are loading the editor-style.css
-		 * @see \ItalyStrap\Init\Init_Theme
 		 */
 		'editor-styles',
 
@@ -437,10 +361,5 @@ return \apply_filters(
 		 * https://make.wordpress.org/core/2018/06/05/whats-new-in-gutenberg-5th-june/
 		 */
 		//		'wp-block-styles',
-
-		/**
-		 * Only with Gutenberg plugin active
-		 */
-		'experimental-custom-spacing',
 	 ]
 );

@@ -80,7 +80,7 @@ class Pagination {
 	 *
 	 * @return string             boostrap navigation for WordPress
 	 */
-	public function render() {
+	public function render(): string {
 
 		$paginate = $this->getPaginateLink();
 

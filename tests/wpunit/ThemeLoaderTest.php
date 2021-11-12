@@ -31,7 +31,7 @@ class ThemeLoaderTest extends WPTestCase {
 	 */
 	public function itShouldBootsrapsFunctionsExists() {
 
-		codecept_debug( 'CIAO' );
+//		codecept_debug( 'CIAO' );
 //		codecept_debug( \wp_get_theme()->get_template() );
 
 //		$this->assertTrue( \function_exists( '\ItalyStrap\italystrap' ) );

@@ -122,6 +122,9 @@
 			"vendor\\bin\\codecept run wpunit --debug",
 			"@clean"
 		],
+		"functional": [
+			"vendor\\bin\\codecept run functional"
+		],
 		"bench": [
 			"vendor\\bin\\phpbench run --report=performance"
 		],

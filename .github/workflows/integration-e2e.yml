@@ -42,8 +42,8 @@ jobs:
 
       - name: Start database server
         run: |
-          mysql -u root root
           sudo /etc/init.d/mysql start
+#          mysql -u root root
           mysql -e "create database IF NOT EXISTS ${{env.DB_NAME}};" -uroot -proot
           mysql -e "create database IF NOT EXISTS ${{env.TEST_DB_NAME}};" -uroot -proot
 

@@ -91,5 +91,5 @@ jobs:
         run: |
           cd $WP_FOLDER_PATH/wp-content/themes/italystrap
           ls $WP_FOLDER_PATH/wp-content/themes/italystrap/vendor/bin
-          # vendor/bin/codecept run wpunit
+          vendor/bin/codecept run wpunit
           # composer run wpunit

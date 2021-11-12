@@ -78,7 +78,6 @@ jobs:
 
       - name: Activate ItalyStrap
         run: |
-          cwd
           # ls $WP_FOLDER_PATH/wp-content/themes/italystrap/vendor
           wp theme activate italystrap
           wp theme list --status=active

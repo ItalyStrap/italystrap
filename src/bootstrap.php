@@ -12,15 +12,16 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
+use Auryn\Injector;
 use Auryn\InjectorException;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Experimental\DependenciesAggregator;
 use ItalyStrap\Theme\License;
 use Throwable;
-use function ItalyStrap\Config\dependencies_collection;
 use function ItalyStrap\Config\get_config_file_content;
 use function ItalyStrap\Core\set_default_constants;
 use function ItalyStrap\Factory\get_config;
@@ -42,98 +43,108 @@ foreach ( $autoload_theme_files as $file ) {
 	require __DIR__ . DIRECTORY_SEPARATOR . $file;
 }
 
-try {
-	$injector = injector();
+return (function(): Injector {
+    try {
+        $injector = injector();
 
-	$injector
-		->alias( EventDispatcherInterface::class, EventDispatcher::class )
-		->share( EventDispatcher::class )
-		->share( SubscriberRegister::class );
+        $injector
+            ->alias( EventDispatcherInterface::class, EventDispatcher::class )
+            ->share( EventDispatcher::class )
+            ->share( SubscriberRegister::class );
 
-	/**
-	 * ========================================================================
-	 *
-	 * Set the default theme constant
-	 *
-	 * @see /config/constants.php
-	 *
-	 * @var array $constants
-	 *
-	 * ========================================================================
-	 */
-	$constants = set_default_constants( get_config_file_content( 'constants' ) );
+        /**
+         * ========================================================================
+         *
+         * Set the default theme constant
+         *
+         * @see /config/constants.php
+         *
+         * @var array $constants
+         *
+         * ========================================================================
+         */
+        $constants = set_default_constants( get_config_file_content( 'constants' ) );
 
-	/**
-	 * Constants must be merged before default
-	 * because in default there is a call for get_config
-	 * @TODO Remove get_config() dependency from inside the default array
-	 */
+        /**
+         * Constants must be merged before default
+         * because in default there is a call for get_config
+         * @TODO Remove get_config() dependency from inside the default array
+         */
 //	get_config()->merge($constants);
 
-	get_config()->merge(
-		$constants,
-		get_config_file_content( 'default' ),
-		$theme_mods ?? (array) \get_theme_mods()
-	);
+        get_config()->merge(
+            $constants,
+            get_config_file_content( 'default' ),
+            $theme_mods ?? (array) \get_theme_mods()
+        );
 
-	unset( $theme_mods, $constants );
+        unset( $theme_mods, $constants );
 
-	$injector_config = $injector->make( AurynConfig::class, [
-		':dependencies'	=> dependencies_collection()
-	] );
+        $injector_config = $injector->make( AurynConfig::class, [
+            '+dependencies'	=> new DependenciesAggregator([
 
-	$injector_config->extend( $injector->make( SubscribersConfigExtension::class ) );
+            ])
+        ] );
 
-	$event_dispatcher = $injector->make( EventDispatcher::class );
+        $injector_config->extend( $injector->make( SubscribersConfigExtension::class ) );
 
-	/**
-	 * Register the license for this theme
-	 */
-	( $injector->make( License::class ) )->register();
+        $event_dispatcher = $injector->make( EventDispatcher::class );
 
-	/**
-	 * ========================================================================
-	 *
-	 * Load the framework
-	 *
-	 * ========================================================================
-	 */
-	$event_dispatcher->addListener( 'italystrap_theme_load', function () use ( $injector_config ) {
-		$injector_config->resolve();
-	} );
+        /**
+         * Register the license for this theme
+         */
+        ( $injector->make( License::class ) )->register();
 
-	/**
-	 * ========================================================================
-	 *
-	 * This will load the framework after setup theme
-	 *
-	 * ========================================================================
-	 */
-	$event_dispatcher->addListener( 'after_setup_theme', function () use ( $injector, $event_dispatcher ) {
+        /**
+         * ========================================================================
+         *
+         * Load the framework
+         *
+         * ========================================================================
+         */
+        $event_dispatcher->addListener( 'italystrap_theme_load', function () use ( $injector_config ) {
+            $injector_config->resolve();
+        } );
 
-		/**
-		 * Fires before ItalyStrap theme load.
-		 *
-		 * @since 4.0.0
-		 */
-		$event_dispatcher->dispatch( 'italystrap_theme_will_load', $injector );
+        ! \is_admin() && (require __DIR__ . '/../config/front.php')($event_dispatcher, get_config());
 
-		/**
-		 * Fires once ItalyStrap theme is loading.
-		 *
-		 * @since 4.0.0
-		 */
-		$event_dispatcher->dispatch( 'italystrap_theme_load', $injector );
+        /**
+         * ========================================================================
+         *
+         * This will load the framework after setup theme
+         *
+         * ========================================================================
+         */
+        $event_dispatcher->addListener( 'after_setup_theme', function () use ( $injector, $event_dispatcher ) {
 
-		/**
-		 * Fires once ItalyStrap theme has loaded.
-		 *
-		 * @since 4.0.0
-		 */
-		$event_dispatcher->dispatch( 'italystrap_theme_loaded', $injector );
-	}, 20 );
-} catch ( InjectorException $exception ) {
-	\_doing_it_wrong( \get_class( injector() ), $exception->getMessage(), \ITALYSTRAP_THEME_VERSION );
-} catch ( Throwable $exception ) {
-	\_doing_it_wrong( 'General error.', $exception->getMessage(), \ITALYSTRAP_THEME_VERSION );
-}
+            /**
+             * Fires before ItalyStrap theme load.
+             *
+             * @since 4.0.0
+             */
+            $event_dispatcher->dispatch( 'italystrap_theme_will_load', $injector );
+
+            /**
+             * Fires once ItalyStrap theme is loading.
+             *
+             * @since 4.0.0
+             */
+            $event_dispatcher->dispatch( 'italystrap_theme_load', $injector );
+
+            /**
+             * Fires once ItalyStrap theme has loaded.
+             *
+             * @since 4.0.0
+             */
+            $event_dispatcher->dispatch( 'italystrap_theme_loaded', $injector );
+        }, 20 );
+
+        return $injector;
+    } catch ( InjectorException $exception ) {
+//        var_dump($exception);
+        \_doing_it_wrong( \get_class( injector() ), $exception->getMessage(), \ITALYSTRAP_THEME_VERSION );
+    } catch ( Throwable $exception ) {
+//        var_dump($exception);
+        \_doing_it_wrong( 'General error.', $exception->getMessage(), \ITALYSTRAP_THEME_VERSION );
+    }
+})();

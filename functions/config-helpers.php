@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 namespace ItalyStrap\Config;
 
 use ItalyStrap\Event\SubscribersConfigExtension;
+use ItalyStrap\Experimental\PhpFileProvider;
 use ItalyStrap\Finder\FinderFactory;
 use ItalyStrap\Finder\FinderInterface;
 use SplFileObject;
@@ -88,17 +89,4 @@ function config_files_finder(): FinderInterface {
 	}
 
 	return $experimental_finder;
-}
-
-function dependencies_collection(): ConfigInterface {
-
-	$dependencies_collection = get_config_file_content( 'dependencies' );
-	$dependencies_collection[ SubscribersConfigExtension::SUBSCRIBERS ] = array_merge(
-		$dependencies_collection[ SubscribersConfigExtension::SUBSCRIBERS ],
-		get_config_file_content( 'dependencies-admin' ),
-		get_config_file_content( 'dependencies-front' )
-	);
-
-	/** @var ConfigInterface $dependencies */
-	return ConfigFactory::make( $dependencies_collection );
 }

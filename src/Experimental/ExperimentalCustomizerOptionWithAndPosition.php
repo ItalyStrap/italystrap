@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Experimental;
 
-class ExperimentalCustomizerOptionWithAndPosition implements \ItalyStrap\Event\SubscriberInterface
-{
+class ExperimentalCustomizerOptionWithAndPosition implements \ItalyStrap\Event\SubscriberInterface {
+
 
 	/**
 	 * @inheritDoc

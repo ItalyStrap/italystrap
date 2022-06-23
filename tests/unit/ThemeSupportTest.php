@@ -7,8 +7,8 @@ use Codeception\Test\Unit;
 use ItalyStrap\Theme\Support;
 use PHPUnit\Framework\Assert;
 
-class ThemeSupportTest extends Unit
-{
+class ThemeSupportTest extends Unit {
+
 	use BaseUnitTrait;
 
 	protected function getInstance(): Support {

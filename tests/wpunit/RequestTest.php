@@ -1,23 +1,20 @@
 <?php
 
-class RequestTest extends \Codeception\Test\Unit
-{
-    /**
-     * @var \WpunitTester
-     */
-    protected $tester;
-    
-    protected function _before()
-    {
-    }
+class RequestTest extends \Codeception\Test\Unit {
 
-    protected function _after()
-    {
-    }
+	/**
+	 * @var \WpunitTester
+	 */
+	protected $tester;
+	
+	protected function _before() {
+	}
 
-    // tests
-    public function testSomeFeature()
-    {
+	protected function _after() {
+	}
+
+	// tests
+	public function testSomeFeature() {
 //		$request = new \DownShift\WordPress\Http\Request();
 //
 //		$response = $request->post(
@@ -39,5 +36,5 @@ class RequestTest extends \Codeception\Test\Unit
 //		codecept_debug( $response->getStatusCode() );
 //		codecept_debug( $response->getBody() );
 //		codecept_debug( $response->json() );
-    }
+	}
 }

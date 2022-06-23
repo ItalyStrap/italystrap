@@ -13,35 +13,32 @@ use function ItalyStrap\Image\get_ID_image_from_url;
 require_once codecept_root_dir() . '/functions/images.php';
 // phpcs:enable
 
-class ImageFunctionsTest extends \Codeception\Test\Unit
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-    
-    protected function _before()
-    {
-    	$config = get_config();
-    	$config->merge([
-    		'image_url'		=> 'value_of_image_url',
-    		'numeric'	=> '1',
-    		'int'		=> '1',
+class ImageFunctionsTest extends \Codeception\Test\Unit {
+
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
+	
+	protected function _before() {
+		$config = get_config();
+		$config->merge([
+			'image_url'		=> 'value_of_image_url',
+			'numeric'	=> '1',
+			'int'		=> '1',
 		]);
 
-    	\tad\FunctionMockerLe\define( 'esc_url', fn( string $string ) => $string );
-    	\tad\FunctionMockerLe\define( 'wp_get_attachment_url', fn( $id ) => 'url' );
-    }
+		\tad\FunctionMockerLe\define( 'esc_url', fn( string $string ) => $string );
+		\tad\FunctionMockerLe\define( 'wp_get_attachment_url', fn( $id ) => 'url' );
+	}
 
-    protected function _after()
-    {
-    }
+	protected function _after() {
+	}
 
 	/**
 	 * @test
 	 */
-    public function getCustomImageUrl()
-    {
+	public function getCustomImageUrl() {
 		$empty = get_the_custom_image_url();
 		$this->assertEmpty( $empty );
 
@@ -64,25 +61,23 @@ class ImageFunctionsTest extends \Codeception\Test\Unit
 		$not_empty = get_the_custom_image_url('no_image_from_user', 'but_image_from_default' );
 		$this->assertNotEmpty( $not_empty, '' );
 		$this->assertStringMatchesFormat( 'but_image_from_default', $not_empty, '' );
-    }
+	}
 
 	/**
 	 * @test
 	 */
-    public function get404image()
-    {
+	public function get404image() {
 		get_404_image();
-    }
+	}
 
 	/**
 	 * @test
 	 */
-    public function getIDImageFromUrl()
-    {
-    	global $wpdb;
-    	$wpdb = new class {
+	public function getIDImageFromUrl() {
+		global $wpdb;
+		$wpdb = new class {
 
-    		public $posts;
+			public $posts;
 
 			public function get_var( $arg ) {
 			}
@@ -91,8 +86,8 @@ class ImageFunctionsTest extends \Codeception\Test\Unit
 			}
 		};
 
-    	\tad\FunctionMockerLe\define( 'absint', fn( $val ) => (int) $val );
+		\tad\FunctionMockerLe\define( 'absint', fn( $val ) => (int) $val );
 
 		get_ID_image_from_url( 'url' );
-    }
+	}
 }

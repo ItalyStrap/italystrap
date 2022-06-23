@@ -2,6 +2,6 @@
 declare(strict_types=1);
 
 return [
-	'key'	=> NULL,
+	'key'	=> null,
 	'from-parent'	=> 'override by child',
 ];

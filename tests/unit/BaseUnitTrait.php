@@ -10,6 +10,11 @@ trait BaseUnitTrait {
 	 */
 	protected $tester;
 
+    /**
+     * @var \Prophecy\Prophet
+     */
+    private $prophet;
+
 	// phpcs:ignore
 	protected function _before() {
 	}

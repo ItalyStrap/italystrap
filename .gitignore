@@ -44,3 +44,4 @@ package-lock.json
 
 *.sample
 c3.php
+**/*.local.php

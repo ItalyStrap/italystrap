@@ -3,12 +3,11 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Experimental;
 
-
 use ItalyStrap\Event\SubscriberInterface;
 use function ItalyStrap\HTML\get_attr;
 
-class OembedWrapper implements SubscriberInterface
-{
+class OembedWrapper implements SubscriberInterface {
+
 
 	/**
 	 * Wrap embedded media as suggested by Readability

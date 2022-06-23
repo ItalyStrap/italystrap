@@ -4,24 +4,21 @@ declare(strict_types=1);
 use Codeception\Test\Unit;
 use GuzzleHttp\Psr7\Utils;
 
-class RequestTest extends Unit
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-    
-    protected function _before()
-    {
-    }
+class RequestTest extends Unit {
 
-    protected function _after()
-    {
-    }
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
+	
+	protected function _before() {
+	}
 
-    // tests
-    public function testSomeFeature()
-    {
+	protected function _after() {
+	}
+
+	// tests
+	public function testSomeFeature() {
 //		$request = new \DownShift\WordPress\Http\Request();
 //		$response = new \GuzzleHttp\Psr7\Request(
 //			'post',
@@ -41,5 +38,5 @@ class RequestTest extends Unit
 //		);
 //
 //		codecept_debug( $response->getHeaders() );
-    }
+	}
 }

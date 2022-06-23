@@ -234,7 +234,6 @@ return [
 
 				<?php
 				return \do_blocks( \ob_get_clean() );
-
 			}, // Optional
 		],
 

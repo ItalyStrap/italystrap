@@ -27,10 +27,10 @@ $context = null;
 
 $featured_image_class = [
 	'class' => \trim(
-	        'featured-image '
-            . $this->get( 'post_thumbnail_alignment' )
-            . ' wp-block-post-featured-image'
-    ),
+		'featured-image '
+			. $this->get( 'post_thumbnail_alignment' )
+			. ' wp-block-post-featured-image'
+	),
 ];
 
 //echo \do_blocks( '<!-- wp:post-featured-image {"align":"left"}  /-->' );

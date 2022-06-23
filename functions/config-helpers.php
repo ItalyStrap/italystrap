@@ -75,7 +75,7 @@ function config_files_finder(): FinderInterface {
 		$experimental_finder = ( new FinderFactory() )
 			->make()
 			->in(
-			[
+				[
 				/**
 				 * To remember:
 				 * This is the correct hierarchy to load and override
@@ -84,8 +84,8 @@ function config_files_finder(): FinderInterface {
 				 */
 				get_template_directory() . '/config/',
 				get_stylesheet_directory() . '/config/',
-			]
-		);
+				]
+			);
 	}
 
 	return $experimental_finder;

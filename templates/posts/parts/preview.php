@@ -29,4 +29,4 @@ open_tag_e('preview', 'div', []);
 		)
 	);
 
-close_tag_e('preview' );
+	close_tag_e('preview' );

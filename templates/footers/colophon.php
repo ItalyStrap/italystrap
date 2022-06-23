@@ -19,10 +19,11 @@ use function wp_kses_post;
 		<div class="row">
 			<div class="col-md-12 colophon-entry-content">
 				<?php
-                apply_filters( 'italystrap_colophon_output',
-                    wp_kses_post( get_config()->get( 'colophon', '' ) )
-                ); // XSS ok.
-                ?>
+				apply_filters(
+					'italystrap_colophon_output',
+					wp_kses_post( get_config()->get( 'colophon', '' ) )
+				); // XSS ok.
+				?>
 			</div>
 		</div>
 	</div>

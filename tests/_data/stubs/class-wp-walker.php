@@ -59,7 +59,8 @@ class Walker {
 	 * @param int    $depth  Depth of the item.
 	 * @param array  $args   An array of additional arguments.
 	 */
-	public function start_lvl( &$output, $depth = 0, $args = array() ) {}
+	public function start_lvl( &$output, $depth = 0, $args = array() ) {
+	}
 
 	/**
 	 * Ends the list of after the elements are added.
@@ -74,7 +75,8 @@ class Walker {
 	 * @param int    $depth  Depth of the item.
 	 * @param array  $args   An array of additional arguments.
 	 */
-	public function end_lvl( &$output, $depth = 0, $args = array() ) {}
+	public function end_lvl( &$output, $depth = 0, $args = array() ) {
+	}
 
 	/**
 	 * Start the element output.
@@ -91,7 +93,8 @@ class Walker {
 	 * @param array  $args              An array of additional arguments.
 	 * @param int    $current_object_id ID of the current item.
 	 */
-	public function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ) {}
+	public function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ) {
+	}
 
 	/**
 	 * Ends the element output, if needed.
@@ -106,7 +109,8 @@ class Walker {
 	 * @param int    $depth  Depth of the item.
 	 * @param array  $args   An array of additional arguments.
 	 */
-	public function end_el( &$output, $object, $depth = 0, $args = array() ) {}
+	public function end_el( &$output, $object, $depth = 0, $args = array() ) {
+	}
 
 	/**
 	 * Traverse elements to create list from elements.
@@ -145,9 +149,7 @@ class Walker {
 
 		// Descend only when the depth is right and there are children for this element.
 		if ( ( 0 == $max_depth || $max_depth > $depth + 1 ) && isset( $children_elements[ $id ] ) ) {
-
 			foreach ( $children_elements[ $id ] as $child ) {
-
 				if ( ! isset( $newlevel ) ) {
 					$newlevel = true;
 					// Start the child delimiter.
@@ -225,7 +227,6 @@ class Walker {
 		 * Assume the first one must be root of the sub elements.
 		 */
 		if ( empty( $top_level_elements ) ) {
-
 			$first = array_slice( $elements, 0, 1 );
 			$root  = $first[0];
 
@@ -443,5 +444,4 @@ class Walker {
 
 		unset( $children_elements[ $id ] );
 	}
-
 }

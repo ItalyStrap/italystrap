@@ -20,6 +20,9 @@ use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Finder\Finder;
+use ItalyStrap\Finder\FinderInterface;
+use ItalyStrap\Theme\ExperimentalThemeFileFinderFactory;
 use ItalyStrap\Theme\License;
 use Throwable;
 use function get_theme_mods;
@@ -54,6 +57,13 @@ return (static function (): Injector {
 			->share( EventDispatcher::class )
 			->share( SubscriberRegister::class );
 
+		$injector
+            ->alias(FinderInterface::class, Finder::class)
+            ->delegate(Finder::class, ExperimentalThemeFileFinderFactory::class)
+            ->share( FinderInterface::class );
+
+        $finder =  $injector->make( FinderInterface::class );
+
 		/**
 		 * ========================================================================
 		 *
@@ -82,11 +92,8 @@ return (static function (): Injector {
 
 		unset( $theme_mods, $constants );
 
-		/** @var callable $dependencies_collection */
-		$dependencies_collection = require __DIR__ . '/../config/dependencies.aggregator.php';
-
 		$injector_config = $injector->make( AurynConfig::class, [
-			':dependencies'	=> ConfigFactory::make($dependencies_collection())
+			':dependencies'	=> (require __DIR__ . '/../config/dependencies.config.php')($finder)
 		] );
 
 		$injector_config->extend( $injector->make( SubscribersConfigExtension::class ) );

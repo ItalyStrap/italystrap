@@ -23,6 +23,8 @@ final class DependenciesAggregator {
 	public function __invoke(): array {
 		$experimental_file = $this->config[0];
 
+		d($experimental_file());
+
 		$config_file_content = [];
 		foreach ( $experimental_file() as $item ) {
 			$config_file_content = array_replace_recursive(

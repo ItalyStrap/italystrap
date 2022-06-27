@@ -137,10 +137,10 @@ return [
 //		],
 
 		EditorSubscriber::class => [
-			'+finder'	=> static function () {
-				$injector = \ItalyStrap\Factory\injector();
+			'+finder'	=> static function ( string $named_param, Injector $injector ) {
 				$config = $injector->make( ConfigInterface::class );
-				$finder =  $injector->make( FinderInterface::class )
+
+				$finder = (new FinderFactory())->make()
 					->in( [
 						$config->get('CHILDPATH') . '/assets/',
 						$config->get('PARENTPATH') . '/assets/',
@@ -156,11 +156,10 @@ return [
 		],
 
 		Builders\Builder::class	=> [
-			'+view'	=> static function (): ViewInterface {
-				$injector = \ItalyStrap\Factory\injector();
+			'+view'	=> static function ( string $named_param, Injector $injector ): ViewInterface {
 				$config = $injector->make( ConfigInterface::class );
 
-				$finder = $injector->make( FinderInterface::class )
+				$finder = (new FinderFactory())->make()
 					->in( [
 						$config->get('CHILDPATH') . '/' . $config->get('template_dir'),
 						$config->get('PARENTPATH') . '/' . $config->get('template_dir'),

@@ -23,20 +23,14 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
+use ItalyStrap\Components\FeaturedImage;
+
 $context = null;
 
-$featured_image_class = [
-	'class' => \trim(
-		'featured-image '
-			. $this->get( 'post_thumbnail_alignment' )
-			. ' wp-block-post-featured-image'
-	),
-];
-
-//echo \do_blocks( '<!-- wp:post-featured-image {"align":"left"}  /-->' );
+//echo \do_blocks( '<!-- wp:post-featured-image {"align":"left","className":"test"}  /-->' );
 
 if ( \has_post_thumbnail() ) { ?>
-	<figure <?php HTML\get_attr_e( 'featured_image', $featured_image_class, true ); ?>>
+	<figure <?php HTML\get_attr_e( 'featured_image', $this->get( FeaturedImage::ATTRIBUTES ), true ); ?>>
 		<?php
 
 		/**

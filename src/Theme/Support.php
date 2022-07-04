@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-final class Support {
+class Support {
 
 	public function toArray(): array {
 		global $_wp_theme_features;

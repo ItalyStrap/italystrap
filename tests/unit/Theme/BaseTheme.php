@@ -11,24 +11,9 @@ abstract class BaseTheme extends Unit {
 
 	use BaseUnitTrait;
 
-	/**
-	 * @var \UnitTester
-	 */
-	protected $tester;
-
-	protected $config;
-
-	/**
-	 * @return ConfigInterface
-	 */
-	public function getConfig(): ConfigInterface {
-		return $this->config->reveal();
-	}
-
 	// phpcs:ignore
 	protected function _before() {
-		$this->prophet = new Prophet;
-		$this->config = $this->prophet->prophesize( ConfigInterface::class );
+	    $this->setUpProphet();
 	}
 
 	// phpcs:ignore

@@ -57,12 +57,14 @@ return (static function (): Injector {
 			->share( EventDispatcher::class )
 			->share( SubscriberRegister::class );
 
-		$injector
-            ->alias(FinderInterface::class, Finder::class)
-            ->delegate(Finder::class, ExperimentalThemeFileFinderFactory::class)
-            ->share( FinderInterface::class );
+		$event_dispatcher = $injector->make( EventDispatcher::class );
 
-        $finder =  $injector->make( FinderInterface::class );
+		$injector
+			->alias(FinderInterface::class, Finder::class)
+			->delegate(Finder::class, ExperimentalThemeFileFinderFactory::class)
+			->share( FinderInterface::class );
+
+		$finder =  $injector->make( FinderInterface::class );
 
 		/**
 		 * ========================================================================
@@ -97,8 +99,6 @@ return (static function (): Injector {
 		] );
 
 		$injector_config->extend( $injector->make( SubscribersConfigExtension::class ) );
-
-		$event_dispatcher = $injector->make( EventDispatcher::class );
 
 		/**
 		 * Register the license for this theme

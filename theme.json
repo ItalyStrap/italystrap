@@ -1,7 +1,21 @@
 {
-    "version": 1,
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
     "styles": {
         "blocks": {
+            "core/site-logo": {
+                "spacing": {
+                    "margin": "0 0 0 0",
+                    "padding": "0 0 0 0"
+                }
+            },
+            "core/image": {
+                "spacing": {
+                    "margin": "1rem 0 0px 0"
+                }
+            },
+            "core/post-featured-image": [],
+            "core/gallery": [],
             "core/post-title": {
                 "color": {
                     "text": "inherit"
@@ -18,22 +32,37 @@
                     }
                 }
             },
-            "core/site-logo": {
-                "spacing": {
-                    "margin": "0 0 0 0",
-                    "padding": "0 0 0 0"
+            "core/post-date": {
+                "typography": {
+                    "fontSize": "0.75rem"
                 }
             },
-            "core/image": {
-                "spacing": {
-                    "margin": "1rem 0 0px 0"
+            "core/post-author": {
+                "typography": {
+                    "fontSize": "0.75rem"
                 }
             },
-            "core/post-featured-image": [],
-            "core/gallery": [],
+            "core/post-terms": {
+                "typography": {
+                    "fontSize": "0.75rem"
+                }
+            },
             "core/post-content": {
                 "color": {
                     "text": "inherit"
+                }
+            },
+            "core/post-excerpt": {
+                "color": {
+                    "text": "inherit"
+                }
+            },
+            "core/paragraph": {
+                "color": {
+                    "text": "inherit"
+                },
+                "spacing": {
+                    "margin": "1.2rem 0 0px 0"
                 }
             }
         }

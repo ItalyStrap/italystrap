@@ -13,11 +13,12 @@ use function ItalyStrap\Core\get_template_settings;
 use function post_type_supports;
 use function strval;
 
-final class FeaturedImage implements ComponentInterface, SubscriberInterface {
+class FeaturedImage implements ComponentInterface, SubscriberInterface {
 
-    const ATTRIBUTES = 'attributes';
+	const ATTRIBUTES = 'attributes';
 
 	private ConfigInterface $config;
+	private ViewInterface $view;
 
 	public function __construct( ConfigInterface $config, ViewInterface $view ) {
 		$this->config = $config;
@@ -28,9 +29,9 @@ final class FeaturedImage implements ComponentInterface, SubscriberInterface {
 		yield 'italystrap_entry_content' => self::DISPLAY_METHOD_NAME;
 	}
 
-	public function shouldLoad(): bool {
-		return post_type_supports( strval( get_post_type() ), 'thumbnail' )
-			&& !in_array( 'hide_thumb', get_template_settings(), true );
+	public function shouldDisplay(): bool {
+		return post_type_supports( (string)get_post_type(), 'thumbnail' )
+			&& !in_array( 'hide_thumb', $this->config->get('post_content_template'), true );
 	}
 
 	public function display(): void {
@@ -39,18 +40,13 @@ final class FeaturedImage implements ComponentInterface, SubscriberInterface {
 			$this->config->add( 'post_thumbnail_alignment', 'aligncenter' );
 		}
 
-		$this->config->add( self::ATTRIBUTES, $this->attributes() );
+		$size = $this->config->get( 'post_thumbnail_size' );
+		$config = [
+			'align' => 'full',
+			'sizeSlug' => $size, // default 'post-thumbnail',
+			'className' => '',
+		];
 
-		echo $this->view->render( 'posts/parts/featured-image', $this->config );
-	}
-
-    private function attributes(): array {
-        return [
-            'class' => \trim(
-                'featured-image '
-                . $this->config->get( 'post_thumbnail_alignment' )
-                . ' wp-block-post-featured-image'
-            ),
-        ];
+		echo \do_blocks( '<!-- wp:post-featured-image ' . \json_encode( $config ) . '  /-->' );
 	}
 }

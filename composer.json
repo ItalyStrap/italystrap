@@ -146,7 +146,7 @@
 			"vendor\\bin\\codecept clean"
 		],
 		"theme:json": [
-			"\\ItalyStrap\\ThemeJsonGenerator\\ComposerPlugin::run"
+			"\\ItalyStrap\\ThemeJsonGenerator\\Composer\\Plugin::run"
 		]
 	},
 	"support"    : {

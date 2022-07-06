@@ -15,3 +15,14 @@
 // 	font-weight: 600;
 // 	text-transform: uppercase;
 // }
+
+//p {
+//    &:not(:last-child) {
+//        margin-bottom: 0;
+//        padding-bottom: 0;
+//    }
+//}
+
+p + p {
+    margin-top: 1.5rem;
+}

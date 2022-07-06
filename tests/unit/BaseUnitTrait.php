@@ -9,69 +9,69 @@ use Prophecy\Prophet;
 
 trait BaseUnitTrait {
 
-    /** @var \UnitTester  */
+	/** @var \UnitTester  */
 	protected $tester;
 
 	private \Prophecy\Prophet $prophet;
 
-    private \Prophecy\Prophecy\ObjectProphecy $config;
+	private \Prophecy\Prophecy\ObjectProphecy $config;
 
-    public function getConfig(): ConfigInterface {
-        return $this->config->reveal();
-    }
+	public function getConfig(): ConfigInterface {
+		return $this->config->reveal();
+	}
 
-    private \Prophecy\Prophecy\ObjectProphecy $dispatcher;
+	private \Prophecy\Prophecy\ObjectProphecy $dispatcher;
 
-    public function getDispatcher(): \ItalyStrap\Event\EventDispatcherInterface {
-        return $this->dispatcher->reveal();
-    }
+	public function getDispatcher(): \ItalyStrap\Event\EventDispatcherInterface {
+		return $this->dispatcher->reveal();
+	}
 
-    private \Prophecy\Prophecy\ObjectProphecy $view;
+	private \Prophecy\Prophecy\ObjectProphecy $view;
 
-    public function getView(): \ItalyStrap\View\ViewInterface {
-        return $this->view->reveal();
-    }
+	public function getView(): \ItalyStrap\View\ViewInterface {
+		return $this->view->reveal();
+	}
 
-    private \Prophecy\Prophecy\ObjectProphecy $injector;
+	private \Prophecy\Prophecy\ObjectProphecy $injector;
 
-    public function getInjector(): \ItalyStrap\Empress\Injector {
-        return $this->injector->reveal();
-    }
+	public function getInjector(): \ItalyStrap\Empress\Injector {
+		return $this->injector->reveal();
+	}
 
-    private \Prophecy\Prophecy\ObjectProphecy $finder;
+	private \Prophecy\Prophecy\ObjectProphecy $finder;
 
-    public function getFinder(): \ItalyStrap\Finder\FinderInterface {
-        return $this->finder->reveal();
-    }
+	public function getFinder(): \ItalyStrap\Finder\FinderInterface {
+		return $this->finder->reveal();
+	}
 
-    private \Prophecy\Prophecy\ObjectProphecy $theme_support;
+	private \Prophecy\Prophecy\ObjectProphecy $theme_support;
 
-    public function getThemeSupport(): ThemeSupport {
-        return $this->theme_support->reveal();
-    }
+	public function getThemeSupport(): ThemeSupport {
+		return $this->theme_support->reveal();
+	}
 
 	// phpcs:ignore
 	protected function _before() {
-        $this->setUpProphet();
+		$this->setUpProphet();
 	}
 
 	// phpcs:ignore
 	protected function _after() {
-        $this->tearDownProphet();
+		$this->tearDownProphet();
 	}
 
-    private function setUpProphet() {
-        $this->prophet = new Prophet;
-        $this->config = $this->prophet->prophesize( ConfigInterface::class );
-        $this->view = $this->prophet->prophesize( \ItalyStrap\View\ViewInterface::class );
-        $this->dispatcher = $this->prophet->prophesize( \ItalyStrap\Event\EventDispatcherInterface::class );
-        $this->injector = $this->prophet->prophesize( \ItalyStrap\Empress\Injector::class );
-        $this->finder = $this->prophet->prophesize( \ItalyStrap\Finder\FinderInterface::class );
-        $this->theme_support = $this->prophet->prophesize( ThemeSupport::class );
+	private function setUpProphet() {
+		$this->prophet = new Prophet;
+		$this->config = $this->prophet->prophesize( ConfigInterface::class );
+		$this->view = $this->prophet->prophesize( \ItalyStrap\View\ViewInterface::class );
+		$this->dispatcher = $this->prophet->prophesize( \ItalyStrap\Event\EventDispatcherInterface::class );
+		$this->injector = $this->prophet->prophesize( \ItalyStrap\Empress\Injector::class );
+		$this->finder = $this->prophet->prophesize( \ItalyStrap\Finder\FinderInterface::class );
+		$this->theme_support = $this->prophet->prophesize( ThemeSupport::class );
 	}
 
-    private function tearDownProphet() {
-        $this->prophet->checkPredictions();
+	private function tearDownProphet() {
+		$this->prophet->checkPredictions();
 	}
 
 	abstract protected function getInstance();

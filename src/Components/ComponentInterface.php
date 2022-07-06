@@ -7,7 +7,7 @@ interface ComponentInterface {
 
 	const DISPLAY_METHOD_NAME = 'display';
 
-	public function shouldLoad(): bool;
+	public function shouldDisplay(): bool;
 
 	public function display(): void;
 }

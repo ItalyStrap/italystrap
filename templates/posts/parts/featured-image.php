@@ -27,10 +27,10 @@ use ItalyStrap\Components\FeaturedImage;
 
 $context = null;
 
-//echo \do_blocks( '<!-- wp:post-featured-image {"align":"left","className":"test"}  /-->' );
+//echo \do_blocks( '<!-- wp:post-featured-image {"align":"full","className":"test"}  /-->' );
 
 if ( \has_post_thumbnail() ) { ?>
-	<figure <?php HTML\get_attr_e( 'featured_image', $this->get( FeaturedImage::ATTRIBUTES ), true ); ?>>
+	<figure <?php HTML\get_attr_e( 'featured_image', $this->get( FeaturedImage::ATTRIBUTES, [] ), true ); ?>>
 		<?php
 
 		/**

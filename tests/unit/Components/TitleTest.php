@@ -4,16 +4,16 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\FeaturedImage;
+use ItalyStrap\Components\Title;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 
-class FeaturedImageTest extends \Codeception\Test\Unit {
+class TitleTest extends \Codeception\Test\Unit {
 
 	use BaseUnitTrait;
 
-	protected function getInstance(): FeaturedImage {
-		$sut = new FeaturedImage($this->getConfig(), $this->getView());
+	protected function getInstance(): Title {
+		$sut = new Title($this->getConfig());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}

@@ -10,7 +10,7 @@
 
     <!-- Check PHP version compatibility. -->
     <rule ref="PHPCompatibility"/>
-    <config name="testVersion" value="7.2-"/>
+    <config name="testVersion" value="7.4-"/>
 
     <!-- https://gist.github.com/gsherwood/9d22f634c57f990a7c64 -->
     <!-- http://www.thisprogrammingthing.com/2015/creating-your-own-standard-in-phpcs/ -->

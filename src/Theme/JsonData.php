@@ -7,6 +7,7 @@ use ItalyStrap\ThemeJsonGenerator\Factory\Color as FClr;
 use ItalyStrap\ThemeJsonGenerator\Factory\Spacing as FSpace;
 use ItalyStrap\ThemeJsonGenerator\Factory\Typography as FTypo;
 use ItalyStrap\ThemeJsonGenerator\SectionNames;
+use ItalyStrap\ThemeJsonGenerator\Styles\Border;
 
 final class JsonData {
 
@@ -27,7 +28,8 @@ final class JsonData {
 	private function buildJsonData(): array {
 
 		return [
-			SectionNames::VERSION => 1,
+			'$schema' => 'https://schemas.wp.org/trunk/theme.json',
+			SectionNames::VERSION => 2,
 
 			/**
 			 * ============================================
@@ -42,24 +44,6 @@ final class JsonData {
 				 * ============================================
 				 */
 				'blocks' => [
-
-
-					'core/post-title' => [ // .wp-block-post-title
-						'color' => FClr::make()
-							->text( 'inherit' )
-							->toArray(),
-						'typography' => FTypo::make()
-							->fontSize( '35px' )
-							->toArray(),
-						'elements' => [
-							'link' => [ // .wp-block-post-title a
-								'color'	=> FClr::make()
-									->text( 'inherit' )
-									->background( 'transparent' )
-									->toArray(),
-							],
-						],
-					],
 
 					/**
 					 * ============================================
@@ -89,6 +73,44 @@ final class JsonData {
 					'core/gallery' => [ // wp-block-gallery {figure element}
 					],
 
+					'core/post-title' => [ // .wp-block-post-title
+						'color' => FClr::make()
+							->text( 'inherit' )
+							->toArray(),
+//						'border' => (new Border())
+//							->style('solid')
+//							->width('1px')
+//							->color('black')
+//							->toArray(),
+						'typography' => FTypo::make()
+							->fontSize( '35px' )
+							->toArray(),
+						'elements' => [
+							'link' => [ // .wp-block-post-title a
+								'color'	=> FClr::make()
+									->text( 'inherit' )
+									->background( 'transparent' )
+									->toArray(),
+							],
+						],
+					],
+
+					'core/post-date' => [
+						'typography' => FTypo::make()
+							->fontSize( '0.75rem' )
+							->toArray(),
+					],
+					'core/post-author' => [
+						'typography' => FTypo::make()
+							->fontSize( '0.75rem' )
+							->toArray(),
+					],
+					'core/post-terms' => [
+						'typography' => FTypo::make()
+							->fontSize( '0.75rem' )
+							->toArray(),
+					],
+
 					/**
 					 * ============================================
 					 * Blocks for content
@@ -103,6 +125,16 @@ final class JsonData {
 						'color' => FClr::make()
 							->text( 'inherit'  )
 							->toArray(),
+					],
+					'core/paragraph' => [ // .wp-block-post-content
+						'color' => FClr::make()
+							->text( 'inherit'  )
+							->toArray(),
+						'spacing'	=> [
+							'margin'	=> (string) FSpace::make()
+								->top( '1.2rem' )
+								->bottom( '0px' ),
+						],
 					],
 
 				],

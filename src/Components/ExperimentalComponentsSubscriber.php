@@ -10,6 +10,8 @@ use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
+use ProxyManager\Factory\LazyLoadingValueHolderFactory;
+use ProxyManager\Proxy\VirtualProxyInterface;
 
 class ExperimentalComponentsSubscriber implements SubscriberInterface {
 
@@ -64,10 +66,15 @@ class ExperimentalComponentsSubscriber implements SubscriberInterface {
 	}
 
 	private function composeComponents() {
+		/** @var string|object $component */
 		foreach ($this->components as $component) {
 			/** @var SubscriberInterface|ComponentInterface $instance */
-			$instance = $this->injector->share((string)$component)->make($component);
-			if ( $this->shouldNotLoad( $instance ) ) {
+			$instance = $this->injector
+				->share($component)
+				->proxy($component, $this->proxyCallback())
+				->make($component);
+
+			if ( $this->shouldNotDisplay( $instance ) ) {
 				continue;
 			}
 
@@ -75,7 +82,25 @@ class ExperimentalComponentsSubscriber implements SubscriberInterface {
 		}
 	}
 
-	private function shouldNotLoad( ComponentInterface $instance ): bool {
-		return ! $instance->shouldLoad();
+	private function shouldNotDisplay( ComponentInterface $instance ): bool {
+		return ! $instance->shouldDisplay();
+	}
+
+	private function proxyCallback() {
+		return static function ( string $className, callable $callback ): VirtualProxyInterface {
+			return (new LazyLoadingValueHolderFactory)->createProxy(
+				$className,
+				static function (
+					?object &$object,
+					?object $proxy,
+					string $method,
+					array $parameters,
+					?\Closure &$initializer
+				) use ( $callback ) {
+					$object = $callback();
+					$initializer = null;
+				}
+			);
+		};
 	}
 }

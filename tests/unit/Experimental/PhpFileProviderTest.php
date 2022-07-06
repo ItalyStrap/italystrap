@@ -13,7 +13,7 @@ class PhpFileProviderTest extends \Codeception\Test\Unit {
 	private string $pattern;
 
 	protected function _before() {
-	    $this->setUpProphet();
+		$this->setUpProphet();
 		$this->pattern = 'Should be a pattern';
 	}
 

@@ -13,7 +13,7 @@ abstract class BaseTheme extends Unit {
 
 	// phpcs:ignore
 	protected function _before() {
-	    $this->setUpProphet();
+		$this->setUpProphet();
 	}
 
 	// phpcs:ignore

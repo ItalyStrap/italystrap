@@ -7,60 +7,53 @@ use ItalyStrap\Components\Breadcrumbs;
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Tests\BaseUnitTrait;
 
-class BreadcrumbsTest extends \Codeception\Test\Unit
-{
-    use BaseUnitTrait;
+class BreadcrumbsTest extends \Codeception\Test\Unit {
 
-    protected function _before()
-    {
-        $this->setUpProphet();
-    }
+	use BaseUnitTrait;
 
-    protected function getInstance(): Breadcrumbs {
-        $sut = new Breadcrumbs($this->getDispatcher(), $this->getConfig(), $this->getThemeSupport());
-        $this->assertInstanceOf(ComponentInterface::class, $sut, '');
-        return $sut;
-    }
+	protected function _before() {
+		$this->setUpProphet();
+	}
 
-    /**
-     * @test
-     */
-    public function itShouldDisplay()
-    {
+	protected function getInstance(): Breadcrumbs {
+		$sut = new Breadcrumbs($this->getDispatcher(), $this->getConfig(), $this->getThemeSupport());
+		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
+		return $sut;
+	}
 
-        $args = [];
-        $event_name = 'do_breadcrumbs';
+	/**
+	 * @test
+	 */
+	public function itShouldDisplayBreadcrumbs() {
 
-        $this->dispatcher
-            ->dispatch('do_breadcrumbs', $args)
-            ->will(static function() {
-                echo 'test';
-            });
+		$args = [];
+		$event_name = 'do_breadcrumbs';
 
-        $sut = $this->getInstance();
-//        $sut->shouldLoad();
-        $this->expectOutputString('test');
-        $sut->display();
-    }
+		$this->dispatcher
+			->dispatch('do_breadcrumbs', $args)
+			->will(static function () {
+				echo 'test';
+			});
 
-    /**
-     * @test
-     */
-    public function itShouldLoad()
-    {
-        $sut = $this->getInstance();
+		$sut = $this->getInstance();
+		$this->expectOutputString('test');
+		$sut->display();
+	}
 
-        $this->theme_support
-            ->has('breadcrumbs')
-            ->willReturn(true);
+	/**
+	 * @test
+	 */
+	public function itShouldLoad() {
+		$sut = $this->getInstance();
 
-        $this->config->get('current_template_file')->willReturn('template-file');
-        $this->config->get( 'breadcrumbs_show_on', '' )->willReturn('template-file');
+		$this->theme_support
+			->has('breadcrumbs')
+			->willReturn(true);
 
-        \tad\FunctionMockerLe\define( 'ItalyStrap\Core\get_template_settings', function () {
-            return ['hide_breadcrumbs'];
-        } );
+		$this->config->get('current_template_file')->willReturn('template-file');
+		$this->config->get( 'breadcrumbs_show_on', '' )->willReturn('template-file');
+		$this->config->get( 'post_content_template' )->willReturn([]);
 
-//        $sut->shouldLoad();
-    }
+		$this->assertTrue($sut->shouldDisplay(), '');
+	}
 }

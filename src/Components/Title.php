@@ -4,21 +4,21 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
-use function ItalyStrap\Core\get_template_settings;
+use ItalyStrap\View\ViewInterface;
 
 class Title implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface {
 
+	use SubscribedEventsAware;
+
+	const EVENT_NAME = 'italystrap_entry_content';
+	const EVENT_PRIORITY = 20;
+
 	private ConfigInterface $config;
+	private ViewInterface $view;
 
-	public function getSubscribedEvents(): iterable {
-		yield 'italystrap_entry_content' => [
-			self::CALLBACK => self::DISPLAY_METHOD_NAME,
-			self::PRIORITY  => 20,
-		];
-	}
-
-	public function __construct( ConfigInterface $config ) {
+	public function __construct( ConfigInterface $config, ViewInterface $view  ) {
 		$this->config = $config;
+		$this->view = $view;
 	}
 
 	public function shouldDisplay(): bool {
@@ -27,10 +27,6 @@ class Title implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface
 	}
 
 	public function display(): void {
-		echo \do_blocks($this->title());
-	}
-
-	private function title(): string {
 
 		$post_title_config = [
 			"level" => \is_singular() ? 1 : 2,
@@ -39,16 +35,6 @@ class Title implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface
 			"className" => "entry-title",
 		];
 
-		\ob_start();
-		?>
-		<!-- wp:group {"tagName":"header","className":"page-header entry-header","layout":{"inherit":true}} -->
-		<header class="wp-block-group page-header entry-header">
-
-			<!-- wp:post-title <?php echo \json_encode( $post_title_config );?> /-->
-
-		</header>
-		<!-- /wp:group -->
-		<?php
-		return \ob_get_clean();
+		echo \do_blocks( $this->view->render( 'temp/title', $post_title_config ) );
 	}
 }

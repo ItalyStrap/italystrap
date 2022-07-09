@@ -5,7 +5,7 @@ namespace ItalyStrap\Test;
 
 use Auryn\Injector as AurynInjector;
 use Codeception\Test\Unit;
-use ItalyStrap\DebugInjector;
+use ItalyStrap\Debug\Injector as DebugInjector;
 use ItalyStrap\Empress\Injector as EmpressInjector;
 use UnitTester;
 use function ItalyStrap\Factory\injector;

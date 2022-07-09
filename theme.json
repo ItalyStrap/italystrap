@@ -15,7 +15,6 @@
                 }
             },
             "core/post-featured-image": [],
-            "core/gallery": [],
             "core/post-title": {
                 "color": {
                     "text": "inherit"
@@ -33,19 +32,13 @@
                 }
             },
             "core/post-date": {
-                "typography": {
-                    "fontSize": "0.75rem"
-                }
+                "typography": []
             },
             "core/post-author": {
-                "typography": {
-                    "fontSize": "0.75rem"
-                }
+                "typography": []
             },
             "core/post-terms": {
-                "typography": {
-                    "fontSize": "0.75rem"
-                }
+                "typography": []
             },
             "core/post-content": {
                 "color": {

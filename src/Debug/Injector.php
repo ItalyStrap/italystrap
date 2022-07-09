@@ -1,11 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace ItalyStrap;
+namespace ItalyStrap\Debug;
 
+use Auryn\Injector as MainInjector;
 use Auryn\ConfigException;
 use Auryn\InjectionException;
-use ItalyStrap\Empress\Injector;
+use ItalyStrap\Empress\Injector as EmpressInjector;
 use Throwable;
 
 /**
@@ -20,14 +21,15 @@ use Throwable;
  * Class DebugInjector
  * @package ItalyStrap
  */
-class DebugInjector extends Empress\Injector {
+class Injector extends EmpressInjector {
+
 
 	/**
-	 * @var Injector
+	 * @var MainInjector
 	 */
 	private $injector;
 
-	public function __construct( Injector $injector ) {
+	public function __construct( MainInjector $injector ) {
 		$this->injector = $injector;
 		parent::__construct();
 	}

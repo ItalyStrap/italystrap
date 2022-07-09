@@ -7,19 +7,19 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Support;
-use function ItalyStrap\Core\get_template_settings;
 use function ob_get_clean;
 use function ob_start;
 
 class Breadcrumbs implements ComponentInterface, SubscriberInterface {
 
+	use SubscribedEventsAware;
+
+	const EVENT_NAME = 'italystrap_before_loop';
+	const EVENT_PRIORITY = 10;
+
 	private EventDispatcherInterface $dispatcher;
 	private ConfigInterface $config;
 	private Support $support;
-
-	public function getSubscribedEvents(): iterable {
-		yield 'italystrap_before_loop'	=> self::DISPLAY_METHOD_NAME;
-	}
 
 	public function __construct(
 		EventDispatcherInterface $dispatcher,
@@ -43,7 +43,7 @@ class Breadcrumbs implements ComponentInterface, SubscriberInterface {
 
 	public function display(): void {
 		$args = [
-//					'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
+			// 'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
 		];
 
 		ob_start();

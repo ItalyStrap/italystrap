@@ -70,8 +70,8 @@ final class JsonData {
 //								->bottom('0'),
 //						],
 					],
-					'core/gallery' => [ // wp-block-gallery {figure element}
-					],
+//					'core/gallery' => [ // wp-block-gallery {figure element}
+//					],
 
 					'core/post-title' => [ // .wp-block-post-title
 						'color' => FClr::make()
@@ -97,17 +97,17 @@ final class JsonData {
 
 					'core/post-date' => [
 						'typography' => FTypo::make()
-							->fontSize( '0.75rem' )
+//							->fontSize( '0.75rem' )
 							->toArray(),
 					],
 					'core/post-author' => [
 						'typography' => FTypo::make()
-							->fontSize( '0.75rem' )
+//							->fontSize( '16px' )
 							->toArray(),
 					],
 					'core/post-terms' => [
 						'typography' => FTypo::make()
-							->fontSize( '0.75rem' )
+//							->fontSize( '0.75rem' )
 							->toArray(),
 					],
 

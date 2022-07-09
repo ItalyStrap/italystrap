@@ -8,12 +8,10 @@ use function ItalyStrap\HTML\open_tag_e;
 
 class Preview implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface {
 
-	public function getSubscribedEvents(): iterable {
-		yield 'italystrap_entry_content' => [
-			self::CALLBACK => self::DISPLAY_METHOD_NAME,
-			self::PRIORITY  => 40,
-		];
-	}
+	use SubscribedEventsAware;
+
+	const EVENT_NAME = 'italystrap_entry_content';
+	const EVENT_PRIORITY = 40;
 
 	public function shouldDisplay(): bool {
 		return is_preview();

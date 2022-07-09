@@ -15,6 +15,10 @@ use function strval;
 
 class FeaturedImage implements ComponentInterface, SubscriberInterface {
 
+	use SubscribedEventsAware;
+
+	const EVENT_NAME = 'italystrap_entry_content';
+	const EVENT_PRIORITY = 10;
 	const ATTRIBUTES = 'attributes';
 
 	private ConfigInterface $config;
@@ -23,10 +27,6 @@ class FeaturedImage implements ComponentInterface, SubscriberInterface {
 	public function __construct( ConfigInterface $config, ViewInterface $view ) {
 		$this->config = $config;
 		$this->view = $view;
-	}
-
-	public function getSubscribedEvents(): iterable {
-		yield 'italystrap_entry_content' => self::DISPLAY_METHOD_NAME;
 	}
 
 	public function shouldDisplay(): bool {

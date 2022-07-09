@@ -8,12 +8,10 @@ use function ItalyStrap\Core\get_template_settings;
 
 class Meta implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface {
 
-	final public function getSubscribedEvents(): iterable {
-		yield 'italystrap_entry_content' => [
-			self::CALLBACK => self::DISPLAY_METHOD_NAME,
-			self::PRIORITY  => 30,
-		];
-	}
+	use SubscribedEventsAware;
+
+	const EVENT_NAME = 'italystrap_entry_content';
+	const EVENT_PRIORITY = 30;
 
 	public function __construct( ConfigInterface $config ) {
 		$this->config = $config;

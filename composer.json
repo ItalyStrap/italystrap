@@ -21,6 +21,17 @@
 		{
 			"type": "vcs",
 			"url": "https://github.com/overclokk/color"
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "wordpress/wordpress",
+				"version": "dev-master",
+				"dist": {
+					"type": "zip",
+					"url": "https://github.com/WordPress/WordPress/archive/master.zip"
+				}
+			}
 		}
 	],
 	"require": {
@@ -66,7 +77,10 @@
 		"symfony/asset": "^5.0",
 		"inpsyde/assets": "^2.1",
 		"downshiftorg/wp-http": "^2.0",
-		"spatie/color": "dev-master"
+		"spatie/color": "dev-master",
+		"wordpress/wordpress": "dev-master",
+		"humanmade/psalm-plugin-wordpress": "^2.0",
+		"monolog/monolog": "^2.3"
 	},
 	"autoload": {
 		"psr-4": {
@@ -152,5 +166,13 @@
 	"support"    : {
 		"issues": "https://github.com/ItalyStrap/italystrap/issues",
 		"source": "https://github.com/ItalyStrap/italystrap"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"codeception/c3": true,
+			"infection/extension-installer": true,
+			"italystrap/theme-json-generator": true
+		}
 	}
 }

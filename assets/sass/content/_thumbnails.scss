@@ -1,0 +1,16 @@
+
+.wp-post-image,
+    //img[class^="wp-image-"]
+{
+    @include img-responsive(block)
+}
+
+//.img-circle {
+//    border-radius: 50%; // set radius in percents
+//}
+
+.wp-block-post-author__avatar {
+    .avatar {
+        border-radius: 50%;
+    }
+}

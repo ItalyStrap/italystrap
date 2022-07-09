@@ -7267,6 +7267,18 @@ main {
   margin-top: 0;
 }
 
+/* line 2, ../sass/content/_thumbnails.scss */
+.wp-post-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* line 13, ../sass/content/_thumbnails.scss */
+.wp-block-post-author__avatar .avatar {
+  border-radius: 50%;
+}
+
 /**
  * @fix
  * This is only for transitioning of the comments to the FSE

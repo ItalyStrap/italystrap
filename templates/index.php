@@ -44,7 +44,7 @@ do_action( 'italystrap_before_main' );
 				close_tag_e( 'content' );
 
 				do_action( 'italystrap_after_content' );
-
+// sidebar
 			close_tag_e( 'index-row' );
 		close_tag_e( 'index-container' );
 	close_tag_e( 'index' );

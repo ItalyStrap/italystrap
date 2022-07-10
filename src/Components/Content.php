@@ -7,12 +7,12 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
 
-class Meta implements ComponentInterface, SubscriberInterface {
+class Content implements SubscriberInterface, ComponentInterface {
 
 	use SubscribedEventsAware;
 
 	const EVENT_NAME = 'italystrap_entry_content';
-	const EVENT_PRIORITY = 30;
+	const EVENT_PRIORITY = 50;
 
 	private ConfigInterface $config;
 	private ViewInterface $view;
@@ -23,11 +23,12 @@ class Meta implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function shouldDisplay(): bool {
-		return \post_type_supports(  (string)\get_post_type(), 'entry-meta' )
-			&& ! \in_array( 'hide_meta', $this->config->get('post_content_template'), true );
+		return \is_singular()
+			&& \post_type_supports(  (string)\get_post_type(), 'editor' )
+			&& ! \in_array( 'hide_content', $this->config->get('post_content_template'), true );
 	}
 
 	public function display(): void {
-		echo \do_blocks( $this->view->render( 'temp/meta', [] ) );
+		echo \do_blocks( $this->view->render( 'temp/content', [] ) );
 	}
 }

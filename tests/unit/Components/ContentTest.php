@@ -4,17 +4,17 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\Meta;
+use ItalyStrap\Components\Content;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class MetaTest extends \Codeception\Test\Unit {
+class ContentTest extends \Codeception\Test\Unit {
 
 	use BaseUnitTrait;
 
-	protected function getInstance(): Meta {
-		$sut = new Meta($this->getConfig(), $this->getView());
+	protected function getInstance(): Content {
+		$sut = new Content($this->getConfig(), $this->getView());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}
@@ -24,6 +24,8 @@ class MetaTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
+
+		\tad\FunctionMockerLe\define('is_singular', static fn() => true);
 
 		\tad\FunctionMockerLe\define('get_post_type', static function () {
 			return 'post';
@@ -51,7 +53,7 @@ class MetaTest extends \Codeception\Test\Unit {
 			return 'block';
 		});
 
-        $this->view->render( 'temp/meta', Argument::type('array') )->willReturn('block');
+        $this->view->render( 'temp/content', Argument::type('array') )->willReturn('block');
 		$this->expectOutputString('block');
 		$sut->display();
 	}

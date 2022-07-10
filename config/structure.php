@@ -121,6 +121,9 @@ return [
 //			'callback'	=> [ Controllers\Posts\Parts\Edit_Post_Link::class, 'render' ], // Optional
 //		],
 
+    /**
+     * This is deprecated because it is integrated in the content block now
+     */
 		'link-pages'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_entry_content',
 			Subscriber::PRIORITY	=> 70, // Optional
@@ -173,34 +176,6 @@ return [
 			'should_load'	=> static function ( ConfigInterface $config ) : bool {
 				return 'full_width' !== $config->get( 'site_layout' );
 			},
-			/**
-			 * @TODO Maybe for WooCommerce, for now is only for remember
-			 */
-//			'callback_to_develope'	=> static function () {
-//
-//				/**
-//				 * Don't load sidebar on pages that doesn't need it
-//				 */
-//				if ( 'full_width' === $config->get( 'site_layout' ) ) {
-//					/**
-//					 * This hook is usefull for example when you need to remove the
-//					 * WooCommerce sidebar on full width page.
-//					 *
-//					 * @example
-//					 * add_action( 'italystrap_full_width_layout', static function () {
-//					 *     remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
-//					 * }, 10 );
-//					 */
-//					do_action( 'italystrap_full_width_layout' );
-//					return;
-//				}
-//
-//				\get_sidebar();
-//
-//		//		if ( in_array( $this->layout->get_layout_settings(), array(), true ) ) {
-//		//			get_sidebar( 'secondary' );
-//		//		}
-//			}, // Optional
 		],
 
 		'entry'	=> [

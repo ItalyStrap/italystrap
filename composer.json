@@ -46,7 +46,8 @@
 		"italystrap/asset": "dev-master",
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
-		"cmb2/cmb2": "2.6.0"
+		"cmb2/cmb2": "2.6.0",
+		"yiisoft/json": "^1.0"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^3.0.0",

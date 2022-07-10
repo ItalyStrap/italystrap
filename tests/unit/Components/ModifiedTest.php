@@ -4,17 +4,17 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\Meta;
+use ItalyStrap\Components\Modified;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class MetaTest extends \Codeception\Test\Unit {
+class ModifiedTest extends \Codeception\Test\Unit {
 
 	use BaseUnitTrait;
 
-	protected function getInstance(): Meta {
-		$sut = new Meta($this->getConfig(), $this->getView());
+	protected function getInstance(): Modified {
+		$sut = new Modified($this->getConfig(), $this->getView());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}
@@ -24,21 +24,6 @@ class MetaTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
-
-		\tad\FunctionMockerLe\define('get_post_type', static function () {
-			return 'post';
-		});
-
-		\tad\FunctionMockerLe\define(
-			'post_type_supports',
-			static function ( string $post_type, string $feature) {
-				Assert::assertEquals('post', $post_type, '');
-				return true;
-			}
-		);
-
-		$this->config->get('post_content_template')->willReturn([]);
-
 		$this->assertTrue($sut->shouldDisplay(), '');
 	}
 
@@ -51,7 +36,7 @@ class MetaTest extends \Codeception\Test\Unit {
 			return 'block';
 		});
 
-        $this->view->render( 'temp/meta', Argument::type('array') )->willReturn('block');
+        $this->view->render( 'posts/parts/modified', Argument::type('array') )->willReturn('block');
 		$this->expectOutputString('block');
 		$sut->display();
 	}

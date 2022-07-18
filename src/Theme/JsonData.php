@@ -31,6 +31,13 @@ final class JsonData {
 			'$schema' => 'https://schemas.wp.org/trunk/theme.json',
 			SectionNames::VERSION => 2,
 
+			SectionNames::SETTINGS  => [
+				'layout' => [
+					'contentSize' => 'clamp(16rem, 60vw, 60rem)',
+					'wideSize' => 'clamp(16rem, 85vw, 70rem)',
+				],
+			],
+
 			/**
 			 * ============================================
 			 * Styles for FSE and Front-End

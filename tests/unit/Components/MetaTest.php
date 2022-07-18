@@ -51,7 +51,7 @@ class MetaTest extends \Codeception\Test\Unit {
 			return 'block';
 		});
 
-        $this->view->render( 'temp/meta', Argument::type('array') )->willReturn('block');
+		$this->view->render( 'temp/meta', Argument::type('array') )->willReturn('block');
 		$this->expectOutputString('block');
 		$sut->display();
 	}

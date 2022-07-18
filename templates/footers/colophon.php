@@ -9,23 +9,20 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use function apply_filters;
-use function ItalyStrap\Factory\get_config;
+use ItalyStrap\Config\ConfigInterface;
 use function wp_kses_post;
 
-?><!-- #copyright -->
-<div id="colophon" class="colophon">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 colophon-entry-content">
-				<?php
-				apply_filters(
-					'italystrap_colophon_output',
-					wp_kses_post( get_config()->get( 'colophon', '' ) )
-				); // XSS ok.
-				?>
-			</div>
-		</div>
+/** @var ConfigInterface $config */
+$config = $this;
+?>
+<!-- wp:group {"layout":{"inherit":true}} -->
+<div class="wp-block-group">
+	<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+	<div class="wp-block-group">
+		<!-- wp:paragraph -->
+		<p><?php echo wp_kses_post( $config->get('content') ) ; ?></p>
+		<!-- /wp:paragraph -->
 	</div>
+	<!-- /wp:group -->
 </div>
-<!-- / #copyright -->
+<!-- /wp:group -->

@@ -4,17 +4,17 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\Modified;
+use ItalyStrap\Components\Colophon;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class ModifiedTest extends \Codeception\Test\Unit {
+class ColophonTest extends \Codeception\Test\Unit {
 
 	use BaseUnitTrait;
 
-	protected function getInstance(): Modified {
-		$sut = new Modified($this->getConfig(), $this->getView());
+	protected function getInstance(): Colophon {
+		$sut = new Colophon($this->getConfig(), $this->getView(), $this->getDispatcher());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}
@@ -32,12 +32,22 @@ class ModifiedTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
+
+		$this->config->get( 'colophon', '' )->willReturn('footers/colophon');
+
+		$this->dispatcher->filter(
+			'italystrap_colophon_output',
+			'footers/colophon'
+		)->shouldBeCalled();
+
+		$this->view->render( 'footers/colophon', Argument::type('array') )->willReturn('footers/colophon');
+
 		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
-			return 'block';
+			Assert::assertEquals('footers/colophon', $block, '');
+			return 'from do_block';
 		});
 
-		$this->view->render( 'posts/parts/modified', Argument::type('array') )->willReturn('block');
-		$this->expectOutputString('block');
+		$this->expectOutputString('from do_block');
 		$sut->display();
 	}
 }

@@ -53,7 +53,7 @@ class ContentTest extends \Codeception\Test\Unit {
 			return 'block';
 		});
 
-        $this->view->render( 'temp/content', Argument::type('array') )->willReturn('block');
+		$this->view->render( 'temp/content', Argument::type('array') )->willReturn('block');
 		$this->expectOutputString('block');
 		$sut->display();
 	}

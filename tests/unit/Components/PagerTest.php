@@ -51,7 +51,7 @@ class PagerTest extends \Codeception\Test\Unit {
 			return 'block';
 		});
 
-        $this->view->render( 'temp/pager', Argument::type('array') )->willReturn('block');
+		$this->view->render( 'temp/pager', Argument::type('array') )->willReturn('block');
 		$this->expectOutputString('block');
 		$sut->display();
 	}

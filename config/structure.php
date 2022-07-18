@@ -341,6 +341,11 @@ return [
 			Builder::EVENT_NAME		=> get_config()->get( 'colophon_action' ),
 			Subscriber::PRIORITY	=> get_config()->get( 'colophon_priority' ),
 			'view'		=> 'footers/colophon',
+			'data'	=> static function ( Injector $injector, ConfigInterface $config ) : array {
+				return [
+					'content'		=> $config->get('colophon'),
+				];
+			},
 		],
 
 	/**
@@ -350,8 +355,25 @@ return [
 	 *
 	 * ====================================================================
 	 */
-		'index'	=> [
+	'header'	=> [
+		Builder::EVENT_NAME	=> 'italystrap_before_main',
+		'callback'	=> static function () {
+			get_header();
+		},
+	],
+	'footer'	=> [
+		Builder::EVENT_NAME	=> 'italystrap_after_main',
+		'callback'	=> static function () {
+			get_footer();
+		},
+	],
+	'index'	=> [
 		Builder::EVENT_NAME	=> 'italystrap',
 		'view'	=> 'index',
-		],
+		'data'	=> static function ( EventDispatcherInterface $dispatcher ) : array {
+			return [
+				EventDispatcherInterface::class => $dispatcher,
+			];
+		},
+	],
 ];

@@ -53,7 +53,7 @@ class ExcerptTest extends \Codeception\Test\Unit {
 			return 'block';
 		});
 
-        $this->view->render( 'temp/excerpt', Argument::type('array') )->willReturn('block');
+		$this->view->render( 'temp/excerpt', Argument::type('array') )->willReturn('block');
 		$this->expectOutputString('block');
 		$sut->display();
 	}

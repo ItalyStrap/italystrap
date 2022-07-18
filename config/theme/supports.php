@@ -327,7 +327,7 @@ return \apply_filters(
 		/**
 		 * If the theme support align-wide then activate it
 		 */
-	//		'align-wide',
+				'align-wide',
 
 		/**
 		 * Support for Gutenberg editor style

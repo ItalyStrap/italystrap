@@ -4,16 +4,17 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\Pagination;
+use ItalyStrap\Components\Header;
 use ItalyStrap\Tests\BaseUnitTrait;
+use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class PaginationTest extends \Codeception\Test\Unit {
+class HeaderTest extends \Codeception\Test\Unit {
 
 	use BaseUnitTrait;
 
-	protected function getInstance(): Pagination {
-		$sut = new Pagination($this->getConfig(), $this->getView());
+	protected function getInstance(): Header {
+		$sut = new Header($this->getConfig(), $this->getView(), $this->getDispatcher());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}
@@ -23,9 +24,6 @@ class PaginationTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
-
-		\tad\FunctionMockerLe\define('is_404', static fn() => false);
-
 		$this->assertTrue($sut->shouldDisplay(), '');
 	}
 
@@ -34,12 +32,15 @@ class PaginationTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
+
+		$this->view->render( 'header', Argument::type('array') )->willReturn('header');
+
 		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
-			return 'block';
+			Assert::assertEquals('header', $block, '');
+			return 'from do_block';
 		});
 
-		$this->view->render( 'temp/pagination', Argument::type('array') )->willReturn('block');
-		$this->expectOutputString('block');
+		$this->expectOutputString('from do_block');
 		$sut->display();
 	}
 }

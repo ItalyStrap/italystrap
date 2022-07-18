@@ -1,6 +1,12 @@
 {
     "$schema": "https://schemas.wp.org/trunk/theme.json",
     "version": 2,
+    "settings": {
+        "layout": {
+            "contentSize": "clamp(16rem, 60vw, 60rem)",
+            "wideSize": "clamp(16rem, 85vw, 70rem)"
+        }
+    },
     "styles": {
         "blocks": {
             "core/site-logo": {

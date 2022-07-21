@@ -21,99 +21,99 @@ use function ItalyStrap\Core\get_template_settings;
  */
 return [
 
-		'breadcrumbs'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_before_loop',
-			Subscriber::PRIORITY	=> 10, // Optional
-			'should_load'	=> static function ( ConfigInterface $config ): bool {
-				return \current_theme_supports( 'breadcrumbs' )
-					&& \in_array(
-						CURRENT_TEMPLATE,
-						\explode( ',', $config->get( 'breadcrumbs_show_on', '' ) ),
-						true
-					)
-					&& ! \in_array( 'hide_breadcrumbs', get_template_settings(), true );
-			},
-			'callback'	=> static function ( EventDispatcherInterface $dispatcher ): string {
-				$args = [
-//					'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
-				];
+//		'breadcrumbs'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_before_loop',
+//			Subscriber::PRIORITY	=> 10, // Optional
+//			'should_load'	=> static function ( ConfigInterface $config ): bool {
+//				return \current_theme_supports( 'breadcrumbs' )
+//					&& \in_array(
+//						CURRENT_TEMPLATE,
+//						\explode( ',', $config->get( 'breadcrumbs_show_on', '' ) ),
+//						true
+//					)
+//					&& ! \in_array( 'hide_breadcrumbs', get_template_settings(), true );
+//			},
+//			'callback'	=> static function ( EventDispatcherInterface $dispatcher ): string {
+//				$args = [
+////					'home'	=> '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
+//				];
+//
+//				\ob_start();
+//				$dispatcher->dispatch( 'do_breadcrumbs', $args );
+//				return \strval( \ob_get_clean() );
+//			},
+//		],
 
-				\ob_start();
-				$dispatcher->dispatch( 'do_breadcrumbs', $args );
-				return \strval( \ob_get_clean() );
-			},
-		],
-
-		'featured-image'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			Subscriber::PRIORITY	=> 10, // Optional
-			'should_load'	=> static function () : bool {
-				return \post_type_supports( \strval( \get_post_type() ), 'thumbnail' )
-					&& ! \in_array( 'hide_thumb', get_template_settings(), true );
-			},
-			'view'	=> 'posts/parts/featured-image',
-			'data'	=> static function ( ConfigInterface $config ) : ConfigInterface {
-				if ( \is_singular() ) {
-					$config->add( 'post_thumbnail_size', 'post-thumbnail' );
-					$config->add( 'post_thumbnail_alignment', 'aligncenter' );
-				}
-
-				return $config;
-			},
-		],
-
-		'title'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			Subscriber::PRIORITY	=> 20, // Optional
-			'should_load'	=> static function () : bool {
-				return \post_type_supports(  \strval( \get_post_type() ), 'title' )
-					&& ! \in_array( 'hide_title', get_template_settings(), true );
-			},
-			'view'	=> 'posts/parts/title',
+//		'featured-image'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_entry_content',
+//			Subscriber::PRIORITY	=> 10, // Optional
+//			'should_load'	=> static function () : bool {
+//				return \post_type_supports( \strval( \get_post_type() ), 'thumbnail' )
+//					&& ! \in_array( 'hide_thumb', get_template_settings(), true );
+//			},
+//			'view'	=> 'posts/parts/featured-image',
 //			'data'	=> static function ( ConfigInterface $config ) : ConfigInterface {
-//					$config->push( 'title', \get_the_title() );
+//				if ( \is_singular() ) {
+//					$config->add( 'post_thumbnail_size', 'post-thumbnail' );
+//					$config->add( 'post_thumbnail_alignment', 'aligncenter' );
+//				}
+//
 //				return $config;
 //			},
-		],
+//		],
 
-		'meta'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			Subscriber::PRIORITY	=> 30, // Optional
-			'should_load'	=> static function () : bool {
-				return \post_type_supports(  \strval( \get_post_type() ), 'entry-meta' )
-					&& ! \in_array( 'hide_meta', get_template_settings(), true );
-			},
-			'view'	=> 'posts/parts/meta',
-		],
+//		'title'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_entry_content',
+//			Subscriber::PRIORITY	=> 20, // Optional
+//			'should_load'	=> static function () : bool {
+//				return \post_type_supports(  \strval( \get_post_type() ), 'title' )
+//					&& ! \in_array( 'hide_title', get_template_settings(), true );
+//			},
+//			'view'	=> 'posts/parts/title',
+////			'data'	=> static function ( ConfigInterface $config ) : ConfigInterface {
+////					$config->push( 'title', \get_the_title() );
+////				return $config;
+////			},
+//		],
 
-		'preview'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			Subscriber::PRIORITY	=> 40, // Optional
-			'view'	=> 'posts/parts/preview',
-		],
+//		'meta'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_entry_content',
+//			Subscriber::PRIORITY	=> 30, // Optional
+//			'should_load'	=> static function () : bool {
+//				return \post_type_supports(  \strval( \get_post_type() ), 'entry-meta' )
+//					&& ! \in_array( 'hide_meta', get_template_settings(), true );
+//			},
+//			'view'	=> 'posts/parts/meta',
+//		],
 
-		'content'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			Subscriber::PRIORITY	=> 50, // Optional
-			'should_load'	=> static function () : bool {
+//		'preview'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_entry_content',
+//			Subscriber::PRIORITY	=> 40, // Optional
+//			'view'	=> 'posts/parts/preview',
+//		],
 
-				/**
-				 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
-				 * || ! post_type_supports( $post_type, 'excerpt' )
-				 * @todo Vadere di fare un controllo sulle pagine perchè ovviamente non hanno il riassunto
-				 *       e con il controllo sopra sparisce il contenuto e non va bene.
-				 */
-				return \post_type_supports(  \strval( \get_post_type() ), 'editor' )
-					&& ! \in_array( 'hide_content', get_template_settings(), true );
-			},
-			'view'	=> 'posts/parts/content',
-		],
+//		'content'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_entry_content',
+//			Subscriber::PRIORITY	=> 50, // Optional
+//			'should_load'	=> static function () : bool {
+//
+//				/**
+//				 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
+//				 * || ! post_type_supports( $post_type, 'excerpt' )
+//				 * @todo Vadere di fare un controllo sulle pagine perchè ovviamente non hanno il riassunto
+//				 *       e con il controllo sopra sparisce il contenuto e non va bene.
+//				 */
+//				return \post_type_supports(  \strval( \get_post_type() ), 'editor' )
+//					&& ! \in_array( 'hide_content', get_template_settings(), true );
+//			},
+//			'view'	=> 'posts/parts/content',
+//		],
 
-		'modified'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			Subscriber::PRIORITY	=> 60, // Optional
-			'view'	=> 'posts/parts/modified',
-		],
+//		'modified'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_entry_content',
+//			Subscriber::PRIORITY	=> 60, // Optional
+//			'view'	=> 'posts/parts/modified',
+//		],
 
 //		'edit-post-link'	=> [
 //			Builder::self::EVENT_NAME	=> 'italystrap_after_entry_content',
@@ -124,51 +124,51 @@ return [
     /**
      * This is deprecated because it is integrated in the content block now
      */
-		'link-pages'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_entry_content',
-			Subscriber::PRIORITY	=> 70, // Optional
-			'should_load'	=> static function () : bool {
-				return \is_single();
-			},
-			'callback'	=> [ Components\Navigations\LinkPages::class, 'render' ], // Optional
-		],
+//		'link-pages'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_entry_content',
+//			Subscriber::PRIORITY	=> 70, // Optional
+//			'should_load'	=> static function () : bool {
+//				return \is_single();
+//			},
+//			'callback'	=> [ Components\Navigations\LinkPages::class, 'render' ], // Optional
+//		],
 
-		'pager'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_after_entry_content',
-			'should_load'	=> static function () : bool {
-				return \post_type_supports(  \strval( \get_post_type() ), 'post_navigation' )
-					&& \is_single();
-			},
-			'callback'	=> static function (): string {
-				// Back compat style
-				$style = '<style>
-.wp-block-post-navigation-link-container {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-}
-.post-navigation-link-next a {
-	display: flex;
-	flex-direction: row-reverse;
-}
-.post-navigation-link-next .post-navigation-link__label {
-        margin-left: 1ch;
-    }
-</style>';
-				$pager_blocks = '<div class="wp-block-post-navigation-link-container"><!-- wp:post-navigation-link {"type":"previous","label":"«","showTitle":true,"linkLabel":true,"fontSize":"x-small"} /-->
-				<!-- wp:post-navigation-link {"label":"»","showTitle":true,"linkLabel":true,"fontSize":"x-small"} /--></div>';
+//		'pager'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_after_entry_content',
+//			'should_load'	=> static function () : bool {
+//				return \post_type_supports(  \strval( \get_post_type() ), 'post_navigation' )
+//					&& \is_single();
+//			},
+//			'callback'	=> static function (): string {
+//				// Back compat style
+//				$style = '<style>
+//.wp-block-post-navigation-link-container {
+//	display: flex;
+//	flex-direction: row;
+//	justify-content: space-between;
+//}
+//.post-navigation-link-next a {
+//	display: flex;
+//	flex-direction: row-reverse;
+//}
+//.post-navigation-link-next .post-navigation-link__label {
+//        margin-left: 1ch;
+//    }
+//</style>';
+//				$pager_blocks = '<div class="wp-block-post-navigation-link-container"><!-- wp:post-navigation-link {"type":"previous","label":"«","showTitle":true,"linkLabel":true,"fontSize":"x-small"} /-->
+//				<!-- wp:post-navigation-link {"label":"»","showTitle":true,"linkLabel":true,"fontSize":"x-small"} /--></div>';
+//
+//				return $style . \do_blocks( $pager_blocks );
+//			},
+//		],
 
-				return $style . \do_blocks( $pager_blocks );
-			},
-		],
-
-		'pagination'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_after_loop',
-			'should_load'	=> static function () : bool {
-				return ! \is_404();
-			},
-			'callback'	=> [ Components\Navigations\Pagination::class, 'render' ], // Optional
-		],
+//		'pagination'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_after_loop',
+//			'should_load'	=> static function () : bool {
+//				return ! \is_404();
+//			},
+//			'callback'	=> [ Components\Navigations\Pagination::class, 'render' ], // Optional
+//		],
 
 		'sidebar'	=> [
 			Builder::EVENT_NAME	=> 'italystrap_after_content',
@@ -221,55 +221,55 @@ return [
 		'view'	=> 'posts/none',
 		],
 
-		'archive-headline'	=> [
-			Builder::EVENT_NAME		=> 'italystrap_before_while',
-			Subscriber::PRIORITY	=> 20,
-			'view'		=> 'misc/archive-headline',
-			'should_load'	=> static function () : bool {
-				return ( \is_archive() || \is_search() ) && ! \is_author();
-			},
-		],
+//		'archive-headline'	=> [
+//			Builder::EVENT_NAME		=> 'italystrap_before_while',
+//			Subscriber::PRIORITY	=> 20,
+//			'view'		=> 'misc/archive-headline',
+//			'should_load'	=> static function () : bool {
+//				return ( \is_archive() || \is_search() ) && ! \is_author();
+//			},
+//		],
 
 		/**
 		 * @TODO Refactor dupplicate code in 'data'
 		 */
-		'author-info'	=> [
-			Builder::EVENT_NAME		=> 'italystrap_before_loop',
-			Subscriber::PRIORITY	=> 20,
-			'view'		=> 'misc/author-info',
-			'should_load'	=> 'is_author',
-			'data'		=> static function ( Injector $injector ) : array {
-
-				$data = [];
-				global $author_name;
-				$data['author'] = \array_key_exists( 'author_name', $_GET )
-					? \get_user_by( 'slug', $author_name )
-					: \get_userdata( \absint( \get_the_author_meta( 'ID' ) ) );
-
-				return $data;
-			},
-		],
+//		'author-info'	=> [
+//			Builder::EVENT_NAME		=> 'italystrap_before_loop',
+//			Subscriber::PRIORITY	=> 20,
+//			'view'		=> 'misc/author-info',
+//			'should_load'	=> 'is_author',
+//			'data'		=> static function ( Injector $injector ) : array {
+//
+//				$data = [];
+//				global $author_name;
+//				$data['author'] = \array_key_exists( 'author_name', $_GET )
+//					? \get_user_by( 'slug', $author_name )
+//					: \get_userdata( \absint( \get_the_author_meta( 'ID' ) ) );
+//
+//				return $data;
+//			},
+//		],
 		// @todo Rename the key with a better name
-		'author-info-1'	=> [
-			Builder::EVENT_NAME		=> 'italystrap_after_entry_content',
-			Subscriber::PRIORITY	=> 30,
-			'view'		=> 'misc/author-info',
-			'should_load'	=> static function () : bool {
-				return \post_type_supports(  \strval( \get_post_type() ), 'author' )
-					&& \is_singular()
-					&& ! \in_array( 'hide_author', get_template_settings(), true );
-			},
-			'data'		=> static function ( Injector $injector ) : array {
-
-				$data = [];
-				global $author_name;
-				$data['author'] = \array_key_exists( 'author_name', $_GET )
-					? \get_user_by( 'slug', $author_name )
-					: \get_userdata( \absint( \get_the_author_meta( 'ID' ) ) );
-
-				return $data;
-			},
-		],
+//		'author-info-1'	=> [
+//			Builder::EVENT_NAME		=> 'italystrap_after_entry_content',
+//			Subscriber::PRIORITY	=> 30,
+//			'view'		=> 'misc/author-info',
+//			'should_load'	=> static function () : bool {
+//				return \post_type_supports(  \strval( \get_post_type() ), 'author' )
+//					&& \is_singular()
+//					&& ! \in_array( 'hide_author', get_template_settings(), true );
+//			},
+//			'data'		=> static function ( Injector $injector ) : array {
+//
+//				$data = [];
+//				global $author_name;
+//				$data['author'] = \array_key_exists( 'author_name', $_GET )
+//					? \get_user_by( 'slug', $author_name )
+//					: \get_userdata( \absint( \get_the_author_meta( 'ID' ) ) );
+//
+//				return $data;
+//			},
+//		],
 
 	/**
 	 * ====================================================================
@@ -278,39 +278,39 @@ return [
 	 *
 	 * ====================================================================
 	 */
-		'loop'	=> [
-		Builder::EVENT_NAME	=> 'italystrap_loop',
-		'view'	=> ['posts/loop'],
-		],
+//		'loop'	=> [
+//		Builder::EVENT_NAME	=> 'italystrap_loop',
+//		'view'	=> ['posts/loop'],
+//		],
 
-		'navbar-top'	=> [
-			Builder::EVENT_NAME		=> 'italystrap_before_header',
-			'view'		=> 'headers/navbar-top',
-			'should_load'	=> static function () : bool {
-				return \has_nav_menu( 'info-menu' )
-					&& \has_nav_menu( 'social-menu' );
-			},
-		],
+//		'navbar-top'	=> [
+//			Builder::EVENT_NAME		=> 'italystrap_before_header',
+//			'view'		=> 'headers/navbar-top',
+//			'should_load'	=> static function () : bool {
+//				return \has_nav_menu( 'info-menu' )
+//					&& \has_nav_menu( 'social-menu' );
+//			},
+//		],
 
-		'custom-header'	=> [
-			Builder::EVENT_NAME		=> 'italystrap_content_header',
-			'view'		=> 'headers/custom-header',
-			'should_load'	=> '\has_header_image',
-			'data'		=> static function ( Injector $injector ) {
-				return $injector->make( Components\Headers\CustomHeader::class )->getData();
-			},
-		],
+//		'custom-header'	=> [
+//			Builder::EVENT_NAME		=> 'italystrap_content_header',
+//			'view'		=> 'headers/custom-header',
+//			'should_load'	=> '\has_header_image',
+//			'data'		=> static function ( Injector $injector ) {
+//				return $injector->make( Components\Headers\CustomHeader::class )->getData();
+//			},
+//		],
 
-		'navbar'	=> [
-			Builder::EVENT_NAME		=> 'italystrap_after_header',
-			'view'		=> 'headers/navbar',
-			'data'	=> static function ( Injector $injector, ConfigInterface $config ) : array {
-				return [
-					'mods'		=> $config,
-					'navbar'	=> $injector->make( Components\Navigations\Navbar::class ),
-				];
-			},
-		],
+//		'navbar'	=> [
+//			Builder::EVENT_NAME		=> 'italystrap_after_header',
+//			'view'		=> 'headers/navbar',
+//			'data'	=> static function ( Injector $injector, ConfigInterface $config ) : array {
+//				return [
+//					'mods'		=> $config,
+//					Components\Navigations\Navbar::class	=> $injector->make( Components\Navigations\Navbar::class ),
+//				];
+//			},
+//		],
 
 		/**
 		 * @example it could be added new key 'callback_args' for additional or custom callback arguments
@@ -318,35 +318,35 @@ return [
 		 *
 		 * "callback_args => [ 'file' => 'new_comment_template.php' ]"
 		 */
-		'comments'	=> [
-			Builder::EVENT_NAME		=> 'italystrap_after_loop',
-			/** @see \comments_template() */
-			'callback'	=> static function () {
-				echo \do_blocks( '<!-- wp:post-comments /-->' );
-			},
-			'should_load'	=> static function () : bool {
-				return \is_singular()
-					&& \post_type_supports( \strval( \get_post_type() ), 'comments' )
-					&& ! \in_array( 'hide_comments', get_template_settings(), true );
-			},
-		],
+//		'comments'	=> [
+//			Builder::EVENT_NAME		=> 'italystrap_after_loop',
+//			/** @see \comments_template() */
+//			'callback'	=> static function () {
+//				echo \do_blocks( '<!-- wp:post-comments /-->' );
+//			},
+//			'should_load'	=> static function () : bool {
+//				return \is_singular()
+//					&& \post_type_supports( \strval( \get_post_type() ), 'comments' )
+//					&& ! \in_array( 'hide_comments', get_template_settings(), true );
+//			},
+//		],
+//
+//		'footer-widget-area'	=> [
+//			Builder::EVENT_NAME		=> 'italystrap_footer',
+//			'view'		=> 'footers/widget-area',
+//			'callback'	=> [ Components\Footers\WidgetArea::class, 'render' ],
+//		],
 
-		'footer-widget-area'	=> [
-			Builder::EVENT_NAME		=> 'italystrap_footer',
-			'view'		=> 'footers/widget-area',
-			'callback'	=> [ Components\Footers\WidgetArea::class, 'render' ],
-		],
-
-		'footer-colophon'	=> [
-			Builder::EVENT_NAME		=> get_config()->get( 'colophon_action' ),
-			Subscriber::PRIORITY	=> get_config()->get( 'colophon_priority' ),
-			'view'		=> 'footers/colophon',
-			'data'	=> static function ( Injector $injector, ConfigInterface $config ) : array {
-				return [
-					'content'		=> $config->get('colophon'),
-				];
-			},
-		],
+//		'footer-colophon'	=> [
+//			Builder::EVENT_NAME		=> get_config()->get( 'colophon_action' ),
+//			Subscriber::PRIORITY	=> get_config()->get( 'colophon_priority' ),
+//			'view'		=> 'footers/colophon',
+//			'data'	=> static function ( Injector $injector, ConfigInterface $config ) : array {
+//				return [
+//					'content'		=> $config->get('colophon'),
+//				];
+//			},
+//		],
 
 	/**
 	 * ====================================================================
@@ -355,25 +355,25 @@ return [
 	 *
 	 * ====================================================================
 	 */
-	'header'	=> [
-		Builder::EVENT_NAME	=> 'italystrap_before_main',
-		'callback'	=> static function () {
-			get_header();
-		},
-	],
-	'footer'	=> [
-		Builder::EVENT_NAME	=> 'italystrap_after_main',
-		'callback'	=> static function () {
-			get_footer();
-		},
-	],
-	'index'	=> [
-		Builder::EVENT_NAME	=> 'italystrap',
-		'view'	=> 'index',
-		'data'	=> static function ( EventDispatcherInterface $dispatcher ) : array {
-			return [
-				EventDispatcherInterface::class => $dispatcher,
-			];
-		},
-	],
+//	'header'	=> [
+//		Builder::EVENT_NAME	=> 'italystrap_before_main',
+//		'callback'	=> static function () {
+//			get_header();
+//		},
+//	],
+//	'footer'	=> [
+//		Builder::EVENT_NAME	=> 'italystrap_after_main',
+//		'callback'	=> static function () {
+//			get_footer();
+//		},
+//	],
+//	'index'	=> [
+//		Builder::EVENT_NAME	=> 'italystrap',
+//		'view'	=> 'index',
+//		'data'	=> static function ( EventDispatcherInterface $dispatcher ) : array {
+//			return [
+//				EventDispatcherInterface::class => $dispatcher,
+//			];
+//		},
+//	],
 ];

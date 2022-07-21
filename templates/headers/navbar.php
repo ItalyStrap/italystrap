@@ -26,14 +26,8 @@ use function ItalyStrap\HTML\open_tag_e;
 $config = $this;
 
 /** @var Navbar $navbar */
-$navbar = $config->get('navbar');
+$navbar = $config->get(Navbar::class);
 
-//$navbar->output();
-
-//$this->number = self::$instance_count;
-//
-//$this->navbar_id = apply_filters( 'italystrap_navbar_id', 'italystrap-menu-' . $this->number );
-//$this->navbar_id = apply_filters( 'italystrap_navbar_id_' . $this->number, $this->navbar_id );
 
 $number = \esc_attr( $config->get('number', \rand() ) );
 $navbar_id = 'italystrap-menu-' . $number;

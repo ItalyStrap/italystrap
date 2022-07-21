@@ -112,7 +112,10 @@ return [
 	AurynConfig::DEFINITIONS			=> [
 
 		SidebarsSubscriber::class	=> [
-			 ':config'	=> ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) ),
+			 '+config'	=> static function (): ConfigInterface {
+				return ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) )
+					->merge(get_config_file_content( 'theme/footer-widget-area' ));
+			 },
 		],
 		ThumbnailsSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/thumbnails' ) ),

@@ -39,7 +39,7 @@ class WidgetArea {
 
 		$this->data['col'] = $this->setCol();
 
-		echo $this->view->render( $view, $this->data );
+		echo \do_blocks( $this->view->render( $view, $this->data ) );
 	}
 
 	/**

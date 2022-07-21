@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
+use ItalyStrap\Components\Headers\CustomHeader;
+use ItalyStrap\Components\Navigations\Navbar;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Theme\Support as ThemeSupport;
 use Prophecy\Prophet;
@@ -50,6 +52,18 @@ trait BaseUnitTrait {
 		return $this->theme_support->reveal();
 	}
 
+	private \Prophecy\Prophecy\ObjectProphecy $navbar;
+
+	public function getNavbar(): Navbar {
+		return $this->navbar->reveal();
+	}
+
+	private \Prophecy\Prophecy\ObjectProphecy $custom_header;
+
+	public function getCustomHeader(): CustomHeader {
+		return $this->custom_header->reveal();
+	}
+
 	// phpcs:ignore
 	protected function _before() {
 		$this->setUpProphet();
@@ -68,6 +82,8 @@ trait BaseUnitTrait {
 		$this->injector = $this->prophet->prophesize( \ItalyStrap\Empress\Injector::class );
 		$this->finder = $this->prophet->prophesize( \ItalyStrap\Finder\FinderInterface::class );
 		$this->theme_support = $this->prophet->prophesize( ThemeSupport::class );
+		$this->navbar = $this->prophet->prophesize(Navbar::class);
+		$this->custom_header = $this->prophet->prophesize(CustomHeader::class);
 	}
 
 	private function tearDownProphet() {

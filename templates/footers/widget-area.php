@@ -1,7 +1,5 @@
 <?php
 /**
- * The template part for displaying Colophon
- *
  * @package ItalyStrap
  * @since 4.0.0
  */
@@ -10,15 +8,22 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-?><div class="container">
-	<div class="row" itemscope itemtype="https://schema.org/WPSideBar">
+?>
+<!-- wp:group {"layout":{"inherit":true}} -->
+<div class="wp-block-group">
+	<!-- wp:columns -->
+	<div class="wp-block-columns">
 		<?php foreach ( $this->get( 'footer_sidebars', [] ) as $value ) : ?>
 			<?php if ( \is_active_sidebar( $value ) ) : ?>
-				<div class="col-md-<?php echo $this->get( 'col' ); // XSS ok. ?>">
+				<!-- wp:column -->
+				<div class="wp-block-column">
 					<?php \dynamic_sidebar( $value ) ?>
 				</div>
+				<!-- /wp:column -->
 			<?php endif; ?>
 
 		<?php endforeach; ?>
 	</div>
+	<!-- /wp:columns -->
 </div>
+<!-- /wp:group -->

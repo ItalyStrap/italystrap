@@ -49,53 +49,52 @@ $event_dispatcher = injector()->make( EventDispatcher::class );
 $template_settings = (array) get_config()->get('post_content_template');
 
 if ( ! have_comments() ) {
-    return;
+	return;
 }
 ?>
 <section id="comments" class="comments-area">
-    <h3 class="comments-title">
-        <?php
-        /**
-         * The comment number
-         */
-        $comment_number = get_comments_number();
-        printf(
-            /* translators: 1: number of comments, 2: post title */
-            _n( '%1$s response to &ldquo;%2$s&rdquo;', '%1$s responses to &ldquo;%2$s&rdquo;', $comment_number, 'italystrap' ),
-            number_format_i18n( $comment_number ),
-            get_the_title()
-        );
-        ?>
-    </h3>
-    <?php
-    // DRY
-    $comment_pagination = '';
-    if ( get_comment_pages_count() > 1 && get_option('page_comments') ) {
-        ob_start();
-        the_comments_pagination(
-            [
-                'prev_text'	=> __( '&laquo; Previous comments', 'italystrap' ),
-                'next_text'	=> __( 'Next comments &raquo;', 'italystrap' ),
-            ]
-        );
-        $comment_pagination = ob_get_clean();
-    }
+	<h3 class="comments-title">
+		<?php
+		/**
+		 * The comment number
+		 */
+		$comment_number = get_comments_number();
+		printf(
+			/* translators: 1: number of comments, 2: post title */
+			_n( '%1$s response to &ldquo;%2$s&rdquo;', '%1$s responses to &ldquo;%2$s&rdquo;', $comment_number, 'italystrap' ),
+			number_format_i18n( $comment_number ),
+			get_the_title()
+		);
+		?>
+	</h3>
+	<?php
+	// DRY
+	$comment_pagination = '';
+	if ( get_comment_pages_count() > 1 && get_option('page_comments') ) {
+		ob_start();
+		the_comments_pagination(
+			[
+				'prev_text'	=> __( '&laquo; Previous comments', 'italystrap' ),
+				'next_text'	=> __( 'Next comments &raquo;', 'italystrap' ),
+			]
+		);
+		$comment_pagination = ob_get_clean();
+	}
 
-    echo $comment_pagination;
-    echo '<ol class="commentlist">';
+	echo $comment_pagination;
+	echo '<ol class="commentlist">';
 	/**
 	 * 'max_depth'     => 3 is set in WordPress option
 	 */
 	wp_list_comments();
-    echo '</ol>';
+	echo '</ol>';
 	echo $comment_pagination;
 
-?>
+	?>
 </section>
 <?php  // End have_comments().
 
 if ( ! in_array( 'hide_comments_form', $template_settings, true )  ) {
-
 	$event_dispatcher->addListener(
 		'comment_form_comments_closed',
 		static function () {

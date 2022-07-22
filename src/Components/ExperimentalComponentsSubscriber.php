@@ -4,9 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use Auryn\Injector;
-use ItalyStrap\Builders\BuilderInterface;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Finder\FileInfoFactoryInterface;

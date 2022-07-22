@@ -33,15 +33,14 @@ function set_default_constants( array $constant = [] ): array {
 
 /**
  * Set Current Template Constant
- * Call this constant from after the 'get_header' action.
  *
- * @hooked template_include - 99998
+ * @hooked template_include PHP_INT_MAX - 100
  *
- * @param string $current_template Return the current temlate
+ * @param string $current_template Return the current template
  *
  * @return string
  */
-function set_current_template_constants( $current_template ): string {
+function set_current_template_constants( string $current_template ): string {
 
 	define( 'CURRENT_TEMPLATE', basename( $current_template ) );
 	define( 'CURRENT_TEMPLATE_SLUG', str_replace( '.php', '', CURRENT_TEMPLATE ) );

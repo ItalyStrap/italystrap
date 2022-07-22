@@ -34,7 +34,6 @@ class Index implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-//		echo \do_blocks( $this->view->render( 'temp/index', [] ) );
 		echo \do_blocks( $this->view->render( 'index', [
 			EventDispatcherInterface::class => $this->dispatcher,
 		] ) );

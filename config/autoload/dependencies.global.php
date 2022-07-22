@@ -6,7 +6,6 @@ use Auryn\Injector;
 use ItalyStrap\Asset\AssetManager;
 use ItalyStrap\Asset\ExperimentalAssetPreparator;
 use ItalyStrap\Asset\EditorSubscriber;
-use ItalyStrap\Builders\BuilderInterface;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
@@ -30,6 +29,7 @@ use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Asset\AssetsSubscriber;
 use ItalyStrap\Theme\NavMenusSubscriber;
+use ItalyStrap\Theme\SetupConstants;
 use ItalyStrap\Theme\SidebarsSubscriber;
 use ItalyStrap\Theme\SupportSubscriber;
 use ItalyStrap\Theme\TextDomainSubscriber;
@@ -92,7 +92,6 @@ return [
 
 		ViewInterface::class				=> View\View::class,
 		Walker_Nav_Menu::class				=> Navbar\BootstrapNavMenu::class,
-		BuilderInterface::class				=> Builders\Builder::class,
 	],
 
 	/**
@@ -130,15 +129,6 @@ return [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/nav-menus' ) ),
 		],
 
-//		Builders\ParseAttr::class	=> [
-//			':config'	=> ConfigFactory::make(
-//				array_replace_recursive(
-//					get_config_file_content( 'html_attrs' ),
-//					get_config_file_content( 'schema' )
-//				)
-//			),
-//		],
-
 		EditorSubscriber::class => [
 			'+finder'	=> static function ( string $named_param, Injector $injector ) {
 				$config = $injector->make( ConfigInterface::class );
@@ -156,21 +146,6 @@ return [
 
 				return $finder;
 			},
-		],
-
-		Builders\Builder::class	=> [
-			'+view'	=> static function ( string $named_param, Injector $injector ): ViewInterface {
-				$config = $injector->make( ConfigInterface::class );
-
-				$finder = (new FinderFactory())->make()
-					->in( [
-						$config->get('CHILDPATH') . '/' . $config->get('template_dir'),
-						$config->get('PARENTPATH') . '/' . $config->get('template_dir'),
-					] );
-
-				return $injector->make( ViewInterface::class, [ ':finder' => $finder ] );
-			},
-			':config'	=> ConfigFactory::make( get_config_file_content( 'structure' ) ),
 		],
 
 		Components\Navigations\Navbar::class	=> [
@@ -233,10 +208,6 @@ return [
 		 * This class is lazy loaded
 		 */
 		AssetManager::class			=> new ExperimentalAssetPreparator(),
-
-//		Builders\Builder::class	=> static function ( Builders\Builder $builder, Injector $injector ) {
-//			$builder->setInjector( $injector );
-//		},
 	],
 
 	/**
@@ -287,9 +258,6 @@ return [
 		Admin\Nav_Menu\ItemCustomFields::class,
 		Customizer\ThemeCustomizer::class,
 		Css\CssSubscriber::class,
-
-		// This is the class that build the page
-		Builders\Director::class,
 
 		/**
 		 * With this class I can lazyload the AssetManager::class

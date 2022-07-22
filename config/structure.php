@@ -170,21 +170,13 @@ return [
 //			'callback'	=> [ Components\Navigations\Pagination::class, 'render' ], // Optional
 //		],
 
-		'sidebar'	=> [
-			Builder::EVENT_NAME	=> 'italystrap_after_content',
-			'callback'	=> '\get_sidebar',
-			'should_load'	=> static function ( ConfigInterface $config ) : bool {
-				return 'full_width' !== $config->get( 'site_layout' );
-			},
-		],
-
-		'entry'	=> [
-		Builder::EVENT_NAME	=> 'italystrap_entry',
-		'view'	=> 'posts/post',
-		'data'	=> static function () : array {
-			return (array) \get_post( null, ARRAY_A );
-		},
-		],
+//		'entry'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_entry',
+//			'view'	=> 'posts/entry-post',
+//			'data'	=> static function () : array {
+//				return (array) \get_post( null, ARRAY_A );
+//			},
+//		],
 
 		/**
 		 * ====================================================================
@@ -193,33 +185,33 @@ return [
 		 *
 		 * ====================================================================
 		 */
-		'none-image'	=> [
-			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
-			'view'			=> 'posts/none/image',
-		],
+//		'none-image'	=> [
+//			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
+//			'view'			=> 'posts/none/image',
+//		],
 
-		'none-title'	=> [
-			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
-			Subscriber::PRIORITY		=> 20,
-			'view'			=> 'posts/none/title',
-			'data'			=> static function ( ConfigInterface $config ) : ConfigInterface {
-				return $config;
-			},
-		],
+//		'none-title'	=> [
+//			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
+//			Subscriber::PRIORITY		=> 20,
+//			'view'			=> 'posts/none/title',
+//			'data'			=> static function ( ConfigInterface $config ) : ConfigInterface {
+//				return $config;
+//			},
+//		],
 
-		'none-content'	=> [
-			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
-			Subscriber::PRIORITY		=> 30,
-			'view'			=> 'posts/none/content',
-			'data'			=> static function ( ConfigInterface $config ) : ConfigInterface {
-				return $config;
-			},
-		],
+//		'none-content'	=> [
+//			Builder::EVENT_NAME			=> 'italystrap_entry_content_none',
+//			Subscriber::PRIORITY		=> 30,
+//			'view'			=> 'posts/none/content',
+//			'data'			=> static function ( ConfigInterface $config ) : ConfigInterface {
+//				return $config;
+//			},
+//		],
 
-		'none'	=> [
-		Builder::EVENT_NAME	=> 'italystrap_content_none',
-		'view'	=> 'posts/none',
-		],
+//		'none'	=> [
+//			Builder::EVENT_NAME	=> 'italystrap_content_none',
+//			'view'	=> 'posts/none',
+//		],
 
 //		'archive-headline'	=> [
 //			Builder::EVENT_NAME		=> 'italystrap_before_while',
@@ -355,6 +347,14 @@ return [
 	 *
 	 * ====================================================================
 	 */
+//	'sidebar'	=> [
+//		Builder::EVENT_NAME	=> 'italystrap_after_content',
+//		'callback'	=> '\get_sidebar',
+//		'should_load'	=> static function ( ConfigInterface $config ) : bool {
+//			return 'full_width' !== $config->get( 'site_layout' );
+//		},
+//	],
+
 //	'header'	=> [
 //		Builder::EVENT_NAME	=> 'italystrap_before_main',
 //		'callback'	=> static function () {

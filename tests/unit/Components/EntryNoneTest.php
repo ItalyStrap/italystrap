@@ -4,17 +4,17 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\Sidebar;
+use ItalyStrap\Components\EntryNone;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class SidebarTest extends \Codeception\Test\Unit {
+class EntryNoneTest extends \Codeception\Test\Unit {
 
 	use BaseUnitTrait;
 
-	protected function getInstance(): Sidebar {
-		$sut = new Sidebar($this->getConfig(), $this->getView());
+	protected function getInstance(): EntryNone {
+		$sut = new EntryNone($this->getConfig(), $this->getView(), $this->getDispatcher());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}
@@ -23,9 +23,6 @@ class SidebarTest extends \Codeception\Test\Unit {
 	 * @test
 	 */
 	public function itShouldLoad() {
-
-		$this->config->get( 'site_layout' )->willReturn('some-value');
-
 		$sut = $this->getInstance();
 		$this->assertTrue($sut->shouldDisplay(), '');
 	}
@@ -36,9 +33,14 @@ class SidebarTest extends \Codeception\Test\Unit {
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
 
-		$this->view->render( 'sidebar', Argument::type('array') )->willReturn('sidebar');
+		$this->view->render( 'posts/none', Argument::type('array') )->willReturn('posts/none');
 
-		$this->expectOutputString('sidebar');
+		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+			Assert::assertEquals('posts/none', $block, '');
+			return 'from do_block';
+		});
+
+		$this->expectOutputString('from do_block');
 		$sut->display();
 	}
 }

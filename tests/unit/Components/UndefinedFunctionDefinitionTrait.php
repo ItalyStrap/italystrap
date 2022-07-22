@@ -10,11 +10,15 @@ trait UndefinedFunctionDefinitionTrait {
 		$feature = '',
 		bool $return = true
 	) {
-		\tad\FunctionMockerLe\define(
+		$this->defineFunction(
 			'post_type_supports',
 			static function ( string $post_type, string $feature ) use ( $return ) {
 				return $return;
 			}
 		);
+	}
+
+	private function defineFunction( string $function, callable $callback) {
+		\tad\FunctionMockerLe\define(...func_get_args());
 	}
 }

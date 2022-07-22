@@ -12,14 +12,14 @@ $index = (string)$config->get('index');
 
 if ( \is_active_sidebar( $index ) ) :
 	\do_action( 'italystrap_before_sidebar_widget_area' );
-	?>
 
-	<!-- wp:column -->
-	<div class="wp-block-column">
+	?>
+	<!-- wp:column {"width":"33.33%","className":"sidebar"} -->
+	<div class="wp-block-column sidebar" style="flex-basis:33.33%">
 		<?php \dynamic_sidebar( $index ) ?>
 	</div>
 	<!-- /wp:column -->
-
 	<?php
+
 	\do_action( 'italystrap_after_sidebar_widget_area' );
 endif; ?>

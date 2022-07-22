@@ -4,34 +4,36 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
 
-class Sidebar implements ComponentInterface, SubscriberInterface {
+class EntryNoneContent implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_after_content';
-	const EVENT_PRIORITY = 10;
+	const EVENT_NAME = 'italystrap_entry_content_none';
+	const EVENT_PRIORITY = 30;
 
 	private ConfigInterface $config;
 	private ViewInterface $view;
+	private EventDispatcherInterface $dispatcher;
 
 	public function __construct(
 		ConfigInterface $config,
-		ViewInterface $view
+		ViewInterface $view,
+		EventDispatcherInterface $dispatcher
 	) {
 		$this->config = $config;
 		$this->view = $view;
+		$this->dispatcher = $dispatcher;
 	}
 
 	public function shouldDisplay(): bool {
-		return 'full_width' !== $this->config->get( 'site_layout' );
+		return true;
 	}
 
 	public function display(): void {
-		echo $this->view->render( 'sidebar', [
-			'index' => 'Sidebar-1',
-		] );
+		echo \do_blocks( $this->view->render( 'posts/none/content', $this->config->toArray() ) );
 	}
 }

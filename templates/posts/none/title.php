@@ -22,8 +22,11 @@ $headline_attr = [
 	'itemprop'	=> 'headline',
 ];
 
-?><header class="page-header">
+?>
+<!-- wp:group {"tagName":"header","className":"page-header entry-header","layout":{"inherit":true}} -->
+<header class="wp-block-group page-header entry-header">
 	<h1 <?php HTML\get_attr_e( 'entry_title', $headline_attr ); ?>>
 		<?php echo \esc_html( $this->get('404_title') ); ?>
 	</h1>
 </header>
+<!-- /wp:group -->

@@ -27,26 +27,42 @@ $dispatcher = $this->get(EventDispatcherInterface::class);
 
 $dispatcher->dispatch( 'italystrap_before_main' );
 
-	open_tag_e( 'index', 'main' );
-		open_tag_e( 'index-container', 'div' );
-			open_tag_e( 'index-row', 'div' );
+?>
+<!-- wp:group {"tagName":"main","align":"full","layout":{"inherit":false,"contentSize":"60vw","wideSize":"80vw"}} -->
+<main class="wp-block-group">
+<?php
+    open_tag_e( 'index-container', 'div' );
+        open_tag_e( 'index-row', 'div' );
 
-				$dispatcher->dispatch( 'italystrap_before_content' );
+            $dispatcher->dispatch( 'italystrap_before_content' );
+?>
+	<!-- wp:columns {"layout":{"inherit":true}} -->
+	<div class="wp-block-columns">
 
-				open_tag_e( 'content', 'div' );
+		<!-- wp:column -->
+		<div class="wp-block-column">
 
-					$dispatcher->dispatch( 'italystrap_before_loop' );
+			<?php
+			$dispatcher->dispatch( 'italystrap_before_loop' );
 
-					$dispatcher->dispatch( 'italystrap_loop' );
+			$dispatcher->dispatch( 'italystrap_loop' );
 
-					$dispatcher->dispatch( 'italystrap_after_loop' );
+			$dispatcher->dispatch( 'italystrap_after_loop' );
+			?>
 
-				close_tag_e( 'content' );
+		</div>
+		<!-- /wp:column -->
 
-				$dispatcher->dispatch( 'italystrap_after_content' );
-// sidebar
-			close_tag_e( 'index-row' );
-		close_tag_e( 'index-container' );
-	close_tag_e( 'index' );
+			<?php $dispatcher->dispatch( 'italystrap_after_content' ); ?>
 
+	</div>
+	<!-- /wp:columns -->
+	<?php
+
+        close_tag_e( 'index-row' );
+    close_tag_e( 'index-container' );
+?>
+</main>
+<!-- /wp:group -->
+<?php
 $dispatcher->dispatch( 'italystrap_after_main' );

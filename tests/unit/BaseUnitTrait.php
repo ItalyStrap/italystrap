@@ -6,6 +6,7 @@ namespace ItalyStrap\Tests;
 use ItalyStrap\Components\Headers\CustomHeader;
 use ItalyStrap\Components\Navigations\Navbar;
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\HTML\Tag;
 use ItalyStrap\Theme\Support as ThemeSupport;
 use Prophecy\Prophet;
 
@@ -64,6 +65,12 @@ trait BaseUnitTrait {
 		return $this->custom_header->reveal();
 	}
 
+	private \Prophecy\Prophecy\ObjectProphecy $tag;
+
+	public function getTag(): Tag {
+		return $this->tag->reveal();
+	}
+
 	// phpcs:ignore
 	protected function _before() {
 		$this->setUpProphet();
@@ -84,6 +91,7 @@ trait BaseUnitTrait {
 		$this->theme_support = $this->prophet->prophesize( ThemeSupport::class );
 		$this->navbar = $this->prophet->prophesize(Navbar::class);
 		$this->custom_header = $this->prophet->prophesize(CustomHeader::class);
+		$this->tag = $this->prophet->prophesize(Tag::class);
 	}
 
 	private function tearDownProphet() {

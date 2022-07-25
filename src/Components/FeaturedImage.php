@@ -41,6 +41,8 @@ class FeaturedImage implements ComponentInterface, SubscriberInterface {
 		}
 
 		$size = $this->config->get( 'post_thumbnail_size' );
+		$size = $this->getThumbnailSizeForFullWidthLayout($size);
+
 		$config = [
 			'align' => 'full',
 			'sizeSlug' => $size, // default 'post-thumbnail',
@@ -48,5 +50,19 @@ class FeaturedImage implements ComponentInterface, SubscriberInterface {
 		];
 
 		echo \do_blocks( '<!-- wp:post-featured-image ' . \json_encode( $config ) . '  /-->' );
+	}
+
+	public function getThumbnailSizeForFullWidthLayout( $size ) {
+		$site_layout = (string) $this->config->get( 'site_layout' );
+
+		if ( 'full_width' === $site_layout ) {
+			return 'full-width';
+		}
+
+		if ( \is_page_template( 'full-width.php' ) ) {
+			return 'full-width';
+		}
+
+		return $size;
 	}
 }

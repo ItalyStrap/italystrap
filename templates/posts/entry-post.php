@@ -10,14 +10,23 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
+use ItalyStrap\Event\EventDispatcherInterface;
+
+/** @var EventDispatcherInterface $dispatcher */
+$dispatcher = $this->get(EventDispatcherInterface::class);
+
+/** @var int|null $id */
+$id = $this->get('id');
+
+/** @var string $class_names */
+$class_names = $this->get('class_names');
 ?>
-<article<?php HTML\get_attr_e( 'entry', [ 'id' => \get_the_ID(), 'class' => \join( ' ', \get_post_class() ) ] ) ?>>
+<article<?php HTML\get_attr_e( 'entry', [ 'id' => $id, 'class' => $class_names ] ) ?>>
 <?php
-	\do_action( 'italystrap_before_entry_content' );
+	$dispatcher->dispatch( 'italystrap_before_entry_content' );
 
-		\do_action( 'italystrap_entry_content' );
+		$dispatcher->dispatch( 'italystrap_entry_content' );
 
-	\do_action( 'italystrap_after_entry_content' );
-
+	$dispatcher->dispatch( 'italystrap_after_entry_content' );
 ?>
 </article>

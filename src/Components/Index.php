@@ -36,6 +36,8 @@ class Index implements ComponentInterface, SubscriberInterface {
 	public function display(): void {
 		echo \do_blocks( $this->view->render( 'index', [
 			EventDispatcherInterface::class => $this->dispatcher,
+			'container_class_names' => $this->config->get('container_width'),
+			'row_class_names' => 'row',
 		] ) );
 	}
 }

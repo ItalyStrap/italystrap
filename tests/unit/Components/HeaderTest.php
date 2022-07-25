@@ -5,16 +5,17 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Header;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class HeaderTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): Header {
-		$sut = new Header($this->getConfig(), $this->getView(), $this->getDispatcher());
+		$sut = new Header($this->getConfig(), $this->getView(), $this->getDispatcher(), $this->getTag());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}
@@ -33,14 +34,18 @@ class HeaderTest extends \Codeception\Test\Unit {
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
 
-		$this->view->render( 'header', Argument::type('array') )->willReturn('header');
+		$this->config->get('current_template_slug')->willReturn('');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
-			Assert::assertEquals('header', $block, '');
-			return 'from do_block';
+		$this->defineFunction('get_body_class', static function (): array {
+			return [
+				'class-1',
+				'class-2',
+			];
 		});
 
-		$this->expectOutputString('from do_block');
+		$this->view->render( 'header', Argument::type('array') )->willReturn('header');
+
+		$this->expectOutputString('header');
 		$sut->display();
 	}
 }

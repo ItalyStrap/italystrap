@@ -1,13 +1,8 @@
 <?php
 declare(strict_types=1);
 
-use Auryn\InjectorException;
-use ItalyStrap\Builders\ParseAttr;
-use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcher;
-use function ItalyStrap\Config\get_config_file_content;
-use function ItalyStrap\Factory\injector;
 
 return function ( EventDispatcher $dispatcher, ConfigInterface $config ): void {
 
@@ -72,33 +67,5 @@ return function ( EventDispatcher $dispatcher, ConfigInterface $config ): void {
 		//	);
 		},
 		PHP_INT_MIN
-	);
-
-	/**
-	 * Questo va eseguito prima della registrazione delle sidebar
-	 * se no non si può filtrare l'html dei widget
-	 *
-	 * @see \ItalyStrap\Builders\ParseAttr
-	 */
-	$dispatcher->addListener(
-		'widgets_init',
-		function () {
-			try {
-				$schema = get_config_file_content( 'schema' );
-				$html_attrs = get_config_file_content( 'html_attrs' );
-
-				$config = ConfigFactory::make( (array) array_replace_recursive( $schema, $html_attrs ) );
-
-				$parser =  injector()->make(
-					ParseAttr::class,
-					[ ':config' => $config ]
-				);
-
-				$parser->apply();
-			} catch ( InjectorException $exception ) {
-				echo $exception->getMessage();
-			}
-		},
-		-10
 	);
 };

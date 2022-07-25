@@ -18,7 +18,6 @@ declare(strict_types=1);
 		'general-functions.php',
 		'italystrap.php',
 		'factory.php',
-		'html.php',
 
 		'images.php',
 	];

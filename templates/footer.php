@@ -15,11 +15,13 @@ $dispatcher = $this->get(EventDispatcherInterface::class);
 
 $dispatcher->dispatch( 'italystrap_before_footer' );
 
-	open_tag_e( 'footer', 'footer' );
+open_tag_e( 'footer', 'footer', [
+	'class'	=> 'site-footer',
+] );
 
-		$dispatcher->dispatch( 'italystrap_footer' );
+$dispatcher->dispatch( 'italystrap_footer' );
 
-	close_tag_e( 'footer' );
+close_tag_e( 'footer' );
 
 $dispatcher->dispatch( 'italystrap_after_footer' );
 

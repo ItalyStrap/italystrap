@@ -25,17 +25,27 @@ use function ItalyStrap\HTML\close_tag_e;
 /** @var EventDispatcherInterface $dispatcher */
 $dispatcher = $this->get(EventDispatcherInterface::class);
 
+/** @var string $container_class_names */
+$container_class_names = (string)$this->get('container_class_names');
+
+/** @var string $row_class_names */
+$row_class_names = (string)$this->get('row_class_names');
+
 $dispatcher->dispatch( 'italystrap_before_main' );
 
 ?>
 <!-- wp:group {"tagName":"main","align":"full","layout":{"inherit":false,"contentSize":"60vw","wideSize":"80vw"}} -->
 <main class="wp-block-group">
 <?php
-    open_tag_e( 'index-container', 'div' );
-        open_tag_e( 'index-row', 'div' );
+	open_tag_e( 'index-container', 'div', [
+			'class' => $container_class_names,
+	] );
+		open_tag_e( 'index-row', 'div', [
+			'class' => $row_class_names,
+		] );
 
-            $dispatcher->dispatch( 'italystrap_before_content' );
-?>
+			$dispatcher->dispatch( 'italystrap_before_content' );
+		?>
 	<!-- wp:columns {"layout":{"inherit":true}} -->
 	<div class="wp-block-columns">
 
@@ -59,9 +69,9 @@ $dispatcher->dispatch( 'italystrap_before_main' );
 	<!-- /wp:columns -->
 	<?php
 
-        close_tag_e( 'index-row' );
-    close_tag_e( 'index-container' );
-?>
+		close_tag_e( 'index-row' );
+	close_tag_e( 'index-container' );
+	?>
 </main>
 <!-- /wp:group -->
 <?php

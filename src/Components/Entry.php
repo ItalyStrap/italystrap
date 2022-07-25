@@ -36,8 +36,34 @@ class Entry implements ComponentInterface, SubscriberInterface {
 	public function display(): void {
 		// Is it a good idea to pass (array) \get_post( null, ARRAY_A ); to data?
 
-		echo \do_blocks( $this->view->render( 'posts/entry-post', [
+		$classes = \get_post_class();
+		$classes = $this->classeForPostThumbnail( $classes );
+		/**
+		 * Remove the 'hentry' css class to prevents error in search console
+		 */
+		foreach ( $classes as $key => $class ) {
+			if ( 'hentry' === $class ) {
+				unset( $classes[ $key ] );
+			}
+		}
+
+		echo $this->view->render( 'posts/entry-post', [
 			EventDispatcherInterface::class => $this->dispatcher,
-		] ) );
+			'id' => \get_the_ID(),
+			'class_names' => \join( ' ', $classes )
+		] );
+	}
+
+	private function classeForPostThumbnail( array $classes ): array {
+		/**
+		 * If has not a post thumbnail just bail out.
+		 */
+		if ( ! has_post_thumbnail() ) {
+			return $classes;
+		}
+
+		$classes[] = 'post-thumbnail-' . $this->config->get( 'post_thumbnail_alignment' );
+
+		return  $classes;
 	}
 }

@@ -1,46 +1,39 @@
 <?php
-/**
- * The Header for ItalyStrap
- *
- * Displays all of the <head> section and Main menu
- *
- * For improve performance replace $lang_attr with lang="xx-XX" when xx_XX is your language (en_EN - de_DE - fr_FR - ecc)
- * Otherwise you can use <?php language_attributes(); ?> instead
- *
- * You can also replace <?php bloginfo( 'charset' ); ?> with "UTF-8" or your charset
- *
- * @package ItalyStrap
- * @since ItalyStrap 1.0
- */
 declare(strict_types=1);
 
 namespace ItalyStrap;
 
+use ItalyStrap\Components\Header;
 use ItalyStrap\Event\EventDispatcherInterface;
 use function ItalyStrap\HTML\open_tag_e;
 
 /** @var EventDispatcherInterface $dispatcher */
 $dispatcher = $this->get(EventDispatcherInterface::class);
 
+/** @var string $body_class */
+$body_class = $this->get(Header::BODY_CLASS_NAMES);
+
+/** @var string $wrapper_class */
+$wrapper_class = $this->get(Header::WRAPPER_CLASS_NAMES);
+
 ?><!DOCTYPE html>
-<!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" <?php \language_attributes(); ?> prefix="og: http://ogp.me/ns#"> <![endif]-->
-<!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" <?php \language_attributes(); ?> prefix="og: http://ogp.me/ns#"> <![endif]-->
-<!--[if IE 8]>			<html class="no-js lt-ie9" <?php \language_attributes(); ?> prefix="og: http://ogp.me/ns#"> <![endif]-->
-<!--[if gt IE 8]><!-->	<html class="no-js" <?php \language_attributes(); ?> prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<html <?php \language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<?php \wp_head(); ?>
 </head>
 <?php
+open_tag_e( 'body', 'body', [
+		'class' => $body_class,
+] );
 
-open_tag_e( 'body', 'body' );
 \wp_body_open();
 
 $dispatcher->dispatch('italystrap_before');
 
-open_tag_e( 'wrapper', 'div' );
+open_tag_e( 'wrapper', 'div', [
+	'class' => $wrapper_class,
+] );
 
 $dispatcher->dispatch('italystrap_before_header');
 

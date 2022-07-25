@@ -276,7 +276,10 @@ class Navbar {
 	 */
 	public function get_toggle_button() {// phpcs:ignore
 
-		$icon_bar = apply_filters( 'italystrap_icon_bar', '' );
+		$icon_bar = apply_filters(
+			'italystrap_icon_bar',
+			'<span class="icon-bar">&nbsp</span><span class="icon-bar">&nbsp</span><span class="icon-bar">&nbsp</span>'
+		);
 
 		$a = array(
 			'class' => 'navbar-toggle',

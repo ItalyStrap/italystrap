@@ -32,15 +32,11 @@ class FooterTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
+		$expected_output = 'footer';
 
-		$this->view->render( 'footer', Argument::type('array') )->willReturn('footer');
+		$this->view->render( 'footer', Argument::type('array') )->willReturn($expected_output);
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
-			Assert::assertEquals('footer', $block, '');
-			return 'from do_block';
-		});
-
-		$this->expectOutputString('from do_block');
+		$this->expectOutputString($expected_output);
 		$sut->display();
 	}
 }

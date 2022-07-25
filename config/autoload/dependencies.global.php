@@ -29,7 +29,6 @@ use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Asset\AssetsSubscriber;
 use ItalyStrap\Theme\NavMenusSubscriber;
-use ItalyStrap\Theme\SetupConstants;
 use ItalyStrap\Theme\SidebarsSubscriber;
 use ItalyStrap\Theme\SupportSubscriber;
 use ItalyStrap\Theme\TextDomainSubscriber;

@@ -34,8 +34,8 @@ class Footer implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-		echo \do_blocks( $this->view->render( 'footer', [
+		echo $this->view->render( 'footer', [
 			EventDispatcherInterface::class => $this->dispatcher,
-		] ) );
+		] );
 	}
 }

@@ -20,7 +20,9 @@ if ( ! is_preview() ) {
 	return;
 }
 
-open_tag_e('preview', 'div', []);
+open_tag_e('preview', 'div', [
+	'class' => 'alert alert-info'
+]);
 
 	echo wp_kses_post(
 		__(

@@ -30,20 +30,3 @@ function set_default_constants( array $constant = [] ): array {
 
 	return $constant;
 }
-
-/**
- * Set Current Template Constant
- *
- * @hooked template_include PHP_INT_MAX - 100
- *
- * @param string $current_template Return the current template
- *
- * @return string
- */
-function set_current_template_constants( string $current_template ): string {
-
-//	define( 'CURRENT_TEMPLATE', basename( $current_template ) );
-//	define( 'CURRENT_TEMPLATE_SLUG', str_replace( '.php', '', CURRENT_TEMPLATE ) );
-
-	return $current_template;
-}

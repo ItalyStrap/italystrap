@@ -37,7 +37,6 @@ use function ItalyStrap\Factory\injector;
  */
 $autoload_theme_files = [
 	'../vendor/autoload.php',
-	'../functions/autoload.php',
 ];
 
 foreach ( $autoload_theme_files as $file ) {
@@ -72,21 +71,6 @@ return (static function ( Injector $injector ): Injector {
 	 * ========================================================================
 	 */
 	$constants = set_default_constants( get_config_file_content( 'constants' ) );
-
-	/**
-	 * ========================================================================
-	 *
-	 * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
-	 *
-	 * @see \ItalyStrap\Core\set_current_template_constants()
-	 *
-	 * ========================================================================
-	 */
-//		$event_dispatcher->addListener(
-//			'template_include',
-//			'\ItalyStrap\Core\set_current_template_constants',
-//			PHP_INT_MAX - 100
-//		);
 
 	/**
 	 * Constants must be merged before default

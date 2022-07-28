@@ -86,7 +86,18 @@
 	"autoload": {
 		"psr-4": {
 			"ItalyStrap\\": "src/"
-		}
+		},
+		"files": [
+			"functions/core-booleans.php",
+			"functions/booleans.php",
+			"functions/constants-generator.php",
+			"functions/asset-helpers.php",
+			"functions/config-helpers.php",
+			"functions/general-functions.php",
+			"functions/italystrap.php",
+			"functions/factory.php",
+			"functions/images.php"
+		]
 	},
 	"autoload-dev": {
 		"classmap": [

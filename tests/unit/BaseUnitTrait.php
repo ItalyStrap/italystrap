@@ -11,6 +11,7 @@ use ItalyStrap\Empress\AurynConfigInterface;
 use ItalyStrap\Empress\Injector;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberRegisterInterface;
+use ItalyStrap\Finder\FileInfoFactoryInterface;
 use ItalyStrap\Finder\FinderInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Theme\Support as ThemeSupport;
@@ -96,6 +97,12 @@ trait BaseUnitTrait {
 		return $this->tag->reveal();
 	}
 
+	private \Prophecy\Prophecy\ObjectProphecy $fileInfoFactory;
+
+	public function getFileInfoFactory(): FileInfoFactoryInterface {
+		return $this->fileInfoFactory->reveal();
+	}
+
 	// phpcs:ignore
 	protected function _before() {
 		$this->setUpProphet();
@@ -120,6 +127,7 @@ trait BaseUnitTrait {
 		$this->navbar = $this->prophet->prophesize(Navbar::class);
 		$this->custom_header = $this->prophet->prophesize(CustomHeader::class);
 		$this->tag = $this->prophet->prophesize(Tag::class);
+		$this->fileInfoFactory = $this->prophet->prophesize(FileInfoFactoryInterface::class);
 	}
 
 	private function tearDownProphet() {

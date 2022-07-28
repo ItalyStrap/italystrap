@@ -21,7 +21,6 @@ if ( ! \function_exists( '\ItalyStrap\Core\is_debug' ) ) {
  * @return bool Return true if it is a static page selected for front page, not blog
  */
 function is_static_front_page(): bool {
-
 	return is_front_page() && ! is_home();
 }
 

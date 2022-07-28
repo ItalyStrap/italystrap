@@ -34,20 +34,20 @@ $row_class_names = (string)$this->get('row_class_names');
 $dispatcher->dispatch( 'italystrap_before_main' );
 
 ?>
-<!-- wp:group {"tagName":"main","align":"full","layout":{"inherit":false,"contentSize":"60vw","wideSize":"80vw"}} -->
-<main class="wp-block-group">
+<!-- wp:group {"tagName":"main","align":"full","layout":{"inherit":false}} -->
+<main class="wp-block-group alignfull">
 <?php
-	open_tag_e( 'index-container', 'div', [
-			'class' => $container_class_names,
-	] );
-		open_tag_e( 'index-row', 'div', [
-			'class' => $row_class_names,
-		] );
+//	open_tag_e( 'index-container', 'div', [
+//			'class' => $container_class_names,
+//	] );
+//		open_tag_e( 'index-row', 'div', [
+//			'class' => $row_class_names,
+//		] );
 
 			$dispatcher->dispatch( 'italystrap_before_content' );
 		?>
-	<!-- wp:columns {"layout":{"inherit":true}} -->
-	<div class="wp-block-columns">
+	<!-- wp:columns {"align":"wide","layout":{"inherit":true}} -->
+	<div class="wp-block-columns alignwide">
 
 		<!-- wp:column -->
 		<div class="wp-block-column">
@@ -69,8 +69,8 @@ $dispatcher->dispatch( 'italystrap_before_main' );
 	<!-- /wp:columns -->
 	<?php
 
-		close_tag_e( 'index-row' );
-	close_tag_e( 'index-container' );
+//		close_tag_e( 'index-row' );
+//	close_tag_e( 'index-container' );
 	?>
 </main>
 <!-- /wp:group -->

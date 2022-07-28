@@ -42,8 +42,8 @@ function set_default_constants( array $constant = [] ): array {
  */
 function set_current_template_constants( string $current_template ): string {
 
-	define( 'CURRENT_TEMPLATE', basename( $current_template ) );
-	define( 'CURRENT_TEMPLATE_SLUG', str_replace( '.php', '', CURRENT_TEMPLATE ) );
+//	define( 'CURRENT_TEMPLATE', basename( $current_template ) );
+//	define( 'CURRENT_TEMPLATE_SLUG', str_replace( '.php', '', CURRENT_TEMPLATE ) );
 
 	return $current_template;
 }

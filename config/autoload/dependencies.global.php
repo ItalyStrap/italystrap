@@ -6,6 +6,38 @@ use Auryn\Injector;
 use ItalyStrap\Asset\AssetManager;
 use ItalyStrap\Asset\ExperimentalAssetPreparator;
 use ItalyStrap\Asset\EditorSubscriber;
+use ItalyStrap\Components\Breadcrumbs;
+use ItalyStrap\Components\ComponentSubscriber;
+use ItalyStrap\Components\ArchiveAuthorInfo;
+use ItalyStrap\Components\ArchiveHeadline;
+use ItalyStrap\Components\AuthorInfo;
+use ItalyStrap\Components\Colophon;
+use ItalyStrap\Components\Comments;
+use ItalyStrap\Components\Content;
+use ItalyStrap\Components\CustomHeaderImage;
+use ItalyStrap\Components\Entry;
+use ItalyStrap\Components\EntryNone;
+use ItalyStrap\Components\EntryNoneContent;
+use ItalyStrap\Components\EntryNoneImage;
+use ItalyStrap\Components\EntryNoneTitle;
+use ItalyStrap\Components\Excerpt;
+use ItalyStrap\Components\FeaturedImage;
+use ItalyStrap\Components\BlockQuery;
+use ItalyStrap\Components\Footer;
+use ItalyStrap\Components\FooterWidgetArea;
+use ItalyStrap\Components\Header;
+use ItalyStrap\Components\Loop;
+use ItalyStrap\Components\MainNavigation;
+use ItalyStrap\Components\MiscNavigation;
+use ItalyStrap\Components\Sidebar;
+use ItalyStrap\Components\Index;
+use ItalyStrap\Components\Meta;
+use ItalyStrap\Components\Modified;
+use ItalyStrap\Components\Pager;
+use ItalyStrap\Components\Pagination;
+use ItalyStrap\Components\PostAuthorInfo;
+use ItalyStrap\Components\Preview;
+use ItalyStrap\Components\Title;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
@@ -28,6 +60,7 @@ use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Asset\AssetsSubscriber;
+use ItalyStrap\Theme\CurrentTemplateConstantSupportSubscriber;
 use ItalyStrap\Theme\NavMenusSubscriber;
 use ItalyStrap\Theme\SidebarsSubscriber;
 use ItalyStrap\Theme\SupportSubscriber;
@@ -65,6 +98,8 @@ return [
 		Attributes::class,
 		Tag::class,
 		View\View::class,
+
+		AuthorInfo::class,
 	],
 
 	/**
@@ -152,6 +187,21 @@ return [
 		],
 		Components\Navigations\Pagination::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'components/pagination' ) ),
+		],
+
+		PostAuthorInfo::class => [
+			'+view' => static function ( string $named_param, Injector $injector ): AuthorInfo {
+				return $injector->make( AuthorInfo::class );
+			}
+		],
+		ArchiveAuthorInfo::class => [
+			'+view' => static function ( string $named_param, Injector $injector ): AuthorInfo {
+				return $injector->make( AuthorInfo::class );
+			}
+		],
+
+		FooterWidgetArea::class => [
+			':config' => ConfigFactory::make(require_once __DIR__ . '../../theme/footer-widget-area.php')
 		],
 	],
 
@@ -244,9 +294,10 @@ return [
 		/**
 		 * Register Theme stuff
 		 */
+		CurrentTemplateConstantSupportSubscriber::class,
 		NavMenusSubscriber::class,
 		SidebarsSubscriber::class,
-		SupportSubscriber::class,
+//		SupportSubscriber::class,
 		TextDomainSubscriber::class,
 		ThumbnailsSubscriber::class,
 		PostTypeSupportSubscriber::class,
@@ -264,5 +315,54 @@ return [
 		 */
 		AssetsSubscriber::class,
 		Asset\EditorSubscriber::class,
+	],
+
+	/**
+	 * ========================================================================
+	 *
+	 * Components Subscriber Classes
+	 *
+	 * ========================================================================
+	 */
+	ComponentSubscriber::class => [
+
+		Breadcrumbs::class,
+
+		PostAuthorInfo::class,
+		ArchiveAuthorInfo::class,
+		ArchiveHeadline::class,
+
+		FeaturedImage::class,
+		Title::class,
+		Meta::class,
+		Preview::class,
+		Content::class,
+		Excerpt::class,
+		Modified::class,
+		Pager::class,
+		Pagination::class,
+//				BlockQuery::class,
+
+		Sidebar::class,
+
+		Entry::class,
+
+		EntryNoneImage::class,
+		EntryNoneTitle::class,
+		EntryNoneContent::class,
+		EntryNone::class,
+
+		Loop::class,
+
+		MiscNavigation::class,
+		CustomHeaderImage::class,
+		MainNavigation::class,
+
+		Comments::class,
+		Colophon::class,
+		Header::class,
+		FooterWidgetArea::class,
+		Footer::class,
+		Index::class => Index::class,
 	],
 ];

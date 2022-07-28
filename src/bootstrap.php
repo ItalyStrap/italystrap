@@ -2,9 +2,6 @@
 /**
  * ItalyStrap Bootstrap File
  *
- * This is the bootstrapping file for the ItalyStrap framework.
- *
- *
  * @package ItalyStrap
  * @since 4.0.0
  */
@@ -13,10 +10,10 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use Auryn\Injector;
-use Auryn\InjectorException;
-use ItalyStrap\Config\ConfigFactory;
+use ItalyStrap\Components\ComponentSubscriber;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscriberRegister;
+use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
@@ -24,7 +21,6 @@ use ItalyStrap\Finder\Finder;
 use ItalyStrap\Finder\FinderInterface;
 use ItalyStrap\Theme\ExperimentalThemeFileFinderFactory;
 use ItalyStrap\Theme\License;
-use Throwable;
 use function get_theme_mods;
 use function is_admin;
 use function ItalyStrap\Config\get_config_file_content;
@@ -48,108 +44,96 @@ foreach ( $autoload_theme_files as $file ) {
 	require __DIR__ . DIRECTORY_SEPARATOR . $file;
 }
 
-return (static function (): Injector {
-//    try {
-		$injector = injector();
+return (static function ( Injector $injector ): Injector {
+	$injector
+		->alias( EventDispatcherInterface::class, EventDispatcher::class )
+		->share( EventDispatcher::class )
+		->alias( SubscriberRegisterInterface::class, SubscriberRegister::class )
+		->share( SubscriberRegister::class );
 
-		$injector
-			->alias( EventDispatcherInterface::class, EventDispatcher::class )
-			->share( EventDispatcher::class )
-			->share( SubscriberRegister::class );
+	$event_dispatcher = $injector->make( EventDispatcher::class );
 
-		$event_dispatcher = $injector->make( EventDispatcher::class );
+	$injector
+		->alias(FinderInterface::class, Finder::class)
+		->delegate(Finder::class, ExperimentalThemeFileFinderFactory::class)
+		->share( FinderInterface::class );
 
-		$injector
-			->alias(FinderInterface::class, Finder::class)
-			->delegate(Finder::class, ExperimentalThemeFileFinderFactory::class)
-			->share( FinderInterface::class );
+	$finder =  $injector->make( FinderInterface::class );
 
-		$finder =  $injector->make( FinderInterface::class );
+	/**
+	 * ========================================================================
+	 *
+	 * Set the default theme constant
+	 *
+	 * @see /config/constants.php
+	 *
+	 * @var array $constants
+	 *
+	 * ========================================================================
+	 */
+	$constants = set_default_constants( get_config_file_content( 'constants' ) );
 
-		/**
-		 * ========================================================================
-		 *
-		 * Set the default theme constant
-		 *
-		 * @see /config/constants.php
-		 *
-		 * @var array $constants
-		 *
-		 * ========================================================================
-		 */
-		$constants = set_default_constants( get_config_file_content( 'constants' ) );
+	/**
+	 * ========================================================================
+	 *
+	 * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
+	 *
+	 * @see \ItalyStrap\Core\set_current_template_constants()
+	 *
+	 * ========================================================================
+	 */
+//		$event_dispatcher->addListener(
+//			'template_include',
+//			'\ItalyStrap\Core\set_current_template_constants',
+//			PHP_INT_MAX - 100
+//		);
 
-		/**
-		 * ========================================================================
-		 *
-		 * Define CURRENT_TEMPLATE and CURRENT_TEMPLATE_SLUG constant.
-		 *
-		 * @see \ItalyStrap\Core\set_current_template_constants()
-		 *
-		 * ========================================================================
-		 */
-		$event_dispatcher->addListener(
-			'template_include',
-			'\ItalyStrap\Core\set_current_template_constants',
-			PHP_INT_MAX - 100
-		);
+	/**
+	 * Constants must be merged before default
+	 * because in default there is a call for get_config
+	 * @TODO Remove get_config() dependency from inside the default array
+	 */
+	get_config()->merge(
+		$constants,
+		get_config_file_content( 'default' ),
+		(array) get_theme_mods()
+	);
 
-		/**
-		 * Constants must be merged before default
-		 * because in default there is a call for get_config
-		 * @TODO Remove get_config() dependency from inside the default array
-		 */
-		//	get_config()->merge($constants);
+	$injector_config = $injector->make( AurynConfig::class, [
+		':dependencies'	=> (require __DIR__ . '/../config/dependencies.config.php')($finder)
+	] );
 
-		get_config()->merge(
-			$constants,
-			get_config_file_content( 'default' ),
-			$theme_mods ?? (array) get_theme_mods()
-		);
+	$injector_config->extend( $injector->make( SubscribersConfigExtension::class ) );
+	$injector_config->extend( $injector->make( ComponentSubscriber::class ) );
 
-		unset( $theme_mods, $constants );
+	/**
+	 * Register the license for this theme
+	 */
+	( $injector->make( License::class ) )->register();
 
-		$injector_config = $injector->make( AurynConfig::class, [
-			':dependencies'	=> (require __DIR__ . '/../config/dependencies.config.php')($finder)
-		] );
+	/**
+	 * ========================================================================
+	 *
+	 * Load the framework
+	 *
+	 * ========================================================================
+	 */
+	$event_dispatcher->addListener( 'italystrap_theme_load', fn() => $injector_config->resolve() );
 
-		$injector_config->extend( $injector->make( SubscribersConfigExtension::class ) );
+	! is_admin() && (require __DIR__ . '/../config/front.php')($event_dispatcher, get_config());
 
-		/**
-		 * Register the license for this theme
-		 */
-		( $injector->make( License::class ) )->register();
+	/**
+	 * ========================================================================
+	 *
+	 * This will load the framework after setup theme
+	 *
+	 * ========================================================================
+	 */
+	(require __DIR__ . '/../config/after.setup.theme.php')($injector, $event_dispatcher);
 
-		/**
-		 * ========================================================================
-		 *
-		 * Load the framework
-		 *
-		 * ========================================================================
-		 */
-		$event_dispatcher->addListener( 'italystrap_theme_load', fn() => $injector_config->resolve() );
-
-		! is_admin() && (require __DIR__ . '/../config/front.php')($event_dispatcher, get_config());
-
-		/**
-		 * ========================================================================
-		 *
-		 * This will load the framework after setup theme
-		 *
-		 * ========================================================================
-		 */
-		(require __DIR__ . '/../config/after.setup.theme.php')($injector, $event_dispatcher);
-
-		/**
-		 * So, now in your child theme you can do something like that:
-		 * $injector = require get_template_directory() . '/src/bootstrap.php';
-		 */
-		return $injector;
-//    } catch ( InjectorException $exception ) {
-//        var_dump($exception);
-//        \_doing_it_wrong( \get_class( injector() ), $exception->getMessage(), \ITALYSTRAP_THEME_VERSION );
-//    } catch ( Throwable $exception ) {
-//        var_dump($exception);
-//        \_doing_it_wrong( 'General error.', $exception->getMessage(), \ITALYSTRAP_THEME_VERSION );
-//    }
-})();
+	/**
+	 * So, now in your child theme you can do something like that:
+	 * $injector = require get_template_directory() . '/src/bootstrap.php';
+	 */
+	return $injector;
+})(injector());

@@ -327,7 +327,7 @@ return \apply_filters(
 		/**
 		 * If the theme support align-wide then activate it
 		 */
-				'align-wide',
+		'align-wide',
 
 		/**
 		 * Support for Gutenberg editor style
@@ -360,6 +360,6 @@ return \apply_filters(
 		 * You can consult Matias Ventura’s tickets to keep you informed about Gutenberg developments:
 		 * https://make.wordpress.org/core/2018/06/05/whats-new-in-gutenberg-5th-june/
 		 */
-		//		'wp-block-styles',
+				'wp-block-styles',
 	 ]
 );

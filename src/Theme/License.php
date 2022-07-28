@@ -11,8 +11,8 @@ final class License implements Registrable, SubscriberInterface {
 
 	public function getSubscribedEvents(): iterable {
 		yield 'after_setup_theme'	=> [
-			static::CALLBACK	=> static::REGISTER_CB,
-			static::PRIORITY	=> 21,
+			SubscriberInterface::CALLBACK	=> Registrable::REGISTER_CB,
+			SubscriberInterface::PRIORITY	=> 21,
 		];
 	}
 
@@ -36,7 +36,7 @@ final class License implements Registrable, SubscriberInterface {
 		);
 	}
 
-	function edd( array $edd_config ): array {
+	public function edd( array $edd_config ): array {
 
 		/**
 		 * EDD configuration for this theme

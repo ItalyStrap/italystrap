@@ -43,7 +43,7 @@ if ( !function_exists( '\ItalyStrap\Factory\injector' ) ) {
 			return $injector;
 		}
 
-		if ( !($injector instanceof Injector) ) {
+		if ( !($injector instanceof AurynInjector) ) {
 			$injector = new DebugInjector( $injector );
 			$injector->alias( AurynInjector::class, DebugInjector::class );
 			$injector->share( $injector );
@@ -81,32 +81,5 @@ if ( !function_exists( '\ItalyStrap\Factory\get_config' ) ) {
 		}
 
 		return $config;
-	}
-}
-
-if ( !function_exists( '\ItalyStrap\Factory\get_view' ) ) {
-
-	/**
-	 * @return View
-	 */
-	function get_view(): View {
-
-		static $view = null;
-
-		if ( !$view ) {
-			try {
-				$view = injector()
-					->share( View::class )
-					->make( View::class );
-			} catch (ConfigException $configException) {
-				echo $configException->getMessage();
-			} catch (InjectionException $injectionException) {
-				echo $injectionException->getMessage();
-			} catch (Exception $exception) {
-				echo $exception->getMessage();
-			}
-		}
-
-		return $view;
 	}
 }

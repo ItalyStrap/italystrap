@@ -149,7 +149,7 @@ class Navbar {
 	/**
 	 * Get secondary wp-nav-menu
 	 *
-	 * @return string      Return the secondary wp_nav_menu HTML
+	 * @return false|null|string Return the secondary wp_nav_menu HTML
 	 */
 	public function get_secondary_wp_nav_menu() {// phpcs:ignore
 

@@ -23,9 +23,10 @@ class WidgetArea {
 
 	/**
 	 * Render the output of the controller.
+	 *
 	 * @param $view
 	 */
-	public function render( $view ) {
+	public function render( $view ): void {
 
 		$this->data['footer_sidebars'] = apply_filters(
 			'footer_sidebars_widgets',

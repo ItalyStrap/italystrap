@@ -47,6 +47,9 @@ class ComponentSubscriber implements Extension {
 		);
 	}
 
+	/**
+	 * @return void
+	 */
 	public function walk( string $class, $index_or_optionName, Injector $injector ) {
 		/** @var SubscriberInterface|ComponentInterface $instance */
 		$instance = $injector
@@ -65,7 +68,10 @@ class ComponentSubscriber implements Extension {
 		return ! $instance->shouldDisplay();
 	}
 
-	private function proxyCallback() {
+	/**
+	 * @psalm-return \Closure(string, callable):\ProxyManager\Proxy\ValueHolderInterface<object>&VirtualProxyInterface
+	 */
+	private function proxyCallback(): \Closure {
 		return static function ( string $className, callable $callback ): VirtualProxyInterface {
 			return (new LazyLoadingValueHolderFactory)->createProxy(
 				$className,

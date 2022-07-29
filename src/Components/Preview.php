@@ -21,6 +21,9 @@ class Preview implements ComponentInterface, \ItalyStrap\Event\SubscriberInterfa
 		echo \do_blocks( $this->output() );
 	}
 
+	/**
+	 * @return false|string
+	 */
 	private function output() {
 		\ob_start();
 		?>

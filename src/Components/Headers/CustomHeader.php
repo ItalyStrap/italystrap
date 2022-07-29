@@ -46,7 +46,7 @@ class CustomHeader {
 	/**
 	 * Init property
 	 */
-	private function initProperty() {
+	private function initProperty(): void {
 
 		/**
 		 * ID of the custom header image for post_type
@@ -93,8 +93,10 @@ class CustomHeader {
 	 * @param \stdClass    $image_obj The custom image object.
 	 *
 	 * @return string      The image HTML.
+	 *
+	 * @psalm-param 'full'|'full-width' $size
 	 */
-	private function getCustomHeaderImage( \stdClass $image_obj, $size ) {
+	private function getCustomHeaderImage( \stdClass $image_obj, string $size ) {
 
 		if ( ! isset( $image_obj->attachment_id ) ) {
 			return sprintf(
@@ -118,7 +120,7 @@ class CustomHeader {
 	/**
 	 * The Custom Header
 	 */
-	private function customHeader() {
+	private function customHeader(): string {
 
 		$this->size = array(
 			'container'			=> 'full-width',

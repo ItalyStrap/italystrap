@@ -71,7 +71,10 @@ class Brand {
 		if ( $attachment_id && 'display_image' === $this->config[ 'display_navbar_brand' ] ) {
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
-				'alt' => esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
+				'alt' =>
+					esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
+					. ' &dash; '
+					. esc_attr( $this->config->get( 'GET_BLOGINFO_DESCRIPTION' ) ),
 				'itemprop' => 'image',
 			);
 
@@ -85,11 +88,14 @@ class Brand {
 				$attr
 			);
 
-			$brand .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
+			$brand .= '<meta  itemprop="name" content="'
+				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) ) . '"/>';
 		} elseif ( $attachment_id && 'display_all' === $this->config[ 'display_navbar_brand' ] ) {
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
-				'alt' => esc_attr( GET_BLOGINFO_NAME ) . ' - ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
+				'alt' => esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
+					. ' - '
+					. esc_attr( $this->config->get( 'GET_BLOGINFO_DESCRIPTION' ) ),
 				'itemprop' => 'image',
 				'style' => 'display:inline;margin-right:15px;',
 			);
@@ -104,10 +110,11 @@ class Brand {
 				$attr
 			);
 
-			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
+			$brand .= '<span class="brand-name" itemprop="name">'
+				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) ) . '</span>';
 		} else {
 			$brand .= '<span class="brand-name" itemprop="name">'
-				. esc_attr( GET_BLOGINFO_NAME )
+				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
 				. '</span>';
 		}
 

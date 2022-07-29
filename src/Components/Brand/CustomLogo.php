@@ -42,7 +42,7 @@ class CustomLogo {
 	/**
 	 * @param array $attr
 	 */
-	public function withImageAttr( array $attr ) {
+	public function withImageAttr( array $attr ): void {
 		$this->image_attributes = \array_merge( $this->default_attributes, $attr );
 	}
 

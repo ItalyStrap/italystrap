@@ -96,9 +96,9 @@ class Navbar {
 	/**
 	 * Get the wp_nav_menu with default parameters for Bootstrap CSS style
 	 *
-	 * @param  array $args The wp_nav_menu arguments.
+	 * @param array $args The wp_nav_menu arguments.
 	 *
-	 * @return string      Return the wp_nav_menu HTML
+	 * @return false|null|string Return the wp_nav_menu HTML
 	 */
 	public function get_wp_nav_menu( array $args = [] ) {// phpcs:ignore
 
@@ -191,7 +191,9 @@ class Navbar {
 		if ( $attachment_id && 'display_image' === $this->config[ 'display_navbar_brand' ] ) {
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
-				'alt' => esc_attr( GET_BLOGINFO_NAME ) . ' &dash; ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
+				'alt' => esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
+					. ' &dash; '
+					. esc_attr( $this->config->get( 'GET_BLOGINFO_DESCRIPTION' ) ),
 				'itemprop' => 'image',
 			);
 
@@ -205,11 +207,14 @@ class Navbar {
 				$attr
 			);
 
-			$brand .= '<meta  itemprop="name" content="' . esc_attr( GET_BLOGINFO_NAME ) . '"/>';
+			$brand .= '<meta  itemprop="name" content="'
+				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) ) . '"/>';
 		} elseif ( $attachment_id && 'display_all' === $this->config[ 'display_navbar_brand' ] ) {
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
-				'alt' => esc_attr( GET_BLOGINFO_NAME ) . ' - ' . esc_attr( GET_BLOGINFO_DESCRIPTION ),
+				'alt' => esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
+					. ' - '
+					. esc_attr( $this->config->get( 'GET_BLOGINFO_DESCRIPTION' ) ),
 				'itemprop' => 'image',
 				'style' => 'display:inline;margin-right:15px;',
 			);
@@ -224,10 +229,11 @@ class Navbar {
 				$attr
 			);
 
-			$brand .= '<span class="brand-name" itemprop="name">' . esc_attr( GET_BLOGINFO_NAME ) . '</span>';
+			$brand .= '<span class="brand-name" itemprop="name">'
+				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) ) . '</span>';
 		} else {
 			$brand .= '<span class="brand-name" itemprop="name">'
-				. esc_attr( GET_BLOGINFO_NAME )
+				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
 				. '</span>';
 		}
 
@@ -506,7 +512,7 @@ class Navbar {
 	/**
 	 * Output the HTML
 	 */
-	public function output() {
+	public function output(): void {
 		echo $this->render();
 	}
 }

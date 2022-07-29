@@ -24,7 +24,8 @@ class ExperimentalCustomizerOptionWithAndPosition implements \ItalyStrap\Event\S
 	/**
 	 * Register theme position
 	 *
-	 * @param  string $new_position The position registered.
+	 * @param array $new_position
+	 *
 	 * @return array                Array with theme position.
 	 */
 	public function register_theme_positions( array $new_position ) {

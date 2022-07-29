@@ -32,6 +32,8 @@ final class NavMenusSubscriber implements Registrable, SubscriberInterface {
 
 	/**
 	 * The class that implements this can be registered
+	 *
+	 * @return void
 	 */
 	public function register() {
 		\register_nav_menus( $this->config->toArray() );

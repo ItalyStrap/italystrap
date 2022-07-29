@@ -8,7 +8,7 @@ namespace ItalyStrap;
  *
  * @param array $args
  */
-function italystrap( ...$args ) {
+function italystrap( ...$args ): void {
 
 	/**
 	 * @TODO Are they good hooks?

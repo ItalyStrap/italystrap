@@ -36,7 +36,7 @@ final class TextDomainSubscriber implements Registrable, SubscriberInterface {
 	}
 
 	/**
-	 *
+	 * @return void
 	 */
 	public function register() {
 

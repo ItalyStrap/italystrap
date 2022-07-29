@@ -95,18 +95,20 @@ final class ThumbnailsSubscriber implements ThumbnailsInterface, Registrable, Su
 	 * large_size_w: The large size width.
 	 *
 	 * @example update_option( 'large_size_h', 700 );
-	 * @link https://developer.wordpress.org/reference/functions/add_image_size/
-	 *
-	 * @example
+	 * @example 
 	 * 	add_image_size(
 	 * 		'medium',
 	 * 		get_option( 'medium_size_w' ),
 	 * 		get_option( 'medium_size_h' ),
 	 * 		true
 	 * ); // For cropping the default image size.
-	 *
+
 	 * Maybe first remove_image_size and then add_image_size it's better
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/add_image_size/
 	 * @link http://wordpress.stackexchange.com/questions/30965/set-default-image-sizes-in-wordpress-to-hard-crop
+	 *
+	 * @return void
 	 */
 	public function register() {
 
@@ -134,7 +136,7 @@ final class ThumbnailsSubscriber implements ThumbnailsInterface, Registrable, Su
 	/**
 	 * Add image sizes
 	 */
-	private function registerImageSize() {
+	private function registerImageSize(): void {
 		array_walk( $this->image_sizes, function ( $params, $name ) {
 			$params = array_merge( $this->getDefaultImageParams(), $params );
 
@@ -174,7 +176,7 @@ final class ThumbnailsSubscriber implements ThumbnailsInterface, Registrable, Su
 	/**
 	 * Generate image size from breakpoint
 	 */
-	private function setImageSizeFromBreakpoint() {
+	private function setImageSizeFromBreakpoint(): void {
 
 		/**
 		 * @todo Da sviluppare meglio

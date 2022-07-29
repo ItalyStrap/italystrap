@@ -10,11 +10,14 @@ class Support {
 		return $_wp_theme_features ?? [];
 	}
 
-	public function add( string  $feature, ...$args ) {
+	/**
+	 * @return false|null
+	 */
+	public function add( string  $feature, ...$args ): ?bool {
 		return \add_theme_support( ...func_get_args() );
 	}
 
-	public function remove( string $feature ) {
+	public function remove( string $feature ): ?bool {
 		return \remove_theme_support( $feature );
 	}
 

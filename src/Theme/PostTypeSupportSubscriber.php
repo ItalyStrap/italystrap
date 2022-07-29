@@ -32,6 +32,7 @@ final class PostTypeSupportSubscriber implements Registrable, SubscriberInterfac
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_post_type_support
 	 *
+	 * @return void
 	 */
 	public function register() {
 		foreach ( $this->config as $post_type => $features ) {

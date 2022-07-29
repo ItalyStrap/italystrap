@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
 <psalm
-    totallyTyped="false"
     errorLevel="7"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-    autoloader="functions/autoload.php"
 >
     <projectFiles>
         <directory name="functions" />
@@ -20,32 +18,17 @@
             <directory name="src/Custom" />
             <directory name="src/Customizer" />
             <directory name="src/Navbar" />
-            <directory name="src/User" />
+            <directory name="src/Debug" />
         </ignoreFiles>
     </projectFiles>
+
+    <stubs>
+        <file name="vendor/php-stubs/wordpress-stubs/wordpress-stubs.php" />
+    </stubs>
+
     <issueHandlers>
         <UndefinedFunction>
             <errorLevel type="suppress">
-                <referencedFunction name="__"/>
-                <referencedFunction name="_e"/>
-                <referencedFunction name="_doing_it_wrong"/>
-                <referencedFunction name="absint"/>
-                <referencedFunction name="add_filter"/>
-                <referencedFunction name="add_action"/>
-                <referencedFunction name="add_post_type_support"/>
-                <referencedFunction name="add_theme_support"/>
-                <referencedFunction name="current_filter"/>
-                <referencedFunction name="add_image_size"/>
-                <referencedFunction name="has_image_size"/>
-                <referencedFunction name="remove_image_size"/>
-                <referencedFunction name="is_admin"/>
-                <referencedFunction name="is_singular"/>
-                <referencedFunction name="get_post_meta"/>
-                <referencedFunction name="get_queried_object_id"/>
-                <referencedFunction name="load_theme_textdomain"/>
-                <referencedFunction name="register_nav_menus"/>
-                <referencedFunction name="register_sidebar"/>
-                <referencedFunction name="set_post_thumbnail_size"/>
             </errorLevel>
         </UndefinedFunction>
     </issueHandlers>

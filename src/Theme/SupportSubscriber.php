@@ -40,6 +40,8 @@ final class SupportSubscriber implements Registrable, SubscriberInterface {
 	 * Add theme supports
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support
+	 *
+	 * @return void
 	 */
 	public function register() {
 		foreach ( $this->config as $feature => $parameters ) {

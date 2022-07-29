@@ -29,6 +29,9 @@ final class License implements Registrable, SubscriberInterface {
 		$this->event = $event;
 	}
 
+	/**
+	 * @return void
+	 */
 	public function register() {
 		$this->event->addListener(
 			'italystrap_theme_updater_config',

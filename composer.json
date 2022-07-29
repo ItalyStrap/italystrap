@@ -133,6 +133,12 @@
 		"cs": [
 			"vendor\\bin\\phpcbf -p --ignore=./tests/_support/* ./config/ ./functions/ ./src/ ./templates/ ./tests/ && vendor\\bin\\phpcs -p --ignore=./tests/_support/* ./config/ ./functions/ ./src/ ./templates/ ./tests/"
 		],
+		"psalm": [
+			"vendor\\bin\\psalm --no-cache"
+		],
+		"phpstan": [
+			"vendor\\bin\\phpstan analyze --level=max"
+		],
 		"analyze": [
 			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"
 		],

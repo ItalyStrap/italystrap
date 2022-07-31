@@ -3,43 +3,26 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-use ItalyStrap\Config\Config;
-use ItalyStrap\Event\EventDispatcher;
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
-final class License implements Registrable, SubscriberInterface {
+final class License implements SubscriberInterface {
+
+	private ConfigInterface $config;
+	private \WP_Theme $theme;
 
 	public function getSubscribedEvents(): iterable {
-		yield 'after_setup_theme'	=> [
-			SubscriberInterface::CALLBACK	=> Registrable::REGISTER_CB,
-			SubscriberInterface::PRIORITY	=> 21,
+		yield 'italystrap_theme_updater_config'	=> [
+			SubscriberInterface::CALLBACK	=> '__invoke',
 		];
 	}
 
-	/**
-	 * @var Config
-	 */
-	private $config;
-
-	/**
-	 * Init sidebars registration
-	 */
-	public function __construct( Config $config, EventDispatcher $event ) {
+	public function __construct( \WP_Theme $theme, ConfigInterface $config ) {
 		$this->config = $config;
-		$this->event = $event;
+		$this->theme = $theme;
 	}
 
-	/**
-	 * @return void
-	 */
-	public function register() {
-		$this->event->addListener(
-			'italystrap_theme_updater_config',
-			[ $this, 'edd' ]
-		);
-	}
-
-	public function edd( array $edd_config ): array {
+	public function __invoke( array $edd_config ): iterable {
 
 		/**
 		 * EDD configuration for this theme
@@ -49,7 +32,6 @@ final class License implements Registrable, SubscriberInterface {
 		 *
 		 * @package ItalyStrap
 		 */
-
 		$item_name = 'ItalyStrap Theme Framework';
 		$theme_slug = 'italystrap';
 
@@ -57,8 +39,8 @@ final class License implements Registrable, SubscriberInterface {
 			'config'	=> [
 				'item_name'      => $item_name, // Name of theme
 				'theme_slug'     => $theme_slug, // Theme slug
-				'version'        => $this->config->get('ITALYSTRAP_THEME_VERSION'), // The current version of this theme
-				'author'         => $this->config->get('ITALYSTRAP_THEME_AUTHOR'), // The author of this theme
+				'version'        => $this->theme->display('Version'), // The current version of this theme
+				'author'         => $this->theme->display('Author'), // The author of this theme
 				'download_id'    => '', // Optional, used for generating a license renewal link
 				'renew_url'      => '', // Optional, allows for a custom license renewal link
 				'beta'           => $this->config->get('beta'), // Optional, set to true to opt into beta versions
@@ -67,7 +49,7 @@ final class License implements Registrable, SubscriberInterface {
 				'theme-license'             => \sprintf(
 					/* translators: %s: Theme name */
 					\__( '%s License', 'italystrap' ),
-					$this->config->get('ITALYSTRAP_THEME_NAME')
+					$this->theme->display('Name')
 				),
 			],
 		];

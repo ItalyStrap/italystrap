@@ -28,7 +28,7 @@ open_tag_e( 'custom-header', 'header', ['class'=> 'header-wrapper'] );
 				open_tag_e( 'custom-header-col', 'div', ['class' => 'col-md-12'] );
 
 					open_tag_e( 'custom-header-anchor', 'a', [
-							'href' => HOME_URL,
+							'href' => \get_home_url( null, '/' ),
 							'rel' => 'home',
 					] );
 

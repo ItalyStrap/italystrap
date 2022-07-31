@@ -71,8 +71,8 @@ class EditorSubscriber implements SubscriberInterface {
 		 * 		http:://italystrap.test\dir/dir\dir
 		 */
 		$style_url = str_replace(
-			strval( realpath( $this->config->get( 'CHILDPATH' ) ) ), // Search
-			$this->config->get( 'STYLESHEETURL' ), // Replace
+			strval( realpath( $this->config->get( \ItalyStrap\Experimental\ConfigThemeProvider::STYLESHEET_DIRECTORY ) ) ), // Search
+			$this->config->get( \ItalyStrap\Experimental\ConfigThemeProvider::STYLESHEET_DIRECTORY_URI ), // Replace
 			$editor_style->getRealPath()
 		);
 

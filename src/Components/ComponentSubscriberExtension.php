@@ -12,7 +12,7 @@ use ItalyStrap\Event\SubscriberRegisterInterface;
 use ProxyManager\Factory\LazyLoadingValueHolderFactory;
 use ProxyManager\Proxy\VirtualProxyInterface;
 
-class ComponentSubscriber implements Extension {
+class ComponentSubscriberExtension implements Extension {
 
 	private EventDispatcherInterface $dispatcher;
 	private SubscriberRegisterInterface $subscriberRegister;

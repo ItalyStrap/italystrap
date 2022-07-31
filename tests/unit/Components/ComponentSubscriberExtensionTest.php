@@ -5,17 +5,17 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\Index;
 use ItalyStrap\Empress\Extension;
-use ItalyStrap\Components\ComponentSubscriber;
+use ItalyStrap\Components\ComponentSubscriberExtension;
 use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use Prophecy\Argument;
 
-class ComponentSubscriberTest extends \Codeception\Test\Unit {
+class ComponentSubscriberExtensionTest extends \Codeception\Test\Unit {
 
 	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
-	protected function getInstance(): ComponentSubscriber {
-		$sut = new ComponentSubscriber($this->getSubscriberRegister(), $this->getDispatcher());
+	protected function getInstance(): ComponentSubscriberExtension {
+		$sut = new ComponentSubscriberExtension($this->getSubscriberRegister(), $this->getDispatcher());
 		$this->assertInstanceOf(Extension::class, $sut, '');
 		return $sut;
 	}
@@ -25,7 +25,7 @@ class ComponentSubscriberTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldHaveName() {
 		$sut = $this->getInstance();
-		$this->assertSame(ComponentSubscriber::class, $sut->name());
+		$this->assertSame(ComponentSubscriberExtension::class, $sut->name());
 	}
 
 	/**

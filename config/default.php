@@ -147,8 +147,7 @@ return apply_filters(
 		// 'body_class'					=> '',
 		// 'post_class'					=> '',
 
-		'beta'	=> false,
-
-		'template_dir'	=> (string) \apply_filters( 'italystrap_template_dir', 'templates' ),
+//		'beta'	=> false,
+//		'template_dir'	=> (string) \apply_filters( 'italystrap_template_dir', 'templates' ),
 	]
 );

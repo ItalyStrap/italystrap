@@ -8,6 +8,13 @@ use function ItalyStrap\HTML\get_attr;
 
 class OembedWrapper implements SubscriberInterface {
 
+	public function getSubscribedEvents(): iterable {
+		yield 'embed_oembed_html' => [
+			SubscriberInterface::CALLBACK	    => 'embedWrap',
+			SubscriberInterface::PRIORITY	    => 10, // 10 default
+			SubscriberInterface::ACCEPTED_ARGS	=> 4 // 3 default
+		];
+	}
 
 	/**
 	 * Wrap embedded media as suggested by Readability
@@ -30,7 +37,7 @@ class OembedWrapper implements SubscriberInterface {
 	 *
 	 * @return string          Return the new HTML.
 	 */
-	function embed_wrap( $cache, $url, $attr, $post_ID ) {
+	public function embedWrap( $cache, string $url, array $attr, int $post_ID ): string {
 
 		if ( \strpos( $cache, 'class="twitter-tweet"' ) ) {
 			return $cache;
@@ -61,15 +68,5 @@ class OembedWrapper implements SubscriberInterface {
 			$container_attr,
 			\implode( ' ', $elements )
 		);
-	}
-
-	public function getSubscribedEvents(): iterable {
-
-//		\add_filter( 'embed_oembed_html', __NAMESPACE__ . '\embed_wrap', 10, 4 );
-		yield 'embed_oembed_html' => [
-			SubscriberInterface::CALLBACK	    => 'embed_wrap',
-			SubscriberInterface::PRIORITY	    => 10, // 10 default
-			SubscriberInterface::ACCEPTED_ARGS	=> 4 // 3 default
-		];
 	}
 }

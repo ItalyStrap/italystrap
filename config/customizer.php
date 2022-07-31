@@ -54,7 +54,7 @@ return [
 
 					'logo' => [
 						'setting'	=> 	[
-							'default' => TEMPLATEURL . '/img/italystrap-logo.jpg',
+							'default' => \get_template_directory_uri() . '/img/italystrap-logo.jpg',
 							// 'type' => 'theme_mod',
 							// 'capability' => $this->capability,
 							// 'transport' => 'postMessage',

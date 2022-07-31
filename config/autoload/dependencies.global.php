@@ -7,7 +7,7 @@ use ItalyStrap\Asset\AssetManager;
 use ItalyStrap\Asset\ExperimentalAssetPreparator;
 use ItalyStrap\Asset\EditorSubscriber;
 use ItalyStrap\Components\Breadcrumbs;
-use ItalyStrap\Components\ComponentSubscriber;
+use ItalyStrap\Components\ComponentSubscriberExtension;
 use ItalyStrap\Components\ArchiveAuthorInfo;
 use ItalyStrap\Components\ArchiveHeadline;
 use ItalyStrap\Components\AuthorInfo;
@@ -61,6 +61,7 @@ use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Asset\AssetsSubscriber;
 use ItalyStrap\Theme\CurrentTemplateConstantSupportSubscriber;
+use ItalyStrap\Theme\License;
 use ItalyStrap\Theme\NavMenusSubscriber;
 use ItalyStrap\Theme\SidebarsSubscriber;
 use ItalyStrap\Theme\SupportSubscriber;
@@ -167,10 +168,13 @@ return [
 			'+finder'	=> static function ( string $named_param, Injector $injector ) {
 				$config = $injector->make( ConfigInterface::class );
 
+				$stylesheet_dir = $config->get( \ItalyStrap\Experimental\ConfigThemeProvider::STYLESHEET_DIRECTORY );
+				$template_dir = $config->get( \ItalyStrap\Experimental\ConfigThemeProvider::TEMPLATE_DIRECTORY );
+
 				$finder = (new FinderFactory())->make()
 					->in( [
-						$config->get('CHILDPATH') . '/assets/',
-						$config->get('PARENTPATH') . '/assets/',
+						$stylesheet_dir . '/assets/',
+						$template_dir . '/assets/',
 					] );
 
 				$finder->names([
@@ -239,7 +243,11 @@ return [
 	 *
 	 * ========================================================================
 	 */
-	AurynConfig::DELEGATIONS			=> [],
+	AurynConfig::DELEGATIONS			=> [
+		\WP_Theme::class => static function (): \WP_Theme {
+			return \wp_get_theme( \get_template() );
+		},
+	],
 
 	/**
 	 * ========================================================================
@@ -288,6 +296,10 @@ return [
 	 */
 	SubscribersConfigExtension::SUBSCRIBERS				=> [
 
+		\ItalyStrap\Theme\AfterSetupThemeEvent::class,
+
+		License::class,
+
 		ExperimentalCustomizerOptionWithAndPosition::class,
 		OembedWrapper::class,
 
@@ -324,7 +336,7 @@ return [
 	 *
 	 * ========================================================================
 	 */
-	ComponentSubscriber::class => [
+	ComponentSubscriberExtension::class => [
 
 		Breadcrumbs::class,
 

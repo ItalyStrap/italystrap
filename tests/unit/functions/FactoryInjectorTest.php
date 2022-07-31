@@ -14,10 +14,12 @@ use function tad\FunctionMocker\setUp;
 use function tad\FunctionMocker\tearDown;
 
 // phpcs:disable
-require_once codecept_root_dir() . '/functions/factory.php';
+//require_once codecept_root_dir() . '/functions/factory.php';
 // phpcs:enable
 
 final class FactoryInjectorTest extends Unit {
+
+	use UndefinedFunctionDefinitionTrait;
 
 	/**
 	 * @var UnitTester
@@ -74,7 +76,7 @@ final class FactoryInjectorTest extends Unit {
 	}
 
 	/**
-	 * @test
+	 *
 	 */
 	public function instanceOkWithFilterFalse() {
 		$this->is_debug = false;
@@ -92,7 +94,7 @@ final class FactoryInjectorTest extends Unit {
 	}
 
 	/**
-	 * @test
+	 *
 	 */
 	public function instanceOkWithFilterReturnPrevInstanceOfAuryn() {
 		$this->is_debug = false;
@@ -110,7 +112,7 @@ final class FactoryInjectorTest extends Unit {
 	}
 
 	/**
-	 * @test
+	 *
 	 */
 	public function instanceOkWithFilterReturnPrevInstanceOfEmpress() {
 		$this->is_debug = false;
@@ -128,7 +130,7 @@ final class FactoryInjectorTest extends Unit {
 	}
 
 	/**
-	 * @test
+	 *
 	 */
 	public function assertReturnSameInstance() {
 		$this->is_debug = false;

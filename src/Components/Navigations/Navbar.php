@@ -191,9 +191,9 @@ class Navbar {
 		if ( $attachment_id && 'display_image' === $this->config[ 'display_navbar_brand' ] ) {
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
-				'alt' => esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
+				'alt' => esc_attr( \get_option( 'blogname' ) )
 					. ' &dash; '
-					. esc_attr( $this->config->get( 'GET_BLOGINFO_DESCRIPTION' ) ),
+					. esc_attr( \get_option( 'blogdescription' ) ),
 				'itemprop' => 'image',
 			);
 
@@ -208,13 +208,13 @@ class Navbar {
 			);
 
 			$brand .= '<meta  itemprop="name" content="'
-				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) ) . '"/>';
+				. esc_attr( \get_option( 'blogname' ) ) . '"/>';
 		} elseif ( $attachment_id && 'display_all' === $this->config[ 'display_navbar_brand' ] ) {
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
-				'alt' => esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
+				'alt' => esc_attr( \get_option( 'blogname' ) )
 					. ' - '
-					. esc_attr( $this->config->get( 'GET_BLOGINFO_DESCRIPTION' ) ),
+					. esc_attr( \get_option( 'blogdescription' ) ),
 				'itemprop' => 'image',
 				'style' => 'display:inline;margin-right:15px;',
 			);
@@ -230,10 +230,10 @@ class Navbar {
 			);
 
 			$brand .= '<span class="brand-name" itemprop="name">'
-				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) ) . '</span>';
+				. esc_attr( \get_option( 'blogname' ) ) . '</span>';
 		} else {
 			$brand .= '<span class="brand-name" itemprop="name">'
-				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
+				. esc_attr( \get_option( 'blogname' ) )
 				. '</span>';
 		}
 
@@ -260,8 +260,8 @@ class Navbar {
 			'href' => esc_url( $this->config->get( 'HOME_URL' ) ),
 			'title' => sprintf(
 				'%s  -  %s',
-				$this->config->get( 'GET_BLOGINFO_NAME' ),
-				$this->config->get( 'GET_BLOGINFO_DESCRIPTION' )
+				\get_option( 'blogname' ),
+				\get_option( 'blogdescription' )
 			),
 			'rel' => 'home',
 			'itemprop' => 'url',

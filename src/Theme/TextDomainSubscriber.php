@@ -43,7 +43,7 @@ final class TextDomainSubscriber implements Registrable, SubscriberInterface {
 		/**
 		 * Make theme available for translation.
 		 */
-		\load_theme_textdomain( 'italystrap', $this->config->get( 'PARENTPATH' ) . '/languages' );
+		\load_theme_textdomain( 'italystrap', $this->config->get( \ItalyStrap\Experimental\ConfigThemeProvider::TEMPLATE_DIRECTORY ) . '/languages' );
 
 //		if ( is_child_theme() ) {
 //			\load_child_theme_textdomain( 'CHILD', $this->config->get( 'CHILDPATH' ) . '/languages' );

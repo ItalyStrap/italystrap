@@ -14,7 +14,7 @@ return function ( EventDispatcher $dispatcher, ConfigInterface $config ): void {
 	 */
 	$dispatcher->addListener(
 		'wp',
-		function () use ( $config ) {
+		static function () use ( $config ) {
 
 			$id = get_queried_object_id();
 

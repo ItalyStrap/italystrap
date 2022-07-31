@@ -72,9 +72,9 @@ class Brand {
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
 				'alt' =>
-					esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
+					esc_attr( \get_option( 'blogname' ) )
 					. ' &dash; '
-					. esc_attr( $this->config->get( 'GET_BLOGINFO_DESCRIPTION' ) ),
+					. esc_attr( \get_option( 'blogdescription' ) ),
 				'itemprop' => 'image',
 			);
 
@@ -89,13 +89,13 @@ class Brand {
 			);
 
 			$brand .= '<meta  itemprop="name" content="'
-				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) ) . '"/>';
+				. esc_attr( \get_option( 'blogname' ) ) . '"/>';
 		} elseif ( $attachment_id && 'display_all' === $this->config[ 'display_navbar_brand' ] ) {
 			$attr = array(
 				'class' => 'img-brand img-responsive center-block',
-				'alt' => esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
+				'alt' => esc_attr( \get_option( 'blogname' ) )
 					. ' - '
-					. esc_attr( $this->config->get( 'GET_BLOGINFO_DESCRIPTION' ) ),
+					. esc_attr( \get_option( 'blogdescription' ) ),
 				'itemprop' => 'image',
 				'style' => 'display:inline;margin-right:15px;',
 			);
@@ -111,10 +111,10 @@ class Brand {
 			);
 
 			$brand .= '<span class="brand-name" itemprop="name">'
-				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) ) . '</span>';
+				. esc_attr( \get_option( 'blogname' ) ) . '</span>';
 		} else {
 			$brand .= '<span class="brand-name" itemprop="name">'
-				. esc_attr( $this->config->get( 'GET_BLOGINFO_NAME' ) )
+				. esc_attr( \get_option( 'blogname' ) )
 				. '</span>';
 		}
 

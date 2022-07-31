@@ -25,7 +25,7 @@ $manager->add_panel(
 	array(
 		'title'			=> sprintf(
 			__( '%s Options', 'italystrap' ),
-			ITALYSTRAP_CURRENT_THEME_NAME
+			\wp_get_theme()->get( 'Name' )
 		),
 		// 'description'	=> 'add_panel', // Include html tags such as <p>.
 		// 'priority'		=> 160, // Mixed with top-level-section hierarchy.

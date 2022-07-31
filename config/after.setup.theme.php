@@ -35,5 +35,5 @@ return static function ( Injector $injector, EventDispatcher $event_dispatcher):
 		 * @since 4.0.0
 		 */
 		$event_dispatcher->dispatch( 'italystrap_theme_loaded', $injector );
-	}, 20 );
+	}, 1 );
 };

@@ -179,7 +179,7 @@ class ThemeCustomizer implements SubscriberInterface {
 
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
-			TEMPLATEURL . '/src/Customizer/js/src/theme-customizer.js',
+			\get_template_directory_uri() . '/src/Customizer/js/src/theme-customizer.js',
 			array( 'jquery', 'customize-preview' ),
 			null,
 			true
@@ -208,7 +208,7 @@ class ThemeCustomizer implements SubscriberInterface {
 
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
-			TEMPLATEURL . '/src/Customizer/js/src/customize-controls.js',
+			\get_template_directory_uri() . '/src/Customizer/js/src/customize-controls.js',
 			[
 				'jquery',
 			//				'customize-preview',

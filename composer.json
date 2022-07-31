@@ -90,7 +90,6 @@
 		"files": [
 			"functions/core-booleans.php",
 			"functions/booleans.php",
-			"functions/constants-generator.php",
 			"functions/asset-helpers.php",
 			"functions/config-helpers.php",
 			"functions/general-functions.php",

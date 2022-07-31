@@ -31,6 +31,9 @@ final class AfterSetupThemeEvent implements Registrable, SubscriberInterface {
 		$this->injector = $injector;
 	}
 
+	/**
+	 * @return void
+	 */
 	public function register() {
 
 		/**

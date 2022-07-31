@@ -8,3 +8,12 @@ FunctionMocker::init([
 	'blacklist' => dirname(__DIR__),
 //	'cache-path' => dirname(__DIR__) . '/_output/patchwork-cache',
 ]);
+
+/** Stubs */
+class WP_Theme {
+	public function display(string $header) {
+		return $header;
+	}
+}
+
+

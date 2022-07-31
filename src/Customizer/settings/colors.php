@@ -3,11 +3,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
+use ItalyStrap\Config\ConfigColorSectionProvider;
 use WP_Customize_Color_Control;
 
 /** @var \WP_Customize_Manager $manager */
-$manager->get_setting( 'header_textcolor' )->transport = 'postMessage';
-$manager->get_setting( 'background_color' )->transport = 'postMessage';
+$manager->get_setting(  ConfigColorSectionProvider::HEADER_COLOR )->transport = 'postMessage';
+$manager->get_setting(  ConfigColorSectionProvider::BG_COLOR )->transport = 'postMessage';
 
 /**
  * Changing Customizer Color Sections Titles
@@ -17,10 +18,11 @@ $manager->get_setting( 'background_color' )->transport = 'postMessage';
 /**
  * 2. Register new settings to the WP database...
  */
+$id_link_color = ConfigColorSectionProvider::LINK_COLOR;
 $manager->add_setting(
-	'link_textcolor', // No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record.
+	$id_link_color, // No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record.
 	array(
-		'default'			=> $this->theme_mods['link_textcolor'], // Default setting/value to save.
+		'default'			=> $this->theme_mods[$id_link_color], // Default setting/value to save.
 		'type'				=> 'theme_mod', // Is this an 'option' or a 'theme_mod'?
 		'capability'		=> $this->capability, // Optional. Special permissions for accessing this setting.
 		// What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
@@ -35,24 +37,22 @@ $manager->add_setting(
 $manager->add_control(
 	new WP_Customize_Color_Control( // Instantiate the color control class
 		$manager, // Pass the $manager object (required).
-		'italystrap_link_textcolor', // Set a unique ID for the control.
+		"italystrap_{$id_link_color}", // Set a unique ID for the control.
 		array(
 			'label'		=> __( 'Link Color', 'italystrap' ), // Admin-visible name of the control.
 			// ID of the section this control should render in (can be one of yours, or a WordPress default section).
 			'section'	=> 'colors',
-			'settings'	=> 'link_textcolor', // Which setting to load and manipulate (serialized is okay).
+			'settings'	=> $id_link_color, // Which setting to load and manipulate (serialized is okay).
 			'priority'	=> 10, // Determines the order this control appears in for the specified section.
 		)
 	)
 );
 
-/**
- * Hx font color
- */
+$id_hx_color = ConfigColorSectionProvider::LINK_COLOR;
 $manager->add_setting(
-	'hx_textcolor',
+	$id_hx_color,
 	array(
-		'default'			=> $this->theme_mods['hx_textcolor'],
+		'default'			=> $this->theme_mods[$id_hx_color],
 		'type'				=> 'theme_mod',
 		'capability'		=> $this->capability,
 		'transport'			=> 'postMessage',
@@ -63,11 +63,11 @@ $manager->add_setting(
 $manager->add_control(
 	new WP_Customize_Color_Control(
 		$manager,
-		'italystrap_hx_textcolor',
+		'italystrap_' . $id_hx_color,
 		array(
 			'label'		=> __( 'Heading Color', 'italystrap' ),
 			'section'	=> 'colors',
-			'settings'	=> 'hx_textcolor',
+			'settings'	=> $id_hx_color,
 			'priority'	=> 10,
 		)
 	)

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Asset;
 
+use ItalyStrap\Config\ConfigThemeProvider;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Config\Config;
@@ -11,7 +12,6 @@ use SplFileInfo;
 use function add_editor_style;
 use function realpath;
 use function str_replace;
-use function strval;
 
 class EditorSubscriber implements SubscriberInterface {
 
@@ -71,8 +71,8 @@ class EditorSubscriber implements SubscriberInterface {
 		 * 		http:://italystrap.test\dir/dir\dir
 		 */
 		$style_url = str_replace(
-			strval( realpath( $this->config->get( \ItalyStrap\Experimental\ConfigThemeProvider::STYLESHEET_DIRECTORY ) ) ), // Search
-			$this->config->get( \ItalyStrap\Experimental\ConfigThemeProvider::STYLESHEET_DIRECTORY_URI ), // Replace
+			(string) realpath( $this->config->get( ConfigThemeProvider::STYLESHEET_DIR ) ),
+			$this->config->get( ConfigThemeProvider::STYLESHEET_DIR_URI ), // Replace
 			$editor_style->getRealPath()
 		);
 

@@ -1,12 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Config;
 
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Empress\Extension;
 use ItalyStrap\Tests\BaseUnitTrait;
-use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class ConfigProviderExtensionTest extends \Codeception\Test\Unit {

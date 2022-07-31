@@ -168,8 +168,8 @@ return [
 			'+finder'	=> static function ( string $named_param, Injector $injector ) {
 				$config = $injector->make( ConfigInterface::class );
 
-				$stylesheet_dir = $config->get( \ItalyStrap\Experimental\ConfigThemeProvider::STYLESHEET_DIRECTORY );
-				$template_dir = $config->get( \ItalyStrap\Experimental\ConfigThemeProvider::TEMPLATE_DIRECTORY );
+				$stylesheet_dir = $config->get( \ItalyStrap\Config\ConfigThemeProvider::STYLESHEET_DIR );
+				$template_dir = $config->get( \ItalyStrap\Config\ConfigThemeProvider::TEMPLATE_DIR );
 
 				$finder = (new FinderFactory())->make()
 					->in( [

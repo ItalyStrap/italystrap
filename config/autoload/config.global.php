@@ -1,10 +1,27 @@
 <?php
 declare(strict_types=1);
 
+use ItalyStrap\Config\ConfigColorSectionProvider;
+use ItalyStrap\Config\ConfigMiscProvider;
+use ItalyStrap\Config\ConfigProviderExtension;
+use ItalyStrap\Config\ConfigThemeModsProvider;
+use ItalyStrap\Config\ConfigThemeProvider;
+use ItalyStrap\Empress\AurynConfig;
+
 return [
 
-	\ItalyStrap\Config\ConfigProviderExtension::class => [
-		\ItalyStrap\Experimental\ConfigThemeProvider::class,
-		\ItalyStrap\Experimental\ConfigColorSection::class,
+	AurynConfig::DEFINITIONS => [
+		ConfigThemeModsProvider::class => [
+			'+theme_mods' => static function () {
+				return (array) \get_theme_mods();
+			},
+		],
+	],
+
+	ConfigProviderExtension::class => [
+		ConfigThemeProvider::class,
+		ConfigColorSectionProvider::class,
+		ConfigMiscProvider::class,
+		ConfigThemeModsProvider::class,
 	],
 ];

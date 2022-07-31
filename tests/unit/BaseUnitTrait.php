@@ -103,6 +103,12 @@ trait BaseUnitTrait {
 		return $this->fileInfoFactory->reveal();
 	}
 
+	private \Prophecy\Prophecy\ObjectProphecy $theme;
+
+	public function getTheme(): \WP_Theme {
+		return $this->theme->reveal();
+	}
+
 	// phpcs:ignore
 	protected function _before() {
 		$this->setUpProphet();
@@ -128,6 +134,7 @@ trait BaseUnitTrait {
 		$this->custom_header = $this->prophet->prophesize(CustomHeader::class);
 		$this->tag = $this->prophet->prophesize(Tag::class);
 		$this->fileInfoFactory = $this->prophet->prophesize(FileInfoFactoryInterface::class);
+		$this->theme = $this->prophet->prophesize(\WP_Theme::class);
 	}
 
 	private function tearDownProphet() {

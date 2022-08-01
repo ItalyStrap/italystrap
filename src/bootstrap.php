@@ -83,18 +83,6 @@ return (static function ( Injector $injector ): Injector {
 //	);
 
 	/**
-	 * ========================================================================
-	 *
-	 * Load on "wp" event
-	 *
-	 * ========================================================================
-	 */
-	! is_admin() && (require __DIR__ . '/../config/front.php')(
-		$event_dispatcher,
-		$injector->make( ConfigInterface::class )
-	);
-
-	/**
 	 * So, now in your child theme you can do something like that:
 	 * $injector = require \get_template_directory() . '/src/bootstrap.php';
 	 *

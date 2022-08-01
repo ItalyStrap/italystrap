@@ -3,21 +3,22 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Experimental;
 
-class ExperimentalCustomizerOptionWithAndPosition implements \ItalyStrap\Event\SubscriberInterface {
+use ItalyStrap\Event\SubscriberInterface;
 
+class ExperimentalCustomizerOptionWithAndPosition implements SubscriberInterface {
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getSubscribedEvents(): iterable {
-		yield 'italystrap_theme_positions' => 'register_theme_positions';
+		yield 'italystrap_theme_positions' => 'registerThemePositions';
 
 		/**
 		 * This filter is deprecated. Use 'italystrap_theme_positions' instead.
 		 */
-		yield 'italystrap_widget_area_position' => 'register_theme_positions';
+		yield 'italystrap_widget_area_position' => 'registerThemePositions';
 
-		yield 'italystrap_theme_width' => 'register_theme_width';
+		yield 'italystrap_theme_width' => 'registerThemeWidth';
 	}
 
 
@@ -28,10 +29,31 @@ class ExperimentalCustomizerOptionWithAndPosition implements \ItalyStrap\Event\S
 	 *
 	 * @return array                Array with theme position.
 	 */
-	public function register_theme_positions( array $new_position ) {
-
+	public function registerThemePositions( array $new_position ): array {
 		return array_merge(
-			\ItalyStrap\Config\get_config_file_content( 'theme-positions' ),
+			[
+				'italystrap_before'			=> \__( 'After the <code>&lt;/body&gt;</code>', 'italystrap' ),
+
+				'italystrap_before_header'	=> \__( 'Before the header', 'italystrap' ),
+				'italystrap_content_header'	=> \__( 'The content header', 'italystrap' ),
+				'italystrap_after_header'	=> \__( 'After the header', 'italystrap' ),
+
+				'italystrap_before_main'	=> \__( 'Before the Main Content', 'italystrap' ),
+				'italystrap_before_content'	=> \__( 'Before the Content', 'italystrap' ),
+
+				'italystrap_before_loop'	=> \__( 'Before the Loop', 'italystrap' ),
+				'italystrap_loop'			=> \__( 'The Loop', 'italystrap' ),
+				'italystrap_after_loop'		=> \__( 'After the Loop', 'italystrap' ),
+
+				'italystrap_after_content'	=> \__( 'After the Content', 'italystrap' ),
+
+				'italystrap_after_main'		=> \__( 'After the Main Content', 'italystrap' ),
+				'italystrap_before_footer'	=> \__( 'In the footer open', 'italystrap' ),
+				'italystrap_footer'			=> \__( 'In the footer', 'italystrap' ),
+				'italystrap_after_footer'	=> \__( 'In the footer closed', 'italystrap' ),
+
+				'italystrap_after'			=> \__( 'At the end of the page before the <code>&lt;/body&gt;</code>', 'italystrap' ),
+			],
 			$new_position
 		);
 	}
@@ -42,11 +64,17 @@ class ExperimentalCustomizerOptionWithAndPosition implements \ItalyStrap\Event\S
 	 * @param  string $position The position registered.
 	 * @return array            Array with theme position.
 	 */
-	public function register_theme_width( array $new_width ) {
+	public function registerThemeWidth( array $new_width ): array {
 
-		$with = \ItalyStrap\Config\get_config_file_content( 'theme-width' );
+		$site_width = \apply_filters(
+			'italystrap_theme_width_settings',
+			[
+				//		'none'				=> \__( 'None', 'italystrap' ),
+				'container'			=> \__( 'Standard container', 'italystrap' ),
+				'container-fluid'	=> \__( 'Fluid container', 'italystrap' ),
+			]
+		);
 
-		return array_merge( $with, $new_width );
+		return array_merge( $site_width, $new_width );
 	}
-//\add_filter( 'italystrap_theme_width', __NAMESPACE__ . '\register_theme_width' );
 }

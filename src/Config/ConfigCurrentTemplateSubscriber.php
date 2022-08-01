@@ -1,13 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace ItalyStrap\Theme;
+namespace ItalyStrap\Config;
 
-use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
+use ItalyStrap\Theme\Registrable;
 
-final class CurrentTemplateConstantSupportSubscriber implements Registrable, SubscriberInterface {
+final class ConfigCurrentTemplateSubscriber implements Registrable, SubscriberInterface {
+
+	const TEMPLATE_FILE_NAME = 'current_template_file';
+	const TEMPLATE_FILE_SLUG = 'current_template_slug';
 
 	/**
 	 * @inheritDoc
@@ -41,15 +44,8 @@ final class CurrentTemplateConstantSupportSubscriber implements Registrable, Sub
 		define( 'CURRENT_TEMPLATE', $base_name );
 		define( 'CURRENT_TEMPLATE_SLUG', $slug );
 
-		$this->config->add(
-			'current_template_file',
-			$base_name
-		);
-
-		$this->config->add(
-			'current_template_slug',
-			$slug
-		);
+		$this->config->add( self::TEMPLATE_FILE_NAME, $base_name );
+		$this->config->add( self::TEMPLATE_FILE_SLUG, $slug );
 
 		return $current_template->__toString();
 	}

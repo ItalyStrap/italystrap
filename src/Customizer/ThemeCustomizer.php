@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
 use ItalyStrap\Config\Config;
@@ -92,7 +93,7 @@ class ThemeCustomizer implements SubscriberInterface {
 	/**
 	 * Init the class
 	 */
-	public function __construct( Config $config ) {
+	public function __construct( ConfigInterface $config ) {
 		 $this->theme_mods = $config;
 	}
 

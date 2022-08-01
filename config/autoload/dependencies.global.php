@@ -41,6 +41,7 @@ use ItalyStrap\Components\Title;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Config\ConfigWpSubscriber;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
@@ -60,7 +61,8 @@ use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Asset\AssetsSubscriber;
-use ItalyStrap\Theme\CurrentTemplateConstantSupportSubscriber;
+use ItalyStrap\Theme\AfterSetupThemeEvent;
+use ItalyStrap\Config\ConfigCurrentTemplateSubscriber;
 use ItalyStrap\Theme\License;
 use ItalyStrap\Theme\NavMenusSubscriber;
 use ItalyStrap\Theme\SidebarsSubscriber;
@@ -219,15 +221,15 @@ return [
 	 * ==========================================================
 	 */
 	AurynConfig::DEFINE_PARAM			=> [
-		'theme_mods'	=> get_config()->all(),
-		':wp_query'		=> static function (): WP_Query {
-			global $wp_query;
-			return $wp_query;
-		},
-		':query'			=> static function (): WP_Query {
-			global $wp_query;
-			return $wp_query;
-		},
+//		'theme_mods'	=> get_config()->all(),
+//		':wp_query'		=> static function (): WP_Query {
+//			global $wp_query;
+//			return $wp_query;
+//		},
+//		':query'			=> static function (): WP_Query {
+//			global $wp_query;
+//			return $wp_query;
+//		},
 	],
 
 	/**
@@ -246,6 +248,10 @@ return [
 	AurynConfig::DELEGATIONS			=> [
 		\WP_Theme::class => static function (): \WP_Theme {
 			return \wp_get_theme( \get_template() );
+		},
+		\WP_Query::class => static function (): \WP_Query {
+			global $wp_query;
+			return $wp_query;
 		},
 	],
 
@@ -296,9 +302,10 @@ return [
 	 */
 	SubscribersConfigExtension::SUBSCRIBERS				=> [
 
-		\ItalyStrap\Theme\AfterSetupThemeEvent::class,
-
+		AfterSetupThemeEvent::class,
 		License::class,
+		ConfigCurrentTemplateSubscriber::class,
+		ConfigWpSubscriber::class,
 
 		ExperimentalCustomizerOptionWithAndPosition::class,
 		OembedWrapper::class,
@@ -306,7 +313,6 @@ return [
 		/**
 		 * Register Theme stuff
 		 */
-		CurrentTemplateConstantSupportSubscriber::class,
 		NavMenusSubscriber::class,
 		SidebarsSubscriber::class,
 //		SupportSubscriber::class,

@@ -11,7 +11,6 @@ namespace ItalyStrap;
 
 use Auryn\Injector;
 use ItalyStrap\Components\ComponentSubscriberExtension;
-use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscriberRegisterInterface;
@@ -22,7 +21,6 @@ use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Finder\Finder;
 use ItalyStrap\Finder\FinderInterface;
 use ItalyStrap\Theme\ExperimentalThemeFileFinderFactory;
-use function is_admin;
 use function ItalyStrap\Factory\injector;
 
 /**
@@ -74,13 +72,6 @@ return (static function ( Injector $injector ): Injector {
 	 * ========================================================================
 	 */
 	$event_dispatcher->addListener( 'after_setup_theme', fn() => $injector_config->resolve(), -1 );
-//	$event_dispatcher->addListener(
-//		'italystrap_theme_loaded',
-//		fn() => \d(
-//			$injector->make(ConfigInterface::class)
-//		),
-//		11
-//	);
 
 	/**
 	 * So, now in your child theme you can do something like that:

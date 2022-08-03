@@ -3,22 +3,14 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Css;
 
+use ItalyStrap\Config\ConfigColorSectionProvider;
 use \ItalyStrap\Event\SubscriberInterface;
-use \ItalyStrap\Config\ConfigInterface;
 
 /**
  * @deprecated
  */
 class CssSubscriber implements SubscriberInterface {
 
-	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
-	 * @hooked wp_head - 11
-	 *
-	 * @return array
-	 */
 	public function getSubscribedEvents(): array {
 
 		return array(
@@ -34,48 +26,14 @@ class CssSubscriber implements SubscriberInterface {
 		);
 	}
 
-	/**
-	 * The style output.
-	 *
-	 * @var string
-	 */
-	private $style = '';
+	private string $style = '';
+	private InlineGenerator $css;
 
-	/**
-	 * Theme theme mods.
-	 *
-	 * @var array
-	 */
-//	private $theme_mods = array();
-
-	/**
-	 * Theme config.
-	 *
-	 * @var ConfigInterface
-	 */
-	private $config = array();
-
-	private $css;
-
-	/**
-	 * [__construct description]
-	 *
-	 * @param ConfigInterface $config
-	 * @param InlineGenerator $css
-	 */
-	public function __construct( ConfigInterface $config, InlineGenerator $css ) {
-		$this->config = $config;
+	public function __construct( InlineGenerator $css ) {
 		$this->css = $css;
 	}
 
 	/**
-	 * This will output the custom WordPress settings to the live theme's WP head.
-	 *
-	 * Used by hook: 'wp_head'
-	 *
-	 * @see add_action( 'wp_head', $func )
-	 * @see add_action( 'wp_footer', $func )
-	 *
 	 * @since ItalyStrap 1.0
 	 */
 	public function render() {
@@ -86,10 +44,6 @@ class CssSubscriber implements SubscriberInterface {
 			'value'		=> '',
 		);
 
-		// echo "<pre>";
-		// print_r('navbar-fixed-top' === $this->theme_mods['navbar']['position'] );
-		// echo "</pre>";
-
 		/**
 		 * Custom CSS section on customizer page
 		 *
@@ -97,7 +51,6 @@ class CssSubscriber implements SubscriberInterface {
 		 *
 		 * @var string
 		 */
-		// $custom_css = isset( $this->theme_mods['custom_css'] ) ? $this->theme_mods['custom_css'] : '' ;
 		$custom_css = '';
 
 		$this->style .= $this->css->generateCss(
@@ -110,12 +63,16 @@ class CssSubscriber implements SubscriberInterface {
 		$this->style .= $this->css->generateCss(
 			'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading',
 			'color',
-			'hx_textcolor'
+			ConfigColorSectionProvider::HX_COLOR
 		);
 		/**
 		 * $css .= $this->css->generate_css('body.custom-background', 'background-color', 'background_color', '#');
 		 */
-		$this->style .= $this->css->generateCss( 'a', 'color', 'link_textcolor' );
+		$this->style .= $this->css->generateCss(
+			'a',
+			'color',
+			ConfigColorSectionProvider::LINK_COLOR
+		);
 		/**
 		 * $css .= $this->css->generate_css(
 		 * '.widget-title,.footer-widget-title', 'border-bottom-color', 'link_textcolor');
@@ -126,15 +83,15 @@ class CssSubscriber implements SubscriberInterface {
 		$this->style .= apply_filters( 'italystrap_css_output', $this->style );
 
 		if ( ! $this->style ) {
-			return '';
+			return;
 		}
 
 		if ( defined( 'ITALYSTRAP_PLUGIN' ) ) {
-			return '';
+			return;
 		}
 
 		 printf(
-			 '<style type="text/css">%s</style>',
+			 '<style>%s</style>',
 			 wp_strip_all_tags( $this->minifyOutput( $this->style ) )
 		 );
 	}

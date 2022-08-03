@@ -11,6 +11,7 @@ namespace ItalyStrap;
 
 use Auryn\Injector;
 use ItalyStrap\Components\ComponentSubscriberExtension;
+use ItalyStrap\Customizer\CustomizerProviderExtension;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscriberRegister;
 use ItalyStrap\Event\SubscriberRegisterInterface;
@@ -61,6 +62,7 @@ return (static function ( Injector $injector ): Injector {
 	$injector_config->extend( $injector->make( ConfigProviderExtension::class ) );
 	$injector_config->extend( $injector->make( SubscribersConfigExtension::class ) );
 	$injector_config->extend( $injector->make( ComponentSubscriberExtension::class ) );
+	$injector_config->extend( $injector->make( CustomizerProviderExtension::class ) );
 
 	/**
 	 * ========================================================================

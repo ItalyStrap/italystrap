@@ -16,6 +16,7 @@ class ConfigThemeProvider {
 	const STYLESHEET_DIR = 'stylesheet_directory';
 	const THEME_BETA = 'theme_beta';
 	const VIEW_DIR = 'templates';
+	const PREFIX = 'prefix';
 
 	private \WP_Theme $theme;
 	private EventDispatcherInterface $dispatcher;
@@ -52,5 +53,6 @@ class ConfigThemeProvider {
 		yield self::STYLESHEET_DIR => $this->theme->get_stylesheet_directory();
 		yield self::THEME_BETA => false;
 		yield self::VIEW_DIR => (string) $this->dispatcher->filter( 'italystrap_template_dir', 'templates' );
+		yield self::PREFIX => \strtolower( (string)$this->theme->display( 'Name' ) );
 	}
 }

@@ -1,22 +1,10 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Customizer API for ItalyStrap Theme Framework
- *
- * @link https://italystrap.com
- * @since 3.0.0
- *
- * @package ItalyStrap\Customizer
- */
-
 namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
-
-use ItalyStrap\Config\Config;
-
 use WP_Customize_Manager;
 use function ItalyStrap\Bools\experimental_is_block_theme;
 
@@ -31,9 +19,6 @@ use function ItalyStrap\Bools\experimental_is_block_theme;
 class ThemeCustomizer implements SubscriberInterface {
 
 	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
 	 * @hooked customize_register - 99
 	 * @hooked customize_preview_init - 10
 	 *
@@ -42,16 +27,15 @@ class ThemeCustomizer implements SubscriberInterface {
 	public function getSubscribedEvents(): iterable {
 
 		return [
-			// 'hook_name'							=> 'method_name',
-			'customize_register'					=> [
-				'function_to_add'	=> 'customizeRegister',
-				'priority'			=> 99,
+			'customize_register' => [
+				'function_to_add' => 'customizeRegister',
+				'priority' => 99,
 			],
-			'customize_preview_init'				=> 'enqueueScriptOnLivePreview',
-			'customize_controls_enqueue_scripts'	=> 'enqueueScriptOnCustomizeControlsEnqueueScripts',
-			'admin_menu'							=> 'addLinkToThemeOptionPage',
+			'customize_preview_init' => 'enqueueScriptOnLivePreview',
+			'customize_controls_enqueue_scripts' => 'enqueueScriptOnCustomizeControlsEnqueueScripts',
+			'admin_menu' => 'addLinkToThemeOptionPage',
 			// 'body_class'							=> 'body_class',
-			'italystrap_body_attr'					=> 'bodyAttr',
+			'italystrap_body_attr' => 'bodyAttr',
 		];
 	}
 
@@ -93,8 +77,8 @@ class ThemeCustomizer implements SubscriberInterface {
 	/**
 	 * Init the class
 	 */
-	public function __construct( ConfigInterface $config ) {
-		 $this->theme_mods = $config;
+	public function __construct(ConfigInterface $config) {
+		$this->theme_mods = $config;
 	}
 
 	/**
@@ -103,6 +87,7 @@ class ThemeCustomizer implements SubscriberInterface {
 	 * This hooks into 'customize_register' (available as of WP 3.4) and allows
 	 * you to add new sections and controls to the Theme Customize screen.
 	 *
+	 * @param WP_Customize_Manager $manager WP_Customize_Manager object.
 	 * @see add_action( 'customize_register', $func )
 	 * @see https://developer.wordpress.org/reference/hooks/customize_register
 	 * @see https://developer.wordpress.org/themes/customize-api/tools-for-improved-user-experience/
@@ -118,14 +103,13 @@ class ThemeCustomizer implements SubscriberInterface {
 	 * @link http://codex.wordpress.org/Theme_Customization_API
 	 * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/
 	 *
-	 * @param  WP_Customize_Manager $manager WP_Customize_Manager object.
 	 */
-	public function customizeRegister( WP_Customize_Manager $manager ) {
+	public function customizeRegister(\WP_Customize_Manager $manager) {
 
 		/**
 		 * Do not load for new Editor
 		 */
-		if ( experimental_is_block_theme() ) {
+		if (experimental_is_block_theme()) {
 			return;
 		}
 
@@ -137,7 +121,7 @@ class ThemeCustomizer implements SubscriberInterface {
 			'/settings/layout.php',
 			'/settings/header.php',
 			'/settings/brand.php',
-			'/settings/colors.php',
+//			'/settings/colors.php',
 			'/settings/navbar.php',
 			'/settings/breadcrumbs.php',
 			'/settings/images.php',
@@ -147,7 +131,7 @@ class ThemeCustomizer implements SubscriberInterface {
 			'/settings/beta.php',
 		);
 
-		foreach ( $files as $file ) {
+		foreach ($files as $file) {
 			require __DIR__ . $file;
 		}
 
@@ -155,7 +139,7 @@ class ThemeCustomizer implements SubscriberInterface {
 		// $manager->get_section( 'header_image' )->active_callback = 'is_front_page';
 		// $manager->get_control( 'blogdescription' )->active_callback = 'is_front_page';
 
-		do_action( 'italystrap_after_customize_register', $manager, $this );
+		do_action('italystrap_after_customize_register', $manager, $this);
 	}
 
 	/**
@@ -174,14 +158,14 @@ class ThemeCustomizer implements SubscriberInterface {
 		/**
 		 * Do not load for new Editor
 		 */
-		if ( experimental_is_block_theme() ) {
+		if (experimental_is_block_theme()) {
 			return;
 		}
 
 		wp_enqueue_script(
 			'italystrap-theme-customizer',
 			\get_template_directory_uri() . '/src/Customizer/js/src/theme-customizer.js',
-			array( 'jquery', 'customize-preview' ),
+			array('jquery', 'customize-preview'),
 			null,
 			true
 		);
@@ -203,7 +187,7 @@ class ThemeCustomizer implements SubscriberInterface {
 		/**
 		 * Do not load for new Editor
 		 */
-		if ( experimental_is_block_theme() ) {
+		if (experimental_is_block_theme()) {
 			return;
 		}
 
@@ -212,7 +196,7 @@ class ThemeCustomizer implements SubscriberInterface {
 			\get_template_directory_uri() . '/src/Customizer/js/src/customize-controls.js',
 			[
 				'jquery',
-			//				'customize-preview',
+				//				'customize-preview',
 			],
 			null,
 			true
@@ -222,20 +206,20 @@ class ThemeCustomizer implements SubscriberInterface {
 	/**
 	 * Used for the breadcrumbs display on customizer with javascript
 	 *
-	 * @param  array $classes body_class
+	 * @param array $classes body_class
 	 *
 	 * @return array          body_class
 	 */
-	public function bodyAttr( array $attr ) {
+	public function bodyAttr(array $attr) {
 
 		/**
 		 * Do not load for new Editor
 		 */
-		if ( experimental_is_block_theme() ) {
+		if (experimental_is_block_theme()) {
 			return $attr;
 		}
 
-		if ( ! is_customize_preview() ) {
+		if (!is_customize_preview()) {
 			return $attr;
 		}
 
@@ -255,16 +239,16 @@ class ThemeCustomizer implements SubscriberInterface {
 		/**
 		 * Do not load for new Editor
 		 */
-		if ( experimental_is_block_theme() ) {
+		if (experimental_is_block_theme()) {
 			return;
 		}
 
 		add_submenu_page(
 			'italystrap-dashboard',
-			__( 'Theme Options', 'italystrap' ),
-			__( 'Theme Options', 'italystrap' ),
+			__('Theme Options', 'italystrap'),
+			__('Theme Options', 'italystrap'),
 			$this->capability,
-			admin_url( 'customize.php?autofocus[panel]=' . $this->panel )
+			admin_url('customize.php?autofocus[panel]=' . $this->panel)
 		);
 	}
 }

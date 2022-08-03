@@ -48,7 +48,7 @@ $manager->add_control(
 	)
 );
 
-$id_hx_color = ConfigColorSectionProvider::LINK_COLOR;
+$id_hx_color = ConfigColorSectionProvider::HX_COLOR;
 $manager->add_setting(
 	$id_hx_color,
 	array(

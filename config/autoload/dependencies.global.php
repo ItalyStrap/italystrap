@@ -221,15 +221,6 @@ return [
 	 * ==========================================================
 	 */
 	AurynConfig::DEFINE_PARAM			=> [
-//		'theme_mods'	=> get_config()->all(),
-//		':wp_query'		=> static function (): WP_Query {
-//			global $wp_query;
-//			return $wp_query;
-//		},
-//		':query'			=> static function (): WP_Query {
-//			global $wp_query;
-//			return $wp_query;
-//		},
 	],
 
 	/**

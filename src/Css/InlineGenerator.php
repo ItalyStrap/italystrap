@@ -25,31 +25,37 @@ class InlineGenerator {
 	 * This will generate a line of CSS for use in header or footer output.
 	 * If the setting ($mod_name) has no defined value, the CSS will not be output.
 	 *
-	 * @since ItalyStrap 1.0
-	 *
-	 * @param  string $selector CSS selector.
-	 * @param  string $property The name of the CSS *property* to modify.
-	 * @param  string $mod_name The name of the 'theme_mod' option to fetch.
-	 * @param  string $prefix Optional. Anything that needs to be output
+	 * @param string $selector CSS selector.
+	 * @param string $property The name of the CSS *property* to modify.
+	 * @param string $mod_name The name of the 'theme_mod' option to fetch.
+	 * @param string $prefix Optional. Anything that needs to be output
 	 *                          before the CSS property. Example '#'.
-	 * @param  string $postfix Optional. Anything that needs to be output
+	 * @param string $postfix Optional. Anything that needs to be output
 	 *                          after the CSS property. Example 'px'.
 	 * @return string           Returns a single line of CSS with selectors,
 	 *                          property and value.
+	 *@since ItalyStrap 1.0
+	 *
 	 */
-	public function generateCss( $selector, $property, $mod_name, $prefix = '', $postfix = '' ) : string {
+	public function generateCss(
+		string $selector,
+		string $property,
+		string $mod_name,
+		string $prefix = '',
+		string $postfix = ''
+	): string {
 
 		/**
-		 * Get theme mod by mod_name
+		 * Get theme value by mod_name
 		 *
 		 * @var string
 		 */
-		$mod = $this->config->get( $mod_name );
+		$value = $this->config->get( $mod_name );
 
 		/**
-		 * If mod is empty return
+		 * If value is empty return
 		 */
-		if ( empty( $mod ) ) {
+		if ( empty( $value ) ) {
 			return '';
 		}
 
@@ -58,7 +64,7 @@ class InlineGenerator {
 			$selector,
 			$property,
 			$prefix,
-			$mod,
+			$value,
 			$postfix
 		);
 	}

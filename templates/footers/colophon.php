@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
+use ItalyStrap\Components\Colophon;
 use ItalyStrap\Config\ConfigInterface;
 use function wp_kses_post;
 
@@ -20,7 +21,7 @@ $config = $this;
 	<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 	<div class="wp-block-group">
 		<!-- wp:paragraph -->
-		<p><?php echo wp_kses_post( $config->get('content') ) ; ?></p>
+		<p><?php echo wp_kses_post( $config->get( Colophon::CONTENT ) ) ; ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->

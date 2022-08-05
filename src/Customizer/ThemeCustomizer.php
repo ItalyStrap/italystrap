@@ -58,7 +58,8 @@ class ThemeCustomizer implements SubscriberInterface {
 	 *
 	 * @var string
 	 */
-	private $panel = 'italystrap_options_page';
+//	private $panel = 'italystrap_options_page';
+	private $panel = PanelFields::class;
 
 	/**
 	 * Theme mods settings
@@ -113,22 +114,19 @@ class ThemeCustomizer implements SubscriberInterface {
 			return;
 		}
 
-		$transport = $manager->selective_refresh ? 'postMessage' : 'refresh';
+//		$transport = $manager->selective_refresh ? 'postMessage' : 'refresh';
 
 		$files = array(
-			'/settings/customizer.php',
+//			'/settings/customizer.php',
 			'/settings/custom-css.php',
 			'/settings/layout.php',
 			'/settings/header.php',
 			'/settings/brand.php',
-//			'/settings/colors.php',
 			'/settings/navbar.php',
 			'/settings/breadcrumbs.php',
 			'/settings/images.php',
 			'/settings/post-content-template.php',
 			'/settings/404.php',
-			'/settings/colophon.php',
-			'/settings/beta.php',
 		);
 
 		foreach ($files as $file) {

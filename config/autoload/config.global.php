@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use ItalyStrap\Config\ConfigColophonProvider;
 use ItalyStrap\Config\ConfigColorSectionProvider;
 use ItalyStrap\Config\ConfigMiscProvider;
 use ItalyStrap\Config\ConfigProviderExtension;
@@ -22,6 +23,10 @@ return [
 		ConfigThemeProvider::class,
 		ConfigColorSectionProvider::class,
 		ConfigMiscProvider::class,
+		ConfigColophonProvider::class,
+
+
+		/** This must run after all */
 		ConfigThemeModsProvider::class,
 	],
 ];

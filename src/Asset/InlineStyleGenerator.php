@@ -1,21 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace ItalyStrap\Css;
+namespace ItalyStrap\Asset;
 
 use ItalyStrap\Config\ConfigInterface;
 
 /**
- * Class Inline_Generator
- *
- * @todo maybe it could be an idea to integrate with
- * 		some fluent methods like this one https://github.com/izica/php-styles
- *
- * @package ItalyStrap\Css
+ * @todo Fluent methods? one https://github.com/izica/php-styles
  */
-class InlineGenerator {
+class InlineStyleGenerator {
 
-	private $config;
+	private ConfigInterface $config;
 
 	public function __construct( ConfigInterface $config ) {
 		$this->config = $config;
@@ -34,32 +29,22 @@ class InlineGenerator {
 	 *                          after the CSS property. Example 'px'.
 	 * @return string           Returns a single line of CSS with selectors,
 	 *                          property and value.
-	 *@since ItalyStrap 1.0
-	 *
 	 */
-	public function generateCss(
+	public function render(
 		string $selector,
 		string $property,
 		string $mod_name,
-		string $prefix = '',
+		string $prefix,
 		string $postfix = ''
 	): string {
 
-		/**
-		 * Get theme value by mod_name
-		 *
-		 * @var string
-		 */
-		$value = $this->config->get( $mod_name );
+		$value = (string) $this->config->get( $mod_name );
 
-		/**
-		 * If value is empty return
-		 */
 		if ( empty( $value ) ) {
 			return '';
 		}
 
-		return sprintf(
+		return \sprintf(
 			'%1$s{%2$s:%3$s%4$s%5$s;}',
 			$selector,
 			$property,

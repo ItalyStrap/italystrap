@@ -87,9 +87,9 @@ class ConfigMiscProvider {
 			/**
 			 * Default text for colophon
 			 */
-			'colophon'						=> '',
-			'colophon_action'				=> 'italystrap_footer',
-			'colophon_priority'				=> 20,
+//			'colophon'						=> '',
+//			'colophon_action'				=> 'italystrap_footer',
+//			'colophon_priority'				=> 20,
 
 			/**
 			 * Layout configuration

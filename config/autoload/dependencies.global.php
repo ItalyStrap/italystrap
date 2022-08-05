@@ -6,6 +6,7 @@ use Auryn\Injector;
 use ItalyStrap\Asset\AssetManager;
 use ItalyStrap\Asset\ExperimentalAssetPreparator;
 use ItalyStrap\Asset\EditorSubscriber;
+use ItalyStrap\Asset\InlineStyleSubscriber;
 use ItalyStrap\Components\Breadcrumbs;
 use ItalyStrap\Components\ComponentSubscriberExtension;
 use ItalyStrap\Components\ArchiveAuthorInfo;
@@ -316,7 +317,7 @@ return [
 
 		Admin\Nav_Menu\ItemCustomFields::class,
 		Customizer\ThemeCustomizer::class,
-		Css\CssSubscriber::class,
+		InlineStyleSubscriber::class,
 
 		/**
 		 * With this class I can lazyload the AssetManager::class

@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
+use ItalyStrap\Asset\InlineStyleGenerator;
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Headers\CustomHeader;
 use ItalyStrap\Components\Navigations\Navbar;
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Empress\AurynConfigInterface;
 use ItalyStrap\Empress\Injector;
 use ItalyStrap\Event\EventDispatcherInterface;
@@ -103,10 +105,28 @@ trait BaseUnitTrait {
 		return $this->fileInfoFactory->reveal();
 	}
 
+	private \Prophecy\Prophecy\ObjectProphecy $inlineStyleGenerator;
+
+	public function getInlineStyleGenerator(): InlineStyleGenerator {
+		return $this->inlineStyleGenerator->reveal();
+	}
+
 	private \Prophecy\Prophecy\ObjectProphecy $theme;
 
 	public function getTheme(): \WP_Theme {
 		return $this->theme->reveal();
+	}
+
+	private \Prophecy\Prophecy\ObjectProphecy $manager;
+
+	public function getWPCustomizeManager(): \WP_Customize_Manager {
+		return $this->manager->reveal();
+	}
+
+	private \Prophecy\Prophecy\ObjectProphecy $control;
+
+	public function getFieldControlFactory(): FieldControlFactory {
+		return $this->control->reveal();
 	}
 
 	// phpcs:ignore
@@ -134,10 +154,15 @@ trait BaseUnitTrait {
 		$this->custom_header = $this->prophet->prophesize(CustomHeader::class);
 		$this->tag = $this->prophet->prophesize(Tag::class);
 		$this->fileInfoFactory = $this->prophet->prophesize(FileInfoFactoryInterface::class);
+		$this->inlineStyleGenerator = $this->prophet->prophesize(InlineStyleGenerator::class);
 		$this->theme = $this->prophet->prophesize(\WP_Theme::class);
+		$this->manager = $this->prophet->prophesize(\WP_Customize_Manager::class);
+		$this->control = $this->prophet->prophesize(FieldControlFactory::class);
+//		\Brain\Monkey\setUp();
 	}
 
 	private function tearDownProphet() {
+//		\Brain\Monkey\tearDown();
 		$this->prophet->checkPredictions();
 	}
 

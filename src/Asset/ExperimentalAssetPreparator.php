@@ -37,6 +37,9 @@ final class ExperimentalAssetPreparator {
 			->in( $experimental_assets_path_generator('js/') );
 
 		$injector->defineParam('base_url', \get_option( 'siteurl' ) . '/');
+		/**
+		 * @psalm-suppress UndefinedConstant
+		 */
 		$injector->defineParam('base_path', ABSPATH);
 
 		/** @var ConfigBuilder $config_builder */

@@ -25,13 +25,13 @@ class ColorFields {
 		$this->control = $control;
 	}
 
-	public function display(): void {
-		$this->manager->get_setting(  ConfigColorSectionProvider::HEADER_COLOR )->transport = 'postMessage';
-		$this->manager->get_setting(  ConfigColorSectionProvider::BG_COLOR )->transport = 'postMessage';
+	public function __invoke(): void {
+		$this->manager->get_setting( ConfigColorSectionProvider::HEADER_COLOR )->transport = 'postMessage';
+		$this->manager->get_setting( ConfigColorSectionProvider::BG_COLOR )->transport = 'postMessage';
 		$this->manager->get_section( self::SECTION )->title = \__( 'Theme Colors', 'italystrap' );
 
 		$id_link_color = ConfigColorSectionProvider::LINK_COLOR;
-		$prefix = ConfigThemeProvider::PREFIX;
+		$prefix = $this->config->get(ConfigThemeProvider::PREFIX);
 
 		$this->manager->add_setting(
 			$id_link_color,

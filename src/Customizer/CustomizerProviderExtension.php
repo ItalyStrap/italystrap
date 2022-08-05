@@ -30,20 +30,21 @@ class CustomizerProviderExtension implements \ItalyStrap\Empress\Extension {
 	/**
 	 * @inheritDoc
 	 */
-	public function execute(AurynConfigInterface $application) {
-		$this->dispatcher->addListener(
-			'customize_register',
-			function (\WP_Customize_Manager $manager) use ( $application ): void {
-				$this->injector->share($manager);
-				$application->walk( $this->name(), [$this, 'walk'] );
-			},
-			99,
-			3
-		);
+	public function execute( AurynConfigInterface $application ): void {
+		$this->dispatcher->addListener( 'customize_register', $this->buildCallable( $application ), 99, 3 );
 	}
 
 	public function walk( string $class, $index_or_optionName, Injector $injector ): void {
 		$object = $injector->make($class);
-		$object->display();
+		if (\is_callable($object)) {
+			$injector->execute($object);
+		}
+	}
+
+	private function buildCallable( AurynConfigInterface $application ): callable {
+		return function ( \WP_Customize_Manager $manager ) use ( $application ): void {
+			$this->injector->share( $manager );
+			$application->walk( $this->name(), [$this, 'walk'] );
+		};
 	}
 }

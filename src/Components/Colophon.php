@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components;
 
+use ItalyStrap\Config\ConfigColophonProvider;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
@@ -14,6 +15,7 @@ class Colophon implements ComponentInterface, SubscriberInterface {
 
 	const EVENT_NAME = 'italystrap_footer';
 	const EVENT_PRIORITY = 20;
+	const CONTENT = 'content';
 
 	private ConfigInterface $config;
 	private ViewInterface $view;
@@ -34,11 +36,14 @@ class Colophon implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
+		$content = (string)$this->config->get( ConfigColophonProvider::COLOPHON, '' );
+
+		if ( empty( $content ) ) {
+			return;
+		}
+
 		echo \do_blocks( $this->view->render( 'footers/colophon', [
-			'content'	=> $this->dispatcher->filter(
-				'italystrap_colophon_output',
-				$this->config->get( 'colophon', '' )
-			),
+			self::CONTENT => $this->dispatcher->filter( 'italystrap_colophon_output', $content ),
 		] ) );
 	}
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
 use function get_post_type;
@@ -35,18 +36,18 @@ class FeaturedImage implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-		if ( is_singular() ) {
-			$this->config->add( 'post_thumbnail_size', 'post-thumbnail' );
-			$this->config->add( 'post_thumbnail_alignment', 'aligncenter' );
-		}
+//		if ( is_singular() ) {
+//			$this->config->add( ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE, 'post-thumbnail' );
+//			$this->config->add( ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGNMENT, 'aligncenter' );
+//		}
 
-		$size = $this->config->get( 'post_thumbnail_size' );
+		$size = (string)$this->config->get( ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE );
 		$size = $this->getThumbnailSizeForFullWidthLayout($size);
 
+		$alignment = (string)$this->config->get(ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGNMENT);
 		$config = [
-			'align' => 'full',
-			'sizeSlug' => $size, // default 'post-thumbnail',
-			'className' => '',
+			'align' => \str_replace('align', '', $alignment),
+			'sizeSlug' => $size,
 		];
 
 		echo \do_blocks( '<!-- wp:post-featured-image ' . \json_encode( $config ) . '  /-->' );

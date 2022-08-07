@@ -36,7 +36,7 @@ class ColophonFields {
 		);
 
 		$this->manager->add_setting(
-			'colophon',
+			ConfigColophonProvider::COLOPHON,
 			[
 				'default'			=> $this->config->get( ConfigColophonProvider::COLOPHON ),
 				'type'				=> 'theme_mod',
@@ -46,19 +46,19 @@ class ColophonFields {
 		);
 
 		$this->manager->add_control(
-			'colophon',
+			ConfigColophonProvider::COLOPHON,
 			[
 				'label'			=> __( 'Footer\'s Colophon', 'italystrap' ),
 				'description'	=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
 				'section'		=> self::class,
-				'settings'		=> 'colophon',
+				'settings'		=> ConfigColophonProvider::COLOPHON,
 				'priority'		=> 10,
 				'type'			=> 'textarea',
 			]
 		);
 
 		$this->manager->add_setting(
-			'colophon_action',
+			ConfigColophonProvider::COLOPHON_ACTION,
 			[
 				'default'			=> $this->config->get( ConfigColophonProvider::COLOPHON_ACTION ),
 				'type'				=> 'theme_mod',
@@ -68,20 +68,20 @@ class ColophonFields {
 		);
 
 		$this->manager->add_control(
-			'colophon_action',
+			ConfigColophonProvider::COLOPHON_ACTION,
 			[
-				'label'			=> __( 'Footer\'s Colophon Position', 'italystrap' ),
-				'description'	=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
+				'label'			=> \__( 'Footer\'s Colophon Position', 'italystrap' ),
+				'description'	=> \__( 'Add text for footer\'s colophon here', 'italystrap' ),
 				'section'		=> self::class,
-				'settings'		=> 'colophon_action',
+				'settings'		=> ConfigColophonProvider::COLOPHON_ACTION,
 				'priority'		=> 10,
 				'type'			=> 'select',
-				'choices'		=> \apply_filters( 'italystrap_theme_positions', array() ),
+				'choices'		=> \apply_filters( 'italystrap_theme_positions', [] ),
 			]
 		);
 
 		$this->manager->add_setting(
-			'colophon_priority',
+			ConfigColophonProvider::COLOPHON_PRIORITY,
 			[
 				'default'			=> $this->config->get( ConfigColophonProvider::COLOPHON_PRIORITY ),
 				'type'				=> 'theme_mod',
@@ -91,12 +91,12 @@ class ColophonFields {
 		);
 
 		$this->manager->add_control(
-			'colophon_priority',
+			ConfigColophonProvider::COLOPHON_PRIORITY,
 			[
-				'label'			=> __( 'Footer\'s Colophon Position', 'italystrap' ),
-				'description'	=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
+				'label'			=> \__( 'Footer\'s Colophon Position', 'italystrap' ),
+				'description'	=> \__( 'Add text for footer\'s colophon here', 'italystrap' ),
 				'section'		=> self::class,
-				'settings'		=> 'colophon_priority',
+				'settings'		=> ConfigColophonProvider::COLOPHON_PRIORITY,
 				'priority'		=> 10,
 				'type'			=> 'number',
 			]

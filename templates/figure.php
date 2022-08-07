@@ -1,8 +1,20 @@
 <?php
 declare(strict_types=1);
 
-$context = $this->get('context', 'figure');
+namespace ItalyStrap;
 
-\ItalyStrap\HTML\open_tag_e($context, 'figure', []);
-echo $this->get('innerContent');
-\ItalyStrap\HTML\close_tag_e($context);
+use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\HTML\Tag;
+
+/** @var ConfigInterface $config */
+$config = $this;
+
+/** @var Tag $tag */
+$tag = $config->get(Tag::class);
+
+$context = (string)$config->get('context', __FILE__);
+$attributes = (array)$config->get('figureAttributes', []);
+
+echo $tag->open($context, 'figure', $attributes);
+echo $this->get('content');
+echo $tag->close($context);

@@ -4,6 +4,8 @@ declare(strict_types=1);
 use ItalyStrap\Config\ConfigColophonProvider;
 use ItalyStrap\Config\ConfigColorSectionProvider;
 use ItalyStrap\Config\ConfigMiscProvider;
+use ItalyStrap\Config\ConfigNotFoundProvider;
+use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Config\ConfigThemeModsProvider;
 use ItalyStrap\Config\ConfigThemeProvider;
@@ -25,6 +27,8 @@ return [
 		ConfigMiscProvider::class,
 		ConfigColophonProvider::class,
 
+		ConfigNotFoundProvider::class,
+		ConfigPostThumbnailProvider::class,
 
 		/** This must run after all */
 		ConfigThemeModsProvider::class,

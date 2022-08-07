@@ -52,68 +52,6 @@ function get_the_custom_image_url( string $key = null, string $default = null ):
 }
 
 /**
- * Get the image for 404 page
- * The image is set in the customizer
- *
- * @link https://wordpress.org/support/topic/need-to-get-attachment-id-by-image-url
- * @see https://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata
- *
- * @param string $class
- * @return string Return html image string for 404 page
- */
-function get_404_image( string $class = '' ): string {
-
-	$config = get_config();
-
-	if ( 'show' !== $config->get('404_show_image') ) {
-		return '';
-	}
-
-	/**
-	 * Back compat with the old setting name
-	 */
-	$default_image = $config->get('default_404');
-
-	if ( empty( $config['404_image'] ) ) {
-		$config['404_image'] = $config['default_404'];
-		remove_theme_mod( 'default_404' ); // Remove the old value from database
-	}
-
-	$image_404_url = $default_image;
-	$width = absint( $config['content_width'] );
-	$height = '';
-	$alt = __( 'Image for 404 page', 'italystrap' ) . ' ' . esc_attr( $config->get( 'GET_BLOGINFO_NAME') );
-
-	if ( is_numeric( $config['404_image'] ) ) {
-		$size = apply_filters( 'italystrap_404_image_size', $config['post_thumbnail_size'] );
-
-		$id = (int) $config['404_image'];
-		$meta = wp_get_attachment_image_src( $id, $size );
-		$image_404_url = $meta[0];
-		$width = esc_attr( $meta[1] );
-		$height = esc_attr( $meta[2] );
-	}
-
-	$attr = [
-		'class'		=>	$class,
-		'width'		=>	empty( $width ) ? '' : $width . 'px',
-		'height'	=>	empty( $height ) ? '' : $height . 'px',
-		'src'		=>	$image_404_url,
-		'alt'		=>	$alt,
-
-	];
-
-	$html = sprintf(
-		'<img %s>',
-		get_attr( '', $attr )
-	);
-
-	$html = apply_filters( 'italystrap_404_image_html', $html );
-
-	return apply_filters('italystrap_lazyload_images_in_this_content', $html);
-}
-
-/**
  * Get the attachment ID from image url
  *
  * @link https://wordpress.org/support/topic/need-to-get-attachment-id-by-image-url

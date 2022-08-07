@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+use ItalyStrap\Config\ConfigInterface;
+
+/** @var ConfigInterface $config */
+$config = $this;
 ?>
 <div class="page-content"><?php
 
@@ -36,7 +40,7 @@ elseif ( \is_search() ) :
 
 	echo \do_blocks( '<!-- wp:search {"buttonUseIcon":true} /-->' );
 else :
-	?><p class="404-content"><?php echo \wp_kses_post( $this->get('404_content') ); ?></p><?php
+	?><p class="404-content"><?php echo \wp_kses_post( (string)$config->get('content') ); ?></p><?php
 		echo \do_blocks( '<!-- wp:search {"buttonUseIcon":true} /-->' );
 endif;
 

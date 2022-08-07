@@ -117,7 +117,6 @@ class ThemeCustomizer implements SubscriberInterface {
 //		$transport = $manager->selective_refresh ? 'postMessage' : 'refresh';
 
 		$files = array(
-//			'/settings/customizer.php',
 			'/settings/custom-css.php',
 			'/settings/layout.php',
 			'/settings/header.php',
@@ -126,7 +125,6 @@ class ThemeCustomizer implements SubscriberInterface {
 			'/settings/breadcrumbs.php',
 			'/settings/images.php',
 			'/settings/post-content-template.php',
-			'/settings/404.php',
 		);
 
 		foreach ($files as $file) {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Config\ConfigNotFoundProvider;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
@@ -34,6 +35,11 @@ class EntryNoneTitle implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-		echo \do_blocks( $this->view->render( 'posts/none/title', $this->config->toArray() ) );
+		echo \do_blocks( $this->view->render( 'posts/none/title', [
+			'content' => (string)$this->config->get(ConfigNotFoundProvider::TITLE),
+			'headlineAttributes' => [
+				'class'		=> 'page-title',
+			],
+		] ) );
 	}
 }

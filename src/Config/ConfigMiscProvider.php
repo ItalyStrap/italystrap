@@ -43,19 +43,6 @@ class ConfigMiscProvider {
 			 */
 			'logo'							=> $template_dir_uri . '/assets/img/logo.png',
 			'default_image'					=> $template_dir_uri . '/assets/img/italystrap-default-image.png',
-			'default_404'					=> $template_dir_uri . '/assets/img/404.png',
-
-			'404_show_image'				=> 'show',
-			'404_image'						=> $template_dir_uri . '/assets/img/404.png',
-			'404_title'						=> \esc_attr__( 'Nothing Found', 'italystrap' ),
-			'404_content'					=>
-				\esc_attr__(
-					'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.',
-					'italystrap'
-				),
-
-			'post_thumbnail_size'			=> 'post-thumbnail',
-			'post_thumbnail_alignment'		=> 'alignnone',
 
 			/**
 			 * ==========================================================
@@ -83,13 +70,6 @@ class ConfigMiscProvider {
 				//and the navbar_header brand and toggle.
 				'main_menu_x_align'	=> 'navbar-left',
 			],
-
-			/**
-			 * Default text for colophon
-			 */
-//			'colophon'						=> '',
-//			'colophon_action'				=> 'italystrap_footer',
-//			'colophon_priority'				=> 20,
 
 			/**
 			 * Layout configuration

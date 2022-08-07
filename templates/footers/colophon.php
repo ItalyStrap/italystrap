@@ -21,7 +21,7 @@ $config = $this;
 	<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 	<div class="wp-block-group">
 		<!-- wp:paragraph -->
-		<p><?php echo wp_kses_post( $config->get( Colophon::CONTENT ) ) ; ?></p>
+		<p><?php echo wp_kses_post( (string)$config->get( Colophon::CONTENT, '' ) ) ; ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->

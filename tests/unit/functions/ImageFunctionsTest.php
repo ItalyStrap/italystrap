@@ -3,10 +3,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
-use ItalyStrap\Image\Image;
 use function ItalyStrap\Factory\get_config;
 use function ItalyStrap\Image\get_the_custom_image_url;
-use function ItalyStrap\Image\get_404_image;
 use function ItalyStrap\Image\get_ID_image_from_url;
 
 // phpcs:disable
@@ -61,13 +59,6 @@ class ImageFunctionsTest extends \Codeception\Test\Unit {
 		$not_empty = get_the_custom_image_url('no_image_from_user', 'but_image_from_default' );
 		$this->assertNotEmpty( $not_empty, '' );
 		$this->assertStringMatchesFormat( 'but_image_from_default', $not_empty, '' );
-	}
-
-	/**
-	 * @test
-	 */
-	public function get404image() {
-		get_404_image();
 	}
 
 	/**

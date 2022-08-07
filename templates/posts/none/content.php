@@ -40,7 +40,7 @@ elseif ( \is_search() ) :
 
 	echo \do_blocks( '<!-- wp:search {"buttonUseIcon":true} /-->' );
 else :
-	?><p class="404-content"><?php echo \wp_kses_post( (string)$config->get('content') ); ?></p><?php
+	?><p class="no-posts"><?php echo \wp_kses_post( (string)$config->get('content') ); ?></p><?php
 		echo \do_blocks( '<!-- wp:search {"buttonUseIcon":true} /-->' );
 endif;
 

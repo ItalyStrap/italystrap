@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests;
 
 use function ItalyStrap\Factory\get_config;
-use function ItalyStrap\Image\get_the_custom_image_url;
 use function ItalyStrap\Image\get_ID_image_from_url;
 
 // phpcs:disable
@@ -31,34 +30,6 @@ class ImageFunctionsTest extends \Codeception\Test\Unit {
 	}
 
 	protected function _after() {
-	}
-
-	/**
-	 * @test
-	 */
-	public function getCustomImageUrl() {
-		$empty = get_the_custom_image_url();
-		$this->assertEmpty( $empty );
-
-
-		$empty_config = get_the_custom_image_url('empty');
-		$this->assertEmpty( $empty_config, '' );
-
-		$numeric = get_the_custom_image_url('numeric');
-		$this->assertNotEmpty( $numeric, '' );
-		$this->assertStringMatchesFormat( 'url', $numeric, '' );
-
-		$int = get_the_custom_image_url('int');
-		$this->assertNotEmpty( $int, '' );
-		$this->assertStringMatchesFormat( 'url', $numeric, '' );
-
-		$not_empty = get_the_custom_image_url('image_url');
-		$this->assertNotEmpty( $not_empty, '' );
-		$this->assertStringMatchesFormat( 'value_of_image_url', $not_empty, '' );
-
-		$not_empty = get_the_custom_image_url('no_image_from_user', 'but_image_from_default' );
-		$this->assertNotEmpty( $not_empty, '' );
-		$this->assertStringMatchesFormat( 'but_image_from_default', $not_empty, '' );
 	}
 
 	/**

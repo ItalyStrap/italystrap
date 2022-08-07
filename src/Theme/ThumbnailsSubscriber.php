@@ -129,7 +129,7 @@ final class ThumbnailsSubscriber implements ThumbnailsInterface, Registrable, Su
 		 * 'post-thumbnails' is by default the size displayed for posts, pages and all archives.
 		 */
 		set_post_thumbnail_size( $content_width, intval( $content_width * 3 / 4 ) );
-
+		d();
 		$this->registerImageSize();
 	}
 
@@ -139,7 +139,7 @@ final class ThumbnailsSubscriber implements ThumbnailsInterface, Registrable, Su
 	private function registerImageSize(): void {
 		array_walk( $this->image_sizes, function ( $params, $name ) {
 			$params = array_merge( $this->getDefaultImageParams(), $params );
-
+d($name);
 			$this->addSize(
 				$name,
 				intval( $params[ self::WIDTH ] ),

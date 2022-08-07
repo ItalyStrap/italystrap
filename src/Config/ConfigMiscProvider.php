@@ -42,7 +42,6 @@ class ConfigMiscProvider {
 			 * Default images
 			 */
 			'logo'							=> $template_dir_uri . '/assets/img/logo.png',
-			'default_image'					=> $template_dir_uri . '/assets/img/italystrap-default-image.png',
 
 			/**
 			 * ==========================================================
@@ -106,18 +105,6 @@ class ConfigMiscProvider {
 
 			'post_content_template'			=> '',
 			'breadcrumbs_show_on'			=> '',
-
-			/**
-			 * Set by plugin
-			 */
-			// 'custom_css'					=> '',
-			// 'analytics'						=> '',
-			// 'first_font_family'				=> '',
-			// 'first_font_variants'			=> '',
-			// 'first_font_subsets'			=> '',
-			// 'activate_custom_css'			=> '',
-			// 'body_class'					=> '',
-			// 'post_class'					=> '',
 		];
 	}
 }

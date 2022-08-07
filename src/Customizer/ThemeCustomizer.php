@@ -123,7 +123,6 @@ class ThemeCustomizer implements SubscriberInterface {
 			'/settings/brand.php',
 			'/settings/navbar.php',
 			'/settings/breadcrumbs.php',
-			'/settings/images.php',
 			'/settings/post-content-template.php',
 		);
 

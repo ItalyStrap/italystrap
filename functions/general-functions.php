@@ -77,19 +77,6 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 }
 
 /**
- * Get the content width
- *
- * @param int $container_width
- * @param int $column
- * @param int $content_column_width
- * @param int $gutter
- * @return int [description]
- */
-function get_content_width( int $container_width, int $column, int $content_column_width, int $gutter = 0 ) : int {
-	return intval( $container_width / $column * $content_column_width - $gutter );
-}
-
-/**
  * Get the template parts settings.
  * This methos has to be called inside a loop.
  *

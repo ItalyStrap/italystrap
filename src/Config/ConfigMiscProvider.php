@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Config;
 
-use function ItalyStrap\Core\get_content_width;
-
 class ConfigMiscProvider {
 
 	const HEADER_IMAGE = 'header_image';
@@ -79,15 +77,7 @@ class ConfigMiscProvider {
 			// https://core.trac.wordpress.org/ticket/24844
 			'site_layout'					=> (string) \apply_filters( 'theme_mod_site_layout', 'content_sidebar' ),
 			'singular_layout'				=> 'content_sidebar',
-			'content_width'					=> (int) \apply_filters(
-				'italystrap_content_width',
-				get_content_width(
-					1170,
-					12,
-					8,
-					30
-				)
-			),
+
 			'container_width'				=> 'container', // container-fluid.
 			'container_class'				=> 'container', // container-fluid. // @TODO maybe not used
 			'content_class'					=> 'col-md-8', // 7 - 6.

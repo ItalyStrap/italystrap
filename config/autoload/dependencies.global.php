@@ -62,6 +62,8 @@ use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Asset\AssetsSubscriber;
+use ItalyStrap\StdLib\Media\ImageSize;
+use ItalyStrap\StdLib\Media\ImageSizeInterface;
 use ItalyStrap\Theme\AfterSetupThemeEvent;
 use ItalyStrap\Config\ConfigCurrentTemplateSubscriber;
 use ItalyStrap\Theme\License;
@@ -103,6 +105,8 @@ return [
 		Tag::class,
 		View\View::class,
 
+		ImageSizeInterface::class,
+
 		AuthorInfo::class,
 	],
 
@@ -130,6 +134,8 @@ return [
 
 		ViewInterface::class				=> View\View::class,
 		Walker_Nav_Menu::class				=> Navbar\BootstrapNavMenu::class,
+
+		ImageSizeInterface::class			=> ImageSize::class,
 	],
 
 	/**
@@ -153,9 +159,6 @@ return [
 				return ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) )
 					->merge(get_config_file_content( 'theme/footer-widget-area' ));
 			 },
-		],
-		ThumbnailsSubscriber::class	=> [
-			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/thumbnails' ) ),
 		],
 		SupportSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/supports' ) ),

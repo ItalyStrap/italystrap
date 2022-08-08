@@ -7,6 +7,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigNotFoundProvider;
 use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Theme\ThumbnailsSubscriber;
 
 class PostThumbnailFields {
 
@@ -67,36 +68,30 @@ class PostThumbnailFields {
 			)
 		);
 
-		$size_choices = $this->dispatcher->filter( 'image_size_names_choose', [
-			'' => \__('Select dimension', 'italystrap'),
-		] );
+		$this->manager->add_setting(
+			ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE,
+			[
+				'default'			=> (string)$this->config->get(ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE),
+				'type'				=> 'theme_mod',
+				'transport'			=> 'refresh',
+				'sanitize_callback'	=> 'sanitize_text_field',
+			]
+		);
 
-//		if ( ! empty( $size_choices ) ) {
-			$this->manager->add_setting(
-				ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE,
-				[
-					'default'			=> (string)$this->config->get(ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE),
-					'type'				=> 'theme_mod',
-					'transport'			=> 'refresh',
-					'sanitize_callback'	=> 'sanitize_text_field',
-				]
-			);
-
-			$id_thumb_size = ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE;
-			$this->manager->add_control(
-				"{$id}_{$id_thumb_size}",
-				[
-					'settings'		=> ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE,
-					'label'			=> \__( 'Post thumbnail size', 'italystrap' ),
-					// phpcs:disable
-					'description'	=> \__( 'Change image size of post thumbnail in archive, author, blog, category, search, and tag pages.', 'italystrap' ),
-					// phpcs:enable
-					'section'		=> self::class,
-					'type'			=> 'select',
-					'choices'		=> $size_choices,
-				]
-			);
-//		}
+		$id_thumb_size = ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE;
+		$this->manager->add_control(
+			"{$id}_{$id_thumb_size}",
+			[
+				'settings'		=> ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE,
+				'label'			=> \__( 'Post thumbnail size', 'italystrap' ),
+				// phpcs:disable
+				'description'	=> \__( 'Change image size of post thumbnail in archive, author, blog, category, search, and tag pages.', 'italystrap' ),
+				// phpcs:enable
+				'section'		=> self::class,
+				'type'			=> 'select',
+				'choices'		=> $this->buildSizeChoices(),
+			]
+		);
 
 		$this->manager->add_setting(
 			ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGNMENT,
@@ -129,5 +124,22 @@ class PostThumbnailFields {
 				],
 			]
 		);
+	}
+
+	private function buildSizeChoices() {
+		$size_choices = $this->dispatcher->filter( 'image_size_names_choose', [
+			'' => \__('Select dimension', 'italystrap'),
+		] );
+
+		foreach ( $this->config->get(ThumbnailsSubscriber::class) as $name => $size ) {
+			$size_choices[$name] = \sprintf(
+				'%s %sx%spx',
+				$name,
+				$size[ ConfigPostThumbnailProvider::WIDTH ],
+				$size[ ConfigPostThumbnailProvider::HEIGHT ]
+			);
+		}
+
+		return $size_choices;
 	}
 }

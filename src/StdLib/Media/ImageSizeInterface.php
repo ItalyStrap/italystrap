@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace ItalyStrap\Theme;
+namespace ItalyStrap\StdLib\Media;
 
-interface ThumbnailsInterface {
+interface ImageSizeInterface {
 
 	/**
 	 * @param string $name
 	 * @param int $width
 	 * @param int $height
 	 * @param bool $crop
-	 * @return ThumbnailsSubscriber
+	 * @return void
 	 */
 	public function addSize( string $name, int $width = 0, int $height = 0, bool $crop = false  );
 
 	/**
 	 * @param string $name
-	 * @return ThumbnailsSubscriber
+	 * @return void
 	 */
 	public function removeSize( string $name );
 

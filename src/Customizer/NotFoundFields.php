@@ -5,6 +5,7 @@ namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigNotFoundProvider;
+use ItalyStrap\Config\ConfigPostThumbnailProvider;
 
 class NotFoundFields {
 
@@ -87,7 +88,7 @@ class NotFoundFields {
 						// phpcs:disable
 						\__( 'This is a default 404 image, it will be displayed in 404 page (must be at least %dpx width)', 'italystrap' ),
 						// phpcs:enable
-						$this->config->get('content_width')
+						$this->config->get(ConfigPostThumbnailProvider::POST_CONTENT_WIDTH)
 					),
 					'section'		=> self::class,
 					'settings'		=> ConfigNotFoundProvider::ID_IMAGE,

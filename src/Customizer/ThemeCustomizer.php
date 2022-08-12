@@ -117,12 +117,9 @@ class ThemeCustomizer implements SubscriberInterface {
 //		$transport = $manager->selective_refresh ? 'postMessage' : 'refresh';
 
 		$files = array(
-			'/settings/custom-css.php',
 			'/settings/layout.php',
 			'/settings/header.php',
-			'/settings/brand.php',
 			'/settings/navbar.php',
-			'/settings/breadcrumbs.php',
 			'/settings/post-content-template.php',
 		);
 

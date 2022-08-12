@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Components\Navigations;
 
 use ItalyStrap\Components\Brand\Brand;
+use ItalyStrap\Config\ConfigSiteLogoProvider;
 use \ItalyStrap\Config\ConfigInterface;
 use function \ItalyStrap\HTML\get_attr;
 use \Walker_Nav_Menu;
@@ -55,10 +56,6 @@ class Navbar {
 	 * 						Default is 'wp_page_menu'. Set to false for no fallback.
 	 */
 	private $fallback_cb;
-	/**
-	 * @var Brand
-	 */
-	private $brand;
 
 	/**
 	 * Init the constructor
@@ -67,12 +64,10 @@ class Navbar {
 	 * @param Walker_Nav_Menu $walker
 	 * @param callable|bool $fallback_cb If the menu doesn't exists, a callback function will fire.
 	 *                                        Default is 'wp_page_menu'. Set to false for no fallback.
-	 * @param Brand $brand
 	 */
 	public function __construct(
 		ConfigInterface $config,
 		Walker_Nav_Menu $walker,
-		Brand $brand,
 		$fallback_cb = false
 	) {
 
@@ -87,10 +82,8 @@ class Navbar {
 
 		$this->number = self::$instance_count;
 
-		$this->navbar_id = apply_filters( 'italystrap_navbar_id', 'italystrap-menu-' . $this->number );
-		$this->navbar_id = apply_filters( 'italystrap_navbar_id_' . $this->number, $this->navbar_id );
-
-		$this->brand = $brand;
+		$this->navbar_id = \apply_filters( 'italystrap_navbar_id', 'italystrap-menu-' . $this->number );
+		$this->navbar_id = \apply_filters( 'italystrap_navbar_id_' . $this->number, $this->navbar_id );
 	}
 
 	/**
@@ -183,7 +176,7 @@ class Navbar {
 		 */
 		$attachment_id = (int)apply_filters(
 			'italystrap_navbar_logo_image_id',
-			$this->config->get( 'navbar_logo_image' )
+			$this->config->get( ConfigSiteLogoProvider::BRAND_IMAGE_ID )
 		);
 
 		$brand = '';
@@ -252,8 +245,6 @@ class Navbar {
 		if ( 'none' === $this->config[ 'display_navbar_brand' ] ) {
 			return apply_filters( 'italystrap_navbar_brand_none', '', $this->navbar_id );
 		}
-
-//		return	$this->brand->render();
 
 		$default = array(
 			'class' => 'navbar-brand',
@@ -454,7 +445,7 @@ class Navbar {
 	 * @param string $content
 	 * @return string
 	 */
-	private function createElement( string $context, string $tag, array $attr, string $content ) : string {
+	private function createElement( string $context, string $tag, array $attr, string $content ): string {
 
 //		if ( !is_string( $context ) ) {
 //			throw new \InvalidArgumentException( 'The $context variable must be a string', 0 );

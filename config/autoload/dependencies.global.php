@@ -29,6 +29,7 @@ use ItalyStrap\Components\FooterWidgetArea;
 use ItalyStrap\Components\Header;
 use ItalyStrap\Components\Loop;
 use ItalyStrap\Components\MainNavigation;
+use ItalyStrap\Components\MainNavigationOlder;
 use ItalyStrap\Components\MiscNavigation;
 use ItalyStrap\Components\Sidebar;
 use ItalyStrap\Components\Index;
@@ -38,6 +39,7 @@ use ItalyStrap\Components\Pager;
 use ItalyStrap\Components\Pagination;
 use ItalyStrap\Components\PostAuthorInfo;
 use ItalyStrap\Components\Preview;
+use ItalyStrap\Components\SiteLogo;
 use ItalyStrap\Components\Title;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigFactory;
@@ -76,9 +78,7 @@ use ItalyStrap\Theme\PostTypeSupportSubscriber;
 use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\View\ViewInterface;
 use Walker_Nav_Menu;
-use WP_Query;
 use function ItalyStrap\Config\get_config_file_content;
-use function ItalyStrap\Factory\get_config;
 
 return [
 
@@ -108,6 +108,9 @@ return [
 		ImageSizeInterface::class,
 
 		AuthorInfo::class,
+
+		\WP_Theme::class,
+		\WP_Query::class,
 	],
 
 	/**
@@ -144,10 +147,10 @@ return [
 	 * Autoload Classes definitions
 	 *
 	 * @example :
-	 * 'walker'		=> 'ItalyStrap\Navbar\Bootstrap_Nav_Menu',
-	 * ':walker'	=> new \ItalyStrap\Navbar\Bootstrap_Nav_Menu(),
+	 * 'walker'		=> '\NameSpace\ClassName',
+	 * ':walker'	=> new \NameSpace\ClassName(),
 	 * '+walker'	=> function () {
-	 * 		return new \ItalyStrap\Navbar\Bootstrap_Nav_Menu();
+	 * 		return new \NameSpace\ClassName();
 	 * },
 	 *
 	 * ==========================================================
@@ -159,9 +162,6 @@ return [
 				return ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) )
 					->merge(get_config_file_content( 'theme/footer-widget-area' ));
 			 },
-		],
-		SupportSubscriber::class	=> [
-			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/supports' ) ),
 		],
 		PostTypeSupportSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/type-supports' ) ),
@@ -310,7 +310,7 @@ return [
 		 */
 		NavMenusSubscriber::class,
 		SidebarsSubscriber::class,
-//		SupportSubscriber::class,
+		SupportSubscriber::class,
 		TextDomainSubscriber::class,
 		ThumbnailsSubscriber::class,
 		PostTypeSupportSubscriber::class,
@@ -367,8 +367,10 @@ return [
 
 		Loop::class,
 
+		SiteLogo::class,
 		MiscNavigation::class,
 		CustomHeaderImage::class,
+		MainNavigationOlder::class,
 		MainNavigation::class,
 
 		Comments::class,

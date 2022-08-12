@@ -31,7 +31,7 @@ class ColophonFields {
 				'description'		=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
 				'panel'				=> PanelFields::class,
 				'priority'			=> 160,
-				'theme_supports'	=> '', // Rarely needed.
+				'theme_supports'	=> '',
 			]
 		);
 
@@ -63,7 +63,7 @@ class ColophonFields {
 				'default'			=> $this->config->get( ConfigColophonProvider::COLOPHON_ACTION ),
 				'type'				=> 'theme_mod',
 				'transport'			=> 'refresh',
-				'sanitize_callback'	=> 'wp_kses_post',
+				'sanitize_callback'	=> 'sanitize_text_field',
 			]
 		);
 
@@ -86,7 +86,7 @@ class ColophonFields {
 				'default'			=> $this->config->get( ConfigColophonProvider::COLOPHON_PRIORITY ),
 				'type'				=> 'theme_mod',
 				'transport'			=> 'refresh',
-				'sanitize_callback'	=> 'wp_kses_post',
+				'sanitize_callback'	=> 'sanitize_text_field',
 			]
 		);
 

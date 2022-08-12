@@ -73,30 +73,6 @@ return [
 						),
 
 					],
-
-					// 'navbar_logo_image'	=> array(
-					// 	'setting'	=> 		array(
-					// 		// 'default' => TEMPLATEURL . '/img/italystrap-navbar_logo_image.jpg',
-					// 		'default' => '',
-					// 		// 'type' => 'theme_mod',
-					// 		// 'capability' => $this->capability,
-					// 		// 'transport' => 'postMessage',
-					// 		// 'sanitize_callback' => 'sanitize_text_field',
-					// 	),
-					// 	'control'	=> new WP_Customize_Media_Control(
-					// 		$manager,
-					// 		'italystrap_navbar_logo_image',
-					// 		array(
-					// 			'label' => __( 'Your logo brand for nav menu', 'italystrap' ),
-					// 			'description' => __( 'Insert here your logo brand for nav menu', 'italystrap' ),
-					// 			'section' => 'italystrap_image_options',
-					// 			'settings' => 'navbar_logo_image',
-					// 			'priority' => 10,
-					// 		)
-					// 	),
-
-					// ),
-
 				],
 			], // End 'italystrap_image_options'
 		], // End section id

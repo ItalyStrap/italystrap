@@ -5,8 +5,6 @@ namespace ItalyStrap\Config;
 
 class ConfigMiscProvider {
 
-	const HEADER_IMAGE = 'header_image';
-
 	private ConfigInterface $config;
 
 	public function __construct(ConfigInterface $config) {
@@ -14,32 +12,12 @@ class ConfigMiscProvider {
 	}
 
 	public function __invoke(): iterable {
-
-		$template_dir_uri = $this->config->get( ConfigThemeProvider::TEMPLATE_DIR_URI );
-
 		return [
-			/**
-			 * Header image
-			 */
-			'header_image'					=> '', // Set by WordPress.
-
 			'custom_header'					=> [
 				'container_width'	=> 'container',
 			],
 
-			/**
-			 * Background image
-			 */
-			'background_image'				=> '', // Set by WordPress.
-			'background_repeat'				=> 'no-repeat', // Set by WordPress.
-			'background_position_x'			=> 'center', // Set by WordPress.
-
-			'custom_css'					=> '',
-
-			/**
-			 * Default images
-			 */
-			'logo'							=> $template_dir_uri . '/assets/img/logo.png',
+//			'custom_css'					=> '',
 
 			/**
 			 * ==========================================================
@@ -48,12 +26,6 @@ class ConfigMiscProvider {
 			 *
 			 * ==========================================================
 			 */
-			'display_navbar_brand'			=> 'display_name',
-			'navbar_logo_image'				=> '',
-			'navbar_logo_image_size'		=> 'navbar-brand-image',
-			'navbar_logo_image_mobile'		=> null,
-			// 'display_navbar_logo_image'		=> '',
-			// 'display_navbar_logo_image'		=> '',
 			'navbar'						=> [
 				/**
 				 * options:

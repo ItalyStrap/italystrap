@@ -4,31 +4,35 @@ declare(strict_types=1);
 namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigColophonProvider;
-use ItalyStrap\Config\ConfigColorSectionProvider;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigThemeProvider;
+use ItalyStrap\Event\EventDispatcherInterface;
 
 class ColophonFields {
+
+	use ThemePositionTrait;
 
 	const SECTION = 'colophon';
 
 	private \WP_Customize_Manager $manager;
 	private ConfigInterface $config;
+	private EventDispatcherInterface $dispatcher;
 
 	public function __construct(
 		\WP_Customize_Manager $manager,
-		ConfigInterface $config
+		ConfigInterface $config,
+		EventDispatcherInterface $dispatcher
 	) {
 		$this->manager = $manager;
 		$this->config = $config;
+		$this->dispatcher = $dispatcher;
 	}
 
 	public function __invoke(): void {
 		$this->manager->add_section(
 			self::class,
 			[
-				'title'				=> __( 'Footer\'s Colophon', 'italystrap' ),
-				'description'		=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
+				'title'				=> \__( 'Footer\'s Colophon', 'italystrap' ),
+				'description'		=> \__( 'Add text for footer\'s colophon here', 'italystrap' ),
 				'panel'				=> PanelFields::class,
 				'priority'			=> 160,
 				'theme_supports'	=> '',
@@ -48,8 +52,8 @@ class ColophonFields {
 		$this->manager->add_control(
 			ConfigColophonProvider::COLOPHON,
 			[
-				'label'			=> __( 'Footer\'s Colophon', 'italystrap' ),
-				'description'	=> __( 'Add text for footer\'s colophon here', 'italystrap' ),
+				'label'			=> \__( 'Footer\'s Colophon', 'italystrap' ),
+				'description'	=> \__( 'Add text for footer\'s colophon here', 'italystrap' ),
 				'section'		=> self::class,
 				'settings'		=> ConfigColophonProvider::COLOPHON,
 				'priority'		=> 10,
@@ -76,7 +80,7 @@ class ColophonFields {
 				'settings'		=> ConfigColophonProvider::COLOPHON_ACTION,
 				'priority'		=> 10,
 				'type'			=> 'select',
-				'choices'		=> \apply_filters( 'italystrap_theme_positions', [] ),
+				'choices'		=> $this->getAllThemePosition(),
 			]
 		);
 

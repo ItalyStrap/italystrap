@@ -39,7 +39,7 @@ class SiteLogoFields {
 		$this->manager->add_control(
 			new class(
 				$this->manager,
-				"{$prefix}_{$id_separator}",
+				"{$prefix}_$id_separator",
 				[
 					'section'		=> self::SECTION,
 					'settings'		=> $id_separator,
@@ -93,8 +93,8 @@ class SiteLogoFields {
 		$old_logo_id = \get_theme_mod('logo');
 		$brand_image_id = ConfigSiteLogoProvider::BRAND_IMAGE_ID;
 		if ( ! empty( $old_logo_id ) ) {
-			\set_theme_mod( 'navbar_logo_image', \absint( $old_logo_id ) );
 			$this->config->add( 'navbar_logo_image', \absint( $old_logo_id ) );
+			\set_theme_mod( 'navbar_logo_image', \absint( $old_logo_id ) );
 			\update_option( 'site_logo', \absint( $old_logo_id ) );
 			\remove_theme_mod( $brand_image_id );
 		}
@@ -103,7 +103,6 @@ class SiteLogoFields {
 			$brand_image_id,
 			[
 				'default'			=> $this->config->get($brand_image_id),
-//				'default'			=> $this->config->get('custom_logo'),
 				'type'				=> 'theme_mod',
 				'transport'			=> 'refresh',
 				'sanitize_callback'	=> 'sanitize_text_field',
@@ -136,7 +135,7 @@ class SiteLogoFields {
 		);
 
 		$this->manager->add_control(
-			"{$prefix}_{$id_logo_img_size}",
+			"{$prefix}_$id_logo_img_size",
 			[
 				'settings'	=> $id_logo_img_size,
 				'label'		=> \__( 'Logo image size', 'italystrap' ),
@@ -145,32 +144,6 @@ class SiteLogoFields {
 				'priority'	=> 80,
 				'choices'	=> $this->buildSizeChoices(),
 			]
-		);
-
-		$this->manager->add_setting(
-			'navbar_logo_image_mobile',
-			array(
-				'default'			=> $this->config->get('navbar_logo_image_mobile'),
-				'type'				=> 'theme_mod',
-				'transport'			=> 'refresh',
-				'sanitize_callback'	=> 'sanitize_text_field',
-			)
-		);
-
-		$this->manager->add_control(
-			new \WP_Customize_Media_Control(
-				$this->manager,
-				'italystrap_navbar_logo_image_mobile',
-				array(
-					'label'			=> __( 'Logo for mobile', 'italystrap' ),
-					// phpcs:disable
-					'description'	=> __( 'Insert here the logo for the mobile version of your site. You also have to make shure that the theme support it otherwise you have to add the CSS for visualiza the logo only on mobile.', 'italystrap' ),
-					// phpcs:enable
-					'section'		=> self::SECTION,
-					'settings'		=> 'navbar_logo_image_mobile',
-					'priority'		=> 80,
-				)
-			)
 		);
 	}
 }

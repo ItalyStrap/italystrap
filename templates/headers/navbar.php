@@ -79,8 +79,6 @@ open_tag_e('nav_container', 'div', [
 //			echo $navbar->get_navbar_header();
 			echo $navbar->get_navbar_brand();
 
-			\do_action('italystrap_navbar_brand_output');
-
 /**
  *  = BS3 navbar-toggle
  * >= BS4 navbar-toggler

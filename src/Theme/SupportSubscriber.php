@@ -11,9 +11,6 @@ final class SupportSubscriber implements Registrable, SubscriberInterface {
 	private ConfigInterface $config;
 	private Support $support;
 
-	/**
-	 * @inheritDoc
-	 */
 	public function getSubscribedEvents(): iterable {
 		yield 'italystrap_theme_load'	=> [
 			static::CALLBACK	=> static::REGISTER_CB,
@@ -21,9 +18,6 @@ final class SupportSubscriber implements Registrable, SubscriberInterface {
 		];
 	}
 
-	/**
-	 * Init sidebars registration
-	 */
 	public function __construct( ConfigInterface $config, Support $support ) {
 		$this->config = $config;
 		$this->support = $support;

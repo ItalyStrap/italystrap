@@ -35,9 +35,7 @@ class MainNavigation implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-		echo \do_blocks( $this->view->render( 'headers/navbar', [
-			'mods'		=> $this->config,
-			Navbar::class	=> $this->navbar,
+		echo \do_blocks( $this->view->render( 'navigation', [
 		] ) );
 	}
 }

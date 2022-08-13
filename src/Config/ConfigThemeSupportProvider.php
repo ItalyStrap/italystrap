@@ -4,10 +4,22 @@ declare(strict_types=1);
 namespace ItalyStrap\Config;
 
 use ItalyStrap\Theme\SupportSubscriber;
+use ItalyStrap\Theme\ThumbnailsSubscriber;
 
 class ConfigThemeSupportProvider {
 
+	const CUSTOM_LOGO = 'custom-logo';
+	private ConfigInterface $config;
+
+	public function __construct( ConfigInterface $config ) {
+		$this->config = $config;
+	}
+
 	public function __invoke(): iterable {
+		$size_name_registered = (string)$this->config->get(ConfigSiteLogoProvider::BRAND_IMAGE_SIZE);
+		$width = (int)$this->config->get(ThumbnailsSubscriber::class . '.' . $size_name_registered . '.width');
+		$height = (int)$this->config->get(ThumbnailsSubscriber::class . '.' . $size_name_registered . '.height');
+
 		yield SupportSubscriber::class => 	[
 			/**
 			 * Add default posts and comments RSS feed links to head.
@@ -78,9 +90,9 @@ class ConfigThemeSupportProvider {
 				'video'						=> true,
 			],
 
-			'custom-logo'	=> [
-				'height'      => 100,
-				'width'       => 400,
+			self::CUSTOM_LOGO	=> [
+				'height'      => $height,
+				'width'       => $width,
 				'flex-height' => true,
 				'flex-width'  => true,
 				'header-text' => ['site-title', 'site-description'],

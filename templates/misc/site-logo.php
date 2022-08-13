@@ -1,4 +1,11 @@
 <?php
 declare(strict_types=1);
 
-?><!-- wp:site-logo {"width":45,"shouldSyncIcon":false,"className":"is-style-default"} /-->
+namespace ItalyStrap;
+
+use ItalyStrap\Components\SiteLogo;
+
+/** @var \ItalyStrap\Config\ConfigInterface $config */
+$config = $this;
+
+?><!-- wp:site-logo <?php echo \strip_tags( (string)$config->get( SiteLogo::ATTRIBUTES ) ) ?> /-->

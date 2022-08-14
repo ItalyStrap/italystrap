@@ -5,7 +5,6 @@ namespace ItalyStrap\Tests;
 
 use ItalyStrap\Asset\InlineStyleGenerator;
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\Headers\CustomHeader;
 use ItalyStrap\Components\Navigations\Navbar;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Customizer\FieldControlFactory;
@@ -87,12 +86,6 @@ trait BaseUnitTrait {
 		return $this->navbar->reveal();
 	}
 
-	private \Prophecy\Prophecy\ObjectProphecy $custom_header;
-
-	public function getCustomHeader(): CustomHeader {
-		return $this->custom_header->reveal();
-	}
-
 	private \Prophecy\Prophecy\ObjectProphecy $tag;
 
 	public function getTag(): Tag {
@@ -151,7 +144,6 @@ trait BaseUnitTrait {
 		$this->theme_support = $this->prophet->prophesize( ThemeSupport::class );
 		$this->component = $this->prophet->prophesize(ComponentInterface::class);
 		$this->navbar = $this->prophet->prophesize(Navbar::class);
-		$this->custom_header = $this->prophet->prophesize(CustomHeader::class);
 		$this->tag = $this->prophet->prophesize(Tag::class);
 		$this->fileInfoFactory = $this->prophet->prophesize(FileInfoFactoryInterface::class);
 		$this->inlineStyleGenerator = $this->prophet->prophesize(InlineStyleGenerator::class);

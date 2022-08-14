@@ -9,7 +9,7 @@ use ItalyStrap\Config\ConfigThemeProvider;
 use ItalyStrap\Event\EventDispatcherInterface;
 
 class SiteLogoFields {
-	use BuildThumbnailSizeChoicesTrait;
+	use BuildThumbnailSizeChoicesTrait, SizeChoicesTrait;
 
 	const SECTION = 'title_tagline';
 
@@ -124,26 +124,13 @@ class SiteLogoFields {
 		);
 
 		$id_logo_img_size = ConfigSiteLogoProvider::BRAND_IMAGE_SIZE;
-		$this->manager->add_setting(
+		$this->registerSizeChoicesFor(
+			$prefix,
 			$id_logo_img_size,
-			[
-				'default'			=> $this->config->get($id_logo_img_size),
-				'type'				=> 'theme_mod',
-				'transport'			=> 'refresh',
-				'sanitize_callback'	=> 'sanitize_text_field',
-			]
-		);
-
-		$this->manager->add_control(
-			"{$prefix}_$id_logo_img_size",
-			[
-				'settings'	=> $id_logo_img_size,
-				'label'		=> \__( 'Logo image size', 'italystrap' ),
-				'section'	=> self::SECTION,
-				'type'		=> 'select',
-				'priority'	=> 80,
-				'choices'	=> $this->buildSizeChoices(),
-			]
+			\__( 'Logo image size', 'italystrap' ),
+			self::SECTION,
+			'select',
+			80
 		);
 	}
 }

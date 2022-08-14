@@ -8,7 +8,9 @@ use ItalyStrap\Theme\ThumbnailsSubscriber;
 
 class ConfigThemeSupportProvider {
 
+	const CUSTOM_HEADER ='custom-header';
 	const CUSTOM_LOGO = 'custom-logo';
+
 	private ConfigInterface $config;
 
 	public function __construct( ConfigInterface $config ) {
@@ -16,9 +18,7 @@ class ConfigThemeSupportProvider {
 	}
 
 	public function __invoke(): iterable {
-		$size_name_registered = (string)$this->config->get(ConfigSiteLogoProvider::BRAND_IMAGE_SIZE);
-		$width = (int)$this->config->get(ThumbnailsSubscriber::class . '.' . $size_name_registered . '.width');
-		$height = (int)$this->config->get(ThumbnailsSubscriber::class . '.' . $size_name_registered . '.height');
+		$logo_size_name_registered = (string)$this->config->get(ConfigSiteLogoProvider::BRAND_IMAGE_SIZE);
 
 		yield SupportSubscriber::class => 	[
 			/**
@@ -74,10 +74,10 @@ class ConfigThemeSupportProvider {
 			 *
 			 * @var array
 			 */
-			'custom-header'	=> [
+			self::CUSTOM_HEADER	=> [
 				'default-image'				=> '',
 				'width'						=> 1140,
-				'height'					=> 500,
+				'height'					=> 200,
 				'flex-height'				=> true,
 				'flex-width'				=> true,
 				'uploads'					=> true,
@@ -91,12 +91,16 @@ class ConfigThemeSupportProvider {
 			],
 
 			self::CUSTOM_LOGO	=> [
-				'height'      => $height,
-				'width'       => $width,
+				'width'       => (int)$this->config->get(
+					ThumbnailsSubscriber::class . ".$logo_size_name_registered.width"
+				),
+				'height'      => (int)$this->config->get(
+					ThumbnailsSubscriber::class . ".$logo_size_name_registered.height"
+				),
 				'flex-height' => true,
 				'flex-width'  => true,
 				'header-text' => ['site-title', 'site-description'],
-				//			'unlink-homepage-logo' => true,
+				'unlink-homepage-logo' => true,
 			],
 
 			/**

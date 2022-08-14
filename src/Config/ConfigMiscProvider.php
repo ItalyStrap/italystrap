@@ -5,20 +5,8 @@ namespace ItalyStrap\Config;
 
 class ConfigMiscProvider {
 
-	private ConfigInterface $config;
-
-	public function __construct(ConfigInterface $config) {
-		$this->config = $config;
-	}
-
 	public function __invoke(): iterable {
 		return [
-			'custom_header'					=> [
-				'container_width'	=> 'container',
-			],
-
-//			'custom_css'					=> '',
-
 			/**
 			 * ==========================================================
 			 *

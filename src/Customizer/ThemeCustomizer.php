@@ -118,7 +118,6 @@ class ThemeCustomizer implements SubscriberInterface {
 
 		$files = array(
 			'/settings/layout.php',
-			'/settings/header.php',
 			'/settings/navbar.php',
 			'/settings/post-content-template.php',
 		);

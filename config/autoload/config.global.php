@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use ItalyStrap\Config\ConfigCustomHeaderProvider;
 use ItalyStrap\Config\ConfigSiteLogoProvider;
 use ItalyStrap\Config\ConfigColophonProvider;
 use ItalyStrap\Config\ConfigColorSectionProvider;
@@ -25,6 +26,7 @@ return [
 
 	ConfigProviderExtension::class => [
 		ConfigThemeProvider::class,
+		ConfigCustomHeaderProvider::class,
 		ConfigSiteLogoProvider::class,
 		ConfigColorSectionProvider::class,
 		ConfigMiscProvider::class,

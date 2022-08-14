@@ -4,13 +4,11 @@ declare(strict_types=1);
 namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigNotFoundProvider;
 use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Event\EventDispatcherInterface;
-use ItalyStrap\Theme\ThumbnailsSubscriber;
 
 class PostThumbnailFields {
-	use BuildThumbnailSizeChoicesTrait;
+	use BuildThumbnailSizeChoicesTrait, ComponentsWidthChoicesTrait;
 
 	private \WP_Customize_Manager $manager;
 	private ConfigInterface $config;
@@ -115,14 +113,7 @@ class PostThumbnailFields {
 				// phpcs:enable
 				'section'		=> self::class,
 				'type'			=> 'select',
-				'choices'		=> [
-					ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGN_NONE => \__( 'None', 'italystrap' ),
-					ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGN_FULL => \__( 'Full', 'italystrap' ),
-					ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGN_WIDE => \__( 'Wide', 'italystrap' ),
-					ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGN_CENTER => \__( 'Center', 'italystrap' ),
-					ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGN_LEFT => \__( 'Left', 'italystrap' ),
-					ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGN_RIGHT => \__( 'Right', 'italystrap' ),
-				],
+				'choices'		=> $this->getThumbnailAlignementsChoices(),
 			]
 		);
 	}

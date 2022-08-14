@@ -61,49 +61,49 @@ class ColophonFields {
 			]
 		);
 
-		$this->manager->add_setting(
-			ConfigColophonProvider::COLOPHON_ACTION,
-			[
-				'default'			=> $this->config->get( ConfigColophonProvider::COLOPHON_ACTION ),
-				'type'				=> 'theme_mod',
-				'transport'			=> 'refresh',
-				'sanitize_callback'	=> 'sanitize_text_field',
-			]
-		);
-
-		$this->manager->add_control(
-			ConfigColophonProvider::COLOPHON_ACTION,
-			[
-				'label'			=> \__( 'Footer\'s Colophon Position', 'italystrap' ),
-				'description'	=> \__( 'Add text for footer\'s colophon here', 'italystrap' ),
-				'section'		=> self::class,
-				'settings'		=> ConfigColophonProvider::COLOPHON_ACTION,
-				'priority'		=> 10,
-				'type'			=> 'select',
-				'choices'		=> $this->getAllThemePosition(),
-			]
-		);
-
-		$this->manager->add_setting(
-			ConfigColophonProvider::COLOPHON_PRIORITY,
-			[
-				'default'			=> $this->config->get( ConfigColophonProvider::COLOPHON_PRIORITY ),
-				'type'				=> 'theme_mod',
-				'transport'			=> 'refresh',
-				'sanitize_callback'	=> 'sanitize_text_field',
-			]
-		);
-
-		$this->manager->add_control(
-			ConfigColophonProvider::COLOPHON_PRIORITY,
-			[
-				'label'			=> \__( 'Footer\'s Colophon Position', 'italystrap' ),
-				'description'	=> \__( 'Add text for footer\'s colophon here', 'italystrap' ),
-				'section'		=> self::class,
-				'settings'		=> ConfigColophonProvider::COLOPHON_PRIORITY,
-				'priority'		=> 10,
-				'type'			=> 'number',
-			]
-		);
+//		$this->manager->add_setting(
+//			ConfigColophonProvider::COLOPHON_ACTION,
+//			[
+//				'default'			=> $this->config->get( ConfigColophonProvider::COLOPHON_ACTION ),
+//				'type'				=> 'theme_mod',
+//				'transport'			=> 'refresh',
+//				'sanitize_callback'	=> 'sanitize_text_field',
+//			]
+//		);
+//
+//		$this->manager->add_control(
+//			ConfigColophonProvider::COLOPHON_ACTION,
+//			[
+//				'label'			=> \__( 'Footer\'s Colophon Position', 'italystrap' ),
+//				'description'	=> \__( 'Add text for footer\'s colophon here', 'italystrap' ),
+//				'section'		=> self::class,
+//				'settings'		=> ConfigColophonProvider::COLOPHON_ACTION,
+//				'priority'		=> 10,
+//				'type'			=> 'select',
+//				'choices'		=> $this->getAllThemePosition(),
+//			]
+//		);
+//
+//		$this->manager->add_setting(
+//			ConfigColophonProvider::COLOPHON_PRIORITY,
+//			[
+//				'default'			=> $this->config->get( ConfigColophonProvider::COLOPHON_PRIORITY ),
+//				'type'				=> 'theme_mod',
+//				'transport'			=> 'refresh',
+//				'sanitize_callback'	=> 'sanitize_text_field',
+//			]
+//		);
+//
+//		$this->manager->add_control(
+//			ConfigColophonProvider::COLOPHON_PRIORITY,
+//			[
+//				'label'			=> \__( 'Footer\'s Colophon Position', 'italystrap' ),
+//				'description'	=> \__( 'Add text for footer\'s colophon here', 'italystrap' ),
+//				'section'		=> self::class,
+//				'settings'		=> ConfigColophonProvider::COLOPHON_PRIORITY,
+//				'priority'		=> 10,
+//				'type'			=> 'number',
+//			]
+//		);
 	}
 }

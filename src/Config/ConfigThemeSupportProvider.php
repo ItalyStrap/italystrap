@@ -131,7 +131,6 @@ class ConfigThemeSupportProvider {
 
 			/**
 			 * Add support for the builtin breadcrumbs
-			 * @see in structure.php
 			 */
 			'breadcrumbs',
 

@@ -15,7 +15,10 @@ trait ComponentsWidthChoicesTrait {
 		yield ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGN_WIDE => \__('Align Wide', 'italystrap');
 	}
 
-	private function getThumbnailAlignementsChoices() {
+	/**
+	 * @psalm-return \Generator<string, string, mixed, void>
+	 */
+	private function getThumbnailAlignementsChoices(): \Generator {
 		yield ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGN_NONE => \__('Align None', 'italystrap');
 		yield ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGN_FULL => \__('Align Full', 'italystrap');
 		yield ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGN_WIDE => \__('Align Wide', 'italystrap');

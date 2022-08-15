@@ -5,6 +5,8 @@ namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
 use	ItalyStrap\Customizer\Control\Textarea;
+use WP_Error;
+use WP_Post;
 
 class CustomCssFields {
 

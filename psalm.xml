@@ -12,8 +12,6 @@
         <ignoreFiles>
             <directory name="vendor" />
             <directory name="src/Admin" />
-            <directory name="src/Custom" />
-            <directory name="src/Customizer" />
             <directory name="src/Navbar" />
             <directory name="src/Debug" />
         </ignoreFiles>
@@ -26,7 +24,13 @@
     <issueHandlers>
         <UndefinedFunction>
             <errorLevel type="suppress">
+                <referencedFunction name="new_cmb2_box"/>
             </errorLevel>
         </UndefinedFunction>
+        <UndefinedClass>
+            <errorLevel type="suppress">
+                <referencedClass name="CMB2"/>
+            </errorLevel>
+        </UndefinedClass>
     </issueHandlers>
 </psalm>

@@ -53,7 +53,7 @@ class FeaturedImage implements ComponentInterface, SubscriberInterface {
 		echo \do_blocks( '<!-- wp:post-featured-image ' . \json_encode( $config ) . '  /-->' );
 	}
 
-	public function getThumbnailSizeForFullWidthLayout( $size ) {
+	public function getThumbnailSizeForFullWidthLayout( string $size ): string {
 		$site_layout = (string) $this->config->get( 'site_layout' );
 
 		if ( 'full_width' === $site_layout ) {

@@ -5,7 +5,6 @@ namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigThemeProvider;
-use ItalyStrap\Customizer\Control\Multicheck;
 
 class PostContentTemplateFields {
 
@@ -24,6 +23,10 @@ class PostContentTemplateFields {
 	}
 
 	public function __invoke(): void {
+		if ( ! \class_exists( '\ItalyStrap\Customizer\Control\Multicheck' ) ) {
+			return;
+		}
+
 		$prefix = $this->config->get(ConfigThemeProvider::PREFIX);
 
 		$this->manager->add_section(
@@ -54,7 +57,7 @@ class PostContentTemplateFields {
 
 		$this->manager->add_control(
 			$this->factory->make(
-				Multicheck::class,
+				'\ItalyStrap\Customizer\Control\Multicheck',
 				$this->manager,
 				"{$prefix}_$id_post_content_template",
 				[

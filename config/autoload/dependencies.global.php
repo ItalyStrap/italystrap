@@ -71,6 +71,7 @@ use ItalyStrap\StdLib\Media\ImageSizeInterface;
 use ItalyStrap\Theme\AfterSetupThemeEvent;
 use ItalyStrap\Config\ConfigCurrentTemplateSubscriber;
 use ItalyStrap\Theme\License;
+use ItalyStrap\Theme\Metaboxes;
 use ItalyStrap\Theme\NavMenusSubscriber;
 use ItalyStrap\Theme\SidebarsSubscriber;
 use ItalyStrap\Theme\SupportSubscriber;
@@ -316,9 +317,7 @@ return [
 		TextDomainSubscriber::class,
 		ThumbnailsSubscriber::class,
 		PostTypeSupportSubscriber::class,
-
-
-		Custom\Metabox\Register::class,
+		Metaboxes::class,
 
 		Admin\Nav_Menu\ItemCustomFields::class,
 

@@ -73,12 +73,12 @@ class CustomHeaderImage implements ComponentInterface, SubscriberInterface {
 		);
 	}
 
-	private function printForAttachment() {
+	private function printForAttachment(): string {
 		$post_meta_id = \absint( \get_post_meta( \get_the_ID(), '_italystrap_custom_header_id', true ) );
 		return $this->getAttachmentImage($post_meta_id);
 	}
 
-	private function getAttachmentImage( $id, string $size = 'full' ): string {
+	private function getAttachmentImage( int $id, string $size = 'full' ): string {
 
 		$attr = [
 			'class'		=> "attachment-$id attachment-header size-header",

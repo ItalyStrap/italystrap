@@ -5,6 +5,7 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\FeaturedImage;
+use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
@@ -49,19 +50,21 @@ class FeaturedImageTest extends \Codeception\Test\Unit {
 		$sut = $this->getInstance();
 		$this->defineFunction('is_singular', fn() => false);
 
-		$this->config->get( 'site_layout' )->willReturn('full_width');
+		$size_slig_result = 'full_width';
+		$this->config->get( ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE )->willReturn($size_slig_result);
+		$this->config->get( 'site_layout' )->willReturn($size_slig_result);
+		$this->config->get(ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGNMENT)->willReturn($size_slig_result);
+
 //		$this->defineFunction('is_page_template', static function ( string $template ) {
 //			Assert::assertSame('full-width.php', $template, '');
 //			return 'full-width';
 //		});
 
 		$this->defineFunction('do_blocks', static function ( string $block ) {
-			return 'block';
+			return 'From do_blocks';
 		});
 
-		$this->config->get( 'post_thumbnail_size' )->willReturn('post-thumbnail');
-
-		$this->expectOutputString('block');
+		$this->expectOutputString('From do_blocks');
 		$sut->display();
 	}
 }

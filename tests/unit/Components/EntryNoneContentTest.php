@@ -5,13 +5,15 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\EntryNoneContent;
+use ItalyStrap\Config\ConfigNotFoundProvider;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class EntryNoneContentTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): EntryNoneContent {
 		$sut = new EntryNoneContent($this->getConfig(), $this->getView(), $this->getDispatcher());
@@ -33,11 +35,11 @@ class EntryNoneContentTest extends \Codeception\Test\Unit {
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
 
-		$this->config->toArray()->willReturn([]);
+		$this->config->get(ConfigNotFoundProvider::CONTENT)->willReturn('Some content')->shouldBeCalledOnce();
 
 		$this->view->render( 'posts/none/content', Argument::type('array') )->willReturn('posts/none/content');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			Assert::assertEquals('posts/none/content', $block, '');
 			return 'from do_block';
 		});

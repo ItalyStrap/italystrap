@@ -5,13 +5,15 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\EntryNoneTitle;
+use ItalyStrap\Config\ConfigNotFoundProvider;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class EntryNoneTitleTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): EntryNoneTitle {
 		$sut = new EntryNoneTitle($this->getConfig(), $this->getView(), $this->getDispatcher());
@@ -33,11 +35,11 @@ class EntryNoneTitleTest extends \Codeception\Test\Unit {
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
 
-		$this->config->toArray()->willReturn([]);
+		$this->config->get(ConfigNotFoundProvider::TITLE)->willReturn('Some content');
 
 		$this->view->render( 'posts/none/title', Argument::type('array') )->willReturn('posts/none/title');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			Assert::assertEquals('posts/none/title', $block, '');
 			return 'from do_block';
 		});

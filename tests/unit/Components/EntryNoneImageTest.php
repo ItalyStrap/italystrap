@@ -5,16 +5,19 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\EntryNoneImage;
+use ItalyStrap\Config\ConfigNotFoundProvider;
+use ItalyStrap\Config\ConfigPostThumbnailProvider;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class EntryNoneImageTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): EntryNoneImage {
-		$sut = new EntryNoneImage($this->getConfig(), $this->getView(), $this->getDispatcher());
+		$sut = new EntryNoneImage($this->getConfig(), $this->getView(), $this->getDispatcher(), $this->getTag());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}
@@ -24,6 +27,9 @@ class EntryNoneImageTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
+		$this->defineFunction('is_404', fn() => true);
+		$this->config->get(ConfigNotFoundProvider::SHOW_IMAGE, '')->willReturn('show');
+
 		$this->assertTrue($sut->shouldDisplay(), '');
 	}
 
@@ -33,14 +39,26 @@ class EntryNoneImageTest extends \Codeception\Test\Unit {
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
 
-		$this->view->render( 'posts/none/image', Argument::type('array') )->willReturn('posts/none/image');
+		$this->config->get(ConfigPostThumbnailProvider::POST_THUMBNAIL_ALIGNMENT)->willReturn('align');
+		$this->config->get(ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE)->willReturn('thumb-size');
+		$this->config->get(ConfigNotFoundProvider::ID_IMAGE, 0)->willReturn(10);
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
-			Assert::assertEquals('posts/none/image', $block, '');
-			return 'from do_block';
+		$this->defineFunction('wp_get_attachment_image', function (
+			$attachment_id,
+			$size = 'thumbnail',
+			$icon = false,
+			$attr = ''
+		): string {
+			Assert::assertSame(10, $attachment_id, '');
+			Assert::assertSame('thumb-size', $size, '');
+			Assert::assertIsArray($attr, '');
+
+			return 'From wp_get_attachment_image';
 		});
 
-		$this->expectOutputString('from do_block');
+		$this->view->render( 'figure', Argument::type('array') )->willReturn('figure');
+
+		$this->expectOutputString('figure');
 		$sut->display();
 	}
 }

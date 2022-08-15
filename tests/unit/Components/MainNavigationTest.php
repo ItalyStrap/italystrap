@@ -6,13 +6,14 @@ namespace ItalyStrap\Tests\Components;
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\MainNavigation;
 use ItalyStrap\Components\Navigations\Navbar;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class MainNavigationTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): MainNavigation {
 		$sut = new MainNavigation($this->getConfig(), $this->getView(), $this->getNavbar());
@@ -34,9 +35,9 @@ class MainNavigationTest extends \Codeception\Test\Unit {
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
 
-		$this->view->render( 'headers/navbar', Argument::type('array') )->willReturn('headers/navbar');
+		$this->view->render( 'navigation', Argument::type('array') )->willReturn('headers/navbar');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			Assert::assertEquals('headers/navbar', $block, '');
 			return 'from do_block';
 		});

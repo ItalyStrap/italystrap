@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use ItalyStrap\Config\ConfigCustomHeaderProvider;
+use ItalyStrap\Config\ConfigNavigationProvider;
 use ItalyStrap\Config\ConfigSiteLogoProvider;
 use ItalyStrap\Config\ConfigColophonProvider;
 use ItalyStrap\Config\ConfigColorSectionProvider;
@@ -30,6 +31,7 @@ return [
 		ConfigSiteLogoProvider::class,
 		ConfigColorSectionProvider::class,
 		ConfigMiscProvider::class,
+		ConfigNavigationProvider::class,
 		ConfigColophonProvider::class,
 
 		ConfigNotFoundProvider::class,

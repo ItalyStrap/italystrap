@@ -36,7 +36,7 @@ class EntryNoneImage implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function shouldDisplay(): bool {
-		return \is_404() && 'show' === (string)$this->config->get(ConfigNotFoundProvider::SHOW_IMAGE, '') ;
+		return \is_404() && 'show' === (string)$this->config->get(ConfigNotFoundProvider::SHOW_IMAGE, '');
 	}
 
 	public function display(): void {

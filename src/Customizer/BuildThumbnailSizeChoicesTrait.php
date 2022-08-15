@@ -24,5 +24,4 @@ trait BuildThumbnailSizeChoicesTrait {
 
 		return $size_choices;
 	}
-
 }

@@ -1,14 +1,16 @@
 <?php
+declare(strict_types=1);
 
+namespace ItalyStrap\Tests;
+
+use Codeception\Test\Unit;
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Preview;
-use ItalyStrap\Tests\BaseUnitTrait;
-use PHPUnit\Framework\Assert;
+use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
 
-class PreviewTest extends \Codeception\Test\Unit {
+class PreviewTest extends Unit {
 
-
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): Preview {
 		$sut = new Preview();
@@ -22,9 +24,7 @@ class PreviewTest extends \Codeception\Test\Unit {
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
 
-		\tad\FunctionMockerLe\define('is_preview', static function (): bool {
-			return true;
-		});
+		$this->defineFunction('is_preview', static fn(): bool => true);
 
 		$this->assertTrue($sut->shouldDisplay(), '');
 	}
@@ -34,13 +34,13 @@ class PreviewTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
-		\tad\FunctionMockerLe\define('__', static function ( string $text, string $domain) {
+		$this->defineFunction('__', static function ( string $text, string $domain) {
 			return 'block';
 		});
-		\tad\FunctionMockerLe\define('wp_kses_post', static function ( string $text ) {
+		$this->defineFunction('wp_kses_post', static function ( string $text ) {
 			return 'block';
 		});
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			return 'block';
 		});
 

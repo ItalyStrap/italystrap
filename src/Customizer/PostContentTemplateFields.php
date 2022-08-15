@@ -33,7 +33,9 @@ class PostContentTemplateFields {
 				'panel'			=> PanelFields::class,
 				'description'	=>
 					\__(
+						// phpcs:disable
 						'Allows you to customize the post content template for all archive type pages. (Not page and post).',
+						// phpcs:enable
 						'italystrap'
 					),
 			]

@@ -14,7 +14,7 @@ use \Walker_Nav_Menu;
 
 class WalkerNavMenuTest extends Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	/**
 	 * @var \UnitTester
@@ -23,19 +23,19 @@ class WalkerNavMenuTest extends Unit {
 
 	// phpcs:ignore
 	protected function _before() {
-		\tad\FunctionMockerLe\define( 'add_filter', function ( ...$args ) {
+		$this->defineFunction( 'add_filter', function ( ...$args ) {
 			return true;
 		} );
 
-		\tad\FunctionMockerLe\define( 'apply_filters', function ( ...$args ) {
+		$this->defineFunction( 'apply_filters', function ( ...$args ) {
 			return $args[1];
 		} );
 
-		\tad\FunctionMockerLe\define( 'esc_attr', function ( ...$args ) {
+		$this->defineFunction( 'esc_attr', function ( ...$args ) {
 			return $args[0];
 		} );
 
-		\tad\FunctionMockerLe\define( 'remove_filter', function ( ...$args ) {
+		$this->defineFunction( 'remove_filter', function ( ...$args ) {
 			return true;
 		} );
 	}

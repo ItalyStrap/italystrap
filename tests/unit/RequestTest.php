@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace ItalyStrap\Tests;
+
 use Codeception\Test\Unit;
 use GuzzleHttp\Psr7\Utils;
 
@@ -10,12 +12,6 @@ class RequestTest extends Unit {
 	 * @var \UnitTester
 	 */
 	protected $tester;
-	
-	protected function _before() {
-	}
-
-	protected function _after() {
-	}
 
 	// tests
 	public function testSomeFeature() {

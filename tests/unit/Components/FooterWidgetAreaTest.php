@@ -5,13 +5,14 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\FooterWidgetArea;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class FooterWidgetAreaTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): FooterWidgetArea {
 		$sut = new FooterWidgetArea($this->getConfig(), $this->getView());
@@ -37,7 +38,7 @@ class FooterWidgetAreaTest extends \Codeception\Test\Unit {
 
 		$this->view->render( 'footers/widget-area', Argument::type('array') )->willReturn('footers/widget-area');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			Assert::assertEquals('footers/widget-area', $block, '');
 			return 'from do_block';
 		});

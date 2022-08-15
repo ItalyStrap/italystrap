@@ -5,13 +5,14 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Comments;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class CommentsTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): Comments {
 		$sut = new Comments($this->getConfig(), $this->getView(), $this->getDispatcher());
@@ -25,15 +26,15 @@ class CommentsTest extends \Codeception\Test\Unit {
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
 
-		\tad\FunctionMockerLe\define('is_singular', static function () {
+		$this->defineFunction('is_singular', static function () {
 			return true;
 		});
 
-		\tad\FunctionMockerLe\define('get_post_type', static function () {
+		$this->defineFunction('get_post_type', static function () {
 			return 'post';
 		});
 
-		\tad\FunctionMockerLe\define(
+		$this->defineFunction(
 			'post_type_supports',
 			static function ( string $post_type, string $feature) {
 				Assert::assertEquals('post', $post_type, '');
@@ -54,7 +55,7 @@ class CommentsTest extends \Codeception\Test\Unit {
 
 		$this->view->render( 'comments' )->willReturn('comments');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			Assert::assertEquals('comments', $block, '');
 			return 'from do_block';
 		});

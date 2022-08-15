@@ -11,6 +11,7 @@ class BreadcrumbsTest extends \Codeception\Test\Unit {
 
 	use BaseUnitTrait;
 
+	// phpcs:ignore
 	protected function _before() {
 		$this->setUpProphet();
 	}

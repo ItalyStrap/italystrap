@@ -5,13 +5,14 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Colophon;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class ColophonTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): Colophon {
 		$sut = new Colophon($this->getConfig(), $this->getView(), $this->getDispatcher());
@@ -42,7 +43,7 @@ class ColophonTest extends \Codeception\Test\Unit {
 
 		$this->view->render( 'footers/colophon', Argument::type('array') )->willReturn('footers/colophon');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			Assert::assertEquals('footers/colophon', $block, '');
 			return 'from do_block';
 		});

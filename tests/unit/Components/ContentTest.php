@@ -5,13 +5,14 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Content;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class ContentTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): Content {
 		$sut = new Content($this->getConfig(), $this->getView());
@@ -25,13 +26,13 @@ class ContentTest extends \Codeception\Test\Unit {
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
 
-		\tad\FunctionMockerLe\define('is_singular', static fn() => true);
+		$this->defineFunction('is_singular', static fn() => true);
 
-		\tad\FunctionMockerLe\define('get_post_type', static function () {
+		$this->defineFunction('get_post_type', static function () {
 			return 'post';
 		});
 
-		\tad\FunctionMockerLe\define(
+		$this->defineFunction(
 			'post_type_supports',
 			static function ( string $post_type, string $feature) {
 				Assert::assertEquals('post', $post_type, '');
@@ -49,7 +50,7 @@ class ContentTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			return 'block';
 		});
 

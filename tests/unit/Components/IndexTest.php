@@ -3,15 +3,17 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Components;
 
+use Codeception\Test\Unit;
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Index;
+use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class IndexTest extends \Codeception\Test\Unit {
+class IndexTest extends Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): Index {
 		$sut = new Index($this->getConfig(), $this->getView(), $this->getDispatcher());
@@ -35,7 +37,7 @@ class IndexTest extends \Codeception\Test\Unit {
 
 		$this->view->render( 'index', Argument::type('array') )->willReturn('index');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			Assert::assertEquals('index', $block, '');
 			return 'from do_block';
 		});

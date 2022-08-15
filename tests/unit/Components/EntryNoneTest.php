@@ -5,13 +5,14 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\EntryNone;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class EntryNoneTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): EntryNone {
 		$sut = new EntryNone($this->getConfig(), $this->getView(), $this->getDispatcher());
@@ -35,7 +36,7 @@ class EntryNoneTest extends \Codeception\Test\Unit {
 
 		$this->view->render( 'posts/none', Argument::type('array') )->willReturn('posts/none');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			Assert::assertEquals('posts/none', $block, '');
 			return 'from do_block';
 		});

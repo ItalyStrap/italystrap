@@ -3,20 +3,19 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
+use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
 use function ItalyStrap\Factory\get_config;
 use function ItalyStrap\Image\get_ID_image_from_url;
 
-// phpcs:disable
-require_once codecept_root_dir() . '/functions/images.php';
-// phpcs:enable
-
 class ImageFunctionsTest extends \Codeception\Test\Unit {
+	use UndefinedFunctionDefinitionTrait;
 
 	/**
 	 * @var \UnitTester
 	 */
 	protected $tester;
-	
+
+	// phpcs:ignore
 	protected function _before() {
 		$config = get_config();
 		$config->merge([
@@ -25,11 +24,8 @@ class ImageFunctionsTest extends \Codeception\Test\Unit {
 			'int'		=> '1',
 		]);
 
-		\tad\FunctionMockerLe\define( 'esc_url', fn( string $string ) => $string );
-		\tad\FunctionMockerLe\define( 'wp_get_attachment_url', fn( $id ) => 'url' );
-	}
-
-	protected function _after() {
+		$this->defineFunction( 'esc_url', fn( string $string ) => $string );
+		$this->defineFunction( 'wp_get_attachment_url', fn( $id ) => 'url' );
 	}
 
 	/**
@@ -41,6 +37,7 @@ class ImageFunctionsTest extends \Codeception\Test\Unit {
 
 			public $posts;
 
+			// phpcs:ignore
 			public function get_var( $arg ) {
 			}
 
@@ -48,7 +45,7 @@ class ImageFunctionsTest extends \Codeception\Test\Unit {
 			}
 		};
 
-		\tad\FunctionMockerLe\define( 'absint', fn( $val ) => (int) $val );
+		$this->defineFunction( 'absint', fn( $val ) => (int) $val );
 
 		get_ID_image_from_url( 'url' );
 	}

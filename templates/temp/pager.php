@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-
+// phpcs:ignoreFile
 ?>
 <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between"}} -->
 <div class="wp-block-group">

@@ -52,7 +52,9 @@ class ExperimentalCustomizerOptionWithAndPosition implements SubscriberInterface
 				'italystrap_footer'			=> \__( 'In the footer', 'italystrap' ),
 				'italystrap_after_footer'	=> \__( 'In the footer closed', 'italystrap' ),
 
+				// phpcs:disable
 				'italystrap_after'			=> \__( 'At the end of the page before the <code>&lt;/body&gt;</code>', 'italystrap' ),
+				// phpcs:enable
 			],
 			$new_position
 		);

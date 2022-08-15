@@ -5,13 +5,14 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Loop;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class LoopTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): Loop {
 		$sut = new Loop($this->getConfig(), $this->getView(), $this->getDispatcher());
@@ -35,7 +36,7 @@ class LoopTest extends \Codeception\Test\Unit {
 
 		$this->view->render( 'posts/loop', Argument::type('array') )->willReturn('posts/loop');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			Assert::assertEquals('posts/loop', $block, '');
 			return 'from do_block';
 		});

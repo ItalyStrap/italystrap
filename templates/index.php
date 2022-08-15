@@ -45,7 +45,7 @@ $dispatcher->dispatch( 'italystrap_before_main' );
 //		] );
 
 			$dispatcher->dispatch( 'italystrap_before_content' );
-		?>
+?>
 	<!-- wp:columns {"align":"wide","layout":{"inherit":true}} -->
 	<div class="wp-block-columns alignwide">
 

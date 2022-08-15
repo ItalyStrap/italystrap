@@ -6,12 +6,13 @@ namespace ItalyStrap\Tests\Components;
 use ItalyStrap\Components\ArchiveAuthorInfo;
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\PostAuthorInfo;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 
 class PostAuthorInfoTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): PostAuthorInfo {
 		$sut = new PostAuthorInfo($this->getConfig(), $this->getView());
@@ -25,11 +26,11 @@ class PostAuthorInfoTest extends \Codeception\Test\Unit {
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
 
-		\tad\FunctionMockerLe\define('get_post_type', static function (): string {
+		$this->defineFunction('get_post_type', static function (): string {
 			return 'post';
 		});
 
-		\tad\FunctionMockerLe\define(
+		$this->defineFunction(
 			'post_type_supports',
 			static function ( string $post_type, string $feature): bool {
 				Assert::assertEquals('post', $post_type, '');
@@ -37,7 +38,7 @@ class PostAuthorInfoTest extends \Codeception\Test\Unit {
 			}
 		);
 
-		\tad\FunctionMockerLe\define(
+		$this->defineFunction(
 			'is_singular',
 			static function (): bool {
 				return true;

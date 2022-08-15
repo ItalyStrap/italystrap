@@ -4,13 +4,13 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests;
 
 use ItalyStrap\Finder\FinderInterface;
+use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
 use function ItalyStrap\Config\config_files_finder;
 use function ItalyStrap\Config\get_config_file_content;
 use function ItalyStrap\Config\get_config_file_content_last;
 
-require_once \codecept_root_dir() . 'functions/config-helpers.php';
-
 class ConfigHelpersTest extends \Codeception\Test\Unit {
+	use UndefinedFunctionDefinitionTrait;
 
 	/**
 	 * @var \UnitTester
@@ -22,8 +22,8 @@ class ConfigHelpersTest extends \Codeception\Test\Unit {
 
 		$_data = \codecept_data_dir( 'fixtures/config' );
 
-		\tad\FunctionMockerLe\define( 'get_stylesheet_directory', fn() => $_data . '/child-theme' );
-		\tad\FunctionMockerLe\define( 'get_template_directory', fn() => $_data . '/parent-theme' );
+		$this->defineFunction( 'get_stylesheet_directory', fn() => $_data . '/child-theme' );
+		$this->defineFunction( 'get_template_directory', fn() => $_data . '/parent-theme' );
 	}
 
 	// phpcs:ignore

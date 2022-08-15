@@ -13,10 +13,6 @@ use function tad\FunctionMocker\replace;
 use function tad\FunctionMocker\setUp;
 use function tad\FunctionMocker\tearDown;
 
-// phpcs:disable
-//require_once codecept_root_dir() . '/functions/factory.php';
-// phpcs:enable
-
 final class FactoryInjectorTest extends Unit {
 
 	use UndefinedFunctionDefinitionTrait;

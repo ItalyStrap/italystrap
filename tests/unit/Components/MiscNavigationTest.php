@@ -5,13 +5,14 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\MiscNavigation;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class MiscNavigationTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): MiscNavigation {
 		$sut = new MiscNavigation($this->getConfig(), $this->getView(), $this->getDispatcher());
@@ -24,7 +25,7 @@ class MiscNavigationTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldLoad() {
 
-		\tad\FunctionMockerLe\define('has_nav_menu', static function () {
+		$this->defineFunction('has_nav_menu', static function () {
 			return true;
 		});
 
@@ -40,7 +41,7 @@ class MiscNavigationTest extends \Codeception\Test\Unit {
 
 		$this->view->render( 'headers/navbar-top', Argument::type('array') )->willReturn('headers/navbar-top');
 
-		\tad\FunctionMockerLe\define('do_blocks', static function ( string $block ) {
+		$this->defineFunction('do_blocks', static function ( string $block ) {
 			Assert::assertEquals('headers/navbar-top', $block, '');
 			return 'from do_block';
 		});

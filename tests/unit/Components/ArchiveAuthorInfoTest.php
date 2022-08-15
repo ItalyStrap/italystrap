@@ -5,12 +5,13 @@ namespace ItalyStrap\Tests\Components;
 
 use ItalyStrap\Components\ArchiveAuthorInfo;
 use ItalyStrap\Components\ComponentInterface;
+use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
 use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 
 class ArchiveAuthorInfoTest extends \Codeception\Test\Unit {
 
-	use BaseUnitTrait;
+	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): ArchiveAuthorInfo {
 		$sut = new ArchiveAuthorInfo($this->getConfig(), $this->getView());
@@ -24,7 +25,7 @@ class ArchiveAuthorInfoTest extends \Codeception\Test\Unit {
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
 
-		\tad\FunctionMockerLe\define('is_author', static function (): bool {
+		$this->defineFunction('is_author', static function (): bool {
 			return true;
 		});
 

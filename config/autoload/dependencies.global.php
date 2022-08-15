@@ -45,6 +45,7 @@ use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigWpSubscriber;
+use ItalyStrap\Customizer\CustomizerAssetsSubscriber;
 use ItalyStrap\Customizer\CustomizerBodyTagAttributesSubscriber;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\EventDispatcher;
@@ -322,6 +323,7 @@ return [
 		Admin\Nav_Menu\ItemCustomFields::class,
 
 		CustomizerBodyTagAttributesSubscriber::class,
+		CustomizerAssetsSubscriber::class,
 		InlineStyleSubscriber::class,
 
 		/**

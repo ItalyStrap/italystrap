@@ -18,9 +18,7 @@ class CustomizerAssetsSubscriber implements SubscriberInterface {
 		];
 	}
 
-	public function __construct(
-		ConfigInterface $config
-	) {
+	public function __construct( ConfigInterface $config) {
 		$this->config = $config;
 	}
 
@@ -31,7 +29,8 @@ class CustomizerAssetsSubscriber implements SubscriberInterface {
 	public function enqueueScriptOnLivePreview(): void {
 		\wp_enqueue_script(
 			self::class,
-			$this->config->get( ConfigThemeProvider::TEMPLATE_DIR_URI ) . '/src/Customizer/js/src/theme-customizer.js',
+			$this->config->get( ConfigThemeProvider::TEMPLATE_DIR_URI )
+			. '/src/Customizer/assets/js/live-preview.min.js',
 			['jquery', 'customize-preview'],
 			null,
 			true
@@ -46,7 +45,7 @@ class CustomizerAssetsSubscriber implements SubscriberInterface {
 		\wp_enqueue_script(
 			self::class,
 			$this->config->get( ConfigThemeProvider::TEMPLATE_DIR_URI )
-			. '/src/Customizer/js/src/customize-controls.js',
+			. '/src/Customizer/assets/js/customize-controls.min.js',
 			['jquery'],
 			null,
 			true

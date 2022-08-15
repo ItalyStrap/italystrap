@@ -1,1 +1,0 @@
-!function(a){wp.customize("background_color",function(b){b.bind(function(b){a("body").css("background-color",b)})}),wp.customize("link_textcolor",function(b){b.bind(function(b){a("a").css("color",b)})}),wp.customize("hx_textcolor",function(b){b.bind(function(b){a("h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading").css("color",b)})})}(jQuery);

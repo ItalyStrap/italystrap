@@ -70,9 +70,19 @@ module.exports = grunt => {
 					'assets/js/index.min.js': [
 						...BOOTSTRAP_JS_FILES,
 						'assets/ts/index.js' // <- Modify this
-					],                   
+					],
 				}
-			}
+			},
+			customizer: {
+				files: {
+					"src/Customizer/assets/js/customize-controls.min.js": [
+						"src/Customizer/assets/js/customize-controls.js"
+					],
+					"src/Customizer/assets/js/live-preview.min.js": [
+						"src/Customizer/assets/js/live-preview.js"
+					],
+				}
+			},
 		},
 
 		jshint: {

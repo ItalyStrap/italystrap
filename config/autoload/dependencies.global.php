@@ -51,7 +51,6 @@ use ItalyStrap\Theme\PostTypeSupportSubscriber;
 use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\View\ViewInterface;
 use Walker_Nav_Menu;
-use function ItalyStrap\Config\get_config_file_content;
 
 return [
 
@@ -131,10 +130,6 @@ return [
 	 * ==========================================================
 	 */
 	AurynConfig::DEFINITIONS			=> [
-
-		PostTypeSupportSubscriber::class	=> [
-			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/type-supports' ) ),
-		],
 
 		EditorSubscriber::class => [
 			'+finder'	=> static function ( string $named_param, Injector $injector ) {

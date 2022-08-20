@@ -3,39 +3,23 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-use \ItalyStrap\Config\ConfigInterface as Config;
+use \ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
-final class PostTypeSupportSubscriber implements Registrable, SubscriberInterface {
+final class PostTypeSupportSubscriber implements SubscriberInterface {
 
-	/**
-	 * @inheritDoc
-	 */
 	public function getSubscribedEvents(): iterable {
-		yield 'init'	=> self::REGISTER_CB;
+		yield 'init'	=> '__invoke';
 	}
 
-	/**
-	 * @var Config
-	 */
-	private $config;
+	private ConfigInterface $config;
 
-	/**
-	 * Init sidebars registration
-	 */
-	public function __construct( Config $config ) {
+	public function __construct( ConfigInterface $config ) {
 		$this->config = $config;
 	}
 
-	/**
-	 * Add theme supports
-	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_post_type_support
-	 *
-	 * @return void
-	 */
-	public function register() {
-		foreach ( $this->config as $post_type => $features ) {
+	public function __invoke(): void {
+		foreach ( (array)$this->config->get(self::class, []) as $post_type => $features ) {
 			\add_post_type_support( $post_type, $features );
 		}
 	}

@@ -8,11 +8,11 @@ use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
 
-class MainNavigation implements ComponentInterface, SubscriberInterface {
+class SiteTitle implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_after_header';
+	const EVENT_NAME = 'italystrap_navmenu_header';
 	const EVENT_PRIORITY = 10;
 
 	private ConfigInterface $config;
@@ -34,8 +34,6 @@ class MainNavigation implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-		echo \do_blocks( $this->view->render( 'navigation', [
-			EventDispatcherInterface::class => $this->dispatcher
-		] ) );
+		echo \do_blocks( '<!-- wp:site-title {"className":"navbar-brand"} /-->' );
 	}
 }

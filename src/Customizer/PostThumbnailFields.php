@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
+use ItalyStrap\Config\AlignmentChoicesTrait;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Event\EventDispatcherInterface;
 
 class PostThumbnailFields {
-	use BuildThumbnailSizeChoicesTrait, ComponentsWidthChoicesTrait;
+	use BuildThumbnailSizeChoicesTrait, AlignmentChoicesTrait;
 
 	private \WP_Customize_Manager $manager;
 	private ConfigInterface $config;
@@ -113,7 +114,7 @@ class PostThumbnailFields {
 				// phpcs:enable
 				'section'		=> self::class,
 				'type'			=> 'select',
-				'choices'		=> $this->getThumbnailAlignementsChoices(),
+				'choices'		=> $this->getHorizontalThumb(),
 			]
 		);
 	}

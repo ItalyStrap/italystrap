@@ -29,6 +29,7 @@ class PostAuthorInfo implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-		echo $this->view->render(null, []);
+//		echo $this->view->render(null, []);
+		echo 'POST_AUTHOR_INFO from ' . self::class;
 	}
 }

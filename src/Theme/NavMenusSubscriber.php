@@ -3,39 +3,63 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-use ItalyStrap\Config\ConfigInterface as Config;
+use ItalyStrap\Components\NavMenuPrimary;
+use ItalyStrap\Components\NavMenuSecondary;
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\Navigation\NavMenuLocation;
 
-final class NavMenusSubscriber implements Registrable, SubscriberInterface {
+final class NavMenusSubscriber implements SubscriberInterface {
 
-	/**
-	 * @inheritDoc
-	 */
+	private ConfigInterface $config;
+	private NavMenuLocation $location;
+
 	public function getSubscribedEvents(): iterable {
-		yield 'italystrap_theme_load'	=> [
-			static::CALLBACK	=> static::REGISTER_CB,
-			static::PRIORITY	=> 20,
+		yield 'init'	=> [
+			static::CALLBACK	=> '__invoke',
 		];
 	}
 
-	/**
-	 * @var Config
-	 */
-	private $config;
-
-	/**
-	 * Init sidebars registration
-	 */
-	public function __construct( Config $config ) {
+	public function __construct( ConfigInterface $config, NavMenuLocation $location ) {
 		$this->config = $config;
+		$this->location = $location;
 	}
 
-	/**
-	 * The class that implements this can be registered
-	 *
-	 * @return void
-	 */
-	public function register() {
-		\register_nav_menus( $this->config->toArray() );
+	public function __invoke() {
+		$this->location->registerMany($this->config->get(self::class, []));
+		$this->updateOlderNavMenu();
+	}
+
+	private function updateOlderNavMenu(): void {
+
+		$update = 1;
+
+		if ( (int)\get_theme_mod('nav_menu_locations_update') < $update ) {
+			$menu_location = \get_nav_menu_locations();
+
+			$new_keys = [
+				'main-menu' => NavMenuPrimary::class,
+				'secondary-menu' => NavMenuSecondary::class,
+//				'social-menu' => '0',
+//				'info-menu' => '0',
+//				'footer-menu' => '0',
+			];
+
+			$new_menu_locations = [];
+			foreach ( $menu_location as $location => $menu_id ) {
+				if ( ! \array_key_exists( (string)$location, $new_keys ) ) {
+					continue;
+				}
+
+				if ( $menu_id === 0 ) {
+					continue;
+				}
+
+				$new_menu_locations[$new_keys[$location]] = $menu_id;
+			}
+
+			\set_theme_mod( 'nav_menu_locations', $new_menu_locations );
+			\set_theme_mod( 'nav_menu_locations_update', $update );
+		}
 	}
 }

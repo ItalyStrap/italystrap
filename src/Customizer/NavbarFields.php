@@ -3,11 +3,13 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
+use ItalyStrap\Config\AlignmentChoicesTrait;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigThemeProvider;
-use ItalyStrap\Customizer\Control\Multicheck;
 
 class NavbarFields {
+
+	use AlignmentChoicesTrait;
 
 	private \WP_Customize_Manager $manager;
 	private ConfigInterface $config;
@@ -140,10 +142,7 @@ class NavbarFields {
 				// phpcs:enable
 				'section'		=> self::class,
 				'type'			=> 'radio',
-				'choices'		=> [
-					'container-fluid'	=> \__( 'Expand', 'italystrap' ),
-					'container'			=> \__( 'Contained', 'italystrap' ),
-				],
+				'choices'		=> $this->getHorizontalStandard(),
 				//		'active_callback'	=> function ( $control ) {
 				//			return $control->manager->get_setting('navbar[nav_width]')->value() == 'none';
 				//		},

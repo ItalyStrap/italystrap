@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
+use ItalyStrap\Config\AlignmentChoicesTrait;
 use ItalyStrap\Config\ConfigCustomHeaderProvider;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigThemeProvider;
 use ItalyStrap\Event\EventDispatcherInterface;
 
 class CustomHeaderFields {
-	use ComponentsWidthChoicesTrait, SizeChoicesTrait;
+	use SizeChoicesTrait, AlignmentChoicesTrait;
 
 	const SECTION = 'header_image';
 
@@ -52,7 +53,7 @@ class CustomHeaderFields {
 				'section'	=> self::SECTION,
 				'type'		=> 'select',
 				'settings'	=> $id_custom_header,
-				'choices'	=> $this->getAlignmentChoices(),
+				'choices'	=> $this->getHorizontalThumb(),
 			]
 		);
 

@@ -15,13 +15,6 @@ class ConfigPostThumbnailProvider {
 
 	const POST_THUMBNAIL_ID_DEFAULT = 'default_image';
 
-	const POST_THUMBNAIL_ALIGN_NONE = 'alignnone';
-	const POST_THUMBNAIL_ALIGN_CENTER = 'aligncenter';
-	const POST_THUMBNAIL_ALIGN_FULL = 'alignfull';
-	const POST_THUMBNAIL_ALIGN_WIDE = 'alignwide';
-	const POST_THUMBNAIL_ALIGN_LEFT = 'alignleft';
-	const POST_THUMBNAIL_ALIGN_RIGHT = 'alignright';
-
 	const WIDTH = 'width';
 	const HEIGHT = 'height';
 	const CROP = 'crop';
@@ -32,7 +25,7 @@ class ConfigPostThumbnailProvider {
 		$gutter = 30;
 
 		yield self::POST_THUMBNAIL_SIZE => self::POST_THUMBNAIL_SIZE_DEFAULT;
-		yield self::POST_THUMBNAIL_ALIGNMENT => self::POST_THUMBNAIL_ALIGN_FULL;
+		yield self::POST_THUMBNAIL_ALIGNMENT => AlignmentKeys::ALIGN_FULL;
 		yield self::POST_CONTENT_WIDTH => $this->getContentWidth(
 			1170,
 			12,

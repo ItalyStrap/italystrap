@@ -68,7 +68,8 @@ class Navbar {
 	public function __construct(
 		ConfigInterface $config,
 		Walker_Nav_Menu $walker,
-		$fallback_cb = false
+		$fallback_cb = false,
+		\ItalyStrap\Navigation\NavMenu $menu
 	) {
 
 		$this->config = $config;
@@ -84,6 +85,8 @@ class Navbar {
 
 		$this->navbar_id = \apply_filters( 'italystrap_navbar_id', 'italystrap-menu-' . $this->number );
 		$this->navbar_id = \apply_filters( 'italystrap_navbar_id_' . $this->number, $this->navbar_id );
+
+		$this->menu = $menu;
 	}
 
 	/**

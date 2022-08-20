@@ -5,14 +5,13 @@ namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
-use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
 
-class MainNavigation implements ComponentInterface, SubscriberInterface {
+class NavMenuHeader implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_after_header';
+	const EVENT_NAME = 'italystrap_before_navmenu';
 	const EVENT_PRIORITY = 10;
 
 	private ConfigInterface $config;
@@ -34,8 +33,8 @@ class MainNavigation implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-		echo \do_blocks( $this->view->render( 'navigation', [
-			EventDispatcherInterface::class => $this->dispatcher
-		] ) );
+		echo $this->view->render('navigation/header', [
+			EventDispatcherInterface::class => $this->dispatcher,
+		]);
 	}
 }

@@ -5,14 +5,13 @@ namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
-use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
 
-class MainNavigation implements ComponentInterface, SubscriberInterface {
+class NavMenuToggleButton implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_after_header';
+	const EVENT_NAME = 'italystrap_navmenu_header';
 	const EVENT_PRIORITY = 10;
 
 	private ConfigInterface $config;
@@ -34,8 +33,15 @@ class MainNavigation implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-		echo \do_blocks( $this->view->render( 'navigation', [
-			EventDispatcherInterface::class => $this->dispatcher
-		] ) );
+		echo '<button
+				class="navbar-toggler navbar-toggle"
+				type="button"
+				data-toggle="collapse"
+				data-target="#italystrap-menu-440383729"
+				aria-controls="italystrap-menu-440383729"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<!-- <span class="navbar-toggler-icon">&nbsp</span>-->
+			</button>';
 	}
 }

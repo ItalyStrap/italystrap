@@ -21,6 +21,15 @@ class Colophon implements ComponentInterface, SubscriberInterface {
 	private ViewInterface $view;
 	private EventDispatcherInterface $dispatcher;
 
+	public function getSubscribedEvents(): iterable {
+		$event_name = (string)$this->config->get(ConfigColophonProvider::COLOPHON_ACTION, self::EVENT_NAME);
+		$event_priority = (int)$this->config->get(ConfigColophonProvider::COLOPHON_PRIORITY, self::EVENT_PRIORITY);
+		yield $event_name	=> [
+			static::CALLBACK	=> 'display',
+			static::PRIORITY	=> $event_priority,
+		];
+	}
+
 	public function __construct(
 		ConfigInterface $config,
 		ViewInterface $view,

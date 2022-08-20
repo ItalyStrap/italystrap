@@ -98,7 +98,6 @@ open_tag_e('nav_container', 'div', [
 			</button>
 			<?php
 
-
 			close_tag_e( 'navbar_header' );
 
 			open_tag_e('collapsable_menu', 'div', [
@@ -138,7 +137,8 @@ open_tag_e('nav_container', 'div', [
 			$args = apply_filters( 'italystrap_main_nav_menu_args', $args );
 
 			echo $navbar->get_wp_nav_menu($args);
-			//			wp_nav_menu( $args );
+
+//            \do_action('navmenu');
 
 			if ( has_nav_menu( 'secondary-menu' ) ) :
 

@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Config;
 
+use ItalyStrap\Components\NavMenuPrimary;
+use ItalyStrap\Components\NavMenuSecondary;
+use ItalyStrap\Theme\NavMenusSubscriber;
+
 class ConfigNavigationProvider {
 
 	public function __invoke(): iterable {
@@ -20,6 +24,11 @@ class ConfigNavigationProvider {
 				//and the navbar_header brand and toggle.
 				'main_menu_x_align'	=> 'navbar-left',
 			],
+			NavMenusSubscriber::class =>
+				[
+					NavMenuPrimary::class => \__( 'Primary menu', 'italystrap' ),
+					NavMenuSecondary::class => \__( 'Secondary menu', 'italystrap' ),
+				],
 		];
 	}
 }

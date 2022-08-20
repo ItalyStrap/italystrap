@@ -31,6 +31,10 @@ use ItalyStrap\Components\Loop;
 use ItalyStrap\Components\MainNavigation;
 use ItalyStrap\Components\MainNavigationOlder;
 use ItalyStrap\Components\MiscNavigation;
+use ItalyStrap\Components\NavMenuHeader;
+use ItalyStrap\Components\NavMenuPrimary;
+use ItalyStrap\Components\NavMenuSecondary;
+use ItalyStrap\Components\NavMenuToggleButton;
 use ItalyStrap\Components\Sidebar;
 use ItalyStrap\Components\Index;
 use ItalyStrap\Components\Meta;
@@ -40,6 +44,8 @@ use ItalyStrap\Components\Pagination;
 use ItalyStrap\Components\PostAuthorInfo;
 use ItalyStrap\Components\Preview;
 use ItalyStrap\Components\SiteLogo;
+use ItalyStrap\Components\SiteTagline;
+use ItalyStrap\Components\SiteTitle;
 use ItalyStrap\Components\Title;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigFactory;
@@ -66,6 +72,10 @@ use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Asset\AssetsSubscriber;
+use ItalyStrap\Navigation\NavMenu;
+use ItalyStrap\Navigation\NavMenuInterface;
+use ItalyStrap\Navigation\NavMenuLocation;
+use ItalyStrap\Navigation\NavMenuLocationInterface;
 use ItalyStrap\StdLib\Media\ImageSize;
 use ItalyStrap\StdLib\Media\ImageSizeInterface;
 use ItalyStrap\Theme\AfterSetupThemeEvent;
@@ -142,6 +152,9 @@ return [
 		Walker_Nav_Menu::class				=> Navbar\BootstrapNavMenu::class,
 
 		ImageSizeInterface::class			=> ImageSize::class,
+
+		NavMenuLocationInterface::class		=> NavMenuLocation::class,
+		NavMenuInterface::class				=> NavMenu::class,
 	],
 
 	/**
@@ -168,9 +181,6 @@ return [
 		],
 		PostTypeSupportSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/type-supports' ) ),
-		],
-		NavMenusSubscriber::class	=> [
-			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/nav-menus' ) ),
 		],
 
 		EditorSubscriber::class => [
@@ -371,8 +381,16 @@ return [
 		Loop::class,
 
 		SiteLogo::class,
+		SiteTitle::class,
+//		SiteTagline::class,
+
 		MiscNavigation::class,
 		CustomHeaderImage::class,
+
+		NavMenuToggleButton::class,
+		NavMenuHeader::class,
+		NavMenuPrimary::class,
+		NavMenuSecondary::class,
 		MainNavigationOlder::class,
 		MainNavigation::class,
 

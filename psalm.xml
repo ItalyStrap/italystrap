@@ -12,6 +12,7 @@
         <ignoreFiles>
             <directory name="vendor" />
             <directory name="src/Admin" />
+            <directory name="src/Customizer" />
             <directory name="src/Navbar" />
             <directory name="src/Debug" />
         </ignoreFiles>

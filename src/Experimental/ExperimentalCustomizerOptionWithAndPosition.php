@@ -63,7 +63,7 @@ class ExperimentalCustomizerOptionWithAndPosition implements SubscriberInterface
 	/**
 	 * Register theme width
 	 *
-	 * @param  string $position The position registered.
+	 * @param array $new_width
 	 * @return array            Array with theme position.
 	 */
 	public function registerThemeWidth( array $new_width ): array {
@@ -72,8 +72,8 @@ class ExperimentalCustomizerOptionWithAndPosition implements SubscriberInterface
 			'italystrap_theme_width_settings',
 			[
 				//		'none'				=> \__( 'None', 'italystrap' ),
-				'container'			=> \__( 'Standard container', 'italystrap' ),
-				'container-fluid'	=> \__( 'Fluid container', 'italystrap' ),
+				'container'			=> \__( 'Standard container (deprecated)', 'italystrap' ),
+				'container-fluid'	=> \__( 'Fluid container (deprecated)', 'italystrap' ),
 			]
 		);
 

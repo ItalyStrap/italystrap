@@ -81,7 +81,8 @@
 		"spatie/color": "dev-master",
 		"wordpress/wordpress": "dev-master",
 		"humanmade/psalm-plugin-wordpress": "^2.0",
-		"monolog/monolog": "^2.3"
+		"monolog/monolog": "^2.3",
+		"franzl/studio": "^0.15.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -189,7 +190,8 @@
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"codeception/c3": true,
 			"infection/extension-installer": true,
-			"italystrap/theme-json-generator": true
+			"italystrap/theme-json-generator": true,
+			"franzl/studio": true
 		}
 	}
 }

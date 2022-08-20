@@ -8,7 +8,6 @@ use ItalyStrap\Asset\ExperimentalAssetPreparator;
 use ItalyStrap\Asset\EditorSubscriber;
 use ItalyStrap\Asset\InlineStyleSubscriber;
 use ItalyStrap\Config\Config;
-use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigWpSubscriber;
 use ItalyStrap\Customizer\CustomizerAssetsSubscriber;

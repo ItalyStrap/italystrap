@@ -42,9 +42,7 @@ use ItalyStrap\Components\SiteLogo;
 use ItalyStrap\Components\SiteTagline;
 use ItalyStrap\Components\SiteTitle;
 use ItalyStrap\Components\Title;
-use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Empress\AurynConfig;
-use function ItalyStrap\Config\get_config_file_content;
 
 return [
 	AurynConfig::SHARING => [
@@ -59,9 +57,6 @@ return [
 
 		\ItalyStrap\Components\Navigations\Navbar::class	=> [
 			':fallback_cb' => [ \ItalyStrap\Navbar\BootstrapNavMenu::class, 'fallback' ],
-		],
-		\ItalyStrap\Components\Navigations\Pagination::class	=> [
-			':config'	=> ConfigFactory::make( get_config_file_content( 'components/pagination' ) ),
 		],
 
 		PostAuthorInfo::class => [

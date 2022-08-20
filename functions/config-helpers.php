@@ -3,41 +3,13 @@ declare( strict_types = 1 );
 
 namespace ItalyStrap\Config;
 
-use ItalyStrap\Event\SubscribersConfigExtension;
-use ItalyStrap\Experimental\PhpFileProvider;
 use ItalyStrap\Finder\FinderFactory;
 use ItalyStrap\Finder\FinderInterface;
 use SplFileObject;
 use function array_filter;
-use function array_merge;
-use function array_replace_recursive;
 use function get_stylesheet_directory;
 use function get_template_directory;
 use function is_null;
-
-/**
- * @param  string $name
- * @return array
- */
-function get_config_file_content( string $name ) : array {
-
-	/** @var array<int, SplFileObject> $files */
-	$files = config_files_finder()->allFiles( $name );
-
-	$config_file_content = [];
-	foreach ( $files as $file ) {
-		$config_file_content = array_replace_recursive(
-			$config_file_content,
-			(array) require $file
-		);
-	}
-
-	/**
-	 * removes all NULL, FALSE and Empty Strings but leaves 0 (zero) values
-	 * https://php.net/manual/en/function.array-filter.php#111091
-	 */
-	return array_filter( $config_file_content, fn( $val ) => ! is_null( $val ) );
-}
 
 /**
  * This return the config from child if is active

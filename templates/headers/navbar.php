@@ -18,6 +18,8 @@ declare(strict_types=1);
 namespace ItalyStrap\Headers;
 
 use ItalyStrap\Components\Navigations\Navbar;
+use ItalyStrap\Components\NavMenuPrimary;
+use ItalyStrap\Components\NavMenuSecondary;
 use ItalyStrap\Config\ConfigInterface;
 use function ItalyStrap\HTML\close_tag_e;
 use function ItalyStrap\HTML\open_tag_e;
@@ -130,7 +132,7 @@ open_tag_e('nav_container', 'div', [
 				'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
 				'depth'				=> 10,
 			//					'walker'			=> new Core\Bootstrap_Nav_Menu(),
-				'theme_location'	=> 'main-menu',
+				'theme_location'	=> NavMenuPrimary::class,
 				'search'			=> false,
 			];
 
@@ -138,9 +140,7 @@ open_tag_e('nav_container', 'div', [
 
 			echo $navbar->get_wp_nav_menu($args);
 
-//            \do_action('navmenu');
-
-			if ( has_nav_menu( 'secondary-menu' ) ) :
+			if ( has_nav_menu( NavMenuSecondary::class ) ) :
 
 				/**
 				 * Arguments for wp_nav_menu()
@@ -164,7 +164,7 @@ open_tag_e('nav_container', 'div', [
 					'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
 					'depth'				=> 2,
 			//						'walker'			=> new Core\Bootstrap_Nav_Menu(),
-					'theme_location'	=> 'secondary-menu',
+					'theme_location'	=> NavMenuSecondary::class,
 					'search'			=> false,
 				];
 

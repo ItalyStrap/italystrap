@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation;
 
-class NavMenuLocation implements NavMenuLocationInterface
-{
+class NavMenuLocation implements NavMenuLocationInterface {
+
 
 	public function has( string $location ): bool {
 		return (bool)\has_nav_menu( $location );

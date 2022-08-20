@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Navigations;
 
-use ItalyStrap\Components\Brand\Brand;
 use ItalyStrap\Config\ConfigSiteLogoProvider;
 use \ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Navigation\NavMenu;
 use function \ItalyStrap\HTML\get_attr;
 use \Walker_Nav_Menu;
 
@@ -68,8 +68,8 @@ class Navbar {
 	public function __construct(
 		ConfigInterface $config,
 		Walker_Nav_Menu $walker,
-		$fallback_cb = false,
-		\ItalyStrap\Navigation\NavMenu $menu
+		NavMenu $menu,
+		$fallback_cb = false
 	) {
 
 		$this->config = $config;

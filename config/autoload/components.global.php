@@ -74,10 +74,6 @@ return [
 				return $injector->make( AuthorInfo::class );
 			}
 		],
-
-		FooterWidgetArea::class => [
-			':config' => ConfigFactory::make(require_once __DIR__ . '../../theme/footer-widget-area.php')
-		],
 	],
 
 	/**

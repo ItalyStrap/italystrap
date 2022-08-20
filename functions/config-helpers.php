@@ -80,7 +80,6 @@ function config_files_finder(): FinderInterface {
 				 * To remember:
 				 * This is the correct hierarchy to load and override
 				 * the parent with child config.
-				 * @see get_config_file_content
 				 */
 				get_template_directory() . '/config/',
 				get_stylesheet_directory() . '/config/',

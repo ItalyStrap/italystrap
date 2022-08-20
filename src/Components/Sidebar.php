@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Config\ConfigSidebarProvider;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
 
@@ -31,7 +32,7 @@ class Sidebar implements ComponentInterface, SubscriberInterface {
 
 	public function display(): void {
 		echo $this->view->render( 'sidebar', [
-			'index' => 'Sidebar-1',
+			'index' => ConfigSidebarProvider::SIDEBAR_PRIMARY,
 		] );
 	}
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Config\ConfigSidebarProvider;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
 
@@ -31,7 +32,7 @@ class FooterWidgetArea implements ComponentInterface, SubscriberInterface {
 
 	public function display(): void {
 		echo \do_blocks( $this->view->render( 'footers/widget-area', [
-			'footer_sidebars' =>	\array_keys( $this->config->toArray() ),
+			'footer_sidebars' => ConfigSidebarProvider::FOOTERS,
 		] ) );
 	}
 }

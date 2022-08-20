@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use ItalyStrap\Config\ConfigCustomHeaderProvider;
 use ItalyStrap\Config\ConfigNavigationProvider;
+use ItalyStrap\Config\ConfigSidebarProvider;
 use ItalyStrap\Config\ConfigSiteLogoProvider;
 use ItalyStrap\Config\ConfigColophonProvider;
 use ItalyStrap\Config\ConfigColorSectionProvider;
@@ -37,6 +38,7 @@ return [
 		ConfigNotFoundProvider::class,
 		ConfigPostThumbnailProvider::class,
 		ConfigThemeSupportProvider::class,
+		ConfigSidebarProvider::class,
 
 		/** This must run after all */
 		ConfigThemeModsProvider::class,

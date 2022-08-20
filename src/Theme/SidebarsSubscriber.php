@@ -63,8 +63,7 @@ final class SidebarsSubscriber implements Registrable, SubscriberInterface {
 	 * @inheritDoc
 	 */
 	public function register():void {
-		foreach ( $this->config as $key => $sidebar ) {
-//			$this->registered_sidebars[ $key ] = \register_sidebar( $this->defaultSidebarConfig( $sidebar ) );
+		foreach ( (array)$this->config->get(self::class, []) as $key => $sidebar ) {
 			$this->registered_sidebars[ $key ] = register_sidebar( $sidebar );
 		}
 	}

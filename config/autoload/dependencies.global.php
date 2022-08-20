@@ -132,12 +132,6 @@ return [
 	 */
 	AurynConfig::DEFINITIONS			=> [
 
-		SidebarsSubscriber::class	=> [
-			 '+config'	=> static function (): ConfigInterface {
-				return ConfigFactory::make( get_config_file_content( 'theme/sidebars' ) )
-					->merge(get_config_file_content( 'theme/footer-widget-area' ));
-			 },
-		],
 		PostTypeSupportSubscriber::class	=> [
 			':config'	=> ConfigFactory::make( get_config_file_content( 'theme/type-supports' ) ),
 		],

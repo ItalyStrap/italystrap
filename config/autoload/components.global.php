@@ -43,6 +43,7 @@ use ItalyStrap\Components\SiteTagline;
 use ItalyStrap\Components\SiteTitle;
 use ItalyStrap\Components\Title;
 use ItalyStrap\Empress\AurynConfig;
+use ItalyStrap\Navigation\NavMenuFallback;
 
 return [
 	AurynConfig::SHARING => [
@@ -60,7 +61,9 @@ return [
 		],
 
 		NavMenuPrimary::class => [
-			':fallback' => [ \ItalyStrap\Navigation\NavMenuFallback::class, '__invoke' ],
+			'+fallback' => static function ( string $named_param, Injector $injector ): callable {
+				return $injector->make( NavMenuFallback::class );
+			},
 		],
 
 		PostAuthorInfo::class => [

@@ -36,6 +36,6 @@ class Checkbox extends WP_Customize_Control {
 			<?php echo esc_html( $this->label ); ?>
 		</label>
 		<input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>" />
-<?php
+		<?php
 	}
 }

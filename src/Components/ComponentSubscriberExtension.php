@@ -72,18 +72,20 @@ class ComponentSubscriberExtension implements Extension {
 	 * @psalm-return \Closure(string, callable):\ProxyManager\Proxy\ValueHolderInterface<object>&VirtualProxyInterface
 	 */
 	private function proxyCallback(): \Closure {
+		// phpcs:disable
 		return static fn(string $className, callable $callback): VirtualProxyInterface => (new LazyLoadingValueHolderFactory)->createProxy(
-				$className,
-				static function (
-					?object &$object,
-					?object $proxy,
-					string $method,
-					array $parameters,
-					?\Closure &$initializer
-				) use ( $callback ) {
+		// phpcs:enable
+			$className,
+			static function (
+				?object &$object,
+				?object $proxy,
+				string $method,
+				array $parameters,
+				?\Closure &$initializer
+			) use ( $callback ) {
 					$object = $callback();
 					$initializer = null;
-				}
-			);
+			}
+		);
 	}
 }

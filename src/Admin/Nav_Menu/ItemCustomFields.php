@@ -41,7 +41,7 @@ final class ItemCustomFields implements SubscriberInterface {
   * Holds our custom fields
   *
   */
- private array $fields = [];
+	private array $fields = [];
 
 	private string $key_pattern;
 

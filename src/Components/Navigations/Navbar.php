@@ -20,13 +20,13 @@ class Navbar {
   * Count the number of instance
   *
   */
- private static int $instance_count = 0;
+	private static int $instance_count = 0;
 
 	/**
   * The number of this instance
   *
   */
- private int $number;
+	private int $number;
 
 	/**
 	 * The ID of the Navbar instance
@@ -39,13 +39,13 @@ class Navbar {
   * Config instance
   *
   */
- private \ItalyStrap\Config\ConfigInterface $config;
+	private \ItalyStrap\Config\ConfigInterface $config;
 
 	/**
   * Walker instance
   *
   */
- private \Walker_Nav_Menu $walker;
+	private \Walker_Nav_Menu $walker;
 
 	/**
 	 * @var bool|callable   $fallback_cb If the menu doesn't exists, a callback function will fire.
@@ -108,29 +108,29 @@ class Navbar {
 		 * @var array
 		 */
 		$defaults = [
-      'menu'				=> '',
-      'container'			=> false,
-      // WP Default div.
-      'container_class'	=> false,
-      'container_id'		=> false,
-      'menu_class'		=> \sprintf(
-   				'nav navbar-nav %s',
-   				$this->config->get('navbar.main_menu_x_align')
-   			),
-      'menu_id'			=> 'main-menu',
-      'echo'				=> false,
-      'fallback_cb'		=> $this->fallback_cb,
-      'before'			=> '',
-      'after'				=> '',
-      'link_before'		=> '<span class="item-title" itemprop="name">',
-      'link_after'		=> '</span>',
-      'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
-      'item_spacing'		=> 'preserve',
-      'depth'				=> 10,
-      'walker'			=> $this->walker,
-      'theme_location'	=> 'main-menu',
-      'search'			=> false,
-  ];
+		'menu'				=> '',
+		'container'			=> false,
+	  // WP Default div.
+		'container_class'	=> false,
+		'container_id'		=> false,
+		'menu_class'		=> \sprintf(
+			'nav navbar-nav %s',
+			$this->config->get('navbar.main_menu_x_align')
+		),
+		'menu_id'			=> 'main-menu',
+		'echo'				=> false,
+		'fallback_cb'		=> $this->fallback_cb,
+		'before'			=> '',
+		'after'				=> '',
+		'link_before'		=> '<span class="item-title" itemprop="name">',
+		'link_after'		=> '</span>',
+		'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
+		'item_spacing'		=> 'preserve',
+		'depth'				=> 10,
+		'walker'			=> $this->walker,
+		'theme_location'	=> 'main-menu',
+		'search'			=> false,
+		];
 
 		$args = wp_parse_args( $args, $defaults );
 
@@ -150,7 +150,12 @@ class Navbar {
 			return '';
 		}
 
-		$args = ['menu_class'		=> 'nav navbar-nav navbar-right', 'menu_id'			=> 'secondary-menu', 'fallback_cb'		=> false, 'theme_location'	=> 'secondary-menu'];
+		$args = [
+			'menu_class'		=> 'nav navbar-nav navbar-right',
+			'menu_id'			=> 'secondary-menu',
+			'fallback_cb'		=> false,
+			'theme_location'	=> 'secondary-menu'
+		];
 
 		return $this->get_wp_nav_menu( $args );
 	}
@@ -194,9 +199,14 @@ class Navbar {
 			$brand .= '<meta  itemprop="name" content="'
 				. esc_attr( \get_option( 'blogname' ) ) . '"/>';
 		} elseif ( $attachment_id && 'display_all' === $this->config[ 'display_navbar_brand' ] ) {
-			$attr = ['class' => 'img-brand img-responsive center-block', 'alt' => esc_attr( \get_option( 'blogname' ) )
+			$attr = [
+				'class' => 'img-brand img-responsive center-block',
+				'alt' => esc_attr( \get_option( 'blogname' ) )
 					. ' - '
-					. esc_attr( \get_option( 'blogdescription' ) ), 'itemprop' => 'image', 'style' => 'display:inline;margin-right:15px;'];
+					. esc_attr( \get_option( 'blogdescription' ) ),
+				'itemprop' => 'image',
+				'style' => 'display:inline;margin-right:15px;'
+			];
 
 			/**
 			 * Size default: navbar-brand-image
@@ -232,11 +242,17 @@ class Navbar {
 			return apply_filters( 'italystrap_navbar_brand_none', '', $this->navbar_id );
 		}
 
-		$default = ['class' => 'navbar-brand', 'href' => esc_url( $this->config->get( 'HOME_URL' ) ), 'title' => sprintf(
+		$default = [
+			'class' => 'navbar-brand',
+			'href' => esc_url( $this->config->get( 'HOME_URL' ) ),
+			'title' => sprintf(
 				'%s  -  %s',
 				\get_option( 'blogname' ),
 				\get_option( 'blogdescription' )
-			), 'rel' => 'home', 'itemprop' => 'url'];
+			),
+			'rel' => 'home',
+			'itemprop' => 'url'
+		];
 
 		return $this->createElement(
 			'navbar_brand',

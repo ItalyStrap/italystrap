@@ -15,7 +15,7 @@ use function is_registered_sidebar;
 require_once 'BaseTheme.php';
 // phpcs:enable
 
-class SidebarsTest extends BaseTheme {
+class Sidebars extends BaseTheme {
 
 	protected function getInstance() {
 		$sut = new SidebarsSubscriber( $this->getConfig(), new Tag( new Attributes() ) );

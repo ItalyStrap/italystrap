@@ -146,6 +146,10 @@
 			"vendor\\bin\\infection --threads=8"
 		],
 		"unit": [
+			"vendor\\bin\\codecept run unit",
+			"@clean"
+		],
+		"unit:cov": [
 			"vendor\\bin\\codecept run unit --coverage",
 			"@clean"
 		],

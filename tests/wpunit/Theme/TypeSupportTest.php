@@ -3,17 +3,16 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
-// phpcs:disable
-require_once 'BaseTheme.php';
-// phpcs:enable
-
+/**
+ * @method static assertArrayHasKey(string $string, array $all_post_type_support, string $string1)
+ * @method assertInstanceOf(string $class, \ItalyStrap\Theme\PostTypeSupportSubscriber $sut, string $string)
+ */
 class TypeSupportTest extends BaseTheme {
 
-	protected function getInstance( $paramConfig = [] ) {
-//		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
-		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
-		$sut = new \ItalyStrap\Theme\PostTypeSupportSubscriber( $config );
-		$this->assertInstanceOf( \ItalyStrap\Theme\Registrable::class, $sut, '' );
+	use BaseWpunitTrait;
+
+	protected function getInstance() {
+		$sut = new \ItalyStrap\Theme\PostTypeSupportSubscriber( $this->config );
 		$this->assertInstanceOf( \ItalyStrap\Theme\PostTypeSupportSubscriber::class, $sut, '' );
 		return $sut;
 	}
@@ -22,15 +21,10 @@ class TypeSupportTest extends BaseTheme {
 	 *
 	 */
 	public function itShouldRegister() {
-		$support = 	[
-			'post'		=> [ 'post_navigation', 'entry-meta' ],
-			'page'		=> [ 'post_navigation', 'entry-meta' ],
-			'download'	=> [ 'post_navigation', 'entry-meta' ],
-		];
 
-		$sut = $this->getInstance( $support );
+		$sut = $this->getInstance();
 
-		$sut->register();
+		$sut();
 
 		$all_post_type_support = \get_all_post_type_supports( 'post' );
 

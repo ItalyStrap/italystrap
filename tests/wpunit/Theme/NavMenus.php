@@ -12,7 +12,7 @@ use function has_nav_menu;
 require_once 'BaseTheme.php';
 // phpcs:enable
 
-class NavMenusTest extends BaseTheme {
+class NavMenus extends BaseTheme {
 
 	protected function getInstance() {
 		$sut = new NavMenusSubscriber( $this->getConfig() );

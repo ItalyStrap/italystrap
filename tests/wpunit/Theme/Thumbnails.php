@@ -7,29 +7,25 @@ namespace ItalyStrap\Tests;
 require_once 'BaseTheme.php';
 // phpcs:enable
 
-class SupportTest extends BaseTheme {
+class Thumbnails extends BaseTheme {
 
 	protected function getInstance( $paramConfig = [] ) {
 //		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
 		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
-		$sut = new \ItalyStrap\Theme\SupportSubscriber( $config );
+		$sut = new \ItalyStrap\Theme\ThumbnailsSubscriber( $config );
 		$this->assertInstanceOf( \ItalyStrap\Theme\Registrable::class, $sut, '' );
-		$this->assertInstanceOf( \ItalyStrap\Theme\SupportSubscriber::class, $sut, '' );
+		$this->assertInstanceOf( \ItalyStrap\Theme\ThumbnailsSubscriber::class, $sut, '' );
 		return $sut;
 	}
 
-	/**
-	 * @test
-	 */
 	public function itShouldRegister() {
 		$support = [
-			'automatic-feed-links',
-			'html5'	=> [
-				'search-form',
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
+			'sizes'	=> [
+				'navbar-brand-image'	=> [
+					\ItalyStrap\Theme\ThumbnailsSubscriber::WIDTH	=> 45,
+					\ItalyStrap\Theme\ThumbnailsSubscriber::HEIGHT	=> 45,
+					\ItalyStrap\Theme\ThumbnailsSubscriber::CROP		=> true,
+				],
 			],
 		];
 
@@ -37,6 +33,6 @@ class SupportTest extends BaseTheme {
 
 		$sut->register();
 
-		$this->assertEqualSets( [$support['html5']], \get_theme_support( 'html5' ) );
+		self::assertTrue( \has_image_size( 'navbar-brand-image' ), '' );
 	}
 }

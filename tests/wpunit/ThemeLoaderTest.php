@@ -4,37 +4,23 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests;
 
 use Codeception\TestCase\WPTestCase;
+use ItalyStrap\Config\ConfigThemeProvider;
 
+/**
+ * @method assertTrue(bool $param)
+ */
 class ThemeLoaderTest extends WPTestCase {
 
-	/**
-	 * @var \WpunitTester
-	 */
-	protected $tester;
+	use BaseWpunitTrait;
 
-	public function setUp(): void {
-		// Before...
-		parent::setUp();
-
-		// Your set up methods here.
+	public function testItShouldBeItalystrap() {
+		$this->assertTrue( \wp_get_theme()->get_template() === 'italystrap' );
+		$this->assertTrue( \wp_get_theme()->display('Name') === 'ItalyStrap' );
+		$theme_name = (string)$this->config->get(ConfigThemeProvider::THEME_NAME, '');
+		$this->assertTrue( $theme_name === 'ItalyStrap' );
 	}
 
-	public function tearDown(): void {
-		// Your tear down methods here.
-
-		// Then...
-		parent::tearDown();
-	}
-
-	/**
-	 * @test
-	 */
-	public function itShouldBootsrapsFunctionsExists() {
-
-//		codecept_debug( 'CIAO' );
-//		codecept_debug( \wp_get_theme()->get_template() );
-
-//		$this->assertTrue( \function_exists( '\ItalyStrap\italystrap' ) );
-//		$this->assertTrue( \wp_get_theme()->get_template() === 'italystrap' );
+	protected function getInstance() {
+		// TODO: Implement getInstance() method.
 	}
 }

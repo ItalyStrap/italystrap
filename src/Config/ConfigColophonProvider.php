@@ -7,9 +7,9 @@ use ItalyStrap\Components\Colophon;
 
 class ConfigColophonProvider {
 
-	const COLOPHON = 'colophon';
-	const COLOPHON_ACTION = 'colophon_action';
-	const COLOPHON_PRIORITY = 'colophon_priority';
+	public const COLOPHON = 'colophon';
+	public const COLOPHON_ACTION = 'colophon_action';
+	public const COLOPHON_PRIORITY = 'colophon_priority';
 
 	public function __invoke(): iterable {
 		yield self::COLOPHON => '';

@@ -9,7 +9,7 @@ use ItalyStrap\Config\ConfigThemeProvider;
 
 class ColorFields {
 
-	const SECTION = 'colors';
+	public const SECTION = 'colors';
 
 	private \WP_Customize_Manager $manager;
 	private ConfigInterface $config;

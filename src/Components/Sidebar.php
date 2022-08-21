@@ -12,8 +12,8 @@ class Sidebar implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_after_content';
-	const EVENT_PRIORITY = 10;
+	public const EVENT_NAME = 'italystrap_after_content';
+	public const EVENT_PRIORITY = 10;
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

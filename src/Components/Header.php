@@ -13,12 +13,12 @@ class Header implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_before_main';
-	const EVENT_PRIORITY = 10;
+	public const EVENT_NAME = 'italystrap_before_main';
+	public const EVENT_PRIORITY = 10;
 
-	const VIEW = 'header';
-	const BODY_CLASS_NAMES = 'body_class_names';
-	const WRAPPER_CLASS_NAMES = 'wrapper_class_names';
+	public const VIEW = 'header';
+	public const BODY_CLASS_NAMES = 'body_class_names';
+	public const WRAPPER_CLASS_NAMES = 'wrapper_class_names';
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

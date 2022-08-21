@@ -38,16 +38,12 @@ use function update_post_meta;
 final class ItemCustomFields implements SubscriberInterface {
 
 	/**
-	 * Holds our custom fields
-	 *
-	 * @var array
-	 */
-	private $fields = array();
+  * Holds our custom fields
+  *
+  */
+ private array $fields = [];
 
-	/**
-	 * @var string
-	 */
-	private $key_pattern;
+	private string $key_pattern;
 
 	/**
 	 * Init the constructor

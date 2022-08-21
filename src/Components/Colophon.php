@@ -13,9 +13,9 @@ class Colophon implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_footer';
-	const EVENT_PRIORITY = 20;
-	const CONTENT = 'content';
+	public const EVENT_NAME = 'italystrap_footer';
+	public const EVENT_PRIORITY = 20;
+	public const CONTENT = 'content';
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

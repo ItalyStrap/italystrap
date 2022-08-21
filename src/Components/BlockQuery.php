@@ -8,8 +8,8 @@ class BlockQuery implements ComponentInterface, \ItalyStrap\Event\SubscriberInte
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_after_loop';
-	const EVENT_PRIORITY = 10;
+	public const EVENT_NAME = 'italystrap_after_loop';
+	public const EVENT_PRIORITY = 10;
 
 //    private ConfigInterface $config;
 //    private ViewInterface $view;

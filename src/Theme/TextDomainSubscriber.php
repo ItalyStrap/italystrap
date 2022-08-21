@@ -23,10 +23,7 @@ final class TextDomainSubscriber implements Registrable, SubscriberInterface {
 		];
 	}
 
-	/**
-	 * @var Config
-	 */
-	private $config;
+	private Config $config;
 
 	/**
 	 * Init some functionality

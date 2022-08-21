@@ -178,6 +178,9 @@
 		"clean": [
 			"vendor\\bin\\codecept clean"
 		],
+		"rector": [
+			"vendor\\bin\\rector process src"
+		],
 		"theme:json": [
 			"\\ItalyStrap\\ThemeJsonGenerator\\Composer\\Plugin::run"
 		]

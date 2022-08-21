@@ -7,10 +7,10 @@ use ItalyStrap\Customizer\NotFoundFields;
 
 class ConfigNotFoundProvider {
 
-	const SHOW_IMAGE = '404_show_image';
-	const ID_IMAGE = '404_image';
-	const TITLE = '404_title';
-	const CONTENT = '404_content';
+	public const SHOW_IMAGE = '404_show_image';
+	public const ID_IMAGE = '404_image';
+	public const TITLE = '404_title';
+	public const CONTENT = '404_content';
 
 	public function __invoke(): iterable {
 		yield self::SHOW_IMAGE => NotFoundFields::SHOW_IMAGE;

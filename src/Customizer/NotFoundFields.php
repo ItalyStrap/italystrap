@@ -9,8 +9,8 @@ use ItalyStrap\Config\ConfigPostThumbnailProvider;
 
 class NotFoundFields {
 
-	const SHOW_IMAGE = 'show';
-	const HIDE_IMAGE = 'hide';
+	public const SHOW_IMAGE = 'show';
+	public const HIDE_IMAGE = 'hide';
 
 	private \WP_Customize_Manager $manager;
 	private ConfigInterface $config;

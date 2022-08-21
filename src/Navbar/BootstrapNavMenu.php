@@ -101,7 +101,7 @@ class BootstrapNavMenu extends Walker_Nav_Menu {
 		 */
 		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
 
-		$_atts = array();
+		$_atts = [];
 
 		/**
 		 * Dividers, Headers or Disabled
@@ -117,26 +117,17 @@ class BootstrapNavMenu extends Walker_Nav_Menu {
 		 * @link http://getbootstrap.com/components/#navbar-buttons
 		 */
 		if ( 0 === strcasecmp( $classes[0], 'divider' ) && 1 === $depth ) {
-			$_atts = array(
-				'role'	=> 'presentation',
-				'class'	=> 'divider',
-			);
+			$_atts = ['role'	=> 'presentation', 'class'	=> 'divider'];
 
-			$output .= $indent . '<li' . $this->get_attributes( $_atts ) . '>';
+			$output .= $indent . '<li' . static::get_attributes($_atts) . '>';
 		} elseif ( 0 === strcasecmp( $classes[0], 'dropdown-header' ) && 1 === $depth ) {
-			$_atts = array(
-				'role'	=> 'presentation',
-				'class'	=> 'dropdown-header',
-			);
+			$_atts = ['role'	=> 'presentation', 'class'	=> 'dropdown-header'];
 
-			$output .= $indent . '<li' . $this->get_attributes( $_atts ) . '>' . esc_attr( $item->title );
+			$output .= $indent . '<li' . static::get_attributes($_atts) . '>' . esc_attr( $item->title );
 		} elseif ( strcasecmp( $classes[0], 'disabled' ) === 0 ) {
-			$_atts = array(
-				'role'	=> 'presentation',
-				'class'	=> 'disabled',
-			);
+			$_atts = ['role'	=> 'presentation', 'class'	=> 'disabled'];
 
-			$output .= $indent . '<li' . $this->get_attributes( $_atts ) . '><a href="#">' . esc_attr( $item->title ) . '</a>';
+			$output .= $indent . '<li' . static::get_attributes($_atts) . '><a href="#">' . esc_attr( $item->title ) . '</a>';
 		} else {
 			$class_names = $value = '';
 
@@ -197,11 +188,11 @@ class BootstrapNavMenu extends Walker_Nav_Menu {
 
 			$_atts['itemprop'] = 'name';
 
-			$output .= $indent . '<li' . $this->get_attributes( $_atts ) .'>';
+			$output .= $indent . '<li' . static::get_attributes($_atts) .'>';
 
 			unset( $_atts );
 
-			$atts = array();
+			$atts = [];
 			$atts['title']  = ! empty( $item->attr_title )	? $item->attr_title	: '';
 			$atts['target'] = ! empty( $item->target )	? $item->target	: '';
 			$atts['rel']    = ! empty( $item->xfn )		? $item->xfn	: '';
@@ -278,11 +269,11 @@ class BootstrapNavMenu extends Walker_Nav_Menu {
 			 * property is NOT null we apply it as the class name for the glyphicon.
 			 */
 			if ( ! empty( $item->glyphicon ) ) {
-				$item_output .= '<a' . $this->get_attributes( $atts ) . '><span' . $this->get_attributes( array( 'class' => $item->glyphicon ) ) . '></span>&nbsp;';
+				$item_output .= '<a' . static::get_attributes($atts) . '><span' . static::get_attributes(['class' => $item->glyphicon]) . '></span>&nbsp;';
 			} else {
 				$atts['itemprop'] = 'url';
 
-				$item_output .= '<a' . $this->get_attributes( $atts ) . '>';
+				$item_output .= '<a' . static::get_attributes($atts) . '>';
 			}
 
 			$item_output .= $args->link_before . $title . $args->link_after . $current_text;
@@ -357,7 +348,7 @@ class BootstrapNavMenu extends Walker_Nav_Menu {
 	 * @param  array $atts Array with html attribute.
 	 * @return string       Return the string with attribute
 	 */
-	protected static function get_attributes( array $atts = array() ) {
+	protected static function get_attributes( array $atts = [] ) {
 		return \ItalyStrap\HTML\get_attr( 'nav', $atts );
 	}
 

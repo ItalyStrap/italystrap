@@ -12,10 +12,7 @@ use function wp_link_pages;
  */
 class LinkPages {
 
-	/**
-	 * @var EventDispatcherInterface
-	 */
-	private $dispatcher;
+	private \ItalyStrap\Event\EventDispatcherInterface $dispatcher;
 
 	/**
 	 * LinkPages constructor.

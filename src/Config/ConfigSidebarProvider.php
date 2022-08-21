@@ -8,13 +8,13 @@ use ItalyStrap\Theme\SidebarsSubscriber as S;
 
 class ConfigSidebarProvider {
 
-	const SIDEBAR_PRIMARY = 'sidebar-1';
-	const FOOTER_BOX_1 = 'footer-box-1';
-	const FOOTER_BOX_2 = 'footer-box-2';
-	const FOOTER_BOX_3 = 'footer-box-3';
-	const FOOTER_BOX_4 = 'footer-box-4';
+	public const SIDEBAR_PRIMARY = 'sidebar-1';
+	public const FOOTER_BOX_1 = 'footer-box-1';
+	public const FOOTER_BOX_2 = 'footer-box-2';
+	public const FOOTER_BOX_3 = 'footer-box-3';
+	public const FOOTER_BOX_4 = 'footer-box-4';
 
-	const FOOTERS = [
+	public const FOOTERS = [
 		self::FOOTER_BOX_1,
 		self::FOOTER_BOX_2,
 		self::FOOTER_BOX_3,

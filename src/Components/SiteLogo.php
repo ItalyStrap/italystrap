@@ -17,10 +17,10 @@ class SiteLogo implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_navmenu_header';
-	const EVENT_PRIORITY = 10;
+	public const EVENT_NAME = 'italystrap_navmenu_header';
+	public const EVENT_PRIORITY = 10;
 
-	const ATTRIBUTES = 'site-logo-attributes';
+	public const ATTRIBUTES = 'site-logo-attributes';
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

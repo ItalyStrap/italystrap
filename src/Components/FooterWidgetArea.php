@@ -12,8 +12,8 @@ class FooterWidgetArea implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_footer';
-	const EVENT_PRIORITY = 10;
+	public const EVENT_NAME = 'italystrap_footer';
+	public const EVENT_PRIORITY = 10;
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

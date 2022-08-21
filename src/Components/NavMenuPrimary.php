@@ -13,8 +13,8 @@ class NavMenuPrimary implements ComponentInterface, \ItalyStrap\Event\Subscriber
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_navmenu';
-	const EVENT_PRIORITY = 10;
+	public const EVENT_NAME = 'italystrap_navmenu';
+	public const EVENT_PRIORITY = 10;
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

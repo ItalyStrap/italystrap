@@ -13,8 +13,8 @@ class EntryNoneContent implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_entry_content_none';
-	const EVENT_PRIORITY = 30;
+	public const EVENT_NAME = 'italystrap_entry_content_none';
+	public const EVENT_PRIORITY = 30;
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

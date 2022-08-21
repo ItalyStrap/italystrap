@@ -5,9 +5,9 @@ namespace ItalyStrap\Config;
 
 class ConfigLayoutProvider {
 
-	const POST_CONTENT_TEMPLATE = 'post_content_template';
-	const SITE_LAYOUT = 'site_layout';
-	const CONTAINER_WIDTH = 'container_width';
+	public const POST_CONTENT_TEMPLATE = 'post_content_template';
+	public const SITE_LAYOUT = 'site_layout';
+	public const CONTAINER_WIDTH = 'container_width';
 
 	public function __invoke(): iterable {
 		yield self::POST_CONTENT_TEMPLATE => '';

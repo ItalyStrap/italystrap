@@ -9,24 +9,24 @@ use function wp_nav_menu;
 class NavMenu implements NavMenuInterface {
 
 
-	const MENU = 'menu';
-	const CONTAINER = 'container';
-	const CONTAINER_CLASS_NAME = 'container_class';
-	const CONTAINER_ID = 'container_id';
-	const MENU_CLASS_NAME = 'menu_class';
-	const MENU_ID = 'menu_id';
-	const ECHO = 'echo';
-	const FALLBACK_CB = 'fallback_cb';
-	const BEFORE = 'before';
-	const AFTER = 'after';
-	const LINK_BEFORE = 'link_before';
-	const LINK_AFTER = 'link_after';
-	const ITEMS_WRAP = 'items_wrap';
-	const ITEMS_SPACING = 'item_spacing';
-	const DEPTH = 'depth';
-	const WALKER = 'walker';
-	const THEME_LOCATION = 'theme_location';
-	const SEARCH = 'search';
+	public const MENU = 'menu';
+	public const CONTAINER = 'container';
+	public const CONTAINER_CLASS_NAME = 'container_class';
+	public const CONTAINER_ID = 'container_id';
+	public const MENU_CLASS_NAME = 'menu_class';
+	public const MENU_ID = 'menu_id';
+	public const ECHO = 'echo';
+	public const FALLBACK_CB = 'fallback_cb';
+	public const BEFORE = 'before';
+	public const AFTER = 'after';
+	public const LINK_BEFORE = 'link_before';
+	public const LINK_AFTER = 'link_after';
+	public const ITEMS_WRAP = 'items_wrap';
+	public const ITEMS_SPACING = 'item_spacing';
+	public const DEPTH = 'depth';
+	public const WALKER = 'walker';
+	public const THEME_LOCATION = 'theme_location';
+	public const SEARCH = 'search';
 
 	private Walker_Nav_Menu $walker;
 	private $fallback_cb;

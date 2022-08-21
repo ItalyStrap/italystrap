@@ -14,8 +14,8 @@ class Breadcrumbs implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_before_loop';
-	const EVENT_PRIORITY = 10;
+	public const EVENT_NAME = 'italystrap_before_loop';
+	public const EVENT_PRIORITY = 10;
 
 	private EventDispatcherInterface $dispatcher;
 	private ConfigInterface $config;

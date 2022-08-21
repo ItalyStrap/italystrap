@@ -12,8 +12,8 @@ class ArchiveHeadline implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_before_while';
-	const EVENT_PRIORITY = 20;
+	public const EVENT_NAME = 'italystrap_before_while';
+	public const EVENT_PRIORITY = 20;
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

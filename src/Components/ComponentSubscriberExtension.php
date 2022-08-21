@@ -72,8 +72,7 @@ class ComponentSubscriberExtension implements Extension {
 	 * @psalm-return \Closure(string, callable):\ProxyManager\Proxy\ValueHolderInterface<object>&VirtualProxyInterface
 	 */
 	private function proxyCallback(): \Closure {
-		return static function ( string $className, callable $callback ): VirtualProxyInterface {
-			return (new LazyLoadingValueHolderFactory)->createProxy(
+		return static fn(string $className, callable $callback): VirtualProxyInterface => (new LazyLoadingValueHolderFactory)->createProxy(
 				$className,
 				static function (
 					?object &$object,
@@ -86,6 +85,5 @@ class ComponentSubscriberExtension implements Extension {
 					$initializer = null;
 				}
 			);
-		};
 	}
 }

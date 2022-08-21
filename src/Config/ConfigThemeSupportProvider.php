@@ -8,8 +8,8 @@ use ItalyStrap\Theme\ThumbnailsSubscriber;
 
 class ConfigThemeSupportProvider {
 
-	const CUSTOM_HEADER ='custom-header';
-	const CUSTOM_LOGO = 'custom-logo';
+	public const CUSTOM_HEADER ='custom-header';
+	public const CUSTOM_LOGO = 'custom-logo';
 
 	private ConfigInterface $config;
 

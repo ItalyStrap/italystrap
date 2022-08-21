@@ -11,7 +11,7 @@ use ItalyStrap\Event\EventDispatcherInterface;
 class SiteLogoFields {
 	use BuildThumbnailSizeChoicesTrait, SizeChoicesTrait;
 
-	const SECTION = 'title_tagline';
+	public const SECTION = 'title_tagline';
 
 	private \WP_Customize_Manager $manager;
 	private ConfigInterface $config;

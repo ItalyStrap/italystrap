@@ -14,8 +14,8 @@ class ArchiveAuthorInfo implements ComponentInterface, SubscriberInterface {
 	private ConfigInterface $config;
 	private ViewInterface $view;
 
-	const EVENT_NAME = 'italystrap_before_loop';
-	const EVENT_PRIORITY = 20;
+	public const EVENT_NAME = 'italystrap_before_loop';
+	public const EVENT_PRIORITY = 20;
 
 	public function __construct( ConfigInterface $config, ViewInterface $view ) {
 		$this->config = $config;

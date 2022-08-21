@@ -5,10 +5,10 @@ namespace ItalyStrap\Config;
 
 class ConfigColorSectionProvider {
 
-	const BG_COLOR = 'background_color';
-	const HEADER_COLOR = 'header_textcolor';
-	const LINK_COLOR = 'link_textcolor';
-	const HX_COLOR = 'hx_textcolor';
+	public const BG_COLOR = 'background_color';
+	public const HEADER_COLOR = 'header_textcolor';
+	public const LINK_COLOR = 'link_textcolor';
+	public const HX_COLOR = 'hx_textcolor';
 
 	public function __invoke(): iterable {
 		yield self::BG_COLOR => '';// Set by WordPress.

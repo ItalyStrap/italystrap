@@ -14,9 +14,9 @@ use function set_post_thumbnail_size;
 
 final class ThumbnailsSubscriber implements Registrable, SubscriberInterface {
 
-	const WIDTH = 'width';
-	const HEIGHT = 'height';
-	const CROP = 'crop';
+	public const WIDTH = 'width';
+	public const HEIGHT = 'height';
+	public const CROP = 'crop';
 	private ConfigInterface $config;
 	private ImageSizeInterface $image_sizes_obj;
 

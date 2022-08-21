@@ -12,7 +12,7 @@ use ItalyStrap\Event\EventDispatcherInterface;
 class CustomHeaderFields {
 	use SizeChoicesTrait, AlignmentChoicesTrait;
 
-	const SECTION = 'header_image';
+	public const SECTION = 'header_image';
 
 	private \WP_Customize_Manager $manager;
 	private ConfigInterface $config;

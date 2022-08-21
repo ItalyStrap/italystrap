@@ -17,19 +17,16 @@ use function register_sidebar;
  */
 final class SidebarsSubscriber implements Registrable, SubscriberInterface {
 
-	const NAME = 'name';
-	const ID = 'id';
-	const DESCRIPTION = 'description';
-	const CLASS_NAME = 'class';
-	const BEFORE_WIDGET = 'before_widget';
-	const AFTER_WIDGET = 'after_widget';
-	const BEFORE_TITLE = 'before_title';
-	const AFTER_TITLE = 'after_title';
+	public const NAME = 'name';
+	public const ID = 'id';
+	public const DESCRIPTION = 'description';
+	public const CLASS_NAME = 'class';
+	public const BEFORE_WIDGET = 'before_widget';
+	public const AFTER_WIDGET = 'after_widget';
+	public const BEFORE_TITLE = 'before_title';
+	public const AFTER_TITLE = 'after_title';
 
-	/**
-	 * @var Tag
-	 */
-	private $tag;
+	private \ItalyStrap\HTML\Tag $tag;
 
 	/**
 	 * @var array<string>
@@ -44,10 +41,7 @@ final class SidebarsSubscriber implements Registrable, SubscriberInterface {
 		yield 'dynamic_sidebar_before'	=> 'parseDynamicSidebarBefore';
 	}
 
-	/**
-	 * @var Config
-	 */
-	private $config;
+	private Config $config;
 
 	/**
 	 * Init sidebars registration

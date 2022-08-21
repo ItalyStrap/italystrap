@@ -10,7 +10,7 @@ use \ItalyStrap\View\ViewInterface;
  */
 class WidgetArea {
 
-	private $data = [];
+	private array $data = [];
 	private $view;
 
 	/**

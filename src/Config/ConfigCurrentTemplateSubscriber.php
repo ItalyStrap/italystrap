@@ -9,8 +9,8 @@ use ItalyStrap\Theme\Registrable;
 
 final class ConfigCurrentTemplateSubscriber implements Registrable, SubscriberInterface {
 
-	const TEMPLATE_FILE_NAME = 'current_template_file';
-	const TEMPLATE_FILE_SLUG = 'current_template_slug';
+	public const TEMPLATE_FILE_NAME = 'current_template_file';
+	public const TEMPLATE_FILE_SLUG = 'current_template_slug';
 
 	/**
 	 * @inheritDoc

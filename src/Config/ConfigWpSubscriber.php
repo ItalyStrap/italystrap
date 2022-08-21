@@ -8,7 +8,7 @@ use ItalyStrap\Theme\Registrable;
 
 final class ConfigWpSubscriber implements Registrable, SubscriberInterface {
 
-	const CURRENT_PAGE_ID = 'current_page_id';
+	public const CURRENT_PAGE_ID = 'current_page_id';
 
 	private ConfigInterface $config;
 	private \WP_Query $query;

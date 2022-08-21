@@ -8,7 +8,7 @@ use ItalyStrap\Config\ConfigThemeProvider;
 
 class BetaFields {
 
-	const SECTION = 'beta';
+	public const SECTION = 'beta';
 
 	private \WP_Customize_Manager $manager;
 	private ConfigInterface $config;

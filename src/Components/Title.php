@@ -10,8 +10,8 @@ class Title implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_entry_content';
-	const EVENT_PRIORITY = 20;
+	public const EVENT_NAME = 'italystrap_entry_content';
+	public const EVENT_PRIORITY = 20;
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

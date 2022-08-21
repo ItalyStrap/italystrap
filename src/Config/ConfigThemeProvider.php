@@ -7,16 +7,16 @@ use ItalyStrap\Event\EventDispatcherInterface;
 
 class ConfigThemeProvider {
 
-	const THEME_NAME = 'theme_name';
-	const THEME_VERSION = 'theme_version';
-	const THEME_AUTHOR = 'theme_author';
-	const TEMPLATE_DIR_URI = 'template_directory_uri';
-	const STYLESHEET_DIR_URI = 'stylesheet_directory_uri';
-	const TEMPLATE_DIR = 'template_directory';
-	const STYLESHEET_DIR = 'stylesheet_directory';
-	const THEME_BETA = 'theme_beta';
-	const VIEW_DIR = 'templates';
-	const PREFIX = 'prefix';
+	public const THEME_NAME = 'theme_name';
+	public const THEME_VERSION = 'theme_version';
+	public const THEME_AUTHOR = 'theme_author';
+	public const TEMPLATE_DIR_URI = 'template_directory_uri';
+	public const STYLESHEET_DIR_URI = 'stylesheet_directory_uri';
+	public const TEMPLATE_DIR = 'template_directory';
+	public const STYLESHEET_DIR = 'stylesheet_directory';
+	public const THEME_BETA = 'theme_beta';
+	public const VIEW_DIR = 'templates';
+	public const PREFIX = 'prefix';
 
 	private \WP_Theme $theme;
 	private EventDispatcherInterface $dispatcher;
@@ -46,7 +46,7 @@ class ConfigThemeProvider {
 
 		yield self::THEME_NAME => (string)$this->theme->display( 'Name' );
 		yield self::THEME_VERSION => (string)$this->theme->display( 'Version' );
-		yield self::THEME_AUTHOR => (string)$this->theme->display( 'Author', false );
+		yield self::THEME_AUTHOR => (string)$this->theme->display( 'Author' );
 		yield self::TEMPLATE_DIR_URI	=> $this->theme->get_template_directory_uri();
 		yield self::STYLESHEET_DIR_URI	=> $this->theme->get_stylesheet_directory_uri();
 		yield self::TEMPLATE_DIR	=> $this->theme->get_template_directory();

@@ -18,9 +18,9 @@ class FeaturedImage implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_entry_content';
-	const EVENT_PRIORITY = 10;
-	const ATTRIBUTES = 'attributes';
+	public const EVENT_NAME = 'italystrap_entry_content';
+	public const EVENT_PRIORITY = 10;
+	public const ATTRIBUTES = 'attributes';
 
 	private ConfigInterface $config;
 	private ViewInterface $view;
@@ -50,7 +50,7 @@ class FeaturedImage implements ComponentInterface, SubscriberInterface {
 			'sizeSlug' => $size,
 		];
 
-		echo \do_blocks( '<!-- wp:post-featured-image ' . \json_encode( $config ) . '  /-->' );
+		echo \do_blocks( '<!-- wp:post-featured-image ' . \json_encode( $config, JSON_THROW_ON_ERROR ) . '  /-->' );
 	}
 
 	public function getThumbnailSizeForFullWidthLayout( string $size ): string {

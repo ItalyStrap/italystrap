@@ -11,8 +11,8 @@ class Modified implements SubscriberInterface, ComponentInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_entry_content';
-	const EVENT_PRIORITY = 60;
+	public const EVENT_NAME = 'italystrap_entry_content';
+	public const EVENT_PRIORITY = 60;
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

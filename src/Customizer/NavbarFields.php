@@ -67,12 +67,7 @@ class NavbarFields {
 
 		$this->manager->add_setting(
 			'navbar[position]',
-			array(
-				'default'			=> $this->config->get('navbar.position'),
-				'type'				=> 'theme_mod',
-				'transport'			=> 'postMessage',
-				'sanitize_callback'	=> 'sanitize_text_field',
-			)
+			['default'			=> $this->config->get('navbar.position'), 'type'				=> 'theme_mod', 'transport'			=> 'postMessage', 'sanitize_callback'	=> 'sanitize_text_field']
 		);
 
 		$this->manager->add_control(
@@ -96,12 +91,7 @@ class NavbarFields {
 
 		$this->manager->add_setting(
 			'navbar[nav_width]',
-			array(
-				'default'			=> $this->config->get('navbar.nav_width'),
-				'type'				=> 'theme_mod',
-				'transport'			=> 'postMessage',
-				'sanitize_callback'	=> 'sanitize_text_field',
-			)
+			['default'			=> $this->config->get('navbar.nav_width'), 'type'				=> 'theme_mod', 'transport'			=> 'postMessage', 'sanitize_callback'	=> 'sanitize_text_field']
 		);
 		$this->manager->add_control(
 			'italystrap_navbar[nav_width]',
@@ -125,12 +115,7 @@ class NavbarFields {
 		 */
 		$this->manager->add_setting(
 			'navbar[menus_width]',
-			array(
-				'default'			=> $this->config->get('navbar.menus_width'),
-				'type'				=> 'theme_mod',
-				'transport'			=> 'postMessage',
-				'sanitize_callback'	=> 'sanitize_text_field',
-			)
+			['default'			=> $this->config->get('navbar.menus_width'), 'type'				=> 'theme_mod', 'transport'			=> 'postMessage', 'sanitize_callback'	=> 'sanitize_text_field']
 		);
 		$this->manager->add_control(
 			'italystrap_navbar[menus_width]',
@@ -151,12 +136,7 @@ class NavbarFields {
 
 		$this->manager->add_setting(
 			'navbar[main_menu_x_align]',
-			array(
-				'default'			=> $this->config->get('navbar.main_menu_x_align'),
-				'type'				=> 'theme_mod',
-				'transport'			=> 'postMessage',
-				'sanitize_callback'	=> 'sanitize_text_field',
-			)
+			['default'			=> $this->config->get('navbar.main_menu_x_align'), 'type'				=> 'theme_mod', 'transport'			=> 'postMessage', 'sanitize_callback'	=> 'sanitize_text_field']
 		);
 		$this->manager->add_control(
 			'italystrap_navbar[main_menu_x_align]',

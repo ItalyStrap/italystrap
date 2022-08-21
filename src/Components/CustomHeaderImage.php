@@ -14,11 +14,11 @@ class CustomHeaderImage implements ComponentInterface, SubscriberInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_content_header';
-	const EVENT_PRIORITY = 10;
+	public const EVENT_NAME = 'italystrap_content_header';
+	public const EVENT_PRIORITY = 10;
 
-	const CONTENT = 'content';
-	const CONTAINER_WIDTH = 'container_width';
+	public const CONTENT = 'content';
+	public const CONTAINER_WIDTH = 'container_width';
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

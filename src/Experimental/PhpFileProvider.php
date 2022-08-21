@@ -8,8 +8,7 @@ use ItalyStrap\Finder\FinderInterface;
 final class PhpFileProvider {
 
 
-	/** @var string */
-	private $pattern;
+	private string $pattern;
 
 	private FinderInterface $finder;
 

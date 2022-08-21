@@ -11,8 +11,8 @@ class Pager implements SubscriberInterface, ComponentInterface {
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_after_entry_content';
-	const EVENT_PRIORITY = 10;
+	public const EVENT_NAME = 'italystrap_after_entry_content';
+	public const EVENT_PRIORITY = 10;
 
 	private ConfigInterface $config;
 	private ViewInterface $view;

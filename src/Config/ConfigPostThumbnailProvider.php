@@ -7,17 +7,17 @@ use ItalyStrap\Theme\ThumbnailsSubscriber;
 
 class ConfigPostThumbnailProvider {
 
-	const POST_THUMBNAIL_SIZE = 'post_thumbnail_size';
-	const POST_THUMBNAIL_ALIGNMENT = 'post_thumbnail_alignment';
-	const POST_CONTENT_WIDTH = 'content_width';
+	public const POST_THUMBNAIL_SIZE = 'post_thumbnail_size';
+	public const POST_THUMBNAIL_ALIGNMENT = 'post_thumbnail_alignment';
+	public const POST_CONTENT_WIDTH = 'content_width';
 
-	const POST_THUMBNAIL_SIZE_DEFAULT = 'post-thumbnail';
+	public const POST_THUMBNAIL_SIZE_DEFAULT = 'post-thumbnail';
 
-	const POST_THUMBNAIL_ID_DEFAULT = 'default_image';
+	public const POST_THUMBNAIL_ID_DEFAULT = 'default_image';
 
-	const WIDTH = 'width';
-	const HEIGHT = 'height';
-	const CROP = 'crop';
+	public const WIDTH = 'width';
+	public const HEIGHT = 'height';
+	public const CROP = 'crop';
 
 	public function __invoke(): iterable {
 

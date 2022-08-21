@@ -10,8 +10,8 @@ class Preview implements ComponentInterface, \ItalyStrap\Event\SubscriberInterfa
 
 	use SubscribedEventsAware;
 
-	const EVENT_NAME = 'italystrap_entry_content';
-	const EVENT_PRIORITY = 40;
+	public const EVENT_NAME = 'italystrap_entry_content';
+	public const EVENT_PRIORITY = 40;
 
 	public function shouldDisplay(): bool {
 		return is_preview();

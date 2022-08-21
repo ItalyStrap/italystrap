@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\View\ViewInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
 class ArchiveAuthorInfo implements ComponentInterface, SubscriberInterface {
@@ -12,14 +11,14 @@ class ArchiveAuthorInfo implements ComponentInterface, SubscriberInterface {
 	use SubscribedEventsAware;
 
 	private ConfigInterface $config;
-	private ViewInterface $view;
+	private AuthorInfo $info;
 
 	public const EVENT_NAME = 'italystrap_before_loop';
 	public const EVENT_PRIORITY = 20;
 
-	public function __construct( ConfigInterface $config, ViewInterface $view ) {
+	public function __construct( ConfigInterface $config, AuthorInfo $info) {
 		$this->config = $config;
-		$this->view = $view;
+		$this->info = $info;
 	}
 
 	public function shouldDisplay(): bool {
@@ -27,6 +26,6 @@ class ArchiveAuthorInfo implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-		echo $this->view->render(null, []);
+		echo $this->info->render(null, []);
 	}
 }

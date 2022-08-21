@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests;
 
 use ItalyStrap\Asset\InlineStyleGenerator;
+use ItalyStrap\Components\AuthorInfo;
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Navigations\Navbar;
 use ItalyStrap\Config\ConfigInterface;
@@ -122,6 +123,12 @@ trait BaseUnitTrait {
 		return $this->control->reveal();
 	}
 
+	private \Prophecy\Prophecy\ObjectProphecy $author;
+
+	public function getAuthorInfo(): AuthorInfo {
+		return $this->author->reveal();
+	}
+
 	// phpcs:ignore
 	protected function _before() {
 		$this->setUpProphet();
@@ -150,6 +157,7 @@ trait BaseUnitTrait {
 		$this->theme = $this->prophet->prophesize(\WP_Theme::class);
 		$this->manager = $this->prophet->prophesize(\WP_Customize_Manager::class);
 		$this->control = $this->prophet->prophesize(FieldControlFactory::class);
+		$this->author = $this->prophet->prophesize(AuthorInfo::class);
 //		\Brain\Monkey\setUp();
 	}
 

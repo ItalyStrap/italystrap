@@ -16,7 +16,7 @@ class MainNavigationTest extends \Codeception\Test\Unit {
 	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): MainNavigation {
-		$sut = new MainNavigation($this->getConfig(), $this->getView(), $this->getNavbar());
+		$sut = new MainNavigation($this->getConfig(), $this->getView(), $this->getDispatcher());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}

@@ -14,7 +14,7 @@ class ArchiveAuthorInfoTest extends \Codeception\Test\Unit {
 	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): ArchiveAuthorInfo {
-		$sut = new ArchiveAuthorInfo($this->getConfig(), $this->getView());
+		$sut = new ArchiveAuthorInfo($this->getConfig(), $this->getAuthorInfo());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}
@@ -38,7 +38,7 @@ class ArchiveAuthorInfoTest extends \Codeception\Test\Unit {
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
 
-		$this->view->render(null, [])->willReturn('some-string');
+		$this->author->render(null, [])->willReturn('some-string');
 
 		$this->expectOutputString('some-string');
 		$sut->display();

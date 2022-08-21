@@ -15,7 +15,7 @@ class PostAuthorInfoTest extends \Codeception\Test\Unit {
 	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
 
 	protected function getInstance(): PostAuthorInfo {
-		$sut = new PostAuthorInfo($this->getConfig(), $this->getView());
+		$sut = new PostAuthorInfo($this->getConfig(), $this->getAuthorInfo());
 		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
 		return $sut;
 	}
@@ -56,7 +56,7 @@ class PostAuthorInfoTest extends \Codeception\Test\Unit {
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
 
-		$this->view->render(null, [])->willReturn('some-string');
+		$this->author->render(null, [])->willReturn('some-string');
 
 		$this->expectOutputString('some-string');
 		$sut->display();

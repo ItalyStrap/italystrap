@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\View\ViewInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
 class PostAuthorInfo implements ComponentInterface, SubscriberInterface {
@@ -15,11 +14,11 @@ class PostAuthorInfo implements ComponentInterface, SubscriberInterface {
 	public const EVENT_PRIORITY = 30;
 
 	private ConfigInterface $config;
-	private ViewInterface $view;
+	private AuthorInfo $author;
 
-	public function __construct( ConfigInterface $config, ViewInterface $view ) {
+	public function __construct( ConfigInterface $config, AuthorInfo $author) {
 		$this->config = $config;
-		$this->view = $view;
+		$this->author = $author;
 	}
 
 	public function shouldDisplay(): bool {
@@ -29,7 +28,6 @@ class PostAuthorInfo implements ComponentInterface, SubscriberInterface {
 	}
 
 	public function display(): void {
-//		echo $this->view->render(null, []);
-		echo 'POST_AUTHOR_INFO from ' . self::class;
+		echo $this->author->render(null, []);
 	}
 }

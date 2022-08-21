@@ -36,9 +36,7 @@ class InlineStyleSubscriberTest extends \Codeception\Test\Unit {
 
 		$this->config->get(ConfigThemeProvider::PREFIX)->willReturn('italystrap');
 
-		$this->defineFunction('wp_strip_all_tags', function ( string $string ) {
-			return $string;
-		});
+		$this->defineFunction('wp_strip_all_tags', fn(string $string) => $string);
 
 		$this->expectOutputString(
 			'<style id="italystrap-global-styles-inline-css">-test--test--test-</style>'

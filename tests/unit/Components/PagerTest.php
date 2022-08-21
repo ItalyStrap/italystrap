@@ -28,9 +28,7 @@ class PagerTest extends \Codeception\Test\Unit {
 
 		$this->defineFunction('is_single', static fn() => true);
 
-		$this->defineFunction('get_post_type', static function () {
-			return 'post';
-		});
+		$this->defineFunction('get_post_type', static fn() => 'post');
 
 		$this->defineFunction(
 			'post_type_supports',
@@ -48,9 +46,7 @@ class PagerTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
-		$this->defineFunction('do_blocks', static function ( string $block ) {
-			return 'block';
-		});
+		$this->defineFunction('do_blocks', static fn(string $block) => 'block');
 
 		$this->view->render( 'temp/pager', Argument::type('array') )->willReturn('block');
 		$this->expectOutputString('block');

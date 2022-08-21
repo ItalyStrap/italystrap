@@ -25,9 +25,7 @@ class ArchiveAuthorInfoTest extends \Codeception\Test\Unit {
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
 
-		$this->defineFunction('is_author', static function (): bool {
-			return true;
-		});
+		$this->defineFunction('is_author', static fn(): bool => true);
 
 		$this->assertTrue($sut->shouldDisplay(), '');
 	}

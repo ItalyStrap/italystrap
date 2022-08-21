@@ -36,12 +36,10 @@ class HeaderTest extends \Codeception\Test\Unit {
 
 		$this->config->get('current_template_slug')->willReturn('');
 
-		$this->defineFunction('get_body_class', static function (): array {
-			return [
+		$this->defineFunction('get_body_class', static fn(): array => [
 				'class-1',
 				'class-2',
-			];
-		});
+			]);
 
 		$this->view->render( 'header', Argument::type('array') )->willReturn('header');
 

@@ -34,15 +34,9 @@ class PreviewTest extends Unit {
 	 */
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
-		$this->defineFunction('__', static function ( string $text, string $domain) {
-			return 'block';
-		});
-		$this->defineFunction('wp_kses_post', static function ( string $text ) {
-			return 'block';
-		});
-		$this->defineFunction('do_blocks', static function ( string $block ) {
-			return 'block';
-		});
+		$this->defineFunction('__', static fn(string $text, string $domain) => 'block');
+		$this->defineFunction('wp_kses_post', static fn(string $text) => 'block');
+		$this->defineFunction('do_blocks', static fn(string $block) => 'block');
 
 		$this->expectOutputString('block');
 		$sut->display();

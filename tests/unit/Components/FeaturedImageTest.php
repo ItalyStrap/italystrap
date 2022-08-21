@@ -26,9 +26,7 @@ class FeaturedImageTest extends \Codeception\Test\Unit {
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
 
-		$this->defineFunction('get_post_type', static function () {
-			return 'post';
-		});
+		$this->defineFunction('get_post_type', static fn() => 'post');
 
 		$this->defineFunction(
 			'post_type_supports',
@@ -60,9 +58,7 @@ class FeaturedImageTest extends \Codeception\Test\Unit {
 //			return 'full-width';
 //		});
 
-		$this->defineFunction('do_blocks', static function ( string $block ) {
-			return 'From do_blocks';
-		});
+		$this->defineFunction('do_blocks', static fn(string $block) => 'From do_blocks');
 
 		$this->expectOutputString('From do_blocks');
 		$sut->display();

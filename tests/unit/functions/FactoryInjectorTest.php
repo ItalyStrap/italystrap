@@ -17,29 +17,14 @@ final class FactoryInjectorTest extends Unit {
 
 	use UndefinedFunctionDefinitionTrait;
 
-	/**
-	 * @var UnitTester
-	 */
-	protected $tester;
+	protected \UnitTester $tester;
 
-	/**
-	 * @var false
-	 */
-	private $injector = false;
-	/**
-	 * @var int
-	 */
-	private $apply_filters_called;
+	private bool $injector = false;
+	private ?int $apply_filters_called = null;
 
-	/**
-	 * @var int
-	 */
-	private $add_filter_called;
+	private ?int $add_filter_called = null;
 
-	/**
-	 * @var bool
-	 */
-	private $is_debug = false;
+	private bool $is_debug = false;
 
 	private function resetFilterCountCallState() {
 		$this->apply_filters_called = 0;

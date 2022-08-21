@@ -34,19 +34,13 @@ class EntryTest extends \Codeception\Test\Unit {
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
 
-		$this->defineFunction('get_post_class', static function (): array {
-			return [
+		$this->defineFunction('get_post_class', static fn(): array => [
 				'class-1'
-			];
-		});
+			]);
 
-		$this->defineFunction('has_post_thumbnail', static function (): bool {
-			return true;
-		});
+		$this->defineFunction('has_post_thumbnail', static fn(): bool => true);
 
-		$this->defineFunction('get_the_ID', static function (): int {
-			return 1;
-		});
+		$this->defineFunction('get_the_ID', static fn(): int => 1);
 
 		$this->view->render( 'posts/entry-post', Argument::type('array') )->willReturn('posts/entry-post');
 

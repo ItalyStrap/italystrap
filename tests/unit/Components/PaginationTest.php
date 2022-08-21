@@ -35,9 +35,7 @@ class PaginationTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldDisplay() {
 		$sut = $this->getInstance();
-		$this->defineFunction('do_blocks', static function ( string $block ) {
-			return 'block';
-		});
+		$this->defineFunction('do_blocks', static fn(string $block) => 'block');
 
 		$this->view->render( 'temp/pagination', Argument::type('array') )->willReturn('block');
 		$this->expectOutputString('block');

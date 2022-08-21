@@ -26,9 +26,7 @@ class PostAuthorInfoTest extends \Codeception\Test\Unit {
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
 
-		$this->defineFunction('get_post_type', static function (): string {
-			return 'post';
-		});
+		$this->defineFunction('get_post_type', static fn(): string => 'post');
 
 		$this->defineFunction(
 			'post_type_supports',
@@ -40,9 +38,7 @@ class PostAuthorInfoTest extends \Codeception\Test\Unit {
 
 		$this->defineFunction(
 			'is_singular',
-			static function (): bool {
-				return true;
-			}
+			static fn(): bool => true
 		);
 
 		$this->config->get('post_content_template')->willReturn([]);

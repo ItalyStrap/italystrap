@@ -12,9 +12,7 @@ trait UndefinedFunctionDefinitionTrait {
 	) {
 		$this->defineFunction(
 			'post_type_supports',
-			static function ( string $post_type, string $feature ) use ( $return ) {
-				return $return;
-			}
+			static fn(string $post_type, string $feature) => $return
 		);
 	}
 

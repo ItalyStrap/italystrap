@@ -25,9 +25,7 @@ class MiscNavigationTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldLoad() {
 
-		$this->defineFunction('has_nav_menu', static function () {
-			return true;
-		});
+		$this->defineFunction('has_nav_menu', static fn() => true);
 
 		$sut = $this->getInstance();
 		$this->assertTrue($sut->shouldDisplay(), '');

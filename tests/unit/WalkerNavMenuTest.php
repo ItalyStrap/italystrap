@@ -23,21 +23,13 @@ class WalkerNavMenuTest extends Unit {
 
 	// phpcs:ignore
 	protected function _before() {
-		$this->defineFunction( 'add_filter', function ( ...$args ) {
-			return true;
-		} );
+		$this->defineFunction( 'add_filter', fn(...$args) => true );
 
-		$this->defineFunction( 'apply_filters', function ( ...$args ) {
-			return $args[1];
-		} );
+		$this->defineFunction( 'apply_filters', fn(...$args) => $args[1] );
 
-		$this->defineFunction( 'esc_attr', function ( ...$args ) {
-			return $args[0];
-		} );
+		$this->defineFunction( 'esc_attr', fn(...$args) => $args[0] );
 
-		$this->defineFunction( 'remove_filter', function ( ...$args ) {
-			return true;
-		} );
+		$this->defineFunction( 'remove_filter', fn(...$args) => true );
 	}
 
 	// phpcs:ignore

@@ -25,17 +25,11 @@ class ArchiveHeadlineTest extends \Codeception\Test\Unit {
 	 */
 	public function itShouldLoad() {
 
-		$this->defineFunction('is_archive', static function () {
-			return true;
-		});
+		$this->defineFunction('is_archive', static fn() => true);
 
-		$this->defineFunction('is_search', static function () {
-			return true;
-		});
+		$this->defineFunction('is_search', static fn() => true);
 
-		$this->defineFunction('is_author', static function () {
-			return false;
-		});
+		$this->defineFunction('is_author', static fn() => false);
 
 		$sut = $this->getInstance();
 		$this->assertTrue($sut->shouldDisplay(), '');

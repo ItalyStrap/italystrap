@@ -26,13 +26,9 @@ class CommentsTest extends \Codeception\Test\Unit {
 	public function itShouldLoad() {
 		$sut = $this->getInstance();
 
-		$this->defineFunction('is_singular', static function () {
-			return true;
-		});
+		$this->defineFunction('is_singular', static fn() => true);
 
-		$this->defineFunction('get_post_type', static function () {
-			return 'post';
-		});
+		$this->defineFunction('get_post_type', static fn() => 'post');
 
 		$this->defineFunction(
 			'post_type_supports',

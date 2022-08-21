@@ -19,9 +19,7 @@ class ExperimentalAssetsFileNameGeneratorFunctionTest extends Unit {
 	// phpcs:ignore
 	protected function _before() {
 		// phpcs:ignore
-		\tad\FunctionMockerLe\define('add_filter', function (...$args) {
-			return true;
-		});
+		\tad\FunctionMockerLe\define('add_filter', fn(...$args) => true);
 
 		$genreal_function_file = codecept_absolute_path('functions/asset-helpers.php');
 

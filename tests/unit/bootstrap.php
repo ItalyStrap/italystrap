@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use tad\FunctionMocker\FunctionMocker;
 
-require_once dirname( __FILE__ ) . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 FunctionMocker::init([
 	'blacklist' => dirname(__DIR__),

@@ -36,7 +36,7 @@
 	],
 	"require": {
 		"php" : ">=7.4",
-		"italystrap/empress": "~2.0.0",
+		"italystrap/empress": "^2.0.0",
 		"italystrap/event": "dev-master",
 		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
@@ -67,8 +67,8 @@
 		"squizlabs/php_codesniffer": "*",
 		"phpcompatibility/php-compatibility": "*",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"phpstan/phpstan": "^0.12",
-		"szepeviktor/phpstan-wordpress": "^0.5",
+		"phpstan/phpstan": "^1.8.2",
+		"szepeviktor/phpstan-wordpress": "^v1.1.0",
 		"vimeo/psalm": "^4.8",
 		"phpbench/phpbench": "@dev",
 		"infection/infection": "^0.25.0",
@@ -82,7 +82,8 @@
 		"wordpress/wordpress": "dev-master",
 		"humanmade/psalm-plugin-wordpress": "^2.0",
 		"monolog/monolog": "^2.3",
-		"franzl/studio": "^0.15.0"
+		"franzl/studio": "^0.15.0",
+		"rector/rector": "^0.14.0"
 	},
 	"autoload": {
 		"psr-4": {

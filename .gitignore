@@ -47,3 +47,4 @@ package-lock.json
 c3.php
 **/*.local.php
 /.idea/
+*.bak

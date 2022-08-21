@@ -21,16 +21,23 @@ class NavMenuPrimary implements ComponentInterface, \ItalyStrap\Event\Subscriber
 	private NavMenu $menu;
 	private NavMenuLocationInterface $location;
 
+	/**
+	 * @var callable
+	 */
+	private $fallback;
+
 	public function __construct(
 		ConfigInterface $config,
 		ViewInterface $view,
 		NavMenuInterface $menu,
-		NavMenuLocationInterface $location
+		NavMenuLocationInterface $location,
+		callable $fallback = null
 	) {
 		$this->config = $config;
 		$this->view = $view;
 		$this->menu = $menu;
 		$this->location = $location;
+		$this->fallback = $fallback;
 	}
 
 	public function shouldDisplay(): bool {
@@ -44,7 +51,7 @@ class NavMenuPrimary implements ComponentInterface, \ItalyStrap\Event\Subscriber
 				$this->config->get('mods.navbar.main_menu_x_align')
 			),
 			NavMenu::MENU_ID => 'main-menu',
-			NavMenu::FALLBACK_CB => 'Core\Bootstrap_Nav_Menu::fallback',
+			NavMenu::FALLBACK_CB => $this->fallback,
 			NavMenu::THEME_LOCATION	=> self::class,
 		]);
 	}

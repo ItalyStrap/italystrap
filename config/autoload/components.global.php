@@ -59,6 +59,10 @@ return [
 			':fallback_cb' => [ \ItalyStrap\Navbar\BootstrapNavMenu::class, 'fallback' ],
 		],
 
+		NavMenuPrimary::class => [
+			':fallback' => [ \ItalyStrap\Navbar\BootstrapNavMenu::class, 'fallback' ],
+		],
+
 		PostAuthorInfo::class => [
 			'+view' => static function ( string $named_param, Injector $injector ): AuthorInfo {
 				return $injector->make( AuthorInfo::class );
@@ -120,7 +124,7 @@ return [
 		NavMenuPrimary::class,
 		NavMenuSecondary::class,
 		MainNavigationOlder::class,
-		MainNavigation::class,
+//		MainNavigation::class,
 
 		Comments::class,
 		Colophon::class,

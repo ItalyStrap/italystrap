@@ -30,6 +30,12 @@ $config = $this;
 /** @var Navbar $navbar */
 $navbar = $config->get(Navbar::class);
 
+/** @var NavMenuPrimary $nav_menu_primary */
+$nav_menu_primary = $config->get(NavMenuPrimary::class);
+
+/** @var NavMenuSecondary $nav_menu_secondary */
+$nav_menu_secondary = $config->get(NavMenuSecondary::class);
+
 
 $number = \esc_attr( $config->get('number', \rand() ) );
 $navbar_id = 'italystrap-menu-' . $number;
@@ -78,7 +84,7 @@ open_tag_e('nav_container', 'div', [
 					'itemtype' => 'https://schema.org/Organization',
 				]
 			);
-//			echo $navbar->get_navbar_header();
+
 			echo $navbar->get_navbar_brand();
 
 /**
@@ -107,71 +113,8 @@ open_tag_e('nav_container', 'div', [
 				'class' => 'navbar-collapse collapse',
 			]);
 
-			/**
-			 * Arguments for wp_nav_menu()
-			 *
-			 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
-			 * @var array
-			 */
-			$args = [
-				'menu'				=> '',
-				'container'			=> false, // WP Default div
-				'container_class'	=> false,
-				'container_id'		=> false,
-				'menu_class'		=> \sprintf(
-					'nav navbar-nav %s mr-auto mb-2 mb-lg-0',
-					$config->get('mods.navbar.main_menu_x_align')
-				),
-				'menu_id'			=> 'main-menu',
-				'echo'				=> true,
-				'fallback_cb'		=> 'Core\Bootstrap_Nav_Menu::fallback',
-				'before'			=> '',
-				'after'				=> '',
-				'link_before'		=> '<span class="item-title" itemprop="name">',
-				'link_after'		=> '</span>',
-				'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
-				'depth'				=> 10,
-			//					'walker'			=> new Core\Bootstrap_Nav_Menu(),
-				'theme_location'	=> NavMenuPrimary::class,
-				'search'			=> false,
-			];
-
-			$args = apply_filters( 'italystrap_main_nav_menu_args', $args );
-
-			echo $navbar->get_wp_nav_menu($args);
-
-			if ( has_nav_menu( NavMenuSecondary::class ) ) :
-
-				/**
-				 * Arguments for wp_nav_menu()
-				 *
-				 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
-				 * @var array
-				 */
-				$args = [
-					'menu'				=> '',
-					'container'			=> false, // WP Default div
-					'container_class'	=> false,
-					'container_id'		=> false,
-					'menu_class'		=> 'nav navbar-nav navbar-right',
-					'menu_id'			=> 'secondary-menu',
-					'echo'				=> true,
-					'fallback_cb'		=> false,
-					'before'			=> '',
-					'after'				=> '',
-					'link_before'		=> '<span class="item-title" itemprop="name">',
-					'link_after'		=> '</span>',
-					'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
-					'depth'				=> 2,
-			//						'walker'			=> new Core\Bootstrap_Nav_Menu(),
-					'theme_location'	=> NavMenuSecondary::class,
-					'search'			=> false,
-				];
-
-				$args = apply_filters( 'italystrap_secondary_nav_menu_args', $args );
-
-				wp_nav_menu( $args );
-			endif;
+			$nav_menu_primary->display();
+			$nav_menu_secondary->display();
 
 			close_tag_e('collapsable_menu');
 			close_tag_e('nav-inner-container');

@@ -19,15 +19,21 @@ class MainNavigationOlder implements ComponentInterface, SubscriberInterface {
 	private ConfigInterface $config;
 	private ViewInterface $view;
 	private Navigations\Navbar $navbar;
+	private NavMenuPrimary $navMenuPrimary;
+	private NavMenuSecondary $navMenuSecondary;
 
 	public function __construct(
 		ConfigInterface $config,
 		ViewInterface $view,
-		Navigations\Navbar $navbar
+		Navigations\Navbar $navbar,
+		NavMenuPrimary $navMenuPrimary,
+		NavMenuSecondary $navMenuSecondary
 	) {
 		$this->config = $config;
 		$this->view = $view;
 		$this->navbar = $navbar;
+		$this->navMenuPrimary = $navMenuPrimary;
+		$this->navMenuSecondary = $navMenuSecondary;
 	}
 
 	public function shouldDisplay(): bool {
@@ -38,6 +44,8 @@ class MainNavigationOlder implements ComponentInterface, SubscriberInterface {
 		echo \do_blocks( $this->view->render( 'headers/navbar', [
 			'mods'		=> $this->config,
 			Navbar::class	=> $this->navbar,
+			NavMenuPrimary::class => $this->navMenuPrimary,
+			NavMenuSecondary::class => $this->navMenuSecondary,
 		] ) );
 	}
 }

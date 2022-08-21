@@ -60,7 +60,7 @@ return [
 		],
 
 		NavMenuPrimary::class => [
-			':fallback' => [ \ItalyStrap\Navbar\BootstrapNavMenu::class, 'fallback' ],
+			':fallback' => [ \ItalyStrap\Navigation\NavMenuFallback::class, '__invoke' ],
 		],
 
 		PostAuthorInfo::class => [

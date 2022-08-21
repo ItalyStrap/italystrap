@@ -55,31 +55,3 @@ if ( !function_exists( '\ItalyStrap\Factory\injector' ) ) {
 		return $injector;
 	}
 }
-
-if ( !function_exists( '\ItalyStrap\Factory\get_config' ) ) {
-
-	/**
-	 * @return ConfigInterface
-	 */
-	function get_config(): ConfigInterface {
-
-		static $config = null;
-
-		if ( !$config ) {
-			try {
-				$config = injector()
-					->alias( ConfigInterface::class, Config::class )
-					->share( Config::class )
-					->make( Config::class );
-			} catch (ConfigException $configException) {
-				echo $configException->getMessage();
-			} catch (InjectionException $injectionException) {
-				echo $injectionException->getMessage();
-			} catch (Exception $exception) {
-				echo $exception->getMessage();
-			}
-		}
-
-		return $config;
-	}
-}

@@ -11,7 +11,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
+use Auryn\Injector;
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcher;
+use ItalyStrap\Event\EventDispatcherInterface;
 use function _n;
 use function do_blocks;
 use function get_comment_pages_count;
@@ -20,7 +23,6 @@ use function get_option;
 use function get_the_title;
 use function have_comments;
 use function in_array;
-use function ItalyStrap\Factory\get_config;
 use function ItalyStrap\Factory\injector;
 use function number_format_i18n;
 use function ob_get_clean;
@@ -45,8 +47,16 @@ if ( post_password_required() ) {
 	return;
 }
 
-$event_dispatcher = injector()->make( EventDispatcher::class );
-$template_settings = (array) get_config()->get('post_content_template');
+/** @var Injector $injector */
+$injector = injector();
+
+/** @var EventDispatcherInterface $event_dispatcher */
+$event_dispatcher = $injector->make( EventDispatcherInterface::class );
+
+/** @var ConfigInterface $config */
+$config = $injector->make(ConfigInterface::class);
+
+$template_settings = (array) $config->get('post_content_template');
 
 if ( ! have_comments() ) {
 	return;

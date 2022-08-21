@@ -9,10 +9,7 @@ use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
 use function get_post_type;
 use function in_array;
-use function is_singular;
-use function ItalyStrap\Core\get_template_settings;
 use function post_type_supports;
-use function strval;
 
 class FeaturedImage implements ComponentInterface, SubscriberInterface {
 

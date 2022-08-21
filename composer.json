@@ -94,7 +94,6 @@
 			"functions/booleans.php",
 			"functions/asset-helpers.php",
 			"functions/config-helpers.php",
-			"functions/general-functions.php",
 			"functions/italystrap.php",
 			"functions/factory.php",
 			"functions/images.php"

@@ -65,17 +65,6 @@ return [
 				return $injector->make( NavMenuFallback::class );
 			},
 		],
-
-		PostAuthorInfo::class => [
-			'+view' => static function ( string $named_param, Injector $injector ): AuthorInfo {
-				return $injector->make( AuthorInfo::class );
-			}
-		],
-		ArchiveAuthorInfo::class => [
-			'+view' => static function ( string $named_param, Injector $injector ): AuthorInfo {
-				return $injector->make( AuthorInfo::class );
-			}
-		],
 	],
 
 	/**

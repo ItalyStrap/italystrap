@@ -14,6 +14,7 @@ class MainNavigation implements ComponentInterface, SubscriberInterface {
 
 	public const EVENT_NAME = 'italystrap_after_header';
 	public const EVENT_PRIORITY = 10;
+	public const CONTEXT = 'context';
 
 	private ConfigInterface $config;
 	private ViewInterface $view;
@@ -35,7 +36,8 @@ class MainNavigation implements ComponentInterface, SubscriberInterface {
 
 	public function display(): void {
 		echo \do_blocks( $this->view->render( 'navigation', [
-			EventDispatcherInterface::class => $this->dispatcher
+			EventDispatcherInterface::class => $this->dispatcher,
+			self::CONTEXT => 'this-context',
 		] ) );
 	}
 }

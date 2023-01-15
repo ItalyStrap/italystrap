@@ -41,6 +41,8 @@ foreach ( $autoload_theme_files as $file ) {
 	require __DIR__ . DIRECTORY_SEPARATOR . $file;
 }
 
+unset($autoload_theme_files);
+
 return (static function ( Injector $injector ): Injector {
 	$injector
 		->alias( EventDispatcherInterface::class, EventDispatcher::class )

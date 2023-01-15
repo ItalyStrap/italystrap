@@ -1,7 +1,8 @@
 main {
 	margin: 6rem 0;
-}
-
-.author-nick{
-	margin-top: 0;
+	> .alignwide {
+		max-width: clamp(16rem, 95vw, 90rem);
+		margin-inline: auto;
+		gap: 2rem;
+	}
 }

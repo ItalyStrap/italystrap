@@ -8,6 +8,16 @@
         }
     },
     "styles": {
+        "typography": {
+            "fontFamily": "var(--wp--preset--font-family--base)",
+            "fontSize": "18px",
+            "fontStyle": "normal",
+            "fontWeight": "300",
+            "letterSpacing": "normal",
+            "lineHeight": "var(--wp--custom--line-height--m)",
+            "textDecoration": "none",
+            "textTransform": "none"
+        },
         "blocks": {
             "core/site-logo": {
                 "spacing": {

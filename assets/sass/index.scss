@@ -3,37 +3,15 @@
 @import "vendors/bt3";
 //@import "vendors/bt5";
 
-@import "compass";
-@import "compass/css3";
-@import "compass/utilities";
-@import "../../bower/susy/sass/susy";
-@import "../../bower/sassy-maps/sass/memo";
-@import "../../bower/breakpoint-sass/stylesheets/breakpoint";
-
-$susy: (
-  columns: 12,
-  container: auto,
-  // gutters: .25,
-  gutters: .50,
-  // gutter-position: inside,
-  gutter-position: split,
-);
-
 ///
 /// Da qui comincia lo stile custom
 /// 
-//@import "mixins/_index";
-//@import "global/_index";
-//@import "header/_index";
-//@import "navigations/_index";
+@import "mixins/_index";
+@import "global/_index";
+@import "header/_index";
+@import "navigations/_index";
 @import "content/_index";
 @import "comments/_index";
-//@import "sidebar/_index";
-//@import "footer/_index";
+@import "sidebar/_index";
+@import "footer/_index";
 //@import "wordpress/_index";
-
-
-.text-custom {
-    font-size: $text-custom;
-    //font-size: 25px;
-}

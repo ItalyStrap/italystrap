@@ -265,8 +265,8 @@ module.exports = grunt => {
 		exec: { // https://github.com/jharding/grunt-exec
 			composer_update: 'composer update --no-dev && composer dumpautoload -o',
 			composer_update_dev: 'composer update && composer dumpautoload',
-			unit: 'codecept run unit --debug',
-			wpunit: 'codecept run wpunit --debug',
+			unit: 'composer run unit:debug',
+			wpunit: 'composer run wpunit:debug',
 		},
 
 		compress: { // https://github.com/gruntjs/grunt-contrib-compress

@@ -1,12 +1,6 @@
-/**
- * Snippet example for widget:
- */
-// aside {
-// 	.widget{
-// 		li {
-// 			background-color: #e5e5e5;
-// 			margin: 6px 0;
-// 			padding: 6px 12px;
-// 		}
-// 	}
-// }
+.wp-block-column,
+.wp-block-column.sidebar{
+  .widget {
+    list-style: none;
+  }
+}

@@ -1,4 +1,4 @@
-@import "compass";
+//@import "compass";
 //@import "variable";
 
 ///
@@ -23,216 +23,18 @@
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/grid";
 // @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/tables";
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/forms";
-@import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
 
 // Components
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
-@import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
-@import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
+
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/navs";
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/navbar";
+
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/pagination";
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/pager";
-@import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/labels";
-@import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/badges";
-// @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
-@import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
-// @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
-// @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
-@import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/media";
-// @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/list-group";
-// @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/panels";
+
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed";
-// @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/wells";
-// @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/close";
 
-// Components w/ JavaScript
-// @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/modals";
-// @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
-// @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/popovers";
 @import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/carousel";
-
-// Utility classes
-@import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/utilities";
-@import "../../bower/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
-
-///
-/// Da qui comincia lo stile custom
-/// 
-/**
- * Css for admin panel
- */
-body {
-	padding: 1rem !important;
-	&.wp-autoresize {
-		padding: 1rem !important;
-	}
-}
-
-.icon {
-    background-color: transparent;
-}
-
-$gray-lightest: darken( #ffffff, 5% ) !default;
-
-.wpview-wrap {
-	background-color: $gray-lightest;
-	padding: 0 0.5rem;
-	.toolbar {
-		div {
-			margin: 0.2rem;
-			padding: 0;
-		}
-	}
-	.remove-block {
-		display: none;
-	}
-	.text-inverse h1, .text-inverse h2, .text-inverse h3, .text-inverse h4, .text-inverse h5, .text-inverse h6, .text-inverse .h1, .text-inverse .h2, .text-inverse .h3, .text-inverse .figure-project .wp-caption-text strong, .figure-project .wp-caption-text .text-inverse strong, .text-inverse .h4, .text-inverse .h5, .text-inverse .h6, .text-inverse .nav-link {
-		color: $brand-primary !important;
-	}
-}
-
-$wp_border_color: #e5e5e5;
-
-.row {
-	background-color: #F1F1F1;
-	border: 1px solid $wp_border_color !important;
-	padding: 5px;
-	margin: 0 -10px 1rem;
-	// &:before{
-	// 	content: "row";
-	// }
-	[class*="col"] {
-		background: $body-bg;
-		border: 1px dashed darken( $wp_border_color, 40% );
-		padding: 5px;
-		&:hover {
-			background-color: darken( $body-bg, 3% );
-			border-color: darken( $wp_border_color, 60% );
-		}
-	}
-}
-
-.wpview-wrap {
-	.row {
-		background-color: unset;
-		border: unset;
-		padding: unset;
-		margin: unset;
-		&:before{
-			content: unset;
-		}
-		[class*="col"] {
-			background: unset;
-			border: unset;
-			padding: unset;
-			&:hover {
-				background-color: unset;
-				border-color: unset;
-			}
-		}
-	}
-}
-
-/**
- * === Content Width ===
- * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
- * https://developer.wordpress.org/block-editor/developers/themes/theme-support/#changing-the-width-of-the-editor
- */
-//.wp-block {
-	/*width: calc(100vw - (2 * 1rem));*/
-	//max-width: 100%;
-//}
-
-/* Main column width */
-.wp-block {
-	max-width: 960px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-/* Width of "wide" blocks */
-.wp-block[data-align="wide"] {
-	max-width: 1080px;
-	//max-width: $;
-}
-
-/* Width of "full-wide" blocks */
-.wp-block[data-align="full"] {
-	max-width: none;
-}
-
-/*@media only screen and (min-width: 768px) {*/
-/*.wp-block {*/
-/*width: calc(8 * (100vw / 12));*/
-/*}*/
-/*}*/
-
-/*@media only screen and (min-width: 1168px) {*/
-/*.wp-block {*/
-/*width: calc(6 * (100vw / 12 ));*/
-/*}*/
-/*}*/
-
-//.wp-block .wp-block {
-//	width: 100%;
-//}
-
-//.editor-block-list__block-edit {
-//	width: 100%;
-//}
-//
-//.wp-block-button {
-//	margin-bottom: 1rem;
-//}
-//
-//.block-library-button__inline-link {
-//	border: 1px solid #ccc;
-//	width: auto;
-//	padding: 0.5rem;
-//}
-
-//.editor-styles-wrapper {
-//	margin-top: 2rem;
-//}
-//
-//.components-notice-list {
-//	display: none;
-//}
-
-
-/**
- * Custom CSS for Gutenberg editor
- */
-
-/**
- * Post Title
- */
-.editor-post-title__block {
-	border: 1px solid #e9e9e9;
-	//padding: 0.5rem;
-}
-//.editor-post-title__block .is-selected {
-//	border: 1px solid #a0a0a0;
-//}
-
-.wp-block {
-	border: 1px solid #e9e9e9;
-	//padding: 0.5rem;
-}
-.is-selected {
-	//border: 1px solid #a0a0a0 !important;
-	border-color: #a0a0a0 !important;
-}
-
-//.wp-block-social-link {
-//	width: unset !important;
-//	padding: 0;
-//}
-
-p {
-	font-size: 18px;
-	line-height: 1.45;
-}

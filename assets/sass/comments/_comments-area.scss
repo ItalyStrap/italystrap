@@ -12,27 +12,3 @@
     margin-left: auto !important;
     margin-right: auto !important;
 }
-
-/**
- * Some basic style
- */
-//.comments-area{
-//	ul,
-//    ol {
-//      &.parent {
-//        @extend .list-unstyled;
-//      }
-//      &.children {
-//        @extend .list-unstyled;
-//      }
-//      .comment {
-//        margin-top: calc(2 * #{$spacer});
-//      }
-//    }
-// }
-//
-// @for $i from 2 through 9 {
-//   .depth-#{$i} {
-//     margin-left: #{$i*2}rem;
-//   }
-// }

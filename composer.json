@@ -112,7 +112,7 @@
 			"vendor/{$name}/": ["cmb2/cmb2"]
 		},
 		"theme-json": {
-			"callable": "\\ItalyStrap\\Theme\\JsonData::getJsonData",
+			"callable": "\\ItalyStrap\\Asset\\JsonData::getJsonData",
 			"path-for-theme-sass": "assets/sass/"
 		}
 	},

@@ -4,58 +4,27 @@
  *
  * Da finire di testare
  */
-//colors
-$color_celeste_approx: #ccc;
-$white: #fff;
+.dropdown-menu {
 
-.dropdown-submenu {
-    position: relative;
-    &:hover {
-        > .dropdown-menu {
-            display: block;
-        }
-        > a:after {
-            border-left-color: $white;
-        }
-    }
-    &.pull-left {
-        float: none;
-        > .dropdown-menu {
-            left: -100%;
-            margin-left: 10px;
-            -webkit-border-radius: 6px 0 6px 6px;
-            -moz-border-radius: 6px 0 6px 6px;
-            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-            border-radius: 6px 0 6px 6px;
-        }
-    }
-    > .dropdown-menu {
-        top: 0;
-        left: 100%;
-        margin-top: -6px;
-        margin-left: -1px;
-        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-        border-radius: 0 6px 6px 6px;
-    }
-    > a:after {
-        display: block;
-        content: " ";
-        float: right;
-        width: 0;
-        height: 0;
-        border-color: transparent;
-        border-style: solid;
-        border-width: 5px 0 5px 5px;
-        border-left-color: $color_celeste_approx;
-        margin-top: 5px;
-        margin-right: -10px;
-    }
-}
+  ul {
+    list-style: none;
+    padding-left: 0;
 
-///
-/// Compatibiltà con Polylang e bandierine sul menù
-///
-.nav > .lang-item > a {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    .nav-link {
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: normal;
+      line-height: 1.42857;
+      color: #333333;
+      white-space: nowrap;
+
+      &:focus,
+      &:hover {
+        color: #262626;
+        background-color: #f5f5f5;
+        text-decoration: none;
+      }
+    }
+  }
 }

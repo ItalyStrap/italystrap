@@ -66,5 +66,9 @@
   "dependencies": {
     "bootstrap": "^5.1.1",
     "popper.js": "^1.16.1"
+  },
+  "scripts": {
+    "css": "grunt css",
+    "watch": "grunt watch"
   }
 }

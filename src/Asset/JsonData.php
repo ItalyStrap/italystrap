@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace ItalyStrap\Theme;
+namespace ItalyStrap\Asset;
 
+use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\ThemeJsonGenerator\Factory\Color as FClr;
 use ItalyStrap\ThemeJsonGenerator\Factory\Spacing as FSpace;
 use ItalyStrap\ThemeJsonGenerator\Factory\Typography as FTypo;
@@ -15,6 +16,8 @@ final class JsonData {
 
 	public static function getJsonData(): array {
 		$data = new self();
+
+		$config = ConfigFactory::make();
 
 		$result = $data->buildJsonData();
 

@@ -75,7 +75,7 @@ final class ThumbnailsSubscriber implements Registrable, SubscriberInterface {
 		 */
 		global $content_width;
 		if ( ! isset( $content_width ) ) {
-			$content_width = (string)$this->config->get(ConfigPostThumbnailProvider::POST_CONTENT_WIDTH, '750px');
+			$content_width = (string)$this->config->get(ConfigPostThumbnailProvider::POST_CONTENT_WIDTH, '750');
 		}
 
 		/**

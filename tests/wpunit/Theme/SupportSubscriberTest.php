@@ -3,16 +3,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
-// phpcs:disable
-require_once 'BaseTheme.php';
-// phpcs:enable
-
-class Support extends BaseTheme {
+class SupportSubscriberTest extends BaseTheme {
 
 	protected function getInstance( $paramConfig = [] ) {
-//		$config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
+		$support = new \ItalyStrap\Theme\Support();
 		$config = \ItalyStrap\Config\ConfigFactory::make( $paramConfig );
-		$sut = new \ItalyStrap\Theme\SupportSubscriber( $config );
+		$sut = new \ItalyStrap\Theme\SupportSubscriber( $config, $support );
 		$this->assertInstanceOf( \ItalyStrap\Theme\Registrable::class, $sut, '' );
 		$this->assertInstanceOf( \ItalyStrap\Theme\SupportSubscriber::class, $sut, '' );
 		return $sut;
@@ -25,11 +21,13 @@ class Support extends BaseTheme {
 		$support = [
 			'automatic-feed-links',
 			'html5'	=> [
-				'search-form',
 				'comment-form',
 				'comment-list',
+				'search-form',
 				'gallery',
 				'caption',
+				'style',
+				'script',
 			],
 		];
 

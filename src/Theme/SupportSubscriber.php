@@ -29,7 +29,7 @@ final class SupportSubscriber implements Registrable, SubscriberInterface {
 	 * @return void
 	 */
 	public function register(): void {
-		foreach ( $this->config->get(self::class) as $feature => $parameters ) {
+		foreach ( (array) $this->config->get(self::class) as $feature => $parameters ) {
 			if ( \is_string( $parameters ) ) {
 				$this->support->add( $parameters );
 			} else {

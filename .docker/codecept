@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker exec -w //var/www/html/wp-content/themes/italystrap italystrap_test sh -c "vendor/bin/codecept ${*}"

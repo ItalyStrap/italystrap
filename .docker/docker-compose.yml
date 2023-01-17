@@ -1,0 +1,74 @@
+version: '3.8'
+services:
+
+  wordpress:
+    build:
+      context: ./wordpress
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+        WP_VERSION: ${WP_VERSION}
+    container_name: ${PROJECT_NAME:-wordpress}_test
+    restart: always
+    ports:
+      - ${WP_PORT_TEST}:80
+    environment:
+      WORDPRESS_DB_HOST: ${DB_HOST:-mysql}
+      WORDPRESS_DB_NAME: ${DB_NAME:-test}
+      WORDPRESS_DB_USER: ${DB_USER:-root}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-root}
+      WORDPRESS_TABLE_PREFIX: ${TABLE_PREFIX:-wp_}
+      WORDPRESS_DEBUG: 1
+    volumes:
+      - ../:/var/www/html/wp-content/themes/${PROJECT_NAME:-wordpress}
+      #- ./mu-plugins/:/var/www/html/wp-content/mu-plugins/
+    depends_on:
+      - mysql
+    networks:
+      wpbrowser:
+#        aliases:
+#          - wp
+
+  mysql:
+    image: mysql:${DB_VERSION:-5.7}
+    container_name: ${PROJECT_NAME:-wordpress}_mysql_test
+    restart: always
+    ports:
+      - ${DB_PORT_TEST}:3306
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-test}
+      #MYSQL_USER: ${TEST_SITE_DB_USER:-root}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-root}
+      #MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+    networks:
+      - wpbrowser
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin:${PMA_VERSION:-latest}
+    container_name: ${PROJECT_NAME}_phpmyadmin_test
+    restart: always
+    ports:
+      - ${PMA_PORT_TEST}:80
+    environment:
+      #     For max upload from PHPMYADMIN https://github.com/10up/wp-local-docker-v2/issues/40#issuecomment-719915040
+      UPLOAD_LIMIT: 1G
+      PMA_HOST: ${DB_HOST:-mysql}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+    networks:
+      - wpbrowser
+
+  chromedriver:
+    image: selenium/standalone-chrome:4.6.0-20221104
+    container_name: ${PROJECT_NAME:-wordpress}_chromedriver
+    shm_size: "2G"
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+    networks:
+      - wpbrowser
+
+networks:
+  wpbrowser:
+    driver: bridge

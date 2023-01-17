@@ -13,21 +13,21 @@ modules:
         - \Helper\Functional
     config:
         WPDb:
-            dsn: '%TEST_SITE_DB_DSN%'
-            user: '%TEST_SITE_DB_USER%'
-            password: '%TEST_SITE_DB_PASSWORD%'
+            dsn: '%WPDB_DB_DSN%'
+            user: '%WPDB_DB_USER%'
+            password: '%WPDB_DB_PASSWORD%'
             dump: 'tests/_data/dump.sql'
             populate: true
             cleanup: true
             waitlock: 10
-            url: '%TEST_SITE_WP_URL%'
+            url: '%WPDB_WP_URL%'
             urlReplacement: true
-            tablePrefix: '%TEST_SITE_TABLE_PREFIX%'
+            tablePrefix: '%WPDB_TABLE_PREFIX%'
         WPBrowser:
-            url: '%TEST_SITE_WP_URL%'
-            adminUsername: '%TEST_SITE_ADMIN_USERNAME%'
-            adminPassword: '%TEST_SITE_ADMIN_PASSWORD%'
-            adminPath: '%TEST_SITE_WP_ADMIN_PATH%'
+            url: '%WPBROWSER_WP_URL%'
+            adminUsername: '%WPBROWSER_ADMIN_USERNAME%'
+            adminPassword: '%WPBROWSER_ADMIN_PASSWORD%'
+            adminPath: '%WPBROWSER_WP_ADMIN_PATH%'
             headers:
                 X_TEST_REQUEST: 1
                 X_WPBROWSER_REQUEST: 1

@@ -9,13 +9,13 @@ modules:
         - \Helper\Wpunit
     config:
         WPLoader:
-            wpRootFolder: "%WP_ROOT_FOLDER%"
-            dbName: "%TEST_DB_NAME%"
-            dbHost: "%TEST_DB_HOST%"
-            dbUser: "%TEST_DB_USER%"
-            dbPassword: "%TEST_DB_PASSWORD%"
-            tablePrefix: "%TEST_TABLE_PREFIX%"
-            domain: "%TEST_SITE_WP_DOMAIN%"
-            adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
+            wpRootFolder: "%WPUNIT_ROOT_FOLDER%"
+            dbName: "%WPUNIT_DB_NAME%"
+            dbHost: "%WPUNIT_DB_HOST%"
+            dbUser: "%WPUNIT_DB_USER%"
+            dbPassword: "%WPUNIT_DB_PASSWORD%"
+            tablePrefix: "%WPUNIT_TABLE_PREFIX%"
+            domain: "%WPUNIT_SITE_WP_DOMAIN%"
+            adminEmail: "%WPUNIT_SITE_ADMIN_EMAIL%"
             title: "ItalyStrap"            
             theme: italystrap

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker exec -it -w //var/www/html/wp-content/themes/italystrap italystrap_test sh

@@ -19,10 +19,6 @@
 	"minimum-stability": "stable",
 	"repositories": [
 		{
-			"type": "vcs",
-			"url": "https://github.com/overclokk/color"
-		},
-		{
 			"type": "package",
 			"package": {
 				"name": "wordpress/wordpress",
@@ -41,7 +37,7 @@
 		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
 		"italystrap/html": "^1.0",
-		"italystrap/view": "dev-master",
+		"italystrap/view": "^1.0",
 		"italystrap/finder": "dev-master",
 		"italystrap/asset": "dev-master",
 		"rdlowrey/auryn": "^1.4",
@@ -83,7 +79,8 @@
 		"humanmade/psalm-plugin-wordpress": "^2.0",
 		"monolog/monolog": "^2.3",
 		"franzl/studio": "^0.15.0",
-		"rector/rector": "^0.14.0"
+		"rector/rector": "^0.14.0",
+		"hoa/console": "^3.17"
 	},
 	"autoload": {
 		"psr-4": {

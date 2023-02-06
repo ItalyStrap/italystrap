@@ -129,6 +129,23 @@ return [
 	 * ==========================================================
 	 */
 	AurynConfig::DEFINITIONS			=> [
+		View\View::class => [
+			'+finder' => static function ( string $named_param, Injector $injector ): FinderInterface {
+				$config = $injector->make( ConfigInterface::class );
+
+				$stylesheet_dir = $config->get( \ItalyStrap\Config\ConfigThemeProvider::STYLESHEET_DIR );
+				$template_dir = $config->get( \ItalyStrap\Config\ConfigThemeProvider::TEMPLATE_DIR );
+				$view_dir = $config->get( \ItalyStrap\Config\ConfigThemeProvider::VIEW_DIR );
+
+				$finder = (new FinderFactory())->make()
+					->in( [
+						$stylesheet_dir . '/' . $view_dir,
+						$template_dir . '/' . $view_dir,
+					] );
+
+				return $finder;
+			},
+		],
 
 		EditorSubscriber::class => [
 			'+finder'	=> static function ( string $named_param, Injector $injector ) {

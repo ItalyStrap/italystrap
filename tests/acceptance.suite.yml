@@ -22,21 +22,13 @@ modules:
             # re-import the dump between tests; this means the test site database will be repopulated between the tests.
             cleanup: true
             waitlock: 10
-            url: '%WPDB_WP_URL%'
+            url: '%CHROMEDRIVER_WP_URL%'
             urlReplacement: true #replace the hardcoded dump URL with the one above
             tablePrefix: '%WPDB_TABLE_PREFIX%'
-        WPBrowser:
-            url: '%WPBROWSER_WP_URL%'
-            adminUsername: '%WPBROWSER_ADMIN_USERNAME%'
-            adminPassword: '%WPBROWSER_ADMIN_PASSWORD%'
-            adminPath: '%WPBROWSER_WP_ADMIN_PATH%'
-            headers:
-                X_TEST_REQUEST: 1
-                X_WPBROWSER_REQUEST: 1
         WPWebDriver:
             url: '%CHROMEDRIVER_WP_URL%'
-            adminUsername: 'root'
-            adminPassword: 'root'
+            adminUsername: 'admin'
+            adminPassword: 'password'
             adminPath: '/wp-admin'
             browser: chrome
             host: %CHROMEDRIVER_HOST%

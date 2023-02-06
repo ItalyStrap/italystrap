@@ -15,15 +15,8 @@ use function str_replace;
 
 class EditorSubscriber implements SubscriberInterface {
 
-	/**
-	 * @var Config
-	 */
 	private Config $config;
-	/**
-	 * @var Finder
-	 */
 	private Finder $finder;
-
 	private EventDispatcher $dispatcher;
 
 	/**
@@ -71,17 +64,14 @@ class EditorSubscriber implements SubscriberInterface {
 		 * 		http:://italystrap.test\dir/dir\dir
 		 */
 		$style_url = str_replace(
-			(string) realpath( $this->config->get( ConfigThemeProvider::STYLESHEET_DIR ) ),
-			$this->config->get( ConfigThemeProvider::STYLESHEET_DIR_URI ), // Replace
+			(string) realpath( (string) $this->config->get( ConfigThemeProvider::STYLESHEET_DIR ) ),
+			(string) $this->config->get( ConfigThemeProvider::STYLESHEET_DIR_URI ), // Replace
 			$editor_style->getRealPath()
 		);
 
-		/**
-		 * @TODO Make sure URL has not back slashes
-		 */
 		$style_url = str_replace('\\', '/', $style_url);
 
-		$arg = $this->dispatcher->filter( 'italystrap_visual_editor_style', [ $style_url ] );
+		$arg = (array)$this->dispatcher->filter( 'italystrap_visual_editor_style', [ $style_url ] );
 
 		add_editor_style( $arg );
 	}

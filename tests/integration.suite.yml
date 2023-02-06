@@ -1,0 +1,21 @@
+# Codeception Test Suite Configuration
+#
+# Suite for unit or integration tests that require WordPress functions and classes.
+bootstrap: bootstrap.php
+actor: IntegrationTester
+modules:
+    enabled:
+        - WPLoader
+        - \Helper\Integration
+    config:
+        WPLoader:
+            wpRootFolder: "%WPUNIT_ROOT_FOLDER%"
+            dbName: "%WPUNIT_DB_NAME%"
+            dbHost: "%WPUNIT_DB_HOST%"
+            dbUser: "%WPUNIT_DB_USER%"
+            dbPassword: "%WPUNIT_DB_PASSWORD%"
+            tablePrefix: "%WPUNIT_TABLE_PREFIX%"
+            domain: "%WPUNIT_SITE_WP_DOMAIN%"
+            adminEmail: "%WPUNIT_SITE_ADMIN_EMAIL%"
+            title: "ItalyStrap"
+            theme: italystrap

@@ -74,7 +74,6 @@
 		"symfony/asset": "^5.0",
 		"inpsyde/assets": "^2.1",
 		"downshiftorg/wp-http": "^2.0",
-		"spatie/color": "dev-master",
 		"wordpress/wordpress": "dev-master",
 		"humanmade/psalm-plugin-wordpress": "^2.0",
 		"monolog/monolog": "^2.3",

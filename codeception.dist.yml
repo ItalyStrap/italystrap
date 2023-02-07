@@ -1,3 +1,4 @@
+bootstrap: bootstrap.php
 paths:
     tests: tests
     output: tests/_output
@@ -18,6 +19,9 @@ extensions:
         - Codeception\Command\GenerateWPXMLRPC
 params:
     - .env
+settings:
+    colors: true
+    memory_limit: 2048M
 coverage:
     enabled: true
     include:

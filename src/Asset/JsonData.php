@@ -86,12 +86,12 @@ final class JsonData {
 				],
 				'button'		=> [
 					'bg'	=> '{{color.base}}',
-//					'text'	=> $button_text_hover->toHex(),
+			//					'text'	=> $button_text_hover->toHex(),
 					'borderColor'	=> 'transparent',
 					'borderRadius'	=> 'calc( {{fontSize.base}} /4)',
 					'hover'	=> [
-//						'bg'	=> $button_bg_hover->toHex(),
-//						'text'	=> $button_text_hover->toHex(),
+			//						'bg'	=> $button_bg_hover->toHex(),
+			//						'text'	=> $button_text_hover->toHex(),
 						'borderColor'	=> 'transparent',
 					],
 					'padding'	=> ' 0.25em 0.7em',

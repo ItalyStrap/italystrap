@@ -28,6 +28,24 @@ services:
 #        aliases:
 #          - wp
 
+# https://mklasen.com/adding-and-using-wp-cli-in-a-docker-compose-setup/
+#  wpcli:
+#    container_name: ${PROJECT_NAME:-wp-cli}-cli_test
+#    depends_on:
+#      - wordpress
+#    image: wordpress:cli
+##    user: 1000:1000
+#    command: tail -f /dev/null
+#    volumes:
+#      - wordpress:/var/www/html
+#    environment:
+#      WORDPRESS_DB_HOST: ${NAME}-db:3306
+#      WORDPRESS_DB_USER: ${DB_USER}
+#      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+#      WORDPRESS_DB_NAME: ${DB_NAME}
+#    profiles:
+#      - dev
+
   mysql:
     image: mysql:${DB_VERSION:-5.7}
     container_name: ${PROJECT_NAME:-wordpress}_mysql_test

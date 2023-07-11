@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: fisso
@@ -8,16 +9,16 @@
 
 namespace ItalyStrap\Theme;
 
-interface Registrable {
+interface Registrable
+{
+    /**
+     * Method name for filter callback
+     */
+    public const REGISTER_CB = 'register';
 
-	/**
-	 * Method name for filter callback
-	 */
-	public const REGISTER_CB = 'register';
-
-	/**
-	 * The register method is used to register theme things
-	 * like sidebars, menus, image size and so on.
-	 */
-	public function register();
+    /**
+     * The register method is used to register theme things
+     * like sidebars, menus, image size and so on.
+     */
+    public function register();
 }

@@ -96,11 +96,9 @@
 		]
 	},
 	"autoload-dev": {
-		"classmap": [
-			"tests/"
-		],
 		"psr-4": {
-			"ItalyStrap\\Tests\\": "tests/"
+			"ItalyStrap\\Tests\\": "tests/src",
+			"ItalyStrap\\Tests\\WPUnit\\": "tests/wpunit"
 		}
 	},
 	"extra": {
@@ -127,7 +125,10 @@
 			"@infection"
 		],
 		"cs": [
-			"vendor\\bin\\phpcbf -p --ignore=./tests/_support/* ./config/ ./functions/ ./src/ ./templates/ ./tests/ && vendor\\bin\\phpcs -p --ignore=./tests/_support/* ./config/ ./functions/ ./src/ ./templates/ ./tests/"
+			"@php vendor/bin/phpcs -p"
+		],
+		"cs:fix": [
+			"@php vendor/bin/phpcbf -p"
 		],
 		"psalm": [
 			"vendor\\bin\\psalm --no-cache"

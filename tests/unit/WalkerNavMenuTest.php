@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ItalyStrap\Test;
@@ -10,49 +11,52 @@ require_once \codecept_data_dir( 'stubs/' ) . 'class-walker-nav-menu.php';
 
 use Codeception\Test\Unit;
 use ItalyStrap\Tests\BaseUnitTrait;
-use \Walker_Nav_Menu;
+use Walker_Nav_Menu;
 
-class WalkerNavMenuTest extends Unit {
+class WalkerNavMenuTest extends Unit
+{
+    use BaseUnitTrait;
+    use UndefinedFunctionDefinitionTrait;
 
-	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
-
-	/**
-	 * @var \UnitTester
-	 */
-	protected $tester;
+    /**
+     * @var \UnitTester
+     */
+    protected $tester;
 
 	// phpcs:ignore
 	protected function _before() {
-		$this->defineFunction( 'add_filter', fn(...$args) => true );
+        $this->defineFunction('add_filter', fn(...$args) => true);
 
-		$this->defineFunction( 'apply_filters', fn(...$args) => $args[1] );
+        $this->defineFunction('apply_filters', fn(...$args) => $args[1]);
 
-		$this->defineFunction( 'esc_attr', fn(...$args) => $args[0] );
+        $this->defineFunction('esc_attr', fn(...$args) => $args[0]);
 
-		$this->defineFunction( 'remove_filter', fn(...$args) => true );
-	}
+        $this->defineFunction('remove_filter', fn(...$args) => true);
+    }
 
 	// phpcs:ignore
 	protected function _after() {
-	}
+    }
 
-	protected function getInstance() {
-		$sut = new \ItalyStrap\Navbar\BootstrapNavMenu();
-		return $sut;
-	}
+    protected function getInstance()
+    {
+        $sut = new \ItalyStrap\Navbar\BootstrapNavMenu();
+        return $sut;
+    }
 
-	/**
-	 * @test
-	 */
-	public function itShouldReturnSubmenu() {
-		$sut = $this->getInstance();
+    /**
+     * @test
+     */
+    public function itShouldReturnSubmenu()
+    {
+        $sut = $this->getInstance();
 
-		$output = '';
+        $output = '';
 
-		$sut->start_lvl( $output );
+        $sut->start_lvl($output);
 
-		$this->assertStringMatchesFormat( '<ul role="menu" class="sub-menu">', \trim( $output ), '' );
+        $this->assertStringMatchesFormat('<ul role="menu" class="sub-menu">', \trim($output), '');
 
-//		codecept_debug( $output );
-	}
+//      codecept_debug( $output );
+    }
 }

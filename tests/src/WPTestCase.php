@@ -1,18 +1,37 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
-use Codeception\TestCase\WPTestCase;
+use Auryn\Injector;
+use Codeception\TestCase\WPTestCase as TestCase;
+use ItalyStrap\Config\ConfigInterface;
 
-abstract class BaseTheme extends WPTestCase {
+class WPTestCase extends TestCase
+{
+    /**
+     * @var \WpunitTester
+     */
+    protected $tester;
+    private Injector $injector;
+    private ConfigInterface $config;
 
-	abstract protected function getInstance();
+    public function setUp(): void
+    {
+        // Before...
+        parent::setUp();
 
-	/**
-	 * @test
-	 */
-	public function itShouldBeInstantiable() {
-		$this->getInstance();
-	}
+        $this->injector = \ItalyStrap\Factory\injector();
+        $this->config = $this->injector->make(ConfigInterface::class);
+        // Your set up methods here.
+    }
+
+    public function tearDown(): void
+    {
+        // Your tear down methods here.
+
+        // Then...
+        parent::tearDown();
+    }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="HTML-API" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
 
-    <description>A custom set of rules to check for a WPized WordPress project</description>
+    <description>A custom set of rules to check for this project</description>
     <arg name="colors"/>
     <arg name="tab-width" value="4" />
 
@@ -10,38 +10,17 @@
 
     <!-- Check PHP version compatibility. -->
     <rule ref="PHPCompatibility"/>
-    <config name="testVersion" value="7.4-"/>
+    <config name="testVersion" value="8.0-"/>
+
+    <file>./src/</file>
+    <file>./tests/</file>
 
     <!-- https://gist.github.com/gsherwood/9d22f634c57f990a7c64 -->
     <!-- http://www.thisprogrammingthing.com/2015/creating-your-own-standard-in-phpcs/ -->
     <!-- Use PSR2 as a base.-->
-    <rule ref="PSR2">
-
-        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen" />
-        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingBeforeClose" />
-
-        <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace" />
-        <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpaceBeforeCloseBrace" />
-
-        <exclude name="PSR2.Methods.FunctionCallSignature.SpaceAfterOpenBracket" />
-        <exclude name="PSR2.Methods.FunctionCallSignature.SpaceBeforeCloseBracket" />
-
-
-        <!-- bracers -->
-        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
-        <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
-
-        <exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
-    </rule>
-    <rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
-    <rule ref="Generic.WhiteSpace.ScopeIndent">
-        <properties>
-            <property name="indent" value="4"/>
-            <property name="tabIndent" value="true"/>
-        </properties>
+    <rule ref="PSR12">
     </rule>
 
-    <!-- bracers -->
-    <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
-    <rule ref="Generic.Classes.OpeningBraceSameLine"/>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/tests/_support/*</exclude-pattern>
 </ruleset>

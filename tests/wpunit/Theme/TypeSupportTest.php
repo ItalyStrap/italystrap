@@ -1,34 +1,38 @@
 <?php
+
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\WPUnit\Theme;
+
+use ItalyStrap\Tests\WPTestCase;
+use ItalyStrap\Theme\PostTypeSupportSubscriber;
 
 /**
  * @method static assertArrayHasKey(string $string, array $all_post_type_support, string $string1)
- * @method assertInstanceOf(string $class, \ItalyStrap\Theme\PostTypeSupportSubscriber $sut, string $string)
+ * @method assertInstanceOf(string $class, PostTypeSupportSubscriber $sut, string $string)
  */
-class TypeSupportTest extends BaseTheme {
+class TypeSupportTest extends WPTestCase
+{
+    protected function getInstance()
+    {
+        $sut = new PostTypeSupportSubscriber($this->config);
+        $this->assertInstanceOf(PostTypeSupportSubscriber::class, $sut, '');
+        return $sut;
+    }
 
-	use BaseWpunitTrait;
+    /**
+     *
+     */
+    public function itShouldRegister()
+    {
 
-	protected function getInstance() {
-		$sut = new \ItalyStrap\Theme\PostTypeSupportSubscriber( $this->config );
-		$this->assertInstanceOf( \ItalyStrap\Theme\PostTypeSupportSubscriber::class, $sut, '' );
-		return $sut;
-	}
+        $sut = $this->getInstance();
 
-	/**
-	 *
-	 */
-	public function itShouldRegister() {
+        $sut();
 
-		$sut = $this->getInstance();
+        $all_post_type_support = \get_all_post_type_supports('post');
 
-		$sut();
-
-		$all_post_type_support = \get_all_post_type_supports( 'post' );
-
-		self::assertArrayHasKey( 'post_navigation', $all_post_type_support, '' );
-		self::assertArrayHasKey( 'entry-meta', $all_post_type_support, '' );
-	}
+        self::assertArrayHasKey('post_navigation', $all_post_type_support, '');
+        self::assertArrayHasKey('entry-meta', $all_post_type_support, '');
+    }
 }

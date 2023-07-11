@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ItalyStrap\Components;
@@ -8,36 +9,38 @@ use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\View\ViewInterface;
 
-class MainNavigation implements ComponentInterface, SubscriberInterface {
+class MainNavigation implements ComponentInterface, SubscriberInterface
+{
+    use SubscribedEventsAware;
 
-	use SubscribedEventsAware;
+    public const EVENT_NAME = 'italystrap_after_header';
+    public const EVENT_PRIORITY = 10;
+    public const CONTEXT = 'context';
 
-	public const EVENT_NAME = 'italystrap_after_header';
-	public const EVENT_PRIORITY = 10;
-	public const CONTEXT = 'context';
+    private ConfigInterface $config;
+    private ViewInterface $view;
+    private EventDispatcherInterface $dispatcher;
 
-	private ConfigInterface $config;
-	private ViewInterface $view;
-	private EventDispatcherInterface $dispatcher;
+    public function __construct(
+        ConfigInterface $config,
+        ViewInterface $view,
+        EventDispatcherInterface $dispatcher
+    ) {
+        $this->config = $config;
+        $this->view = $view;
+        $this->dispatcher = $dispatcher;
+    }
 
-	public function __construct(
-		ConfigInterface $config,
-		ViewInterface $view,
-		EventDispatcherInterface $dispatcher
-	) {
-		$this->config = $config;
-		$this->view = $view;
-		$this->dispatcher = $dispatcher;
-	}
+    public function shouldDisplay(): bool
+    {
+        return true;
+    }
 
-	public function shouldDisplay(): bool {
-		return true;
-	}
-
-	public function display(): void {
-		echo \do_blocks( $this->view->render( 'navigation', [
-			EventDispatcherInterface::class => $this->dispatcher,
-			self::CONTEXT => 'this-context',
-		] ) );
-	}
+    public function display(): void
+    {
+        echo \do_blocks($this->view->render('navigation', [
+            EventDispatcherInterface::class => $this->dispatcher,
+            self::CONTEXT => 'this-context',
+        ]));
+    }
 }

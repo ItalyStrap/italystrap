@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Customizer;
@@ -8,50 +9,54 @@ use ItalyStrap\Empress\Extension;
 use ItalyStrap\Tests\BaseUnitTrait;
 use Prophecy\Argument;
 
-class CustomizerProviderExtensionTest extends \Codeception\Test\Unit {
+class CustomizerProviderExtensionTest extends \Codeception\Test\Unit
+{
+    use BaseUnitTrait;
 
-	use BaseUnitTrait;
+    protected function getInstance(): CustomizerProviderExtension
+    {
+        $sut = new CustomizerProviderExtension($this->getDispatcher(), $this->getInjector());
+        $this->assertInstanceOf(Extension::class, $sut, '');
+        return $sut;
+    }
 
-	protected function getInstance(): CustomizerProviderExtension {
-		$sut = new CustomizerProviderExtension($this->getDispatcher(), $this->getInjector());
-		$this->assertInstanceOf(Extension::class, $sut, '');
-		return $sut;
-	}
+    /**
+     * @test
+     */
+    public function itShouldExecute()
+    {
+        $sut = $this->getInstance();
 
-	/**
-	 * @test
-	 */
-	public function itShouldExecute() {
-		$sut = $this->getInstance();
+        $this->dispatcher
+            ->addListener('customize_register', Argument::type('callable'), 99, 3)
+            ->shouldBeCalledOnce();
 
-		$this->dispatcher
-			->addListener( 'customize_register', Argument::type('callable'), 99, 3 )
-			->shouldBeCalledOnce();
+        $sut->execute($this->getAurynConfigInterface());
+    }
 
-		$sut->execute($this->getAurynConfigInterface());
-	}
+    /**
+     * @test
+     */
+    public function itShouldWalk()
+    {
+        $sut = $this->getInstance();
 
-	/**
-	 * @test
-	 */
-	public function itShouldWalk() {
-		$sut = $this->getInstance();
+        $class = 'ClassName';
+        $index = 1;
 
-		$class = 'ClassName';
-		$index = 1;
+        $object = new class {
+            public function __invoke()
+            {
+                return 'Test';
+            }
+        };
 
-		$object = new class {
-			public function __invoke() {
-				return 'Test';
-			}
-		};
+        $this->injector->make($class)->willReturn($object);
+        $this->injector
+            ->execute(Argument::type('callable'))
+            ->shouldBeCalledOnce()
+            ->willReturn($object());
 
-		$this->injector->make($class)->willReturn($object);
-		$this->injector
-			->execute(Argument::type('callable'))
-			->shouldBeCalledOnce()
-			->willReturn($object());
-
-		$sut->walk($class, $index, $this->getInjector());
-	}
+        $sut->walk($class, $index, $this->getInjector());
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Components;
@@ -9,36 +10,39 @@ use ItalyStrap\Tests\BaseUnitTrait;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class SidebarTest extends \Codeception\Test\Unit {
+class SidebarTest extends \Codeception\Test\Unit
+{
+    use BaseUnitTrait;
 
-	use BaseUnitTrait;
+    protected function getInstance(): Sidebar
+    {
+        $sut = new Sidebar($this->getConfig(), $this->getView());
+        $this->assertInstanceOf(ComponentInterface::class, $sut, '');
+        return $sut;
+    }
 
-	protected function getInstance(): Sidebar {
-		$sut = new Sidebar($this->getConfig(), $this->getView());
-		$this->assertInstanceOf(ComponentInterface::class, $sut, '');
-		return $sut;
-	}
+    /**
+     * @test
+     */
+    public function itShouldLoad()
+    {
 
-	/**
-	 * @test
-	 */
-	public function itShouldLoad() {
+        $this->config->get('site_layout')->willReturn('some-value');
 
-		$this->config->get( 'site_layout' )->willReturn('some-value');
+        $sut = $this->getInstance();
+        $this->assertTrue($sut->shouldDisplay(), '');
+    }
 
-		$sut = $this->getInstance();
-		$this->assertTrue($sut->shouldDisplay(), '');
-	}
+    /**
+     * @test
+     */
+    public function itShouldDisplay()
+    {
+        $sut = $this->getInstance();
 
-	/**
-	 * @test
-	 */
-	public function itShouldDisplay() {
-		$sut = $this->getInstance();
+        $this->view->render('sidebar', Argument::type('array'))->willReturn('sidebar');
 
-		$this->view->render( 'sidebar', Argument::type('array') )->willReturn('sidebar');
-
-		$this->expectOutputString('sidebar');
-		$sut->display();
-	}
+        $this->expectOutputString('sidebar');
+        $sut->display();
+    }
 }

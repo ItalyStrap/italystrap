@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Integration\Theme;
 
 use ArrayIterator;
 use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\Tag;
+use ItalyStrap\Tests\IntegrationTestCase;
 use ItalyStrap\Theme\Registrable;
 use ItalyStrap\Theme\SidebarsSubscriber;
 use PHPUnit\Framework\Assert;
-
 use function is_registered_sidebar;
 
 // phpcs:disable
 require_once 'BaseTheme.php';
 // phpcs:enable
 
-class Sidebars extends WPTestCase
+class Sidebars extends IntegrationTestCase
 {
     protected function getInstance()
     {

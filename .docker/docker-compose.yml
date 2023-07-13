@@ -7,7 +7,7 @@ services:
       args:
         PHP_VERSION: ${PHP_VERSION}
         WP_VERSION: ${WP_VERSION}
-    container_name: ${PROJECT_NAME:-wordpress}_test
+    container_name: ${PROJECT_NAME:-wordpress}${MATRIX_PHP_VERSION}
     restart: always
     ports:
       - ${WP_PORT_TEST}:80
@@ -19,7 +19,7 @@ services:
       WORDPRESS_TABLE_PREFIX: ${TABLE_PREFIX:-wp_}
       WORDPRESS_DEBUG: 1
     volumes:
-      - ../:/var/www/html/wp-content/themes/${PROJECT_NAME:-wordpress}
+      - ../:/var/www/html/wp-content/themes/${FOLDER_NAME:-wordpress}
       #- ./mu-plugins/:/var/www/html/wp-content/mu-plugins/
     depends_on:
       - mysql
@@ -28,27 +28,9 @@ services:
 #        aliases:
 #          - wp
 
-# https://mklasen.com/adding-and-using-wp-cli-in-a-docker-compose-setup/
-#  wpcli:
-#    container_name: ${PROJECT_NAME:-wp-cli}-cli_test
-#    depends_on:
-#      - wordpress
-#    image: wordpress:cli
-##    user: 1000:1000
-#    command: tail -f /dev/null
-#    volumes:
-#      - wordpress:/var/www/html
-#    environment:
-#      WORDPRESS_DB_HOST: ${NAME}-db:3306
-#      WORDPRESS_DB_USER: ${DB_USER}
-#      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
-#      WORDPRESS_DB_NAME: ${DB_NAME}
-#    profiles:
-#      - dev
-
   mysql:
     image: mysql:${DB_VERSION:-5.7}
-    container_name: ${PROJECT_NAME:-wordpress}_mysql_test
+    container_name: ${PROJECT_NAME:-wordpress}_mysql
     restart: always
     ports:
       - ${DB_PORT_TEST}:3306
@@ -65,7 +47,7 @@ services:
     depends_on:
       - mysql
     image: phpmyadmin/phpmyadmin:${PMA_VERSION:-latest}
-    container_name: ${PROJECT_NAME}_phpmyadmin_test
+    container_name: ${PROJECT_NAME}_phpmyadmin
     restart: always
     ports:
       - ${PMA_PORT_TEST}:80

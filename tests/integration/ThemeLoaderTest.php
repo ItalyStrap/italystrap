@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\WPUnit;
+namespace ItalyStrap\Tests\Integration;
 
 use Codeception\TestCase\WPTestCase;
 

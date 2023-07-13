@@ -2,25 +2,20 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Unit\Experimental;
 
 use ItalyStrap\Experimental\PhpFileProvider;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class PhpFileProviderTest extends \Codeception\Test\Unit
+class PhpFileProviderTest extends UnitTestCase
 {
-    use \ItalyStrap\Tests\BaseUnitTrait;
-
     private string $pattern;
 
 	// phpcs:ignore
 	protected function _before() {
-        $this->setUpProphet();
+        parent::_before();
         $this->pattern = 'Should be a pattern';
-    }
-
-	// phpcs:ignore
-	protected function _after() {
     }
 
     protected function getInstance()

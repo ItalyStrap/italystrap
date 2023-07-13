@@ -2,26 +2,22 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Test;
+namespace ItalyStrap\Tests\Unit\Functions;
 
 use Auryn\Injector as AurynInjector;
-use Codeception\Test\Unit;
 use ItalyStrap\Debug\Injector as DebugInjector;
 use ItalyStrap\Empress\Injector as EmpressInjector;
-use UnitTester;
+use ItalyStrap\Tests\UnitTestCase;
 
 use function ItalyStrap\Factory\injector;
 use function tad\FunctionMocker\replace;
 use function tad\FunctionMocker\setUp;
 use function tad\FunctionMocker\tearDown;
 
-final class FactoryInjectorTest extends Unit
+final class FactoryInjectorTest extends UnitTestCase
 {
-    use UndefinedFunctionDefinitionTrait;
+    private ?AurynInjector $injectorFactory = null;
 
-    protected \UnitTester $tester;
-
-    private bool $injector = false;
     private ?int $apply_filters_called = null;
 
     private ?int $add_filter_called = null;
@@ -36,6 +32,7 @@ final class FactoryInjectorTest extends Unit
 
 	// phpcs:ignore
 	protected function _before() {
+        parent::_before();
         setUp();
 
         $this->resetFilterCountCallState();
@@ -43,20 +40,24 @@ final class FactoryInjectorTest extends Unit
 		// phpcs:ignore
 		\tad\FunctionMockerLe\define('apply_filters', function ( ...$args ) {
             $this->apply_filters_called++;
-            return $this->injector;
+            return $this->injectorFactory;
         });
 
 		// phpcs:ignore
 		\tad\FunctionMockerLe\define('add_filter', function ( ...$args ) {
             $this->add_filter_called++;
             $callable = $args[1];
-            $this->injector = $callable();
+            $this->injectorFactory = $callable();
         });
     }
 
 	// phpcs:ignore
 	protected function _after() {
         tearDown();
+    }
+
+    protected function getInstance(): void
+    {
     }
 
     /**
@@ -67,7 +68,7 @@ final class FactoryInjectorTest extends Unit
         $this->is_debug = false;
         replace('\ItalyStrap\Core\is_debug', $this->is_debug);
 
-        $this->injector = false;
+        $this->injectorFactory = null;
         $injector = injector();
 
         $this->assertEquals(1, $this->apply_filters_called, 'Apply filters should be called');
@@ -86,7 +87,7 @@ final class FactoryInjectorTest extends Unit
         $this->is_debug = false;
         replace('\ItalyStrap\Core\is_debug', $this->is_debug);
 
-        $this->injector = new AurynInjector();
+        $this->injectorFactory = new AurynInjector();
         $injector = injector();
 
         $this->assertEquals(1, $this->apply_filters_called, 'Apply filters should be called');
@@ -105,7 +106,7 @@ final class FactoryInjectorTest extends Unit
         $this->is_debug = false;
         replace('\ItalyStrap\Core\is_debug', $this->is_debug);
 
-        $this->injector = new EmpressInjector();
+        $this->injectorFactory = new EmpressInjector();
         $injector = injector();
 
         $this->assertEquals(1, $this->apply_filters_called, 'Apply filters should be called');
@@ -136,7 +137,7 @@ final class FactoryInjectorTest extends Unit
 //    public function assertReturnSameInstanceewsfew()
 //    {
 //      $injector = injector();
-//      $this->injector = new AurynInjector();
+//      $this->injectorFactory = new AurynInjector();
 //      $another_injector = injector();
 //
 //      $this->assertSame($injector, $another_injector, 'Should be same instance');

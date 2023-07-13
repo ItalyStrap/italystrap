@@ -2,16 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\WPUnit\Theme\WPUnit\WPUnit\Theme\WPUnit\WPUnit\Theme;
+namespace ItalyStrap\Tests\Integration\Theme;
 
-use ItalyStrap\Tests\WPUnit\Theme\WPUnit\WPUnit\Theme\WPUnit\WPTestCase;
+use ItalyStrap\Tests\IntegrationTestCase;
 use ItalyStrap\Theme\NavMenusSubscriber;
 use ItalyStrap\Theme\Registrable;
-
 use function add_filter;
 use function has_nav_menu;
 
-class NavMenus extends WPTestCase
+class NavMenus extends IntegrationTestCase
 {
     protected function getInstance()
     {

@@ -2,20 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\EntryNone;
-use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class EntryNoneTest extends \Codeception\Test\Unit
+class EntryNoneTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): EntryNone
     {
         $sut = new EntryNone($this->getConfig(), $this->getView(), $this->getDispatcher());

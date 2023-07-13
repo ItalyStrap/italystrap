@@ -2,18 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Config;
+namespace ItalyStrap\Tests\Unit\Config;
 
 use ItalyStrap\Config\ConfigMiscProvider;
-use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
-use Prophecy\Argument;
+use ItalyStrap\Tests\UnitTestCase;
 
-class ConfigMiscProviderTest extends \Codeception\Test\Unit
+class ConfigMiscProviderTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): ConfigMiscProvider
     {
         $sut = new ConfigMiscProvider($this->getConfig());

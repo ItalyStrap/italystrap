@@ -2,18 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Footer;
-use ItalyStrap\Tests\BaseUnitTrait;
-use PHPUnit\Framework\Assert;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class FooterTest extends \Codeception\Test\Unit
+class FooterTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
     protected function getInstance(): Footer
     {
         $sut = new Footer($this->getConfig(), $this->getView(), $this->getDispatcher());

@@ -2,19 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Pagination;
-use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class PaginationTest extends \Codeception\Test\Unit
+class PaginationTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): Pagination
     {
         $sut = new Pagination($this->getConfig(), $this->getView());

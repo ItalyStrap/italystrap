@@ -2,20 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Modified;
-use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
-use PHPUnit\Framework\Assert;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class ModifiedTest extends \Codeception\Test\Unit
+class ModifiedTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): Modified
     {
         $sut = new Modified($this->getConfig(), $this->getView());

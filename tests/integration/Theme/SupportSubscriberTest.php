@@ -2,19 +2,23 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\WPUnit\Theme;
+namespace ItalyStrap\Tests\Integration\Theme;
 
-use ItalyStrap\Tests\WPTestCase;
+use ItalyStrap\Config\ConfigFactory;
+use ItalyStrap\Tests\IntegrationTestCase;
+use ItalyStrap\Theme\Registrable;
+use ItalyStrap\Theme\Support;
+use ItalyStrap\Theme\SupportSubscriber;
 
-class SupportSubscriberTest extends WPTestCase
+class SupportSubscriberTest extends IntegrationTestCase
 {
     protected function getInstance($paramConfig = [])
     {
-        $support = new \ItalyStrap\Theme\Support();
-        $config = \ItalyStrap\Config\ConfigFactory::make($paramConfig);
-        $sut = new \ItalyStrap\Theme\SupportSubscriber($config, $support);
-        $this->assertInstanceOf(\ItalyStrap\Theme\Registrable::class, $sut, '');
-        $this->assertInstanceOf(\ItalyStrap\Theme\SupportSubscriber::class, $sut, '');
+        $support = new Support();
+        $config = ConfigFactory::make($paramConfig);
+        $sut = new SupportSubscriber($config, $support);
+        $this->assertInstanceOf(Registrable::class, $sut, '');
+        $this->assertInstanceOf(SupportSubscriber::class, $sut, '');
         return $sut;
     }
 

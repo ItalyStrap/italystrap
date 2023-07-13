@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Config;
+namespace ItalyStrap\Tests\Unit\Config;
 
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Empress\Extension;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class ConfigProviderExtensionTest extends \Codeception\Test\Unit
+class ConfigProviderExtensionTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
     protected function getInstance(): ConfigProviderExtension
     {
         $sut = new ConfigProviderExtension($this->getConfig());

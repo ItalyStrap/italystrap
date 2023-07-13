@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Functional;
 
 use FunctionalTester;
+use ItalyStrap\Tests\FunctionalTestCase;
 
-class AdminCest
+class AdminCest extends FunctionalTestCase
 {
-	// phpcs:ignore
-	public function _before(FunctionalTester $i) {
-    }
-
     /**
      * @param FunctionalTester $i
      */

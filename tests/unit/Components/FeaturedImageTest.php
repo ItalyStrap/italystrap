@@ -2,20 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\FeaturedImage;
 use ItalyStrap\Config\ConfigPostThumbnailProvider;
-use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use PHPUnit\Framework\Assert;
 
-class FeaturedImageTest extends \Codeception\Test\Unit
+class FeaturedImageTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): FeaturedImage
     {
         $sut = new FeaturedImage($this->getConfig(), $this->getView());

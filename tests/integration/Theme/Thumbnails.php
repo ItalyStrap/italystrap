@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Integration\Theme;
 
 // phpcs:disable
+use ItalyStrap\Tests\IntegrationTestCase;
+
 require_once 'BaseTheme.php';
 // phpcs:enable
 
-class Thumbnails extends WPTestCase
+class Thumbnails extends IntegrationTestCase
 {
     protected function getInstance($paramConfig = [])
     {

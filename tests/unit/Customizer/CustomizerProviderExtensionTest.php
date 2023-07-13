@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Customizer;
+namespace ItalyStrap\Tests\Unit\Customizer;
 
 use ItalyStrap\Customizer\CustomizerProviderExtension;
 use ItalyStrap\Empress\Extension;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class CustomizerProviderExtensionTest extends \Codeception\Test\Unit
+class CustomizerProviderExtensionTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
     protected function getInstance(): CustomizerProviderExtension
     {
         $sut = new CustomizerProviderExtension($this->getDispatcher(), $this->getInjector());

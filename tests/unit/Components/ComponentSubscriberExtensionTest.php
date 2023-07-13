@@ -2,20 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
+use ItalyStrap\Components\ComponentSubscriberExtension;
 use ItalyStrap\Components\Index;
 use ItalyStrap\Empress\Extension;
-use ItalyStrap\Components\ComponentSubscriberExtension;
-use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class ComponentSubscriberExtensionTest extends \Codeception\Test\Unit
+class ComponentSubscriberExtensionTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): ComponentSubscriberExtension
     {
         $sut = new ComponentSubscriberExtension($this->getSubscriberRegister(), $this->getDispatcher());

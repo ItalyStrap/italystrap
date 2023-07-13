@@ -2,21 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Asset;
 
 use ItalyStrap\Asset\InlineStyleSubscriber;
-use ItalyStrap\Config\ConfigColorSectionProvider;
 use ItalyStrap\Config\ConfigThemeProvider;
 use ItalyStrap\Event\SubscriberInterface;
-use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class InlineStyleSubscriberTest extends \Codeception\Test\Unit
+class InlineStyleSubscriberTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): InlineStyleSubscriber
     {
         $sut = new InlineStyleSubscriber($this->getConfig(), $this->getInlineStyleGenerator());

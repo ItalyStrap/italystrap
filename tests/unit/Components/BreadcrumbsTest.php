@@ -2,21 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Test\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\Breadcrumbs;
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 
-class BreadcrumbsTest extends \Codeception\Test\Unit
+class BreadcrumbsTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
-	// phpcs:ignore
-	protected function _before() {
-        $this->setUpProphet();
-    }
-
     protected function getInstance(): Breadcrumbs
     {
         $sut = new Breadcrumbs($this->getDispatcher(), $this->getConfig(), $this->getThemeSupport());

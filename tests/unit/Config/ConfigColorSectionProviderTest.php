@@ -2,16 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Config;
+namespace ItalyStrap\Tests\Unit\Config;
 
 use ItalyStrap\Config\ConfigColorSectionProvider;
-use ItalyStrap\Tests\BaseUnitTrait;
-use Prophecy\Argument;
+use ItalyStrap\Tests\UnitTestCase;
 
-class ConfigColorSectionProviderTest extends \Codeception\Test\Unit
+class ConfigColorSectionProviderTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
     protected function getInstance(): ConfigColorSectionProvider
     {
         $sut = new ConfigColorSectionProvider([]);

@@ -2,18 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Unit;
 
-use Codeception\Test\Unit;
 use GuzzleHttp\Psr7\Utils;
+use ItalyStrap\Tests\UnitTestCase;
 
-class RequestTest extends Unit
+class RequestTest extends UnitTestCase
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-
+    protected function getInstance(): void
+    {
+    }
     // tests
     public function testSomeFeature()
     {

@@ -2,20 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\ArchiveHeadline;
-use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Components\ComponentInterface;
+use ItalyStrap\Tests\UnitTestCase;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class ArchiveHeadlineTest extends \Codeception\Test\Unit
+class ArchiveHeadlineTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): ArchiveHeadline
     {
         $sut = new ArchiveHeadline($this->getConfig(), $this->getView(), $this->getDispatcher());

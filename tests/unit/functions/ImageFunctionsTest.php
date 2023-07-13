@@ -2,23 +2,21 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Unit\Functions;
 
-use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
+use ItalyStrap\Tests\UnitTestCase;
 
 use function ItalyStrap\Image\get_ID_image_from_url;
 
-class ImageFunctionsTest extends \Codeception\Test\Unit
+class ImageFunctionsTest extends UnitTestCase
 {
-    use UndefinedFunctionDefinitionTrait;
-
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
+    protected function getInstance(): void
+    {
+    }
 
 	// phpcs:ignore
 	protected function _before() {
+        parent::_before();
         $this->defineFunction('esc_url', fn(string $string) => $string);
         $this->defineFunction('wp_get_attachment_url', fn($id) => 'url');
     }

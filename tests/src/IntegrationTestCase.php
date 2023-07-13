@@ -8,7 +8,7 @@ use Auryn\Injector;
 use Codeception\TestCase\WPTestCase as TestCase;
 use ItalyStrap\Config\ConfigInterface;
 
-class WPTestCase extends TestCase
+class IntegrationTestCase extends TestCase
 {
     /**
      * @var \WpunitTester

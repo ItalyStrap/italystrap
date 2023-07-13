@@ -2,16 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Config;
+namespace ItalyStrap\Tests\Unit\Config;
 
 use ItalyStrap\Config\ConfigThemeModsProvider;
-use ItalyStrap\Tests\BaseUnitTrait;
-use Prophecy\Argument;
+use ItalyStrap\Tests\UnitTestCase;
 
-class ConfigThemeModsProviderTest extends \Codeception\Test\Unit
+class ConfigThemeModsProviderTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
     protected function getInstance(): ConfigThemeModsProvider
     {
         $sut = new ConfigThemeModsProvider([]);

@@ -2,29 +2,21 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Test;
+namespace ItalyStrap\Tests\Unit;
 
 // phpcs:disable
 require_once \codecept_data_dir( 'stubs/' ) . 'class-wp-walker.php';
 require_once \codecept_data_dir( 'stubs/' ) . 'class-walker-nav-menu.php';
 // phpcs:enable
 
-use Codeception\Test\Unit;
-use ItalyStrap\Tests\BaseUnitTrait;
-use Walker_Nav_Menu;
 
-class WalkerNavMenuTest extends Unit
+use ItalyStrap\Tests\UnitTestCase;
+
+class WalkerNavMenuTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-
 	// phpcs:ignore
 	protected function _before() {
+        parent::_before();
         $this->defineFunction('add_filter', fn(...$args) => true);
 
         $this->defineFunction('apply_filters', fn(...$args) => $args[1]);
@@ -32,10 +24,6 @@ class WalkerNavMenuTest extends Unit
         $this->defineFunction('esc_attr', fn(...$args) => $args[0]);
 
         $this->defineFunction('remove_filter', fn(...$args) => true);
-    }
-
-	// phpcs:ignore
-	protected function _after() {
     }
 
     protected function getInstance()

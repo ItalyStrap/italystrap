@@ -2,21 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
-use Codeception\Test\Unit;
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Index;
-use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class IndexTest extends Unit
+class IndexTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): Index
     {
         $sut = new Index($this->getConfig(), $this->getView(), $this->getDispatcher());

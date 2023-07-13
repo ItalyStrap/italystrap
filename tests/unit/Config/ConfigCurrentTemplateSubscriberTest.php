@@ -2,19 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Test\Config;
+namespace ItalyStrap\Tests\Unit\Config;
 
-use Codeception\Test\Unit;
-use ItalyStrap\Event\SubscriberInterface;
-use ItalyStrap\Tests\BaseUnitTrait;
 use ItalyStrap\Config\ConfigCurrentTemplateSubscriber;
+use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\Theme\Registrable;
 use Prophecy\Argument;
 
-class ConfigCurrentTemplateSubscriberTest extends Unit
+class ConfigCurrentTemplateSubscriberTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
     protected function getInstance(): ConfigCurrentTemplateSubscriber
     {
         $sut = new ConfigCurrentTemplateSubscriber($this->getConfig(), $this->getFileInfoFactory());

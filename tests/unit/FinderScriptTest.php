@@ -2,35 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Test;
+namespace ItalyStrap\Tests\Unit;
 
-use Codeception\Test\Unit;
 use ItalyStrap\Finder\FileInfoFactory;
 use ItalyStrap\Finder\FilesHierarchyIterator;
 use ItalyStrap\Finder\Finder;
-use ItalyStrap\Tests\BaseUnitTrait;
-use UnitTester;
+use ItalyStrap\Tests\UnitTestCase;
 
 use function codecept_data_dir;
 
-class FinderScriptTest extends Unit
+class FinderScriptTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
-    /**
-     * @var UnitTester
-     */
-    protected $tester;
-
-	// phpcs:ignore
-	protected function _before() {
-    }
-
-	// phpcs:ignore
-	protected function _after() {
-    }
-
-    private function getInstance()
+    protected function getInstance(): Finder
     {
         $sut = new Finder(
             new FilesHierarchyIterator(

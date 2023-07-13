@@ -98,7 +98,10 @@
 	"autoload-dev": {
 		"psr-4": {
 			"ItalyStrap\\Tests\\": "tests/src",
-			"ItalyStrap\\Tests\\WPUnit\\": "tests/wpunit"
+			"ItalyStrap\\Tests\\Unit\\": "tests/unit",
+			"ItalyStrap\\Tests\\Integration\\": "tests/integration",
+			"ItalyStrap\\Tests\\Functional\\": "tests/functional",
+			"ItalyStrap\\Tests\\Acceptance\\": "tests/acceptance"
 		}
 	},
 	"extra": {

@@ -2,20 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Comments;
-use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Components\ComponentInterface;
+use ItalyStrap\Tests\UnitTestCase;
 use PHPUnit\Framework\Assert;
-use Prophecy\Argument;
 
-class CommentsTest extends \Codeception\Test\Unit
+class CommentsTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): Comments
     {
         $sut = new Comments($this->getConfig(), $this->getView(), $this->getDispatcher());

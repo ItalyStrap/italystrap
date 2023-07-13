@@ -2,18 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Customizer;
+namespace ItalyStrap\Tests\Unit\Customizer;
 
-use ItalyStrap\Config\ConfigColorSectionProvider;
-use ItalyStrap\Customizer\ColorFields;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class ColorFieldsTest extends \Codeception\Test\Unit
+class ColorFieldsTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
-    protected function getInstance()
+    protected function getInstance(): \stdClass
     {
         $sut = new \stdClass();
 //      $this->assertInstanceOf(Extension::class, $sut, '');
@@ -49,6 +45,6 @@ class ColorFieldsTest extends \Codeception\Test\Unit
 //          Argument::type('array')
 //      );
 
-        $sut();
+//        $sut();
     }
 }

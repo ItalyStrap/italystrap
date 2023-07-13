@@ -2,18 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Unit\Components;
 
-use Codeception\Test\Unit;
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Preview;
-use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
+use ItalyStrap\Tests\UnitTestCase;
 
-class PreviewTest extends Unit
+class PreviewTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): Preview
     {
         $sut = new Preview();

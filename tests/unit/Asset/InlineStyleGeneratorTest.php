@@ -2,16 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Asset;
 
 use ItalyStrap\Asset\InlineStyleGenerator;
-use ItalyStrap\Tests\BaseUnitTrait;
-use Prophecy\Argument;
+use ItalyStrap\Tests\UnitTestCase;
 
-class InlineStyleGeneratorTest extends \Codeception\Test\Unit
+class InlineStyleGeneratorTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
     protected function getInstance(): InlineStyleGenerator
     {
         $sut = new InlineStyleGenerator($this->getConfig());

@@ -2,30 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Theme;
+namespace ItalyStrap\Tests\Unit\Theme;
 
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\Theme\Support;
 
-class SupportTest extends \Codeception\Test\Unit
+class SupportTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-
-    protected function _before()
+    protected function getInstance(): Support
     {
-    }
-
-    protected function _after()
-    {
-    }
-
-    private function getInstance(): \ItalyStrap\Theme\Support
-    {
-        $sut = new \ItalyStrap\Theme\Support();
+        $sut = new Support();
         return $sut;
     }
 

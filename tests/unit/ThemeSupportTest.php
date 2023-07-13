@@ -2,18 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Unit;
 
-use Codeception\Test\Unit;
-use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\Theme\Support;
 use PHPUnit\Framework\Assert;
 
-class ThemeSupportTest extends Unit
+class ThemeSupportTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): Support
     {
         $sut = new Support();

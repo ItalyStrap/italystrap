@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Acceptance;
 
 use AcceptanceTester;
+use ItalyStrap\Tests\AcceptanceTestCase;
 
-class HomePageCest
+class HomePageCest extends AcceptanceTestCase
 {
-	// phpcs:ignore
-	public function _before( AcceptanceTester $i ) {
-    }
-
     public function homePage(AcceptanceTester $i): void
     {
         $i->wantTo('See the home page of ItalyStrap');

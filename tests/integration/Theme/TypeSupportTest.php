@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\WPUnit\Theme;
+namespace ItalyStrap\Tests\Integration\Theme;
 
-use ItalyStrap\Tests\WPTestCase;
+use ItalyStrap\Tests\IntegrationTestCase;
 use ItalyStrap\Theme\PostTypeSupportSubscriber;
 
 /**
  * @method static assertArrayHasKey(string $string, array $all_post_type_support, string $string1)
  * @method assertInstanceOf(string $class, PostTypeSupportSubscriber $sut, string $string)
  */
-class TypeSupportTest extends WPTestCase
+class TypeSupportTest extends IntegrationTestCase
 {
     protected function getInstance()
     {

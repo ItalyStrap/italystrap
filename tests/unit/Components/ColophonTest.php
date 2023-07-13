@@ -2,20 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Colophon;
-use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Components\ComponentInterface;
+use ItalyStrap\Tests\UnitTestCase;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-class ColophonTest extends \Codeception\Test\Unit
+class ColophonTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): Colophon
     {
         $sut = new Colophon($this->getConfig(), $this->getView(), $this->getDispatcher());

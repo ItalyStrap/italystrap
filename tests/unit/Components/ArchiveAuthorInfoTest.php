@@ -2,19 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Components;
+namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\ArchiveAuthorInfo;
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Test\Components\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
-use PHPUnit\Framework\Assert;
+use ItalyStrap\Tests\UnitTestCase;
 
-class ArchiveAuthorInfoTest extends \Codeception\Test\Unit
+class ArchiveAuthorInfoTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-    use UndefinedFunctionDefinitionTrait;
-
     protected function getInstance(): ArchiveAuthorInfo
     {
         $sut = new ArchiveAuthorInfo($this->getConfig(), $this->getAuthorInfo());

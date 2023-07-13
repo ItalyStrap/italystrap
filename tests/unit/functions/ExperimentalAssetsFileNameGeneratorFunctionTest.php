@@ -2,24 +2,23 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Test;
+namespace ItalyStrap\Tests\Unit\Functions;
 
-use Codeception\Test\Unit;
-use UnitTester;
+use ItalyStrap\Tests\UnitTestCase;
 
 use function define;
 use function function_exists;
 use function Italystrap\Core\experimental_generate_asset_index_filename;
 
-class ExperimentalAssetsFileNameGeneratorFunctionTest extends Unit
+class ExperimentalAssetsFileNameGeneratorFunctionTest extends UnitTestCase
 {
-    /**
-     * @var UnitTester
-     */
-    protected $tester;
-
+    protected function getInstance(): void
+    {
+    }
 	// phpcs:ignore
 	protected function _before() {
+        parent::_before();
+
 		// phpcs:ignore
 		\tad\FunctionMockerLe\define('add_filter', fn(...$args) => true);
 
@@ -32,10 +31,6 @@ class ExperimentalAssetsFileNameGeneratorFunctionTest extends Unit
             function_exists('\Italystrap\Core\experimental_generate_asset_index_filename'),
             'experimental_generate_asset_index_filename function does not exists'
         );
-    }
-
-	// phpcs:ignore
-	protected function _after() {
     }
 
     /**

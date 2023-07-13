@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Integration;
 
+use Codeception\TestCase\WPTestCase;
 use ItalyStrap\Asset\EditorSubscriber;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigThemeProvider;
@@ -11,7 +12,7 @@ use PHPUnit\Framework\Assert;
 
 use function ItalyStrap\Factory\injector;
 
-class EditorSubscriberTest extends \Codeception\TestCase\WPTestCase
+class EditorSubscriberTest extends WPTestCase
 {
     /**
      * @var \IntegrationTester

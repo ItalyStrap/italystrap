@@ -2,16 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Config;
+namespace ItalyStrap\Tests\Unit\Config;
 
 use ItalyStrap\Config\ConfigThemeProvider;
-use ItalyStrap\Tests\BaseUnitTrait;
-use Prophecy\Argument;
+use ItalyStrap\Tests\UnitTestCase;
 
-class ConfigThemeProviderTest extends \Codeception\Test\Unit
+class ConfigThemeProviderTest extends UnitTestCase
 {
-    use BaseUnitTrait;
-
     protected function getInstance(): ConfigThemeProvider
     {
         $sut = new ConfigThemeProvider($this->getTheme(), $this->getDispatcher());

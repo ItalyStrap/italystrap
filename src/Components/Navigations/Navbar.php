@@ -7,10 +7,9 @@ namespace ItalyStrap\Components\Navigations;
 use ItalyStrap\Config\ConfigSiteLogoProvider;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Navigation\NavMenu;
+use Walker_Nav_Menu;
 
 use function ItalyStrap\HTML\get_attr;
-
-use Walker_Nav_Menu;
 
 /**
  * Template for Navbar like Botstrap CSS

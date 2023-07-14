@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template file for Archive headline
  * s
@@ -9,6 +10,7 @@
  *
  * @package ItalyStrap
  */
+
 declare(strict_types=1);
 
 namespace ItalyStrap\Misc;
@@ -17,18 +19,18 @@ namespace ItalyStrap\Misc;
 <!-- wp:group {"tagName":"header","className":"page-header","layout":{"inherit":true}} -->
 <header class="wp-block-group page-header">
 
-	<?php if ( 'search' === \CURRENT_TEMPLATE_SLUG ) : ?>
-		<h1 itemprop="headline">
-			<?php \printf(
-				\esc_html__('Search result of: %s', 'italystrap' ),
-				'<span>' . \get_search_query() . '</span>'
-			);
-			?>
-		</h1>
-	<?php else : ?>
-		<!-- wp:query-title {"type":"archive"} /-->
-		<!-- wp:term-description /-->
-	<?php endif; ?>
+    <?php if ('search' === \CURRENT_TEMPLATE_SLUG) : ?>
+        <h1 itemprop="headline">
+            <?php \printf(
+                \esc_html__('Search result of: %s', 'italystrap'),
+                '<span>' . \get_search_query() . '</span>'
+            );
+            ?>
+        </h1>
+    <?php else : ?>
+        <!-- wp:query-title {"type":"archive"} /-->
+        <!-- wp:term-description /-->
+    <?php endif; ?>
 
 </header>
 <!-- /wp:group -->

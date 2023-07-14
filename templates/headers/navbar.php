@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template part for Navbar
  *
@@ -21,6 +22,7 @@ use ItalyStrap\Components\Navigations\Navbar;
 use ItalyStrap\Components\NavMenuPrimary;
 use ItalyStrap\Components\NavMenuSecondary;
 use ItalyStrap\Config\ConfigInterface;
+
 use function ItalyStrap\HTML\close_tag_e;
 use function ItalyStrap\HTML\open_tag_e;
 
@@ -37,87 +39,87 @@ $nav_menu_primary = $config->get(NavMenuPrimary::class);
 $nav_menu_secondary = $config->get(NavMenuSecondary::class);
 
 
-$number = \esc_attr( $config->get('number', \rand() ) );
+$number = \esc_attr($config->get('number', \rand()));
 $navbar_id = 'italystrap-menu-' . $number;
 
 
 open_tag_e('nav_container', 'div', [
-	'id'	=> 'main-navbar-container-' . $navbar_id,
-	'class' => sprintf(
-		'navbar-wrapper %s',
-		$config->get('mods.navbar.nav_width')
-	),
+    'id'    => 'main-navbar-container-' . $navbar_id,
+    'class' => sprintf(
+        'navbar-wrapper %s',
+        $config->get('mods.navbar.nav_width')
+    ),
 ]);
 
-	open_tag_e('navbar_container', 'nav', [
-	//        'class'     => 'navbar navbar-expand-lg navbar-light bg-light',
-		'class'     => \sprintf(
-			'navbar %s %s',
-			$config->get('mods.navbar.type'),
-			$config->get('mods.navbar.position')
-		),
-		'role'      => 'navigation',
-		'itemscope' => true,
-		'itemtype'  => 'https://schema.org/SiteNavigationElement',
-	]);
+    open_tag_e('navbar_container', 'nav', [
+    //        'class'     => 'navbar navbar-expand-lg navbar-light bg-light',
+        'class'     => \sprintf(
+            'navbar %s %s',
+            $config->get('mods.navbar.type'),
+            $config->get('mods.navbar.position')
+        ),
+        'role'      => 'navigation',
+        'itemscope' => true,
+        'itemtype'  => 'https://schema.org/SiteNavigationElement',
+    ]);
 
-		/**
-		 * This was "'last_container'"
-		 */
-		open_tag_e('nav-inner-container', 'div', [
-			'id' => 'menus-container-' . $number,
-			'class' => $config->get('mods.navbar.menus_width'),
-		]);
+        /**
+         * This was "'last_container'"
+         */
+        open_tag_e('nav-inner-container', 'div', [
+            'id' => 'menus-container-' . $number,
+            'class' => $config->get('mods.navbar.menus_width'),
+        ]);
 
-			/**
-			 * <a class="navbar-brand" href="<?php echo esc_attr( HOME_URL ); ?>">
-			 * 	<?php echo esc_attr( GET_BLOGINFO_NAME ) ?>
-			 * </a>
-			 */
-			open_tag_e(
-				'navbar_header',
-				'div',
-				[
-					'class' => 'navbar-header',
-					'itemprop' => 'publisher',
-					'itemscope' => true,
-					'itemtype' => 'https://schema.org/Organization',
-				]
-			);
+            /**
+             * <a class="navbar-brand" href="<?php echo esc_attr( HOME_URL ); ?>">
+             *  <?php echo esc_attr( GET_BLOGINFO_NAME ) ?>
+             * </a>
+             */
+            open_tag_e(
+                'navbar_header',
+                'div',
+                [
+                    'class' => 'navbar-header',
+                    'itemprop' => 'publisher',
+                    'itemscope' => true,
+                    'itemtype' => 'https://schema.org/Organization',
+                ]
+            );
 
-			echo $navbar->get_navbar_brand();
+            echo $navbar->get_navbar_brand();
 
 /**
  *  = BS3 navbar-toggle
  * >= BS4 navbar-toggler
  */
-			?>
-			<button
-				class="navbar-toggler navbar-toggle"
-				type="button"
-				data-toggle="collapse"
-				data-target="#<?php echo $navbar_id ?>"
-				aria-controls="<?php echo $navbar_id ?>"
-				aria-expanded="false"
-				aria-label="Toggle navigation"
-			>
-<!--				<span class="navbar-toggler-icon">&nbsp</span>-->
-				<?php echo apply_filters( 'italystrap_icon_bar', '' ); ?>
-			</button>
-			<?php
+            ?>
+            <button
+                class="navbar-toggler navbar-toggle"
+                type="button"
+                data-toggle="collapse"
+                data-target="#<?php echo $navbar_id ?>"
+                aria-controls="<?php echo $navbar_id ?>"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+<!--                <span class="navbar-toggler-icon">&nbsp</span>-->
+                <?php echo apply_filters('italystrap_icon_bar', ''); ?>
+            </button>
+            <?php
 
-			close_tag_e( 'navbar_header' );
+            close_tag_e('navbar_header');
 
-			open_tag_e('collapsable_menu', 'div', [
-				'id' => $navbar_id,
-				'class' => 'navbar-collapse collapse',
-			]);
+            open_tag_e('collapsable_menu', 'div', [
+                'id' => $navbar_id,
+                'class' => 'navbar-collapse collapse',
+            ]);
 
-			$nav_menu_primary->display();
-			$nav_menu_secondary->display();
+            $nav_menu_primary->display();
+            $nav_menu_secondary->display();
 
-			close_tag_e('collapsable_menu');
-			close_tag_e('nav-inner-container');
-			close_tag_e('navbar_container');
+            close_tag_e('collapsable_menu');
+            close_tag_e('nav-inner-container');
+            close_tag_e('navbar_container');
 
-			close_tag_e('nav_container');
+            close_tag_e('nav_container');

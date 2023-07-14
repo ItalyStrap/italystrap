@@ -1,11 +1,13 @@
 <?php
-declare( strict_types = 1 );
+
+declare(strict_types=1);
 
 namespace ItalyStrap\Config;
 
 use ItalyStrap\Finder\FinderFactory;
 use ItalyStrap\Finder\FinderInterface;
 use SplFileObject;
+
 use function array_filter;
 use function get_stylesheet_directory;
 use function get_template_directory;
@@ -17,19 +19,20 @@ use function is_null;
  * @param  string $name
  * @return array
  */
-function get_config_file_content_last( string $name ) : array {
+function get_config_file_content_last(string $name): array
+{
 
-	/** @var array<int, SplFileObject> $files */
-	$files = config_files_finder()->allFiles( $name );
-	$last_key = \array_key_last( $files );
+    /** @var array<int, SplFileObject> $files */
+    $files = config_files_finder()->allFiles($name);
+    $last_key = \array_key_last($files);
 
-	$config_file_content = require $files[ $last_key ];
+    $config_file_content = require $files[ $last_key ];
 
-	/**
-	 * removes all NULL, FALSE and Empty Strings but leaves 0 (zero) values
-	 * https://php.net/manual/en/function.array-filter.php#111091
-	 */
-	return array_filter( $config_file_content, fn( $val ) => ! is_null( $val ) );
+    /**
+     * removes all NULL, FALSE and Empty Strings but leaves 0 (zero) values
+     * https://php.net/manual/en/function.array-filter.php#111091
+     */
+    return array_filter($config_file_content, fn($val) => ! is_null($val));
 }
 
 /**
@@ -39,25 +42,26 @@ function get_config_file_content_last( string $name ) : array {
  * 1 => Child
  * @return FinderInterface
  */
-function config_files_finder(): FinderInterface {
+function config_files_finder(): FinderInterface
+{
 
-	static $experimental_finder = null;
+    static $experimental_finder = null;
 
-	if ( ! $experimental_finder ) {
-		$experimental_finder = ( new FinderFactory() )
-			->make()
-			->in(
-				[
-				/**
-				 * To remember:
-				 * This is the correct hierarchy to load and override
-				 * the parent with child config.
-				 */
-				get_template_directory() . '/config/',
-				get_stylesheet_directory() . '/config/',
-				]
-			);
-	}
+    if (! $experimental_finder) {
+        $experimental_finder = ( new FinderFactory() )
+            ->make()
+            ->in(
+                [
+                /**
+                 * To remember:
+                 * This is the correct hierarchy to load and override
+                 * the parent with child config.
+                 */
+                get_template_directory() . '/config/',
+                get_stylesheet_directory() . '/config/',
+                ]
+            );
+    }
 
-	return $experimental_finder;
+    return $experimental_finder;
 }

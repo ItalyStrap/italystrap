@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Auryn\Injector;
@@ -46,83 +47,84 @@ use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Navigation\NavMenuFallback;
 
 return [
-	AurynConfig::SHARING => [
-		AuthorInfo::class,
-	],
+    AurynConfig::SHARING => [
+        AuthorInfo::class,
+    ],
 
-	AurynConfig::ALIASES => [
+    AurynConfig::ALIASES => [
 
-	],
+    ],
 
-	AurynConfig::DEFINITIONS => [
+    AurynConfig::DEFINITIONS => [
 
-		\ItalyStrap\Components\Navigations\Navbar::class	=> [
-			':fallback_cb' => [ \ItalyStrap\Navbar\BootstrapNavMenu::class, 'fallback' ],
-		],
+        \ItalyStrap\Components\Navigations\Navbar::class    => [
+            ':fallback_cb' => [ \ItalyStrap\Navbar\BootstrapNavMenu::class, 'fallback' ],
+        ],
 
-		NavMenuPrimary::class => [
-			'+fallback' => static function ( string $named_param, Injector $injector ): callable {
-				return $injector->make( NavMenuFallback::class );
-			},
-		],
-	],
+        NavMenuPrimary::class => [
+            '+fallback' => static function (string $named_param, Injector $injector): callable {
 
-	/**
-	 * ========================================================================
-	 *
-	 * Components Subscriber Classes
-	 *
-	 * ========================================================================
-	 */
-	ComponentSubscriberExtension::class => [
+                return $injector->make(NavMenuFallback::class);
+            },
+        ],
+    ],
 
-		Breadcrumbs::class,
+    /**
+     * ========================================================================
+     *
+     * Components Subscriber Classes
+     *
+     * ========================================================================
+     */
+    ComponentSubscriberExtension::class => [
 
-		PostAuthorInfo::class,
-		ArchiveAuthorInfo::class,
-		ArchiveHeadline::class,
+        Breadcrumbs::class,
 
-		FeaturedImage::class,
-		Title::class,
-		Meta::class,
-		Preview::class,
-		Content::class,
-		Excerpt::class,
-		Modified::class,
-		Pager::class,
-		Pagination::class,
-//		BlockQuery::class,
+        PostAuthorInfo::class,
+        ArchiveAuthorInfo::class,
+        ArchiveHeadline::class,
 
-		Sidebar::class,
+        FeaturedImage::class,
+        Title::class,
+        Meta::class,
+        Preview::class,
+        Content::class,
+        Excerpt::class,
+        Modified::class,
+        Pager::class,
+        Pagination::class,
+//     BlockQuery::class,
 
-		Entry::class,
+        Sidebar::class,
 
-		EntryNoneImage::class,
-		EntryNoneTitle::class,
-		EntryNoneContent::class,
-		EntryNone::class,
+        Entry::class,
 
-		Loop::class,
+        EntryNoneImage::class,
+        EntryNoneTitle::class,
+        EntryNoneContent::class,
+        EntryNone::class,
 
-		SiteLogo::class,
-		SiteTitle::class,
-//		SiteTagline::class,
+        Loop::class,
 
-		MiscNavigation::class,
-		CustomHeaderImage::class,
+        SiteLogo::class,
+        SiteTitle::class,
+//       SiteTagline::class,
 
-		NavMenuToggleButton::class,
-		NavMenuHeader::class,
-		NavMenuPrimary::class,
-		NavMenuSecondary::class,
-		MainNavigationOlder::class,
-//		MainNavigation::class,
+        MiscNavigation::class,
+        CustomHeaderImage::class,
 
-		Comments::class,
-		Colophon::class,
-		Header::class,
-		FooterWidgetArea::class,
-		Footer::class,
-		Index::class => Index::class,
-	],
+        NavMenuToggleButton::class,
+        NavMenuHeader::class,
+        NavMenuPrimary::class,
+        NavMenuSecondary::class,
+        MainNavigationOlder::class,
+//     MainNavigation::class,
+
+        Comments::class,
+        Colophon::class,
+        Header::class,
+        FooterWidgetArea::class,
+        Footer::class,
+        Index::class => Index::class,
+    ],
 ];

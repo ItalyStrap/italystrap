@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace ItalyStrap;
 
 use Auryn\Injector;
@@ -53,235 +55,232 @@ use Walker_Nav_Menu;
 
 return [
 
-	/**
-	 * ==========================================================
-	 *
-	 * Autoload Shared Classes
-	 *
-	 * string|object
-	 *
-	 * ==========================================================
-	 */
-	AurynConfig::SHARING				=> [
-		EventDispatcher::class,
-		SubscriberRegister::class,
+    /**
+     * ==========================================================
+     *
+     * Autoload Shared Classes
+     *
+     * string|object
+     *
+     * ==========================================================
+     */
+    AurynConfig::SHARING                => [
+        EventDispatcher::class,
+        SubscriberRegister::class,
 
-		/**
-		 * Make sure the config is shared.
-		 * Already shared in bootstrap.php or in ACM if is active.
-		 */
-		Config::class,
+        /**
+         * Make sure the config is shared.
+         * Already shared in bootstrap.php or in ACM if is active.
+         */
+        Config::class,
 
-		Attributes::class,
-		Tag::class,
-		View\View::class,
+        Attributes::class,
+        Tag::class,
+        View\View::class,
 
-		ImageSizeInterface::class,
+        ImageSizeInterface::class,
 
-		\WP_Theme::class,
-		\WP_Query::class,
-	],
+        \WP_Theme::class,
+        \WP_Query::class,
+    ],
 
-	/**
-	 * ==========================================================
-	 *
-	 * Autoload Aliases Class
-	 *
-	 * string
-	 *
-	 * ==========================================================
-	 */
-	AurynConfig::ALIASES				=> [
-		EventDispatcherInterface::class		=> EventDispatcher::class,
-		SubscriberRegisterInterface::class	=> SubscriberRegister::class,
+    /**
+     * ==========================================================
+     *
+     * Autoload Aliases Class
+     *
+     * string
+     *
+     * ==========================================================
+     */
+    AurynConfig::ALIASES                => [
+        EventDispatcherInterface::class     => EventDispatcher::class,
+        SubscriberRegisterInterface::class  => SubscriberRegister::class,
 
-		ConfigInterface::class				=> Config::class,
+        ConfigInterface::class              => Config::class,
 
-		AttributesInterface::class			=> Attributes::class,
-		TagInterface::class					=> Tag::class,
+        AttributesInterface::class          => Attributes::class,
+        TagInterface::class                 => Tag::class,
 
-		FileInfoFactoryInterface::class		=> FileInfoFactory::class,
-		SearchFileStrategy::class			=> FilesHierarchyIterator::class,
-		FinderInterface::class				=> Finder::class,
+        FileInfoFactoryInterface::class     => FileInfoFactory::class,
+        SearchFileStrategy::class           => FilesHierarchyIterator::class,
+        FinderInterface::class              => Finder::class,
 
-		ViewInterface::class				=> View\View::class,
+        ViewInterface::class                => View\View::class,
 
-		ImageSizeInterface::class			=> ImageSize::class,
+        ImageSizeInterface::class           => ImageSize::class,
 
-		NavMenuLocationInterface::class		=> NavMenuLocation::class,
-		NavMenuInterface::class				=> NavMenu::class,
+        NavMenuLocationInterface::class     => NavMenuLocation::class,
+        NavMenuInterface::class             => NavMenu::class,
 
-		Walker_Nav_Menu::class				=> Navbar\BootstrapNavMenu::class,
-	],
+        Walker_Nav_Menu::class              => Navbar\BootstrapNavMenu::class,
+    ],
 
-	/**
-	 * ==========================================================
-	 *
-	 * Autoload Classes definitions
-	 *
-	 * @example :
-	 * 'walker'		=> '\NameSpace\ClassName',
-	 * ':walker'	=> new \NameSpace\ClassName(),
-	 * '+walker'	=> function () {
-	 * 		return new \NameSpace\ClassName();
-	 * },
-	 *
-	 * ==========================================================
-	 */
-	AurynConfig::DEFINITIONS			=> [
-		View\View::class => [
-			'+finder' => static function ( string $named_param, Injector $injector ): FinderInterface {
-				$config = $injector->make( ConfigInterface::class );
+    /**
+     * ==========================================================
+     *
+     * Autoload Classes definitions
+     *
+     * @example :
+     * 'walker'     => '\NameSpace\ClassName',
+     * ':walker'    => new \NameSpace\ClassName(),
+     * '+walker'    => function () {
+     *      return new \NameSpace\ClassName();
+     * },
+     *
+     * ==========================================================
+     */
+    AurynConfig::DEFINITIONS            => [
+        View\View::class => [
+            '+finder' => static function (string $named_param, Injector $injector): FinderInterface {
 
-				$stylesheet_dir = $config->get( \ItalyStrap\Config\ConfigThemeProvider::STYLESHEET_DIR );
-				$template_dir = $config->get( \ItalyStrap\Config\ConfigThemeProvider::TEMPLATE_DIR );
-				$view_dir = $config->get( \ItalyStrap\Config\ConfigThemeProvider::VIEW_DIR );
+                $config = $injector->make(ConfigInterface::class);
+                $stylesheet_dir = $config->get(\ItalyStrap\Config\ConfigThemeProvider::STYLESHEET_DIR);
+                $template_dir = $config->get(\ItalyStrap\Config\ConfigThemeProvider::TEMPLATE_DIR);
+                $view_dir = $config->get(\ItalyStrap\Config\ConfigThemeProvider::VIEW_DIR);
+                $finder = (new FinderFactory())->make()
+                    ->in([
+                        $stylesheet_dir . '/' . $view_dir,
+                        $template_dir . '/' . $view_dir,
+                    ]);
+                return $finder;
+            },
+        ],
 
-				$finder = (new FinderFactory())->make()
-					->in( [
-						$stylesheet_dir . '/' . $view_dir,
-						$template_dir . '/' . $view_dir,
-					] );
+        EditorSubscriber::class => [
+            '+finder'   => static function (string $named_param, Injector $injector) {
 
-				return $finder;
-			},
-		],
+                $config = $injector->make(ConfigInterface::class);
+                $stylesheet_dir = $config->get(\ItalyStrap\Config\ConfigThemeProvider::STYLESHEET_DIR);
+                $template_dir = $config->get(\ItalyStrap\Config\ConfigThemeProvider::TEMPLATE_DIR);
+                $finder = (new FinderFactory())->make()
+                    ->in([
+                        $stylesheet_dir . '/assets/',
+                        $template_dir . '/assets/',
+                    ]);
+                $finder->names([
+                    '../css/editor-style.css',
+                    '../assets/css/editor-style.css',
+                ]);
+                return $finder;
+            },
+        ],
+    ],
 
-		EditorSubscriber::class => [
-			'+finder'	=> static function ( string $named_param, Injector $injector ) {
-				$config = $injector->make( ConfigInterface::class );
+    /**
+     * ==========================================================
+     *
+     * Autoload Parameters Definitions
+     *
+     * string
+     *
+     * ==========================================================
+     */
+    AurynConfig::DEFINE_PARAM           => [
+    ],
 
-				$stylesheet_dir = $config->get( \ItalyStrap\Config\ConfigThemeProvider::STYLESHEET_DIR );
-				$template_dir = $config->get( \ItalyStrap\Config\ConfigThemeProvider::TEMPLATE_DIR );
+    /**
+     * ========================================================================
+     *
+     * Autoload Delegates
+     * @link https://github.com/rdlowrey/auryn#instantiation-delegates
+     * 'MyComplexClass' => $complexClassFactory,
+     * 'SomeClassWithDelegatedInstantiation'    => 'MyFactory',
+     * 'SomeClassWithDelegatedInstantiation'    => 'MyFactory::factoryMethod'
+     *
+     * string
+     *
+     * ========================================================================
+     */
+    AurynConfig::DELEGATIONS            => [
+        \WP_Theme::class => static function (): \WP_Theme {
 
-				$finder = (new FinderFactory())->make()
-					->in( [
-						$stylesheet_dir . '/assets/',
-						$template_dir . '/assets/',
-					] );
+            return \wp_get_theme(\get_template());
+        },
+        \WP_Query::class => static function (): \WP_Query {
 
-				$finder->names([
-					'../css/editor-style.css',
-					'../assets/css/editor-style.css',
-				]);
+            global $wp_query;
+            return $wp_query;
+        },
+    ],
 
-				return $finder;
-			},
-		],
-	],
+    /**
+     * ========================================================================
+     *
+     * Autoload Prepares
+     * @link https://github.com/rdlowrey/auryn#prepares-and-setter-injection
+     *
+     * string
+     *
+     * ========================================================================
+     */
+    AurynConfig::PREPARATIONS           => [
 
-	/**
-	 * ==========================================================
-	 *
-	 * Autoload Parameters Definitions
-	 *
-	 * string
-	 *
-	 * ==========================================================
-	 */
-	AurynConfig::DEFINE_PARAM			=> [
-	],
+        /**
+         * This class is lazy loaded
+         */
+        AssetManager::class         => new ExperimentalAssetPreparator(),
+    ],
 
-	/**
-	 * ========================================================================
-	 *
-	 * Autoload Delegates
-	 * @link https://github.com/rdlowrey/auryn#instantiation-delegates
-	 * 'MyComplexClass'	=> $complexClassFactory,
-	 * 'SomeClassWithDelegatedInstantiation'	=> 'MyFactory',
-	 * 'SomeClassWithDelegatedInstantiation'	=> 'MyFactory::factoryMethod'
-	 *
-	 * string
-	 *
-	 * ========================================================================
-	 */
-	AurynConfig::DELEGATIONS			=> [
-		\WP_Theme::class => static function (): \WP_Theme {
-			return \wp_get_theme( \get_template() );
-		},
-		\WP_Query::class => static function (): \WP_Query {
-			global $wp_query;
-			return $wp_query;
-		},
-	],
+    /**
+     * ========================================================================
+     *
+     * Lazyload Classes
+     * Loaded on admin and front-end
+     *
+     * Useful if you need to load lazily your classes, for example
+     * if you want classes are loaded only when are really needed.
+     *
+     * ========================================================================
+     */
+    AurynConfig::PROXY                  => [
+        AssetManager::class,
+//      SidebarsSubscriber::class,
+    ],
 
-	/**
-	 * ========================================================================
-	 *
-	 * Autoload Prepares
-	 * @link https://github.com/rdlowrey/auryn#prepares-and-setter-injection
-	 *
-	 * string
-	 *
-	 * ========================================================================
-	 */
-	AurynConfig::PREPARATIONS			=> [
+    /**
+     * ========================================================================
+     *
+     * Autoload Subscribers Classes
+     * Loaded on admin and front-end
+     *
+     * If you use key => value pair make sure to bind the key with an option name
+     * to activate or deactivate the service from an option panel.
+     *
+     * ========================================================================
+     */
+    SubscribersConfigExtension::SUBSCRIBERS             => [
 
-		/**
-		 * This class is lazy loaded
-		 */
-		AssetManager::class			=> new ExperimentalAssetPreparator(),
-	],
+        AfterSetupThemeEvent::class,
+        License::class,
+        ConfigCurrentTemplateSubscriber::class,
+        ConfigWpSubscriber::class,
 
-	/**
-	 * ========================================================================
-	 *
-	 * Lazyload Classes
-	 * Loaded on admin and front-end
-	 *
-	 * Useful if you need to load lazily your classes, for example
-	 * if you want classes are loaded only when are really needed.
-	 *
-	 * ========================================================================
-	 */
-	AurynConfig::PROXY					=> [
-		AssetManager::class,
-//		SidebarsSubscriber::class,
-	],
+        ExperimentalCustomizerOptionWithAndPosition::class,
+        OembedWrapper::class,
 
-	/**
-	 * ========================================================================
-	 *
-	 * Autoload Subscribers Classes
-	 * Loaded on admin and front-end
-	 *
-	 * If you use key => value pair make sure to bind the key with an option name
-	 * to activate or deactivate the service from an option panel.
-	 *
-	 * ========================================================================
-	 */
-	SubscribersConfigExtension::SUBSCRIBERS				=> [
+        /**
+         * Register Theme stuff
+         */
+        NavMenusSubscriber::class,
+        SidebarsSubscriber::class,
+        SupportSubscriber::class,
+        TextDomainSubscriber::class,
+        ThumbnailsSubscriber::class,
+        PostTypeSupportSubscriber::class,
+        Metaboxes::class,
 
-		AfterSetupThemeEvent::class,
-		License::class,
-		ConfigCurrentTemplateSubscriber::class,
-		ConfigWpSubscriber::class,
+        Admin\Nav_Menu\ItemCustomFields::class,
 
-		ExperimentalCustomizerOptionWithAndPosition::class,
-		OembedWrapper::class,
+        CustomizerBodyTagAttributesSubscriber::class,
+        CustomizerAssetsSubscriber::class,
+        InlineStyleSubscriber::class,
 
-		/**
-		 * Register Theme stuff
-		 */
-		NavMenusSubscriber::class,
-		SidebarsSubscriber::class,
-		SupportSubscriber::class,
-		TextDomainSubscriber::class,
-		ThumbnailsSubscriber::class,
-		PostTypeSupportSubscriber::class,
-		Metaboxes::class,
-
-		Admin\Nav_Menu\ItemCustomFields::class,
-
-		CustomizerBodyTagAttributesSubscriber::class,
-		CustomizerAssetsSubscriber::class,
-		InlineStyleSubscriber::class,
-
-		/**
-		 * With this class I can lazyload the AssetManager::class
-		 * see above in the PROXY config.
-		 */
-		AssetsSubscriber::class,
-		Asset\EditorSubscriber::class,
-	],
+        /**
+         * With this class I can lazyload the AssetManager::class
+         * see above in the PROXY config.
+         */
+        AssetsSubscriber::class,
+        Asset\EditorSubscriber::class,
+    ],
 ];

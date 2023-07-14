@@ -7,6 +7,7 @@ namespace ItalyStrap\Tests\Integration\Theme;
 use ItalyStrap\Tests\IntegrationTestCase;
 use ItalyStrap\Theme\NavMenusSubscriber;
 use ItalyStrap\Theme\Registrable;
+
 use function add_filter;
 use function has_nav_menu;
 

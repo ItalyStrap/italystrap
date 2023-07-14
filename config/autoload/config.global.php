@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use ItalyStrap\Config\ConfigCustomHeaderProvider;
@@ -19,30 +20,30 @@ use ItalyStrap\Empress\AurynConfig;
 
 return [
 
-	AurynConfig::DEFINITIONS => [
-		ConfigThemeModsProvider::class => [
-			'+theme_mods' => static function () {
-				return (array) \get_theme_mods();
-			},
-		],
-	],
+    AurynConfig::DEFINITIONS => [
+        ConfigThemeModsProvider::class => [
+            '+theme_mods' => static function () {
+                return (array) \get_theme_mods();
+            },
+        ],
+    ],
 
-	ConfigProviderExtension::class => [
-		ConfigThemeProvider::class,
-		ConfigCustomHeaderProvider::class,
-		ConfigSiteLogoProvider::class,
-		ConfigColorSectionProvider::class,
-		ConfigMiscProvider::class,
-		ConfigNavigationProvider::class,
-		ConfigColophonProvider::class,
+    ConfigProviderExtension::class => [
+        ConfigThemeProvider::class,
+        ConfigCustomHeaderProvider::class,
+        ConfigSiteLogoProvider::class,
+        ConfigColorSectionProvider::class,
+        ConfigMiscProvider::class,
+        ConfigNavigationProvider::class,
+        ConfigColophonProvider::class,
 
-		ConfigNotFoundProvider::class,
-		ConfigPostThumbnailProvider::class,
-		ConfigThemeSupportProvider::class,
-		ConfigPostTypeSupportProvider::class,
-		ConfigSidebarProvider::class,
+        ConfigNotFoundProvider::class,
+        ConfigPostThumbnailProvider::class,
+        ConfigThemeSupportProvider::class,
+        ConfigPostTypeSupportProvider::class,
+        ConfigSidebarProvider::class,
 
-		/** This must run after all */
-		ConfigThemeModsProvider::class,
-	],
+        /** This must run after all */
+        ConfigThemeModsProvider::class,
+    ],
 ];

@@ -11,6 +11,7 @@ use ItalyStrap\Tests\IntegrationTestCase;
 use ItalyStrap\Theme\Registrable;
 use ItalyStrap\Theme\SidebarsSubscriber;
 use PHPUnit\Framework\Assert;
+
 use function is_registered_sidebar;
 
 // phpcs:disable

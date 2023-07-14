@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use ItalyStrap\Event\EventDispatcherInterface;
@@ -11,6 +12,6 @@ $dispatcher = $config->get(EventDispatcherInterface::class);
 ?>
 <!-- wp:group {"className":"navbar-header"} -->
 <div class="wp-block-group navbar-header">
-	<?php $dispatcher->dispatch('italystrap_navmenu_header'); ?>
+    <?php $dispatcher->dispatch('italystrap_navmenu_header'); ?>
 </div>
 <!-- /wp:group -->

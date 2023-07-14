@@ -12,7 +12,11 @@
     <rule ref="PHPCompatibility"/>
     <config name="testVersion" value="8.0-"/>
 
+    <file>./config/</file>
+    <file>./functions/</file>
+    <file>./lib/</file>
     <file>./src/</file>
+    <file>./templates/</file>
     <file>./tests/</file>
 
     <!-- https://gist.github.com/gsherwood/9d22f634c57f990a7c64 -->

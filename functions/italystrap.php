@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ItalyStrap;
@@ -8,11 +9,12 @@ namespace ItalyStrap;
  *
  * @param array $args
  */
-function italystrap( ...$args ): void {
+function italystrap(...$args): void
+{
 
-	/**
-	 * @TODO Are they good hooks?
-	 */
-	do_action( 'italystrap_build', $args );
-	do_action( 'italystrap', $args );
+    /**
+     * @TODO Are they good hooks?
+     */
+    do_action('italystrap_build', $args);
+    do_action('italystrap', $args);
 }

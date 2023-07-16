@@ -44,8 +44,8 @@ final class ConfigCurrentTemplateSubscriber implements Registrable, SubscriberIn
         $base_name = $current_template->getBasename();
         $slug = $current_template->getBasename('.' . $current_template->getExtension());
 
-        define('CURRENT_TEMPLATE', $base_name);
-        define('CURRENT_TEMPLATE_SLUG', $slug);
+        !defined('CURRENT_TEMPLATE') && define('CURRENT_TEMPLATE', $base_name);
+        !defined('CURRENT_TEMPLATE_SLUG') && define('CURRENT_TEMPLATE_SLUG', $slug);
 
         $this->config->add(self::TEMPLATE_FILE_NAME, $base_name);
         $this->config->add(self::TEMPLATE_FILE_SLUG, $slug);

@@ -21,7 +21,7 @@ modules:
             cleanup: true
             waitlock: 10
             url: '%WPDB_WP_URL%'
-            urlReplacement: false
+            urlReplacement: true
             tablePrefix: '%WPDB_TABLE_PREFIX%'
         WPBrowser:
             url: '%WPBROWSER_WP_URL%'

@@ -12,6 +12,9 @@ down:
 codeceptbuild: up
 	.docker/codecept build
 
+clean: up
+	.docker/codecept clean
+
 unit: up
 	.docker/codecept run unit
 
@@ -19,7 +22,7 @@ integration: up
 	.docker/codecept run integration
 
 functional: up
-	.docker/codecept run functional
+	.docker/codecept run functional --debug
 
 acceptance: up
 	.docker/codecept run acceptance

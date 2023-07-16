@@ -5,26 +5,23 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests;
 
 use Auryn\Injector;
-use Codeception\TestCase\WPTestCase as TestCase;
+use Codeception\TestCase\WPTestCase;
 use ItalyStrap\Config\ConfigInterface;
 
-class IntegrationTestCase extends TestCase
+class IntegrationTestCase extends WPTestCase
 {
-    /**
-     * @var \WpunitTester
-     */
-    protected $tester;
-    private Injector $injector;
-    private ConfigInterface $config;
+    protected \IntegrationTester $tester;
+    protected Injector $injector;
+    protected ConfigInterface $config;
 
     public function setUp(): void
     {
         // Before...
         parent::setUp();
-
+        codecept_debug('IntegrationTestCase::_setUp');
         $this->injector = \ItalyStrap\Factory\injector();
         $this->config = $this->injector->make(ConfigInterface::class);
-        // Your set up methods here.
+        // Your set-up methods here.
     }
 
     public function tearDown(): void

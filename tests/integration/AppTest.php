@@ -11,10 +11,7 @@ use function ItalyStrap\Factory\injector;
 
 class AppTest extends IntegrationTestCase
 {
-    /**
-     * @test
-     */
-    public function itShouldBeInstantiable()
+    public function testItShouldBeInjectorInstance()
     {
         $sut = injector();
         $this->assertInstanceOf(Injector::class, $sut, '');

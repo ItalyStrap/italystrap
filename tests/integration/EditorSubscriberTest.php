@@ -4,41 +4,25 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Integration;
 
-use Codeception\TestCase\WPTestCase;
+use Auryn\ConfigException;
+use Auryn\InjectionException;
 use ItalyStrap\Asset\EditorSubscriber;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigThemeProvider;
+use ItalyStrap\Tests\IntegrationTestCase;
 use PHPUnit\Framework\Assert;
 
 use function ItalyStrap\Factory\injector;
 
-class EditorSubscriberTest extends WPTestCase
+class EditorSubscriberTest extends IntegrationTestCase
 {
     /**
-     * @var \IntegrationTester
+     * @throws ConfigException
+     * @throws InjectionException
      */
-    protected $tester;
-
-    public function setUp(): void
-    {
-        // Before...
-        parent::setUp();
-
-        // Your set up methods here.
-    }
-
-    public function tearDown(): void
-    {
-        // Your tear down methods here.
-
-        // Then...
-        parent::tearDown();
-    }
-
     private function makeInstance(): EditorSubscriber
     {
-        $sut = injector()->make(EditorSubscriber::class);
-        return $sut;
+        return injector()->make(EditorSubscriber::class);
     }
 
     /**

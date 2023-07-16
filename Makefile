@@ -1,28 +1,33 @@
-.PHONY: dockerdir composeupbuild composeup composedown build unit integration functional acceptance qa
-dockerdir=cd .docker
 
-composeupbuild:
+.PHONY: up down codeceptbuild unit integration functional acceptance qa
+composebuild:
 	cd .docker && docker-compose  --env-file ../.env up -d --build
 
-composeup:
+up:
 	cd .docker && docker-compose  --env-file ../.env up -d --remove-orphans
 
-composedown:
+down:
 	cd .docker && docker-compose  --env-file ../.env down --remove-orphans --volumes
 
-build: composeup
-	cd .docker && ./codecept build
+codeceptbuild: up
+	.docker/codecept build
 
-unit: composeup
-	cd .docker && ./codecept run unit
+unit: up
+	.docker/codecept run unit
 
-integration: composeup
-	#cd .docker && ./codecept run integration
-	${dockerdir} && ./codecept run integration
-functional: composeup
-	cd .docker && ./codecept run functional
+integration: up
+	.docker/codecept run integration
 
-acceptance: composeup
-	cd .docker && ./codecept run acceptance
+functional: up
+	.docker/codecept run functional
+
+acceptance: up
+	.docker/codecept run acceptance
 
 qa: unit integration functional acceptance
+
+cs:
+	composer cs
+
+fix:
+	composer cs:fix

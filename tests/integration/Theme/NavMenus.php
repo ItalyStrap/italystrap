@@ -13,7 +13,7 @@ use function has_nav_menu;
 
 class NavMenus extends IntegrationTestCase
 {
-    protected function getInstance()
+    protected function getInstance(): NavMenusSubscriber
     {
         $sut = new NavMenusSubscriber($this->getConfig());
         $this->assertInstanceOf(Registrable::class, $sut, '');

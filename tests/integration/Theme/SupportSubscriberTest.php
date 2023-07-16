@@ -10,16 +10,17 @@ use ItalyStrap\Theme\Registrable;
 use ItalyStrap\Theme\Support;
 use ItalyStrap\Theme\SupportSubscriber;
 
+use function ItalyStrap\Factory\injector;
+
 class SupportSubscriberTest extends IntegrationTestCase
 {
-    protected function getInstance($paramConfig = [])
+    protected function getInstance($paramConfig = []): SupportSubscriber
     {
-        $support = new Support();
         $config = ConfigFactory::make($paramConfig);
-        $sut = new SupportSubscriber($config, $support);
-        $this->assertInstanceOf(Registrable::class, $sut, '');
-        $this->assertInstanceOf(SupportSubscriber::class, $sut, '');
-        return $sut;
+        codecept_debug($config->get(SupportSubscriber::class));
+        return injector()->make(SupportSubscriber::class, [
+            ':config' => $config,
+        ]);
     }
 
     /**
@@ -40,10 +41,12 @@ class SupportSubscriberTest extends IntegrationTestCase
             ],
         ];
 
-//        $sut = $this->getInstance($support);
-//
-//        $sut->register();
-//
+        $sut = $this->getInstance($support);
+
+        $sut->register();
+
+        codecept_debug(\get_theme_support('html5'));
+
 //        $this->assertEqualSets([$support['html5']], \get_theme_support('html5'));
     }
 }

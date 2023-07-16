@@ -94,7 +94,7 @@ jobs:
         working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
         run: |
           ./vendor/bin/codecept run unit
-          ./vendor/bin/codecept run wpunit
+          ./vendor/bin/codecept run integration
 
       - name: Start dev server
         run: php -S ${{env.APP_HOST}}:${{env.APP_PORT}} -t ${{env.APP_FOLDER_PATH}} >/dev/null 2>&1 &

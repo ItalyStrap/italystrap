@@ -102,5 +102,5 @@ jobs:
       - name: Run Functional and Acceptance test
         working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
         run: |
-#          ./vendor/bin/codecept run functional
-          ./vendor/bin/codecept run acceptance
+          ./vendor/bin/codecept run functional --debug
+          ./vendor/bin/codecept run acceptance --debug

@@ -30,7 +30,7 @@ jobs:
     strategy:
       matrix:
         php_versions: ['8']
-        app_versions: ['latest']
+        app_versions: ['6.0']
 
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.php_versions == '8.2' }}

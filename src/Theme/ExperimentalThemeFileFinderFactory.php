@@ -9,10 +9,9 @@ use ItalyStrap\Finder\FinderInterface;
 
 final class ExperimentalThemeFileFinderFactory
 {
-    public function __invoke(\Auryn\Injector $injector)
+    public function __invoke(\Auryn\Injector $injector): FinderInterface
     {
-//        $finder =  $injector->make( FinderInterface::class );
-        $finder =  (new FinderFactory())->make()
+        return (new FinderFactory())->make()
         ->in(
             \array_unique(
                 [
@@ -26,6 +25,5 @@ final class ExperimentalThemeFileFinderFactory
                 ]
             )
         );
-        return $finder;
     }
 }

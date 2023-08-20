@@ -59,7 +59,7 @@ class Module
                 Modified::class,
                 Pager::class,
                 Pagination::class,
-//     BlockQuery::class,
+                //     BlockQuery::class,
 
                 Sidebar::class,
 
@@ -74,7 +74,7 @@ class Module
 
                 SiteLogo::class,
                 SiteTitle::class,
-//       SiteTagline::class,
+                //       SiteTagline::class,
 
                 MiscNavigation::class,
                 CustomHeaderImage::class,
@@ -84,7 +84,7 @@ class Module
                 NavMenuPrimary::class,
                 NavMenuSecondary::class,
                 MainNavigationOlder::class,
-//     MainNavigation::class,
+                //     MainNavigation::class,
 
                 Comments::class,
                 Colophon::class,

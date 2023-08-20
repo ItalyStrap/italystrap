@@ -48,17 +48,18 @@ unset($autoload_theme_files);
 
 return (static function (Injector $injector): Injector {
     $injector
+        // Event Dispatcher
         ->alias(EventDispatcherInterface::class, EventDispatcher::class)
         ->share(EventDispatcher::class)
+        // Subscriber Register
         ->alias(SubscriberRegisterInterface::class, SubscriberRegister::class)
         ->share(SubscriberRegister::class)
+        // Config
         ->alias(ConfigInterface::class, Config::class)
-        ->share(Config::class);
-
-    $event_dispatcher = $injector->make(EventDispatcher::class);
-
-    $injector
+        ->share(Config::class)
+        // Finder
         ->alias(FinderInterface::class, Finder::class)
+//        ->share(ExperimentalThemeFileFinderFactory::class)
         ->delegate(Finder::class, ExperimentalThemeFileFinderFactory::class)
         ->share(FinderInterface::class);
 
@@ -72,6 +73,8 @@ return (static function (Injector $injector): Injector {
     $injector_config->extend($injector->make(SubscribersConfigExtension::class));
     $injector_config->extend($injector->make(ComponentSubscriberExtension::class));
     $injector_config->extend($injector->make(CustomizerProviderExtension::class));
+
+    $event_dispatcher = $injector->make(EventDispatcher::class);
 
     /**
      * ========================================================================

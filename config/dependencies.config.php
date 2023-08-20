@@ -8,16 +8,18 @@ use ItalyStrap\Empress\Injector;
 use ItalyStrap\Empress\PhpFileProvider;
 use ItalyStrap\Empress\ProvidersCollection;
 use ItalyStrap\Finder\FinderInterface;
+use ItalyStrap\Theme\ExperimentalThemeFileFinderFactory;
 
 return static function (Injector $injector, FinderInterface $finder): ConfigInterface {
     return (new ProvidersCollection(
         $injector,
-        ConfigFactory::make(),
+        $injector->make(ConfigInterface::class),
         [
             \ItalyStrap\Components\Module::class,
             new PhpFileProvider(
                 '/config/autoload/{{,*.}global,{,*.}local}.php',
-                $finder
+//                $finder
+                $injector->execute(ExperimentalThemeFileFinderFactory::class)
             )
         ],
         null

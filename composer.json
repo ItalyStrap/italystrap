@@ -58,7 +58,7 @@
 		"codeception/module-cli": "^1.0",
 		"codeception/util-universalframework": "^1.0",
 		"phpspec/prophecy-phpunit": "^2.0.0",
-		"italystrap/debug": "^2.0",
+		"italystrap/debug": "dev-master",
 		"italystrap/theme-json-generator": "dev-master",
 		"squizlabs/php_codesniffer": "*",
 		"phpcompatibility/php-compatibility": "*",

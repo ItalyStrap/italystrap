@@ -65,7 +65,7 @@ return (static function (Injector $injector): Injector {
     $finder =  $injector->make(FinderInterface::class);
 
     $injector_config = $injector->make(AurynConfig::class, [
-        ':dependencies' => (require __DIR__ . '/../config/dependencies.config.php')($finder)
+        ':dependencies' => (require __DIR__ . '/../config/dependencies.config.php')($injector, $finder)
     ]);
 
     $injector_config->extend($injector->make(ConfigProviderExtension::class));

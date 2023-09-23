@@ -15,7 +15,7 @@ class CustomizerBodyTagAttributesSubscriber implements SubscriberInterface
     public function getSubscribedEvents(): iterable
     {
         yield 'italystrap_body_attr' => [
-            SubscriberInterface::CALLBACK   => '__invoke',
+            SubscriberInterface::CALLBACK   => $this,
         ];
     }
 

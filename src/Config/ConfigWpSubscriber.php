@@ -5,29 +5,20 @@ declare(strict_types=1);
 namespace ItalyStrap\Config;
 
 use ItalyStrap\Event\SubscriberInterface;
-use ItalyStrap\Theme\Registrable;
 
-final class ConfigWpSubscriber implements Registrable, SubscriberInterface
+final class ConfigWpSubscriber implements SubscriberInterface
 {
     public const CURRENT_PAGE_ID = 'current_page_id';
 
     private ConfigInterface $config;
     private \WP_Query $query;
-
-    /**
-     * @inheritDoc
-     */
     public function getSubscribedEvents(): iterable
     {
         yield 'wp'  => [
-            self::CALLBACK  => self::REGISTER_CB,
+            self::CALLBACK  => $this,
             self::PRIORITY  => PHP_INT_MIN,
         ];
     }
-
-    /**
-     * Init sidebars registration
-     */
     public function __construct(
         ConfigInterface $config,
         \WP_Query $query
@@ -36,7 +27,7 @@ final class ConfigWpSubscriber implements Registrable, SubscriberInterface
         $this->query = $query;
     }
 
-    public function register(): void
+    public function __invoke(): void
     {
         $id = $this->query->get_queried_object_id();
 

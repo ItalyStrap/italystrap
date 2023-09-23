@@ -14,7 +14,7 @@ class MiscNavigationTest extends UnitTestCase
 {
     protected function getInstance(): MiscNavigation
     {
-        $sut = new MiscNavigation($this->getConfig(), $this->getView(), $this->getDispatcher());
+        $sut = new MiscNavigation($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

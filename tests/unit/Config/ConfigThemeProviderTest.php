@@ -11,7 +11,7 @@ class ConfigThemeProviderTest extends UnitTestCase
 {
     protected function getInstance(): ConfigThemeProvider
     {
-        $sut = new ConfigThemeProvider($this->getTheme(), $this->getDispatcher());
+        $sut = new ConfigThemeProvider($this->getTheme(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ConfigThemeProvider::class, $sut, '');
         return $sut;
     }

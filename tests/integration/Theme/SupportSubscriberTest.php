@@ -6,7 +6,6 @@ namespace ItalyStrap\Tests\Integration\Theme;
 
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Tests\IntegrationTestCase;
-use ItalyStrap\Theme\Registrable;
 use ItalyStrap\Theme\Support;
 use ItalyStrap\Theme\SupportSubscriber;
 
@@ -43,7 +42,7 @@ class SupportSubscriberTest extends IntegrationTestCase
 
         $sut = $this->getInstance($support);
 
-        $sut->register();
+        $sut();
 
         codecept_debug(\get_theme_support('html5'));
 

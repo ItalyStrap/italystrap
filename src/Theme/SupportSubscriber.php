@@ -7,7 +7,7 @@ namespace ItalyStrap\Theme;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
-final class SupportSubscriber implements Registrable, SubscriberInterface
+final class SupportSubscriber implements SubscriberInterface
 {
     private ConfigInterface $config;
     private Support $support;
@@ -15,7 +15,7 @@ final class SupportSubscriber implements Registrable, SubscriberInterface
     public function getSubscribedEvents(): iterable
     {
         yield 'italystrap_theme_load'   => [
-            static::CALLBACK    => static::REGISTER_CB,
+            static::CALLBACK    => $this,
             static::PRIORITY    => 20,
         ];
     }
@@ -27,18 +27,17 @@ final class SupportSubscriber implements Registrable, SubscriberInterface
     }
 
     /**
-     * Add theme supports
      * @link http://codex.wordpress.org/Function_Reference/add_theme_support
-     * @return void
      */
-    public function register(): void
+    public function __invoke(): void
     {
         foreach ((array) $this->config->get(self::class) as $feature => $parameters) {
             if (\is_string($parameters)) {
                 $this->support->add($parameters);
-            } else {
-                $this->support->add($feature, $parameters);
+                continue;
             }
+
+            $this->support->add($feature, $parameters);
         }
     }
 }

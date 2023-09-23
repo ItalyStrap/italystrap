@@ -13,7 +13,7 @@ class HeaderTest extends UnitTestCase
 {
     protected function getInstance(): Header
     {
-        $sut = new Header($this->getConfig(), $this->getView(), $this->getDispatcher(), $this->getTag());
+        $sut = new Header($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher(), $this->getTag());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Components;
+namespace ItalyStrap\Components\Main;
 
+use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
@@ -11,23 +12,25 @@ use ItalyStrap\View\ViewInterface;
 
 class Index implements ComponentInterface, SubscriberInterface
 {
-    use SubscribedEventsAware;
+    public function getSubscribedEvents(): iterable
+    {
+        yield Events\Index::class => $this;
+    }
 
-    public const EVENT_NAME = 'italystrap';
-    public const EVENT_PRIORITY = 10;
+    public const TEMPLATE_NAME = 'main/index';
 
     private ConfigInterface $config;
     private ViewInterface $view;
-    private EventDispatcherInterface $dispatcher;
+    private EventDispatcherInterface $globalDispatcher;
 
     public function __construct(
         ConfigInterface $config,
         ViewInterface $view,
-        EventDispatcherInterface $dispatcher
+        EventDispatcherInterface $globalDispatcher
     ) {
         $this->config = $config;
         $this->view = $view;
-        $this->dispatcher = $dispatcher;
+        $this->globalDispatcher = $globalDispatcher;
     }
 
     public function shouldDisplay(): bool
@@ -35,12 +38,12 @@ class Index implements ComponentInterface, SubscriberInterface
         return true;
     }
 
-    public function display(): void
+    public function __invoke(Events\Index $event): void
     {
-        echo \do_blocks($this->view->render('index', [
-            EventDispatcherInterface::class => $this->dispatcher,
+        $event->withContent(\do_blocks($this->view->render(self::TEMPLATE_NAME, [
+            EventDispatcherInterface::class => $this->globalDispatcher,
             'container_class_names' => $this->config->get('container_width'),
             'row_class_names' => 'row',
-        ]));
+        ])));
     }
 }

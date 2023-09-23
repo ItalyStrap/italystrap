@@ -5,37 +5,31 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\ComponentSubscriberExtension;
-use ItalyStrap\Components\Index;
+use ItalyStrap\Components\Main\Index;
 use ItalyStrap\Empress\Extension;
 use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
 class ComponentSubscriberExtensionTest extends UnitTestCase
 {
-    protected function getInstance(): ComponentSubscriberExtension
+    protected function makeInstance(): ComponentSubscriberExtension
     {
-        $sut = new ComponentSubscriberExtension($this->getSubscriberRegister(), $this->getDispatcher());
+        $sut = new ComponentSubscriberExtension($this->getSubscriberRegister(), $this->getListenerRegister());
         $this->assertInstanceOf(Extension::class, $sut, '');
         return $sut;
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveName()
+    public function testItShouldHaveName()
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
         $this->assertSame(ComponentSubscriberExtension::class, $sut->name());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldExecute()
+    public function testItShouldExecute()
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
 
-        $this->dispatcher->addListener(
+        $this->listenerRegister->addListener(
             Argument::type('string'),
             Argument::type('callable'),
             Argument::type('int'),
@@ -45,12 +39,9 @@ class ComponentSubscriberExtensionTest extends UnitTestCase
         $sut->execute($this->getAurynConfigInterface());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldWalk()
+    public function testItShouldWalk()
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
         $className = 'ClassName';
         $index_or_optionName = 0;
 
@@ -64,6 +55,6 @@ class ComponentSubscriberExtensionTest extends UnitTestCase
 
         $this->subscriberRegister->addSubscriber($class)->shouldBeCalledOnce();
 
-        $sut->walk($className, $index_or_optionName, $this->getInjector());
+        $sut($className, $index_or_optionName, $this->getInjector());
     }
 }

@@ -14,7 +14,7 @@ use function array_walk;
 use function intval;
 use function set_post_thumbnail_size;
 
-final class ThumbnailsSubscriber implements Registrable, SubscriberInterface
+final class ThumbnailsSubscriber implements SubscriberInterface
 {
     public const WIDTH = 'width';
     public const HEIGHT = 'height';
@@ -28,7 +28,7 @@ final class ThumbnailsSubscriber implements Registrable, SubscriberInterface
     public function getSubscribedEvents(): iterable
     {
         yield 'italystrap_theme_load'   => [
-            static::CALLBACK    => self::REGISTER_CB,
+            static::CALLBACK    => $this,
             static::PRIORITY    => 20,
         ];
     }
@@ -67,7 +67,7 @@ final class ThumbnailsSubscriber implements Registrable, SubscriberInterface
      *
      * @return void
      */
-    public function register(): void
+    public function __invoke(): void
     {
 
         /**

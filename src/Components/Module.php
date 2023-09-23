@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components;
 
+use ItalyStrap\Components\Footer\Colophon;
+use ItalyStrap\Components\Footer\Footer;
+use ItalyStrap\Components\Footer\FooterWidgetArea;
+use ItalyStrap\Components\Main\Index;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Empress\Injector;
 use ItalyStrap\Navigation\NavMenuFallback;

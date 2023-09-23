@@ -18,7 +18,7 @@ final class NavMenusSubscriber implements SubscriberInterface
     public function getSubscribedEvents(): iterable
     {
         yield 'init'    => [
-            static::CALLBACK    => '__invoke',
+            static::CALLBACK    => $this,
         ];
     }
 

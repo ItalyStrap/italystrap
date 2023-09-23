@@ -15,10 +15,6 @@ use ItalyStrap\Config\ConfigWpSubscriber;
 use ItalyStrap\Customizer\CustomizerAssetsSubscriber;
 use ItalyStrap\Customizer\CustomizerBodyTagAttributesSubscriber;
 use ItalyStrap\Empress\AurynConfig;
-use ItalyStrap\Event\EventDispatcher;
-use ItalyStrap\Event\EventDispatcherInterface;
-use ItalyStrap\Event\SubscriberRegister;
-use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Experimental\ExperimentalCustomizerOptionWithAndPosition;
 use ItalyStrap\Experimental\OembedWrapper;
@@ -65,12 +61,9 @@ return [
      * ==========================================================
      */
     AurynConfig::SHARING                => [
-        EventDispatcher::class,
-        SubscriberRegister::class,
-
         /**
          * Make sure the config is shared.
-         * Already shared in bootstrap.php or in ACM if is active.
+         * Already shared in bootstrap.php or in ACM if it is active.
          */
         Config::class,
 
@@ -94,8 +87,6 @@ return [
      * ==========================================================
      */
     AurynConfig::ALIASES                => [
-        EventDispatcherInterface::class     => EventDispatcher::class,
-        SubscriberRegisterInterface::class  => SubscriberRegister::class,
 
         ConfigInterface::class              => Config::class,
 
@@ -104,7 +95,7 @@ return [
 
         FileInfoFactoryInterface::class     => FileInfoFactory::class,
         SearchFileStrategy::class           => FilesHierarchyIterator::class,
-        FinderInterface::class              => Finder::class,
+//        FinderInterface::class              => Finder::class,
 
         ViewInterface::class                => View\View::class,
 

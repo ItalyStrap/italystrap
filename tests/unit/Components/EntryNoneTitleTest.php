@@ -15,7 +15,7 @@ class EntryNoneTitleTest extends UnitTestCase
 {
     protected function getInstance(): EntryNoneTitle
     {
-        $sut = new EntryNoneTitle($this->getConfig(), $this->getView(), $this->getDispatcher());
+        $sut = new EntryNoneTitle($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

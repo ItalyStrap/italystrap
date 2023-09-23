@@ -21,15 +21,15 @@ $context = (string)$config->get(\ItalyStrap\Components\MainNavigation::CONTEXT);
         <!-- wp:group {"className":"container"} -->
         <div id="menus-container-440383729" class="wp-block-group container">
 
-            <?php $dispatcher->dispatch('italystrap_before_navmenu'); ?>
+            <?php $dispatcher->trigger('italystrap_before_navmenu'); ?>
 
             <!-- wp:group {"className":"navbar-collapse collapse","layout":{"type":"flex","flexWrap":"nowrap"}} -->
             <div id="italystrap-menu-440383729" class="wp-block-group navbar-collapse collapse">
-                <?php $dispatcher->dispatch('italystrap_navmenu'); ?>
+                <?php $dispatcher->trigger('italystrap_navmenu'); ?>
             </div>
             <!-- /wp:group -->
 
-            <?php $dispatcher->dispatch('italystrap_after_navmenu'); ?>
+            <?php $dispatcher->trigger('italystrap_after_navmenu'); ?>
 
         </div>
         <!-- /wp:group -->

@@ -13,7 +13,7 @@ class OembedWrapper implements SubscriberInterface
     public function getSubscribedEvents(): iterable
     {
         yield 'embed_oembed_html' => [
-            SubscriberInterface::CALLBACK       => 'embedWrap',
+            SubscriberInterface::CALLBACK       => $this,
             SubscriberInterface::PRIORITY       => 10, // 10 default
             SubscriberInterface::ACCEPTED_ARGS  => 4 // 3 default
         ];
@@ -40,7 +40,7 @@ class OembedWrapper implements SubscriberInterface
      *
      * @return string          Return the new HTML.
      */
-    public function embedWrap($cache, string $url, array $attr, int $post_ID): string
+    public function __invoke($cache, string $url, array $attr, int $post_ID): string
     {
 
         if (\strpos($cache, 'class="twitter-tweet"')) {

@@ -25,10 +25,10 @@ $class_names = $this->get('class_names');
 ?>
 <article<?php HTML\get_attr_e('entry', [ 'id' => $id, 'class' => $class_names ]) ?>>
 <?php
-    $dispatcher->dispatch('italystrap_before_entry_content');
+    $dispatcher->trigger('italystrap_before_entry_content');
 
-        $dispatcher->dispatch('italystrap_entry_content');
+        $dispatcher->trigger('italystrap_entry_content');
 
-    $dispatcher->dispatch('italystrap_after_entry_content');
+    $dispatcher->trigger('italystrap_after_entry_content');
 ?>
 </article>

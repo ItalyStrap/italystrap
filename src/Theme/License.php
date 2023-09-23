@@ -15,7 +15,7 @@ final class License implements SubscriberInterface
     public function getSubscribedEvents(): iterable
     {
         yield 'italystrap_theme_updater_config' => [
-            SubscriberInterface::CALLBACK   => '__invoke',
+            SubscriberInterface::CALLBACK   => $this,
         ];
     }
 

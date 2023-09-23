@@ -14,7 +14,7 @@ class LoopTest extends UnitTestCase
 {
     protected function getInstance(): Loop
     {
-        $sut = new Loop($this->getConfig(), $this->getView(), $this->getDispatcher());
+        $sut = new Loop($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

@@ -15,7 +15,7 @@ class CustomHeaderImageTest extends UnitTestCase
 {
     protected function getInstance(): CustomHeaderImage
     {
-        $sut = new CustomHeaderImage($this->getConfig(), $this->getView(), $this->getTag(), $this->getDispatcher());
+        $sut = new CustomHeaderImage($this->getConfig(), $this->getView(), $this->getTag(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

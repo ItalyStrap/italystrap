@@ -8,9 +8,6 @@ use ItalyStrap\Event\SubscriberInterface;
 
 class ExperimentalCustomizerOptionWithAndPosition implements SubscriberInterface
 {
-    /**
-     * @inheritDoc
-     */
     public function getSubscribedEvents(): iterable
     {
         yield 'italystrap_theme_positions' => 'registerThemePositions';
@@ -25,8 +22,6 @@ class ExperimentalCustomizerOptionWithAndPosition implements SubscriberInterface
 
 
     /**
-     * Register theme position
-     *
      * @param array $new_position
      *
      * @return array                Array with theme position.
@@ -64,8 +59,6 @@ class ExperimentalCustomizerOptionWithAndPosition implements SubscriberInterface
     }
 
     /**
-     * Register theme width
-     *
      * @param array $new_width
      * @return array            Array with theme position.
      */

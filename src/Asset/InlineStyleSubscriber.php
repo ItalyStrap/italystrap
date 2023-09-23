@@ -20,7 +20,7 @@ class InlineStyleSubscriber implements SubscriberInterface
     public function getSubscribedEvents(): iterable
     {
         yield 'wp_head' => [
-            self::CALLBACK  => 'enqueue',
+            self::CALLBACK  => $this,
             self::PRIORITY  => 11,
         ];
     }
@@ -31,7 +31,7 @@ class InlineStyleSubscriber implements SubscriberInterface
         $this->config = $config;
     }
 
-    public function enqueue(): void
+    public function __invoke(): void
     {
         $output = $this->style->render(
             '#site-title a',

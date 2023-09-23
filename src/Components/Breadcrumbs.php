@@ -51,7 +51,7 @@ class Breadcrumbs implements ComponentInterface, SubscriberInterface
         ];
 
         ob_start();
-        $this->dispatcher->dispatch('do_breadcrumbs', $args);
+        $this->dispatcher->trigger('do_breadcrumbs', $args);
         echo (string)ob_get_clean();
     }
 }

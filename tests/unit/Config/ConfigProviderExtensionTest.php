@@ -59,6 +59,6 @@ class ConfigProviderExtensionTest extends UnitTestCase
 
         $this->config->merge(Argument::exact($class()))->shouldBeCalledOnce();
 
-        $sut->walk($className, $index_or_optionName, $this->getInjector());
+        $sut($className, $index_or_optionName, $this->getInjector());
     }
 }

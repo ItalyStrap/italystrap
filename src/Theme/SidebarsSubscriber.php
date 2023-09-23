@@ -13,11 +13,9 @@ use function array_merge;
 use function register_sidebar;
 
 /**
- * Class for registering sidebars in template
  * There are a standard sidebar and 4 footer dynamic sidebars
- * @package ItalyStrap\Theme
  */
-final class SidebarsSubscriber implements Registrable, SubscriberInterface
+final class SidebarsSubscriber implements SubscriberInterface
 {
     public const NAME = 'name';
     public const ID = 'id';
@@ -28,38 +26,27 @@ final class SidebarsSubscriber implements Registrable, SubscriberInterface
     public const BEFORE_TITLE = 'before_title';
     public const AFTER_TITLE = 'after_title';
 
-    private \ItalyStrap\HTML\Tag $tag;
+    private Tag $tag;
 
     /**
      * @var array<string>
      */
     private $registered_sidebars;
-
-    /**
-     * @inheritDoc
-     */
     public function getSubscribedEvents(): iterable
     {
-        yield 'widgets_init'            => static::REGISTER_CB;
+        yield 'widgets_init'            => 'register';
         yield 'dynamic_sidebar_before'  => 'parseDynamicSidebarBefore';
     }
 
     private Config $config;
 
-    /**
-     * Init sidebars registration
-     * @param Config $config
-     * @param Tag $tag
-     */
     public function __construct(Config $config, Tag $tag)
     {
         $this->config = $config;
         $this->tag = $tag;
+        $this->registered_sidebars = [];
     }
 
-    /**
-     * @inheritDoc
-     */
     public function register(): void
     {
         foreach ((array)$this->config->get(self::class, []) as $key => $sidebar) {
@@ -75,14 +62,13 @@ final class SidebarsSubscriber implements Registrable, SubscriberInterface
         /** @var array<string> $wp_registered_sidebars */
         global $wp_registered_sidebars;
         $wp_registered_sidebars[ $index ] = array_merge(
-            $wp_registered_sidebars[ $index ],
+            (array)$wp_registered_sidebars[$index],
             array_filter($this->getDefault($index))
         );
     }
 
     /**
      * @param int|string $id
-     * @return array
      */
     private function getDefault($id): array
     {
@@ -109,10 +95,6 @@ final class SidebarsSubscriber implements Registrable, SubscriberInterface
         ];
     }
 
-    /**
-     * @param array $sidebar
-     * @return array
-     */
     private function defaultSidebarConfig(array $sidebar): array
     {
         $defaults = $this->getDefault($sidebar[ 'id' ]);

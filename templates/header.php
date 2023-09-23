@@ -31,14 +31,14 @@ open_tag_e('body', 'body', [
 
 \wp_body_open();
 
-$dispatcher->dispatch('italystrap_before');
+$dispatcher->trigger('italystrap_before');
 
 open_tag_e('wrapper', 'div', [
     'class' => $wrapper_class,
 ]);
 
-$dispatcher->dispatch('italystrap_before_header');
+$dispatcher->trigger('italystrap_before_header');
 
-$dispatcher->dispatch('italystrap_content_header');
+$dispatcher->trigger('italystrap_content_header');
 
-$dispatcher->dispatch('italystrap_after_header');
+$dispatcher->trigger('italystrap_after_header');

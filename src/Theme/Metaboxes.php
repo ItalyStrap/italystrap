@@ -6,6 +6,7 @@ namespace ItalyStrap\Theme;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigThemeProvider;
+use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\StdLib\CMB2Factory;
 
 use function ItalyStrap\Bools\experimental_is_block_theme;
@@ -13,14 +14,14 @@ use function ItalyStrap\Bools\experimental_is_block_theme;
 /**
  * https://make.wordpress.org/core/2018/11/07/meta-box-compatibility-flags/
  */
-class Metaboxes implements \ItalyStrap\Event\SubscriberInterface
+class Metaboxes implements SubscriberInterface
 {
     private ConfigInterface $config;
     private CMB2Factory $factory;
 
     public function getSubscribedEvents(): iterable
     {
-        yield 'cmb2_admin_init' => '__invoke';
+        yield 'cmb2_admin_init' => $this;
     }
 
     public function __construct(ConfigInterface $config, CMB2Factory $factory)

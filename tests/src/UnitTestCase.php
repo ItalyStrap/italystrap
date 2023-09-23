@@ -14,6 +14,7 @@ use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Empress\AurynConfigInterface;
 use ItalyStrap\Empress\Injector;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\ListenerRegisterInterface;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
 use ItalyStrap\Finder\FinderInterface;
@@ -41,9 +42,16 @@ class UnitTestCase extends Unit
         return $this->config->reveal();
     }
 
+    protected ObjectProphecy $globalDispatcher;
+
+    protected function makeGlobalDispatcher(): EventDispatcherInterface
+    {
+        return $this->globalDispatcher->reveal();
+    }
+
     protected ObjectProphecy $dispatcher;
 
-    protected function getDispatcher(): EventDispatcherInterface
+    protected function makeDispatcher(): \Psr\EventDispatcher\EventDispatcherInterface
     {
         return $this->dispatcher->reveal();
     }
@@ -153,6 +161,13 @@ class UnitTestCase extends Unit
         return $this->author->reveal();
     }
 
+    protected ObjectProphecy $listenerRegister;
+
+    protected function getListenerRegister(): ListenerRegisterInterface
+    {
+        return $this->listenerRegister->reveal();
+    }
+
     // phpcs:ignore
     protected function _before()
     {
@@ -170,7 +185,8 @@ class UnitTestCase extends Unit
         $this->prophet = new Prophet();
         $this->config = $this->prophet->prophesize(ConfigInterface::class);
         $this->view = $this->prophet->prophesize(ViewInterface::class);
-        $this->dispatcher = $this->prophet->prophesize(EventDispatcherInterface::class);
+        $this->globalDispatcher = $this->prophet->prophesize(EventDispatcherInterface::class);
+        $this->dispatcher = $this->prophet->prophesize(\Psr\EventDispatcher\EventDispatcherInterface::class);
         $this->subscriberRegister = $this->prophet->prophesize(SubscriberRegisterInterface::class);
         $this->injector = $this->prophet->prophesize(Injector::class);
         $this->aurynConfigInterface = $this->prophet->prophesize(AurynConfigInterface::class);
@@ -185,6 +201,7 @@ class UnitTestCase extends Unit
         $this->manager = $this->prophet->prophesize(WP_Customize_Manager::class);
         $this->control = $this->prophet->prophesize(FieldControlFactory::class);
         $this->author = $this->prophet->prophesize(AuthorInfo::class);
+        $this->listenerRegister = $this->prophet->prophesize(ListenerRegisterInterface::class);
 //      \Brain\Monkey\setUp();
     }
 
@@ -194,11 +211,8 @@ class UnitTestCase extends Unit
         $this->prophet->checkPredictions();
     }
 
-    /**
-     * @test
-     */
-    public function itShouldBeInstantiable()
-    {
-        $sut = $this->getInstance();
-    }
+//    public function testItShouldBeInstantiable()
+//    {
+//        $sut = $this->makeInstance();
+//    }
 }

@@ -7,17 +7,13 @@ namespace ItalyStrap\Tests\Unit\Config;
 use ItalyStrap\Config\ConfigCurrentTemplateSubscriber;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Tests\UnitTestCase;
-use ItalyStrap\Theme\Registrable;
 use Prophecy\Argument;
 
 class ConfigCurrentTemplateSubscriberTest extends UnitTestCase
 {
     protected function getInstance(): ConfigCurrentTemplateSubscriber
     {
-        $sut = new ConfigCurrentTemplateSubscriber($this->getConfig(), $this->getFileInfoFactory());
-        $this->assertInstanceOf(SubscriberInterface::class, $sut, '');
-        $this->assertInstanceOf(Registrable::class, $sut, '');
-        return $sut;
+        return new ConfigCurrentTemplateSubscriber($this->getConfig(), $this->getFileInfoFactory());
     }
 
     /**
@@ -39,16 +35,16 @@ class ConfigCurrentTemplateSubscriberTest extends UnitTestCase
 
         $this->fileInfoFactory->make($current_template)->willReturn($file_info->reveal());
 
-        $this->config->add(
+        $this->config->set(
             ConfigCurrentTemplateSubscriber::TEMPLATE_FILE_NAME,
             'index.php'
         )->shouldbeCalled();
 
-        $this->config->add(
+        $this->config->set(
             ConfigCurrentTemplateSubscriber::TEMPLATE_FILE_SLUG,
             'index'
         )->shouldbeCalled();
 
-        $this->assertSame($current_template, $sut->register($current_template), '');
+        $this->assertSame($current_template, $sut($current_template), '');
     }
 }

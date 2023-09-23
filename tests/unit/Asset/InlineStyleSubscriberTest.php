@@ -40,6 +40,6 @@ class InlineStyleSubscriberTest extends UnitTestCase
         $this->expectOutputString(
             '<style id="italystrap-global-styles-inline-css">-test--test--test-</style>'
         );
-        $sut->enqueue();
+        $sut();
     }
 }

@@ -13,7 +13,7 @@ class CommentsTest extends UnitTestCase
 {
     protected function getInstance(): Comments
     {
-        $sut = new Comments($this->getConfig(), $this->getView(), $this->getDispatcher());
+        $sut = new Comments($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

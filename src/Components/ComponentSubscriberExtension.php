@@ -7,42 +7,37 @@ namespace ItalyStrap\Components;
 use ItalyStrap\Empress\AurynConfigInterface;
 use ItalyStrap\Empress\Extension;
 use ItalyStrap\Empress\Injector;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Empress\ProxyFactory;
+use ItalyStrap\Event\ListenerRegisterInterface ;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Event\SubscriberRegisterInterface;
-use ProxyManager\Factory\LazyLoadingValueHolderFactory;
-use ProxyManager\Proxy\VirtualProxyInterface;
 
 class ComponentSubscriberExtension implements Extension
 {
-    private EventDispatcherInterface $dispatcher;
+    private ListenerRegisterInterface $listenerRegister;
     private SubscriberRegisterInterface $subscriberRegister;
+    private ProxyFactory $proxy;
 
     public function __construct(
         SubscriberRegisterInterface $subscriberRegister,
-        EventDispatcherInterface $dispatcher
+        ListenerRegisterInterface $listenerRegister
     ) {
         $this->subscriberRegister = $subscriberRegister;
-        $this->dispatcher = $dispatcher;
+        $this->listenerRegister = $listenerRegister;
+        $this->proxy = new ProxyFactory();
     }
 
-    /**
-     * @inheritDoc
-     */
     public function name(): string
     {
         return self::class;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function execute(AurynConfigInterface $application)
     {
-        $this->dispatcher->addListener(
+        $this->listenerRegister->addListener(
             'template_include',
             function (string $current_template = '') use ($application): string {
-                $application->walk($this->name(), [$this, 'walk']);
+                $application->walk($this->name(), $this);
                 return $current_template;
             },
             PHP_INT_MAX - 5,
@@ -50,15 +45,12 @@ class ComponentSubscriberExtension implements Extension
         );
     }
 
-    /**
-     * @return void
-     */
-    public function walk(string $class, $index_or_optionName, Injector $injector)
+    public function __invoke(string $class, $index_or_optionName, Injector $injector): void
     {
         /** @var SubscriberInterface|ComponentInterface $instance */
         $instance = $injector
             ->share($class)
-            ->proxy($class, $this->proxyCallback())
+            ->proxy($class, $this->proxy)
             ->make($class);
 
         if ($this->shouldNotDisplay($instance)) {
@@ -71,27 +63,5 @@ class ComponentSubscriberExtension implements Extension
     private function shouldNotDisplay(ComponentInterface $instance): bool
     {
         return ! $instance->shouldDisplay();
-    }
-
-    /**
-     * @psalm-return \Closure(string, callable):\ProxyManager\Proxy\ValueHolderInterface<object>&VirtualProxyInterface
-     */
-    private function proxyCallback(): \Closure
-    {
-		// phpcs:disable
-		return static fn(string $className, callable $callback): VirtualProxyInterface => (new LazyLoadingValueHolderFactory)->createProxy(
-		// phpcs:enable
-            $className,
-            static function (
-                ?object &$object,
-                ?object $proxy,
-                string $method,
-                array $parameters,
-                ?\Closure &$initializer
-            ) use ($callback) {
-                    $object = $callback();
-                    $initializer = null;
-            }
-        );
     }
 }

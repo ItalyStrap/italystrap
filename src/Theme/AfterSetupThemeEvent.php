@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Theme;
 
 use Auryn\Injector;
-use ItalyStrap\Event\EventDispatcher;
+use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
 /**
@@ -15,29 +15,28 @@ use ItalyStrap\Event\SubscriberInterface;
  *
  * ========================================================================
  */
-final class AfterSetupThemeEvent implements Registrable, SubscriberInterface
+final class AfterSetupThemeEvent implements SubscriberInterface
 {
-    private EventDispatcher $dispatcher;
+    const AFTER_SETUP_THEME = 'after_setup_theme';
+
+    private EventDispatcherInterface $dispatcher;
     private Injector $injector;
 
     public function getSubscribedEvents(): iterable
     {
-        yield 'after_setup_theme'   => [
-            SubscriberInterface::CALLBACK   => Registrable::REGISTER_CB,
+        yield self::AFTER_SETUP_THEME   => [
+            SubscriberInterface::CALLBACK   => $this,
             SubscriberInterface::PRIORITY   => 1,
         ];
     }
 
-    public function __construct(Injector $injector, EventDispatcher $dispatcher)
+    public function __construct(Injector $injector, EventDispatcherInterface $dispatcher)
     {
         $this->dispatcher = $dispatcher;
         $this->injector = $injector;
     }
 
-    /**
-     * @return void
-     */
-    public function register()
+    public function __invoke(): void
     {
 
         /**
@@ -45,20 +44,20 @@ final class AfterSetupThemeEvent implements Registrable, SubscriberInterface
          *
          * @since 4.0.0
          */
-        $this->dispatcher->dispatch('italystrap_theme_will_load', $this->injector);
+        $this->dispatcher->trigger('italystrap_theme_will_load', $this->injector);
 
         /**
          * Fires once ItalyStrap theme is loading.
          *
          * @since 4.0.0
          */
-        $this->dispatcher->dispatch('italystrap_theme_load', $this->injector);
+        $this->dispatcher->trigger('italystrap_theme_load', $this->injector);
 
         /**
          * Fires once ItalyStrap theme has loaded.
          *
          * @since 4.0.0
          */
-        $this->dispatcher->dispatch('italystrap_theme_loaded', $this->injector);
+        $this->dispatcher->trigger('italystrap_theme_loaded', $this->injector);
     }
 }

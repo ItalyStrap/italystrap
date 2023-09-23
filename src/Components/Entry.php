@@ -40,7 +40,7 @@ class Entry implements ComponentInterface, SubscriberInterface
         // Is it a good idea to pass (array) \get_post( null, ARRAY_A ); to data?
 
         $classes = \get_post_class();
-        $classes = $this->classeForPostThumbnail($classes);
+        $classes = $this->classForPostThumbnail($classes);
         /**
          * Remove the 'hentry' css class to prevents error in search console
          */
@@ -57,10 +57,10 @@ class Entry implements ComponentInterface, SubscriberInterface
         ]);
     }
 
-    private function classeForPostThumbnail(array $classes): array
+    private function classForPostThumbnail(array $classes): array
     {
         /**
-         * If has not a post thumbnail just bail out.
+         * If it has not a post thumbnail just bail out.
          */
         if (! has_post_thumbnail()) {
             return $classes;

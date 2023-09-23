@@ -14,7 +14,7 @@ class EntryNoneTest extends UnitTestCase
 {
     protected function getInstance(): EntryNone
     {
-        $sut = new EntryNone($this->getConfig(), $this->getView(), $this->getDispatcher());
+        $sut = new EntryNone($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

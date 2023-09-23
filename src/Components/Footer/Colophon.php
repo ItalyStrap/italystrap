@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Components;
+namespace ItalyStrap\Components\Footer;
 
+use ItalyStrap\Components\ComponentInterface;
+use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigColophonProvider;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
@@ -12,7 +14,6 @@ use ItalyStrap\View\ViewInterface;
 
 class Colophon implements ComponentInterface, SubscriberInterface
 {
-    use SubscribedEventsAware;
 
     public const EVENT_NAME = 'italystrap_footer';
     public const EVENT_PRIORITY = 20;
@@ -55,7 +56,7 @@ class Colophon implements ComponentInterface, SubscriberInterface
             return;
         }
 
-        echo \do_blocks($this->view->render('footers/colophon', [
+        echo \do_blocks($this->view->render('footer/colophon', [
             self::CONTENT => $this->dispatcher->filter('italystrap_colophon_output', $content),
         ]));
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Config;
 
-use ItalyStrap\Components\Colophon;
+use ItalyStrap\Components\Footer\Colophon;
 
 class ConfigColophonProvider
 {

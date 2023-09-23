@@ -21,18 +21,15 @@ class EditorSubscriber implements SubscriberInterface
     private Finder $finder;
     private EventDispatcher $dispatcher;
 
-    /**
-     * @inheritDoc
-     */
     public function getSubscribedEvents(): iterable
     {
-        yield 'admin_init'  => 'enqueue';
+        yield 'admin_init'  => $this;
     }
 
     /**
-     * Editor constructor.
      * @param Config $config
      * @param Finder $finder
+     * @param EventDispatcher $dispatcher
      */
     public function __construct(Config $config, Finder $finder, EventDispatcher $dispatcher)
     {
@@ -51,7 +48,7 @@ class EditorSubscriber implements SubscriberInterface
      * @link http://codeboxr.com/blogs/adding-twitter-bootstrap-support-in-wordpress-visual-editor
      * @link https://www.google.it/search?q=wordpress+add+css+bootstrap+visual+editor&oq=wordpress+add+css+bootstrap+visual+editor&gs_l=serp.3...893578.895997.0.896668.10.10.0.0.0.3.388.1849.0j1j4j2.7.0....0...1c.1.52.serp..8.2.732.wb3nJL89Fxk
      */
-    public function enqueue(): void
+    public function __invoke(): void
     {
 
         /** @var SplFileInfo $editor_style */

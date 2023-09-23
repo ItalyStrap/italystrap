@@ -16,7 +16,7 @@ class EntryNoneImageTest extends UnitTestCase
 {
     protected function getInstance(): EntryNoneImage
     {
-        $sut = new EntryNoneImage($this->getConfig(), $this->getView(), $this->getDispatcher(), $this->getTag());
+        $sut = new EntryNoneImage($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher(), $this->getTag());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

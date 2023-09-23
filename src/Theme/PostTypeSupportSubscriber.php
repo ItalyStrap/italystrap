@@ -11,7 +11,7 @@ final class PostTypeSupportSubscriber implements SubscriberInterface
 {
     public function getSubscribedEvents(): iterable
     {
-        yield 'init'    => '__invoke';
+        yield 'init'    => $this;
     }
 
     private ConfigInterface $config;

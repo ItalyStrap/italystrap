@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Unit\Components;
+namespace ItalyStrap\Tests\Unit\Components\Footer;
 
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\FooterWidgetArea;
+use ItalyStrap\Components\Footer\FooterWidgetArea;
 use ItalyStrap\Tests\UnitTestCase;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
@@ -37,7 +37,7 @@ class FooterWidgetAreaTest extends UnitTestCase
 
         $this->config->toArray()->willReturn([]);
 
-        $this->view->render('footers/widget-area', Argument::type('array'))->willReturn('footers/widget-area');
+        $this->view->render('footer/widget-area', Argument::type('array'))->willReturn('footers/widget-area');
 
         $this->defineFunction('do_blocks', static function (string $block) {
             Assert::assertEquals('footers/widget-area', $block, '');

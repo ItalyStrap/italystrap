@@ -12,7 +12,7 @@ class BreadcrumbsTest extends UnitTestCase
 {
     protected function getInstance(): Breadcrumbs
     {
-        $sut = new Breadcrumbs($this->getDispatcher(), $this->getConfig(), $this->getThemeSupport());
+        $sut = new Breadcrumbs($this->makeGlobalDispatcher(), $this->getConfig(), $this->getThemeSupport());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
@@ -26,8 +26,8 @@ class BreadcrumbsTest extends UnitTestCase
         $args = [];
         $event_name = 'do_breadcrumbs';
 
-        $this->dispatcher
-            ->dispatch('do_breadcrumbs', $args)
+        $this->globalDispatcher
+            ->trigger('do_breadcrumbs', $args)
             ->will(static function () {
                 echo 'test';
             });

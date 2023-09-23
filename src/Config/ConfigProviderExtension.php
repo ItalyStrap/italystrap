@@ -35,10 +35,10 @@ class ConfigProviderExtension implements \ItalyStrap\Empress\Extension
      */
     public function execute(AurynConfigInterface $application)
     {
-        $application->walk(self::class, [$this, 'walk']);
+        $application->walk(self::class, $this);
     }
 
-    public function walk(string $class, $index_or_optionName, Injector $injector): void
+    public function __invoke(string $class, $index_or_optionName, Injector $injector): void
     {
         $config_object = $injector->share($class)->make($class);
         if (\is_callable($config_object)) {

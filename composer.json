@@ -43,7 +43,8 @@
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
 		"cmb2/cmb2": "2.6.0",
-		"yiisoft/json": "^1.0"
+		"yiisoft/json": "^1.0",
+		"symfony/polyfill-php80": "^1.0"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^3.0.0",
@@ -134,55 +135,55 @@
 			"@php vendor/bin/phpcbf -p"
 		],
 		"psalm": [
-			"vendor\\bin\\psalm --no-cache"
+			"@php vendor//bin//psalm --no-cache"
 		],
 		"phpstan": [
-			"vendor\\bin\\phpstan analyze --level=max"
+			"@php vendor//bin//phpstan analyze --level=max"
 		],
 		"analyze": [
-			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"
+			"@php vendor//bin//phpstan analyze --level=max && vendor//bin//psalm"
 		],
 		"infection": [
-			"vendor\\bin\\infection --threads=8"
+			"@php vendor//bin//infection --threads=8"
 		],
 		"unit": [
-			"vendor\\bin\\codecept run unit",
+			"@php vendor//bin//codecept run unit",
 			"@clean"
 		],
 		"unit:cov": [
-			"vendor\\bin\\codecept run unit --coverage",
+			"@php vendor//bin//codecept run unit --coverage",
 			"@clean"
 		],
 		"unit:debug": [
-			"vendor\\bin\\codecept run unit --debug",
+			"@php vendor//bin//codecept run unit --debug",
 			"@clean"
 		],
 		"wpunit": [
-			"vendor\\bin\\codecept run wpunit",
+			"@php vendor//bin//codecept run wpunit",
 			"@clean"
 		],
 		"wpunit:debug": [
-			"vendor\\bin\\codecept run wpunit --debug",
+			"@php vendor//bin//codecept run wpunit --debug",
 			"@clean"
 		],
 		"functional": [
-			"vendor\\bin\\codecept run functional"
+			"@php vendor//bin//codecept run functional"
 		],
 		"bench": [
-			"vendor\\bin\\phpbench run --report=performance"
+			"@php vendor//bin//phpbench run --report=performance"
 		],
 		"metrics": [
-			"vendor\\bin\\phpmetrics --report-html='./tests/_output/report' ./src",
+			"@php vendor//bin//phpmetrics --report-html='./tests/_output/report' ./src",
 			"@clean"
 		],
 		"insights": [
-			"vendor\\bin\\phpinsights"
+			"@php vendor//bin//phpinsights"
 		],
 		"clean": [
-			"vendor\\bin\\codecept clean"
+			"@php vendor//bin//codecept clean"
 		],
 		"rector": [
-			"vendor\\bin\\rector process src"
+			"@php vendor//bin//rector process src"
 		],
 		"theme:json": [
 			"\\ItalyStrap\\ThemeJsonGenerator\\Composer\\Plugin::run"

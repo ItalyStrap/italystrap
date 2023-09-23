@@ -11,9 +11,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use ItalyStrap\Components\Colophon;
+use ItalyStrap\Components\Footer\Colophon;
 use ItalyStrap\Config\ConfigInterface;
-
 use function wp_kses_post;
 
 /** @var ConfigInterface $config */

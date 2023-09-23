@@ -7,21 +7,28 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Empress\Injector;
 use ItalyStrap\Empress\PhpFileProvider;
 use ItalyStrap\Empress\ProvidersCollection;
-use ItalyStrap\Finder\FinderInterface;
 use ItalyStrap\Theme\ExperimentalThemeFileFinderFactory;
 
-return static function (Injector $injector, FinderInterface $finder): ConfigInterface {
-    return (new ProvidersCollection(
+return static function (Injector $injector): ConfigInterface {
+    $collection = new ProvidersCollection(
         $injector,
-        $injector->make(ConfigInterface::class),
+        ConfigFactory::make(),
         [
+            \ItalyStrap\Event\Module::class,
             \ItalyStrap\Components\Module::class,
             new PhpFileProvider(
                 '/config/autoload/{{,*.}global,{,*.}local}.php',
-//                $finder
                 $injector->execute(ExperimentalThemeFileFinderFactory::class)
-            )
+            ),
+//            function (): array {
+//                return [
+//                    'config_cache_enabled' => true,
+//                ];
+//            },
         ],
-        null
-    ))->collection();
+//        (string)$injector->execute(ExperimentalThemeFileFinderFactory::class)->firstFile('config/cache/config-cache')
+    );
+    $collection->build();
+
+    return $collection->collection();
 };

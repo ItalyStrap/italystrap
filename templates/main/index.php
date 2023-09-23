@@ -34,7 +34,7 @@ $container_class_names = (string)$this->get('container_class_names');
 /** @var string $row_class_names */
 $row_class_names = (string)$this->get('row_class_names');
 
-$dispatcher->dispatch('italystrap_before_main');
+$dispatcher->trigger('italystrap_before_main');
 
 ?>
 <!-- wp:group {"tagName":"main","align":"full","layout":{"inherit":false}} -->
@@ -47,7 +47,7 @@ $dispatcher->dispatch('italystrap_before_main');
 //          'class' => $row_class_names,
 //      ] );
 
-            $dispatcher->dispatch('italystrap_before_content');
+            $dispatcher->trigger('italystrap_before_content');
 ?>
     <!-- wp:columns {"align":"wide","layout":{"inherit":true}} -->
     <div class="wp-block-columns alignwide">
@@ -56,17 +56,17 @@ $dispatcher->dispatch('italystrap_before_main');
         <div class="wp-block-column">
 
             <?php
-            $dispatcher->dispatch('italystrap_before_loop');
+            $dispatcher->trigger('italystrap_before_loop');
 
-            $dispatcher->dispatch('italystrap_loop');
+            $dispatcher->trigger('italystrap_loop');
 
-            $dispatcher->dispatch('italystrap_after_loop');
+            $dispatcher->trigger('italystrap_after_loop');
             ?>
 
         </div>
         <!-- /wp:column -->
 
-            <?php $dispatcher->dispatch('italystrap_after_content'); ?>
+            <?php $dispatcher->trigger('italystrap_after_content'); ?>
 
     </div>
     <!-- /wp:columns -->
@@ -78,4 +78,4 @@ $dispatcher->dispatch('italystrap_before_main');
 </main>
 <!-- /wp:group -->
 <?php
-$dispatcher->dispatch('italystrap_after_main');
+$dispatcher->trigger('italystrap_after_main');

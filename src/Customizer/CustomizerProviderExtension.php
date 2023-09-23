@@ -15,7 +15,7 @@ class CustomizerProviderExtension implements \ItalyStrap\Empress\Extension
 
     public function __construct(
         ListenerRegisterInterface $listenerRegister,
-        Injector                 $injector
+        Injector $injector
     ) {
         $this->listenerRegister = $listenerRegister;
         $this->injector = $injector;

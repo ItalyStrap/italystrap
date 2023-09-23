@@ -13,6 +13,7 @@ namespace ItalyStrap;
 
 use ItalyStrap\Components\Footer\Colophon;
 use ItalyStrap\Config\ConfigInterface;
+
 use function wp_kses_post;
 
 /** @var ConfigInterface $config */

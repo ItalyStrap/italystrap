@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Theme;
 
-use ItalyStrap\Components\NavMenuPrimary;
-use ItalyStrap\Components\NavMenuSecondary;
+use ItalyStrap\Components\Navigation\NavMenuPrimary;
+use ItalyStrap\Components\Navigation\NavMenuSecondary;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Navigation\NavMenuLocation;

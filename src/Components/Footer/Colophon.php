@@ -14,7 +14,6 @@ use ItalyStrap\View\ViewInterface;
 
 class Colophon implements ComponentInterface, SubscriberInterface
 {
-
     public const EVENT_NAME = 'italystrap_footer';
     public const EVENT_PRIORITY = 20;
     public const CONTENT = 'content';

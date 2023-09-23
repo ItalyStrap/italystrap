@@ -20,13 +20,13 @@ return static function (Injector $injector): ConfigInterface {
                 '/config/autoload/{{,*.}global,{,*.}local}.php',
                 $injector->execute(ExperimentalThemeFileFinderFactory::class)
             ),
-//            function (): array {
-//                return [
-//                    'config_cache_enabled' => true,
-//                ];
-//            },
+        //            function (): array {
+        //                return [
+        //                    'config_cache_enabled' => true,
+        //                ];
+        //            },
         ],
-//        (string)$injector->execute(ExperimentalThemeFileFinderFactory::class)->firstFile('config/cache/config-cache')
+        //        (string)$injector->execute(ExperimentalThemeFileFinderFactory::class)->firstFile('config/cache/config-cache')
     );
     $collection->build();
 

@@ -6,8 +6,8 @@ namespace ItalyStrap\Tests\Integration\Theme;
 
 use ItalyStrap\Tests\IntegrationTestCase;
 use ItalyStrap\Theme\NavMenusSubscriber;
-
 use PHPUnit\Framework\Assert;
+
 use function add_filter;
 use function boolval;
 use function has_nav_menu;

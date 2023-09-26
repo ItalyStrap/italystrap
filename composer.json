@@ -158,12 +158,12 @@
 			"@php vendor//bin//codecept run unit --debug",
 			"@clean"
 		],
-		"wpunit": [
-			"@php vendor//bin//codecept run wpunit",
+		"integration": [
+			"@php vendor//bin//codecept run integration",
 			"@clean"
 		],
-		"wpunit:debug": [
-			"@php vendor//bin//codecept run wpunit --debug",
+		"integration:debug": [
+			"@php vendor//bin//codecept run integration --debug",
 			"@clean"
 		],
 		"functional": [

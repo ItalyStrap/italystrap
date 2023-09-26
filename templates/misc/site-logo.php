@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use ItalyStrap\Components\SiteLogo;
+use ItalyStrap\Components\Header\SiteLogo;
 
 /** @var \ItalyStrap\Config\ConfigInterface $config */
 $config = $this;

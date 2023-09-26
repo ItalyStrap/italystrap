@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigSidebarProvider;
 use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigSidebarProvider;
 use ItalyStrap\View\ViewInterface;
 
 class Sidebar implements ComponentInterface, SubscriberInterface

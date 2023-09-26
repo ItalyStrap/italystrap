@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @package ItalyStrap
- * @since 4.0.0
- */
-
 declare(strict_types=1);
 
 namespace ItalyStrap;

@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Headers;
 
-use ItalyStrap\Components\Navigation\NavMenuPrimary;
-use ItalyStrap\Components\Navigation\NavMenuSecondary;
-use ItalyStrap\Components\Navigations\Navbar;
 use ItalyStrap\Config\ConfigInterface;
-
+use ItalyStrap\Navigation\UI\Components\Navbar;
+use ItalyStrap\Navigation\UI\Components\NavMenuPrimary;
+use ItalyStrap\Navigation\UI\Components\NavMenuSecondary;
 use function ItalyStrap\HTML\close_tag_e;
 use function ItalyStrap\HTML\open_tag_e;
 

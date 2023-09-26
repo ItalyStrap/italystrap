@@ -7,8 +7,8 @@ namespace ItalyStrap\Tests\Unit\Components;
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\EntryNoneImage;
 use ItalyStrap\Config\ConfigNotFoundProvider;
-use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 

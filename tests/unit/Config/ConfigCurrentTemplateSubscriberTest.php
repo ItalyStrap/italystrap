@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Config;
 
-use ItalyStrap\Config\ConfigCurrentTemplateSubscriber;
-use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\Theme\Application\ConfigCurrentTemplateSubscriber;
 use Prophecy\Argument;
 
 class ConfigCurrentTemplateSubscriberTest extends UnitTestCase

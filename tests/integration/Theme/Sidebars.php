@@ -8,7 +8,7 @@ use ArrayIterator;
 use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Tests\IntegrationTestCase;
-use ItalyStrap\Theme\SidebarsSubscriber;
+use ItalyStrap\Theme\Application\SidebarsSubscriber;
 use PHPUnit\Framework\Assert;
 
 use function is_registered_sidebar;

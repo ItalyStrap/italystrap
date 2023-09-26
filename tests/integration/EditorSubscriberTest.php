@@ -6,12 +6,11 @@ namespace ItalyStrap\Tests\Integration;
 
 use Auryn\ConfigException;
 use Auryn\InjectionException;
-use ItalyStrap\Asset\EditorSubscriber;
+use ItalyStrap\Asset\Application\EditorSubscriber;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigThemeProvider;
 use ItalyStrap\Tests\IntegrationTestCase;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 use PHPUnit\Framework\Assert;
-
 use function ItalyStrap\Factory\injector;
 
 class EditorSubscriberTest extends IntegrationTestCase

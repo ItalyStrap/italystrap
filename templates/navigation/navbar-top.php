@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Headers;
 
-use ItalyStrap\Navbar\BootstrapNavMenu;
+use ItalyStrap\Navigation\Infrastructure\BootstrapNavMenu;
 
 ?><nav id="top-nav" class="top-nav">
     <div class="container">

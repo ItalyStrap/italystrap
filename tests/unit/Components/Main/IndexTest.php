@@ -38,6 +38,6 @@ class IndexTest extends UnitTestCase
 
         $event = new \ItalyStrap\Components\Main\Events\Index();
         $sut($event);
-        $this->assertSame('from do_block', $event->render());
+        $this->assertSame('from do_block', (string)$event);
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Asset;
 
-use ItalyStrap\Asset\InlineStyleGenerator;
+use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
 use ItalyStrap\Tests\UnitTestCase;
 
 class InlineStyleGeneratorTest extends UnitTestCase

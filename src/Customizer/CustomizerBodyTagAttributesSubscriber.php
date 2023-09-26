@@ -6,7 +6,7 @@ namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
-use ItalyStrap\Config\ConfigCurrentTemplateSubscriber;
+use ItalyStrap\Theme\Application\ConfigCurrentTemplateSubscriber;
 
 class CustomizerBodyTagAttributesSubscriber implements SubscriberInterface
 {

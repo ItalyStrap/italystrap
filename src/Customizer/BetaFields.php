@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigThemeProvider;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
 class BetaFields
 {

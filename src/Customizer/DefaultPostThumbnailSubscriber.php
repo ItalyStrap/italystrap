@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 
 final class DefaultPostThumbnailSubscriber implements SubscriberInterface
 {

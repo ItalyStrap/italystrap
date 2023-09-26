@@ -10,7 +10,7 @@ $config = $this;
 /** @var EventDispatcherInterface $dispatcher */
 $dispatcher = $config->get(EventDispatcherInterface::class);
 
-$context = (string)$config->get(\ItalyStrap\Components\Navigation\MainNavigation::CONTEXT);
+$context = (string)$config->get(\ItalyStrap\Navigation\UI\Components\MainNavigation::CONTEXT);
 ?>
 <!-- wp:group {"className":"navbar-wrapper none","layout":{"inherit":false}} -->
 <div id="main-navbar-container-italystrap-menu-440383729" class="wp-block-group navbar-wrapper none">

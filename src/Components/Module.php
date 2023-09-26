@@ -9,19 +9,10 @@ use ItalyStrap\Components\Footer\Footer;
 use ItalyStrap\Components\Footer\FooterWidgetArea;
 use ItalyStrap\Components\Header\CustomHeaderImage;
 use ItalyStrap\Components\Header\Header;
+use ItalyStrap\Components\Header\SiteLogo;
+use ItalyStrap\Components\Header\SiteTitle;
 use ItalyStrap\Components\Main\Index;
-use ItalyStrap\Components\Navigation\Breadcrumbs;
-use ItalyStrap\Components\Navigation\MainNavigationOlder;
-use ItalyStrap\Components\Navigation\MiscNavigation;
-use ItalyStrap\Components\Navigation\NavMenuHeader;
-use ItalyStrap\Components\Navigation\NavMenuPrimary;
-use ItalyStrap\Components\Navigation\NavMenuSecondary;
-use ItalyStrap\Components\Navigation\NavMenuToggleButton;
-use ItalyStrap\Components\Navigation\Pager;
-use ItalyStrap\Components\Navigation\Pagination;
 use ItalyStrap\Empress\AurynConfig;
-use ItalyStrap\Empress\Injector;
-use ItalyStrap\Navigation\NavMenuFallback;
 
 class Module
 {
@@ -38,16 +29,6 @@ class Module
 
             AurynConfig::DEFINITIONS => [
 
-                \ItalyStrap\Components\Navigations\Navbar::class    => [
-                    ':fallback_cb' => [ \ItalyStrap\Navbar\BootstrapNavMenu::class, 'fallback' ],
-                ],
-
-                NavMenuPrimary::class => [
-                    '+fallback' => static function (string $named_param, Injector $injector): callable {
-
-                        return $injector->make(NavMenuFallback::class);
-                    },
-                ],
             ],
 
             /**
@@ -58,8 +39,6 @@ class Module
              * ========================================================================
              */
             ComponentSubscriberExtension::class => [
-
-                Breadcrumbs::class,
 
                 PostAuthorInfo::class,
                 ArchiveAuthorInfo::class,
@@ -72,8 +51,6 @@ class Module
                 Content::class,
                 Excerpt::class,
                 Modified::class,
-                Pager::class,
-                Pagination::class,
                 //     BlockQuery::class,
 
                 Sidebar::class,
@@ -91,15 +68,7 @@ class Module
                 SiteTitle::class,
                 //       SiteTagline::class,
 
-                MiscNavigation::class,
                 CustomHeaderImage::class,
-
-                NavMenuToggleButton::class,
-                NavMenuHeader::class,
-                NavMenuPrimary::class,
-                NavMenuSecondary::class,
-                MainNavigationOlder::class,
-                //     MainNavigation::class,
 
                 Comments::class,
                 Colophon::class,

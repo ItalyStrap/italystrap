@@ -6,10 +6,10 @@ namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigNotFoundProvider;
-use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\HTML\Tag;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\View\ViewInterface;
 
 class EntryNoneImage implements ComponentInterface, SubscriberInterface

@@ -6,8 +6,7 @@ namespace ItalyStrap\Tests\Integration\Theme;
 
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Tests\IntegrationTestCase;
-use ItalyStrap\Theme\Support;
-use ItalyStrap\Theme\SupportSubscriber;
+use ItalyStrap\Theme\Application\SupportSubscriber;
 
 use function ItalyStrap\Factory\injector;
 

@@ -7,8 +7,8 @@ namespace ItalyStrap\Customizer;
 use ItalyStrap\Config\AlignmentChoicesTrait;
 use ItalyStrap\Config\ConfigCustomHeaderProvider;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigThemeProvider;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
 class CustomHeaderFields
 {

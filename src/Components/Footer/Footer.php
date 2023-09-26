@@ -18,6 +18,8 @@ class Footer implements ComponentInterface, SubscriberInterface
     public const EVENT_NAME = 'italystrap_after_main';
     public const EVENT_PRIORITY = 10;
 
+    public const TEMPLATE_NAME = 'footer/footer';
+
     private ConfigInterface $config;
     private ViewInterface $view;
     private EventDispatcherInterface $globalDispatcher;
@@ -43,7 +45,7 @@ class Footer implements ComponentInterface, SubscriberInterface
 
     public function display(): void
     {
-        echo $this->view->render('footer/footer', [
+        echo $this->view->render(self::TEMPLATE_NAME, [
             EventDispatcherInterface::class => $this->globalDispatcher,
             \Psr\EventDispatcher\EventDispatcherInterface::class => $this->dispatcher,
         ]);

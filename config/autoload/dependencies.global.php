@@ -5,49 +5,25 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use Auryn\Injector;
-use ItalyStrap\Asset\AssetManager;
-use ItalyStrap\Asset\ExperimentalAssetPreparator;
-use ItalyStrap\Asset\EditorSubscriber;
-use ItalyStrap\Asset\InlineStyleSubscriber;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigWpSubscriber;
 use ItalyStrap\Customizer\CustomizerAssetsSubscriber;
 use ItalyStrap\Customizer\CustomizerBodyTagAttributesSubscriber;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Experimental\ExperimentalCustomizerOptionWithAndPosition;
-use ItalyStrap\Experimental\OembedWrapper;
+use ItalyStrap\Experimental\OembedWrapperSubscriber;
 use ItalyStrap\Finder\FileInfoFactory;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
 use ItalyStrap\Finder\FilesHierarchyIterator;
-use ItalyStrap\Finder\Finder;
 use ItalyStrap\Finder\FinderFactory;
 use ItalyStrap\Finder\FinderInterface;
 use ItalyStrap\Finder\SearchFileStrategy;
 use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
-use ItalyStrap\Asset\AssetsSubscriber;
-use ItalyStrap\Navigation\NavMenu;
-use ItalyStrap\Navigation\NavMenuInterface;
-use ItalyStrap\Navigation\NavMenuLocation;
-use ItalyStrap\Navigation\NavMenuLocationInterface;
-use ItalyStrap\StdLib\Media\ImageSize;
-use ItalyStrap\StdLib\Media\ImageSizeInterface;
-use ItalyStrap\Theme\AfterSetupThemeEvent;
-use ItalyStrap\Config\ConfigCurrentTemplateSubscriber;
-use ItalyStrap\Theme\License;
-use ItalyStrap\Theme\Metaboxes;
-use ItalyStrap\Theme\NavMenusSubscriber;
-use ItalyStrap\Theme\SidebarsSubscriber;
-use ItalyStrap\Theme\SupportSubscriber;
-use ItalyStrap\Theme\TextDomainSubscriber;
-use ItalyStrap\Theme\ThumbnailsSubscriber;
-use ItalyStrap\Theme\PostTypeSupportSubscriber;
 use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\View\ViewInterface;
-use Walker_Nav_Menu;
 
 return [
 
@@ -70,8 +46,6 @@ return [
         Attributes::class,
         Tag::class,
         View\View::class,
-
-        ImageSizeInterface::class,
 
         \WP_Theme::class,
         \WP_Query::class,
@@ -98,13 +72,6 @@ return [
 //        FinderInterface::class              => Finder::class,
 
         ViewInterface::class                => View\View::class,
-
-        ImageSizeInterface::class           => ImageSize::class,
-
-        NavMenuLocationInterface::class     => NavMenuLocation::class,
-        NavMenuInterface::class             => NavMenu::class,
-
-        Walker_Nav_Menu::class              => Navbar\BootstrapNavMenu::class,
     ],
 
     /**
@@ -126,33 +93,14 @@ return [
             '+finder' => static function (string $named_param, Injector $injector): FinderInterface {
 
                 $config = $injector->make(ConfigInterface::class);
-                $stylesheet_dir = $config->get(\ItalyStrap\Config\ConfigThemeProvider::STYLESHEET_DIR);
-                $template_dir = $config->get(\ItalyStrap\Config\ConfigThemeProvider::TEMPLATE_DIR);
-                $view_dir = $config->get(\ItalyStrap\Config\ConfigThemeProvider::VIEW_DIR);
+                $stylesheet_dir = $config->get(Theme\Infrastructure\Config\ConfigThemeProvider::STYLESHEET_DIR);
+                $template_dir = $config->get(Theme\Infrastructure\Config\ConfigThemeProvider::TEMPLATE_DIR);
+                $view_dir = $config->get(Theme\Infrastructure\Config\ConfigThemeProvider::VIEW_DIR);
                 $finder = (new FinderFactory())->make()
                     ->in([
                         $stylesheet_dir . '/' . $view_dir,
                         $template_dir . '/' . $view_dir,
                     ]);
-                return $finder;
-            },
-        ],
-
-        EditorSubscriber::class => [
-            '+finder'   => static function (string $named_param, Injector $injector) {
-
-                $config = $injector->make(ConfigInterface::class);
-                $stylesheet_dir = $config->get(\ItalyStrap\Config\ConfigThemeProvider::STYLESHEET_DIR);
-                $template_dir = $config->get(\ItalyStrap\Config\ConfigThemeProvider::TEMPLATE_DIR);
-                $finder = (new FinderFactory())->make()
-                    ->in([
-                        $stylesheet_dir . '/assets/',
-                        $template_dir . '/assets/',
-                    ]);
-                $finder->names([
-                    '../css/editor-style.css',
-                    '../assets/css/editor-style.css',
-                ]);
                 return $finder;
             },
         ],
@@ -206,11 +154,6 @@ return [
      * ========================================================================
      */
     AurynConfig::PREPARATIONS           => [
-
-        /**
-         * This class is lazy loaded
-         */
-        AssetManager::class         => new ExperimentalAssetPreparator(),
     ],
 
     /**
@@ -225,8 +168,6 @@ return [
      * ========================================================================
      */
     AurynConfig::PROXY                  => [
-        AssetManager::class,
-//      SidebarsSubscriber::class,
     ],
 
     /**
@@ -242,36 +183,10 @@ return [
      */
     SubscribersConfigExtension::SUBSCRIBERS             => [
 
-        AfterSetupThemeEvent::class,
-        License::class,
-        ConfigCurrentTemplateSubscriber::class,
-        ConfigWpSubscriber::class,
-
         ExperimentalCustomizerOptionWithAndPosition::class,
-        OembedWrapper::class,
-
-        /**
-         * Register Theme stuff
-         */
-        NavMenusSubscriber::class,
-        SidebarsSubscriber::class,
-        SupportSubscriber::class,
-        TextDomainSubscriber::class,
-        ThumbnailsSubscriber::class,
-        PostTypeSupportSubscriber::class,
-        Metaboxes::class,
-
-        Admin\Nav_Menu\ItemCustomFields::class,
+        OembedWrapperSubscriber::class,
 
         CustomizerBodyTagAttributesSubscriber::class,
         CustomizerAssetsSubscriber::class,
-        InlineStyleSubscriber::class,
-
-        /**
-         * With this class I can lazyload the AssetManager::class
-         * see above in the PROXY config.
-         */
-        AssetsSubscriber::class,
-        Asset\EditorSubscriber::class,
     ],
 ];

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Unit\Components\Navigation;
 
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\Navigation\Pagination;
+use ItalyStrap\Navigation\UI\Components\Pagination;
 use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 

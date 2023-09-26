@@ -15,7 +15,15 @@ use ItalyStrap\Config\ConfigProviderExtension;
 use function ItalyStrap\Factory\injector;
 
 require __DIR__ . DIRECTORY_SEPARATOR . '../vendor/autoload.php';
+\class_alias(
+    \ItalyStrap\Event\GlobalDispatcherInterface::class,
+    \ItalyStrap\Event\EventDispatcherInterface::class
+);
 
+\class_alias(
+    \ItalyStrap\Event\GlobalDispatcher::class,
+    \ItalyStrap\Event\EventDispatcher::class
+);
 return (static function (Injector $injector): Injector {
     $injectorConfig = $injector->make(AurynConfig::class, [
         ':dependencies' => (require __DIR__ . '/../config/dependencies.config.php')($injector)

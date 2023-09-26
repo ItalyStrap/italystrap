@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
-use ItalyStrap\Config\ConfigPostThumbnailProvider;
-use ItalyStrap\Theme\ThumbnailsSubscriber;
+use ItalyStrap\Theme\Application\ThumbnailsSubscriber;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 
 trait BuildThumbnailSizeChoicesTrait
 {

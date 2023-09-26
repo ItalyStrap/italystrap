@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Footer\Events;
 
-class Footer implements \Stringable
+use ItalyStrap\Event\PropagationAwareTrait;
+use Psr\EventDispatcher\StoppableEventInterface;
+
+class Footer implements \Stringable, StoppableEventInterface
 {
+    use PropagationAwareTrait;
+
     private string $content = '';
 
-    public function withContent(string $content): void
+    public function appendContent(string $content): void
     {
-        $this->content = $content;
-    }
-
-    public function render(): string
-    {
-        return $this->content;
+        $this->content .= $content;
     }
 
     public function __toString(): string
     {
-        return $this->render();
+        return $this->content;
     }
 }

@@ -6,8 +6,8 @@ namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\FeaturedImage;
-use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 use PHPUnit\Framework\Assert;
 
 class FeaturedImageTest extends UnitTestCase

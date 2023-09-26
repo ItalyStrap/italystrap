@@ -49,7 +49,8 @@ class ColophonTest extends UnitTestCase
             return 'from do_block';
         });
 
-        $this->expectOutputString('from do_block');
-        $sut->display();
+        $event = new \ItalyStrap\Components\Footer\Events\Footer();
+        $sut($event);
+        $this->assertSame('from do_block', (string)$event);
     }
 }

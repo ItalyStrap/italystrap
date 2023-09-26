@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Unit\Components\Navigation;
 
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\Navigation\MiscNavigation;
+use ItalyStrap\Navigation\UI\Components\MiscNavigation;
 use ItalyStrap\Tests\UnitTestCase;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;

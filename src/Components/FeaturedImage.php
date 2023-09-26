@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\View\ViewInterface;
-
 use function get_post_type;
 use function in_array;
 use function post_type_supports;

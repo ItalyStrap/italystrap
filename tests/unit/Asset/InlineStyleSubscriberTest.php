@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Asset;
 
-use ItalyStrap\Asset\InlineStyleSubscriber;
-use ItalyStrap\Config\ConfigThemeProvider;
+use ItalyStrap\Asset\Application\InlineStyleSubscriber;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 use Prophecy\Argument;
 
 class InlineStyleSubscriberTest extends UnitTestCase

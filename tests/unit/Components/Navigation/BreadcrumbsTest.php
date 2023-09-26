@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Unit\Components\Navigation;
 
 use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\Navigation\Breadcrumbs;
+use ItalyStrap\Navigation\UI\Components\Breadcrumbs;
 use ItalyStrap\Tests\UnitTestCase;
 
 class BreadcrumbsTest extends UnitTestCase

@@ -6,15 +6,16 @@ namespace ItalyStrap\Tests\Unit\Components\Footer;
 
 use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Footer\FooterWidgetArea;
+use ItalyStrap\Tests\RenderableEventTestTrait;
 use ItalyStrap\Tests\UnitTestCase;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 class FooterWidgetAreaTest extends UnitTestCase
 {
-    protected function getInstance(): FooterWidgetArea
+    protected function makeInstance(): FooterWidgetArea
     {
-        $sut = new FooterWidgetArea($this->getConfig(), $this->getView());
+        $sut = new FooterWidgetArea($this->getView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
@@ -24,7 +25,7 @@ class FooterWidgetAreaTest extends UnitTestCase
      */
     public function itShouldLoad()
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
         $this->assertTrue($sut->shouldDisplay(), '');
     }
 
@@ -33,7 +34,7 @@ class FooterWidgetAreaTest extends UnitTestCase
      */
     public function itShouldDisplay()
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
 
         $this->config->toArray()->willReturn([]);
 
@@ -44,7 +45,8 @@ class FooterWidgetAreaTest extends UnitTestCase
             return 'from do_block';
         });
 
-        $this->expectOutputString('from do_block');
-        $sut->display();
+        $event = new \ItalyStrap\Components\Footer\Events\Footer();
+        $sut($event);
+        $this->assertSame('from do_block', (string)$event);
     }
 }

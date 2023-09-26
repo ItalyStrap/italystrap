@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Main\Events;
 
-class Index implements \Stringable
+use ItalyStrap\Event\PropagationAwareTrait;
+use Psr\EventDispatcher\StoppableEventInterface;
+
+class Index implements \Stringable, StoppableEventInterface
 {
+    use PropagationAwareTrait;
+
     private string $content = '';
 
-    public function withContent(string $content): void
+    public function appendContent(string $content): void
     {
-        $this->content = $content;
-    }
-
-    public function render(): string
-    {
-        return $this->content;
+        $this->content .= $content;
     }
 
     public function __toString(): string
     {
-        return $this->render();
+        return $this->content;
     }
 }

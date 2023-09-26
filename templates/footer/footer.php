@@ -23,7 +23,7 @@ open_tag_e('footer', 'footer', [
 ]);
 
 $globalDispatcher->trigger('italystrap_footer');
-echo $dispatcher->dispatch(new Footer())->render();
+echo $dispatcher->dispatch(new Footer());
 
 close_tag_e('footer');
 

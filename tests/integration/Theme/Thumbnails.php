@@ -6,7 +6,7 @@ namespace ItalyStrap\Tests\Integration\Theme;
 
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Tests\IntegrationTestCase;
-use ItalyStrap\Theme\ThumbnailsSubscriber;
+use ItalyStrap\Theme\Application\ThumbnailsSubscriber;
 use PHPUnit\Framework\Assert;
 
 // phpcs:disable

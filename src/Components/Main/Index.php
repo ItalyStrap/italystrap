@@ -40,7 +40,7 @@ class Index implements ComponentInterface, SubscriberInterface
 
     public function __invoke(Events\Index $event): void
     {
-        $event->withContent(\do_blocks($this->view->render(self::TEMPLATE_NAME, [
+        $event->appendContent(\do_blocks($this->view->render(self::TEMPLATE_NAME, [
             EventDispatcherInterface::class => $this->globalDispatcher,
             'container_class_names' => $this->config->get('container_width'),
             'row_class_names' => 'row',

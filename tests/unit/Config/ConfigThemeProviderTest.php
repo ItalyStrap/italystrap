@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Config;
 
-use ItalyStrap\Config\ConfigThemeProvider;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
 class ConfigThemeProviderTest extends UnitTestCase
 {

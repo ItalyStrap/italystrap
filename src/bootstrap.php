@@ -11,6 +11,7 @@ use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\GlobalOrderedListenerProvider;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\UI\Infrastructure\ComponentSubscriberExtension;
+
 use function ItalyStrap\Factory\injector;
 
 require __DIR__ . DIRECTORY_SEPARATOR . '../vendor/autoload.php';

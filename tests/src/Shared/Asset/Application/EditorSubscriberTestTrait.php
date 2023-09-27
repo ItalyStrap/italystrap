@@ -6,5 +6,4 @@ namespace ItalyStrap\Tests\Shared\Asset\Application;
 
 trait EditorSubscriberTestTrait
 {
-
 }

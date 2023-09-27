@@ -35,7 +35,7 @@ return static function (Injector $injector): ConfigInterface {
             ),
             //                    ProvidersCacheInterface::CACHE_PATH => get_template_directory() . '/config/cache/config-cache.php',
             fn(): array => [
-    //                    ProvidersCacheInterface::CACHE_PATH => get_template_directory() . '/config/cache/config-cache.php',
+        //                    ProvidersCacheInterface::CACHE_PATH => get_template_directory() . '/config/cache/config-cache.php',
                 ProvidersCacheInterface::ENABLE_CACHE => true,
             ],
             /** This must run after all */

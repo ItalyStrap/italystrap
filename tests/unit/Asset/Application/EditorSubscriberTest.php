@@ -20,5 +20,4 @@ class EditorSubscriberTest extends UnitTestCase
             $this->makeGlobalDispatcher()
         );
     }
-
 }

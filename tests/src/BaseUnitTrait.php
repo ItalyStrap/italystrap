@@ -19,7 +19,7 @@ use ItalyStrap\HTML\Tag;
 use ItalyStrap\Navigation\UI\Components\Navbar;
 use ItalyStrap\View\ViewInterface;
 use Prophecy\Prophet;
-use Support as ThemeSupport;
+use ItalyStrap\Theme\Infrastructure\Support as ThemeSupport;
 
 trait BaseUnitTrait
 {

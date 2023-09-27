@@ -8,6 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Theme\Infrastructure\ImageSizeInterface;
+
 use function array_merge;
 use function array_walk;
 use function intval;

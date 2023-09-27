@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Config;
 
 use ItalyStrap\Components\Footer\Colophon;
-use ItalyStrap\Components\Footer\Events\Footer;
+use ItalyStrap\Components\Footer\Events\Content;
 
 class ConfigColophonProvider
 {
@@ -16,7 +16,7 @@ class ConfigColophonProvider
     public function __invoke(): iterable
     {
         yield self::COLOPHON => '';
-        yield self::COLOPHON_ACTION => Footer::class;
+        yield self::COLOPHON_ACTION => Content::class;
         yield self::COLOPHON_PRIORITY => Colophon::EVENT_PRIORITY;
     }
 }

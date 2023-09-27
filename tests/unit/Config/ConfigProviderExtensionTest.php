@@ -13,7 +13,7 @@ class ConfigProviderExtensionTest extends UnitTestCase
 {
     protected function getInstance(): ConfigProviderExtension
     {
-        $sut = new ConfigProviderExtension($this->getConfig());
+        $sut = new ConfigProviderExtension($this->makeConfig());
         $this->assertInstanceOf(Extension::class, $sut, '');
         return $sut;
     }
@@ -29,7 +29,7 @@ class ConfigProviderExtensionTest extends UnitTestCase
             ->walk(Argument::type('string'), Argument::type('callable'))
             ->shouldBeCalledOnce();
 
-        $sut->execute($this->getAurynConfigInterface());
+        $sut->execute($this->makeAurynConfigInterface());
     }
 
     /**
@@ -59,6 +59,6 @@ class ConfigProviderExtensionTest extends UnitTestCase
 
         $this->config->merge(Argument::exact($class()))->shouldBeCalledOnce();
 
-        $sut($className, $index_or_optionName, $this->getInjector());
+        $sut($className, $index_or_optionName, $this->makeInjector());
     }
 }

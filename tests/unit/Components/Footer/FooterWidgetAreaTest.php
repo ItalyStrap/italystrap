@@ -15,7 +15,7 @@ class FooterWidgetAreaTest extends UnitTestCase
 {
     protected function makeInstance(): FooterWidgetArea
     {
-        $sut = new FooterWidgetArea($this->getView());
+        $sut = new FooterWidgetArea($this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
@@ -45,7 +45,7 @@ class FooterWidgetAreaTest extends UnitTestCase
             return 'from do_block';
         });
 
-        $event = new \ItalyStrap\Components\Footer\Events\Footer();
+        $event = new \ItalyStrap\Components\Footer\Events\Content();
         $sut($event);
         $this->assertSame('from do_block', (string)$event);
     }

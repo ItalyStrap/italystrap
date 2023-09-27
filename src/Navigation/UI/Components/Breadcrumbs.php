@@ -10,6 +10,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Support;
+
 use function ob_get_clean;
 use function ob_start;
 

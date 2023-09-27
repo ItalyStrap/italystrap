@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Components\Footer\Events;
+namespace ItalyStrap\Components;
 
 use ItalyStrap\Event\PropagationAwareTrait;
-use Psr\EventDispatcher\StoppableEventInterface;
 
-class Footer implements \Stringable, StoppableEventInterface
+trait ContentRenderableEventTrait
 {
     use PropagationAwareTrait;
 

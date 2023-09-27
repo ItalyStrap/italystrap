@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Unit\Asset;
+namespace ItalyStrap\Tests\Unit\Asset\Infrastructure;
 
 use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
 use ItalyStrap\Tests\UnitTestCase;
@@ -11,8 +11,7 @@ class InlineStyleGeneratorTest extends UnitTestCase
 {
     protected function getInstance(): InlineStyleGenerator
     {
-        $sut = new InlineStyleGenerator($this->getConfig());
-        return $sut;
+        return new InlineStyleGenerator($this->makeConfig());
     }
 
     public function cssProvider()

@@ -24,11 +24,11 @@ class MainNavigationOlder implements ComponentInterface, SubscriberInterface
     private NavMenuSecondary $navMenuSecondary;
 
     public function __construct(
-        ConfigInterface                             $config,
-        ViewInterface                               $view,
+        ConfigInterface $config,
+        ViewInterface $view,
         \ItalyStrap\Navigation\UI\Components\Navbar $navbar,
-        NavMenuPrimary                              $navMenuPrimary,
-        NavMenuSecondary                            $navMenuSecondary
+        NavMenuPrimary $navMenuPrimary,
+        NavMenuSecondary $navMenuSecondary
     ) {
         $this->config = $config;
         $this->view = $view;

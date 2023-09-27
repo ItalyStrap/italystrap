@@ -8,6 +8,7 @@ use Generator;
 use ItalyStrap\Event\SubscriberInterface;
 use WP_Post;
 use WP_Term;
+
 use function array_merge;
 use function check_admin_referer;
 use function delete_post_meta;

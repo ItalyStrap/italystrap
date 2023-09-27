@@ -4,37 +4,33 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Asset\Application;
 
-use ItalyStrap\Config\Config;
-use ItalyStrap\Event\EventDispatcher;
+use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
-use ItalyStrap\Finder\Finder;
+use ItalyStrap\Finder\FinderInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 use SplFileInfo;
+
 use function add_editor_style;
 use function realpath;
 use function str_replace;
 
 class EditorSubscriber implements SubscriberInterface
 {
-    private Config $config;
-    private Finder $finder;
-    private EventDispatcher $dispatcher;
+    private ConfigInterface $config;
+    private FinderInterface $finder;
+    private GlobalDispatcherInterface $globalDispatcher;
 
     public function getSubscribedEvents(): iterable
     {
         yield 'admin_init'  => $this;
     }
 
-    /**
-     * @param Config $config
-     * @param Finder $finder
-     * @param EventDispatcher $dispatcher
-     */
-    public function __construct(Config $config, Finder $finder, EventDispatcher $dispatcher)
+    public function __construct(ConfigInterface $config, FinderInterface $finder, GlobalDispatcherInterface $dispatcher)
     {
         $this->config = $config;
         $this->finder = $finder;
-        $this->dispatcher = $dispatcher;
+        $this->globalDispatcher = $dispatcher;
     }
 
     /**
@@ -72,7 +68,7 @@ class EditorSubscriber implements SubscriberInterface
 
         $style_url = str_replace('\\', '/', $style_url);
 
-        $arg = (array)$this->dispatcher->filter('italystrap_visual_editor_style', [ $style_url ]);
+        $arg = (array)$this->globalDispatcher->filter('italystrap_visual_editor_style', [ $style_url ]);
 
         add_editor_style($arg);
     }

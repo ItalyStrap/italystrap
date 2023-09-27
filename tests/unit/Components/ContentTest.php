@@ -14,7 +14,7 @@ class ContentTest extends UnitTestCase
 {
     protected function getInstance(): Content
     {
-        $sut = new Content($this->getConfig(), $this->getView());
+        $sut = new Content($this->makeConfig(), $this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

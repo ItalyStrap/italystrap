@@ -12,7 +12,7 @@ class BreadcrumbsTest extends UnitTestCase
 {
     protected function getInstance(): Breadcrumbs
     {
-        $sut = new Breadcrumbs($this->makeGlobalDispatcher(), $this->getConfig(), $this->getThemeSupport());
+        $sut = new Breadcrumbs($this->makeGlobalDispatcher(), $this->makeConfig(), $this->makeThemeSupport());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

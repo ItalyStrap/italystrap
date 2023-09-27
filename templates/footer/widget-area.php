@@ -9,7 +9,7 @@ namespace ItalyStrap;
 <div class="wp-block-group">
     <!-- wp:columns -->
     <div class="wp-block-columns">
-        <?php foreach ($this->get('footer_sidebars', []) as $value) : ?>
+        <?php foreach ((array)$this->get('footer_sidebars', []) as $value) : ?>
             <?php if (\is_active_sidebar($value)) : ?>
                 <!-- wp:column -->
                 <div class="wp-block-column">

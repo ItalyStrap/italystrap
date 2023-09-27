@@ -14,7 +14,11 @@ class IndexTest extends UnitTestCase
 {
     protected function makeInstance(): Index
     {
-        $sut = new Index($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher());
+        $sut = new Index(
+            $this->makeConfig(),
+            $this->makeViewBlock(),
+            $this->makeDispatcher()
+        );
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
@@ -29,15 +33,8 @@ class IndexTest extends UnitTestCase
     {
         $sut = $this->makeInstance();
 
-        $this->view->render(Index::TEMPLATE_NAME, Argument::type('array'))->willReturn('index');
+        $this->viewBlock->render(Index::TEMPLATE_NAME, Argument::type('array'))->willReturn('index');
 
-        $this->defineFunction('do_blocks', static function (string $block) {
-            Assert::assertEquals('index', $block, '');
-            return 'from do_block';
-        });
-
-        $event = new \ItalyStrap\Components\Main\Events\Index();
-        $sut($event);
-        $this->assertSame('from do_block', (string)$event);
+        $this->tester->assertRenderableEventIsChanged($sut, 'index');
     }
 }

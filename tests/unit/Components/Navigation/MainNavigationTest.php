@@ -14,7 +14,7 @@ class MainNavigationTest extends UnitTestCase
 {
     protected function getInstance(): MainNavigation
     {
-        $sut = new MainNavigation($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher());
+        $sut = new MainNavigation($this->makeConfig(), $this->makeView(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

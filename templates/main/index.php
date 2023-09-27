@@ -20,53 +20,43 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Components\Main\Events\Content;
+use ItalyStrap\Components\Main\Events\ContentAfter;
+use ItalyStrap\Components\Main\Events\ContentBefore;
+use ItalyStrap\Components\Main\Events\Footer;
+use ItalyStrap\Components\Main\Events\Header;
+use ItalyStrap\Config\ConfigInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
-use function ItalyStrap\HTML\open_tag_e;
-use function ItalyStrap\HTML\close_tag_e;
+/**
+ * @var $this ConfigInterface
+ */
 
-/** @var EventDispatcherInterface $dispatcher */
-$dispatcher = $this->get(EventDispatcherInterface::class);
-
-/** @var string $container_class_names */
-$container_class_names = (string)$this->get('container_class_names');
-
-/** @var string $row_class_names */
-$row_class_names = (string)$this->get('row_class_names');
-
-$dispatcher->trigger('italystrap_before_main');
-
+$dispatcher = (object)$this->get(EventDispatcherInterface::class);
 ?>
+<?= $dispatcher->dispatch(new Header()); ?>
 <!-- wp:group {"tagName":"main","align":"full","layout":{"inherit":false}} -->
 <main class="wp-block-group alignfull">
 <?php
 //  open_tag_e( 'index-container', 'div', [
-//          'class' => $container_class_names,
+//          'class' => (string)$this->get('container_class_names'),
 //  ] );
 //      open_tag_e( 'index-row', 'div', [
-//          'class' => $row_class_names,
+//          'class' => (string)$this->get('row_class_names'),
 //      ] );
-
-            $dispatcher->trigger('italystrap_before_content');
 ?>
     <!-- wp:columns {"align":"wide","layout":{"inherit":true}} -->
     <div class="wp-block-columns alignwide">
 
+        <?= $dispatcher->dispatch(new ContentBefore()); ?>
+
         <!-- wp:column -->
         <div class="wp-block-column">
-
-            <?php
-            $dispatcher->trigger('italystrap_before_loop');
-
-            $dispatcher->trigger('italystrap_loop');
-
-            $dispatcher->trigger('italystrap_after_loop');
-            ?>
-
+            <?= $dispatcher->dispatch(new Content()); ?>
         </div>
         <!-- /wp:column -->
 
-            <?php $dispatcher->trigger('italystrap_after_content'); ?>
+        <?= $dispatcher->dispatch(new ContentAfter()); ?>
 
     </div>
     <!-- /wp:columns -->
@@ -77,5 +67,4 @@ $dispatcher->trigger('italystrap_before_main');
     ?>
 </main>
 <!-- /wp:group -->
-<?php
-$dispatcher->trigger('italystrap_after_main');
+<?= $dispatcher->dispatch(new Footer()); ?>

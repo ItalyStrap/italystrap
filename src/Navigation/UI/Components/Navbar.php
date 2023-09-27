@@ -8,6 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigSiteLogoProvider;
 use ItalyStrap\Navigation\Domain\NavMenu;
 use Walker_Nav_Menu;
+
 use function ItalyStrap\HTML\get_attr;
 
 /**

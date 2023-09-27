@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation;
 
-use ItalyStrap\Components\ComponentSubscriberExtension;
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Empress\Injector;
@@ -28,6 +27,7 @@ use ItalyStrap\Navigation\UI\Components\NavMenuSecondary;
 use ItalyStrap\Navigation\UI\Components\NavMenuToggleButton;
 use ItalyStrap\Navigation\UI\Components\Pager;
 use ItalyStrap\Navigation\UI\Components\Pagination;
+use ItalyStrap\UI\Infrastructure\ComponentSubscriberExtension;
 use Walker_Nav_Menu;
 
 class Module

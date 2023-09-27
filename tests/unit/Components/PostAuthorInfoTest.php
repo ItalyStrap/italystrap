@@ -13,7 +13,7 @@ class PostAuthorInfoTest extends UnitTestCase
 {
     protected function getInstance(): PostAuthorInfo
     {
-        $sut = new PostAuthorInfo($this->getConfig(), $this->getAuthorInfo());
+        $sut = new PostAuthorInfo($this->makeConfig(), $this->makeAuthorInfo());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

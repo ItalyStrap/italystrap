@@ -2,34 +2,29 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Integration;
+namespace ItalyStrap\Tests\Integration\Asset\Application;
 
-use Auryn\ConfigException;
-use Auryn\InjectionException;
 use ItalyStrap\Asset\Application\EditorSubscriber;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Tests\IntegrationTestCase;
+use ItalyStrap\Tests\Shared\Asset\Application\EditorSubscriberTestTrait;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 use PHPUnit\Framework\Assert;
+
 use function ItalyStrap\Factory\injector;
 
 class EditorSubscriberTest extends IntegrationTestCase
 {
-    /**
-     * @throws ConfigException
-     * @throws InjectionException
-     */
+    use EditorSubscriberTestTrait;
+
     private function makeInstance(): EditorSubscriber
     {
         return injector()->make(EditorSubscriber::class);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldEnqueue(): void
+    public function testItShouldEnqueue(): void
     {
-        $this->makeInstance()->enqueue();
+        $this->makeInstance()();
         global $editor_styles;
 
         Assert::assertIsArray($editor_styles, '');

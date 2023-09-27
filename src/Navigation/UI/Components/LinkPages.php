@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Navigation\UI\Components;
 
 use ItalyStrap\Event\EventDispatcherInterface;
+
 use function wp_link_pages;
 
 /**

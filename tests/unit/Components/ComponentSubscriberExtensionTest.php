@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Components;
 
-use ItalyStrap\Components\ComponentSubscriberExtension;
 use ItalyStrap\Components\Main\Index;
 use ItalyStrap\Empress\Extension;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\UI\Infrastructure\ComponentSubscriberExtension;
 use Prophecy\Argument;
 
 class ComponentSubscriberExtensionTest extends UnitTestCase
 {
     protected function makeInstance(): ComponentSubscriberExtension
     {
-        $sut = new ComponentSubscriberExtension($this->getSubscriberRegister(), $this->getListenerRegister());
+        $sut = new ComponentSubscriberExtension($this->makeSubscriberRegister(), $this->makeListenerRegister());
         $this->assertInstanceOf(Extension::class, $sut, '');
         return $sut;
     }
@@ -36,7 +36,7 @@ class ComponentSubscriberExtensionTest extends UnitTestCase
             Argument::type('int')
         )->shouldBeCalledOnce();
 
-        $sut->execute($this->getAurynConfigInterface());
+        $sut->execute($this->makeAurynConfigInterface());
     }
 
     public function testItShouldWalk()
@@ -55,6 +55,6 @@ class ComponentSubscriberExtensionTest extends UnitTestCase
 
         $this->subscriberRegister->addSubscriber($class)->shouldBeCalledOnce();
 
-        $sut($className, $index_or_optionName, $this->getInjector());
+        $sut($className, $index_or_optionName, $this->makeInjector());
     }
 }

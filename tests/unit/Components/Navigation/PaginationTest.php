@@ -13,7 +13,7 @@ class PaginationTest extends UnitTestCase
 {
     protected function getInstance(): Pagination
     {
-        $sut = new Pagination($this->getConfig(), $this->getView());
+        $sut = new Pagination($this->makeConfig(), $this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

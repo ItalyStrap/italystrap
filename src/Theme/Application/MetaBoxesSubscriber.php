@@ -8,6 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\CMB2Factory;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
+
 use function ItalyStrap\Bools\experimental_is_block_theme;
 
 /**

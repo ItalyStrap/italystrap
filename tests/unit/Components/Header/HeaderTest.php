@@ -13,7 +13,13 @@ class HeaderTest extends UnitTestCase
 {
     protected function getInstance(): Header
     {
-        $sut = new Header($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher(), $this->getTag());
+        $sut = new Header(
+            $this->makeConfig(),
+            $this->makeViewBlock(),
+            $this->makeGlobalDispatcher(),
+            $this->makeDispatcher(),
+            $this->makeTag()
+        );
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
@@ -41,9 +47,10 @@ class HeaderTest extends UnitTestCase
                 'class-2',
             ]);
 
-        $this->view->render(Header::VIEW, Argument::type('array'))->willReturn('header');
+        $this->viewBlock->render(Header::TEMPLATE_NAME, Argument::type('array'))->willReturn('header');
 
-        $this->expectOutputString('header');
-        $sut->display();
+        $event = new \ItalyStrap\Components\Main\Events\Header();
+        $sut($event);
+        $this->assertSame('header', (string)$event);
     }
 }

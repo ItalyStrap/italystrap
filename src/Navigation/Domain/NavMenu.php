@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Navigation\Domain;
 
 use Walker_Nav_Menu;
+
 use function wp_nav_menu;
 
 class NavMenu implements NavMenuInterface

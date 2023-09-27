@@ -13,7 +13,7 @@ class SidebarTest extends UnitTestCase
 {
     protected function getInstance(): Sidebar
     {
-        $sut = new Sidebar($this->getConfig(), $this->getView());
+        $sut = new Sidebar($this->makeConfig(), $this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

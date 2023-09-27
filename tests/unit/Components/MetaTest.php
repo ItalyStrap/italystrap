@@ -14,7 +14,7 @@ class MetaTest extends UnitTestCase
 {
     protected function getInstance(): Meta
     {
-        $sut = new Meta($this->getConfig(), $this->getView());
+        $sut = new Meta($this->makeConfig(), $this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
@@ -36,7 +36,7 @@ class MetaTest extends UnitTestCase
             }
         );
 
-        $this->config->get('post_content_template')->willReturn([]);
+        $this->config->get('post_content_template', [])->willReturn([]);
 
         $this->assertTrue($sut->shouldDisplay(), '');
     }

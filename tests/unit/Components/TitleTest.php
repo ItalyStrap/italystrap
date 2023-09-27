@@ -14,7 +14,7 @@ class TitleTest extends UnitTestCase
 {
     protected function getInstance(): Title
     {
-        $sut = new Title($this->getConfig(), $this->getView());
+        $sut = new Title($this->makeConfig(), $this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
@@ -36,7 +36,7 @@ class TitleTest extends UnitTestCase
             }
         );
 
-        $this->config->get('post_content_template')->willReturn([]);
+        $this->config->get('post_content_template', [])->willReturn([]);
 
         $this->assertTrue($sut->shouldDisplay(), '');
     }

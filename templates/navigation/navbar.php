@@ -8,6 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Navigation\UI\Components\Navbar;
 use ItalyStrap\Navigation\UI\Components\NavMenuPrimary;
 use ItalyStrap\Navigation\UI\Components\NavMenuSecondary;
+
 use function ItalyStrap\HTML\close_tag_e;
 use function ItalyStrap\HTML\open_tag_e;
 

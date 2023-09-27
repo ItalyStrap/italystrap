@@ -30,8 +30,5 @@ return [
         ConfigColophonProvider::class,
 
         ConfigNotFoundProvider::class,
-
-        /** This must run after all */
-        ConfigThemeModsProvider::class,
     ],
 ];

@@ -26,7 +26,7 @@ class Excerpt implements SubscriberInterface, ComponentInterface
     {
         return ! \is_singular()
             && \post_type_supports((string)\get_post_type(), 'excerpt')
-            && ! \in_array('hide_excerpt', $this->config->get('post_content_template'), true);
+            && ! \in_array('hide_excerpt', (array)$this->config->get('post_content_template', []), true);
     }
 
     public function display(): void

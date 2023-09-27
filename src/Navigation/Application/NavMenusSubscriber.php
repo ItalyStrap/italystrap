@@ -28,7 +28,7 @@ final class NavMenusSubscriber implements SubscriberInterface
 
     public function __invoke()
     {
-        $this->location->registerMany($this->config->get(self::class, []));
+        $this->location->registerMany((array)$this->config->get(self::class, []));
         $this->updateOlderNavMenu();
     }
 

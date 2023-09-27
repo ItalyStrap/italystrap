@@ -4,22 +4,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Main\Events;
 
-use ItalyStrap\Event\PropagationAwareTrait;
-use Psr\EventDispatcher\StoppableEventInterface;
+use ItalyStrap\Components\ContentRenderableEventTrait;
+use ItalyStrap\Components\ContentRenderableInterface;
 
-class Index implements \Stringable, StoppableEventInterface
+class Index implements ContentRenderableInterface
 {
-    use PropagationAwareTrait;
-
-    private string $content = '';
-
-    public function appendContent(string $content): void
-    {
-        $this->content .= $content;
-    }
-
-    public function __toString(): string
-    {
-        return $this->content;
-    }
+    use ContentRenderableEventTrait;
 }

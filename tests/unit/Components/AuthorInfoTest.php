@@ -13,7 +13,7 @@ class AuthorInfoTest extends UnitTestCase
 {
     protected function getInstance(): AuthorInfo
     {
-        $sut = new AuthorInfo($this->getView());
+        $sut = new AuthorInfo($this->makeView());
         $this->assertInstanceOf(ViewInterface::class, $sut, '');
         return $sut;
     }

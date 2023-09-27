@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use ItalyStrap\Components\Footer\Events\Footer;
+use ItalyStrap\Components\Footer\Events\Content;
 use ItalyStrap\Event\EventDispatcherInterface;
 
 use function ItalyStrap\HTML\open_tag_e;
@@ -22,8 +22,7 @@ open_tag_e('footer', 'footer', [
     'class' => 'site-footer',
 ]);
 
-$globalDispatcher->trigger('italystrap_footer');
-echo $dispatcher->dispatch(new Footer());
+echo $dispatcher->dispatch(new Content());
 
 close_tag_e('footer');
 

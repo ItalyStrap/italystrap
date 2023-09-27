@@ -14,7 +14,7 @@ class FeaturedImageTest extends UnitTestCase
 {
     protected function getInstance(): FeaturedImage
     {
-        $sut = new FeaturedImage($this->getConfig(), $this->getView());
+        $sut = new FeaturedImage($this->makeConfig(), $this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
@@ -36,7 +36,7 @@ class FeaturedImageTest extends UnitTestCase
             }
         );
 
-        $this->config->get('post_content_template')->willReturn([]);
+        $this->config->get('post_content_template', [])->willReturn([]);
 
         $this->assertTrue($sut->shouldDisplay(), '');
     }

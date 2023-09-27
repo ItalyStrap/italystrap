@@ -5,25 +5,16 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use Auryn\Injector;
-use ItalyStrap\Components\ComponentSubscriberExtension;
+use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Customizer\CustomizerProviderExtension;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\GlobalOrderedListenerProvider;
 use ItalyStrap\Event\SubscribersConfigExtension;
-use ItalyStrap\Config\ConfigProviderExtension;
-
+use ItalyStrap\UI\Infrastructure\ComponentSubscriberExtension;
 use function ItalyStrap\Factory\injector;
 
 require __DIR__ . DIRECTORY_SEPARATOR . '../vendor/autoload.php';
-\class_alias(
-    \ItalyStrap\Event\GlobalDispatcherInterface::class,
-    \ItalyStrap\Event\EventDispatcherInterface::class
-);
 
-\class_alias(
-    \ItalyStrap\Event\GlobalDispatcher::class,
-    \ItalyStrap\Event\EventDispatcher::class
-);
 return (static function (Injector $injector): Injector {
     $injectorConfig = $injector->make(AurynConfig::class, [
         ':dependencies' => (require __DIR__ . '/../config/dependencies.config.php')($injector)

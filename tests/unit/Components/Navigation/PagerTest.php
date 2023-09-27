@@ -14,7 +14,7 @@ class PagerTest extends UnitTestCase
 {
     protected function getInstance(): Pager
     {
-        $sut = new Pager($this->getConfig(), $this->getView());
+        $sut = new Pager($this->makeConfig(), $this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

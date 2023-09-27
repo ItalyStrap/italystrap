@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Experimental;
 
+use Auryn\Injector;
 use ItalyStrap\Finder\FinderFactory;
 use ItalyStrap\Finder\FinderInterface;
 
+use function array_unique;
+
 final class ExperimentalThemeFileFinderFactory
 {
-    public function __invoke(\Auryn\Injector $injector): FinderInterface
+    public function __invoke(Injector $injector): FinderInterface
     {
         return (new FinderFactory())->make()
-        ->in(
-            \array_unique(
+            ->in(array_unique(
                 [
                     /**
                      * To remember:
@@ -23,7 +25,6 @@ final class ExperimentalThemeFileFinderFactory
                     get_template_directory(),
                     get_stylesheet_directory(),
                 ]
-            )
-        );
+            ));
     }
 }

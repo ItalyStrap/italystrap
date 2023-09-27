@@ -14,7 +14,7 @@ class ArchiveHeadlineTest extends UnitTestCase
 {
     protected function getInstance(): ArchiveHeadline
     {
-        $sut = new ArchiveHeadline($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher());
+        $sut = new ArchiveHeadline($this->makeConfig(), $this->makeView(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

@@ -26,7 +26,7 @@ class Title implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface
     public function shouldDisplay(): bool
     {
         return \post_type_supports((string)\get_post_type(), 'title')
-            && ! \in_array('hide_title', $this->config->get('post_content_template'), true);
+            && ! \in_array('hide_title', (array)$this->config->get('post_content_template', []), true);
     }
 
     public function display(): void

@@ -7,6 +7,7 @@ namespace ItalyStrap\Tests\Integration\Theme;
 use ItalyStrap\Navigation\Application\NavMenusSubscriber;
 use ItalyStrap\Tests\IntegrationTestCase;
 use PHPUnit\Framework\Assert;
+
 use function add_filter;
 use function boolval;
 use function has_nav_menu;

@@ -13,7 +13,7 @@ class EntryTest extends UnitTestCase
 {
     protected function getInstance(): Entry
     {
-        $sut = new Entry($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher());
+        $sut = new Entry($this->makeConfig(), $this->makeView(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

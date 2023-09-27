@@ -7,6 +7,7 @@ namespace ItalyStrap\Experimental;
 use ItalyStrap\Finder\FinderFactory;
 use ItalyStrap\Finder\FinderInterface;
 
+use function array_unique;
 use function get_stylesheet_directory;
 use function get_template_directory;
 
@@ -23,10 +24,10 @@ class ExperimentalConfigFilesFinderFactory
     {
         static $experimental_finder = null;
 
-        if (! $experimental_finder) {
-            $experimental_finder = ( new FinderFactory() )
+        if (!$experimental_finder) {
+            $experimental_finder = (new FinderFactory())
                 ->make()
-                ->in(
+                ->in(array_unique(
                     [
                         /**
                          * To remember:
@@ -36,7 +37,7 @@ class ExperimentalConfigFilesFinderFactory
                         get_template_directory() . '/config/',
                         get_stylesheet_directory() . '/config/',
                     ]
-                );
+                ));
         }
 
         return $experimental_finder;

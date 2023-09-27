@@ -12,7 +12,7 @@ class ConfigCurrentTemplateSubscriberTest extends UnitTestCase
 {
     protected function getInstance(): ConfigCurrentTemplateSubscriber
     {
-        return new ConfigCurrentTemplateSubscriber($this->getConfig(), $this->getFileInfoFactory());
+        return new ConfigCurrentTemplateSubscriber($this->makeConfig(), $this->makeFileInfoFactory());
     }
 
     /**

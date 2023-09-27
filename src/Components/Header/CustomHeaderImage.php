@@ -47,7 +47,7 @@ class CustomHeaderImage implements ComponentInterface, SubscriberInterface
 
     public function display(): void
     {
-        echo \do_blocks($this->view->render('headers/custom-header', [
+        echo \do_blocks($this->view->render('header/custom-header', [
             EventDispatcherInterface::class => $this->dispatcher,
             self::CONTENT => $this->printFigureContainer(),
         ]));

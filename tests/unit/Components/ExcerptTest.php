@@ -14,7 +14,7 @@ class ExcerptTest extends UnitTestCase
 {
     protected function getInstance(): Excerpt
     {
-        $sut = new Excerpt($this->getConfig(), $this->getView());
+        $sut = new Excerpt($this->makeConfig(), $this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
@@ -38,7 +38,7 @@ class ExcerptTest extends UnitTestCase
             }
         );
 
-        $this->config->get('post_content_template')->willReturn([]);
+        $this->config->get('post_content_template', [])->willReturn([]);
 
         $this->assertTrue($sut->shouldDisplay(), '');
     }

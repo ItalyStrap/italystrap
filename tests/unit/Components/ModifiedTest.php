@@ -13,7 +13,7 @@ class ModifiedTest extends UnitTestCase
 {
     protected function getInstance(): Modified
     {
-        $sut = new Modified($this->getConfig(), $this->getView());
+        $sut = new Modified($this->makeConfig(), $this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

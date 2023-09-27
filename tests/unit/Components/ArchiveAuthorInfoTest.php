@@ -12,7 +12,7 @@ class ArchiveAuthorInfoTest extends UnitTestCase
 {
     protected function getInstance(): ArchiveAuthorInfo
     {
-        $sut = new ArchiveAuthorInfo($this->getConfig(), $this->getAuthorInfo());
+        $sut = new ArchiveAuthorInfo($this->makeConfig(), $this->makeAuthorInfo());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }

@@ -14,7 +14,7 @@ class ColophonTest extends UnitTestCase
 {
     protected function getInstance(): Colophon
     {
-        $sut = new Colophon($this->getConfig(), $this->getView(), $this->makeGlobalDispatcher());
+        $sut = new Colophon($this->makeConfig(), $this->makeView(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
@@ -49,7 +49,7 @@ class ColophonTest extends UnitTestCase
             return 'from do_block';
         });
 
-        $event = new \ItalyStrap\Components\Footer\Events\Footer();
+        $event = new \ItalyStrap\Components\Footer\Events\Content();
         $sut($event);
         $this->assertSame('from do_block', (string)$event);
     }

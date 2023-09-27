@@ -8,6 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\View\ViewInterface;
+
 use function get_post_type;
 use function in_array;
 use function post_type_supports;
@@ -32,7 +33,7 @@ class FeaturedImage implements ComponentInterface, SubscriberInterface
     public function shouldDisplay(): bool
     {
         return post_type_supports((string)get_post_type(), 'thumbnail')
-            && !in_array('hide_thumb', $this->config->get('post_content_template'), true);
+            && !in_array('hide_thumb', (array)$this->config->get('post_content_template', []), true);
     }
 
     public function display(): void

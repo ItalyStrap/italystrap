@@ -11,7 +11,9 @@ use ItalyStrap\Customizer\CustomizerAssetsSubscriber;
 use ItalyStrap\Customizer\CustomizerBodyTagAttributesSubscriber;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscribersConfigExtension;
-use ItalyStrap\Experimental\ExperimentalCustomizerOptionWithAndPosition;
+use ItalyStrap\Experimental\ExperimentalCustomizerOptionWithAndPositionSubscriber;
+use ItalyStrap\Experimental\ExperimentalHookComponentsDeprecationSubscriber;
+use ItalyStrap\Experimental\ExperimentalViewFileFinderFactory;
 use ItalyStrap\Experimental\OembedWrapperSubscriber;
 use ItalyStrap\Finder\FileInfoFactory;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
@@ -23,6 +25,7 @@ use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\HTML\TagInterface;
+use ItalyStrap\View\View;
 use ItalyStrap\View\ViewInterface;
 
 return [
@@ -45,7 +48,7 @@ return [
 
         Attributes::class,
         Tag::class,
-        View\View::class,
+        View::class,
 
         \WP_Theme::class,
         \WP_Query::class,
@@ -71,7 +74,7 @@ return [
         SearchFileStrategy::class           => FilesHierarchyIterator::class,
 //        FinderInterface::class              => Finder::class,
 
-        ViewInterface::class                => View\View::class,
+        ViewInterface::class                => View::class,
     ],
 
     /**
@@ -89,20 +92,8 @@ return [
      * ==========================================================
      */
     AurynConfig::DEFINITIONS            => [
-        View\View::class => [
-            '+finder' => static function (string $named_param, Injector $injector): FinderInterface {
-
-                $config = $injector->make(ConfigInterface::class);
-                $stylesheet_dir = $config->get(Theme\Infrastructure\Config\ConfigThemeProvider::STYLESHEET_DIR);
-                $template_dir = $config->get(Theme\Infrastructure\Config\ConfigThemeProvider::TEMPLATE_DIR);
-                $view_dir = $config->get(Theme\Infrastructure\Config\ConfigThemeProvider::VIEW_DIR);
-                $finder = (new FinderFactory())->make()
-                    ->in([
-                        $stylesheet_dir . '/' . $view_dir,
-                        $template_dir . '/' . $view_dir,
-                    ]);
-                return $finder;
-            },
+        View::class => [
+            '+finder' => new ExperimentalViewFileFinderFactory(),
         ],
     ],
 
@@ -183,10 +174,12 @@ return [
      */
     SubscribersConfigExtension::SUBSCRIBERS             => [
 
-        ExperimentalCustomizerOptionWithAndPosition::class,
+        ExperimentalCustomizerOptionWithAndPositionSubscriber::class,
         OembedWrapperSubscriber::class,
 
         CustomizerBodyTagAttributesSubscriber::class,
         CustomizerAssetsSubscriber::class,
+
+        ExperimentalHookComponentsDeprecationSubscriber::class,
     ],
 ];

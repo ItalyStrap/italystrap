@@ -4,19 +4,23 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
+use ItalyStrap\Components\Header\Events\Content;
 use ItalyStrap\Components\Header\Header;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 use function ItalyStrap\HTML\open_tag_e;
 
-/** @var EventDispatcherInterface $dispatcher */
-$dispatcher = $this->get(EventDispatcherInterface::class);
+/** @var GlobalDispatcherInterface $globalDispatcher */
+$globalDispatcher = (object)$this->get(GlobalDispatcherInterface::class);
+
+$dispatcher = (object)$this->get(EventDispatcherInterface::class);
 
 /** @var string $body_class */
-$body_class = $this->get(Header::BODY_CLASS_NAMES);
+$body_class = (string)$this->get(Header::BODY_CLASS_NAMES);
 
 /** @var string $wrapper_class */
-$wrapper_class = $this->get(Header::WRAPPER_CLASS_NAMES);
+$wrapper_class = (string)$this->get(Header::WRAPPER_CLASS_NAMES);
 
 ?><!DOCTYPE html>
 <html <?php \language_attributes(); ?>>
@@ -31,14 +35,10 @@ open_tag_e('body', 'body', [
 
 \wp_body_open();
 
-$dispatcher->trigger('italystrap_before');
+$globalDispatcher->trigger('italystrap_before');
 
 open_tag_e('wrapper', 'div', [
     'class' => $wrapper_class,
 ]);
 
-$dispatcher->trigger('italystrap_before_header');
-
-$dispatcher->trigger('italystrap_content_header');
-
-$dispatcher->trigger('italystrap_after_header');
+echo $dispatcher->dispatch(new Content());

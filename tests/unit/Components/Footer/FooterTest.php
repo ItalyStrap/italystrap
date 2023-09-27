@@ -13,8 +13,7 @@ class FooterTest extends UnitTestCase
     protected function makeInstance(): Footer
     {
         return new Footer(
-            $this->getConfig(),
-            $this->getView(),
+            $this->makeView(),
             $this->makeGlobalDispatcher(),
             $this->makeDispatcher(),
         );
@@ -39,7 +38,6 @@ class FooterTest extends UnitTestCase
 
         $this->view->render('footer/footer', Argument::type('array'))->willReturn($expected_output);
 
-        $this->expectOutputString($expected_output);
-        $sut->display();
+        $this->tester->assertRenderableEventIsChanged($sut, $expected_output);
     }
 }

@@ -6,7 +6,7 @@ namespace ItalyStrap\Experimental;
 
 use ItalyStrap\Event\SubscriberInterface;
 
-class ExperimentalCustomizerOptionWithAndPosition implements SubscriberInterface
+class ExperimentalCustomizerOptionWithAndPositionSubscriber implements SubscriberInterface
 {
     public function getSubscribedEvents(): iterable
     {

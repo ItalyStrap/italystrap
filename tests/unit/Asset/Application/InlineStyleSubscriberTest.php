@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Unit\Asset;
+namespace ItalyStrap\Tests\Unit\Asset\Application;
 
 use ItalyStrap\Asset\Application\InlineStyleSubscriber;
 use ItalyStrap\Event\SubscriberInterface;
@@ -12,9 +12,9 @@ use Prophecy\Argument;
 
 class InlineStyleSubscriberTest extends UnitTestCase
 {
-    protected function getInstance(): InlineStyleSubscriber
+    protected function makeInstance(): InlineStyleSubscriber
     {
-        $sut = new InlineStyleSubscriber($this->getConfig(), $this->getInlineStyleGenerator());
+        $sut = new InlineStyleSubscriber($this->makeConfig(), $this->makeInlineStyleGenerator());
         $this->assertInstanceOf(SubscriberInterface::class, $sut, '');
         return $sut;
     }
@@ -24,7 +24,7 @@ class InlineStyleSubscriberTest extends UnitTestCase
      */
     public function itShouldSubscribe()
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
 
         $this->inlineStyleGenerator->render(
             Argument::type('string'),

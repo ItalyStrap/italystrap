@@ -27,7 +27,7 @@ class Meta implements ComponentInterface, SubscriberInterface
     public function shouldDisplay(): bool
     {
         return \post_type_supports((string)\get_post_type(), 'entry-meta')
-            && ! \in_array('hide_meta', $this->config->get('post_content_template'), true);
+            && ! \in_array('hide_meta', (array)$this->config->get('post_content_template', []), true);
     }
 
     public function display(): void

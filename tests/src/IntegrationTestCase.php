@@ -18,10 +18,9 @@ class IntegrationTestCase extends WPTestCase
     {
         // Before...
         parent::setUp();
-        codecept_debug('IntegrationTestCase::_setUp');
+
         $this->injector = \ItalyStrap\Factory\injector();
         $this->config = $this->injector->make(ConfigInterface::class);
-        // Your set-up methods here.
     }
 
     public function tearDown(): void

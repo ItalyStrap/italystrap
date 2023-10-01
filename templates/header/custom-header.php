@@ -4,21 +4,16 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Headers;
 
-use ItalyStrap\Components\Header\CustomHeaderImage;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\UI\Components\Header\CustomHeaderImage;
 
 /**
  * @var $this ConfigInterface
  */
 
-/** @var EventDispatcherInterface $dispatcher */
-$dispatcher = $this->get(EventDispatcherInterface::class);
 ?>
 <!-- wp:group {"tagName":"header","className":"site-header","layout":{"inherit":true}} -->
 <header class="wp-block-group site-header">
-    <?php $dispatcher->trigger('header_open'); ?>
-    <?php echo \strip_tags((string)$this->get(CustomHeaderImage::CONTENT), ['img', 'figure']); ?>
-    <?php $dispatcher->trigger('header_closed'); ?>
+    <?= \strip_tags((string)$this->get(CustomHeaderImage::CONTENT), ['img', 'figure']); ?>
 </header>
 <!-- /wp:group -->

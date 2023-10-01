@@ -20,12 +20,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use ItalyStrap\Components\Main\Events\Content;
-use ItalyStrap\Components\Main\Events\ContentAfter;
-use ItalyStrap\Components\Main\Events\ContentBefore;
-use ItalyStrap\Components\Main\Events\Footer;
-use ItalyStrap\Components\Main\Events\Header;
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\UI\Components\Main\Events\Content;
+use ItalyStrap\UI\Components\Main\Events\ContentAfter;
+use ItalyStrap\UI\Components\Main\Events\ContentBefore;
+use ItalyStrap\UI\Components\Main\Events\Footer;
+use ItalyStrap\UI\Components\Main\Events\Header;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**

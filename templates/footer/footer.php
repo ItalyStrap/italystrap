@@ -4,33 +4,33 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use ItalyStrap\Components\Footer\Events\Content;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\HTML\TagInterface;
+use ItalyStrap\UI\Components\Footer\Events\After;
+use ItalyStrap\UI\Components\Footer\Events\Before;
+use ItalyStrap\UI\Components\Footer\Events\BodyClosing;
+use ItalyStrap\UI\Components\Footer\Events\Content;
 
-use function ItalyStrap\HTML\open_tag_e;
 use function ItalyStrap\HTML\close_tag_e;
-
-/** @var EventDispatcherInterface $globalDispatcher */
-$globalDispatcher = $this->get(EventDispatcherInterface::class);
 
 /** @var \Psr\EventDispatcher\EventDispatcherInterface $dispatcher */
 $dispatcher = $this->get(\Psr\EventDispatcher\EventDispatcherInterface::class);
 
-$globalDispatcher->trigger('italystrap_before_footer');
+/** @var TagInterface $tag */
+$tag = $this->get(TagInterface::class);
 
-open_tag_e('footer', 'footer', [
-    'class' => 'site-footer',
-]);
-
-echo $dispatcher->dispatch(new Content());
-
-close_tag_e('footer');
-
-$globalDispatcher->trigger('italystrap_after_footer');
+?>
+<?= $dispatcher->dispatch(new Before()); ?>
+<!-- wp:group {"tagName":"footer","className":"site-footer","layout":{"inherit":true}} -->
+<footer class="wp-block-group site-footer">
+    <?= $dispatcher->dispatch(new Content()); ?>
+</footer>
+<!-- /wp:group -->
+<?= $dispatcher->dispatch(new After()); ?>
+<?php
 
 close_tag_e('wrapper');
 
-$globalDispatcher->trigger('italystrap_after');
+echo $dispatcher->dispatch(new BodyClosing());
 
 \wp_footer();
 

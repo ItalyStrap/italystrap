@@ -6,7 +6,6 @@ namespace ItalyStrap\Tests;
 
 use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
 use ItalyStrap\Components\AuthorInfo;
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Empress\AurynConfigInterface;
@@ -17,9 +16,10 @@ use ItalyStrap\Finder\FileInfoFactoryInterface;
 use ItalyStrap\Finder\FinderInterface;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Navigation\UI\Components\Navbar;
+use ItalyStrap\Theme\Infrastructure\Support as ThemeSupport;
+use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\View\ViewInterface;
 use Prophecy\Prophet;
-use ItalyStrap\Theme\Infrastructure\Support as ThemeSupport;
 
 trait BaseUnitTrait
 {

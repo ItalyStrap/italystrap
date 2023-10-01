@@ -15,6 +15,7 @@ use ItalyStrap\Event\Module as EventModule;
 use ItalyStrap\Experimental\ExperimentalThemeFileFinderFactory;
 use ItalyStrap\Navigation\Module as NavigationModule;
 use ItalyStrap\Theme\Module as ThemeModule;
+use ItalyStrap\UI\Module as UIModule;
 
 return static function (Injector $injector): ConfigInterface {
     $collection = new ProvidersCollection(
@@ -28,7 +29,7 @@ return static function (Injector $injector): ConfigInterface {
             ThemeModule::class,
             AssetModule::class,
             NavigationModule::class,
-            \ItalyStrap\UI\Module::class,
+            UIModule::class,
             new PhpFileProvider(
                 '/config/autoload/{{,*.}global,{,*.}local}.php',
                 $injector->execute(ExperimentalThemeFileFinderFactory::class)

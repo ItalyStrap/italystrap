@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Config;
 
-use ItalyStrap\Components\Footer\Colophon;
-use ItalyStrap\Components\Footer\Events\Content;
+use ItalyStrap\UI\Components\Footer\Colophon;
+use ItalyStrap\UI\Components\Footer\Events\Content;
 
 class ConfigColophonProvider
 {

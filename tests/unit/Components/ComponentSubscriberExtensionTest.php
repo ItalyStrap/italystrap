@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Components;
 
-use ItalyStrap\Components\Main\Index;
 use ItalyStrap\Empress\Extension;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\UI\Components\Main\Index;
 use ItalyStrap\UI\Infrastructure\ComponentSubscriberExtension;
 use Prophecy\Argument;
 

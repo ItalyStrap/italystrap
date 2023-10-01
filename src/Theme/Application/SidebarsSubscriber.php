@@ -31,7 +31,7 @@ final class SidebarsSubscriber implements SubscriberInterface
     /**
      * @var array<string>
      */
-    private $registered_sidebars;
+    private array $registered_sidebars;
     public function getSubscribedEvents(): iterable
     {
         yield 'widgets_init'            => 'register';

@@ -7,31 +7,31 @@ namespace ItalyStrap\UI;
 use ItalyStrap\Components\ArchiveAuthorInfo;
 use ItalyStrap\Components\ArchiveHeadline;
 use ItalyStrap\Components\AuthorInfo;
-use ItalyStrap\Components\Comments;
-use ItalyStrap\Components\Content;
-use ItalyStrap\Components\Entry;
-use ItalyStrap\Components\EntryNone;
-use ItalyStrap\Components\EntryNoneContent;
-use ItalyStrap\Components\EntryNoneImage;
-use ItalyStrap\Components\EntryNoneTitle;
-use ItalyStrap\Components\Excerpt;
-use ItalyStrap\Components\FeaturedImage;
-use ItalyStrap\Components\Footer\Colophon;
-use ItalyStrap\Components\Footer\Footer;
-use ItalyStrap\Components\Footer\FooterWidgetArea;
-use ItalyStrap\Components\Header\CustomHeaderImage;
-use ItalyStrap\Components\Header\Header;
 use ItalyStrap\Components\Header\SiteLogo;
 use ItalyStrap\Components\Header\SiteTitle;
-use ItalyStrap\Components\Loop;
-use ItalyStrap\Components\Main\Index;
-use ItalyStrap\Components\Meta;
 use ItalyStrap\Components\Modified;
 use ItalyStrap\Components\PostAuthorInfo;
-use ItalyStrap\Components\Preview;
-use ItalyStrap\Components\Sidebar;
-use ItalyStrap\Components\Title;
 use ItalyStrap\Empress\AurynConfig;
+use ItalyStrap\UI\Components\Comments\Comments;
+use ItalyStrap\UI\Components\Footer\Colophon;
+use ItalyStrap\UI\Components\Footer\Footer;
+use ItalyStrap\UI\Components\Footer\FooterWidgetArea;
+use ItalyStrap\UI\Components\Header\CustomHeaderImage;
+use ItalyStrap\UI\Components\Header\Header;
+use ItalyStrap\UI\Components\Main\Index;
+use ItalyStrap\UI\Components\Posts\NotFound;
+use ItalyStrap\UI\Components\Posts\NotFound\Content as NotFoundContent;
+use ItalyStrap\UI\Components\Posts\NotFound\Image as NotFoundImage;
+use ItalyStrap\UI\Components\Posts\NotFound\Title as NotFoundTitle;
+use ItalyStrap\UI\Components\Posts\Parts\Content;
+use ItalyStrap\UI\Components\Posts\Parts\Excerpt;
+use ItalyStrap\UI\Components\Posts\Parts\FeaturedImage;
+use ItalyStrap\UI\Components\Posts\Parts\Meta;
+use ItalyStrap\UI\Components\Posts\Parts\Preview;
+use ItalyStrap\UI\Components\Posts\Parts\Title;
+use ItalyStrap\UI\Components\Posts\Post;
+use ItalyStrap\UI\Components\Posts\Posts;
+use ItalyStrap\UI\Components\Sidebars\Sidebar;
 use ItalyStrap\UI\Infrastructure\ComponentSubscriberExtension;
 use ItalyStrap\UI\Infrastructure\ViewBlock;
 use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
@@ -47,6 +47,9 @@ class Module
             ],
             AurynConfig::ALIASES => [
                 ViewBlockInterface::class => ViewBlock::class,
+            ],
+            AurynConfig::DEFINITIONS => [
+
             ],
             ComponentSubscriberExtension::class => [
 
@@ -65,14 +68,14 @@ class Module
 
                 Sidebar::class,
 
-                Entry::class,
+                Post::class,
 
-                EntryNoneImage::class,
-                EntryNoneTitle::class,
-                EntryNoneContent::class,
-                EntryNone::class,
+                NotFoundImage::class,
+                NotFoundTitle::class,
+                NotFoundContent::class,
+                NotFound::class,
 
-                Loop::class,
+                Posts::class,
 
                 SiteLogo::class,
                 SiteTitle::class,

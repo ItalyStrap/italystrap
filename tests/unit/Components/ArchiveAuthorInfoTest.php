@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\ArchiveAuthorInfo;
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\UI\Components\ComponentInterface;
 
 class ArchiveAuthorInfoTest extends UnitTestCase
 {

@@ -50,10 +50,7 @@ class Module
                 ],
 
                 NavMenuPrimary::class => [
-                    '+fallback' => static function (string $named_param, Injector $injector): callable {
-
-                        return $injector->make(NavMenuFallback::class);
-                    },
+                    '+fallback' => static fn(string $named_param, Injector $injector): callable => $injector->make(NavMenuFallback::class),
                 ],
             ],
 

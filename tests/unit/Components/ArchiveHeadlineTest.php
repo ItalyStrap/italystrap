@@ -5,24 +5,22 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Unit\Components;
 
 use ItalyStrap\Components\ArchiveHeadline;
-use ItalyStrap\Components\ComponentInterface;
+use ItalyStrap\Tests\Unit\UI\Components\CommonRenderViewBlockTestTrait;
 use ItalyStrap\Tests\UnitTestCase;
-use PHPUnit\Framework\Assert;
-use Prophecy\Argument;
+use ItalyStrap\UI\Components\ComponentInterface;
 
 class ArchiveHeadlineTest extends UnitTestCase
 {
-    protected function getInstance(): ArchiveHeadline
+    use CommonRenderViewBlockTestTrait;
+
+    protected function makeInstance(): ArchiveHeadline
     {
-        $sut = new ArchiveHeadline($this->makeConfig(), $this->makeView(), $this->makeGlobalDispatcher());
+        $sut = new ArchiveHeadline($this->makeViewBlock(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
         return $sut;
     }
 
-    /**
-     * @test
-     */
-    public function itShouldLoad()
+    public function testItShouldDisplay()
     {
 
         $this->defineFunction('is_archive', static fn() => true);
@@ -31,25 +29,7 @@ class ArchiveHeadlineTest extends UnitTestCase
 
         $this->defineFunction('is_author', static fn() => false);
 
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
         $this->assertTrue($sut->shouldDisplay(), '');
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldDisplay()
-    {
-        $sut = $this->getInstance();
-
-        $this->view->render('misc/archive-headline', Argument::type('array'))->willReturn('misc/archive-headline');
-
-        $this->defineFunction('do_blocks', static function (string $block) {
-            Assert::assertEquals('misc/archive-headline', $block, '');
-            return 'from do_block';
-        });
-
-        $this->expectOutputString('from do_block');
-        $sut->display();
     }
 }

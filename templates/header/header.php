@@ -4,23 +4,14 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use ItalyStrap\Components\Header\Events\Content;
-use ItalyStrap\Components\Header\Header;
-use ItalyStrap\Event\GlobalDispatcherInterface;
+use ItalyStrap\UI\Components\Header\Events\BodyOpened;
+use ItalyStrap\UI\Components\Header\Events\Content;
+use ItalyStrap\UI\Components\Header\Header;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 use function ItalyStrap\HTML\open_tag_e;
 
-/** @var GlobalDispatcherInterface $globalDispatcher */
-$globalDispatcher = (object)$this->get(GlobalDispatcherInterface::class);
-
 $dispatcher = (object)$this->get(EventDispatcherInterface::class);
-
-/** @var string $body_class */
-$body_class = (string)$this->get(Header::BODY_CLASS_NAMES);
-
-/** @var string $wrapper_class */
-$wrapper_class = (string)$this->get(Header::WRAPPER_CLASS_NAMES);
 
 ?><!DOCTYPE html>
 <html <?php \language_attributes(); ?>>
@@ -30,15 +21,15 @@ $wrapper_class = (string)$this->get(Header::WRAPPER_CLASS_NAMES);
 </head>
 <?php
 open_tag_e('body', 'body', [
-        'class' => $body_class,
+    'class' => (string)$this->get(Header::BODY_CLASS_NAMES, ''),
 ]);
 
 \wp_body_open();
 
-$globalDispatcher->trigger('italystrap_before');
+echo $dispatcher->dispatch(new BodyOpened());
 
 open_tag_e('wrapper', 'div', [
-    'class' => $wrapper_class,
+    'class' => (string)$this->get(Header::WRAPPER_CLASS_NAMES, ''),
 ]);
 
 echo $dispatcher->dispatch(new Content());

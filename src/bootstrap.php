@@ -26,7 +26,9 @@ return (static function (Injector $injector): Injector {
     $injectorConfig->extendFromClassName(ComponentSubscriberExtension::class);
     $injectorConfig->extendFromClassName(CustomizerProviderExtension::class);
 
-    $listenerProvider = $injector->make(GlobalOrderedListenerProvider::class);
+    $listenerProvider = $injector
+        ->share(GlobalOrderedListenerProvider::class)
+        ->make(GlobalOrderedListenerProvider::class);
 
     /**
      * ========================================================================

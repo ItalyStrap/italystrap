@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Header;
 
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\View\ViewInterface;
 
 class SiteTagline implements ComponentInterface, SubscriberInterface

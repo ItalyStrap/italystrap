@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Components\Navigation;
 
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Navigation\UI\Components\Pagination;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\UI\Components\ComponentInterface;
 use Prophecy\Argument;
 
 class PaginationTest extends UnitTestCase

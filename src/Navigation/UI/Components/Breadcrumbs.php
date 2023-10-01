@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation\UI\Components;
 
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Support;
+use ItalyStrap\UI\Components\ComponentInterface;
 
 use function ob_get_clean;
 use function ob_start;

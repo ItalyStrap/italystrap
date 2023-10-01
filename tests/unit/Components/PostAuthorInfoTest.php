@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Components;
 
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\PostAuthorInfo;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\UI\Components\ComponentInterface;
 use PHPUnit\Framework\Assert;
 
 class PostAuthorInfoTest extends UnitTestCase

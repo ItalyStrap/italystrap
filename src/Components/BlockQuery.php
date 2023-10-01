@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components;
 
+use ItalyStrap\UI\Components\ComponentInterface;
+
 class BlockQuery implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface {
 
 	use SubscribedEventsAware;

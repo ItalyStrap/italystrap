@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Components;
 
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\Modified;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\UI\Components\ComponentInterface;
 use Prophecy\Argument;
 
 class ModifiedTest extends UnitTestCase

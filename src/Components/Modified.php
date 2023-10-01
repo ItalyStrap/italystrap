@@ -6,6 +6,7 @@ namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\View\ViewInterface;
 
 class Modified implements SubscriberInterface, ComponentInterface

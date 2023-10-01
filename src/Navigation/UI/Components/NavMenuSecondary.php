@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation\UI\Components;
 
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Navigation\Domain\NavMenu;
 use ItalyStrap\Navigation\Domain\NavMenuInterface;
 use ItalyStrap\Navigation\Domain\NavMenuLocationInterface;
+use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\View\ViewInterface;
 
 class NavMenuSecondary implements ComponentInterface, \ItalyStrap\Event\SubscriberInterface

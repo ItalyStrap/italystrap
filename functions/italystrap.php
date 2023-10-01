@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use ItalyStrap\Components\Main\Events\Index;
+use ItalyStrap\UI\Components\Main\Events\Index;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 use function ItalyStrap\Factory\injector;

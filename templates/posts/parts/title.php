@@ -1,29 +1,17 @@
 <?php
 
-/**
- * The template used for displaying the title.
- *
- * This file is still in BETA version.
- *
- * @package ItalyStrap
- * @since 1.0.0
- * @since 4.0.0 Code refactoring.
- */
-
 declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use function ItalyStrap\HTML\open_tag_e;
-use function ItalyStrap\HTML\close_tag_e;
+use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\UI\Components\Posts\Parts\Title;
 
-$html_tag = \is_singular() ? 'h1' : 'h2';
-$title_prop = \is_singular() ? 'headline' : 'name';
+/** @var ConfigInterface $this */
 
-?><header class="page-header entry-header">
-    <?php open_tag_e('entry_title', $html_tag, ['class'    => 'entry-title wp-block-post-title']); ?>
-        <a itemprop="url" href="<?php \the_permalink(); ?>" title="<?php \the_title_attribute() ?>" rel="bookmark">
-            <span itemprop="<?php echo $title_prop; ?>"><?php \the_title(); ?></span>
-        </a>
-    <?php close_tag_e('entry_title'); ?>
+?>
+<!-- wp:group {"tagName":"header","className":"page-header entry-header","layout":{"inherit":true}} -->
+<header class="wp-block-group page-header entry-header">
+    <!-- wp:post-title <?= (string)$this->get(Title::ATTRIBUTES);?> /-->
 </header>
+<!-- /wp:group -->

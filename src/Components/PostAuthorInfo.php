@@ -6,6 +6,7 @@ namespace ItalyStrap\Components;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\UI\Components\ComponentInterface;
 
 class PostAuthorInfo implements ComponentInterface, SubscriberInterface
 {

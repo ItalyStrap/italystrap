@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components\Header;
 
-use ItalyStrap\Components\ComponentInterface;
 use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigSiteLogoProvider;
@@ -14,6 +13,7 @@ use ItalyStrap\Theme\Application\ThumbnailsSubscriber;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeSupportProvider;
 use ItalyStrap\Theme\Infrastructure\Json;
 use ItalyStrap\Theme\Infrastructure\Support;
+use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\View\ViewInterface;
 
 class SiteLogo implements ComponentInterface, SubscriberInterface

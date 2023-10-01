@@ -4,28 +4,33 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Components;
 
-use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
-use ItalyStrap\View\ViewInterface;
+use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Components\Posts\Events\PostsContentBefore;
+use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
 
 class ArchiveHeadline implements ComponentInterface, SubscriberInterface
 {
-    use SubscribedEventsAware;
-
-    public const EVENT_NAME = 'italystrap_before_while';
     public const EVENT_PRIORITY = 20;
 
-    private ConfigInterface $config;
-    private ViewInterface $view;
+    public function getSubscribedEvents(): iterable
+    {
+        yield PostsContentBefore::class => [
+            SubscriberInterface::CALLBACK => $this,
+            SubscriberInterface::PRIORITY => self::EVENT_PRIORITY,
+        ];
+    }
+
+    public const TEMPLATE_NAME = 'misc/archive-headline';
+
+    private ViewBlockInterface $view;
     private EventDispatcherInterface $dispatcher;
 
     public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
+        ViewBlockInterface $view,
         EventDispatcherInterface $dispatcher
     ) {
-        $this->config = $config;
         $this->view = $view;
         $this->dispatcher = $dispatcher;
     }
@@ -35,9 +40,9 @@ class ArchiveHeadline implements ComponentInterface, SubscriberInterface
         return ( \is_archive() || \is_search() ) && ! \is_author();
     }
 
-    public function display(): void
+    public function __invoke(PostsContentBefore $event): void
     {
-        echo \do_blocks($this->view->render('misc/archive-headline', [
+        $event->appendContent($this->view->render(self::TEMPLATE_NAME, [
             EventDispatcherInterface::class => $this->dispatcher,
         ]));
     }

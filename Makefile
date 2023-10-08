@@ -1,5 +1,7 @@
 DOCKER_FOLDER = .docker
 DOCKER_DIR = cd $(DOCKER_FOLDER) &&
+HOST_OWNER = $(shell id -u):$(shell id -g)
+FILES_OWNERSHIP = sudo chown -R $(HOST_OWNER) .
 
 default: help
 
@@ -9,12 +11,18 @@ default: help
 help: ## Display this help screen
 	@grep -hP '^\w.*?:.*##.*$$' $(MAKEFILE_LIST) | sort -u | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: files/permission
+.PHONY: files/mod
 files/permission:	### Set the executable files in Docker folder permissions to 777
 	@echo "Checking files permissions"
 	@find $(DOCKER_FOLDER) -maxdepth 1 -type f -exec grep -lE '^#!' {} \; | xargs chmod 777
 	@find $(DOCKER_FOLDER) -maxdepth 1 -type f -exec grep -lqE '^#!' {} \; -exec ls -la {} \;
 	@echo "Files permissions ok"
+
+.PHONY: files/own
+files/own: ### Set again the ownership off all the file to the current user
+	@echo "Setting the ownership of all the files to the current user"
+	@$(FILES_OWNERSHIP)
+	@echo "Ownership set"
 
 # Docker commands
 
@@ -64,6 +72,7 @@ cs: up	### Run the code sniffer
 cs/fix: up	### Run the code sniffer and fix the errors
 	@echo "Running the code sniffer and fix the errors"
 	@$(DOCKER_DIR) ./composer cs:fix
+	@$(FILES_OWNERSHIP)
 
 # Psalm commands
 
@@ -75,9 +84,10 @@ psalm: up	### Run the psalm
 # Codeception commands
 
 .PHONY: codecept/build
-codecept/build:	up	### Build the codeception suites
+codecept/build:	up ### Build the codeception suites
 	@echo "Building the codeception suites"
 	@$(DOCKER_DIR) ./codecept build
+	@$(FILES_OWNERSHIP)
 
 .PHONY: clean
 clean: up	### Clean the codeception suites
@@ -108,7 +118,7 @@ acceptance: up	### Run the acceptance tests
 tests: unit integration	### Run unit and integration tests
 
 .PHONY: qa
-qa: cs psalm unit integration	### Run all the tests
+qa: cs psalm unit integration functional	### Run all the tests
 
 # Infection commands
 
@@ -128,6 +138,7 @@ rector: up	### Run the rector with dry-run
 rector/fix: up	### Apply the rector refactorings
 	@echo "Running the rector"
 	@$(DOCKER_DIR) ./composer rector:fix
+	@$(FILES_OWNERSHIP)
 
 # Benchmark commands
 
@@ -157,7 +168,7 @@ metrics: up	### Run the composer/metrics
 
 .PHONY: generate
 generate: up	### Run the codeception generate test files in unit and integration suite, use FILE=filename to generate a specific file
-	@echo "Running the tests"
+	@echo "Start generating the test files"
 	@if [ ! -z "$(FILE)" -a ! -f "tests/unit/$(FILE)Test.php" ]; then \
 		echo "File does not exists, generating now."; \
 		./vendor/bin/codecept generate:test unit $(FILE); \
@@ -170,3 +181,5 @@ generate: up	### Run the codeception generate test files in unit and integration
 	else \
 		echo "FILE variable empty or file already generated"; \
 	fi
+	@$(FILES_OWNERSHIP)
+	@echo "Files generated"

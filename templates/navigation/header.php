@@ -2,16 +2,23 @@
 
 declare(strict_types=1);
 
-use ItalyStrap\Event\EventDispatcherInterface;
+namespace ItalyStrap;
 
-/** @var \ItalyStrap\Config\ConfigInterface $config */
-$config = $this;
+use ItalyStrap\Event\GlobalDispatcherInterface;
+use ItalyStrap\Navigation\UI\Components\Events\NavMenuHeaderContent;
+use Psr\EventDispatcher\EventDispatcherInterface;
+
+/** @var \ItalyStrap\Config\ConfigInterface $this */
+
+/** @var GlobalDispatcherInterface $globalDispatcher */
+$globalDispatcher = $this->get(GlobalDispatcherInterface::class);
 
 /** @var EventDispatcherInterface $dispatcher */
-$dispatcher = $config->get(EventDispatcherInterface::class);
+$dispatcher = $this->get(EventDispatcherInterface::class);
 ?>
 <!-- wp:group {"className":"navbar-header"} -->
 <div class="wp-block-group navbar-header">
-    <?php $dispatcher->trigger('italystrap_navmenu_header'); ?>
+    <?php $globalDispatcher->trigger('italystrap_navmenu_header'); ?>
+    <?= $dispatcher->dispatch(new NavMenuHeaderContent()); ?>
 </div>
 <!-- /wp:group -->

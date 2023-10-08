@@ -3,6 +3,7 @@
 # Suite for functional tests
 # Emulate web requests and make WordPress process them
 
+bootstrap: bootstrap.php
 actor: FunctionalTester
 modules:
     enabled:

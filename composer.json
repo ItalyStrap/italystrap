@@ -33,7 +33,7 @@
 	"require": {
 		"php" : ">=7.4",
 		"italystrap/empress": "dev-modularized",
-		"italystrap/event": "dev-try/psr-14",
+		"italystrap/event": "dev-master",
 		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
 		"italystrap/html": "^1.0",
@@ -89,7 +89,10 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"ItalyStrap\\": "src/"
+			"ItalyStrap\\": [
+				"src/",
+				"tests/_data/Experimental/src/"
+			]
 		},
 		"files": [
 			"functions/core-booleans.php",
@@ -118,7 +121,7 @@
 			"vendor/{$name}/": ["cmb2/cmb2"]
 		},
 		"theme-json": {
-			"callable": "\\ItalyStrap\\Asset\\JsonData::getJsonData",
+			"callable": "\\ItalyStrap\\Asset\\ThemeJson::writeJson",
 			"path-for-theme-sass": "assets/sass/"
 		}
 	},
@@ -144,9 +147,6 @@
 		],
 		"psalm": [
 			"@php vendor//bin//psalm --no-cache"
-		],
-		"phpstan": [
-			"@php vendor//bin//phpstan analyze --level=max"
 		],
 		"analyze": [
 			"@php vendor//bin//phpstan analyze --level=max && vendor//bin//psalm"

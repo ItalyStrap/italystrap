@@ -11,7 +11,7 @@ use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\UI\Components\Header\Events\Content;
 use ItalyStrap\UI\Elements\Figure;
-use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
+use ItalyStrap\View\ViewInterface;
 
 class CustomHeaderImage implements ComponentInterface, SubscriberInterface
 {
@@ -32,12 +32,12 @@ class CustomHeaderImage implements ComponentInterface, SubscriberInterface
     public const CONTAINER_WIDTH = 'container_width';
 
     private ConfigInterface $config;
-    private ViewBlockInterface $view;
+    private ViewInterface $view;
     private TagInterface $tag;
 
     public function __construct(
         ConfigInterface $config,
-        ViewBlockInterface $view,
+        ViewInterface $view,
         TagInterface $tag,
         Figure $figure
     ) {

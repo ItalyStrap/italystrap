@@ -15,7 +15,7 @@ use ItalyStrap\Navigation\Infrastructure\BootstrapNavMenu;
                  * Menù per i contatti
                  */
                 \wp_nav_menu(
-                    array(
+                    [
                         'theme_location'    => 'info-menu',
                         'depth'             => 1,
                         'container'         => 'div',
@@ -23,13 +23,13 @@ use ItalyStrap\Navigation\Infrastructure\BootstrapNavMenu;
                         'fallback_cb'       => false,
                         'menu_class'        => 'list-inline info-menu',
                         'walker'            => new BootstrapNavMenu(),
-                    )
+                    ]
                 );
                 /**
                  * Menù per i link sociali
                  */
                 \wp_nav_menu(
-                    array(
+                    [
                         'theme_location'    => 'social-menu',
                         'depth'             => 1,
                         'container'         => 'div',
@@ -39,7 +39,7 @@ use ItalyStrap\Navigation\Infrastructure\BootstrapNavMenu;
                         'link_before'       => '<span class="item-title">',
                         'link_after'        => '</span>',
                         'walker'            => new BootstrapNavMenu(),
-                    )
+                    ]
                 );
                 ?>
             </div>

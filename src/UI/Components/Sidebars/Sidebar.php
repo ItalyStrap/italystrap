@@ -9,7 +9,7 @@ use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigSidebarProvider;
 use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\UI\Components\Main\Events\ContentAfter;
-use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
+use ItalyStrap\View\ViewInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 class Sidebar implements ComponentInterface, SubscriberInterface
@@ -23,11 +23,11 @@ class Sidebar implements ComponentInterface, SubscriberInterface
     public const INDEX = 'index';
 
     private ConfigInterface $config;
-    private ViewBlockInterface $view;
+    private ViewInterface $view;
     private EventDispatcherInterface $dispatcher;
     public function __construct(
         ConfigInterface $config,
-        ViewBlockInterface $view,
+        ViewInterface $view,
         EventDispatcherInterface $dispatcher
     ) {
         $this->config = $config;

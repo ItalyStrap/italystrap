@@ -14,7 +14,9 @@ use ItalyStrap\UI\Elements\Search;
 class ContentTest extends UnitTestCase
 {
     use IsDisplayableTestTrait;
-    use CommonRenderViewBlockTestTrait;
+    use CommonRenderViewBlockTestTrait {
+        testItShouldRenderWithViewBlockFromCommonTrait as ItShouldRenderFromCommonTrait;
+    }
 
     protected function makeInstance(): Content
     {
@@ -32,6 +34,12 @@ class ContentTest extends UnitTestCase
 
     public function testItShouldRenderWithViewBlockFromCommonTrait()
     {
-        $this->markTestSkipped('Implement this test');
+        $this->defineFunction('is_front_page', static fn(): bool => true);
+        $this->defineFunction('current_user_can', static fn(): bool => true);
+        $this->defineFunction('__', static fn(string $text): string => $text);
+        $this->defineFunction('admin_url', static fn(string $text): string => $text);
+        $this->defineFunction('esc_url', static fn(string $text): string => $text);
+
+        $this->ItShouldRenderFromCommonTrait();
     }
 }

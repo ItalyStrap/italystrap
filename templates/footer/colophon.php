@@ -9,12 +9,12 @@ use ItalyStrap\UI\Components\Footer\Colophon;
 use function wp_kses_post;
 
 ?>
-<!-- wp:group {"layout":{"inherit":true}} -->
+<!-- wp:group {"layout":{"type":"constrained"}} -->
 <div class="wp-block-group">
     <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
     <div class="wp-block-group">
         <!-- wp:paragraph -->
-        <p><?php echo wp_kses_post((string)$this->get(Colophon::CONTENT, '')) ; ?></p>
+        <p><?php echo wp_kses_post((string)$this->get(Colophon::CONTENT, '')); ?></p>
         <!-- /wp:paragraph -->
     </div>
     <!-- /wp:group -->

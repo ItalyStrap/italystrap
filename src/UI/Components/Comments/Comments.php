@@ -8,7 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\UI\Components\Main\Events\Content;
-use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
+use ItalyStrap\View\ViewInterface;
 
 class Comments implements ComponentInterface, SubscriberInterface
 {
@@ -23,8 +23,8 @@ class Comments implements ComponentInterface, SubscriberInterface
     public const TEMPLATE_NAME = 'comments/comments';
 
     private ConfigInterface $config;
-    private ViewBlockInterface $view;
-    public function __construct(ConfigInterface $config, ViewBlockInterface $view)
+    private ViewInterface $view;
+    public function __construct(ConfigInterface $config, ViewInterface $view)
     {
         $this->config = $config;
         $this->view = $view;

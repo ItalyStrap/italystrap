@@ -7,7 +7,6 @@ namespace ItalyStrap\Tests\Unit\Components\Navigation;
 use ItalyStrap\Navigation\UI\Components\Pagination;
 use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\UI\Components\ComponentInterface;
-use Prophecy\Argument;
 
 class PaginationTest extends UnitTestCase
 {
@@ -38,7 +37,7 @@ class PaginationTest extends UnitTestCase
         $sut = $this->getInstance();
         $this->defineFunction('do_blocks', static fn(string $block) => 'block');
 
-        $this->view->render(Pagination::TEMPLATE_NAME, Argument::type('array'))->willReturn('block');
+        $this->view->render(Pagination::TEMPLATE_NAME)->willReturn('block');
         $this->expectOutputString('block');
         $sut->display();
     }

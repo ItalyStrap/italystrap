@@ -17,8 +17,7 @@ class HeaderTest extends UnitTestCase
     protected function makeInstance(): Header
     {
         $sut = new Header(
-            $this->makeConfig(),
-            $this->makeViewBlock(),
+            $this->makeView(),
             $this->makeDispatcher(),
             $this->makeTag()
         );
@@ -37,7 +36,7 @@ class HeaderTest extends UnitTestCase
                 'class-2',
             ]);
 
-        $this->viewBlock->render(Header::TEMPLATE_NAME, Argument::type('array'))->willReturn('header');
+        $this->view->render(Header::TEMPLATE_NAME, Argument::type('array'))->willReturn('header');
 
         $this->tester->assertRenderableEventIsChanged($sut, 'header');
     }

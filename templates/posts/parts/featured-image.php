@@ -10,4 +10,4 @@ use ItalyStrap\UI\Components\Posts\Parts\FeaturedImage;
 /** @var ConfigInterface $this */
 
 ?>
-<!-- wp:post-featured-image <?= (string)$this->get(FeaturedImage::ATTRIBUTES);?>  /-->
+<!-- wp:post-featured-image <?= \wp_strip_all_tags((string)$this->get(FeaturedImage::ATTRIBUTES));?>  /-->

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests;
 
 use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
-use ItalyStrap\Components\AuthorInfo;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Empress\AurynConfigInterface;
@@ -18,6 +17,7 @@ use ItalyStrap\HTML\Tag;
 use ItalyStrap\Navigation\UI\Components\Navbar;
 use ItalyStrap\Theme\Infrastructure\Support as ThemeSupport;
 use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Elements\AuthorInfo;
 use ItalyStrap\View\ViewInterface;
 use Prophecy\Prophet;
 

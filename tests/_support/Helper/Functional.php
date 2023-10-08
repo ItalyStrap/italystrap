@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Helper;
 
 // here you can define custom actions
@@ -11,9 +13,6 @@ class Functional extends \Codeception\Module
 {
     public function seeResponseContains($text)
     {
-        try {
-            $this->assertStringContainsString($text, $this->getModule('WPBrowser')->_getResponseContent(), "Response contains");
-        } catch (ModuleException $e) {
-        }
+        $this->assertStringContainsString($text, $this->getModule('WPBrowser')->_getResponseContent(), "Response must contain {$text}");
     }
 }

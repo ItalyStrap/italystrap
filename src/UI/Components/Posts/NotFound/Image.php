@@ -76,7 +76,7 @@ class Image implements ComponentInterface, SubscriberInterface
         $event->appendContent((string)$this->figure);
     }
 
-    private function content()
+    private function content(): string
     {
         $size = (string)$this->config->get(ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE);
         $html = \wp_get_attachment_image(
@@ -88,7 +88,7 @@ class Image implements ComponentInterface, SubscriberInterface
             ]
         );
 
-        return $this->dispatcher->filter('italystrap_lazyload_images_in_this_content', $html);
+        return (string)$this->dispatcher->filter('italystrap_lazyload_images_in_this_content', $html);
     }
 
     private function hasImage(): bool

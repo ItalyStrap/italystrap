@@ -7,7 +7,7 @@ namespace ItalyStrap\UI\Components\Posts;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\UI\Components\Main\Events\Content;
-use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
+use ItalyStrap\View\ViewInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 class Posts implements ComponentInterface, SubscriberInterface
@@ -19,11 +19,11 @@ class Posts implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'posts/posts';
 
-    private ViewBlockInterface $view;
+    private ViewInterface $view;
     private EventDispatcherInterface $dispatcher;
 
     public function __construct(
-        ViewBlockInterface $view,
+        ViewInterface $view,
         EventDispatcherInterface $dispatcher
     ) {
         $this->view = $view;

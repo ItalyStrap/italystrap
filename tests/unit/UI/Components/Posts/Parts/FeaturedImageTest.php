@@ -48,7 +48,7 @@ class FeaturedImageTest extends UnitTestCase
         $this->assertTrue($sut->shouldDisplay(), '');
     }
 
-    public function testItShouldRender()
+    public function testItShouldRenderWithViewBlockFromCommonTrait()
     {
         $size_slig_result = 'full_width';
         $this->config->get(ConfigPostThumbnailProvider::POST_THUMBNAIL_SIZE)->willReturn($size_slig_result);

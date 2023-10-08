@@ -4,29 +4,34 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation\UI\Components;
 
-use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Support;
 use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Components\Main\Events\Content;
 
 use function ob_get_clean;
 use function ob_start;
 
 class Breadcrumbs implements ComponentInterface, SubscriberInterface
 {
-    use SubscribedEventsAware;
-
-    public const EVENT_NAME = 'italystrap_before_loop';
     public const EVENT_PRIORITY = 10;
 
-    private EventDispatcherInterface $dispatcher;
+    public function getSubscribedEvents(): iterable
+    {
+        yield Content::class => [
+            SubscriberInterface::CALLBACK => $this,
+            SubscriberInterface::PRIORITY => self::EVENT_PRIORITY,
+        ];
+    }
+
+    private GlobalDispatcherInterface $dispatcher;
     private ConfigInterface $config;
     private Support $support;
 
     public function __construct(
-        EventDispatcherInterface $dispatcher,
+        GlobalDispatcherInterface $dispatcher,
         ConfigInterface $config,
         Support $support
     ) {
@@ -46,14 +51,16 @@ class Breadcrumbs implements ComponentInterface, SubscriberInterface
             && ! \in_array('hide_breadcrumbs', $this->config->get('post_content_template'), true);
     }
 
-    public function display(): void
+    /**
+     * @examples:
+     * $args = [
+     *     'home'   => '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
+     * ];
+     */
+    public function __invoke(Content $event): void
     {
-        $args = [
-            // 'home'   => '<i class="glyphicon glyphicon-home" aria-hidden="true"></i>',
-        ];
-
         ob_start();
-        $this->dispatcher->trigger('do_breadcrumbs', $args);
-        echo (string)ob_get_clean();
+        $this->dispatcher->trigger('do_breadcrumbs', []);
+        $event->appendContent((string)ob_get_clean());
     }
 }

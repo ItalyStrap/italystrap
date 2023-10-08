@@ -9,7 +9,7 @@ use ItalyStrap\Config\ConfigNotFoundProvider;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\UI\Components\Posts\Events\PostsNotFoundContent;
-use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
+use ItalyStrap\View\ViewInterface;
 
 class Title implements ComponentInterface, SubscriberInterface
 {
@@ -26,11 +26,11 @@ class Title implements ComponentInterface, SubscriberInterface
     public const TEMPLATE_NAME = 'posts/not-found/title';
 
     private ConfigInterface $config;
-    private ViewBlockInterface $view;
+    private ViewInterface $view;
 
     public function __construct(
         ConfigInterface $config,
-        ViewBlockInterface $view
+        ViewInterface $view
     ) {
         $this->config = $config;
         $this->view = $view;

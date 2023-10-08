@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\UI\Components\Header;
 
-use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
-use ItalyStrap\HTML\Tag;
+use ItalyStrap\HTML\TagInterface;
 use ItalyStrap\UI\Components\ComponentInterface;
-use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
+use ItalyStrap\View\ViewInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 class Header implements ComponentInterface, SubscriberInterface
@@ -19,21 +18,17 @@ class Header implements ComponentInterface, SubscriberInterface
     }
 
     public const TEMPLATE_NAME = 'header/header';
-    public const BODY_CLASS_NAMES = 'body_class_names';
     public const WRAPPER_CLASS_NAMES = 'wrapper_class_names';
 
-    private ConfigInterface $config;
-    private ViewBlockInterface $view;
-    private Tag $tag;
+    private ViewInterface $view;
+    private TagInterface $tag;
     private EventDispatcherInterface $dispatcher;
 
     public function __construct(
-        ConfigInterface $config,
-        ViewBlockInterface $view,
+        ViewInterface $view,
         EventDispatcherInterface $dispatcher,
-        Tag $tag
+        TagInterface $tag
     ) {
-        $this->config = $config;
         $this->view = $view;
         $this->dispatcher = $dispatcher;
         $this->tag = $tag;
@@ -48,12 +43,7 @@ class Header implements ComponentInterface, SubscriberInterface
     {
         $event->appendContent($this->view->render(self::TEMPLATE_NAME, [
             EventDispatcherInterface::class => $this->dispatcher,
-            Tag::class => $this->tag,
-            self::BODY_CLASS_NAMES => \sprintf(
-                '%s %s',
-                \join(' ', \get_body_class()),
-                (string)$this->config->get('current_template_slug')
-            ),
+            TagInterface::class => $this->tag,
             self::WRAPPER_CLASS_NAMES => 'wrapper wp-site-blocks',
         ]));
     }

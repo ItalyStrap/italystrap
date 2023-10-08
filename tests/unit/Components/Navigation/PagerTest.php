@@ -8,11 +8,10 @@ use ItalyStrap\Navigation\UI\Components\Pager;
 use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\UI\Components\ComponentInterface;
 use PHPUnit\Framework\Assert;
-use Prophecy\Argument;
 
 class PagerTest extends UnitTestCase
 {
-    protected function getInstance(): Pager
+    protected function makeInstance(): Pager
     {
         $sut = new Pager($this->makeConfig(), $this->makeView());
         $this->assertInstanceOf(ComponentInterface::class, $sut, '');
@@ -24,7 +23,7 @@ class PagerTest extends UnitTestCase
      */
     public function itShouldLoad()
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
 
         $this->defineFunction('is_single', static fn() => true);
 
@@ -46,10 +45,10 @@ class PagerTest extends UnitTestCase
      */
     public function itShouldDisplay()
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
         $this->defineFunction('do_blocks', static fn(string $block) => 'block');
 
-        $this->view->render(Pager::TEMPLATE_NAME, Argument::type('array'))->willReturn('block');
+        $this->view->render(Pager::TEMPLATE_NAME)->willReturn('block');
         $this->expectOutputString('block');
         $sut->display();
     }

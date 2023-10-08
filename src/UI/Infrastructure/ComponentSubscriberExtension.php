@@ -35,14 +35,31 @@ class ComponentSubscriberExtension implements Extension
 
     public function execute(AurynConfigInterface $application)
     {
+//        $listeners = [
+//            'template_include',
+//            'enqueue_block_editor_assets',
+//        ];
+//
+//        foreach ($listeners as $listener) {
+//            $this->listenerRegister->addListener(
+//                $listener,
+//                function (string $current_template = '') use ($application): string {
+//                    $application->walk($this->name(), $this);
+//                    return $current_template;
+//                },
+//                PHP_INT_MAX - 5
+//            );
+//        }
+//
+        $application->walk($this->name(), $this);
+
         $this->listenerRegister->addListener(
             'template_include',
             function (string $current_template = '') use ($application): string {
                 $application->walk($this->name(), $this);
                 return $current_template;
             },
-            PHP_INT_MAX - 5,
-            3
+            PHP_INT_MAX - 5
         );
     }
 

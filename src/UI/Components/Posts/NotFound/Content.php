@@ -10,7 +10,7 @@ use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\UI\Components\Posts\Events\PostsNotFoundContent;
 use ItalyStrap\UI\Elements\Search;
-use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
+use ItalyStrap\View\ViewInterface;
 
 class Content implements ComponentInterface, SubscriberInterface
 {
@@ -31,13 +31,13 @@ class Content implements ComponentInterface, SubscriberInterface
     public const SEARCH = 'search';
 
     private ConfigInterface $config;
-    private ViewBlockInterface $view;
+    private ViewInterface $view;
 
     private string $search = '';
 
     public function __construct(
         ConfigInterface $config,
-        ViewBlockInterface $view,
+        ViewInterface $view,
         Search $search
     ) {
         $this->config = $config;
@@ -57,10 +57,9 @@ class Content implements ComponentInterface, SubscriberInterface
             self::SEARCH => $this->search,
         ]));
     }
-
     private function content(): string
     {
-        if (\is_home() && \current_user_can('publish_posts')) {
+        if (\is_front_page() && \current_user_can('publish_posts')) {
             return \sprintf(
                 '%s <a href="%s">%s</a>.',
                 \__('Ready to publish your first post?', 'italystrap'),
@@ -69,15 +68,15 @@ class Content implements ComponentInterface, SubscriberInterface
             );
         }
 
+        $this->search = (string)$this->searchObj;
+
         if (\is_search()) {
-            $this->search = (string)$this->searchObj;
             return \__(
                 'Sorry, but nothing matched your search terms. Please try again with some different keywords.',
                 'italystrap'
             );
         }
 
-        $this->search = (string)$this->searchObj;
         return (string)$this->config->get(ConfigNotFoundProvider::CONTENT);
     }
 }

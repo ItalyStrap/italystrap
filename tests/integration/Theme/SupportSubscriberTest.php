@@ -7,44 +7,86 @@ namespace ItalyStrap\Tests\Integration\Theme;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Tests\IntegrationTestCase;
 use ItalyStrap\Theme\Application\SupportSubscriber;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeSupportProvider;
+use ItalyStrap\Theme\Infrastructure\Support;
 
 use function ItalyStrap\Factory\injector;
 
 class SupportSubscriberTest extends IntegrationTestCase
 {
-    protected function getInstance($paramConfig = []): SupportSubscriber
+    public static function supportProvider(): iterable
     {
-        $config = ConfigFactory::make($paramConfig);
-        codecept_debug($config->get(SupportSubscriber::class));
-        return injector()->make(SupportSubscriber::class, [
-            ':config' => $config,
-        ]);
+        yield 'Automatic Feed Links' => [
+            'automatic-feed-links',
+        ];
+
+        yield 'Post Thumbnails' => [
+            'post-thumbnails',
+        ];
+
+//        yield 'HTML5' => [
+//            'html5',
+//        ];
+
+        yield 'Title Tag' => [
+            'title-tag',
+        ];
+
+        yield 'Post Formats' => [
+            'post-formats',
+        ];
+
+        yield 'Custom Header' => [
+            ConfigThemeSupportProvider::CUSTOM_HEADER,
+        ];
+
+        yield 'Custom Logo' => [
+            ConfigThemeSupportProvider::CUSTOM_LOGO,
+        ];
+
+        yield 'Custom Background' => [
+            'custom-background',
+        ];
+
+        yield 'Customize selective refresh widgets' => [
+            'customize-selective-refresh-widgets',
+        ];
+
+        yield 'Breadcrumbs' => [
+            'breadcrumbs',
+        ];
+
+        /**
+         * Gutenberg stuff
+         */
+
+        yield 'Align Wide' => [
+            'align-wide',
+        ];
+
+        yield 'Editor Styles' => [
+            'editor-styles',
+        ];
+
+        yield 'Responsive Embeds' => [
+            'responsive-embeds',
+        ];
+
+        yield 'WP Block Styles' => [
+            'wp-block-styles',
+        ];
+
+        yield 'Block template parts' => [
+            'block-template-parts',
+        ];
     }
 
     /**
-     * @test
+     * @dataProvider supportProvider
      */
-    public function itShouldRegister()
+    public function testItShouldHadRegisteredSupport(string $feature)
     {
-        $support = [
-            'automatic-feed-links',
-            'html5' => [
-                'comment-form',
-                'comment-list',
-                'search-form',
-                'gallery',
-                'caption',
-                'style',
-                'script',
-            ],
-        ];
-
-        $sut = $this->getInstance($support);
-
-        $sut();
-
-        codecept_debug(\get_theme_support('html5'));
-
-//        $this->assertEqualSets([$support['html5']], \get_theme_support('html5'));
+        $support = new Support();
+        $this->assertTrue($support->has($feature), 'Should has support for ' . $feature);
     }
 }

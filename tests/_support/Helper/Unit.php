@@ -20,6 +20,6 @@ class Unit extends \Codeception\Module
         $sut($event);
         $this->assertNotEmpty((string)$event, '');
         $this->assertSame($expected, (string)$event, '');
-        unset($event, $sut);
+//        unset($event, $sut);
     }
 }

@@ -47,6 +47,7 @@ class ConfigThemeSupportProvider
                 'comment-list',
                 'gallery',
                 'caption',
+                'style',
                 'script',
             ],
 
@@ -149,131 +150,133 @@ class ConfigThemeSupportProvider
              *
              * @var array
              */
-            'starter-content'   => [
-                'widgets' => [
-                    // Place three core-defined widgets in the sidebar area.
-                    'sidebar-1' => [
-                        'text_business_info',
-                        'search',
-                        'text_about',
-                        'italystrap_posts',
-                        // 'text_test'  => array(
-                        //  'text'  => array(
-                        //      'title' => 'Title test'
-                        //  ),
-                        // ),
-                    ],
-
-                    // Add the core-defined business info widget to the footer 1 area.
-                    'footer-box-1' => [
-                        'text_business_info',
-                    ],
-
-                    // Put two core-defined widgets in the footer 2 area.
-                    'footer-box-2' => [
-                        'text_about',
-                        'search',
-                    ],
-                ],
-
-                // Specify the core-defined pages to create and add custom thumbnails to some of them.
-                'posts' => [
-                    'home',
-                    'about' => [
-                        'thumbnail' => '{{image-sandwich}}',
-                    ],
-                    'contact' => [
-                        'thumbnail' => '{{image-default}}',
-                    ],
-                    'test' => [
-                        'thumbnail' => '{{image-default}}',
-                        'post_content'  => 'POST CONTENT',
-                    ],
-                    'blog' => [
-                        'thumbnail' => '{{image-coffee}}',
-                    ],
-                    'homepage-section' => [
-                        'thumbnail' => '{{image-default}}',
-                    ],
-                ],
-
-                // Create the custom image attachments used as post thumbnails for pages.
-                'attachments' => [
-                    'image-default' => [
-                        'post_title' => _x('Default', 'Theme starter content', 'italystrap'),
-                        'file' => 'assets/img/italystrap-default-image.png', // URL relative to the template directory.
-                    ],
-                    'image-sandwich' => [
-                        'post_title' => _x('Sandwich', 'Theme starter content', 'italystrap'),
-                        'file' => 'img/images/sandwich.jpg',
-                    ],
-                    'image-coffee' => [
-                        'post_title' => _x('Coffee', 'Theme starter content', 'italystrap'),
-                        'file' => 'img/images/coffee.jpg',
-                    ],
-                ],
-
-                // Default to a static front page and assign the front and posts pages.
-                'options' => [
-                    'show_on_front' => 'page',
-                    'page_on_front' => '{{home}}',
-                    'page_for_posts' => '{{blog}}',
-                ],
-
-                // Set the front page section theme mods to the IDs of the core-registered pages.
-                'theme_mods' => [
-                    'panel_1' => '{{homepage-section}}',
-                    'panel_2' => '{{about}}',
-                    'panel_3' => '{{blog}}',
-                    'panel_4' => '{{contact}}',
-                ],
-
-                // Set up nav menus for each of the two areas registered in the theme.
-                'nav_menus' => [
-                    // Assign a menu to the "top" location.
-                    'info-menu' => [
-                        'name' => __('Info Menu', 'italystrap'),
-                        'items' => [
-                            'link_home', // Note that the core "home" page is actually a
-                            //link in case a static front page is not used.
-                            'page_about',
-                            'page_blog',
-                            'page_contact',
-                        ],
-                    ],
-
-                    // Assign a menu to the "social" location.
-                    'social-menu' => [
-                        'name' => __('Social Links Menu', 'italystrap'),
-                        'items' => [
-                            'link_yelp',
-                            'link_facebook',
-                            'link_twitter',
-                            'link_instagram',
-                            'link_email',
-                            'link_test',
-                        ],
-                    ],
-
-                    // Assign a menu to the "social" location.
-                    'main-menu' => [
-                        'name' => __('Main Menu', 'italystrap'),
-                        'items' => [
-                            'link_home', // Note that the core "home" page is actually a
-                            //link in case a static front page is not used.
-                            'page_about',
-                            'page_blog',
-                            'page_contact',
-                            'page_test',
-                        ],
-                    ],
-                ],
-            ],
+//            'starter-content'   => [
+//                'widgets' => [
+//                    // Place three core-defined widgets in the sidebar area.
+//                    'sidebar-1' => [
+//                        'text_business_info',
+//                        'search',
+//                        'text_about',
+//                        'italystrap_posts',
+//                        // 'text_test'  => array(
+//                        //  'text'  => array(
+//                        //      'title' => 'Title test'
+//                        //  ),
+//                        // ),
+//                    ],
+//
+//                    // Add the core-defined business info widget to the footer 1 area.
+//                    'footer-box-1' => [
+//                        'text_business_info',
+//                    ],
+//
+//                    // Put two core-defined widgets in the footer 2 area.
+//                    'footer-box-2' => [
+//                        'text_about',
+//                        'search',
+//                    ],
+//                ],
+//
+//                // Specify the core-defined pages to create and add custom thumbnails to some of them.
+//                'posts' => [
+//                    'home',
+//                    'about' => [
+//                        'thumbnail' => '{{image-sandwich}}',
+//                    ],
+//                    'contact' => [
+//                        'thumbnail' => '{{image-default}}',
+//                    ],
+//                    'test' => [
+//                        'thumbnail' => '{{image-default}}',
+//                        'post_content'  => 'POST CONTENT',
+//                    ],
+//                    'blog' => [
+//                        'thumbnail' => '{{image-coffee}}',
+//                    ],
+//                    'homepage-section' => [
+//                        'thumbnail' => '{{image-default}}',
+//                    ],
+//                ],
+//
+//                // Create the custom image attachments used as post thumbnails for pages.
+//                'attachments' => [
+//                    'image-default' => [
+//                        'post_title' => _x('Default', 'Theme starter content', 'italystrap'),
+//                        'file' => 'assets/img/italystrap-default-image.png', // URL relative to the template directory.
+//                    ],
+//                    'image-sandwich' => [
+//                        'post_title' => _x('Sandwich', 'Theme starter content', 'italystrap'),
+//                        'file' => 'img/images/sandwich.jpg',
+//                    ],
+//                    'image-coffee' => [
+//                        'post_title' => _x('Coffee', 'Theme starter content', 'italystrap'),
+//                        'file' => 'img/images/coffee.jpg',
+//                    ],
+//                ],
+//
+//                // Default to a static front page and assign the front and posts pages.
+//                'options' => [
+//                    'show_on_front' => 'page',
+//                    'page_on_front' => '{{home}}',
+//                    'page_for_posts' => '{{blog}}',
+//                ],
+//
+//                // Set the front page section theme mods to the IDs of the core-registered pages.
+//                'theme_mods' => [
+//                    'panel_1' => '{{homepage-section}}',
+//                    'panel_2' => '{{about}}',
+//                    'panel_3' => '{{blog}}',
+//                    'panel_4' => '{{contact}}',
+//                ],
+//
+//                // Set up nav menus for each of the two areas registered in the theme.
+//                'nav_menus' => [
+//                    // Assign a menu to the "top" location.
+//                    'info-menu' => [
+//                        'name' => __('Info Menu', 'italystrap'),
+//                        'items' => [
+//                            'link_home', // Note that the core "home" page is actually a
+//                            //link in case a static front page is not used.
+//                            'page_about',
+//                            'page_blog',
+//                            'page_contact',
+//                        ],
+//                    ],
+//
+//                    // Assign a menu to the "social" location.
+//                    'social-menu' => [
+//                        'name' => __('Social Links Menu', 'italystrap'),
+//                        'items' => [
+//                            'link_yelp',
+//                            'link_facebook',
+//                            'link_twitter',
+//                            'link_instagram',
+//                            'link_email',
+//                            'link_test',
+//                        ],
+//                    ],
+//
+//                    // Assign a menu to the "social" location.
+//                    'main-menu' => [
+//                        'name' => __('Main Menu', 'italystrap'),
+//                        'items' => [
+//                            'link_home', // Note that the core "home" page is actually a
+//                            //link in case a static front page is not used.
+//                            'page_about',
+//                            'page_blog',
+//                            'page_contact',
+//                            'page_test',
+//                        ],
+//                    ],
+//                ],
+//            ],
 
             /** =================================
              * Theme support for Gutenberg editor
              *
              * https://wordpress.org/gutenberg/handbook/designers-developers/developers/themes/theme-support/
+             *
+             * @see _add_default_theme_supports()
              *
              * @since WordPress 5.0
             ===================================*/
@@ -326,12 +329,14 @@ class ConfigThemeSupportProvider
 
             /**
              * If the theme support align-wide then activate it
+             * https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#wide-alignment
              */
             'align-wide',
 
             /**
              * Support for Gutenberg editor style
              * Then make sure you are loading the editor-style.css
+             * https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#editor-styles
              */
             'editor-styles',
 
@@ -350,6 +355,7 @@ class ConfigThemeSupportProvider
             'responsive-embeds',
 
             /**
+             * https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#default-block-styles
              * https://wordpress.org/support/topic/wp-block-styles/
              * Some blocks in Gutenberg like tables, quotes, separator benefit from structural styles
              * (margin, padding, border etc…)
@@ -361,6 +367,17 @@ class ConfigThemeSupportProvider
              * https://make.wordpress.org/core/2018/06/05/whats-new-in-gutenberg-5th-june/
              */
             'wp-block-styles',
+
+            /**
+             * https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#block-based-template-parts
+             * This feature allows themes to register block templates parts:
+             *  - The block template parts editor UI is activated
+             *  - The theme also need to add html files in a folder called parts
+             *  - - Example:
+             *  - - - parts/footer.html
+             *  - - - parts/header.html
+             */
+            'block-template-parts',
         ];
     }
 }

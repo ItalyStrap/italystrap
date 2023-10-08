@@ -6,7 +6,6 @@ namespace ItalyStrap\Tests;
 
 use Codeception\Test\Unit;
 use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
-use ItalyStrap\Components\AuthorInfo;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Empress\AurynConfigInterface;
@@ -20,6 +19,7 @@ use ItalyStrap\HTML\Tag;
 use ItalyStrap\Navigation\UI\Components\Navbar;
 use ItalyStrap\Theme\Infrastructure\Support as ThemeSupport;
 use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Elements\AuthorInfo;
 use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
 use ItalyStrap\View\ViewInterface;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -189,7 +189,6 @@ class UnitTestCase extends Unit
         $this->tearDownProphet();
         $this->undefineAllFunction(
             [
-                'do_blocks'
             ]
         );
     }

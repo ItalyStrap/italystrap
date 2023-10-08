@@ -35,6 +35,6 @@ class Pagination implements SubscriberInterface, ComponentInterface
 
     public function display(): void
     {
-        echo \do_blocks($this->view->render(self::TEMPLATE_NAME, []));
+        echo \do_blocks($this->view->render(self::TEMPLATE_NAME));
     }
 }

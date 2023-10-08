@@ -8,7 +8,7 @@ use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigSidebarProvider;
 use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\UI\Components\Footer\Events\Content;
-use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
+use ItalyStrap\View\ViewInterface;
 
 class FooterWidgetArea implements ComponentInterface, SubscriberInterface
 {
@@ -19,10 +19,10 @@ class FooterWidgetArea implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'footer/widget-area';
 
-    private ViewBlockInterface $view;
+    private ViewInterface $view;
 
     public function __construct(
-        ViewBlockInterface $view
+        ViewInterface $view
     ) {
         $this->view = $view;
     }

@@ -5,30 +5,33 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests;
 
 use Codeception\Test\Unit;
-use ItalyStrap\Asset\InlineStyleGenerator;
-use ItalyStrap\Components\AuthorInfo;
-use ItalyStrap\Components\ComponentInterface;
-use ItalyStrap\Components\Navigations\Navbar;
+use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Empress\AurynConfigInterface;
 use ItalyStrap\Empress\Injector;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface;
+use ItalyStrap\Event\ListenerRegisterInterface;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
 use ItalyStrap\Finder\FinderInterface;
 use ItalyStrap\HTML\Tag;
-use ItalyStrap\Theme\Support as ThemeSupport;
+use ItalyStrap\Navigation\UI\Components\Navbar;
+use ItalyStrap\Theme\Infrastructure\Support as ThemeSupport;
+use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Elements\AuthorInfo;
+use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
 use ItalyStrap\View\ViewInterface;
 use Prophecy\Prophecy\ObjectProphecy;
 use Prophecy\Prophet;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use UnitTester;
 use WP_Customize_Manager;
 use WP_Theme;
 
 class UnitTestCase extends Unit
 {
-    use UndefinedFunctionDefinitionTrait;
+    use DefineUndefineFunctionsTrait;
 
     protected UnitTester $tester;
 
@@ -36,121 +39,142 @@ class UnitTestCase extends Unit
 
     protected ObjectProphecy $config;
 
-    protected function getConfig(): ConfigInterface
+    protected function makeConfig(): ConfigInterface
     {
         return $this->config->reveal();
     }
 
+    protected ObjectProphecy $globalDispatcher;
+
+    protected function makeGlobalDispatcher(): GlobalDispatcherInterface
+    {
+        return $this->globalDispatcher->reveal();
+    }
+
     protected ObjectProphecy $dispatcher;
 
-    protected function getDispatcher(): EventDispatcherInterface
+    protected function makeDispatcher(): EventDispatcherInterface
     {
         return $this->dispatcher->reveal();
     }
 
     protected ObjectProphecy $subscriberRegister;
 
-    protected function getSubscriberRegister(): SubscriberRegisterInterface
+    protected function makeSubscriberRegister(): SubscriberRegisterInterface
     {
         return $this->subscriberRegister->reveal();
     }
 
     protected ObjectProphecy $view;
 
-    protected function getView(): ViewInterface
+    protected function makeView(): ViewInterface
     {
         return $this->view->reveal();
     }
 
+    protected ObjectProphecy $viewBlock;
+
+    protected function makeViewBlock(): ViewBlockInterface
+    {
+        return $this->viewBlock->reveal();
+    }
+
     protected ObjectProphecy $injector;
 
-    protected function getInjector(): Injector
+    protected function makeInjector(): Injector
     {
         return $this->injector->reveal();
     }
 
     protected ObjectProphecy $aurynConfigInterface;
 
-    protected function getAurynConfigInterface(): AurynConfigInterface
+    protected function makeAurynConfigInterface(): AurynConfigInterface
     {
         return $this->aurynConfigInterface->reveal();
     }
 
     protected ObjectProphecy $finder;
 
-    protected function getFinder(): FinderInterface
+    protected function makeFinder(): FinderInterface
     {
         return $this->finder->reveal();
     }
 
     protected ObjectProphecy $theme_support;
 
-    protected function getThemeSupport(): ThemeSupport
+    protected function makeThemeSupport(): ThemeSupport
     {
         return $this->theme_support->reveal();
     }
 
     protected ObjectProphecy $component;
 
-    protected function getComponent(): ComponentInterface
+    protected function makeComponent(): ComponentInterface
     {
         return $this->component->reveal();
     }
 
     protected ObjectProphecy $navbar;
 
-    protected function getNavbar(): Navbar
+    protected function makeNavbar(): Navbar
     {
         return $this->navbar->reveal();
     }
 
     protected ObjectProphecy $tag;
 
-    protected function getTag(): Tag
+    protected function makeTag(): Tag
     {
         return $this->tag->reveal();
     }
 
     protected ObjectProphecy $fileInfoFactory;
 
-    protected function getFileInfoFactory(): FileInfoFactoryInterface
+    protected function makeFileInfoFactory(): FileInfoFactoryInterface
     {
         return $this->fileInfoFactory->reveal();
     }
 
     protected ObjectProphecy $inlineStyleGenerator;
 
-    protected function getInlineStyleGenerator(): InlineStyleGenerator
+    protected function makeInlineStyleGenerator(): InlineStyleGenerator
     {
         return $this->inlineStyleGenerator->reveal();
     }
 
     protected ObjectProphecy $theme;
 
-    protected function getTheme(): WP_Theme
+    protected function makeTheme(): WP_Theme
     {
         return $this->theme->reveal();
     }
 
     protected ObjectProphecy $manager;
 
-    protected function getWPCustomizeManager(): WP_Customize_Manager
+    protected function makeWPCustomizeManager(): WP_Customize_Manager
     {
         return $this->manager->reveal();
     }
 
     protected ObjectProphecy $control;
 
-    protected function getFieldControlFactory(): FieldControlFactory
+    protected function makeFieldControlFactory(): FieldControlFactory
     {
         return $this->control->reveal();
     }
 
     protected ObjectProphecy $author;
 
-    protected function getAuthorInfo(): AuthorInfo
+    protected function makeAuthorInfo(): AuthorInfo
     {
         return $this->author->reveal();
+    }
+
+    protected ObjectProphecy $listenerRegister;
+
+    protected function makeListenerRegister(): ListenerRegisterInterface
+    {
+        return $this->listenerRegister->reveal();
     }
 
     // phpcs:ignore
@@ -163,6 +187,10 @@ class UnitTestCase extends Unit
     protected function _after()
     {
         $this->tearDownProphet();
+        $this->undefineAllFunction(
+            [
+            ]
+        );
     }
 
     private function setUpProphet()
@@ -170,6 +198,8 @@ class UnitTestCase extends Unit
         $this->prophet = new Prophet();
         $this->config = $this->prophet->prophesize(ConfigInterface::class);
         $this->view = $this->prophet->prophesize(ViewInterface::class);
+        $this->viewBlock = $this->prophet->prophesize(ViewBlockInterface::class);
+        $this->globalDispatcher = $this->prophet->prophesize(GlobalDispatcherInterface::class);
         $this->dispatcher = $this->prophet->prophesize(EventDispatcherInterface::class);
         $this->subscriberRegister = $this->prophet->prophesize(SubscriberRegisterInterface::class);
         $this->injector = $this->prophet->prophesize(Injector::class);
@@ -185,6 +215,7 @@ class UnitTestCase extends Unit
         $this->manager = $this->prophet->prophesize(WP_Customize_Manager::class);
         $this->control = $this->prophet->prophesize(FieldControlFactory::class);
         $this->author = $this->prophet->prophesize(AuthorInfo::class);
+        $this->listenerRegister = $this->prophet->prophesize(ListenerRegisterInterface::class);
 //      \Brain\Monkey\setUp();
     }
 
@@ -192,13 +223,5 @@ class UnitTestCase extends Unit
     {
 //      \Brain\Monkey\tearDown();
         $this->prophet->checkPredictions();
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldBeInstantiable()
-    {
-        $sut = $this->getInstance();
     }
 }

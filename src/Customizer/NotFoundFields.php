@@ -6,7 +6,7 @@ namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigNotFoundProvider;
-use ItalyStrap\Config\ConfigPostThumbnailProvider;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 
 class NotFoundFields
 {

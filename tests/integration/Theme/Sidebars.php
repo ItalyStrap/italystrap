@@ -8,8 +8,7 @@ use ArrayIterator;
 use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\Tag;
 use ItalyStrap\Tests\IntegrationTestCase;
-use ItalyStrap\Theme\Registrable;
-use ItalyStrap\Theme\SidebarsSubscriber;
+use ItalyStrap\Theme\Application\SidebarsSubscriber;
 use PHPUnit\Framework\Assert;
 
 use function is_registered_sidebar;
@@ -20,12 +19,9 @@ require_once 'BaseTheme.php';
 
 class Sidebars extends IntegrationTestCase
 {
-    protected function getInstance()
+    protected function getInstance(): SidebarsSubscriber
     {
-        $sut = new SidebarsSubscriber($this->getConfig(), new Tag(new Attributes()));
-        $this->assertInstanceOf(Registrable::class, $sut, '');
-        $this->assertInstanceOf(SidebarsSubscriber::class, $sut, '');
-        return $sut;
+        return new SidebarsSubscriber($this->getConfig(), new Tag(new Attributes()));
     }
 
     /**
@@ -49,7 +45,7 @@ class Sidebars extends IntegrationTestCase
         $sut = $this->getInstance();
         $sut->register();
 
-        $this->assertTrue(is_registered_sidebar($sidebar_id), '');
+        Assert::assertTrue(is_registered_sidebar($sidebar_id), '');
     }
 
     /**

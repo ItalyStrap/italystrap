@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
-use ItalyStrap\Config\ConfigSiteLogoProvider;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigThemeProvider;
+use ItalyStrap\Config\ConfigSiteLogoProvider;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
 class SiteLogoFields
 {

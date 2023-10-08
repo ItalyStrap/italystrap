@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Config;
 
-use ItalyStrap\Config\ConfigThemeProvider;
 use ItalyStrap\Tests\UnitTestCase;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
 class ConfigThemeProviderTest extends UnitTestCase
 {
     protected function getInstance(): ConfigThemeProvider
     {
-        $sut = new ConfigThemeProvider($this->getTheme(), $this->getDispatcher());
+        $sut = new ConfigThemeProvider($this->makeTheme(), $this->makeGlobalDispatcher());
         $this->assertInstanceOf(ConfigThemeProvider::class, $sut, '');
         return $sut;
     }

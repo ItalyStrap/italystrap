@@ -32,7 +32,7 @@
 	],
 	"require": {
 		"php" : ">=7.4",
-		"italystrap/empress": "^2.0.0",
+		"italystrap/empress": "dev-modularized",
 		"italystrap/event": "dev-master",
 		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
@@ -43,7 +43,8 @@
 		"rdlowrey/auryn": "^1.4",
 		"overclokk/minimum-requirements": "dev-master",
 		"cmb2/cmb2": "2.6.0",
-		"yiisoft/json": "^1.0"
+		"yiisoft/json": "^1.0",
+		"symfony/polyfill-php80": "^1.0"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^3.0.0",
@@ -58,32 +59,40 @@
 		"codeception/module-cli": "^1.0",
 		"codeception/util-universalframework": "^1.0",
 		"phpspec/prophecy-phpunit": "^2.0.0",
-		"italystrap/debug": "^2.0",
+
+		"italystrap/debug": "dev-master",
 		"italystrap/theme-json-generator": "dev-master",
+
 		"squizlabs/php_codesniffer": "*",
 		"phpcompatibility/php-compatibility": "*",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"phpstan/phpstan": "^1.8.2",
-		"szepeviktor/phpstan-wordpress": "^v1.1.0",
+
 		"vimeo/psalm": "^4.8",
+		"humanmade/psalm-plugin-wordpress": "^2.0",
+
 		"phpbench/phpbench": "@dev",
 		"infection/infection": "^0.25.0",
 		"infection/codeception-adapter": "^0.4.0",
+
 		"phpmetrics/phpmetrics": "^2.7.0",
 		"brianium/paratest": "^6.0.0",
+
 		"symfony/asset": "^5.0",
 		"inpsyde/assets": "^2.1",
 		"downshiftorg/wp-http": "^2.0",
 		"wordpress/wordpress": "dev-master",
-		"humanmade/psalm-plugin-wordpress": "^2.0",
 		"monolog/monolog": "^2.3",
 		"franzl/studio": "^0.15.0",
 		"rector/rector": "^0.14.0",
-		"hoa/console": "^3.17"
+		"hoa/console": "^3.17",
+		"fig/event-dispatcher-util": "^1.0"
 	},
 	"autoload": {
 		"psr-4": {
-			"ItalyStrap\\": "src/"
+			"ItalyStrap\\": [
+				"src/",
+				"tests/_data/Experimental/src/"
+			]
 		},
 		"files": [
 			"functions/core-booleans.php",
@@ -97,7 +106,10 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"ItalyStrap\\Tests\\": "tests/src",
+			"ItalyStrap\\Tests\\": [
+				"tests/src",
+				"tests/_data/fixtures/src"
+			],
 			"ItalyStrap\\Tests\\Unit\\": "tests/unit",
 			"ItalyStrap\\Tests\\Integration\\": "tests/integration",
 			"ItalyStrap\\Tests\\Functional\\": "tests/functional",
@@ -109,7 +121,7 @@
 			"vendor/{$name}/": ["cmb2/cmb2"]
 		},
 		"theme-json": {
-			"callable": "\\ItalyStrap\\Asset\\JsonData::getJsonData",
+			"callable": "\\ItalyStrap\\Asset\\ThemeJson::writeJson",
 			"path-for-theme-sass": "assets/sass/"
 		}
 	},
@@ -134,55 +146,52 @@
 			"@php vendor/bin/phpcbf -p"
 		],
 		"psalm": [
-			"vendor\\bin\\psalm --no-cache"
-		],
-		"phpstan": [
-			"vendor\\bin\\phpstan analyze --level=max"
+			"@php vendor//bin//psalm --no-cache"
 		],
 		"analyze": [
-			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"
+			"@php vendor//bin//phpstan analyze --level=max && vendor//bin//psalm"
 		],
 		"infection": [
-			"vendor\\bin\\infection --threads=8"
+			"@php vendor//bin//infection --threads=8"
 		],
 		"unit": [
-			"vendor\\bin\\codecept run unit",
+			"@php vendor//bin//codecept run unit",
 			"@clean"
 		],
 		"unit:cov": [
-			"vendor\\bin\\codecept run unit --coverage",
+			"@php vendor//bin//codecept run unit --coverage",
 			"@clean"
 		],
 		"unit:debug": [
-			"vendor\\bin\\codecept run unit --debug",
+			"@php vendor//bin//codecept run unit --debug",
 			"@clean"
 		],
-		"wpunit": [
-			"vendor\\bin\\codecept run wpunit",
+		"integration": [
+			"@php vendor//bin//codecept run integration",
 			"@clean"
 		],
-		"wpunit:debug": [
-			"vendor\\bin\\codecept run wpunit --debug",
+		"integration:debug": [
+			"@php vendor//bin//codecept run integration --debug",
 			"@clean"
 		],
 		"functional": [
-			"vendor\\bin\\codecept run functional"
+			"@php vendor//bin//codecept run functional"
 		],
 		"bench": [
-			"vendor\\bin\\phpbench run --report=performance"
+			"@php vendor//bin//phpbench run --report=performance"
 		],
 		"metrics": [
-			"vendor\\bin\\phpmetrics --report-html='./tests/_output/report' ./src",
+			"@php vendor//bin//phpmetrics --report-html='./tests/_output/report' ./src",
 			"@clean"
 		],
 		"insights": [
-			"vendor\\bin\\phpinsights"
+			"@php vendor//bin//phpinsights"
 		],
 		"clean": [
-			"vendor\\bin\\codecept clean"
+			"@php vendor//bin//codecept clean"
 		],
 		"rector": [
-			"vendor\\bin\\rector process src"
+			"@php vendor//bin//rector process src"
 		],
 		"theme:json": [
 			"\\ItalyStrap\\ThemeJsonGenerator\\Composer\\Plugin::run"

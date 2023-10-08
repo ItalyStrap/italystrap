@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Integration\Theme;
 
-// phpcs:disable
+use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Tests\IntegrationTestCase;
+use ItalyStrap\Theme\Application\ThumbnailsSubscriber;
+use PHPUnit\Framework\Assert;
 
+// phpcs:disable
 require_once 'BaseTheme.php';
 // phpcs:enable
 
 class Thumbnails extends IntegrationTestCase
 {
-    protected function getInstance($paramConfig = [])
+    protected function getInstance($paramConfig = []): ThumbnailsSubscriber
     {
-//      $config = $this->make( \ItalyStrap\Config\Config::class, $paramConfig );
-        $config = \ItalyStrap\Config\ConfigFactory::make($paramConfig);
-        $sut = new \ItalyStrap\Theme\ThumbnailsSubscriber($config);
-        $this->assertInstanceOf(\ItalyStrap\Theme\Registrable::class, $sut, '');
-        $this->assertInstanceOf(\ItalyStrap\Theme\ThumbnailsSubscriber::class, $sut, '');
-        return $sut;
+        $config = ConfigFactory::make($paramConfig);
+        return new ThumbnailsSubscriber($config);
     }
 
     public function itShouldRegister()
@@ -27,17 +26,17 @@ class Thumbnails extends IntegrationTestCase
         $support = [
             'sizes' => [
                 'navbar-brand-image'    => [
-                    \ItalyStrap\Theme\ThumbnailsSubscriber::WIDTH   => 45,
-                    \ItalyStrap\Theme\ThumbnailsSubscriber::HEIGHT  => 45,
-                    \ItalyStrap\Theme\ThumbnailsSubscriber::CROP        => true,
+                    ThumbnailsSubscriber::WIDTH   => 45,
+                    ThumbnailsSubscriber::HEIGHT  => 45,
+                    ThumbnailsSubscriber::CROP        => true,
                 ],
             ],
         ];
 
         $sut = $this->getInstance($support);
 
-        $sut->register();
+        $sut();
 
-        self::assertTrue(\has_image_size('navbar-brand-image'), '');
+        Assert::assertTrue(\has_image_size('navbar-brand-image'), '');
     }
 }

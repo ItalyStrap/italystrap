@@ -26,10 +26,9 @@ class WalkerNavMenuTest extends UnitTestCase
         $this->defineFunction('remove_filter', fn(...$args) => true);
     }
 
-    protected function getInstance()
+    protected function makeInstance(): \ItalyStrap\Navigation\Infrastructure\BootstrapNavMenu
     {
-        $sut = new \ItalyStrap\Navbar\BootstrapNavMenu();
-        return $sut;
+        return new \ItalyStrap\Navigation\Infrastructure\BootstrapNavMenu();
     }
 
     /**
@@ -37,7 +36,7 @@ class WalkerNavMenuTest extends UnitTestCase
      */
     public function itShouldReturnSubmenu()
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
 
         $output = '';
 

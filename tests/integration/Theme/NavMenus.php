@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Integration\Theme;
 
+use ItalyStrap\Navigation\Application\NavMenusSubscriber;
 use ItalyStrap\Tests\IntegrationTestCase;
-use ItalyStrap\Theme\NavMenusSubscriber;
-use ItalyStrap\Theme\Registrable;
+use PHPUnit\Framework\Assert;
 
 use function add_filter;
+use function boolval;
 use function has_nav_menu;
 
 class NavMenus extends IntegrationTestCase
@@ -16,8 +17,7 @@ class NavMenus extends IntegrationTestCase
     protected function getInstance(): NavMenusSubscriber
     {
         $sut = new NavMenusSubscriber($this->getConfig());
-        $this->assertInstanceOf(Registrable::class, $sut, '');
-        $this->assertInstanceOf(NavMenusSubscriber::class, $sut, '');
+        Assert::assertInstanceOf(NavMenusSubscriber::class, $sut, '');
         return $sut;
     }
 
@@ -30,18 +30,18 @@ class NavMenus extends IntegrationTestCase
         add_filter('theme_mod_nav_menu_locations', function ($default) use (&$should_load) {
             $should_load++;
             return [
-                'new-menu'          => __('Main Menu', 'italystrap'),
+                'new-menu' => __('Main Menu', 'italystrap'),
             ];
         });
 
         $this->config->toArray()->willReturn([
-            'new-menu'          => __('Main Menu', 'italystrap'),
+            'new-menu' => __('Main Menu', 'italystrap'),
         ])->shouldBeCalled(1);
 
         $sut = $this->getInstance();
-        $sut->register();
+        $sut();
 
-        $this->assertTrue(has_nav_menu('new-menu'), '');
-        $this->assertTrue(\boolval($should_load), '');
+        Assert::assertTrue(has_nav_menu('new-menu'), '');
+        Assert::assertTrue(boolval($should_load), '');
     }
 }

@@ -11,7 +11,7 @@ class ConfigMiscProviderTest extends UnitTestCase
 {
     protected function getInstance(): ConfigMiscProvider
     {
-        $sut = new ConfigMiscProvider($this->getConfig());
+        $sut = new ConfigMiscProvider($this->makeConfig());
         $this->assertInstanceOf(ConfigMiscProvider::class, $sut, '');
         return $sut;
     }

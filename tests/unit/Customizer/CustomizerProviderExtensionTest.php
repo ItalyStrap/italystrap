@@ -13,7 +13,7 @@ class CustomizerProviderExtensionTest extends UnitTestCase
 {
     protected function getInstance(): CustomizerProviderExtension
     {
-        $sut = new CustomizerProviderExtension($this->getDispatcher(), $this->getInjector());
+        $sut = new CustomizerProviderExtension($this->makeListenerRegister(), $this->makeInjector());
         $this->assertInstanceOf(Extension::class, $sut, '');
         return $sut;
     }
@@ -25,11 +25,11 @@ class CustomizerProviderExtensionTest extends UnitTestCase
     {
         $sut = $this->getInstance();
 
-        $this->dispatcher
+        $this->listenerRegister
             ->addListener('customize_register', Argument::type('callable'), 99, 3)
             ->shouldBeCalledOnce();
 
-        $sut->execute($this->getAurynConfigInterface());
+        $sut->execute($this->makeAurynConfigInterface());
     }
 
     /**
@@ -55,6 +55,6 @@ class CustomizerProviderExtensionTest extends UnitTestCase
             ->shouldBeCalledOnce()
             ->willReturn($object());
 
-        $sut->walk($class, $index, $this->getInjector());
+        $sut($class, $index, $this->makeInjector());
     }
 }

@@ -15,6 +15,7 @@ use Auryn\Injector;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\ListenerRegisterInterface;
 use function _n;
 use function do_blocks;
 use function get_comment_pages_count;
@@ -50,8 +51,8 @@ if ( post_password_required() ) {
 /** @var Injector $injector */
 $injector = injector();
 
-/** @var EventDispatcherInterface $event_dispatcher */
-$event_dispatcher = $injector->make( EventDispatcherInterface::class );
+/** @var ListenerRegisterInterface $listenerRegister */
+$listenerRegister = $injector->make(ListenerRegisterInterface::class);
 
 /** @var ConfigInterface $config */
 $config = $injector->make(ConfigInterface::class);
@@ -105,7 +106,7 @@ if ( ! have_comments() ) {
 <?php  // End have_comments().
 
 if ( ! in_array( 'hide_comments_form', $template_settings, true )  ) {
-	$event_dispatcher->addListener(
+	$listenerRegister->addListener(
 		'comment_form_comments_closed',
 		static function () {
 			echo '<p class="no-comments">' . __( 'Comments are closed.', 'italystrap' ) . '</p>';

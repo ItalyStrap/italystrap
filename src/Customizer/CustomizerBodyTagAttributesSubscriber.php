@@ -6,7 +6,7 @@ namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
-use ItalyStrap\Config\ConfigCurrentTemplateSubscriber;
+use ItalyStrap\Theme\Application\ConfigCurrentTemplateSubscriber;
 
 class CustomizerBodyTagAttributesSubscriber implements SubscriberInterface
 {
@@ -15,7 +15,7 @@ class CustomizerBodyTagAttributesSubscriber implements SubscriberInterface
     public function getSubscribedEvents(): iterable
     {
         yield 'italystrap_body_attr' => [
-            SubscriberInterface::CALLBACK   => '__invoke',
+            SubscriberInterface::CALLBACK   => $this,
         ];
     }
 

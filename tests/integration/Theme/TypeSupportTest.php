@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Integration\Theme;
 
 use ItalyStrap\Tests\IntegrationTestCase;
-use ItalyStrap\Theme\PostTypeSupportSubscriber;
+use ItalyStrap\Theme\Application\PostTypeSupportSubscriber;
 
 /**
  * @method static assertArrayHasKey(string $string, array $all_post_type_support, string $string1)

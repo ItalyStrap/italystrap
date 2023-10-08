@@ -6,8 +6,8 @@ namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\AlignmentChoicesTrait;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigPostThumbnailProvider;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 
 class PostThumbnailFields
 {

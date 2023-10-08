@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Integration;
 
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Config\ConfigThemeProvider;
 use ItalyStrap\Tests\IntegrationTestCase;
+use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
 class ThemeLoaderTest extends IntegrationTestCase
 {

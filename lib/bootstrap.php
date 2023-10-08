@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ItalyStrap functions and definitions
  *
@@ -26,6 +27,10 @@
 
 namespace ItalyStrap;
 
-_deprecated_file( '/lib/bootstrap.php', '4.0.0', '/src/bootstrap.php', '<code>require_once dirname( __FILE__ ) . \'/../src/bootstrap.php\'</code>' );
-
-require_once dirname( __FILE__ ) . '/../src/bootstrap.php';
+_deprecated_file(
+    '/lib/bootstrap.php',
+    '4.0.0',
+    '/src/bootstrap.php',
+    '<code>require_once dirname( __FILE__ ) . \'/../src/bootstrap.php\'</code>'
+);
+require_once dirname(__FILE__) . '/../src/bootstrap.php';

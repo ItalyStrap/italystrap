@@ -1,0 +1,106 @@
+name: CI
+
+env:
+  REPOSITORY_NAME: italystrap
+  PROJECT_KIND: themes
+  DB_HOST: localhost
+  DB_NAME: test
+  DB_USER: root
+  DB_PASSWORD: root
+  TABLE_PREFIX: wp_
+  APP_FOLDER_PATH: /tmp/app
+  APP_PORT: 8888
+  APP_HOST: localhost
+  APP_USER: root
+  APP_PASSWORD: root
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+  workflow_dispatch:
+
+jobs:
+
+  tests:
+    name: 🐘 Tests on PHP ${{matrix.php_versions}} & APP version ${{matrix.app_versions}}
+
+    strategy:
+      matrix:
+        php_versions: ['8']
+        app_versions: ['6.0']
+
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.php_versions == '8.2' }}
+    if: "!contains(github.event.head_commit.message, '--skip ci') && !github.event.pull_request.draft"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Start Selenium for using later
+        run: docker run -d --net=host --shm-size=2g selenium/standalone-chrome:4.6.0-20221104
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{matrix.php_versions}}
+
+      - name: Start MySQL
+        run: |
+          sudo systemctl start mysql.service
+          mysql -e "CREATE DATABASE IF NOT EXISTS ${{env.DB_NAME}};" -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
+
+      - name: Install CLI
+        run: |
+         curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+         chmod +x wp-cli.phar
+         sudo mv wp-cli.phar /usr/local/bin/wp
+         wp cli info
+
+      - name: Create folder for running the App
+        run: mkdir -p ${{env.APP_FOLDER_PATH}}
+
+      - name: Install App
+        working-directory: ${{env.APP_FOLDER_PATH}}
+        run: |
+          wp core download --version="${{matrix.app_versions}}"
+          wp config create --dbname="${{env.DB_NAME}}" --dbuser="${{env.DB_USER}}" --dbpass="${{env.DB_PASSWORD}}" --dbhost="${{env.DB_HOST}}" --dbprefix="${{env.TABLE_PREFIX}}"
+          wp core install --url="${{env.APP_HOST}}:${{env.APP_PORT}}" --title="Test" --admin_user="${{env.APP_USER}}" --admin_password="${{env.APP_PASSWORD}}" --admin_email="${{env.APP_USER}}@${{env.APP_HOST}}.test" --skip-email
+          wp core update-db
+          cp -r $GITHUB_WORKSPACE ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+
+      - uses: "ramsey/composer-install@v2"
+        with:
+          working-directory: "${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}"
+
+      - name: Activate ${{env.REPOSITORY_NAME}}
+        working-directory: ${{env.APP_FOLDER_PATH}}
+        run: |
+          wp plugin deactivate --all
+          wp site empty --yes
+          wp theme activate ${{env.REPOSITORY_NAME}}
+          wp theme list --status=active
+          chmod -R 777 wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+          ls -la wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+          wp db export wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}/tests/_data/dump.sql
+
+      - name: Build codeception
+        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+        run: ./vendor/bin/codecept build
+
+      - name: Run Unit & Integration test
+        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+        run: |
+          ./vendor/bin/codecept run unit
+          ./vendor/bin/codecept run integration
+
+      - name: Start dev server
+        run: php -S ${{env.APP_HOST}}:${{env.APP_PORT}} -t ${{env.APP_FOLDER_PATH}} >/dev/null 2>&1 &
+
+      - name: Run Functional and Acceptance test
+        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+        run: |
+          ./vendor/bin/codecept run functional --debug
+          ./vendor/bin/codecept run acceptance --debug

@@ -20,8 +20,10 @@ extensions:
 params:
     - .env
 settings:
+    shuffle: true
     colors: true
     memory_limit: 2048M
+    backup_globals: false
 coverage:
     enabled: true
     include:

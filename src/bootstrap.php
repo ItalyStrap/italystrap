@@ -1,92 +1,52 @@
 <?php
-/**
- * ItalyStrap Bootstrap File
- *
- * @package ItalyStrap
- * @since 4.0.0
- */
+
 declare(strict_types=1);
 
 namespace ItalyStrap;
 
 use Auryn\Injector;
-use ItalyStrap\Components\ComponentSubscriberExtension;
-use ItalyStrap\Config\Config;
-use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Customizer\CustomizerProviderExtension;
 use ItalyStrap\Empress\AurynConfig;
-use ItalyStrap\Event\SubscriberRegister;
-use ItalyStrap\Event\SubscriberRegisterInterface;
+use ItalyStrap\Event\GlobalOrderedListenerProvider;
 use ItalyStrap\Event\SubscribersConfigExtension;
-use ItalyStrap\Event\EventDispatcher;
-use ItalyStrap\Event\EventDispatcherInterface;
-use ItalyStrap\Config\ConfigProviderExtension;
-use ItalyStrap\Finder\Finder;
-use ItalyStrap\Finder\FinderInterface;
-use ItalyStrap\Theme\ExperimentalThemeFileFinderFactory;
+use ItalyStrap\UI\Infrastructure\ComponentSubscriberExtension;
+
 use function ItalyStrap\Factory\injector;
 
-/**
- * ========================================================================
- *
- * Autoload theme core files.
- *
- * ========================================================================
- */
-$autoload_theme_files = [
-	'../vendor/autoload.php',
-];
+require __DIR__ . DIRECTORY_SEPARATOR . '../vendor/autoload.php';
 
-foreach ( $autoload_theme_files as $file ) {
-	require __DIR__ . DIRECTORY_SEPARATOR . $file;
-}
+return (static function (Injector $injector): Injector {
+    $injectorConfig = $injector->make(AurynConfig::class, [
+        ':dependencies' => (require __DIR__ . '/../config/dependencies.config.php')($injector)
+    ]);
 
-unset($autoload_theme_files);
+    $injectorConfig->extendFromClassName(ConfigProviderExtension::class);
+    $injectorConfig->extendFromClassName(SubscribersConfigExtension::class);
+    $injectorConfig->extendFromClassName(ComponentSubscriberExtension::class);
+    $injectorConfig->extendFromClassName(CustomizerProviderExtension::class);
 
-return (static function ( Injector $injector ): Injector {
-	$injector
-		->alias( EventDispatcherInterface::class, EventDispatcher::class )
-		->share( EventDispatcher::class )
-		->alias( SubscriberRegisterInterface::class, SubscriberRegister::class )
-		->share( SubscriberRegister::class )
-		->alias( ConfigInterface::class, Config::class )
-		->share( Config::class );
+    $listenerProvider = $injector
+        ->share(GlobalOrderedListenerProvider::class)
+        ->make(GlobalOrderedListenerProvider::class);
 
-	$event_dispatcher = $injector->make( EventDispatcher::class );
+    /**
+     * ========================================================================
+     *
+     * Load the framework
+     * In this case the priority is at -1 because we have to make sure
+     * everything is loaded, plugins as well.
+     *
+     * ========================================================================
+     */
+    $listenerProvider->addListener('after_setup_theme', fn() => $injectorConfig->resolve(), -1);
 
-	$injector
-		->alias(FinderInterface::class, Finder::class)
-		->delegate(Finder::class, ExperimentalThemeFileFinderFactory::class)
-		->share( FinderInterface::class );
-
-	$finder =  $injector->make( FinderInterface::class );
-
-	$injector_config = $injector->make( AurynConfig::class, [
-		':dependencies'	=> (require __DIR__ . '/../config/dependencies.config.php')($finder)
-	] );
-
-	$injector_config->extend( $injector->make( ConfigProviderExtension::class ) );
-	$injector_config->extend( $injector->make( SubscribersConfigExtension::class ) );
-	$injector_config->extend( $injector->make( ComponentSubscriberExtension::class ) );
-	$injector_config->extend( $injector->make( CustomizerProviderExtension::class ) );
-
-	/**
-	 * ========================================================================
-	 *
-	 * Load the framework
-	 * In this case the priority is at -1 because we have to make sure
-	 * everything is loaded, plugins as well.
-	 *
-	 * ========================================================================
-	 */
-	$event_dispatcher->addListener( 'after_setup_theme', fn() => $injector_config->resolve(), -1 );
-
-	/**
-	 * So, now in your child theme you can do something like that:
-	 * $injector = require \get_template_directory() . '/src/bootstrap.php';
-	 *
-	 * or even better:
-	 * (static function( Injector $injector ) {...do stuff})(require \get_template_directory() . '/src/bootstrap.php');
-	 */
-	return $injector;
+    /**
+     * So, now in your child theme you can do something like that:
+     * $injector = require \get_template_directory() . '/src/bootstrap.php';
+     *
+     * or even better:
+     * (static function( Injector $injector ) {...do stuff})(require \get_template_directory() . '/src/bootstrap.php');
+     */
+    return $injector;
 })(injector());

@@ -1,44 +1,46 @@
 <?php
+
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Unit\Functions;
 
-use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
+use ItalyStrap\Tests\UnitTestCase;
+
 use function ItalyStrap\Image\get_ID_image_from_url;
 
-class ImageFunctionsTest extends \Codeception\Test\Unit {
-	use UndefinedFunctionDefinitionTrait;
-
-	/**
-	 * @var \UnitTester
-	 */
-	protected $tester;
+class ImageFunctionsTest extends UnitTestCase
+{
+    protected function getInstance(): void
+    {
+    }
 
 	// phpcs:ignore
 	protected function _before() {
-		$this->defineFunction( 'esc_url', fn( string $string ) => $string );
-		$this->defineFunction( 'wp_get_attachment_url', fn( $id ) => 'url' );
-	}
+        parent::_before();
+        $this->defineFunction('esc_url', fn(string $string) => $string);
+        $this->defineFunction('wp_get_attachment_url', fn($id) => 'url');
+    }
 
-	/**
-	 * @test
-	 */
-	public function getIDImageFromUrl() {
-		global $wpdb;
-		$wpdb = new class {
-
-			public $posts;
+    /**
+     * @test
+     */
+    public function getIDImageFromUrl()
+    {
+        global $wpdb;
+        $wpdb = new class {
+            public $posts;
 
 			// phpcs:ignore
 			public function get_var( $arg ) {
-			}
+            }
 
-			public function prepare( $arg ) {
-			}
-		};
+            public function prepare($arg)
+            {
+            }
+        };
 
-		$this->defineFunction( 'absint', fn( $val ) => (int) $val );
+        $this->defineFunction('absint', fn($val) => (int) $val);
 
-		get_ID_image_from_url( 'url' );
-	}
+        get_ID_image_from_url('url');
+    }
 }

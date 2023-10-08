@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Helper;
 
 // here you can define custom actions
@@ -8,11 +11,8 @@ use Codeception\Exception\ModuleException;
 
 class Functional extends \Codeception\Module
 {
-	public function seeResponseContains( $text ){
-		try {
-			$this->assertStringContainsString( $text, $this->getModule( 'WPBrowser' )->_getResponseContent(), "Response contains" );
-		} catch (ModuleException $e) {
-		}
-	}
-
+    public function seeResponseContains($text)
+    {
+        $this->assertStringContainsString($text, $this->getModule('WPBrowser')->_getResponseContent(), "Response must contain {$text}");
+    }
 }

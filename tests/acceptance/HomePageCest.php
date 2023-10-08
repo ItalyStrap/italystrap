@@ -1,28 +1,27 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Acceptance;
 
 use AcceptanceTester;
+use ItalyStrap\Tests\AcceptanceTestCase;
 
-class HomePageCest {
+class HomePageCest extends AcceptanceTestCase
+{
+    public function homePage(AcceptanceTester $i): void
+    {
+        $i->wantTo('See the home page of ItalyStrap');
 
-	// phpcs:ignore
-	public function _before( AcceptanceTester $i ) {
-	}
+        $testPageId = $i->havePageInDatabase([
+            'post_title' => 'Home Page',
+            'post_content' => 'Lorem ipsum dolor sit amet',
+        ]);
 
-	public function homePage( AcceptanceTester $i ): void {
-		$i->wantTo( 'See the home page of ItalyStrap' );
+        $i->haveOptionInDatabase('show_on_front', 'page');
+        $i->haveOptionInDatabase('page_on_front', (string)$testPageId);
 
-		$testPageId = $i->havePageInDatabase([
-			'post_title' => 'Home Page',
-			'post_content' => 'Lorem ipsum dolor sit amet',
-		]);
-
-		$i->haveOptionInDatabase('show_on_front', 'page');
-		$i->haveOptionInDatabase('page_on_front', (string)$testPageId);
-
-		$i->amOnPage('/');
-		$i->see('Lorem ipsum dolor sit amet');
-	}
+        $i->amOnPage('/');
+        $i->see('Lorem ipsum dolor sit amet');
+    }
 }

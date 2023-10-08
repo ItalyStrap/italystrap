@@ -10,7 +10,7 @@ services:
     container_name: ${PROJECT_NAME:-wordpress}_test
     restart: always
     ports:
-      - ${WP_PORT_TEST}:80
+      - ${WP_PORT}:80
     environment:
       WORDPRESS_DB_HOST: ${DB_HOST:-mysql}
       WORDPRESS_DB_NAME: ${DB_NAME:-test}
@@ -20,46 +20,28 @@ services:
       WORDPRESS_DEBUG: 1
     volumes:
       - ../:/var/www/html/wp-content/themes/${PROJECT_NAME:-wordpress}
+      - ../tests/_output/:/var/www/html/wp-content/themes/${PROJECT_NAME:-wordpress}/tests/_output/
+      - ./codeception.yml:/var/www/html/wp-content/themes/${PROJECT_NAME:-wordpress}/codeception.yml
       #- ./mu-plugins/:/var/www/html/wp-content/mu-plugins/
     depends_on:
       - mysql
     networks:
-      wpbrowser:
-#        aliases:
-#          - wp
-
-# https://mklasen.com/adding-and-using-wp-cli-in-a-docker-compose-setup/
-#  wpcli:
-#    container_name: ${PROJECT_NAME:-wp-cli}-cli_test
-#    depends_on:
-#      - wordpress
-#    image: wordpress:cli
-##    user: 1000:1000
-#    command: tail -f /dev/null
-#    volumes:
-#      - wordpress:/var/www/html
-#    environment:
-#      WORDPRESS_DB_HOST: ${NAME}-db:3306
-#      WORDPRESS_DB_USER: ${DB_USER}
-#      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
-#      WORDPRESS_DB_NAME: ${DB_NAME}
-#    profiles:
-#      - dev
+      integration_test_networks:
 
   mysql:
     image: mysql:${DB_VERSION:-5.7}
     container_name: ${PROJECT_NAME:-wordpress}_mysql_test
     restart: always
     ports:
-      - ${DB_PORT_TEST}:3306
+      - ${DB_PORT}:3306
     environment:
       MYSQL_DATABASE: ${DB_NAME:-test}
-      #MYSQL_USER: ${TEST_SITE_DB_USER:-root}
+      #MYSQL_USER: ${DB_USER:-root}
       MYSQL_PASSWORD: ${DB_PASSWORD:-root}
       #MYSQL_RANDOM_ROOT_PASSWORD: '1'
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
     networks:
-      - wpbrowser
+      - integration_test_networks
 
   phpmyadmin:
     depends_on:
@@ -68,14 +50,14 @@ services:
     container_name: ${PROJECT_NAME}_phpmyadmin_test
     restart: always
     ports:
-      - ${PMA_PORT_TEST}:80
+      - ${PMA_PORT}:80
     environment:
       #     For max upload from PHPMYADMIN https://github.com/10up/wp-local-docker-v2/issues/40#issuecomment-719915040
       UPLOAD_LIMIT: 1G
       PMA_HOST: ${DB_HOST:-mysql}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
     networks:
-      - wpbrowser
+      - integration_test_networks
 
   chromedriver:
     image: selenium/standalone-chrome:4.6.0-20221104
@@ -85,8 +67,8 @@ services:
       - "4444:4444"
       - "7900:7900"
     networks:
-      - wpbrowser
+      - integration_test_networks
 
 networks:
-  wpbrowser:
+  integration_test_networks:
     driver: bridge

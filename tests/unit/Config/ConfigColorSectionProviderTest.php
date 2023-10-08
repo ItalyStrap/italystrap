@@ -1,27 +1,27 @@
 <?php
+
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Config;
+namespace ItalyStrap\Tests\Unit\Config;
 
 use ItalyStrap\Config\ConfigColorSectionProvider;
-use ItalyStrap\Tests\BaseUnitTrait;
-use Prophecy\Argument;
+use ItalyStrap\Tests\UnitTestCase;
 
-class ConfigColorSectionProviderTest extends \Codeception\Test\Unit {
+class ConfigColorSectionProviderTest extends UnitTestCase
+{
+    protected function getInstance(): ConfigColorSectionProvider
+    {
+        $sut = new ConfigColorSectionProvider([]);
+        $this->assertInstanceOf(ConfigColorSectionProvider::class, $sut, '');
+        return $sut;
+    }
 
-	use BaseUnitTrait;
-
-	protected function getInstance(): ConfigColorSectionProvider {
-		$sut = new ConfigColorSectionProvider([]);
-		$this->assertInstanceOf(ConfigColorSectionProvider::class, $sut, '');
-		return $sut;
-	}
-
-	/**
-	 * @test
-	 */
-	public function itShouldExecute() {
-		$sut = $this->getInstance();
-		$sut();
-	}
+    /**
+     * @test
+     */
+    public function itShouldExecute()
+    {
+        $sut = $this->getInstance();
+        $sut();
+    }
 }

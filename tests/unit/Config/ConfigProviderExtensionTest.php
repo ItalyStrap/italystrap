@@ -1,61 +1,64 @@
 <?php
+
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Config;
+namespace ItalyStrap\Tests\Unit\Config;
 
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Empress\Extension;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class ConfigProviderExtensionTest extends \Codeception\Test\Unit {
+class ConfigProviderExtensionTest extends UnitTestCase
+{
+    protected function getInstance(): ConfigProviderExtension
+    {
+        $sut = new ConfigProviderExtension($this->makeConfig());
+        $this->assertInstanceOf(Extension::class, $sut, '');
+        return $sut;
+    }
 
-	use BaseUnitTrait;
+    /**
+     * @test
+     */
+    public function itShouldExecute()
+    {
+        $sut = $this->getInstance();
 
-	protected function getInstance(): ConfigProviderExtension {
-		$sut = new ConfigProviderExtension($this->getConfig());
-		$this->assertInstanceOf(Extension::class, $sut, '');
-		return $sut;
-	}
+        $this->aurynConfigInterface
+            ->walk(Argument::type('string'), Argument::type('callable'))
+            ->shouldBeCalledOnce();
 
-	/**
-	 * @test
-	 */
-	public function itShouldExecute() {
-		$sut = $this->getInstance();
+        $sut->execute($this->makeAurynConfigInterface());
+    }
 
-		$this->aurynConfigInterface
-			->walk(Argument::type('string'), Argument::type('callable'))
-			->shouldBeCalledOnce();
+    /**
+     * @test
+     */
+    public function itShouldWalkForCallable()
+    {
+        $sut = $this->getInstance();
+        $className = 'ClassName';
+        $index_or_optionName = 0;
 
-		$sut->execute($this->getAurynConfigInterface());
-	}
+        $class = new class {
+            public function __invoke(): iterable
+            {
+                return [
+                    'key' => 'value',
+                ];
+            }
+        };
 
-	/**
-	 * @test
-	 */
-	public function itShouldWalkForCallable() {
-		$sut = $this->getInstance();
-		$className = 'ClassName';
-		$index_or_optionName = 0;
+        $this->injector->share($className)->willReturn($this->injector);
+        $this->injector->make($className)->willReturn($class);
+        $this->injector
+            ->execute(Argument::type('callable'))
+            ->shouldBeCalledOnce()
+            ->willReturn($class());
 
-		$class = new class {
-			public function __invoke(): iterable {
-				return [
-					'key' => 'value',
-				];
-			}
-		};
+        $this->config->merge(Argument::exact($class()))->shouldBeCalledOnce();
 
-		$this->injector->share($className)->willReturn($this->injector);
-		$this->injector->make($className)->willReturn($class);
-		$this->injector
-			->execute(Argument::type('callable'))
-			->shouldBeCalledOnce()
-			->willReturn($class());
-
-		$this->config->merge(Argument::exact($class()))->shouldBeCalledOnce();
-
-		$sut->walk($className, $index_or_optionName, $this->getInjector());
-	}
+        $sut($className, $index_or_optionName, $this->makeInjector());
+    }
 }

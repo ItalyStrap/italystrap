@@ -2,7 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap;
+/**
+ * Title: Search
+ * Slug: italystrap/hidden-search
+ * Inserter: no
+ *
+ * @todo See the file templates/elements/search.php
+ *       In the future try to use View to include the template file here.
+ */
 
 $attributes = [
     'label' => \esc_attr_x( 'Search again with the form below.', 'search form label', 'italystrap' ),

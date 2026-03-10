@@ -9,7 +9,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Empress\AurynConfigInterface;
 use ItalyStrap\Empress\Injector;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
 use ItalyStrap\Finder\FinderInterface;
@@ -193,6 +193,6 @@ trait BaseUnitTrait
      */
     public function itShouldBeInstantiable()
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
     }
 }

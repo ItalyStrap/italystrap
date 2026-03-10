@@ -6,7 +6,7 @@ namespace ItalyStrap\Navigation\UI\Components;
 
 use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\View\ViewInterface;

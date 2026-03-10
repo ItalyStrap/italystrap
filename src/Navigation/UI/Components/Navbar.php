@@ -55,6 +55,8 @@ class Navbar
      */
     private $fallback_cb;
 
+    private NavMenu $menu;
+
     /**
      * Init the constructor
      *
@@ -244,9 +246,14 @@ class Navbar
             return apply_filters('italystrap_navbar_brand_none', '', $this->navbar_id);
         }
 
+        /**
+         * @TODO Find out why HOME_URL in local is empty
+         */
+        $homeUrl = $this->config->get('HOME_URL');
+
         $default = [
             'class' => 'navbar-brand',
-            'href' => esc_url($this->config->get('HOME_URL')),
+            'href' => $homeUrl ? esc_url($homeUrl) : '',
             'title' => sprintf(
                 '%s  -  %s',
                 \get_option('blogname'),

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Config;
 
+use Auryn\Injector;
 use ItalyStrap\Empress\AurynConfigInterface;
 use ItalyStrap\Empress\Extension;
-use ItalyStrap\Empress\Injector;
 
 class ConfigProviderExtension implements Extension
 {

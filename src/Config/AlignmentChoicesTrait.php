@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Config;
 
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 
 trait AlignmentChoicesTrait
 {

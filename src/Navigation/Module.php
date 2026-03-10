@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation;
 
+use Auryn\Injector;
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Empress\AurynConfig;
-use ItalyStrap\Empress\Injector;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Navigation\Admin\ItemCustomFieldsSubscriber;
 use ItalyStrap\Navigation\Application\NavMenusSubscriber;

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ItalyStrap;
 
-use Auryn\Injector;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Customizer\CustomizerAssetsSubscriber;

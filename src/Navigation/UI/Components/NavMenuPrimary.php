@@ -34,7 +34,7 @@ class NavMenuPrimary implements ComponentInterface, \ItalyStrap\Event\Subscriber
         ViewInterface $view,
         NavMenuInterface $menu,
         NavMenuLocationInterface $location,
-        callable $fallback = null
+        ?callable $fallback = null
     ) {
         $this->config = $config;
         $this->view = $view;

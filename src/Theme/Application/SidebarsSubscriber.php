@@ -6,15 +6,11 @@ namespace ItalyStrap\Theme\Application;
 
 use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
-use ItalyStrap\HTML\Tag;
 
 use function array_filter;
 use function array_merge;
 use function register_sidebar;
 
-/**
- * There are a standard sidebar and 4 footer dynamic sidebars
- */
 final class SidebarsSubscriber implements SubscriberInterface
 {
     public const NAME = 'name';
@@ -26,13 +22,6 @@ final class SidebarsSubscriber implements SubscriberInterface
     public const BEFORE_TITLE = 'before_title';
     public const AFTER_TITLE = 'after_title';
 
-    private Tag $tag;
-
-    /**
-     * @var array<string>
-     */
-    private array $registered_sidebars;
-
     public function getSubscribedEvents(): iterable
     {
         yield 'widgets_init'            => 'register';
@@ -41,17 +30,15 @@ final class SidebarsSubscriber implements SubscriberInterface
 
     private Config $config;
 
-    public function __construct(Config $config, Tag $tag)
+    public function __construct(Config $config)
     {
         $this->config = $config;
-        $this->tag = $tag;
-        $this->registered_sidebars = [];
     }
 
     public function register(): void
     {
         foreach ((array)$this->config->get(self::class, []) as $key => $sidebar) {
-            $this->registered_sidebars[$key] = register_sidebar($sidebar);
+            register_sidebar($sidebar);
         }
     }
 
@@ -60,9 +47,14 @@ final class SidebarsSubscriber implements SubscriberInterface
      */
     public function parseDynamicSidebarBefore($index): void
     {
-        /** @var array<string> $wp_registered_sidebars */
+        /** @var array<int|string, array> $wp_registered_sidebars */
         global $wp_registered_sidebars;
-        $wp_registered_sidebars[ $index ] = array_merge(
+
+        if (!\array_key_exists($index, $wp_registered_sidebars)) {
+            return;
+        }
+
+        $wp_registered_sidebars[$index] = array_merge(
             (array)$wp_registered_sidebars[$index],
             array_filter($this->getDefault($index))
         );
@@ -81,24 +73,24 @@ final class SidebarsSubscriber implements SubscriberInterface
             self::ID => '',
             self::DESCRIPTION => '',
             self::CLASS_NAME => '',
-            self::BEFORE_WIDGET => $this->tag->open(
-                $widget_context,
-                'div',
-                ['id' => '%1$s', 'class' => 'widget %2$s']
-            ),
-            self::AFTER_WIDGET => $this->tag->close($widget_context),
-            self::BEFORE_TITLE => $this->tag->open(
-                $title_context,
-                'h3',
-                ['class' => 'widgettitle widget-title']
-            ),
-            self::AFTER_TITLE => $this->tag->close($title_context),
-        ];
-    }
+            self::BEFORE_WIDGET => <<<'GROUP'
+<!-- wp:group {"className":"widget %2$s","layout":{"type":"constrained"}} -->
+<div id="%1$s" class="wp-block-group widget %2$s">
+GROUP
+,
+            self::AFTER_WIDGET => <<<'GROUP'
+</div>
+<!-- /wp:group -->
+GROUP,
+            self::BEFORE_TITLE => <<<'HEADING'
+<!-- wp:heading {"className":"widget-title"} -->
+<h2 class="wp-block-heading widget-title">
+HEADING,
 
-    private function defaultSidebarConfig(array $sidebar): array
-    {
-        $defaults = $this->getDefault($sidebar[ 'id' ]);
-        return array_merge($defaults, $sidebar);
+            self::AFTER_TITLE => <<<'HEADING'
+</h2>
+<!-- /wp:heading -->
+HEADING,
+        ];
     }
 }

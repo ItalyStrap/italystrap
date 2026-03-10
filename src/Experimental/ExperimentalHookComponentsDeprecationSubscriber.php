@@ -228,13 +228,13 @@ class ExperimentalHookComponentsDeprecationSubscriber implements SubscriberInter
             return;
         }
 
-        _deprecated_hook(
-            $eventName,
-            '4.0.0',
-            sprintf(
-                'Use %s instead',
-                $replacement
-            )
-        );
+//        _deprecated_hook(
+//            $eventName,
+//            '4.0.0',
+//            sprintf(
+//                'Use %s instead',
+//                $replacement
+//            )
+//        );
     }
 }

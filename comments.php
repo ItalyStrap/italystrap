@@ -13,8 +13,6 @@ namespace ItalyStrap;
 
 use Auryn\Injector;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Event\EventDispatcher;
-use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\ListenerRegisterInterface;
 use function _n;
 use function do_blocks;

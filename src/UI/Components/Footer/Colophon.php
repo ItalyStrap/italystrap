@@ -51,7 +51,7 @@ class Colophon implements ComponentInterface, SubscriberInterface
     {
         $content = (string)$this->config->get(ConfigColophonProvider::COLOPHON, '');
 
-        if (empty($content)) {
+        if ($content === '') {
             return;
         }
 

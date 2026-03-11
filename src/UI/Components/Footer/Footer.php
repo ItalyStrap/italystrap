@@ -39,7 +39,7 @@ class Footer implements ComponentInterface, SubscriberInterface
         return true;
     }
 
-    public function __invoke(\ItalyStrap\UI\Components\Main\Events\Footer $event)
+    public function __invoke(\ItalyStrap\UI\Components\Main\Events\Footer $event): void
     {
         $event->appendContent($this->view->render(self::TEMPLATE_NAME, [
             EventDispatcherInterface::class => $this->dispatcher,

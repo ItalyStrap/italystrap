@@ -209,12 +209,12 @@ class ExperimentalHookComponentsDeprecationSubscriber implements SubscriberInter
         $this->appendContent(['italystrap_after_footer'], FooterAfter::class, $event);
     }
 
-    private function appendContent(array $eventName, string $replacement, object $event): void
+    private function appendContent(array $eventsName, string $replacement, object $event): void
     {
         ob_start();
-        foreach ($eventName as $name) {
-            $this->globalDispatcher->trigger($name);
-            $this->deprecatedEventName($name, $replacement);
+        foreach ($eventsName as $eventName) {
+//            $this->globalDispatcher->trigger($eventName);
+//            $this->deprecatedEventName($eventName, $replacement);
         }
         $event->appendContent((string)ob_get_clean());
     }

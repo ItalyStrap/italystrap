@@ -48,3 +48,4 @@ c3.php
 **/*.local.php
 /.idea/
 *.bak
+/.sisyphus/*

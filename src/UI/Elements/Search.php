@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace ItalyStrap\UI\Elements;
 
 use ItalyStrap\HTML\TagInterface;
-use ItalyStrap\View\ViewInterface;
+use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
 
 class Search implements ElementInterface
 {
     public const TEMPLATE_NAME = 'elements/search';
-    private ViewInterface $view;
+    private ViewBlockInterface $view;
 
     private array $attributes = [];
     private string $context = '';
@@ -18,7 +18,7 @@ class Search implements ElementInterface
     private TagInterface $tag;
 
     public function __construct(
-        ViewInterface $view,
+        ViewBlockInterface $view,
         TagInterface $tag
     ) {
         $this->view = $view;

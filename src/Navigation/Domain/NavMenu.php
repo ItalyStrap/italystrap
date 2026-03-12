@@ -34,7 +34,7 @@ class NavMenu implements NavMenuInterface
 
     public function __construct(
         Walker_Nav_Menu $walker,
-        callable $fallback_cb = null
+        ?callable $fallback_cb = null
     ) {
         $this->walker = $walker;
         $this->fallback_cb = $fallback_cb ?? 'wp_page_menu';

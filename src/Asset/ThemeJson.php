@@ -5,13 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Asset;
 
 use ItalyStrap\Config\ConfigFactory;
-use ItalyStrap\ThemeJsonGenerator\Factory\Color as FClr;
-use ItalyStrap\ThemeJsonGenerator\Factory\Spacing as FSpace;
-use ItalyStrap\ThemeJsonGenerator\Factory\Typography as FTypo;
-use ItalyStrap\ThemeJsonGenerator\SectionNames;
-use ItalyStrap\ThemeJsonGenerator\Settings\CustomCollection as Custom;
-use ItalyStrap\ThemeJsonGenerator\Settings\PresetCollection as Preset;
-use ItalyStrap\ThemeJsonGenerator\Styles\Border;
+use ItalyStrap\ThemeJsonGenerator\Domain\Input\SectionNames;
 
 class ThemeJson
 {
@@ -19,7 +13,7 @@ class ThemeJson
     {
         $data = new self();
 
-        $config = ConfigFactory::make();
+        $config = (new ConfigFactory())->make();
 
         $result = $data->buildJsonData();
 

@@ -7,7 +7,7 @@ namespace ItalyStrap\Customizer;
 use ItalyStrap\Config\ConfigColophonProvider;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\TemplatePositionTrait;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 
 class ColophonFields
 {

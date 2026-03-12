@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests\Unit\UI\Infrastructure;
 
 use ItalyStrap\Empress\Extension;
+use ItalyStrap\Event\ListenerRegisterInterface;
 use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\UI\Components\Main\Main;
 use ItalyStrap\UI\Infrastructure\ComponentSubscriberExtension;
@@ -27,17 +28,52 @@ class ComponentSubscriberExtensionTest extends UnitTestCase
 
     public function testItShouldExecute()
     {
-        $this->markTestSkipped('TODO');
-        $sut = $this->makeInstance();
+        $listenerRegister = new class implements ListenerRegisterInterface {
+            public string $eventName = '';
+            public $listener = null;
+            public int $priority = 0;
+            public int $acceptedArgs = 0;
 
-        $this->listenerRegister->addListener(
-            Argument::type('string'),
-            Argument::type('callable'),
-            Argument::type('int'),
-            Argument::type('int')
-        )->shouldBeCalledOnce();
+            public function addListener(
+                string $eventName,
+                callable $listener,
+                int $priority = self::PRIORITY,
+                int $accepted_args = self::ACCEPTED_ARGS
+            ): bool {
+                $this->eventName = $eventName;
+                $this->listener = $listener;
+                $this->priority = $priority;
+                $this->acceptedArgs = $accepted_args;
 
+                return true;
+            }
+
+            public function removeListener(string $eventName, callable $listener, int $priority): bool
+            {
+                return true;
+            }
+
+            public function removeAllListener(string $eventName, $priority = false): bool
+            {
+                return true;
+            }
+
+            public function hasListener(string $eventName, $callback = false)
+            {
+                return false;
+            }
+        };
+
+        $sut = new ComponentSubscriberExtension($this->makeSubscriberRegister(), $listenerRegister);
+
+        $this->aurynConfigInterface->walk(ComponentSubscriberExtension::class, $sut)->shouldBeCalledTimes(2);
         $sut->execute($this->makeAurynConfigInterface());
+
+        $this->assertSame('template_include', $listenerRegister->eventName, '');
+        $this->assertIsCallable($listenerRegister->listener);
+        $this->assertSame(PHP_INT_MAX - 5, $listenerRegister->priority, '');
+        $this->assertSame(ListenerRegisterInterface::ACCEPTED_ARGS, $listenerRegister->acceptedArgs, '');
+        $this->assertSame('index.php', ($listenerRegister->listener)('index.php'));
     }
 
     public function testItShouldWalk()

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\UI\Infrastructure;
 
+use Auryn\Injector;
 use ItalyStrap\Empress\AurynConfigInterface;
 use ItalyStrap\Empress\Extension;
-use ItalyStrap\Empress\Injector;
 use ItalyStrap\Empress\ProxyFactory;
 use ItalyStrap\Event\ListenerRegisterInterface;
 use ItalyStrap\Event\SubscriberInterface;

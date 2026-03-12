@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
+use Auryn\Injector;
 use Codeception\Test\Unit;
 use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Empress\AurynConfigInterface;
-use ItalyStrap\Empress\Injector;
 use ItalyStrap\Event\GlobalDispatcherInterface;
 use ItalyStrap\Event\ListenerRegisterInterface;
 use ItalyStrap\Event\SubscriberRegisterInterface;

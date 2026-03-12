@@ -22,7 +22,9 @@ $rowClassName = (string)$this->get('row_class_names');
 ?>
 <?= $dispatcher->dispatch(new Header()); ?>
 <!-- wp:group {"tagName":"main","align":"full","className":"<?= \wp_strip_all_tags($containerClassName); ?>","layout":{"inherit":false}} -->
-<main class="wp-block-group alignfull <?= \esc_attr($containerClassName); ?>">
+<main
+    class="wp-block-group alignfull <?= \esc_attr($containerClassName); ?>"
+>
     <!-- wp:columns {"align":"wide","className":"<?= \wp_strip_all_tags($rowClassName); ?>","layout":{"inherit":true}} -->
     <div class="wp-block-columns alignwide <?= \esc_attr($rowClassName); ?>">
 
@@ -42,4 +44,3 @@ $rowClassName = (string)$this->get('row_class_names');
 <!-- /wp:group -->
 
 <?= $dispatcher->dispatch(new Footer()); ?>
-

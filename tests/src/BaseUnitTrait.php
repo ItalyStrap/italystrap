@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
+use Auryn\Injector;
 use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Empress\AurynConfigInterface;
-use ItalyStrap\Empress\Injector;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberRegisterInterface;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
 use ItalyStrap\Finder\FinderInterface;
@@ -157,7 +157,7 @@ trait BaseUnitTrait
         $this->tearDownProphet();
     }
 
-    private function setUpProphet()
+    private function setUpProphet(): void
     {
         $this->prophet = new Prophet();
         $this->config = $this->prophet->prophesize(ConfigInterface::class);
@@ -191,8 +191,8 @@ trait BaseUnitTrait
     /**
      * @test
      */
-    public function itShouldBeInstantiable()
+    public function itShouldBeInstantiable(): void
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
     }
 }

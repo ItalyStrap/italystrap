@@ -16,7 +16,7 @@ class Json
      * @return string
      * @throws \JsonException
      */
-    public function encode($value, int $option = null, int $depth = null): string
+    public function encode($value, ?int $option = null, ?int $depth = null): string
     {
         return \Yiisoft\Json\Json::encode(...func_get_args());
     }
@@ -31,7 +31,7 @@ class Json
      *
      * @throws \JsonException
      */
-    public function decode(string $json, bool $as_array = true, int $depth = null, int $option = null)
+    public function decode(string $json, bool $as_array = true, ?int $depth = null, ?int $option = null)
     {
         return \Yiisoft\Json\Json::decode(...func_get_args());
     }

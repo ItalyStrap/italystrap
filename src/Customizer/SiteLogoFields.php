@@ -6,7 +6,7 @@ namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigSiteLogoProvider;
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
 class SiteLogoFields
@@ -97,7 +97,7 @@ class SiteLogoFields
         $old_logo_id = \get_theme_mod('logo');
         $brand_image_id = ConfigSiteLogoProvider::BRAND_IMAGE_ID;
         if (! empty($old_logo_id)) {
-            $this->config->add('navbar_logo_image', \absint($old_logo_id));
+            $this->config->set('navbar_logo_image', \absint($old_logo_id));
             \set_theme_mod('navbar_logo_image', \absint($old_logo_id));
             \update_option('site_logo', \absint($old_logo_id));
             \remove_theme_mod($brand_image_id);

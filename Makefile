@@ -44,6 +44,10 @@ down:	### Stop the containers inside the ./docker folder
 	@$(DOCKER_DIR) docker-compose down --remove-orphans --volumes
 	@echo "Containers stopped"
 
+.PHONY: restart
+restart: down up	### Restart the containers inside the ./docker folder
+	@echo "Containers restarted"
+
 # Composer commands
 
 .PHONY: composer/install
@@ -163,6 +167,11 @@ docker/metrics:	### Run the phpmetrics
 metrics: up	### Run the composer/metrics
 	@echo "Running the psalm"
 	@$(DOCKER_DIR) ./composer metrics
+
+.PHPHONY: ssh
+ssh:	### Run bash in the php74 container
+	@echo "Running bash in the php74 container"
+	@$(DOCKER_DIR) ./ssh
 
 # Generate commands
 

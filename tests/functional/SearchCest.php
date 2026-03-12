@@ -24,4 +24,19 @@ class SearchCest extends FunctionalTestCase
         $i->seeResponseContains('wp-block-query-title');
         $i->seeResponseContains('Test Post Title 123');
     }
+
+    public function itShouldRenderTheSearchFormWhenNoResultsAreFound(FunctionalTester $i): void
+    {
+        $i->havePostInDatabase([
+            'post_title' => 'Unrelated Title',
+            'post_content' => '<!-- wp:paragraph -->',
+            'post_status' => 'publish',
+        ]);
+
+        $i->amOnPage('/?s=NoMatchTerm');
+        $i->seeResponseCodeIs(200);
+        $i->dontSee('<!-- wp:search');
+        $i->seeResponseContains('wp-block-search');
+        $i->seeResponseContains('type="search"');
+    }
 }

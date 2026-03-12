@@ -28,4 +28,5 @@
 
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/tests/_support/*</exclude-pattern>
+    <exclude-pattern>*/tests/_output/*</exclude-pattern>
 </ruleset>

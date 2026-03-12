@@ -202,7 +202,8 @@ class ConfigThemeSupportProvider
 //                'attachments' => [
 //                    'image-default' => [
 //                        'post_title' => _x('Default', 'Theme starter content', 'italystrap'),
-//                        'file' => 'assets/img/italystrap-default-image.png', // URL relative to the template directory.
+//                        'file' => 'assets/img/italystrap-default-image.png',
+//                        // URL relative to the template directory.
 //                    ],
 //                    'image-sandwich' => [
 //                        'post_title' => _x('Sandwich', 'Theme starter content', 'italystrap'),

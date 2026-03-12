@@ -15,4 +15,14 @@ class SearchTest extends IntegrationTestCase
     {
         return injector()->make(Search::class);
     }
+
+    public function testItRendersSearchFormMarkup(): void
+    {
+        $sut = $this->makeInstance();
+        $output = (string) $sut;
+
+        $this->assertStringContainsString('wp-block-search', $output);
+        $this->assertStringContainsString('type="search"', $output);
+        $this->assertStringNotContainsString('<!-- wp:search', $output);
+    }
 }

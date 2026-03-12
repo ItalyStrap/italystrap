@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Title: Search
  * Slug: italystrap/hidden-search
@@ -10,6 +8,8 @@ declare(strict_types=1);
  * @todo See the file templates/elements/search.php
  *       In the future try to use View to include the template file here.
  */
+
+declare(strict_types=1);
 
 $attributes = [
     'label' => \esc_attr_x('Search again with the form below.', 'search form label', 'italystrap'),

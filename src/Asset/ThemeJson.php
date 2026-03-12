@@ -13,7 +13,7 @@ class ThemeJson
     {
         $data = new self();
 
-        $config = ConfigFactory::make();
+        $config = (new ConfigFactory())->make();
 
         $result = $data->buildJsonData();
 

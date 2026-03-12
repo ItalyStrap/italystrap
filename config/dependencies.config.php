@@ -18,7 +18,7 @@ use ItalyStrap\Theme\Module as ThemeModule;
 use ItalyStrap\UI\Module as UIModule;
 
 return static function (Injector $injector): ConfigInterface {
-    $config =  (new ConfigFactory)->make();
+    $config =  (new ConfigFactory())->make();
     $collection = new ProvidersCollection(
         $injector,
         $config,

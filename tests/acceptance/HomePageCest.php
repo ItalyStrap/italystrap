@@ -23,5 +23,7 @@ class HomePageCest extends AcceptanceTestCase
 
         $i->amOnPage('/');
         $i->see('Lorem ipsum dolor sit amet');
+        $i->seeElement('.navbar-header');
+        $i->seeElement('.navbar-toggler');
     }
 }

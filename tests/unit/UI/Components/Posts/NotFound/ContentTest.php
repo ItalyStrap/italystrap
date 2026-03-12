@@ -24,7 +24,7 @@ class ContentTest extends UnitTestCase
             $this->makeConfig(),
             $this->makeViewBlock(),
             new Search(
-                $this->makeView(),
+                $this->makeViewBlock(),
                 $this->makeTag(),
             )
         );

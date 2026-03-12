@@ -8,13 +8,14 @@ use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Components\Posts\Events\PostsContentAfter;
 use ItalyStrap\View\ViewInterface;
 
 class Pagination implements SubscriberInterface, ComponentInterface
 {
     use SubscribedEventsAware;
 
-    public const EVENT_NAME = 'italystrap_after_loop';
+    public const EVENT_NAME = PostsContentAfter::class;
     public const EVENT_PRIORITY = 10;
 
     public const TEMPLATE_NAME = 'navigation/pagination';

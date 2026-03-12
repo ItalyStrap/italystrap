@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation\UI\Components;
 
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 
 use function wp_link_pages;
 
@@ -14,7 +14,7 @@ use function wp_link_pages;
  */
 class LinkPages
 {
-    private \ItalyStrap\Event\EventDispatcherInterface $dispatcher;
+    private EventDispatcherInterface $dispatcher;
 
     /**
      * LinkPages constructor.

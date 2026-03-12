@@ -19,6 +19,8 @@ class FooterWidgetArea implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'footer/widget-area';
 
+    public const REGISTERED_WIDGET_AREAS = 'footer_sidebars';
+
     private ViewInterface $view;
 
     public function __construct(
@@ -35,7 +37,7 @@ class FooterWidgetArea implements ComponentInterface, SubscriberInterface
     public function __invoke(Content $event): void
     {
         $event->appendContent($this->view->render(self::TEMPLATE_NAME, [
-            'footer_sidebars' => ConfigSidebarProvider::FOOTERS,
+            self::REGISTERED_WIDGET_AREAS => ConfigSidebarProvider::FOOTERS,
         ]));
     }
 }

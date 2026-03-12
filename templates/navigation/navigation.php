@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 
 /** @var \ItalyStrap\Config\ConfigInterface $config */
 $config = $this;

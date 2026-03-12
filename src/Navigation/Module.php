@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation;
 
+use Auryn\Injector;
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Empress\AurynConfig;
-use ItalyStrap\Empress\Injector;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Navigation\Admin\ItemCustomFieldsSubscriber;
 use ItalyStrap\Navigation\Application\NavMenusSubscriber;
@@ -50,7 +50,10 @@ class Module
                 ],
 
                 NavMenuPrimary::class => [
-                    '+fallback' => static fn(string $named_param, Injector $injector): callable => $injector->make(NavMenuFallback::class),
+                    '+fallback' => static fn(
+                        string $named_param,
+                        Injector $injector
+                    ): callable => $injector->make(NavMenuFallback::class),
                 ],
             ],
 

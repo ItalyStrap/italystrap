@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
+use Auryn\Injector;
 use ItalyStrap\Asset\Module as AssetModule;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Config\ConfigThemeModsProvider;
-use ItalyStrap\Empress\Injector;
 use ItalyStrap\Empress\PhpFileProvider;
 use ItalyStrap\Empress\ProvidersCacheInterface;
 use ItalyStrap\Empress\ProvidersCollection;
@@ -18,9 +18,11 @@ use ItalyStrap\Theme\Module as ThemeModule;
 use ItalyStrap\UI\Module as UIModule;
 
 return static function (Injector $injector): ConfigInterface {
+    $config =  (new ConfigFactory())->make();
     $collection = new ProvidersCollection(
         $injector,
-        ConfigFactory::make(),
+        $config,
+        null,
         [
             // First we load Modules from packages
             EventModule::class,
@@ -34,9 +36,9 @@ return static function (Injector $injector): ConfigInterface {
                 '/config/autoload/{{,*.}global,{,*.}local}.php',
                 $injector->execute(ExperimentalThemeFileFinderFactory::class)
             ),
-            //                    ProvidersCacheInterface::CACHE_PATH => get_template_directory() . '/config/cache/config-cache.php',
+            // ProvidersCacheInterface::CACHE_PATH => get_template_directory() . '/config/cache/config-cache.php',
             fn(): array => [
-        //                    ProvidersCacheInterface::CACHE_PATH => get_template_directory() . '/config/cache/config-cache.php',
+            // ProvidersCacheInterface::CACHE_PATH => get_template_directory() . '/config/cache/config-cache.php',
                 ProvidersCacheInterface::ENABLE_CACHE => true,
             ],
             /** This must run after all */
@@ -51,5 +53,5 @@ return static function (Injector $injector): ConfigInterface {
 
     $collection->build();
 
-    return $collection->collection();
+    return $config;
 };

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Title: Post Comments Form
  * Slug: italystrap/hidden-post-comments-form
@@ -11,6 +9,8 @@ declare(strict_types=1);
  * In a PHP file the function to load the comments template (comments.php) is `comments_template();`
  * the function to render only the form from the WP core is `comment_form();`
  */
+
+declare(strict_types=1);
 
 /**
  * Exchange reposition of the 'comment' field

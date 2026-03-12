@@ -12,7 +12,7 @@ class SearchTest extends UnitTestCase
     public function makeInstance()
     {
         return new Search(
-            $this->makeView(),
+            $this->makeViewBlock(),
             $this->makeTag()
         );
     }

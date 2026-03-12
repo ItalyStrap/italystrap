@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
+use Auryn\Injector;
 use ItalyStrap\Empress\AurynConfigInterface;
-use ItalyStrap\Empress\Injector;
 use ItalyStrap\Event\ListenerRegisterInterface;
 
 class CustomizerProviderExtension implements \ItalyStrap\Empress\Extension

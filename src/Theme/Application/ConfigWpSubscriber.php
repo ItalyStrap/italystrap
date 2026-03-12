@@ -34,12 +34,12 @@ final class ConfigWpSubscriber implements SubscriberInterface
         $id = $this->query->get_queried_object_id();
 
         if (is_singular()) {
-            $this->config->add(
+            $this->config->set(
                 ConfigLayoutProvider::POST_CONTENT_TEMPLATE,
                 (array) get_post_meta($id, '_italystrap_template_settings', true)
             );
         } else {
-            $this->config->add(
+            $this->config->set(
                 ConfigLayoutProvider::POST_CONTENT_TEMPLATE,
                 explode(
                     ',',
@@ -54,14 +54,14 @@ final class ConfigWpSubscriber implements SubscriberInterface
          * If in page settings are set then override the global settings for the layout.
          */
         if ($page_layout = (string) get_post_meta($id, '_italystrap_layout_settings', true)) {
-            $this->config->add(ConfigLayoutProvider::SITE_LAYOUT, $page_layout);
+            $this->config->set(ConfigLayoutProvider::SITE_LAYOUT, $page_layout);
         }
 
         /**
          * If in page settings are set then override the global settings for the layout.
          */
         if ($container_width = (string) get_post_meta($id, '_italystrap_width_settings', true)) {
-            $this->config->add(ConfigLayoutProvider::CONTAINER_WIDTH, $container_width);
+            $this->config->set(ConfigLayoutProvider::CONTAINER_WIDTH, $container_width);
         }
 
         $array = [

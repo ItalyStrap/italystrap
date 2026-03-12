@@ -30,6 +30,7 @@ class ExperimentalCustomizerOptionWithAndPositionSubscriber implements Subscribe
     {
         return array_merge(
             [
+                'none'                    => \__('None', 'italystrap'),
                 'italystrap_before'         => \__('After the <code>&lt;/body&gt;</code>', 'italystrap'),
 
                 'italystrap_before_header'  => \__('Before the header', 'italystrap'),

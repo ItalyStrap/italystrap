@@ -6,7 +6,6 @@ namespace ItalyStrap\Tests\Unit\Functions;
 
 use Auryn\Injector as AurynInjector;
 use ItalyStrap\Debug\Injector as DebugInjector;
-use ItalyStrap\Empress\Injector as EmpressInjector;
 use ItalyStrap\Tests\UnitTestCase;
 
 use function ItalyStrap\Factory\injector;
@@ -75,7 +74,6 @@ final class FactoryInjectorTest extends UnitTestCase
         $this->assertEquals(1, $this->add_filter_called, 'Add filter should be called');
 
         $this->assertInstanceOf(AurynInjector::class, $injector, '');
-        $this->assertInstanceOf(EmpressInjector::class, $injector, '');
         $this->assertNotInstanceOf(DebugInjector::class, $injector, '');
     }
 
@@ -94,27 +92,25 @@ final class FactoryInjectorTest extends UnitTestCase
         $this->assertEquals(0, $this->add_filter_called, 'Add filter should NOT be called');
 
         $this->assertInstanceOf(AurynInjector::class, $injector, '');
-        $this->assertNotInstanceOf(EmpressInjector::class, $injector, '');
         $this->assertNotInstanceOf(DebugInjector::class, $injector, '');
     }
 
     /**
      *
      */
-    public function instanceOkWithFilterReturnPrevInstanceOfEmpress()
+    public function instanceOkWithFilterReturnPrevInstanceOfDebugInjector()
     {
         $this->is_debug = false;
         replace('\ItalyStrap\Core\is_debug', $this->is_debug);
 
-        $this->injectorFactory = new EmpressInjector();
+        $this->injectorFactory = new DebugInjector(new AurynInjector());
         $injector = injector();
 
         $this->assertEquals(1, $this->apply_filters_called, 'Apply filters should be called');
         $this->assertEquals(0, $this->add_filter_called, 'Add filter should NOT be called');
 
         $this->assertInstanceOf(AurynInjector::class, $injector, '');
-        $this->assertInstanceOf(EmpressInjector::class, $injector, '');
-        $this->assertNotInstanceOf(DebugInjector::class, $injector, '');
+        $this->assertInstanceOf(DebugInjector::class, $injector, '');
     }
 
     /**

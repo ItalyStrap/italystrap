@@ -34,7 +34,7 @@ use Walker_Nav_Menu;
  */
 class BootstrapNavMenu extends Walker_Nav_Menu {
 
-	public function __construct( ListenerRegisterInterface $listenerRegister = null ) {
+	public function __construct( ?ListenerRegisterInterface $listenerRegister = null ) {
 		$this->listenerRegister = $listenerRegister ?? new GlobalOrderedListenerProvider();
 	}
 

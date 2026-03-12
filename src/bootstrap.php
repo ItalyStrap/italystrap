@@ -21,10 +21,12 @@ return (static function (Injector $injector): Injector {
         ':dependencies' => (require __DIR__ . '/../config/dependencies.config.php')($injector)
     ]);
 
-    $injectorConfig->extendFromClassName(ConfigProviderExtension::class);
-    $injectorConfig->extendFromClassName(SubscribersConfigExtension::class);
-    $injectorConfig->extendFromClassName(ComponentSubscriberExtension::class);
-    $injectorConfig->extendFromClassName(CustomizerProviderExtension::class);
+    $injectorConfig->extend(
+        ConfigProviderExtension::class,
+        SubscribersConfigExtension::class,
+        ComponentSubscriberExtension::class,
+        CustomizerProviderExtension::class
+    );
 
     $listenerProvider = $injector
         ->share(GlobalOrderedListenerProvider::class)

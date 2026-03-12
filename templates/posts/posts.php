@@ -29,7 +29,10 @@ if (! \have_posts()) {
 
 ?>
 <?= $dispatcher->dispatch(new PostsContentBefore()); ?>
-<!-- wp:query {"query":{"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
+<!-- wp:query
+{"query":{"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],
+"sticky":"","inherit":true}}
+-->
 <div class="wp-block-query">
     <!-- wp:post-template -->
     <?= $dispatcher->dispatch(new PostsContent()); ?>
@@ -37,4 +40,3 @@ if (! \have_posts()) {
 </div>
 <!-- /wp:query -->
 <?= $dispatcher->dispatch(new PostsContentAfter()); ?>
-

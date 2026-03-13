@@ -24,6 +24,7 @@ bower
 *.map
 
 vendor
+/build
 _others
 _template
 _*

@@ -39,7 +39,7 @@ class InlineStyleGenerator
 
         $value = (string) $this->config->get($mod_name);
 
-        if (empty($value)) {
+        if ($value === '') {
             return '';
         }
 

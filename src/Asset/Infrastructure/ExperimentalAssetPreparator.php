@@ -12,7 +12,7 @@ use ItalyStrap\Asset\Debug\DebugStyle;
 use ItalyStrap\Asset\Loader\GeneratorLoader;
 use ItalyStrap\Asset\Script;
 use ItalyStrap\Asset\Style;
-use ItalyStrap\Event\EventDispatcher;
+use ItalyStrap\Event\GlobalDispatcher;
 use ItalyStrap\Finder\FinderFactory;
 
 use function ItalyStrap\Config\get_config_file_content_last;
@@ -22,8 +22,8 @@ final class ExperimentalAssetPreparator
     public function __invoke(AssetManager $manager, Injector $injector)
     {
 
-        /** @var EventDispatcher $event_dispatcher */
-        $event_dispatcher = $injector->make(EventDispatcher::class);
+        /** @var GlobalDispatcher $event_dispatcher */
+        $event_dispatcher = $injector->make(GlobalDispatcher::class);
         $experimental_assets_path_generator = static function (string $dir): array {
             $sub_dir = ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) ? 'src/' :  '';
 
@@ -67,7 +67,7 @@ final class ExperimentalAssetPreparator
         /**
          * @todo Maybe I can add a check for forcing child to load its own assets
          *       is_child() ? [] : get_config_file_content_last( 'assets/[styles|scripts]' )
-         *       because assetss should not be loaded from parent by default.
+         *       because assets should not be loaded from parent by default.
          * @var array<int, mixed>
          */
         $styles = $event_dispatcher->filter(

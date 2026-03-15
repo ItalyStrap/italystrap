@@ -1,25 +1,52 @@
 function italystrap_toogle_control() {
 	wp.customize.bind( 'ready', function() {
-		console.log( 'message' );
 	} );
 }
 
 /**
  * This file adds some LIVE to the Theme Customizer live preview. To leverage
  * this, set your custom settings to 'postMessage' and then add your handling
- * here. Your javascript should grab settings from customizer controls, and 
- * then make any necessary changes to the page using jQuery.
+ * here. Your javascript should grab settings from customizer controls, and
+ * then make any necessary changes to the page using native DOM APIs.
  *
  * {@link https://developer.wordpress.org/themes/customize-api/the-customizer-javascript-api/}
  */
-( function( $ ) {
+
+( function() {
+	var body = document.body;
+
+	function getElements( selector ) {
+		return document.querySelectorAll( selector );
+	}
+
+	function setInnerHtml( selector, value ) {
+		getElements( selector ).forEach( function( element ) {
+			element.innerHTML = value;
+		} );
+	}
+
+	function setStyle( selector, property, value ) {
+		getElements( selector ).forEach( function( element ) {
+			element.style.setProperty( property, value );
+		} );
+	}
+
+	function replaceClasses( selector, classesToRemove, classToAdd ) {
+		getElements( selector ).forEach( function( element ) {
+			element.classList.remove.apply( element.classList, classesToRemove );
+			if ( classToAdd ) {
+				element.classList.add( classToAdd );
+			}
+		} );
+	}
+
 	// Update the site title in real time...
 	wp.customize( 'blogname', function( value ) {
 		value.bind( function( newval ) {
-			$( '.brand-name' ).html( newval );
+			setInnerHtml( '.brand-name', newval );
 		} );
 	} );
-	
+
 	// //Update the site description in real time...
 	// wp.customize( 'blogdescription', function( value ) {
 	// 	value.bind( function( newval ) {
@@ -37,46 +64,37 @@ function italystrap_toogle_control() {
 	// //Update site background color...
 	wp.customize( 'background_color', function( value ) {
 		value.bind( function( newval ) {
-			$('body').css('background-color', newval );
-		} );
-	} );
-	
-	//Update site link color in real time...
-	wp.customize( 'link_textcolor', function( value ) {
-		value.bind( function( newval ) {
-			$('a').css('color', newval );
-		} );
-	} );
-
-	wp.customize( 'hx_textcolor', function( value ) {
-		value.bind( function( newval ) {
-			$('h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading').css('color', newval );
+			body.style.setProperty( 'background-color', newval );
 		} );
 	} );
 
 	/**
 	 * ==================================================
 	 *
-	 * Navbar settings
+	 * Navigation settings
 	 *
 	 * ==================================================
 	 */
 
 	/**
-	 * Navbar background color
+	 * Navigation background color
 	 */
 	wp.customize( 'navbar[type]', function( value ) {
 		value.bind( function( newval ) {
-			$('nav.navbar').removeClass( 'navbar-inverse navbar-default' ).addClass( newval );
+			replaceClasses( 'nav.site-nav', [ 'is-dark', 'is-light' ], newval );
 		} );
 	} );
 
 	/**
-	 * Navbar position
+	 * Navigation position
 	 */
 	wp.customize( 'navbar[position]', function( value ) {
 		value.bind( function( newval ) {
-			$('nav.navbar').removeClass( 'navbar-relative-top navbar-fixed-top navbar-fixed-bottom navbar-static-top' ).addClass( newval );
+			replaceClasses(
+				'nav.site-nav',
+				[ 'is-relative-top', 'is-fixed-top', 'is-fixed-bottom', 'is-static-top' ],
+				newval
+			);
 		} );
 	} );
 
@@ -85,35 +103,25 @@ function italystrap_toogle_control() {
 	 */
 	wp.customize( 'navbar[nav_width]', function( value ) {
 		value.bind( function( newval ) {
-			// console.log(newval);
-			$('.navbar-wrapper').removeClass( 'container' ).addClass( newval );
+			replaceClasses( '.site-nav-wrapper', [ 'container' ], newval );
 		} );
 	} );
 
 	wp.customize( 'navbar[menus_width]', function( value ) {
 		value.bind( function( newval ) {
-			$('nav > div').removeClass( 'container-fluid container' ).addClass( newval );
+			replaceClasses( 'nav > div', [ 'container-fluid', 'container' ], newval );
 		} );
 	} );
 
-	// wp.customize( 'navbar[main_menu_x_align]', function( value ) {
-	// 	console.log(value);
-	// 	value.bind( function( newval ) {
-	// 		$('#main-menu').removeClass( 'navbar-left navbar-right' ).addClass( newval );
-	// 	} );
-	// } );
-
 	wp.customize( 'display_navbar_brand', function( value ) {
 		value.bind( function( newval ) {
-			console.log(newval);
-			// $('.navbar').css('color', newval );
-			$('.navbar-brand').css('color', newval );
+			setStyle( '.site-nav-brand', 'color', newval );
 		} );
 	} );
 
 	wp.customize( 'boxed', function( value ) {
 		value.bind( function( newval ) {
-			$('.wrapper').removeClass( 'boxed' ).addClass( newval );
+			replaceClasses( '.wrapper', [ 'boxed' ], newval );
 		} );
 	} );
 
@@ -122,11 +130,12 @@ function italystrap_toogle_control() {
 	 */
 	wp.customize( 'breadcrumbs_show_on', function( value ) {
 		value.bind( function( newval ) {
-			if ( -1 !== $.inArray( $('body').data("current-template"), newval.split(",") ) ) {
-				$('.breadcrumb').show();
-			} else {
-				$('.breadcrumb').hide();
-			}
+			var currentTemplate = body.dataset.currentTemplate;
+			var templateList = newval ? newval.split( ',' ) : [];
+
+			getElements( '.breadcrumb' ).forEach( function( element ) {
+				element.style.display = templateList.indexOf( currentTemplate ) !== -1 ? '' : 'none';
+			} );
 		} );
 	} );
 
@@ -135,33 +144,30 @@ function italystrap_toogle_control() {
 	 */
 	wp.customize( '404_title', function( value ) {
 		value.bind( function( newval ) {
-			$( '.404-title' ).html( newval );
+			setInnerHtml( '.404-title', newval );
 		} );
 	} );
 
 	wp.customize( '404_content', function( value ) {
 		value.bind( function( newval ) {
-			$( '.404-content' ).html( newval );
+			setInnerHtml( '.404-content', newval );
 		} );
 	} );
 
 	wp.customize( 'colophon', function( value ) {
 		value.bind( function( newval ) {
-			$( '.colophon-entry-content' ).html( newval );
+			setInnerHtml( '.colophon-entry-content', newval );
 		} );
 	} );
 
 	// wp.customize( 'italystrap_display_navbar_brand', function( value ) {
-	// 	console.log( 'italystrap_display_navbar_brand', value );
 	// 	value.bind( function( newval ) {
-	// 		console.log( 'italystrap_display_navbar_brand', newval );
 	// 		// $('.navbar').css('color', newval );
 	// 	} );
 	// } );
 
 	// wp.customize( 'heading', function( value ) {
 	// 	value.bind( function( newval ) {
-	// 		console.log(newval);
 	// 		$('h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading').css('font-family', newval );
 	// 	} );
 	// } );
@@ -171,7 +177,7 @@ function italystrap_toogle_control() {
 	// 		$('a').css('color', newval );
 	// 	} );
 	// } );
-	
+
 
 	// $( '.customize-control-checkbox input[type="checkbox"]' ).on(
 	// 	'change',
@@ -179,15 +185,11 @@ function italystrap_toogle_control() {
 
 	// 		var elementLi = $( this ).parents( '.customize-control' );
 
-	// 		console.log(elementLi);
-
 	// 		var checkbox_values = elementLi.find( 'input[type="checkbox"]:checked' ).map(
 	// 			function() {
 	// 				return this.value;
 	// 			}
 	// 		);
-
-	// 		console.log(checkbox_values);
 
 	// 		// checkbox_values = $( this ).parents( '.customize-control' ).find( 'input[type="checkbox"]:checked' ).map(
 	// 		//		function() {
@@ -200,7 +202,6 @@ function italystrap_toogle_control() {
 	// 		elementLi.find( 'input[type="hidden"]' ).val( checkbox_values ).trigger( 'change' );
 	// 	}
 	// );
-// console.log("hola datevid");
 //     $( ".customize-control-select-multiple select" ).on(
 //         "change",
 //         function() {
@@ -219,22 +220,18 @@ function italystrap_toogle_control() {
 	// 	// logic to refresh
 	// } );
 
-} )( jQuery );
+} )();
 
-// console.log("hola datevid");
 // jQuery( document ).ready( function() {
-// 	console.log("hola datevid");
 // 	jQuery( '.customize-control-checkbox input[type="checkbox"]' ).on(
 // 		'change',
 // 		function() {
 // 			var elementLi = jQuery( this ).parents( '.customize-control' );
-// 			console.log(elementLi);
 // 			var checkbox_values = elementLi.find( 'input[type="checkbox"]:checked' ).map(
 // 				function() {
 // 					return this.value;
 // 				}
 // 			);
-// 			console.log(checkbox_values);
 // 			// checkbox_values = jQuery( this ).parents( '.customize-control' ).find( 'input[type="checkbox"]:checked' ).map(
 // 			//		function() {
 // 			//			return this.value;

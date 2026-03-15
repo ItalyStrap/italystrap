@@ -19,24 +19,14 @@
 function italystrap_toggle_control( control_ID, setting_ID, keys ) {
     wp.customize.control( control_ID, function( control ) {
         var setting = wp.customize( setting_ID );
-
-        // console.log( setting.get());
-        // console.log( setting.get('default'));
-        // console.log( control );
-        // console.log( control.setting.get() );
-
         control.active.set( keys.indexOf( setting.get() ) >= 0  );
-
         setting.bind( function( value ) {
-
             control.active.set( keys.indexOf( value ) >= 0 );
         } );
     } );
 }
 
-( function( $ ) {
-
-    wp.customize.bind( 'ready', function () {
+wp.customize.bind( 'ready', function() {
 
         /**
          * Hide or show the control for menu width
@@ -59,5 +49,4 @@ function italystrap_toggle_control( control_ID, setting_ID, keys ) {
         //     'navbar[position]',
         //     ['navbar-relative-top','navbar-static-top']
         // );
-    } );
-} )( jQuery );
+} );

@@ -38,7 +38,7 @@ class InlineStyleSubscriberTest extends UnitTestCase
         $this->defineFunction('wp_strip_all_tags', fn(string $string) => $string);
 
         $this->expectOutputString(
-            '<style id="italystrap-global-styles-inline-css">-test--test--test-</style>'
+            '<style id="italystrap-global-styles-inline-css">-test-</style>'
         );
         $sut();
     }

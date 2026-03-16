@@ -1,12 +1,6 @@
 @import "variables";
-
-@import "vendors/bt3";
-//@import "vendors/bt5";
-
-///
-/// Da qui comincia lo stile custom
-/// 
 @import "mixins/_index";
+@import "theme/_index";
 @import "global/_index";
 @import "header/_index";
 @import "navigations/_index";
@@ -14,4 +8,4 @@
 @import "comments/_index";
 @import "sidebar/_index";
 @import "footer/_index";
-//@import "wordpress/_index";
+@import "wordpress/_index";

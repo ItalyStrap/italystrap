@@ -26,6 +26,9 @@ class InlineStyleSubscriberTest extends UnitTestCase
     {
         $sut = $this->makeInstance();
 
+        /**
+         * The render method is called three times
+         */
         $this->inlineStyleGenerator->render(
             Argument::type('string'),
             Argument::type('string'),
@@ -38,7 +41,8 @@ class InlineStyleSubscriberTest extends UnitTestCase
         $this->defineFunction('wp_strip_all_tags', fn(string $string) => $string);
 
         $this->expectOutputString(
-            '<style id="italystrap-global-styles-inline-css">-test-</style>'
+            // So that's why the expected string has `-test--test--test-`
+            '<style id="italystrap-global-styles-inline-css">-test--test--test-</style>'
         );
         $sut();
     }

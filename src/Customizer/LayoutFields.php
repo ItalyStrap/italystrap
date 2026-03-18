@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace ItalyStrap\Customizer;
 
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Customizer\Control\Multicheck;
-use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
 class LayoutFields
 {
@@ -23,8 +21,6 @@ class LayoutFields
 
     public function __invoke(): void
     {
-        $prefix = $this->config->get(ConfigThemeProvider::PREFIX);
-
         $this->manager->add_section(
             'italystrap_layout_options',
             [
@@ -52,7 +48,7 @@ class LayoutFields
         $this->manager->add_control(
             'italystrap_container_width',
             [
-                'label'     => \__('Container width (Global)', 'italystrap'),
+                'label'     => \__('Container class (Template layout)', 'italystrap'),
                 'section'   => 'italystrap_layout_options',
                 'type'      => 'radio',
                 'settings'  => 'container_width',
@@ -76,7 +72,7 @@ class LayoutFields
         $this->manager->add_control(
             'italystrap_site_layout',
             [
-                'label'     => \__('Layout (Global)', 'italystrap'),
+                'label'     => \__('Sidebar arrangement (Template layout)', 'italystrap'),
                 'section'   => 'italystrap_layout_options',
                 'type'      => 'radio',
                 'settings'  => 'site_layout',

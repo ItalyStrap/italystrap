@@ -6,7 +6,6 @@ namespace ItalyStrap;
 
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Customizer\CustomizerAssetsSubscriber;
 use ItalyStrap\Customizer\CustomizerBodyTagAttributesSubscriber;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscribersConfigExtension;
@@ -177,7 +176,6 @@ return [
         OembedWrapperSubscriber::class,
 
         CustomizerBodyTagAttributesSubscriber::class,
-        CustomizerAssetsSubscriber::class,
 
         ExperimentalHookComponentsDeprecationSubscriber::class,
     ],

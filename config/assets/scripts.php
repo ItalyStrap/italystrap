@@ -5,18 +5,15 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use ItalyStrap\Asset\Asset;
-use ItalyStrap\Asset\ConfigBuilder as AssetConfigBuilder;
 use ItalyStrap\Asset\Script;
 
 use function admin_url;
-use function ItalyStrap\Core\experimental_generate_asset_index_filename;
 use function wp_create_nonce;
 
 return [
     [
         Asset::HANDLE               => CURRENT_TEMPLATE_SLUG,
-        AssetConfigBuilder::FILE_NAME   => experimental_generate_asset_index_filename('js'),
-//      Asset::DEPENDENCIES         => ['jquery'],
+        \ItalyStrap\Asset\ConfigBuilder::FILE_NAME => 'build/js/index.js',
         Asset::IN_FOOTER            => true,
         Asset::LOCALIZE             => [
             Script::OBJECT_NAME => 'pluginParams',

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Asset;
 
 use Auryn\Injector;
+use ItalyStrap\Asset\Application\CustomizerAssetsSubscriber;
 use ItalyStrap\Asset\Application\EditorSubscriber;
 use ItalyStrap\Asset\Application\InlineStyleSubscriber;
 use ItalyStrap\Asset\Infrastructure\ExperimentalAssetPreparator;
@@ -35,13 +36,10 @@ class Module
                         $template_dir = (string)$config->get(ConfigThemeProvider::TEMPLATE_DIR);
                         $finder = (new FinderFactory())->make()
                             ->in([
-                                $stylesheet_dir . '/assets/',
-                                $template_dir . '/assets/',
+                                $stylesheet_dir . '/build/css',
+                                $template_dir . '/build/css',
                             ]);
-                        $finder->names([
-                            '../css/editor-style.css',
-                            '../assets/css/editor-style.css',
-                        ]);
+                        $finder->names(['editor-style.css']);
                         return $finder;
                     },
                 ],
@@ -60,6 +58,7 @@ class Module
                 InlineStyleSubscriber::class,
                 AssetsSubscriber::class,
                 EditorSubscriber::class,
+                CustomizerAssetsSubscriber::class,
             ]
         ];
     }

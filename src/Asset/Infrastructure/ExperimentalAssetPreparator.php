@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Asset\Infrastructure;
 
 use Auryn\Injector;
+use ItalyStrap\Asset\Asset;
 use ItalyStrap\Asset\AssetManager;
 use ItalyStrap\Asset\ConfigBuilder;
 use ItalyStrap\Asset\Debug\DebugScript;
@@ -13,40 +14,25 @@ use ItalyStrap\Asset\Loader\GeneratorLoader;
 use ItalyStrap\Asset\Script;
 use ItalyStrap\Asset\Style;
 use ItalyStrap\Event\GlobalDispatcher;
-use ItalyStrap\Finder\FinderFactory;
 
+use function array_map;
+use function array_merge;
+use function array_unique;
+use function array_values;
 use function ItalyStrap\Config\get_config_file_content_last;
 
 final class ExperimentalAssetPreparator
 {
-    public function __invoke(AssetManager $manager, Injector $injector)
+    public function __invoke(AssetManager $manager, Injector $injector): void
     {
-
         /** @var GlobalDispatcher $event_dispatcher */
         $event_dispatcher = $injector->make(GlobalDispatcher::class);
-        $experimental_assets_path_generator = static function (string $dir): array {
-            $sub_dir = ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) ? 'src/' :  '';
 
-            return \array_unique(
-                [
-                    STYLESHEETPATH . '/assets/' . $dir,
-                    STYLESHEETPATH . '/' . $dir, // This is added for avoid BC breaks
-                    STYLESHEETPATH . '/' . $dir . $sub_dir, // This is added for avoid BC breaks
-                    TEMPLATEPATH . '/assets/' . $dir,
-                ]
-            );
-        };
-
-        $css_finder = ( new FinderFactory() )->make()
-            ->in($experimental_assets_path_generator('css/'));
-
-        $js_finder = ( new FinderFactory() )->make()
-            ->in($experimental_assets_path_generator('js/'));
+        /** @var ThemeAssetResolver $resolver */
+        $resolver = $injector->make(ThemeAssetResolver::class);
 
         $injector->defineParam('base_url', \get_option('siteurl') . '/');
-        /**
-         * @psalm-suppress UndefinedConstant
-         */
+        /** @psalm-suppress UndefinedConstant */
         $injector->defineParam('base_path', ABSPATH);
 
         /** @var ConfigBuilder $config_builder */
@@ -56,33 +42,51 @@ final class ExperimentalAssetPreparator
             Style::EXTENSION,
             \ItalyStrap\Core\is_debug() ? DebugStyle::class : Style::class
         );
-        $config_builder->withFinderForType(Style::EXTENSION, $css_finder);
-
         $config_builder->withType(
             Script::EXTENSION,
             \ItalyStrap\Core\is_debug() ? DebugScript::class : Script::class
         );
-        $config_builder->withFinderForType(Script::EXTENSION, $js_finder);
+        $config_builder->withVersion(new WpScriptsVersion());
 
         /**
-         * @todo Maybe I can add a check for forcing child to load its own assets
-         *       is_child() ? [] : get_config_file_content_last( 'assets/[styles|scripts]' )
-         *       because assets should not be loaded from parent by default.
-         * @var array<int, mixed>
+         * Resolves a single config entry: if FILE_NAME is provided but Asset::URL
+         * is not yet set, ThemeAssetResolver locates the file in the child/parent
+         * theme and reads the optional .asset.php for version + dependencies.
          */
+        $resolve = static function (array $config) use ($resolver): array {
+            if (!empty($config[Asset::URL]) || empty($config[ConfigBuilder::FILE_NAME])) {
+                return $config;
+            }
+
+            $resolved = $resolver->resolve($config[ConfigBuilder::FILE_NAME]);
+            $config[Asset::URL] = $resolved['url'];
+
+            if (!isset($config[Asset::VERSION])) {
+                $config[Asset::VERSION] = $resolved['version'];
+            }
+
+            $config[Asset::DEPENDENCIES] = array_values(array_unique(array_merge(
+                (array) ($config[Asset::DEPENDENCIES] ?? []),
+                $resolved['dependencies']
+            )));
+
+            return $config;
+        };
+
+        /** @var array<int, array> $styles */
         $styles = $event_dispatcher->filter(
             'italystrap_config_enqueue_style',
             get_config_file_content_last('assets/styles')
         );
 
-        /** @var array<int, mixed> $scripts */
+        /** @var array<int, array> $scripts */
         $scripts = $event_dispatcher->filter(
             'italystrap_config_enqueue_script',
             get_config_file_content_last('assets/scripts')
         );
 
-        $config_builder->addConfig($styles);
-        $config_builder->addConfig($scripts);
+        $config_builder->addConfig(array_map($resolve, $styles));
+        $config_builder->addConfig(array_map($resolve, $scripts));
 
         $asset_loader = $injector->make(GeneratorLoader::class);
         $assets = $asset_loader->load($config_builder->parseConfig());

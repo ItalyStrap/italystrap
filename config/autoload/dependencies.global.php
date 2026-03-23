@@ -6,7 +6,6 @@ namespace ItalyStrap;
 
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Customizer\CustomizerBodyTagAttributesSubscriber;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Experimental\ExperimentalCustomizerOptionWithAndPositionSubscriber;
@@ -16,8 +15,6 @@ use ItalyStrap\Experimental\OembedWrapperSubscriber;
 use ItalyStrap\Finder\FileInfoFactory;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
 use ItalyStrap\Finder\FilesHierarchyIterator;
-use ItalyStrap\Finder\FinderFactory;
-use ItalyStrap\Finder\FinderInterface;
 use ItalyStrap\Finder\SearchFileStrategy;
 use ItalyStrap\HTML\Attributes;
 use ItalyStrap\HTML\AttributesInterface;
@@ -174,8 +171,6 @@ return [
 
         ExperimentalCustomizerOptionWithAndPositionSubscriber::class,
         OembedWrapperSubscriber::class,
-
-        CustomizerBodyTagAttributesSubscriber::class,
 
         ExperimentalHookComponentsDeprecationSubscriber::class,
     ],

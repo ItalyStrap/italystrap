@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Customizer;
+namespace ItalyStrap\Customizer\Fields;
+
+use ItalyStrap\Customizer\FieldControlFactory;
 
 class BreadcrumsFields
 {

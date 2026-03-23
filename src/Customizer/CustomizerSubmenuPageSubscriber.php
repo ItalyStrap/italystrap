@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Customizer;
 
+use ItalyStrap\Customizer\Fields\PanelFields;
 use ItalyStrap\Event\SubscriberInterface;
 
-class ThemeSubmenuPageSubscriber implements SubscriberInterface
+class CustomizerSubmenuPageSubscriber implements SubscriberInterface
 {
     public function getSubscribedEvents(): iterable
     {

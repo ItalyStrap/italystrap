@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Customizer;
+namespace ItalyStrap\Customizer\Fields;
 
 class SiteIdentityFields
 {

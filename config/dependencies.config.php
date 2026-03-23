@@ -8,6 +8,7 @@ use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Config\ConfigThemeModsProvider;
+use ItalyStrap\Customizer\Module as CustomizerModule;
 use ItalyStrap\Empress\PhpFileProvider;
 use ItalyStrap\Empress\ProvidersCacheInterface;
 use ItalyStrap\Empress\ProvidersCollection;
@@ -30,6 +31,7 @@ return static function (Injector $injector): ConfigInterface {
             // Then we load Modules from this theme
             ThemeModule::class,
             AssetModule::class,
+            CustomizerModule::class,
             NavigationModule::class,
             UIModule::class,
             new PhpFileProvider(

@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Customizer;
+namespace ItalyStrap\Customizer\Fields;
 
 use ItalyStrap\Config\AlignmentChoicesTrait;
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 

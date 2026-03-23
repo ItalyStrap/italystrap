@@ -14,6 +14,7 @@ use ItalyStrap\Empress\ProvidersCacheInterface;
 use ItalyStrap\Empress\ProvidersCollection;
 use ItalyStrap\Event\Module as EventModule;
 use ItalyStrap\Experimental\ExperimentalThemeFileFinderFactory;
+use ItalyStrap\Experimental\Module as ExperimentalModule;
 use ItalyStrap\Navigation\Module as NavigationModule;
 use ItalyStrap\Theme\Module as ThemeModule;
 use ItalyStrap\UI\Module as UIModule;
@@ -32,6 +33,7 @@ return static function (Injector $injector): ConfigInterface {
             ThemeModule::class,
             AssetModule::class,
             CustomizerModule::class,
+            ExperimentalModule::class,
             NavigationModule::class,
             UIModule::class,
             new PhpFileProvider(

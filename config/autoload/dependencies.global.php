@@ -8,10 +8,7 @@ use ItalyStrap\Config\Config;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscribersConfigExtension;
-use ItalyStrap\Experimental\ExperimentalCustomizerOptionWithAndPositionSubscriber;
-use ItalyStrap\Experimental\ExperimentalHookComponentsDeprecationSubscriber;
 use ItalyStrap\Experimental\ExperimentalViewFileFinderFactory;
-use ItalyStrap\Experimental\OembedWrapperSubscriber;
 use ItalyStrap\Finder\FileInfoFactory;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
 use ItalyStrap\Finder\FilesHierarchyIterator;
@@ -168,10 +165,5 @@ return [
      * ========================================================================
      */
     SubscribersConfigExtension::SUBSCRIBERS             => [
-
-        ExperimentalCustomizerOptionWithAndPositionSubscriber::class,
-        OembedWrapperSubscriber::class,
-
-        ExperimentalHookComponentsDeprecationSubscriber::class,
     ],
 ];

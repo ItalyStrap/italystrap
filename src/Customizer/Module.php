@@ -19,6 +19,7 @@ use ItalyStrap\Customizer\Fields\PostThumbnailFields;
 use ItalyStrap\Customizer\Fields\SiteIdentityFields;
 use ItalyStrap\Customizer\Fields\SiteLogoFields;
 use ItalyStrap\Event\SubscribersConfigExtension;
+
 use function ItalyStrap\Bools\experimental_is_block_theme;
 
 class Module

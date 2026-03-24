@@ -2,6 +2,10 @@ DOCKER_FOLDER = .docker
 DOCKER_DIR = cd $(DOCKER_FOLDER) &&
 HOST_OWNER = $(shell id -u):$(shell id -g)
 FILES_OWNERSHIP = sudo chown -R $(HOST_OWNER) .
+DIST_SLUG = $(notdir $(CURDIR))
+DIST_ROOT = /tmp/$(DIST_SLUG)-dist
+DIST_PACKAGE_DIR = $(DIST_ROOT)/$(DIST_SLUG)
+DIST_ZIP = $(DIST_ROOT)/$(DIST_SLUG).zip
 
 default: help
 
@@ -150,6 +154,20 @@ rector/fix: up	### Apply the rector refactorings
 bench:	### Run the benchmark in the local machine not in the docker container
 	@echo "Running the benchmark"
 	@composer bench
+
+.PHONY: dist
+dist: ### Create a local distributable zip using .distignore
+	@echo "Creating the distributable package"
+	@rm -rf "$(DIST_ROOT)"
+	@mkdir -p "$(DIST_PACKAGE_DIR)"
+	@rsync -a ./ "$(DIST_PACKAGE_DIR)/" --exclude-from=".distignore"
+	@test -f "$(DIST_PACKAGE_DIR)/build/css/index.css"
+	@test -f "$(DIST_PACKAGE_DIR)/build/css/editor-style.css"
+	@test -f "$(DIST_PACKAGE_DIR)/build/js/index.js"
+	@test -d "$(DIST_PACKAGE_DIR)/vendor"
+	@cd "$(DIST_ROOT)" && zip -rq "$(DIST_ZIP)" "$(DIST_SLUG)"
+	@echo "Package created at $(DIST_ZIP)"
+	@unzip -l "$(DIST_ZIP)" | sed -n '1,40p'
 
 # PhpMetrics commands
 

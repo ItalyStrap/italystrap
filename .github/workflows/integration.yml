@@ -24,6 +24,27 @@ on:
 
 jobs:
 
+  asset-validation:
+    name: Node asset validation
+
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '--skip ci') && !github.event.pull_request.draft"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build frontend assets
+        run: npm run build
+
   tests:
     name: 🐘 Tests on PHP ${{matrix.php_versions}} & APP version ${{matrix.app_versions}}
 
@@ -33,6 +54,7 @@ jobs:
         app_versions: ['6.0']
 
     runs-on: ubuntu-latest
+    needs: asset-validation
     continue-on-error: ${{ matrix.php_versions == '8.2' }}
     if: "!contains(github.event.head_commit.message, '--skip ci') && !github.event.pull_request.draft"
 
@@ -46,6 +68,18 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{matrix.php_versions}}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build frontend assets
+        run: npm run build
 
       - name: Start MySQL
         run: |
@@ -74,6 +108,10 @@ jobs:
       - uses: "ramsey/composer-install@v2"
         with:
           working-directory: "${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}"
+
+      - name: Validate Composer metadata
+        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+        run: composer validate --strict
 
       - name: Activate ${{env.REPOSITORY_NAME}}
         working-directory: ${{env.APP_FOLDER_PATH}}

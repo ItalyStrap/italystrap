@@ -36,12 +36,13 @@ modules:
             window_size: 1200x2000
             capabilities:
                 chromeOptions:
-                    args: [
-                        "--headless",
-                        "--disable-gpu",
-                        "--proxy-server='direct://'",
-                        "--proxy-bypass-list=*"
-                    ]
+                    args:
+                        [
+                            '--headless',
+                            '--disable-gpu',
+                            "--proxy-server='direct://'",
+                            '--proxy-bypass-list=*',
+                        ]
 step_decorators:
     - Codeception\Step\ConditionalAssertion
     - Codeception\Step\TryTo

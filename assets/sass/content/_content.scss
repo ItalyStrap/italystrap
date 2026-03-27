@@ -1,9 +1,9 @@
 main {
-  margin: var(--wp--preset--spacing--6) 0;
+    margin: var(--wp--preset--spacing--6) 0;
 
-  > .alignwide {
-    max-width: clamp(16rem, 95vw, 90rem);
-    margin-inline: auto;
-    gap: var(--wp--preset--spacing--5);
-  }
+    > .alignwide {
+        max-width: clamp(16rem, 95vw, 90rem);
+        margin-inline: auto;
+        gap: var(--wp--preset--spacing--5);
+    }
 }

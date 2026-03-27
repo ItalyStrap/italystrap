@@ -28,4 +28,3 @@ coverage:
     enabled: true
     include:
         - src/*
-

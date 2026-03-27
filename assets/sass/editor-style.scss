@@ -1,8 +1,6 @@
-@import "variables";
-@import "mixins/_index";
-@import "theme/_index";
-@import "global/_index";
-@import "content/_index";
-@import "comments/_index";
-@import "sidebar/_index";
-@import "wordpress/_index";
+@use "theme/__index" as theme;
+@use "global/__index" as global;
+@use "content/__index" as content;
+@use "comments/__index" as comments;
+@use "sidebar/__index" as sidebar;
+@use "wordpress/__index" as wordpress;

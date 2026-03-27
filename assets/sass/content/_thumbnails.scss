@@ -1,8 +1,9 @@
+@use "../mixins/image";
 
 .wp-post-image,
     //img[class^="wp-image-"]
 {
-    @include img-responsive(block)
+    @include image.img-responsive(block);
 }
 
 //.img-circle {

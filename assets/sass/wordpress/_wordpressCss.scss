@@ -1,4 +1,4 @@
-#wp-calendar{
+#wp-calendar {
     width: 100%;
 }
 
@@ -25,22 +25,19 @@
 -------------------------------------------------------------- */
 .aligncenter,
 div.aligncenter,
-a img.aligncenter
-{
+a img.aligncenter {
     display: block;
     margin-inline: auto;
 }
 
 .alignright,
-a img.alignright
-{
+a img.alignright {
     float: right;
     margin: 0 0 1em 1em;
 }
 
 .alignleft,
-a img.alignleft
-{
+a img.alignleft {
     float: left;
     margin: 0 1em 1em 0;
 }
@@ -48,8 +45,7 @@ a img.alignleft
 //Immagiini caricate nei post normalmente
 
 .alignnone,
-a img.alignnone
-{
+a img.alignnone {
     display: inline;
     margin-bottom: 1em;
     margin-right: 1em;
@@ -59,7 +55,7 @@ a img.alignnone
 /**
  * Featured Image archive and singular
  */
-.wp-post-image{
+.wp-post-image {
     margin-bottom: 1em;
 }
 

@@ -1,7 +1,11 @@
 {
 	"name": "italystrap/italystrap",
 	"description": "Theme Framework for WordPress",
-	"keywords": ["WordPress", "WordPress theme", "theme"],
+	"keywords": [
+		"WordPress",
+		"WordPress theme",
+		"theme"
+	],
 	"type": "wordpress-theme",
 	"license": "GPL-2.0-or-later",
 	"authors": [
@@ -12,7 +16,7 @@
 			"role": "Developer"
 		},
 		{
-			"name"    : "Contributors",
+			"name": "Contributors",
 			"homepage": "https://github.com/ItalyStrap/italystrap/graphs/contributors"
 		}
 	],
@@ -36,7 +40,7 @@
 		}
 	],
 	"require": {
-		"php" : ">=7.4",
+		"php": ">=7.4",
 		"italystrap/empress": "dev-modularized as 2.0.x-dev",
 		"italystrap/event": "dev-master",
 		"italystrap/config": "^2.0",
@@ -63,24 +67,18 @@
 		"codeception/module-cli": "^1.0",
 		"codeception/util-universalframework": "^1.0",
 		"phpspec/prophecy-phpunit": "^2.0.0",
-
 		"italystrap/debug": "dev-master",
 		"italystrap/theme-json-generator": "dev-master",
-
 		"squizlabs/php_codesniffer": "*",
 		"phpcompatibility/php-compatibility": "*",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-
 		"vimeo/psalm": "^4.8",
 		"humanmade/psalm-plugin-wordpress": "^2.0",
-
 		"phpbench/phpbench": "@dev",
 		"infection/infection": "^0.25.0",
 		"infection/codeception-adapter": "^0.4.0",
-
 		"phpmetrics/phpmetrics": "^2.7.0",
 		"brianium/paratest": "^6.0.0",
-
 		"symfony/asset": "^5.0",
 		"inpsyde/assets": "^2.1",
 		"downshiftorg/wp-http": "^2.0",
@@ -101,7 +99,6 @@
 		"files": [
 			"functions/core-booleans.php",
 			"functions/booleans.php",
-			"functions/asset-helpers.php",
 			"functions/config-helpers.php",
 			"functions/italystrap.php",
 			"functions/factory.php",
@@ -122,7 +119,9 @@
 	},
 	"extra": {
 		"installer-paths": {
-			"vendor/{$name}/": ["cmb2/cmb2"]
+			"vendor/{$name}/": [
+				"cmb2/cmb2"
+			]
 		},
 		"theme-json": {
 			"callable": "\\ItalyStrap\\Asset\\ThemeJson::writeJson",
@@ -201,7 +200,7 @@
 			"\\ItalyStrap\\ThemeJsonGenerator\\Composer\\Plugin::run"
 		]
 	},
-	"support"    : {
+	"support": {
 		"issues": "https://github.com/ItalyStrap/italystrap/issues",
 		"source": "https://github.com/ItalyStrap/italystrap"
 	},

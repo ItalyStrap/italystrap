@@ -1,27 +1,27 @@
 <?php
+
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Config;
+namespace ItalyStrap\Tests\Unit\Config;
 
 use ItalyStrap\Config\ConfigThemeModsProvider;
-use ItalyStrap\Tests\BaseUnitTrait;
-use Prophecy\Argument;
+use ItalyStrap\Tests\UnitTestCase;
 
-class ConfigThemeModsProviderTest extends \Codeception\Test\Unit {
+class ConfigThemeModsProviderTest extends UnitTestCase
+{
+    protected function getInstance(): ConfigThemeModsProvider
+    {
+        $sut = new ConfigThemeModsProvider([]);
+        $this->assertInstanceOf(ConfigThemeModsProvider::class, $sut, '');
+        return $sut;
+    }
 
-	use BaseUnitTrait;
-
-	protected function getInstance(): ConfigThemeModsProvider {
-		$sut = new ConfigThemeModsProvider([]);
-		$this->assertInstanceOf(ConfigThemeModsProvider::class, $sut, '');
-		return $sut;
-	}
-
-	/**
-	 * @test
-	 */
-	public function itShouldExecute() {
-		$sut = $this->getInstance();
-		$sut();
-	}
+    /**
+     * @test
+     */
+    public function itShouldExecute()
+    {
+        $sut = $this->getInstance();
+        $sut();
+    }
 }

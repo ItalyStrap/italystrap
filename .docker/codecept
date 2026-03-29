@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-docker exec -w //var/www/html/wp-content/themes/italystrap italystrap_test sh -c "vendor/bin/codecept ${*}"
+# Get project name from .env file
+PROJECT_NAME=$(grep PROJECT_NAME .env | cut -d '=' -f2 | tr -d '"')
+
+docker exec -w /var/www/html/wp-content/themes/"${PROJECT_NAME}" "${PROJECT_NAME}"_test sh -c "vendor/bin/codecept ${*}"

@@ -1,3 +1,3 @@
-@import 'password_form';
-@import 'wordpressCss';
-@import "screen-reader";
+@forward "password_form";
+@forward "wordpressCss";
+@forward "screen-reader";

@@ -1,51 +1,50 @@
 <?php
+
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Customizer;
+namespace ItalyStrap\Tests\Unit\Customizer;
 
-use ItalyStrap\Config\ConfigColorSectionProvider;
-use ItalyStrap\Customizer\ColorFields;
-use ItalyStrap\Tests\BaseUnitTrait;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 
-class ColorFieldsTest extends \Codeception\Test\Unit {
+class ColorFieldsTest extends UnitTestCase
+{
+    protected function getInstance(): \stdClass
+    {
+        $sut = new \stdClass();
+//      $this->assertInstanceOf(Extension::class, $sut, '');
+        return $sut;
+    }
 
-	use BaseUnitTrait;
+//  protected function getInstance(): ColorFields {
+//      $sut = new ColorFields(
+//          $this->getWPCustomizeManager(),
+//          $this->getConfig(),
+//          $this->getFieldControlFactory()
+//      );
+////        $this->assertInstanceOf(Extension::class, $sut, '');
+//      return $sut;
+//  }
 
-	protected function getInstance() {
-		$sut = new \stdClass();
-//		$this->assertInstanceOf(Extension::class, $sut, '');
-		return $sut;
-	}
+    /**
+     *
+     */
+    public function itShouldInvoke()
+    {
+        $sut = $this->getInstance();
 
-//	protected function getInstance(): ColorFields {
-//		$sut = new ColorFields(
-//			$this->getWPCustomizeManager(),
-//			$this->getConfig(),
-//			$this->getFieldControlFactory()
-//		);
-////		$this->assertInstanceOf(Extension::class, $sut, '');
-//		return $sut;
-//	}
+        $this->manager->get_setting(Argument::type('string'))->willReturn(new \stdClass());
+        $this->manager->get_section(Argument::type('string'))->willReturn(new \stdClass());
 
-	/**
-	 *
-	 */
-	public function itShouldInvoke() {
-		$sut = $this->getInstance();
+        $this->manager->add_setting(Argument::type('string'), Argument::type('array'));
 
-		$this->manager->get_setting( Argument::type('string') )->willReturn(new \stdClass());
-		$this->manager->get_section( Argument::type('string') )->willReturn(new \stdClass());
+//      $this->control->make(
+//          Argument::type('string'),
+//          $this->getWPCustomizeManager(),
+//          Argument::type('string'),
+//          Argument::type('array')
+//      );
 
-		$this->manager->add_setting(Argument::type('string'), Argument::type('array'));
-
-//		$this->control->make(
-//			Argument::type('string'),
-//			$this->getWPCustomizeManager(),
-//			Argument::type('string'),
-//			Argument::type('array')
-//		);
-
-		$sut();
-	}
+//        $sut();
+    }
 }

@@ -5,6 +5,73 @@
         "layout": {
             "contentSize": "clamp(16rem, 60vw, 60rem)",
             "wideSize": "clamp(16rem, 85vw, 70rem)"
+        },
+        "color": {
+            "custom": true,
+            "link": true
+        },
+        "typography": {
+            "customFontSize": true,
+            "lineHeight": true,
+            "fontSizes": [
+                {
+                    "slug": "base",
+                    "size": "clamp(1.125rem, 2vw, 1.5rem)",
+                    "name": "Base font size 16px"
+                },
+                {
+                    "slug": "h1",
+                    "size": "calc( var(--wp--preset--font-size--base) * 2.8125)",
+                    "name": "Used in H1 titles"
+                },
+                {
+                    "slug": "h2",
+                    "size": "calc( var(--wp--preset--font-size--base) * 2.1875)",
+                    "name": "Used in H2 titles"
+                },
+                {
+                    "slug": "h3",
+                    "size": "calc( var(--wp--preset--font-size--base) * 1.625)",
+                    "name": "Used in H3 titles"
+                },
+                {
+                    "slug": "h4",
+                    "size": "calc( var(--wp--preset--font-size--base) * 1.5)",
+                    "name": "Used in H4 titles"
+                },
+                {
+                    "slug": "h5",
+                    "size": "calc( var(--wp--preset--font-size--base) * 1.125)",
+                    "name": "Used in H5 titles"
+                },
+                {
+                    "slug": "h6",
+                    "size": "var(--wp--preset--font-size--base)",
+                    "name": "Used in H6 titles"
+                },
+                {
+                    "slug": "small",
+                    "size": "calc( var(--wp--preset--font-size--base) * 0.875)",
+                    "name": "Small font size"
+                },
+                {
+                    "slug": "x-small",
+                    "size": "calc( var(--wp--preset--font-size--base) * 0.75)",
+                    "name": "Extra Small font size"
+                }
+            ],
+            "fontFamilies": [
+                {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", \"Liberation Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+                    "slug": "base",
+                    "name": "Default font family"
+                },
+                {
+                    "fontFamily": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+                    "slug": "monospace",
+                    "name": "Font family for code"
+                }
+            ]
         }
     },
     "styles": {
@@ -51,7 +118,10 @@
                 "typography": []
             },
             "core/post-author": {
-                "typography": []
+                "typography": [],
+                "spacing": {
+                    "margin": "2rem 0 0px 0"
+                }
             },
             "core/post-terms": {
                 "typography": []
@@ -71,7 +141,12 @@
                     "text": "inherit"
                 },
                 "spacing": {
-                    "margin": "1.2rem 0 0px 0"
+                    "margin": "2rem 0 0px 0"
+                }
+            },
+            "core/search": {
+                "spacing": {
+                    "margin": "2rem 0 0px 0"
                 }
             }
         }

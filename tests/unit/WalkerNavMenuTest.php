@@ -1,58 +1,49 @@
 <?php
+
 declare(strict_types=1);
 
-namespace ItalyStrap\Test;
+namespace ItalyStrap\Tests\Unit;
 
 // phpcs:disable
 require_once \codecept_data_dir( 'stubs/' ) . 'class-wp-walker.php';
 require_once \codecept_data_dir( 'stubs/' ) . 'class-walker-nav-menu.php';
 // phpcs:enable
 
-use Codeception\Test\Unit;
-use ItalyStrap\Tests\BaseUnitTrait;
-use \Walker_Nav_Menu;
 
-class WalkerNavMenuTest extends Unit {
+use ItalyStrap\Tests\UnitTestCase;
 
-	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
-
-	/**
-	 * @var \UnitTester
-	 */
-	protected $tester;
-
+class WalkerNavMenuTest extends UnitTestCase
+{
 	// phpcs:ignore
 	protected function _before() {
-		$this->defineFunction( 'add_filter', fn(...$args) => true );
+        parent::_before();
+        $this->defineFunction('add_filter', fn(...$args) => true);
 
-		$this->defineFunction( 'apply_filters', fn(...$args) => $args[1] );
+        $this->defineFunction('apply_filters', fn(...$args) => $args[1]);
 
-		$this->defineFunction( 'esc_attr', fn(...$args) => $args[0] );
+        $this->defineFunction('esc_attr', fn(...$args) => $args[0]);
 
-		$this->defineFunction( 'remove_filter', fn(...$args) => true );
-	}
+        $this->defineFunction('remove_filter', fn(...$args) => true);
+    }
 
-	// phpcs:ignore
-	protected function _after() {
-	}
+    protected function makeInstance(): \ItalyStrap\Navigation\Infrastructure\BootstrapNavMenu
+    {
+        return new \ItalyStrap\Navigation\Infrastructure\BootstrapNavMenu();
+    }
 
-	protected function getInstance() {
-		$sut = new \ItalyStrap\Navbar\BootstrapNavMenu();
-		return $sut;
-	}
+    /**
+     * @test
+     */
+    public function itShouldReturnSubmenu()
+    {
+        $sut = $this->makeInstance();
 
-	/**
-	 * @test
-	 */
-	public function itShouldReturnSubmenu() {
-		$sut = $this->getInstance();
+        $output = '';
 
-		$output = '';
+        $sut->start_lvl($output);
 
-		$sut->start_lvl( $output );
+        $this->assertStringMatchesFormat('<ul role="menu" class="sub-menu">', \trim($output), '');
 
-		$this->assertStringMatchesFormat( '<ul role="menu" class="sub-menu">', \trim( $output ), '' );
-
-//		codecept_debug( $output );
-	}
+//      codecept_debug( $output );
+    }
 }

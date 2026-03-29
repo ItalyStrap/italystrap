@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Config;
 
-use ItalyStrap\Customizer\NotFoundFields;
+use ItalyStrap\Customizer\Fields\NotFoundFields;
 
 class ConfigNotFoundProvider
 {

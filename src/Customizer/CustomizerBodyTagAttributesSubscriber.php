@@ -26,7 +26,7 @@ class CustomizerBodyTagAttributesSubscriber implements SubscriberInterface
     }
 
     /**
-     * Used for the breadcrumbs display on customizer with javascript
+     * Used for the breadcrumbs display on customizer with JavaScript
      */
     public function __invoke(array $attr): array
     {

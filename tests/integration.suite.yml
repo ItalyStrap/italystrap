@@ -10,13 +10,13 @@ modules:
         - \Helper\Integration
     config:
         WPLoader:
-            wpRootFolder: "%WP_ROOT_FOLDER%"
-            dbName: "%DB_NAME%"
-            dbHost: "%DB_HOST%"
-            dbUser: "%DB_USER%"
-            dbPassword: "%DB_PASSWORD%"
-            tablePrefix: "%TABLE_PREFIX%"
-            domain: "%WPUNIT_SITE_WP_DOMAIN%"
-            adminEmail: "%WPUNIT_SITE_ADMIN_EMAIL%"
-            title: "ItalyStrap"
+            wpRootFolder: '%WP_ROOT_FOLDER%'
+            dbName: '%DB_NAME%'
+            dbHost: '%DB_HOST%'
+            dbUser: '%DB_USER%'
+            dbPassword: '%DB_PASSWORD%'
+            tablePrefix: '%TABLE_PREFIX%'
+            domain: '%WPUNIT_SITE_WP_DOMAIN%'
+            adminEmail: '%WPUNIT_SITE_ADMIN_EMAIL%'
+            title: 'ItalyStrap'
             theme: italystrap

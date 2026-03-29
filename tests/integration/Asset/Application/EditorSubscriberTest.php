@@ -35,7 +35,7 @@ class EditorSubscriberTest extends IntegrationTestCase
             ->get(ConfigThemeProvider::STYLESHEET_DIR_URI);
 
         Assert::assertSame(
-            $stylesheet_dir_uri . '/assets/css/editor-style.css',
+            $stylesheet_dir_uri . '/build/css/editor-style.css',
             $editor_styles[0],
             ''
         );

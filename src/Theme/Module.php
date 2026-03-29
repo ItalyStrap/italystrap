@@ -10,6 +10,7 @@ use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\Theme\Application\AfterSetupThemeSubscriber;
 use ItalyStrap\Theme\Application\ConfigCurrentTemplateSubscriber;
 use ItalyStrap\Theme\Application\ConfigWpSubscriber;
+use ItalyStrap\Theme\Application\DefaultPostThumbnailSubscriber;
 use ItalyStrap\Theme\Application\LicenseSubscriber;
 use ItalyStrap\Theme\Application\MetaBoxesSubscriber;
 use ItalyStrap\Theme\Application\PostTypeSupportSubscriber;
@@ -49,6 +50,7 @@ class Module
                 AfterSetupThemeSubscriber::class,
                 ConfigCurrentTemplateSubscriber::class,
                 ConfigWpSubscriber::class,
+                DefaultPostThumbnailSubscriber::class,
                 LicenseSubscriber::class,
                 SidebarsSubscriber::class,
                 SupportSubscriber::class,

@@ -2,32 +2,20 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\UI\Infrastructure;
+namespace ItalyStrap\Tests\Integration\UI\Infrastructure;
 
 use ItalyStrap\Tests\IntegrationTestCase;
 use ItalyStrap\UI\Infrastructure\ViewBlockTemplatePart;
 
 class ViewBlockTemplatePartTest extends IntegrationTestCase
 {
-    public function makeInstance()
+    public function makeInstance(): ViewBlockTemplatePart
     {
-        return new ViewBlockTemplatePart();
+        return new ViewBlockTemplatePart($this->config);
     }
 
-    public function testRender()
+    public function testSimpleRender()
     {
-        // Create a post for wp_template_part with some blocks
-//        $post_id = $this->factory()->post->create([
-//            'post_content' => '<!-- wp:paragraph -->',
-//            // With a post name of foo/bar
-//            'post_name' => 'bar',
-//            // The post type is wp_template_part
-//            'post_type' => 'wp_template_part',
-//        ]);
-//
-//         $term = \wp_insert_term( 'foo', 'wp_theme' );
-//         \wp_set_post_terms( $post_id, $term['term_id'], 'wp_theme' );
-
         $blockTemplate = new \WP_Block_Template();
         $blockTemplate->content = '<!-- wp:paragraph -->';
 
@@ -41,7 +29,30 @@ class ViewBlockTemplatePartTest extends IntegrationTestCase
         $sut = $this->makeInstance();
 
         $actual = $sut->render('foo/bar');
-        codecept_debug('$actual');
-        codecept_debug($actual);
+        $this->assertSame('<!-- wp:paragraph -->', $actual);
+    }
+
+    public function testRender()
+    {
+        $stylesheet = \get_stylesheet();
+
+        $post_id = $this->factory()->post->create([
+            'post_content' => '<!-- wp:site-title /-->',
+            'post_name' => 'bar',
+            'post_type' => 'wp_template_part',
+        ]);
+
+        $term = \wp_insert_term($stylesheet, 'wp_theme');
+        $term_id = \is_wp_error($term)
+            ? \get_term_by('name', $stylesheet, 'wp_theme')->term_id
+            : $term['term_id'];
+
+        \wp_set_object_terms($post_id, $term_id, 'wp_theme');
+        \clean_post_cache($post_id);
+
+        $sut = $this->makeInstance();
+
+        $actual = $sut->render('bar');
+        $this->assertSame('<!-- wp:site-title /-->', $actual);
     }
 }

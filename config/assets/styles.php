@@ -5,14 +5,11 @@ declare(strict_types=1);
 namespace ItalyStrap;
 
 use ItalyStrap\Asset\Asset;
-use ItalyStrap\Asset\ConfigBuilder as AssetConfigBuilder;
-
-use function defined;
-use function ItalyStrap\Core\experimental_generate_asset_index_filename;
+use ItalyStrap\Asset\ConfigBuilder;
 
 return [
     [
-        Asset::HANDLE               => CURRENT_TEMPLATE_SLUG,
-        AssetConfigBuilder::FILE_NAME   => experimental_generate_asset_index_filename('css'),
+        Asset::HANDLE            => CURRENT_TEMPLATE_SLUG,
+        ConfigBuilder::FILE_NAME => 'build/css/index.css',
     ],
 ];

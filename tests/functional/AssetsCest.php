@@ -9,6 +9,18 @@ use ItalyStrap\Tests\FunctionalTestCase;
 
 class AssetsCest extends FunctionalTestCase
 {
+    public function itShouldLoadBuiltThemeAssetsOnHomepage(FunctionalTester $i): void
+    {
+        $i->wantTo('See built theme assets loaded on homepage');
+
+        $i->amOnPage('/');
+        $i->seeResponseCodeIs(200);
+        $i->seeInSource('/build/css/index.css');
+        $i->seeInSource('/build/js/index.js');
+        $i->dontSeeInSource('/assets/css/index.css');
+        $i->dontSeeInSource('/assets/js/index.js');
+    }
+
     /**
      * @param FunctionalTester $i
      */

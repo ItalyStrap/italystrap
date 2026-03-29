@@ -24,6 +24,7 @@ bower
 *.map
 
 vendor
+/build
 _others
 _template
 _*
@@ -49,3 +50,4 @@ c3.php
 /.idea/
 *.bak
 /.sisyphus/*
+TODO.md

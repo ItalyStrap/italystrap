@@ -37,9 +37,9 @@ class ConfigThemeProvider
         yield self::THEME_VERSION => (string)$this->theme->display('Version');
         yield self::THEME_AUTHOR => (string)$this->theme->display('Author');
         yield self::TEMPLATE_DIR_URI    => $this->theme->get_template_directory_uri();
-        yield self::STYLESHEET_DIR_URI  => $this->theme->get_stylesheet_directory_uri();
+        yield self::STYLESHEET_DIR_URI  => \get_stylesheet_directory_uri();
         yield self::TEMPLATE_DIR    => $this->theme->get_template_directory();
-        yield self::STYLESHEET_DIR => $this->theme->get_stylesheet_directory();
+        yield self::STYLESHEET_DIR => \get_stylesheet_directory();
         yield self::STYLESHEET  => \get_stylesheet();
         yield self::THEME_BETA => false;
         yield self::VIEW_DIR => (string) $this->dispatcher->filter('italystrap_template_dir', 'templates');

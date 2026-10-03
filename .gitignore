@@ -50,3 +50,6 @@ c3.php
 *.bak
 /.sisyphus/*
 TODO.md
+#Generated config cache
+/config/cache/*
+!/config/cache/.gitkeep

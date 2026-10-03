@@ -50,7 +50,7 @@
 		"italystrap/finder": "dev-master",
 		"italystrap/asset": "dev-master",
 		"overclokk/minimum-requirements": "dev-master",
-		"cmb2/cmb2": "2.6.0",
+		"cmb2/cmb2": "~2.6.0",
 		"yiisoft/json": "^1.0",
 		"symfony/polyfill-php80": "^1.0"
 	},

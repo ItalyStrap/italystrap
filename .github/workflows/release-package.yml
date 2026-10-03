@@ -11,9 +11,6 @@ permissions:
 env:
     THEME_SLUG: ${{ github.event.repository.name }}
     RELEASE_VERSION: ${{ github.event.release.tag_name }}
-    DIST_DIR: ${{ runner.temp }}/dist
-    DIST_PACKAGE_ROOT: ${{ runner.temp }}/dist/${{ github.event.repository.name }}
-    DIST_ZIP: ${{ runner.temp }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
 
 jobs:
     package:
@@ -21,6 +18,12 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+            - name: Set distribution paths
+              run: |
+                  echo "DIST_DIR=$RUNNER_TEMP/dist" >> "$GITHUB_ENV"
+                  echo "DIST_PACKAGE_ROOT=$RUNNER_TEMP/dist/$THEME_SLUG" >> "$GITHUB_ENV"
+                  echo "DIST_ZIP=$RUNNER_TEMP/$THEME_SLUG-$RELEASE_VERSION.zip" >> "$GITHUB_ENV"
+
             - name: Check out release tag
               uses: actions/checkout@v4
               with:

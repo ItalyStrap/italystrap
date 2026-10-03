@@ -1,32 +1,31 @@
 <?php
+
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Config;
+namespace ItalyStrap\Tests\Unit\Config;
 
 use ItalyStrap\Config\ConfigMiscProvider;
-use ItalyStrap\Test\UndefinedFunctionDefinitionTrait;
-use ItalyStrap\Tests\BaseUnitTrait;
-use Prophecy\Argument;
+use ItalyStrap\Tests\UnitTestCase;
 
-class ConfigMiscProviderTest extends \Codeception\Test\Unit {
+class ConfigMiscProviderTest extends UnitTestCase
+{
+    protected function getInstance(): ConfigMiscProvider
+    {
+        $sut = new ConfigMiscProvider($this->makeConfig());
+        $this->assertInstanceOf(ConfigMiscProvider::class, $sut, '');
+        return $sut;
+    }
 
-	use BaseUnitTrait, UndefinedFunctionDefinitionTrait;
+    /**
+     * @test
+     */
+    public function itShouldExecute()
+    {
+        $sut = $this->getInstance();
 
-	protected function getInstance(): ConfigMiscProvider {
-		$sut = new ConfigMiscProvider($this->getConfig());
-		$this->assertInstanceOf(ConfigMiscProvider::class, $sut, '');
-		return $sut;
-	}
+        $this->defineFunction('esc_attr__', fn() => '');
+        $this->defineFunction('apply_filters', fn(...$args) => '');
 
-	/**
-	 * @test
-	 */
-	public function itShouldExecute() {
-		$sut = $this->getInstance();
-
-		$this->defineFunction('esc_attr__', fn() => '');
-		$this->defineFunction('apply_filters', fn(...$args) => '');
-
-		$sut();
-	}
+        $sut();
+    }
 }

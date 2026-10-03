@@ -1,0 +1,72 @@
+name: Release package
+
+on:
+    release:
+        types:
+            - published
+
+permissions:
+    contents: write
+
+env:
+    THEME_SLUG: ${{ github.event.repository.name }}
+    RELEASE_VERSION: ${{ github.event.release.tag_name }}
+    DIST_DIR: ${{ runner.temp }}/dist
+    DIST_PACKAGE_ROOT: ${{ runner.temp }}/dist/${{ github.event.repository.name }}
+    DIST_ZIP: ${{ runner.temp }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
+
+jobs:
+    package:
+        name: Build release asset
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Check out release tag
+              uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.event.release.tag_name }}
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+
+            - name: Install Node dependencies
+              run: npm ci --legacy-peer-deps
+
+            - name: Lint frontend sources
+              run: npm run lint
+
+            - name: Build frontend assets
+              run: npm run build
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.2'
+                  tools: composer:v2
+                  coverage: none
+
+            - name: Install production Composer dependencies
+              run: composer install --no-dev -o --prefer-dist --no-interaction
+
+            - name: Prepare distribution tree
+              run: |
+                  mkdir -p "$DIST_PACKAGE_ROOT"
+                  rsync -a ./ "$DIST_PACKAGE_ROOT/" --exclude-from=".distignore"
+                  test -f "$DIST_PACKAGE_ROOT/build/css/index.css"
+                  test -f "$DIST_PACKAGE_ROOT/build/css/editor-style.css"
+                  test -f "$DIST_PACKAGE_ROOT/build/js/index.js"
+                  test -d "$DIST_PACKAGE_ROOT/vendor"
+
+            - name: Create release archive
+              run: |
+                  cd "$DIST_DIR"
+                  zip -rq "$DIST_ZIP" "$THEME_SLUG"
+                  unzip -l "$DIST_ZIP" | sed -n '1,80p'
+
+            - name: Upload release asset
+              uses: softprops/action-gh-release@v2
+              with:
+                  files: ${{ env.DIST_ZIP }}

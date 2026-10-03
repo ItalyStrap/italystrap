@@ -47,6 +47,11 @@ or [download the zip file](https://github.com/ItalyStrap/italystrap/releases/lat
 Then [download the child cheme](https://github.com/ItalyStrap/ciao/archive/master.zip) and use it for your 
 customizations.
 
+`docker-compose --env-file ../.env up -d --build`
+`docker-compose --env-file ../.env up -d`
+`docker-compose --env-file ../.env down --remove-orphans -v`
+
+
 ## How to migrate from older version of 4.0.0 ##
 
 __Migration guide coming soon__

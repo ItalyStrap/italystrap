@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-docker exec -w /var/www/html/wp-content/plugins/mhh-extended-links mhh-extended-links_test sh -c "wp ${*} --allow-root"

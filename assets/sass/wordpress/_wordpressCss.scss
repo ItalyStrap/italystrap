@@ -1,4 +1,4 @@
-#wp-calendar{
+#wp-calendar {
     width: 100%;
 }
 
@@ -25,34 +25,27 @@
 -------------------------------------------------------------- */
 .aligncenter,
 div.aligncenter,
-a img.aligncenter
-{
-    //@include center-block;
-    @extend .mx-auto;
-    @extend .d-block;
+a img.aligncenter {
+    display: block;
+    margin-inline: auto;
 }
 
 .alignright,
-a img.alignright
-{
-    //@extend .pull-right;
-    @extend .float-right;
+a img.alignright {
+    float: right;
     margin: 0 0 1em 1em;
 }
 
 .alignleft,
-a img.alignleft
-{
-    //@extend .pull-left;
-    @extend .float-left;
+a img.alignleft {
+    float: left;
     margin: 0 1em 1em 0;
 }
 
 //Immagiini caricate nei post normalmente
 
 .alignnone,
-a img.alignnone
-{
+a img.alignnone {
     display: inline;
     margin-bottom: 1em;
     margin-right: 1em;
@@ -62,7 +55,7 @@ a img.alignnone
 /**
  * Featured Image archive and singular
  */
-.wp-post-image{
+.wp-post-image {
     margin-bottom: 1em;
 }
 
@@ -106,9 +99,9 @@ a img.alignnone
     p.wp-caption-text,
     .wp-caption-text {
         // background: #fff;
-        border: 1px solid $gray-200;
+        border: 1px solid var(--wp--preset--color--border);
         border-top: none;
-        color: $gray-300;
+        color: var(--wp--preset--color--text-muted);
         font-size: 0.85em;
         line-height: 1em;
         margin: 0;

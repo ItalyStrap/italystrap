@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Inherited Methods
  * @method void wantToTest($text)
@@ -23,4 +22,5 @@ class UnitTester extends \Codeception\Actor
     /**
      * Define custom actions here
      */
+
 }

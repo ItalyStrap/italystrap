@@ -24,6 +24,7 @@ bower
 *.map
 
 vendor
+/build
 _others
 _template
 _*
@@ -38,13 +39,13 @@ backups
 *.local
 #.travis.yml
 
-*.lock
 
 stty.exe.stackdump
-package-lock.json
 
 *.sample
 c3.php
 **/*.local.php
 /.idea/
 *.bak
+/.sisyphus/*
+TODO.md

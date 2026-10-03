@@ -1,3 +1,5 @@
+@use "../variables";
+
 /**
  * Fix for dropdown menu with multilevel
  * @link http://bootsnipp.com/snippets/featured/multi-level-dropdown-menu-bs3
@@ -5,26 +7,70 @@
  * Da finire di testare
  */
 .dropdown-menu {
-
-  ul {
-    list-style: none;
-    padding-left: 0;
+    ul {
+        margin: 0;
+        list-style: none;
+        padding-left: 0;
+    }
 
     .nav-link {
-      display: block;
-      padding: 3px 20px;
-      clear: both;
-      font-weight: normal;
-      line-height: 1.42857;
-      color: #333333;
-      white-space: nowrap;
+        display: block;
+        clear: both;
+        padding: var(--wp--preset--spacing--2) var(--wp--preset--spacing--3);
+        font-weight: 400;
+        line-height: 1.4;
+        color: var(--wp--preset--color--text);
+        white-space: nowrap;
 
-      &:focus,
-      &:hover {
-        color: #262626;
-        background-color: #f5f5f5;
-        text-decoration: none;
-      }
+        &:focus,
+        &:hover {
+            color: var(--wp--preset--color--accent-strong);
+            background: var(--wp--preset--color--surface-alt);
+            text-decoration: none;
+        }
     }
-  }
+
+    .sub-sub-menu {
+        padding-left: var(--wp--preset--spacing--3);
+    }
+
+    .divider {
+        height: 1px;
+        margin: var(--wp--preset--spacing--2) 0;
+        background: var(--wp--preset--color--border);
+    }
+
+    .dropdown-header {
+        padding: var(--wp--preset--spacing--2) var(--wp--preset--spacing--3);
+        color: var(--wp--preset--color--text-muted);
+        font-size: 0.8125rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .disabled > .nav-link {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    @media (min-width: variables.$breakpoint-md) {
+        .sub-sub-menu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            z-index: 5;
+            min-width: 14rem;
+            margin-left: var(--wp--preset--spacing--2);
+            border: 1px solid var(--wp--preset--color--border);
+            border-radius: var(--wp--custom--is--radius--md);
+            background: var(--wp--preset--color--surface);
+            box-shadow: var(--wp--custom--is--shadow--soft);
+        }
+
+        .depth-el-1:hover > .sub-sub-menu,
+        .depth-el-1:focus-within > .sub-sub-menu {
+            display: block;
+        }
+    }
 }

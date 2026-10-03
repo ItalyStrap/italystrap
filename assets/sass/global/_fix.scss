@@ -1,16 +1,30 @@
 // Fix Title overflow content area
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, a, p, li {
-	-ms-word-wrap: break-word;
-	word-wrap: break-word;	
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+a,
+p,
+li {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 //.size-full,
 //.wp-post-image,
 //.wp-block-image // <- Gutenberg
 //{
-//	//@include img-responsive();
-//	@include img-fluid();
-//	> img {
-//		@include img-fluid();
-//	}
+//  //@include img-responsive();
+//  @include img-fluid();
+//  > img {
+//      @include img-fluid();
+//  }
 //}

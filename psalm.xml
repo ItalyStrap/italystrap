@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="7"
+    errorLevel="1"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -11,10 +11,12 @@
         <directory name="src" />
         <ignoreFiles>
             <directory name="vendor" />
-            <directory name="src/Admin" />
+            <directory name="src/Asset" />
+            <directory name="src/Config" />
             <directory name="src/Customizer" />
-            <directory name="src/Navbar" />
             <directory name="src/Debug" />
+            <directory name="src/Experimental" />
+            <directory name="src/Navigation" />
         </ignoreFiles>
     </projectFiles>
 

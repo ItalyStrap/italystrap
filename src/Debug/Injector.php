@@ -7,7 +7,6 @@ namespace ItalyStrap\Debug;
 use Auryn\Injector as MainInjector;
 use Auryn\ConfigException;
 use Auryn\InjectionException;
-use ItalyStrap\Empress\Injector as EmpressInjector;
 use Throwable;
 
 /**
@@ -22,7 +21,7 @@ use Throwable;
  * Class DebugInjector
  * @package ItalyStrap
  */
-class Injector extends EmpressInjector {
+class Injector extends MainInjector {
 
 
 	private MainInjector $injector;

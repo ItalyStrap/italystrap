@@ -23,10 +23,18 @@ return static function (Injector $injector): ConfigInterface {
     $config =  (new ConfigFactory())->make();
 
     /**
+     * One cache file per active theme, and per site on multisite,
+     * so sites and child themes never share a cached config.
+     */
+    $cacheKey = is_multisite()
+        ? get_current_blog_id() . '-' . get_stylesheet()
+        : get_stylesheet();
+
+    /**
      * @TODO The cache have to be enabled only in production
      */
     $cache = new ProvidersCache(
-        file: get_template_directory() . '/config/cache/config-cache.php',
+        file: get_template_directory() . '/config/cache/config-cache-' . $cacheKey . '.php',
         fileMode: 0666,
         enabled: true,
     );

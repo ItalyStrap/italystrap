@@ -1,0 +1,55 @@
+@use "../variables";
+
+@use "sass:math";
+
+.container {
+    width: min(
+        100% - (var(--wp--preset--spacing--5) * 2),
+        var(--wp--custom--is--container-max-width)
+    );
+    margin-inline: auto;
+}
+
+.container-fluid,
+.none {
+    width: 100%;
+    padding-inline: var(--wp--preset--spacing--5);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-inline: calc(var(--wp--preset--spacing--4) * -1);
+
+    > * {
+        width: 100%;
+        padding-inline: var(--wp--preset--spacing--4);
+    }
+}
+
+.col {
+    flex: 1 0 0;
+}
+
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        flex: 0 0 math.percentage(math.div($i, 12));
+        max-width: math.percentage(math.div($i, 12));
+    }
+}
+
+@mixin columns-at($prefix, $breakpoint) {
+    @media (min-width: $breakpoint) {
+        @for $i from 1 through 12 {
+            .col-#{$prefix}-#{$i} {
+                flex: 0 0 math.percentage(math.div($i, 12));
+                max-width: math.percentage(math.div($i, 12));
+            }
+        }
+    }
+}
+
+@include columns-at("sm", variables.$breakpoint-sm);
+@include columns-at("md", variables.$breakpoint-md);
+@include columns-at("lg", variables.$breakpoint-lg);
+@include columns-at("xl", variables.$breakpoint-xl);

@@ -28,6 +28,7 @@ vendor
 _others
 _template
 _*
+!assets/sass/**/_*.scss
 
 #tests*
 *.bat

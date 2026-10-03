@@ -1,0 +1,40 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    background: var(--wp--preset--color--surface);
+    color: var(--wp--preset--color--text);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--wp--preset--color--accent);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: var(--wp--preset--color--accent-strong);
+        text-decoration: underline;
+    }
+}
+
+img,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}

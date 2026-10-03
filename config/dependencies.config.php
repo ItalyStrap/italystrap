@@ -10,7 +10,7 @@ use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Config\ConfigThemeModsProvider;
 use ItalyStrap\Customizer\Module as CustomizerModule;
 use ItalyStrap\Empress\PhpFileProvider;
-use ItalyStrap\Empress\ProvidersCacheInterface;
+use ItalyStrap\Empress\ProvidersCache;
 use ItalyStrap\Empress\ProvidersCollection;
 use ItalyStrap\Event\Module as EventModule;
 use ItalyStrap\Experimental\ExperimentalThemeFileFinderFactory;
@@ -21,10 +21,20 @@ use ItalyStrap\UI\Module as UIModule;
 
 return static function (Injector $injector): ConfigInterface {
     $config =  (new ConfigFactory())->make();
+
+    /**
+     * @TODO The cache have to be enabled only in production
+     */
+    $cache = new ProvidersCache(
+        file: get_template_directory() . '/config/cache/config-cache.php',
+        fileMode: 0666,
+        enabled: true,
+    );
+
     $collection = new ProvidersCollection(
         $injector,
         $config,
-        null,
+        $cache,
         [
             // First we load Modules from packages
             EventModule::class,
@@ -40,11 +50,6 @@ return static function (Injector $injector): ConfigInterface {
                 '/config/autoload/{{,*.}global,{,*.}local}.php',
                 $injector->execute(ExperimentalThemeFileFinderFactory::class)
             ),
-            // ProvidersCacheInterface::CACHE_PATH => get_template_directory() . '/config/cache/config-cache.php',
-            fn(): array => [
-            // ProvidersCacheInterface::CACHE_PATH => get_template_directory() . '/config/cache/config-cache.php',
-                ProvidersCacheInterface::ENABLE_CACHE => true,
-            ],
             /** This must run after all */
             fn(): array => [
                 ConfigProviderExtension::class => [
@@ -55,7 +60,7 @@ return static function (Injector $injector): ConfigInterface {
         ],
     );
 
-    $collection->build();
+    $collection->aggregate();
 
     return $config;
 };

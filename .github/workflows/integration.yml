@@ -135,6 +135,8 @@ jobs:
             - name: Run Unit & Integration test
               working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
               run: |
+                  # .env targets the Docker setup (DB_HOST=mysql), CI runs MySQL on the runner.
+                  sed -i "s/^DB_HOST=.*/DB_HOST=${DB_HOST}/" .env
                   ./vendor/bin/codecept run unit
                   ./vendor/bin/codecept run integration
 

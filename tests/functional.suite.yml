@@ -21,11 +21,11 @@ modules:
             populate: true
             cleanup: true
             waitlock: 10
-            url: http://localhost
+            url: '%FUNCTIONAL_WP_URL%'
             urlReplacement: true
             tablePrefix: '%WPDB_TABLE_PREFIX%'
         WPBrowser:
-            url: http://localhost
+            url: '%FUNCTIONAL_WP_URL%'
             adminUsername: '%ADMIN_USERNAME%'
             adminPassword: '%ADMIN_PASSWORD%'
             adminPath: '%WPBROWSER_WP_ADMIN_PATH%'

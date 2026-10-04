@@ -63,7 +63,7 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Start Selenium for using later
-              run: docker run -d --net=host --shm-size=2g selenium/standalone-chrome:4.6.0-20221104
+              run: docker run -d --net=host --shm-size=2g selenium/standalone-chrome:4.49.0-20260909
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
@@ -155,7 +155,7 @@ jobs:
                   done
                   echo "Selenium did not become ready"
                   docker ps -a
-                  docker logs $(docker ps -aq --filter ancestor=selenium/standalone-chrome:4.6.0-20221104) 2>&1 | tail -40
+                  docker logs $(docker ps -aq --filter ancestor=selenium/standalone-chrome:4.49.0-20260909) 2>&1 | tail -40
                   exit 1
 
             - name: Run Functional and Acceptance test

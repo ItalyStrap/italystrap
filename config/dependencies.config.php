@@ -26,9 +26,11 @@ return static function (Injector $injector): ConfigInterface {
      * One cache file per active theme, and per site on multisite,
      * so sites and child themes never share a cached config.
      */
+    // A child theme in a nested folder has a stylesheet like "overclokk/overclokk-theme".
+    $stylesheet = str_replace(['/', '\\'], '-', get_stylesheet());
     $cacheKey = is_multisite()
-        ? get_current_blog_id() . '-' . get_stylesheet()
-        : get_stylesheet();
+        ? get_current_blog_id() . '-' . $stylesheet
+        : $stylesheet;
 
     /**
      * @TODO The cache have to be enabled only in production

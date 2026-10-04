@@ -19,8 +19,6 @@ extensions:
         - Codeception\Command\GenerateWPXMLRPC
 params:
     - .env
-    # Environment variables override .env, so CI can point DB_HOST at its own MySQL.
-    - env
 settings:
     shuffle: true
     colors: true

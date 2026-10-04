@@ -138,6 +138,7 @@ jobs:
                   # .env targets the Docker setup (DB_HOST=mysql), CI runs MySQL on the runner.
                   sed -i "s/^DB_HOST=.*/DB_HOST=${DB_HOST}/" .env
                   sed -i "s#^FUNCTIONAL_WP_URL=.*#FUNCTIONAL_WP_URL=http://${APP_HOST}:${APP_PORT}#" .env
+                  sed -i "s/^ACCEPTANCE_ADMIN_USERNAME=.*/ACCEPTANCE_ADMIN_USERNAME=${APP_USER}/; s/^ACCEPTANCE_ADMIN_PASSWORD=.*/ACCEPTANCE_ADMIN_PASSWORD=${APP_PASSWORD}/" .env
                   ./vendor/bin/codecept run unit
                   ./vendor/bin/codecept run integration
 

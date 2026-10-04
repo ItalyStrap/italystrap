@@ -27,8 +27,8 @@ modules:
             tablePrefix: '%WPDB_TABLE_PREFIX%'
         WPWebDriver:
             url: '%CHROMEDRIVER_WP_URL%'
-            adminUsername: 'admin'
-            adminPassword: 'password'
+            adminUsername: '%ACCEPTANCE_ADMIN_USERNAME%'
+            adminPassword: '%ACCEPTANCE_ADMIN_PASSWORD%'
             adminPath: '/wp-admin'
             browser: chrome
             host: %CHROMEDRIVER_HOST%

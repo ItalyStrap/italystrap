@@ -2,14 +2,8 @@
 // phpcs:ignoreFile
 declare(strict_types=1);
 
-use tad\FunctionMocker\FunctionMocker;
-
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-FunctionMocker::init([
-	'blacklist' => dirname(__DIR__),
-	'cache-path' => codecept_output_dir('patchwork-cache'),
-]);
 
 /** Stubs */
 class WP_Theme {

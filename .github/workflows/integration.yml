@@ -63,7 +63,7 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Start Selenium for using later
-              run: docker run -d --net=host --shm-size=2g selenium/standalone-chrome:4.6.0-20221104
+              run: docker run -d --net=host --shm-size=2g selenium/standalone-chrome:4.49.0-20260909
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
@@ -135,14 +135,40 @@ jobs:
             - name: Run Unit & Integration test
               working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
               run: |
+                  # .env targets the Docker setup (DB_HOST=mysql), CI runs MySQL on the runner.
+                  sed -i "s/^DB_HOST=.*/DB_HOST=${DB_HOST}/" .env
+                  sed -i "s#^FUNCTIONAL_WP_URL=.*#FUNCTIONAL_WP_URL=http://${APP_HOST}:${APP_PORT}#" .env
+                  sed -i "s/^ACCEPTANCE_ADMIN_USERNAME=.*/ACCEPTANCE_ADMIN_USERNAME=${APP_USER}/; s/^ACCEPTANCE_ADMIN_PASSWORD=.*/ACCEPTANCE_ADMIN_PASSWORD=${APP_PASSWORD}/" .env
                   ./vendor/bin/codecept run unit
                   ./vendor/bin/codecept run integration
 
             - name: Start dev server
               run: php -S ${{env.APP_HOST}}:${{env.APP_PORT}} -t ${{env.APP_FOLDER_PATH}} >/dev/null 2>&1 &
 
+            - name: Wait for Selenium
+              run: |
+                  for i in $(seq 1 30); do
+                      if curl -sf http://localhost:4444/status | grep -q '"ready": *true'; then
+                          echo "Selenium is ready"
+                          exit 0
+                      fi
+                      sleep 2
+                  done
+                  echo "Selenium did not become ready"
+                  docker ps -a
+                  docker logs $(docker ps -aq --filter ancestor=selenium/standalone-chrome:4.49.0-20260909) 2>&1 | tail -40
+                  exit 1
+
             - name: Run Functional and Acceptance test
               working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
               run: |
                   ./vendor/bin/codecept run functional --debug
                   ./vendor/bin/codecept run acceptance --debug
+
+            - name: Upload test output
+              if: failure()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: tests-output
+                  path: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}/tests/_output
+                  if-no-files-found: ignore

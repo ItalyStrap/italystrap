@@ -163,3 +163,11 @@ jobs:
               run: |
                   ./vendor/bin/codecept run functional --debug
                   ./vendor/bin/codecept run acceptance --debug
+
+            - name: Upload test output
+              if: failure()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: tests-output
+                  path: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}/tests/_output
+                  if-no-files-found: ignore

@@ -14,7 +14,7 @@ class MainNavigationOlder implements ComponentInterface, SubscriberInterface
 {
     use SubscribedEventsAware;
 
-    public const EVENT_NAME = 'italystrap_after_header';
+    public const EVENT_NAME = \ItalyStrap\UI\Components\Header\Events\Content::class;
     public const EVENT_PRIORITY = 10;
 
     private ConfigInterface $config;

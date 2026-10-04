@@ -15,8 +15,9 @@ class MiscNavigation implements ComponentInterface, SubscriberInterface
 {
     use SubscribedEventsAware;
 
-    public const EVENT_NAME = 'italystrap_before_header';
-    public const EVENT_PRIORITY = 10;
+    public const EVENT_NAME = \ItalyStrap\UI\Components\Header\Events\Content::class;
+    // Before the main navigation, which listens to the same event at priority 10.
+    public const EVENT_PRIORITY = 5;
 
     public const TEMPLATE_NAME = 'navigation/navbar-top';
 

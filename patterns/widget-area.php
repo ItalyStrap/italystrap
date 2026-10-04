@@ -17,6 +17,11 @@ use ItalyStrap\View\ViewInterface;
 
 use function ItalyStrap\Factory\injector;
 
+// Patterns are also registered while WordPress installs, before the theme is bootstrapped.
+if (\wp_installing()) {
+    return;
+}
+
 $injector = injector();
 
 $view = $injector->make(ViewInterface::class);

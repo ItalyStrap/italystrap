@@ -17,6 +17,11 @@ use ItalyStrap\UI\Components\Footer\Events\Content;
 
 use function ItalyStrap\Factory\injector;
 
+// Patterns are also registered while WordPress installs, before the theme is bootstrapped.
+if (\wp_installing()) {
+    return;
+}
+
 $dispatcher = injector()->make(\Psr\EventDispatcher\EventDispatcherInterface::class);
 ?>
 <?= $dispatcher->dispatch(new Before()); ?>

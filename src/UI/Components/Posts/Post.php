@@ -16,6 +16,12 @@ class Post implements ComponentInterface, SubscriberInterface
     public function getSubscribedEvents(): iterable
     {
         yield PostsContent::class => $this;
+
+        yield 'post_class' => [
+            SubscriberInterface::CALLBACK       => 'filterPostClass',
+            SubscriberInterface::PRIORITY       => 10,
+            SubscriberInterface::ACCEPTED_ARGS  => 3,
+        ];
     }
 
     public const TEMPLATE_NAME = 'posts/post';
@@ -41,35 +47,41 @@ class Post implements ComponentInterface, SubscriberInterface
 
     public function __invoke(PostsContent $event): void
     {
+        /**
+         * This view is rendered once and used as the inner template of `core/post-template`,
+         * so nothing specific to a single post can be printed here: the post id and classes
+         * are added by `core/post-template` on each item, see filterPostClass().
+         */
         $event->appendContent($this->view->render(self::TEMPLATE_NAME, [
             EventDispatcherInterface::class => $this->dispatcher,
-            'id' => \get_the_ID(),
-            'class_names' => \join(' ', $this->classForPostThumbnail())
         ]));
     }
 
-    private function classForPostThumbnail(): array
+    /**
+     * @param string[]        $classes
+     * @param string|string[] $class
+     *
+     * @return string[]
+     */
+    public function filterPostClass(array $classes, $class, int $postId): array
     {
-        $classes = \get_post_class();
-
         /**
          * If it has not a post thumbnail just bail out.
          */
-        if (! has_post_thumbnail()) {
+        if (! \has_post_thumbnail($postId)) {
             return $classes;
         }
 
         /**
          * Remove the 'hentry' css class to prevents error in search console
          */
-        foreach ($classes as $key => $class) {
-            if ('hentry' === $class) {
-                unset($classes[ $key ]);
-            }
-        }
+        $classes = \array_values(\array_filter(
+            $classes,
+            static fn(string $className): bool => 'hentry' !== $className
+        ));
 
         $classes[] = 'post-thumbnail-' . $this->config->get('post_thumbnail_alignment');
 
-        return  $classes;
+        return $classes;
     }
 }

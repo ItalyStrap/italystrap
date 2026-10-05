@@ -7,6 +7,7 @@ namespace ItalyStrap\Tests\Unit\Components\Navigation;
 use ItalyStrap\Navigation\UI\Components\Pagination;
 use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Components\Posts\Events\PostsContentAfter;
 
 class PaginationTest extends UnitTestCase
 {
@@ -35,10 +36,11 @@ class PaginationTest extends UnitTestCase
     public function itShouldDisplay()
     {
         $sut = $this->getInstance();
-        $this->defineFunction('do_blocks', static fn(string $block) => 'block');
-
         $this->view->render(Pagination::TEMPLATE_NAME)->willReturn('block');
-        $this->expectOutputString('block');
-        $sut->display();
+
+        $event = new PostsContentAfter();
+        $sut->display($event);
+
+        $this->assertSame('block', (string)$event, 'The block markup is appended to the event, not echoed.');
     }
 }

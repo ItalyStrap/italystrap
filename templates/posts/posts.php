@@ -37,6 +37,12 @@ if (! \have_posts()) {
     <!-- wp:post-template -->
     <?= $dispatcher->dispatch(new PostsContent()); ?>
     <!-- /wp:post-template -->
+    <?php
+    /**
+     * Inside the query block, so blocks appended here (the pagination) get the query context
+     * and paginate the main query instead of a default posts query.
+     */
+    ?>
+    <?= $dispatcher->dispatch(new PostsContentAfter()); ?>
 </div>
 <!-- /wp:query -->
-<?= $dispatcher->dispatch(new PostsContentAfter()); ?>

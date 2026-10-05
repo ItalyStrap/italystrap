@@ -34,8 +34,12 @@ class Pagination implements SubscriberInterface, ComponentInterface
         return ! \is_404();
     }
 
-    public function display(): void
+    public function display(PostsContentAfter $event): void
     {
-        echo \do_blocks($this->view->render(self::TEMPLATE_NAME));
+        /**
+         * Appended as block markup instead of being rendered here: dispatched inside the query
+         * block, the pagination blocks get its context and paginate the main query.
+         */
+        $event->appendContent($this->view->render(self::TEMPLATE_NAME));
     }
 }

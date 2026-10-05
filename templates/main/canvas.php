@@ -21,7 +21,7 @@ $dispatcher = (object)$this->get(EventDispatcherInterface::class);
     <?php \wp_head(); ?>
 </head>
 
-<body <?= \esc_attr((string)$this->get(MainCanvas::BODY_CLASS_NAMES, '')); ?>>
+<body class="<?= \esc_attr((string)$this->get(MainCanvas::BODY_CLASS_NAMES, '')); ?>">
 <?php \wp_body_open(); ?>
 
 <?= $dispatcher->dispatch(new Canvas()); ?>

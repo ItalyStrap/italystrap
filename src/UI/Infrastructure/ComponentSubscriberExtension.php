@@ -72,6 +72,12 @@ class ComponentSubscriberExtension implements Extension
             ->make($class);
 
         if ($this->shouldNotDisplay($instance)) {
+            /**
+             * The first walk runs before the `wp` hook, when the per-page settings (layout,
+             * hidden title, meta and so on) are not known yet, so a component may have been
+             * registered there. The `template_include` walk knows them, remove it here.
+             */
+            $this->subscriberRegister->removeSubscriber($instance);
             return;
         }
 

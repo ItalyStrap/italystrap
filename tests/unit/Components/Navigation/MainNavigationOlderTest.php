@@ -12,6 +12,7 @@ use ItalyStrap\Navigation\UI\Components\NavMenuPrimary;
 use ItalyStrap\Navigation\UI\Components\NavMenuSecondary;
 use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Components\Header\CustomHeaderImage;
 use ItalyStrap\UI\Components\Header\Events\Content;
 use Prophecy\Argument;
 
@@ -52,6 +53,11 @@ class MainNavigationOlderTest extends UnitTestCase
             \iterator_to_array($sut->getSubscribedEvents()),
             ''
         );
+    }
+
+    public function testItShouldPrintBeforeTheCustomHeaderImage(): void
+    {
+        $this->assertLessThan(CustomHeaderImage::EVENT_PRIORITY, MainNavigationOlder::EVENT_PRIORITY, '');
     }
 
     public function testItShouldAppendTheNavbarToTheEvent(): void

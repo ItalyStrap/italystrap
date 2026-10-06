@@ -13,7 +13,7 @@ use ItalyStrap\View\ViewInterface;
 
 class MiscNavigation implements ComponentInterface, SubscriberInterface
 {
-    // Before the main navigation, which listens to the same event at priority 10.
+    // Before the main navigation, which listens to the same event at priority 8.
     public const EVENT_PRIORITY = 5;
 
     public const TEMPLATE_NAME = 'navigation/navbar-top';

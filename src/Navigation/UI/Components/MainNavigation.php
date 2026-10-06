@@ -13,7 +13,8 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 
 class MainNavigation implements ComponentInterface, SubscriberInterface
 {
-    public const EVENT_PRIORITY = 10;
+    // Before the custom header image (9), the order the navbar had when it was echoed.
+    public const EVENT_PRIORITY = 8;
     public const CONTEXT = 'context';
 
     public const TEMPLATE_NAME = 'navigation/navigation';

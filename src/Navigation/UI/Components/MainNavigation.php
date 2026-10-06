@@ -4,22 +4,27 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation\UI\Components;
 
-use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Components\Header\Events\Content;
 use ItalyStrap\View\ViewInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 class MainNavigation implements ComponentInterface, SubscriberInterface
 {
-    use SubscribedEventsAware;
-
-    public const EVENT_NAME = 'italystrap_after_header';
     public const EVENT_PRIORITY = 10;
     public const CONTEXT = 'context';
 
     public const TEMPLATE_NAME = 'navigation/navigation';
+
+    public function getSubscribedEvents(): iterable
+    {
+        yield Content::class => [
+            SubscriberInterface::CALLBACK => $this,
+            SubscriberInterface::PRIORITY => self::EVENT_PRIORITY,
+        ];
+    }
 
     private ConfigInterface $config;
     private ViewInterface $view;
@@ -40,11 +45,11 @@ class MainNavigation implements ComponentInterface, SubscriberInterface
         return true;
     }
 
-    public function display(): void
+    public function __invoke(Content $event): void
     {
-        echo \do_blocks($this->view->render(self::TEMPLATE_NAME, [
+        $event->appendContent(\do_blocks($this->view->render(self::TEMPLATE_NAME, [
             EventDispatcherInterface::class => $this->dispatcher,
             self::CONTEXT => 'this-context',
-        ]));
+        ])));
     }
 }

@@ -101,8 +101,8 @@ open_tag_e('nav_container', 'div', [
                 'class' => 'navbar-collapse collapse',
             ]);
 
-            $nav_menu_primary->display();
-            $nav_menu_secondary->display();
+            echo $nav_menu_primary->render();
+            echo $nav_menu_secondary->render();
 
             close_tag_e('collapsable_menu');
             close_tag_e('nav-inner-container');

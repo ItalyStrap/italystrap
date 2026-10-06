@@ -4,19 +4,25 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation\UI\Components;
 
-use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\Navigation\UI\Components\Events\NavMenuHeaderContent;
 use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\View\ViewInterface;
 
 class NavMenuToggleButton implements ComponentInterface, SubscriberInterface
 {
-    use SubscribedEventsAware;
+    // Before the logo, title and tagline, which listen to the same event at priority 10.
+    public const EVENT_PRIORITY = 5;
 
-    public const EVENT_NAME = 'italystrap_navmenu_header';
-    public const EVENT_PRIORITY = 10;
+    public function getSubscribedEvents(): iterable
+    {
+        yield NavMenuHeaderContent::class => [
+            SubscriberInterface::CALLBACK => $this,
+            SubscriberInterface::PRIORITY => self::EVENT_PRIORITY,
+        ];
+    }
 
     private ConfigInterface $config;
     private ViewInterface $view;
@@ -37,9 +43,9 @@ class NavMenuToggleButton implements ComponentInterface, SubscriberInterface
         return true;
     }
 
-    public function display(): void
+    public function __invoke(NavMenuHeaderContent $event): void
     {
-        echo '<button
+        $event->appendContent('<button
 				class="navbar-toggler navbar-toggle"
 				type="button"
 				data-toggle="collapse"
@@ -48,6 +54,6 @@ class NavMenuToggleButton implements ComponentInterface, SubscriberInterface
 				aria-expanded="false"
 				aria-label="Toggle navigation">
 				<!-- <span class="navbar-toggler-icon">&nbsp</span>-->
-			</button>';
+			</button>');
     }
 }

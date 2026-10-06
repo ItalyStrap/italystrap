@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-use ItalyStrap\Event\GlobalDispatcherInterface as EventDispatcherInterface;
+use ItalyStrap\Navigation\UI\Components\Events\NavMenuAfter;
+use ItalyStrap\Navigation\UI\Components\Events\NavMenuBefore;
+use ItalyStrap\Navigation\UI\Components\Events\NavMenuContent;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 /** @var \ItalyStrap\Config\ConfigInterface $config */
 $config = $this;
@@ -21,15 +24,15 @@ $context = (string)$config->get(\ItalyStrap\Navigation\UI\Components\MainNavigat
         <!-- wp:group {"className":"container"} -->
         <div id="menus-container-440383729" class="wp-block-group container">
 
-            <?php $dispatcher->trigger('italystrap_before_navmenu'); ?>
+            <?= $dispatcher->dispatch(new NavMenuBefore()); ?>
 
             <!-- wp:group {"className":"navbar-collapse collapse","layout":{"type":"flex","flexWrap":"nowrap"}} -->
             <div id="italystrap-menu-440383729" class="wp-block-group navbar-collapse collapse">
-                <?php $dispatcher->trigger('italystrap_navmenu'); ?>
+                <?= $dispatcher->dispatch(new NavMenuContent()); ?>
             </div>
             <!-- /wp:group -->
 
-            <?php $dispatcher->trigger('italystrap_after_navmenu'); ?>
+            <?= $dispatcher->dispatch(new NavMenuAfter()); ?>
 
         </div>
         <!-- /wp:group -->

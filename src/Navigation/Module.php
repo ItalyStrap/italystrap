@@ -25,7 +25,6 @@ use ItalyStrap\Navigation\UI\Components\NavMenuHeader;
 use ItalyStrap\Navigation\UI\Components\NavMenuPrimary;
 use ItalyStrap\Navigation\UI\Components\NavMenuSecondary;
 use ItalyStrap\Navigation\UI\Components\NavMenuToggleButton;
-use ItalyStrap\Navigation\UI\Components\Pager;
 use ItalyStrap\Navigation\UI\Components\Pagination;
 use ItalyStrap\UI\Infrastructure\ComponentSubscriberExtension;
 use Walker_Nav_Menu;
@@ -80,7 +79,7 @@ class Module
 //                Navbar::class,
                 NavMenuPrimary::class,
 
-                Pager::class,
+                // Pager::class, it listens to PostContent, not registered until single posts need it.
                 Pagination::class,
             ],
         ];

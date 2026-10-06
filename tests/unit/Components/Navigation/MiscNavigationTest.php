@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Components\Navigation;
 
+use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Navigation\UI\Components\MiscNavigation;
 use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Components\Header\Events\Content;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
@@ -34,7 +36,26 @@ class MiscNavigationTest extends UnitTestCase
     /**
      * @test
      */
-    public function itShouldDisplay()
+    public function itShouldListenToTheHeaderContentEventBeforeTheMainNavigation()
+    {
+        $sut = $this->getInstance();
+
+        $this->assertSame(
+            [
+                Content::class => [
+                    SubscriberInterface::CALLBACK => $sut,
+                    SubscriberInterface::PRIORITY => 5,
+                ],
+            ],
+            \iterator_to_array($sut->getSubscribedEvents()),
+            ''
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldAppendToTheEvent()
     {
         $sut = $this->getInstance();
 
@@ -45,7 +66,7 @@ class MiscNavigationTest extends UnitTestCase
             return 'from do_block';
         });
 
-        $this->expectOutputString('from do_block');
-        $sut->display();
+        $this->expectOutputString('');
+        $this->tester->assertRenderableEventIsChanged($sut, 'from do_block');
     }
 }

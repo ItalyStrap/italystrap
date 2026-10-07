@@ -12,7 +12,6 @@ use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 use SplFileInfo;
 
 use function add_editor_style;
-use function realpath;
 use function str_replace;
 
 class EditorSubscriber implements SubscriberInterface
@@ -55,21 +54,34 @@ class EditorSubscriber implements SubscriberInterface
             return;
         }
 
-        $real_path = (string) $editor_style->getRealPath();
-        $stylesheet_dir = (string) $this->config
-            ->get(ConfigThemeProvider::STYLESHEET_DIR);
-
-        $style_url = \str_replace(
-            $stylesheet_dir,
-            (string) $this->config
-                ->get(ConfigThemeProvider::STYLESHEET_DIR_URI),
-            $real_path
-        );
-
-        $style_url = \str_replace('\\', '/', $style_url);
+        // The path as found, not the real path: a symlinked theme folder would no longer match its directory.
+        $style_url = $this->url(\str_replace('\\', '/', $editor_style->getPathname()));
 
         $arg = (array)$this->globalDispatcher->filter('italystrap_visual_editor_style', [ $style_url ]);
 
         add_editor_style($arg);
+    }
+
+    /**
+     * The URL of a file in the child or in the parent theme, the child is checked first.
+     */
+    private function url(string $path): string
+    {
+        $directories = [
+            ConfigThemeProvider::STYLESHEET_DIR => ConfigThemeProvider::STYLESHEET_DIR_URI,
+            ConfigThemeProvider::TEMPLATE_DIR => ConfigThemeProvider::TEMPLATE_DIR_URI,
+        ];
+
+        foreach ($directories as $directory_key => $uri_key) {
+            $directory = \str_replace('\\', '/', (string) $this->config->get($directory_key));
+
+            if ($directory === '' || ! \str_starts_with($path, $directory . '/')) {
+                continue;
+            }
+
+            return (string) $this->config->get($uri_key) . \substr($path, \strlen($directory));
+        }
+
+        return $path;
     }
 }

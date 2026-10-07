@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Auryn\Injector;
 use ItalyStrap\Asset\Module as AssetModule;
+use ItalyStrap\Config\ConfigCacheFile;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigProviderExtension;
@@ -33,12 +34,24 @@ return static function (Injector $injector): ConfigInterface {
         : $stylesheet;
 
     /**
-     * @TODO The cache have to be enabled only in production
+     * The parent and child versions are part of the file name, so a release never reads
+     * the config cached by the previous one. Other environments always read the code.
      */
+    $cacheFile = new ConfigCacheFile(
+        get_template_directory() . '/config/cache',
+        $cacheKey,
+        wp_get_theme(get_template())->get('Version') . '|' . wp_get_theme()->get('Version')
+    );
+
+    $cacheEnabled = wp_get_environment_type() === 'production';
+    if ($cacheEnabled) {
+        $cacheFile->removeStale();
+    }
+
     $cache = new ProvidersCache(
-        file: get_template_directory() . '/config/cache/config-cache-' . $cacheKey . '.php',
+        file: $cacheFile->path(),
         fileMode: 0666,
-        enabled: true,
+        enabled: $cacheEnabled,
     );
 
     $collection = new ProvidersCollection(

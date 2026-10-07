@@ -1,10 +1,10 @@
 # ItalyStrap #
-**Contributors:** [overclokk](https://profiles.wordpress.org/overclokk)  
+**Contributors:** [overclokk](https://profiles.wordpress.org/overclokk/)  
 **Donate link:** https://italystrap.com  
 **Tags:** breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, post-formats, sticky-post, translation-ready, blog, design, journal, lifestream, tumblelog, bright, clean, colorful, geometric, modern, playful, simple, whimsical, vibrant  
 **Requires at least:** 5.8  
 **Tested up to:** 5.9  
-**Stable tag:** 4.0.0-beta.8  
+**Stable tag:** 4.0.0-beta.16  
 **Requires PHP:** 7.2  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -13,11 +13,11 @@ The Theme Framework for WordPress website.
 
 ## Description ##
 
-**This is a complete rebuild of the theme, it is a breaking changes, always do a backup first**
+ItalyStrap is a classic WordPress theme framework. It now uses a modern `@wordpress/scripts` asset pipeline while keeping classic PHP templates, classic editor stylesheet loading, and the existing theme runtime structure.
 
-### Docs coming soon ###
+This migration is intentionally not a full block-theme or Full Site Editing conversion.
 
-**[ItalyStrap WordPress Theme Framework](https://italystrap.com)** will add powerful features to your WordPRess site.
+**Breaking change:** older 4.x installs should be treated as migrations, not drop-in updates. Back up the site before replacing the theme.
 
 [![Unit Test](https://github.com/ItalyStrap/italystrap/actions/workflows/test.yml/badge.svg)](https://github.com/ItalyStrap/italystrap/actions/workflows/test.yml)
 
@@ -30,7 +30,7 @@ The Theme Framework for WordPress website.
 
 Install the [Advanced Control Manager](https://wordpress.org/plugins/advanced-control-manager/) plugin to add more feature.
 
-# For DEV #
+## For Developers ##
 
 Clone the git repo of the theme:
 
@@ -38,23 +38,83 @@ Clone the git repo of the theme:
 
 `cd italystrap`
 
-Install composer dependencies:
+Install JavaScript and Composer dependencies:
+
+`npm ci`
 
 `composer install --no-dev -o`
 
 or [download the zip file](https://github.com/ItalyStrap/italystrap/releases/latest), unzip it, place it in your folder themes `/wp-content/themes/` directory and activate it via Admin > Appearance > Themes
 
-Then [download the child cheme](https://github.com/ItalyStrap/ciao/archive/master.zip) and use it for your 
-customizations.
+Then [download the child cheme](https://github.com/ItalyStrap/ciao/archive/master.zip) and use it for your customizations.
 
-`docker-compose --env-file ../.env up -d --build`
-`docker-compose --env-file ../.env up -d`
-`docker-compose --env-file ../.env down --remove-orphans -v`
+## Asset build workflow ##
 
+The canonical frontend build uses `@wordpress/scripts`.
+
+- `npm run start` runs the development watcher and writes theme assets into `build/`.
+- `npm run build` creates the production bundle in `build/`.
+- `npm run lint` checks the theme TypeScript and Sass sources with the modern `wp-scripts` ESLint and Stylelint tooling.
+- `npm run format` applies the modern formatter to the theme asset CSS, Sass, JavaScript, and TypeScript sources using spaces instead of tabs.
+- Runtime PHP asset loading now points to `build/` outputs first, then reads sibling `*.asset.php` metadata files when they exist.
+- The expected runtime outputs are `build/js/index.js`, `build/css/index.css`, `build/css/editor-style.css`, and `build/customizer/*.js`.
+- `build/css/editor-style.css` is still loaded in the classic editor through `add_editor_style()`, while block and global design tokens come from `theme.json`.
+
+Do not revive Grunt, Gulp, Bower, or legacy compiled `assets/css/*` and `assets/js/*` files as the active build contract.
+
+## Release and package workflow ##
+
+Releases now follow the `@wordpress/scripts` build path and do not use Grunt, Gulp, or Bower tasks.
+
+1. Update release metadata (`style.css` version header, `readme.txt` stable tag, and changelog entries).
+2. Build production assets with `npm ci --legacy-peer-deps && npm run build`.
+3. Refresh PHP runtime dependencies with `composer install --no-dev -o`.
+4. Verify the release tree contains the current `build/` outputs that runtime loading expects, plus the production `vendor/` tree.
+5. Create the release commit and tag (`git tag <version>`), then publish the tag on GitHub.
+6. Publishing the GitHub release runs `.github/workflows/release-package.yml`, which rebuilds assets, installs production Composer dependencies, and uploads a custom zip release asset.
+7. The uploaded release asset zip is the canonical package. GitHub's auto-generated source archive remains uncustomized, and `.distignore` now defines the development-only files and directories excluded from the distributable package.
+
+Legacy branch-switching, credential prompts, and local zip creation from the Grunt/Gulp flow are intentionally removed from maintainer instructions.
+
+## Theme JSON ownership ##
+
+`theme.json` is the only canonical source of truth for block settings and block styles in this classic theme.
+
+- WordPress reads `theme.json` directly to register layout, typography, and block-level presets for the editor and front end.
+- The legacy PHP generator in `src/Asset/ThemeJson.php` now mirrors that checked-in file instead of defining a second schema in code.
+- The Composer `theme:json` generation path has been removed so releases no longer depend on a generated intermediary file.
+- Editor CSS still loads through `add_editor_style()` from `src/Asset/Application/EditorSubscriber.php`; `theme.json` augments editor presets and block styles, while `build/css/editor-style.css` provides the classic-theme stylesheet layer.
+- Front-end rendering keeps using the classic theme templates and stylesheets, with `theme.json` supplying the global block styles that WordPress prints alongside those assets.
+
+## Testing and QA ##
+
+Use the dedicated theme Docker stack for Codeception and related QA work.
+
+- Start the stack with `make up`.
+- Run theme tooling through the provided make targets such as `make unit`, `make integration`, `make functional`, `make acceptance`, `make qa`, and `make cs`.
+- If you need direct container tooling, use the wrappers inside `.docker/` from the running stack instead of assuming host or DDEV execution.
+- Do not document DDEV or host-only Codeception commands as the primary path, they are misleading for this repository.
+
+## Migration notes for maintainers ##
+
+Older maintainer assumptions changed during the migration.
+
+- Bootstrap CSS is no longer part of the active runtime contract.
+- Theme-owned jQuery and Bootstrap JavaScript dependencies were removed from the active frontend and customizer runtime paths.
+- Runtime asset loading now expects built files in `build/`, not legacy checked-in compiled assets under `assets/`.
+- `theme.json` owns block and global tokens for this classic theme, while template wrapper settings that still depend on classic theme mods remain outside that file.
+- Navigation and frontend behavior should now be extended with theme-owned markup, CSS, and vanilla JavaScript patterns, not Bootstrap data APIs.
+- This repository still contains historical Bootstrap, jQuery, Grunt, Gulp, and Bower references in changelog text. Treat those as archival history, not current maintainer guidance.
 
 ## How to migrate from older version of 4.0.0 ##
 
-__Migration guide coming soon__
+Treat this as a migration to a new runtime contract.
+
+- Rebuild assets with `npm ci && npm run build` after pulling theme changes.
+- Expect runtime styles and scripts to come from `build/` outputs.
+- Move block-editor and global design token changes into `theme.json`.
+- Keep using child themes or classic template overrides for PHP template customization.
+- Do not assume a full block-theme conversion, template-html takeover, or full FSE support.
 
 Remember! This is a full refactoring of the theme, consider it like a new theme, if you have the old version you have to do a migration to the new version.
 

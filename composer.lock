@@ -665,12 +665,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/event.git",
-                "reference": "9d3013c30a26e655d44811b5394b619f0416cb5a"
+                "reference": "88d9dc5c0f79d67c400bf197c5aa9dc5ae58ce27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/event/zipball/9d3013c30a26e655d44811b5394b619f0416cb5a",
-                "reference": "9d3013c30a26e655d44811b5394b619f0416cb5a",
+                "url": "https://api.github.com/repos/ItalyStrap/event/zipball/88d9dc5c0f79d67c400bf197c5aa9dc5ae58ce27",
+                "reference": "88d9dc5c0f79d67c400bf197c5aa9dc5ae58ce27",
                 "shasum": ""
             },
             "require": {
@@ -747,7 +747,7 @@
                 "issues": "https://github.com/ItalyStrap/event/issues",
                 "source": "https://github.com/ItalyStrap/event"
             },
-            "time": "2025-10-29T20:52:10+00:00"
+            "time": "2026-10-07T14:00:48+00:00"
         },
         {
             "name": "italystrap/finder",
@@ -16660,5 +16660,5 @@
         "php": ">=7.4"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

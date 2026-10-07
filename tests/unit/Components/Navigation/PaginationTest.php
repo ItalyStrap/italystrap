@@ -39,7 +39,7 @@ class PaginationTest extends UnitTestCase
         $this->view->render(Pagination::TEMPLATE_NAME)->willReturn('block');
 
         $event = new PostsContentAfter();
-        $sut->display($event);
+        $sut($event);
 
         $this->assertSame('block', (string)$event, 'The block markup is appended to the event, not echoed.');
     }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation\UI\Components;
 
-use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\UI\Components\ComponentInterface;
@@ -13,12 +12,17 @@ use ItalyStrap\View\ViewInterface;
 
 class Pagination implements SubscriberInterface, ComponentInterface
 {
-    use SubscribedEventsAware;
-
-    public const EVENT_NAME = PostsContentAfter::class;
     public const EVENT_PRIORITY = 10;
 
     public const TEMPLATE_NAME = 'navigation/pagination';
+
+    public function getSubscribedEvents(): iterable
+    {
+        yield PostsContentAfter::class => [
+            SubscriberInterface::CALLBACK => $this,
+            SubscriberInterface::PRIORITY => self::EVENT_PRIORITY,
+        ];
+    }
 
     private ConfigInterface $config;
     private ViewInterface $view;
@@ -34,7 +38,7 @@ class Pagination implements SubscriberInterface, ComponentInterface
         return ! \is_404();
     }
 
-    public function display(PostsContentAfter $event): void
+    public function __invoke(PostsContentAfter $event): void
     {
         /**
          * Appended as block markup instead of being rendered here: dispatched inside the query

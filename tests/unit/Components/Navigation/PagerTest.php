@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Components\Navigation;
 
+use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Navigation\UI\Components\Pager;
 use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\UI\Components\ComponentInterface;
+use ItalyStrap\UI\Components\Posts\Events\PostContent;
 use PHPUnit\Framework\Assert;
 
 class PagerTest extends UnitTestCase
@@ -43,13 +45,32 @@ class PagerTest extends UnitTestCase
     /**
      * @test
      */
-    public function itShouldDisplay()
+    public function itShouldListenToThePostContentEventAfterTheContent()
     {
         $sut = $this->makeInstance();
-        $this->defineFunction('do_blocks', static fn(string $block) => 'block');
 
+        $this->assertSame(
+            [
+                PostContent::class => [
+                    SubscriberInterface::CALLBACK => $sut,
+                    SubscriberInterface::PRIORITY => 55,
+                ],
+            ],
+            \iterator_to_array($sut->getSubscribedEvents()),
+            ''
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldAppendToTheEvent()
+    {
+        $sut = $this->makeInstance();
+        $this->defineFunction('do_blocks', static fn(string $block) => 'parsed ' . $block);
         $this->view->render(Pager::TEMPLATE_NAME)->willReturn('block');
-        $this->expectOutputString('block');
-        $sut->display();
+
+        $this->expectOutputString('');
+        $this->tester->assertRenderableEventIsChanged($sut, 'parsed block');
     }
 }

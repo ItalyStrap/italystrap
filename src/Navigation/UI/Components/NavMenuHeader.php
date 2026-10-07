@@ -4,35 +4,38 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Navigation\UI\Components;
 
-use ItalyStrap\Components\SubscribedEventsAware;
 use ItalyStrap\Config\ConfigInterface;
-use ItalyStrap\Event\GlobalDispatcherInterface;
 use ItalyStrap\Event\SubscriberInterface;
+use ItalyStrap\Navigation\UI\Components\Events\NavMenuBefore;
 use ItalyStrap\UI\Components\ComponentInterface;
 use ItalyStrap\View\ViewInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 class NavMenuHeader implements ComponentInterface, SubscriberInterface
 {
-    use SubscribedEventsAware;
-
-    public const EVENT_NAME = 'italystrap_before_navmenu';
     public const EVENT_PRIORITY = 10;
+
+    public const TEMPLATE_NAME = 'navigation/header';
+
+    public function getSubscribedEvents(): iterable
+    {
+        yield NavMenuBefore::class => [
+            SubscriberInterface::CALLBACK => $this,
+            SubscriberInterface::PRIORITY => self::EVENT_PRIORITY,
+        ];
+    }
 
     private ConfigInterface $config;
     private ViewInterface $view;
-    private GlobalDispatcherInterface $globalDispatcher;
     private EventDispatcherInterface $dispatcher;
 
     public function __construct(
         ConfigInterface $config,
         ViewInterface $view,
-        GlobalDispatcherInterface $globalDispatcher,
         EventDispatcherInterface $dispatcher
     ) {
         $this->config = $config;
         $this->view = $view;
-        $this->globalDispatcher = $globalDispatcher;
         $this->dispatcher = $dispatcher;
     }
 
@@ -41,11 +44,10 @@ class NavMenuHeader implements ComponentInterface, SubscriberInterface
         return true;
     }
 
-    public function display(): void
+    public function __invoke(NavMenuBefore $event): void
     {
-        echo $this->view->render('navigation/header', [
-            GlobalDispatcherInterface::class => $this->globalDispatcher,
+        $event->appendContent($this->view->render(self::TEMPLATE_NAME, [
             EventDispatcherInterface::class => $this->dispatcher,
-        ]);
+        ]));
     }
 }

@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Auryn\Injector;
+use ItalyStrap\Cache\ConfigCacheFile;
 use ItalyStrap\Asset\Module as AssetModule;
-use ItalyStrap\Config\ConfigCacheFile;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigProviderExtension;
@@ -35,7 +35,7 @@ return static function (Injector $injector): ConfigInterface {
 
     /**
      * The parent and child versions are part of the file name, so a release never reads
-     * the config cached by the previous one. Other environments always read the code.
+     * the config cached by the previous one. With WP_DEBUG on, the config is always rebuilt.
      */
     $cacheFile = new ConfigCacheFile(
         get_template_directory() . '/config/cache',
@@ -43,7 +43,7 @@ return static function (Injector $injector): ConfigInterface {
         wp_get_theme(get_template())->get('Version') . '|' . wp_get_theme()->get('Version')
     );
 
-    $cacheEnabled = wp_get_environment_type() === 'production';
+    $cacheEnabled = !(\defined('WP_DEBUG') && WP_DEBUG);
     if ($cacheEnabled) {
         $cacheFile->removeStale();
     }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Unit\Config;
+namespace ItalyStrap\Tests\Unit\Cache;
 
-use ItalyStrap\Config\ConfigCacheFile;
+use ItalyStrap\Cache\ConfigCacheFile;
 use ItalyStrap\Tests\UnitTestCase;
 
 class ConfigCacheFileTest extends UnitTestCase

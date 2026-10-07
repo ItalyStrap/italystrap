@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Config;
+namespace ItalyStrap\Cache;
 
 /**
  * The cache file of the aggregated config, one per theme and site.

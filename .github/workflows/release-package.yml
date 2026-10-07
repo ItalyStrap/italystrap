@@ -44,6 +44,10 @@ jobs:
             - name: Build frontend assets
               run: npm run build
 
+            # The version bump commits README.md, this keeps the zip in sync even if it was skipped.
+            - name: Generate README.md from readme.txt
+              run: npm run readme
+
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:

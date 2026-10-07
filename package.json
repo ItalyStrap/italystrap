@@ -21,6 +21,7 @@
 	},
 	"scripts": {
 		"readme": "wp-readme-to-md",
+		"version": "node .github/scripts/sync-version.mjs && npm run readme",
 		"format": "wp-scripts format \"assets/**/*.{css,scss,js,ts}\"",
 		"format:check": "wp-scripts format --check \"assets/**/*.{css,scss,js,ts}\"",
 		"build": "wp-scripts build",

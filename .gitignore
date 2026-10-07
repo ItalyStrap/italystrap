@@ -53,3 +53,6 @@ TODO.md
 #Generated config cache
 /config/cache/*
 !/config/cache/.gitkeep
+
+# theme.json schema
+theme.schema.json

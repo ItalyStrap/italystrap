@@ -41,7 +41,7 @@ return (static function (Injector $injector): Injector {
      *
      * ========================================================================
      */
-    $listenerProvider->addListener('after_setup_theme', fn() => $injectorConfig->resolve(), -1);
+    $listenerProvider->addListener('after_setup_theme', fn() => $injectorConfig->apply(), -1);
 
     /**
      * So, now in your child theme you can do something like that:

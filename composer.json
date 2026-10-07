@@ -126,7 +126,6 @@
 			]
 		},
 		"theme-json": {
-			"callable": "\\ItalyStrap\\Asset\\ThemeJson::writeJson",
 			"path-for-theme-sass": "assets/sass/"
 		}
 	},

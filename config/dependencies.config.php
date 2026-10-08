@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Auryn\Injector;
 use ItalyStrap\Cache\ConfigCacheFile;
 use ItalyStrap\Asset\Module as AssetModule;
+use ItalyStrap\Block\Module as BlockModule;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigProviderExtension;
@@ -69,6 +70,7 @@ return static function (Injector $injector): ConfigInterface {
             ExperimentalModule::class,
             NavigationModule::class,
             UIModule::class,
+            BlockModule::class,
             new PhpFileProvider(
                 '/config/autoload/{{,*.}global,{,*.}local}.php',
                 $injector->execute(ExperimentalThemeFileFinderFactory::class)

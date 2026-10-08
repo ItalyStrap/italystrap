@@ -25,3 +25,10 @@ if ( ! \class_exists( 'WP_Customize_Manager' ) ) {
 		}
 	}
 }
+
+if ( ! \class_exists( 'WP_Block' ) ) {
+	class WP_Block {
+		public $name;
+		public $context = [];
+	}
+}

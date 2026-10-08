@@ -10,10 +10,11 @@ interface ImageSizeInterface
      * @param string $name
      * @param int $width
      * @param int $height
-     * @param bool $crop
+     * @param bool|array{0: string, 1: string} $crop True to crop from the center, or the x and y
+     *                                              positions, like ['center', 'top'].
      * @return void
      */
-    public function addSize(string $name, int $width = 0, int $height = 0, bool $crop = false);
+    public function addSize(string $name, int $width = 0, int $height = 0, $crop = false);
 
     /**
      * @param string $name

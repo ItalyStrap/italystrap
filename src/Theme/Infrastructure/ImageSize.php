@@ -9,7 +9,7 @@ class ImageSize implements ImageSizeInterface
     /**
      * @inheritDoc
      */
-    public function addSize(string $name, int $width = 0, int $height = 0, bool $crop = false): void
+    public function addSize(string $name, int $width = 0, int $height = 0, $crop = false): void
     {
         \add_image_size(...func_get_args());
     }

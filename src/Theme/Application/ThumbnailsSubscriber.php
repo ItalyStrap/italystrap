@@ -96,9 +96,24 @@ final class ThumbnailsSubscriber implements SubscriberInterface
                 $name,
                 (int)$params[ ConfigPostThumbnailProvider::WIDTH ],
                 (int)$params[ ConfigPostThumbnailProvider::HEIGHT ],
-                (bool)$params[ ConfigPostThumbnailProvider::CROP ] ?? false
+                $this->crop($params[ ConfigPostThumbnailProvider::CROP ])
             );
         });
+    }
+
+    /**
+     * Keeps the crop positions, like ['center', 'top'], any other value means crop or not.
+     *
+     * @param mixed $crop
+     * @return bool|array{0: string, 1: string}
+     */
+    private function crop($crop)
+    {
+        if (\is_array($crop) && \count($crop) === 2) {
+            return [(string)\reset($crop), (string)\end($crop)];
+        }
+
+        return (bool)$crop;
     }
 
     private function getDefaultImageParams(): array

@@ -11,7 +11,7 @@
 		"url": "https://github.com/ItalyStrap/italystrap.git"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^31.6.0",
+		"@wordpress/scripts": "^36.1.0",
 		"clean-webpack-plugin": "^4.0.0",
 		"ajv": "^8.18.0",
 		"ajv-keywords": "^5.1.0",

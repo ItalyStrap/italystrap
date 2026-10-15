@@ -8,6 +8,7 @@ use Auryn\Injector;
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Customizer\CustomizerProviderExtension;
 use ItalyStrap\Empress\AurynConfig;
+use ItalyStrap\Empress\ProxyFactory;
 use ItalyStrap\Event\GlobalOrderedListenerProvider;
 use ItalyStrap\Event\SubscribersConfigExtension;
 use ItalyStrap\UI\Infrastructure\ComponentSubscriberExtension;
@@ -17,8 +18,10 @@ use function ItalyStrap\Factory\injector;
 require __DIR__ . DIRECTORY_SEPARATOR . '../vendor/autoload.php';
 
 return (static function (Injector $injector): Injector {
+    // The lazy services of the PROXY config need a factory, Empress no longer creates one by default.
     $injectorConfig = $injector->make(AurynConfig::class, [
-        ':dependencies' => (require __DIR__ . '/../config/dependencies.config.php')($injector)
+        ':dependencies' => (require __DIR__ . '/../config/dependencies.config.php')($injector),
+        ':proxyFactory' => new ProxyFactory(),
     ]);
 
     $injectorConfig->extend(

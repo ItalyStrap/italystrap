@@ -9,6 +9,7 @@ use ItalyStrap\Event\SubscriberInterface;
 use WP_Post;
 use WP_Term;
 
+use function array_key_exists;
 use function array_merge;
 use function check_admin_referer;
 use function delete_post_meta;
@@ -142,6 +143,11 @@ final class ItemCustomFieldsSubscriber implements SubscriberInterface
     {
 
         if (defined('DOING_AJAX') && DOING_AJAX) {
+            return;
+        }
+
+        // Only the Menus screen posts the fields: the importer, WP-CLI and the REST API save menu items too.
+        if (!array_key_exists('update-nav-menu-nonce', $_POST)) {
             return;
         }
 

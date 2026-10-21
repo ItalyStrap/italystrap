@@ -461,16 +461,16 @@
         },
         {
             "name": "italystrap/config",
-            "version": "2.11.0",
+            "version": "2.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/config.git",
-                "reference": "1165d2a6562f3b12a60ea4fb6e4e70c2bbdf7ba1"
+                "reference": "0de9ee385237d63a28a90d8965e484f3f98734f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/config/zipball/1165d2a6562f3b12a60ea4fb6e4e70c2bbdf7ba1",
-                "reference": "1165d2a6562f3b12a60ea4fb6e4e70c2bbdf7ba1",
+                "url": "https://api.github.com/repos/ItalyStrap/config/zipball/0de9ee385237d63a28a90d8965e484f3f98734f0",
+                "reference": "0de9ee385237d63a28a90d8965e484f3f98734f0",
                 "shasum": ""
             },
             "require": {
@@ -527,7 +527,7 @@
                 "issues": "https://github.com/ItalyStrap/config/issues",
                 "source": "https://github.com/ItalyStrap/config"
             },
-            "time": "2025-12-29T20:11:16+00:00"
+            "time": "2026-10-21T08:40:41+00:00"
         },
         {
             "name": "italystrap/empress",
@@ -16661,5 +16661,5 @@
         "php": ">=7.4"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.6.0"
 }

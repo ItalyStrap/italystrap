@@ -10,11 +10,8 @@ use function do_blocks;
 
 class ViewBlock implements ViewBlockInterface
 {
-    private ViewInterface $view;
-
-    public function __construct(ViewInterface $view)
+    public function __construct(private ViewInterface $view)
     {
-        $this->view = $view;
     }
 
     public function render($slugs, $data = []): string

@@ -16,11 +16,8 @@ use function array_values;
 
 class CustomizerAssetsSubscriber implements SubscriberInterface
 {
-    private ThemeAssetResolver $resolver;
-
-    public function __construct(ThemeAssetResolver $resolver)
+    public function __construct(private ThemeAssetResolver $resolver)
     {
-        $this->resolver = $resolver;
     }
 
     public function getSubscribedEvents(): iterable

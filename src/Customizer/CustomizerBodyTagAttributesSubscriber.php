@@ -10,8 +10,6 @@ use ItalyStrap\Theme\Application\ConfigCurrentTemplateSubscriber;
 
 class CustomizerBodyTagAttributesSubscriber implements SubscriberInterface
 {
-    private ConfigInterface $config;
-
     public function getSubscribedEvents(): iterable
     {
         yield 'italystrap_body_attr' => [
@@ -19,10 +17,8 @@ class CustomizerBodyTagAttributesSubscriber implements SubscriberInterface
         ];
     }
 
-    public function __construct(
-        ConfigInterface $config
-    ) {
-        $this->config = $config;
+    public function __construct(private ConfigInterface $config)
+    {
     }
 
     /**

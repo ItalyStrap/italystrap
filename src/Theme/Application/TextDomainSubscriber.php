@@ -18,11 +18,8 @@ final class TextDomainSubscriber implements SubscriberInterface
         ];
     }
 
-    private Config $config;
-
-    public function __construct(Config $config)
+    public function __construct(private Config $config)
     {
-        $this->config = $config;
     }
 
     public function __invoke()

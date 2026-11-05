@@ -19,8 +19,6 @@ final class ThumbnailsSubscriber implements SubscriberInterface
     public const WIDTH = 'width';
     public const HEIGHT = 'height';
     public const CROP = 'crop';
-    private ConfigInterface $config;
-    private ImageSizeInterface $image_sizes_obj;
 
     /**
      * @inheritDoc
@@ -34,10 +32,8 @@ final class ThumbnailsSubscriber implements SubscriberInterface
     }
 
 
-    public function __construct(ConfigInterface $config, ImageSizeInterface $image_sizes)
+    public function __construct(private ConfigInterface $config, private ImageSizeInterface $image_sizes_obj)
     {
-        $this->config = $config;
-        $this->image_sizes_obj = $image_sizes;
     }
 
     /**

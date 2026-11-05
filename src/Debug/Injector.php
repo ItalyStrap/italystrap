@@ -24,10 +24,7 @@ use Throwable;
 class Injector extends MainInjector {
 
 
-	private MainInjector $injector;
-
-	public function __construct( MainInjector $injector ) {
-		$this->injector = $injector;
+	public function __construct( private MainInjector $injector ) {
 		parent::__construct();
 	}
 

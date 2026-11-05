@@ -24,27 +24,18 @@ class NavMenuPrimary implements ComponentInterface, \ItalyStrap\Event\Subscriber
         ];
     }
 
-    private ConfigInterface $config;
-    private ViewInterface $view;
-    private NavMenu $menu;
-    private NavMenuLocationInterface $location;
-
     /**
      * @var callable
      */
     private $fallback;
 
     public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
-        NavMenuInterface $menu,
-        NavMenuLocationInterface $location,
+        private ConfigInterface $config,
+        private ViewInterface $view,
+        private NavMenuInterface $menu,
+        private NavMenuLocationInterface $location,
         ?callable $fallback = null
     ) {
-        $this->config = $config;
-        $this->view = $view;
-        $this->menu = $menu;
-        $this->location = $location;
         $this->fallback = $fallback;
     }
 

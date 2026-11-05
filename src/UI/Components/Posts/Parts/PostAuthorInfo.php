@@ -22,13 +22,8 @@ class PostAuthorInfo implements ComponentInterface, SubscriberInterface
         ];
     }
 
-    private ConfigInterface $config;
-    private AuthorInfo $authorInfo;
-
-    public function __construct(ConfigInterface $config, AuthorInfo $author)
+    public function __construct(private ConfigInterface $config, private AuthorInfo $authorInfo)
     {
-        $this->config = $config;
-        $this->authorInfo = $author;
     }
 
     public function shouldDisplay(): bool

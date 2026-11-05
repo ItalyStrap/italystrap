@@ -26,16 +26,13 @@ final class Region implements SubscriberInterface
         'footer' => FooterContent::class,
     ];
 
-    private EventDispatcherInterface $dispatcher;
-
     public function getSubscribedEvents(): iterable
     {
         yield 'init' => $this;
     }
 
-    public function __construct(EventDispatcherInterface $dispatcher)
+    public function __construct(private EventDispatcherInterface $dispatcher)
     {
-        $this->dispatcher = $dispatcher;
     }
 
     public function __invoke(): void

@@ -23,11 +23,8 @@ class ArchiveAuthorInfo implements ComponentInterface, SubscriberInterface
         ];
     }
 
-    private AuthorInfo $authorInfo;
-
-    public function __construct(AuthorInfo $info)
+    public function __construct(private AuthorInfo $authorInfo)
     {
-        $this->authorInfo = $info;
     }
 
     public function shouldDisplay(): bool

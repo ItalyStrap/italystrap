@@ -10,13 +10,8 @@ use ItalyStrap\Navigation\Domain\NavMenu;
 
 class NavMenuFallback
 {
-    private Attributes $attributes;
-    private Tag $tag;
-
-    public function __construct(Attributes $attributes, Tag $tag)
+    public function __construct(private Attributes $attributes, private Tag $tag)
     {
-        $this->attributes = $attributes;
-        $this->tag = $tag;
     }
 
     /**

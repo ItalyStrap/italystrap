@@ -28,11 +28,8 @@ final class SidebarsSubscriber implements SubscriberInterface
         yield 'dynamic_sidebar_before'  => 'parseDynamicSidebarBefore';
     }
 
-    private Config $config;
-
-    public function __construct(Config $config)
+    public function __construct(private Config $config)
     {
-        $this->config = $config;
     }
 
     public function register(): void

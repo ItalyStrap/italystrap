@@ -10,19 +10,13 @@ use ItalyStrap\UI\Infrastructure\ViewBlockInterface;
 class Search implements ElementInterface
 {
     public const TEMPLATE_NAME = 'elements/search';
-    private ViewBlockInterface $view;
 
     private array $attributes = [];
     private string $context = '';
     private string $content = '';
-    private TagInterface $tag;
 
-    public function __construct(
-        ViewBlockInterface $view,
-        TagInterface $tag
-    ) {
-        $this->view = $view;
-        $this->tag = $tag;
+    public function __construct(private ViewBlockInterface $view, private TagInterface $tag)
+    {
     }
 
     public function withAttributes(array $attributes): void

@@ -23,7 +23,6 @@ class Image implements ComponentInterface, SubscriberInterface
     public const EVENT_NAME = 'italystrap_entry_content_none';
     public const EVENT_PRIORITY = 10;
     private int $imageId;
-    private Figure $figure;
 
     public function getSubscribedEvents(): iterable
     {
@@ -35,23 +34,13 @@ class Image implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'elements/figure';
 
-    private ConfigInterface $config;
-    private ViewInterface $view;
-    private GlobalDispatcherInterface $dispatcher;
-    private TagInterface $tag;
-
     public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
-        GlobalDispatcherInterface $dispatcher,
-        TagInterface $tag,
-        Figure $figure
+        private ConfigInterface $config,
+        private ViewInterface $view,
+        private GlobalDispatcherInterface $dispatcher,
+        private TagInterface $tag,
+        private Figure $figure
     ) {
-        $this->config = $config;
-        $this->view = $view;
-        $this->dispatcher = $dispatcher;
-        $this->tag = $tag;
-        $this->figure = $figure;
         $this->imageId = (int)$this->config->get(ConfigNotFoundProvider::ID_IMAGE, 0);
     }
 

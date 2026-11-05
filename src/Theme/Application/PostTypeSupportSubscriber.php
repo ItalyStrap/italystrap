@@ -14,11 +14,8 @@ final class PostTypeSupportSubscriber implements SubscriberInterface
         yield 'init'    => $this;
     }
 
-    private ConfigInterface $config;
-
-    public function __construct(ConfigInterface $config)
+    public function __construct(private ConfigInterface $config)
     {
-        $this->config = $config;
     }
 
     public function __invoke(): void

@@ -20,19 +20,11 @@ class Canvas implements ComponentInterface, SubscriberInterface
     public const TEMPLATE_NAME = 'main/canvas';
     public const BODY_CLASS_NAMES = 'body_class_names';
 
-    private ConfigInterface $config;
-
-    private EventDispatcherInterface $dispatcher;
-    private ViewInterface $view;
-
     public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
-        EventDispatcherInterface $dispatcher
+        private ConfigInterface $config,
+        private ViewInterface $view,
+        private EventDispatcherInterface $dispatcher,
     ) {
-        $this->config = $config;
-        $this->view = $view;
-        $this->dispatcher = $dispatcher;
     }
 
     public function shouldDisplay(): bool

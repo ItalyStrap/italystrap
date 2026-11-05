@@ -24,12 +24,9 @@ class Tagline implements ComponentInterface, SubscriberInterface
     public const ATTRIBUTES = 'attributes';
 
     public const TEMPLATE_NAME = 'site/tagline';
-    private ViewInterface $view;
 
-    public function __construct(
-        ViewInterface $view
-    ) {
-        $this->view = $view;
+    public function __construct(private ViewInterface $view)
+    {
     }
 
     public function shouldDisplay(): bool

@@ -14,11 +14,8 @@ class ConfigThemeSupportProvider
     public const CUSTOM_HEADER = 'custom-header';
     public const CUSTOM_LOGO = 'custom-logo';
 
-    private ConfigInterface $config;
-
-    public function __construct(ConfigInterface $config)
+    public function __construct(private ConfigInterface $config)
     {
-        $this->config = $config;
     }
 
     public function __invoke(): iterable

@@ -19,9 +19,6 @@ final class AfterSetupThemeSubscriber implements SubscriberInterface
 {
     public const AFTER_SETUP_THEME = 'after_setup_theme';
 
-    private GlobalDispatcherInterface $globalDispatcher;
-    private Injector $injector;
-
     public function getSubscribedEvents(): iterable
     {
         yield self::AFTER_SETUP_THEME   => [
@@ -30,10 +27,8 @@ final class AfterSetupThemeSubscriber implements SubscriberInterface
         ];
     }
 
-    public function __construct(Injector $injector, GlobalDispatcherInterface $globalDispatcher)
+    public function __construct(private Injector $injector, private GlobalDispatcherInterface $globalDispatcher)
     {
-        $this->globalDispatcher = $globalDispatcher;
-        $this->injector = $injector;
     }
 
     public function __invoke(): void

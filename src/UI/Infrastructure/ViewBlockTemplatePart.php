@@ -10,11 +10,8 @@ use ItalyStrap\View\ViewInterface;
 
 class ViewBlockTemplatePart implements ViewInterface
 {
-    private ConfigInterface $config;
-
-    public function __construct(ConfigInterface $config)
+    public function __construct(private ConfigInterface $config)
     {
-        $this->config = $config;
     }
 
     /**

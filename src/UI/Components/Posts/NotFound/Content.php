@@ -15,7 +15,6 @@ use ItalyStrap\View\ViewInterface;
 class Content implements ComponentInterface, SubscriberInterface
 {
     public const EVENT_PRIORITY = 30;
-    private Search $searchObj;
 
     public function getSubscribedEvents(): iterable
     {
@@ -30,19 +29,10 @@ class Content implements ComponentInterface, SubscriberInterface
     public const CONTENT = 'content';
     public const SEARCH = 'search';
 
-    private ConfigInterface $config;
-    private ViewInterface $view;
-
     private string $search = '';
 
-    public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
-        Search $search
-    ) {
-        $this->config = $config;
-        $this->view = $view;
-        $this->searchObj = $search;
+    public function __construct(private ConfigInterface $config, private ViewInterface $view, private Search $searchObj)
+    {
     }
 
     public function shouldDisplay(): bool

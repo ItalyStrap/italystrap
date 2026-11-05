@@ -21,15 +21,8 @@ final class ConfigCurrentTemplateSubscriber implements SubscriberInterface
         ];
     }
 
-    private ConfigInterface $config;
-    private FileInfoFactoryInterface $fileInfoFactory;
-
-    public function __construct(
-        ConfigInterface $config,
-        FileInfoFactoryInterface $fileInfoFactory
-    ) {
-        $this->config = $config;
-        $this->fileInfoFactory = $fileInfoFactory;
+    public function __construct(private ConfigInterface $config, private FileInfoFactoryInterface $fileInfoFactory)
+    {
     }
 
     public function __invoke(string $current_template = ''): string

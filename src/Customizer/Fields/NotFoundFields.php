@@ -15,17 +15,13 @@ class NotFoundFields
     public const HIDE_IMAGE = 'hide';
 
     private \WP_Customize_Manager $manager;
-    private ConfigInterface $config;
-    private FieldControlFactory $control;
 
     public function __construct(
         \WP_Customize_Manager $manager,
-        ConfigInterface $config,
-        FieldControlFactory $control
+        private ConfigInterface $config,
+        private FieldControlFactory $control
     ) {
         $this->manager = $manager;
-        $this->config = $config;
-        $this->control = $control;
     }
 
     public function __invoke(): void

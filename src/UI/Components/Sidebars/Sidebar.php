@@ -21,18 +21,11 @@ class Sidebar implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'sidebars/sidebar';
     public const INDEX = 'index';
-
-    private ConfigInterface $config;
-    private ViewInterface $view;
-    private EventDispatcherInterface $dispatcher;
     public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
-        EventDispatcherInterface $dispatcher
+        private ConfigInterface $config,
+        private ViewInterface $view,
+        private EventDispatcherInterface $dispatcher,
     ) {
-        $this->config = $config;
-        $this->view = $view;
-        $this->dispatcher = $dispatcher;
     }
 
     public function shouldDisplay(): bool

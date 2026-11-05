@@ -16,19 +16,15 @@ class PostThumbnailFields
     use AlignmentChoicesTrait;
 
     private \WP_Customize_Manager $manager;
-    private ConfigInterface $config;
-    private FieldControlFactory $control;
     private EventDispatcherInterface $dispatcher;
 
     public function __construct(
         \WP_Customize_Manager $manager,
-        ConfigInterface $config,
-        FieldControlFactory $control,
+        private ConfigInterface $config,
+        private FieldControlFactory $control,
         EventDispatcherInterface $dispatcher
     ) {
         $this->manager = $manager;
-        $this->config = $config;
-        $this->control = $control;
         $this->dispatcher = $dispatcher;
     }
 

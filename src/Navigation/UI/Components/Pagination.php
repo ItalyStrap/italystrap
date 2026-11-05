@@ -24,13 +24,8 @@ class Pagination implements SubscriberInterface, ComponentInterface
         ];
     }
 
-    private ConfigInterface $config;
-    private ViewInterface $view;
-
-    public function __construct(ConfigInterface $config, ViewInterface $view)
+    public function __construct(private ConfigInterface $config, private ViewInterface $view)
     {
-        $this->config = $config;
-        $this->view = $view;
     }
 
     public function shouldDisplay(): bool

@@ -22,13 +22,8 @@ class Comments implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'comments/comments';
 
-    private ConfigInterface $config;
-    private ViewBlockInterface $view;
-
-    public function __construct(ConfigInterface $config, ViewBlockInterface $view)
+    public function __construct(private ConfigInterface $config, private ViewBlockInterface $view)
     {
-        $this->config = $config;
-        $this->view = $view;
     }
 
     public function shouldDisplay(): bool

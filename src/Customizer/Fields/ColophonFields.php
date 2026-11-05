@@ -14,17 +14,13 @@ class ColophonFields
     use TemplatePositionTrait;
 
     private \WP_Customize_Manager $manager;
-    private ConfigInterface $config;
-    private EventDispatcherInterface $dispatcher;
 
     public function __construct(
         \WP_Customize_Manager $manager,
-        ConfigInterface $config,
-        EventDispatcherInterface $dispatcher
+        private ConfigInterface $config,
+        private EventDispatcherInterface $dispatcher
     ) {
         $this->manager = $manager;
-        $this->config = $config;
-        $this->dispatcher = $dispatcher;
     }
 
     public function __invoke(): void

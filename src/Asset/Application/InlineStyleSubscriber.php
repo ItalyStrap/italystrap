@@ -12,9 +12,6 @@ use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
 class InlineStyleSubscriber implements SubscriberInterface
 {
-    private ConfigInterface $config;
-    private InlineStyleGenerator $style;
-
     public function getSubscribedEvents(): iterable
     {
         yield 'wp_head' => [
@@ -23,10 +20,8 @@ class InlineStyleSubscriber implements SubscriberInterface
         ];
     }
 
-    public function __construct(ConfigInterface $config, InlineStyleGenerator $style)
+    public function __construct(private ConfigInterface $config, private InlineStyleGenerator $style)
     {
-        $this->style = $style;
-        $this->config = $config;
     }
 
     public function __invoke(): void

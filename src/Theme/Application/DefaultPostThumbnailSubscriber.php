@@ -10,8 +10,6 @@ use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 
 final class DefaultPostThumbnailSubscriber implements SubscriberInterface
 {
-    private ConfigInterface $config;
-
     public function getSubscribedEvents(): iterable
     {
         yield 'post_thumbnail_id'   => [
@@ -19,9 +17,8 @@ final class DefaultPostThumbnailSubscriber implements SubscriberInterface
         ];
     }
 
-    public function __construct(ConfigInterface $config)
+    public function __construct(private ConfigInterface $config)
     {
-        $this->config = $config;
     }
 
     /**

@@ -23,12 +23,10 @@ class ConfigThemeProvider
     public const PREFIX = 'prefix';
 
     private \WP_Theme $theme;
-    private EventDispatcherInterface $dispatcher;
 
-    public function __construct(\WP_Theme $theme, EventDispatcherInterface $dispatcher)
+    public function __construct(\WP_Theme $theme, private EventDispatcherInterface $dispatcher)
     {
         $this->theme = $theme;
-        $this->dispatcher = $dispatcher;
     }
 
     public function __invoke(): iterable

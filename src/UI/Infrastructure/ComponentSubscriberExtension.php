@@ -15,16 +15,12 @@ use ItalyStrap\UI\Components\ComponentInterface;
 
 class ComponentSubscriberExtension implements Extension
 {
-    private ListenerRegisterInterface $listenerRegister;
-    private SubscriberRegisterInterface $subscriberRegister;
     private ProxyFactory $proxy;
 
     public function __construct(
-        SubscriberRegisterInterface $subscriberRegister,
-        ListenerRegisterInterface $listenerRegister
+        private SubscriberRegisterInterface $subscriberRegister,
+        private ListenerRegisterInterface $listenerRegister
     ) {
-        $this->subscriberRegister = $subscriberRegister;
-        $this->listenerRegister = $listenerRegister;
         $this->proxy = new ProxyFactory();
     }
 

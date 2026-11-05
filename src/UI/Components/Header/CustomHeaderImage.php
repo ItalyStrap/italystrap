@@ -16,7 +16,6 @@ use ItalyStrap\View\ViewInterface;
 class CustomHeaderImage implements ComponentInterface, SubscriberInterface
 {
     public const EVENT_PRIORITY = 9;
-    private Figure $figure;
 
     public function getSubscribedEvents(): iterable
     {
@@ -31,20 +30,12 @@ class CustomHeaderImage implements ComponentInterface, SubscriberInterface
     public const CONTENT = 'content';
     public const CONTAINER_WIDTH = 'container_width';
 
-    private ConfigInterface $config;
-    private ViewInterface $view;
-    private TagInterface $tag;
-
     public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
-        TagInterface $tag,
-        Figure $figure
+        private ConfigInterface $config,
+        private ViewInterface $view,
+        private TagInterface $tag,
+        private Figure $figure,
     ) {
-        $this->config = $config;
-        $this->view = $view;
-        $this->tag = $tag;
-        $this->figure = $figure;
     }
 
     public function shouldDisplay(): bool

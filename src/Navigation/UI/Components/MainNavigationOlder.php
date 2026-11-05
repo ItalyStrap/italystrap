@@ -24,23 +24,16 @@ class MainNavigationOlder implements ComponentInterface, SubscriberInterface
             SubscriberInterface::PRIORITY => self::EVENT_PRIORITY,
         ];
     }
-
-    private ConfigInterface $config;
-    private ViewInterface $view;
-    private \ItalyStrap\Navigation\UI\Components\Navbar $navbar;
-    private NavMenuPrimary $navMenuPrimary;
-    private NavMenuSecondary $navMenuSecondary;
+    private readonly NavMenuPrimary $navMenuPrimary;
+    private readonly NavMenuSecondary $navMenuSecondary;
 
     public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
-        \ItalyStrap\Navigation\UI\Components\Navbar $navbar,
+        private readonly ConfigInterface $config,
+        private readonly ViewInterface $view,
+        private readonly \ItalyStrap\Navigation\UI\Components\Navbar $navbar,
         NavMenuPrimary $navMenuPrimary,
         NavMenuSecondary $navMenuSecondary
     ) {
-        $this->config = $config;
-        $this->view = $view;
-        $this->navbar = $navbar;
         $this->navMenuPrimary = $navMenuPrimary;
         $this->navMenuSecondary = $navMenuSecondary;
     }

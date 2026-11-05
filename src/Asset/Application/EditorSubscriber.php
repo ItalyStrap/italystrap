@@ -16,20 +16,16 @@ use function str_replace;
 
 class EditorSubscriber implements SubscriberInterface
 {
-    private ConfigInterface $config;
-    private FinderInterface $finder;
-    private GlobalDispatcherInterface $globalDispatcher;
-
     public function getSubscribedEvents(): iterable
     {
         yield 'admin_init'  => $this;
     }
 
-    public function __construct(ConfigInterface $config, FinderInterface $finder, GlobalDispatcherInterface $dispatcher)
-    {
-        $this->config = $config;
-        $this->finder = $finder;
-        $this->globalDispatcher = $dispatcher;
+    public function __construct(
+        private readonly ConfigInterface $config,
+        private readonly FinderInterface $finder,
+        private readonly GlobalDispatcherInterface $globalDispatcher,
+    ) {
     }
 
     /**

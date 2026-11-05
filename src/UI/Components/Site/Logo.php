@@ -31,21 +31,12 @@ class Logo implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'site/logo';
 
-    private ConfigInterface $config;
-    private ViewInterface $view;
-    private Support $support;
-    private Json $json;
-
     public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
-        Support $support,
-        Json $json
+        private readonly ConfigInterface $config,
+        private readonly ViewInterface $view,
+        private readonly Support $support,
+        private readonly Json $json,
     ) {
-        $this->config = $config;
-        $this->view = $view;
-        $this->support = $support;
-        $this->json = $json;
     }
 
     public function shouldDisplay(): bool

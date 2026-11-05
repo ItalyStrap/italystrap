@@ -61,9 +61,7 @@ final class ExperimentalAssetPreparator
             $resolved = $resolver->resolve($config[ConfigBuilder::FILE_NAME]);
             $config[Asset::URL] = $resolved['url'];
 
-            if (!isset($config[Asset::VERSION])) {
-                $config[Asset::VERSION] = $resolved['version'];
-            }
+            $config[Asset::VERSION] ??= $resolved['version'];
 
             $config[Asset::DEPENDENCIES] = array_values(array_unique(array_merge(
                 (array) ($config[Asset::DEPENDENCIES] ?? []),

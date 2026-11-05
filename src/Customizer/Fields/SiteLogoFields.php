@@ -18,20 +18,14 @@ class SiteLogoFields
     public const SECTION = 'title_tagline';
 
     private \WP_Customize_Manager $manager;
-    private ConfigInterface $config;
-    private FieldControlFactory $control;
-    private EventDispatcherInterface $dispatcher;
 
     public function __construct(
         \WP_Customize_Manager $manager,
-        ConfigInterface $config,
-        FieldControlFactory $control,
-        EventDispatcherInterface $dispatcher
+        private ConfigInterface $config,
+        private FieldControlFactory $control,
+        private EventDispatcherInterface $dispatcher
     ) {
         $this->manager = $manager;
-        $this->config = $config;
-        $this->control = $control;
-        $this->dispatcher = $dispatcher;
     }
 
     public function __invoke(): void

@@ -28,7 +28,7 @@ class Navbar
   * The number of this instance
   *
   */
-    private int $number;
+    private readonly int $number;
 
     /**
      * The ID of the Navbar instance
@@ -38,24 +38,16 @@ class Navbar
     private $navbar_id;
 
     /**
-  * Config instance
-  *
-  */
-    private \ItalyStrap\Config\ConfigInterface $config;
-
-    /**
   * Walker instance
   *
   */
-    private \Walker_Nav_Menu $walker;
+    private readonly \Walker_Nav_Menu $walker;
 
     /**
      * @var bool|callable   $fallback_cb If the menu doesn't exists, a callback function will fire.
      *                      Default is 'wp_page_menu'. Set to false for no fallback.
      */
     private $fallback_cb;
-
-    private NavMenu $menu;
 
     /**
      * Init the constructor
@@ -66,13 +58,12 @@ class Navbar
      *                                        Default is 'wp_page_menu'. Set to false for no fallback.
      */
     public function __construct(
-        ConfigInterface $config,
+        private \ItalyStrap\Config\ConfigInterface $config,
         Walker_Nav_Menu $walker,
-        NavMenu $menu,
+        private readonly NavMenu $menu,
         $fallback_cb = false
     ) {
 
-        $this->config = $config;
         $this->walker = $walker;
         $this->fallback_cb = $fallback_cb;
 
@@ -85,8 +76,6 @@ class Navbar
 
         $this->navbar_id = \apply_filters('italystrap_navbar_id', 'italystrap-menu-' . $this->number);
         $this->navbar_id = \apply_filters('italystrap_navbar_id_' . $this->number, $this->navbar_id);
-
-        $this->menu = $menu;
     }
 
     /**

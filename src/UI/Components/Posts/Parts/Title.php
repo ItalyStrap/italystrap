@@ -27,18 +27,11 @@ class Title implements ComponentInterface, SubscriberInterface
 
     public const ATTRIBUTES = 'attributes';
 
-    private ConfigInterface $config;
-    private ViewInterface $view;
-    private Json $json;
-
     public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
-        Json $json
+        private readonly ConfigInterface $config,
+        private readonly ViewInterface $view,
+        private readonly Json $json,
     ) {
-        $this->config = $config;
-        $this->view = $view;
-        $this->json = $json;
     }
 
     public function shouldDisplay(): bool

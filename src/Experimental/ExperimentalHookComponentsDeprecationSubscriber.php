@@ -33,8 +33,6 @@ use function sprintf;
 
 class ExperimentalHookComponentsDeprecationSubscriber implements SubscriberInterface
 {
-    private GlobalDispatcher $globalDispatcher;
-
     public function getSubscribedEvents(): iterable
     {
         yield Header::class => 'onHeader';
@@ -65,9 +63,8 @@ class ExperimentalHookComponentsDeprecationSubscriber implements SubscriberInter
         yield Index::class => 'onIndex';
     }
 
-    public function __construct(GlobalDispatcher $globalDispatcher)
+    public function __construct(private readonly GlobalDispatcher $globalDispatcher)
     {
-        $this->globalDispatcher = $globalDispatcher;
     }
 
     public function onIndex(Index $event)

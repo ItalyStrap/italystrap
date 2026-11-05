@@ -13,18 +13,14 @@ class ColorFields
 {
     public const SECTION = 'colors';
 
-    private \WP_Customize_Manager $manager;
-    private ConfigInterface $config;
-    private FieldControlFactory $control;
+    private readonly \WP_Customize_Manager $manager;
 
     public function __construct(
         \WP_Customize_Manager $manager,
-        ConfigInterface $config,
-        FieldControlFactory $control
+        private readonly ConfigInterface $config,
+        private readonly FieldControlFactory $control
     ) {
         $this->manager = $manager;
-        $this->config = $config;
-        $this->control = $control;
     }
 
     public function __invoke(): void

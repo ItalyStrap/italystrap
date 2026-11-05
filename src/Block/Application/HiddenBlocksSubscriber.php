@@ -25,10 +25,6 @@ final class HiddenBlocksSubscriber implements SubscriberInterface
         'core/post-comments-form'  => 'hide_comments_form',
     ];
 
-    private ConfigInterface $config;
-    private BlockContext $context;
-    private TemplateSettings $settings;
-
     /**
      * @var array<string, string>|null
      */
@@ -42,11 +38,11 @@ final class HiddenBlocksSubscriber implements SubscriberInterface
         ];
     }
 
-    public function __construct(ConfigInterface $config, BlockContext $context, TemplateSettings $settings)
-    {
-        $this->config = $config;
-        $this->context = $context;
-        $this->settings = $settings;
+    public function __construct(
+        private readonly ConfigInterface $config,
+        private readonly BlockContext $context,
+        private readonly TemplateSettings $settings,
+    ) {
     }
 
     /**

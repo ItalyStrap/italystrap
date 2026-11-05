@@ -1,20 +1,18 @@
 <?php
+
 declare(strict_types=1);
 
-use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
+use Rector\Php81\Rector\Array_\ArrayToFirstClassCallableRector;
 use Rector\Config\RectorConfig;
-use Rector\Set\ValueObject\LevelSetList;
 
-return static function (RectorConfig $rectorConfig): void {
-	$rectorConfig->paths([
-		__DIR__ . '/src'
-	]);
-
-	// register a single rule
-	//	$rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
-
-	// define sets of rules
-	$rectorConfig->sets([
-		LevelSetList::UP_TO_PHP_74
-	]);
-};
+return RectorConfig::configure()
+    ->withPaths([
+        __DIR__ . '/src',
+    ])
+    ->withPhpSets(php82: true)
+    ->withSkip([
+        // The module definitions are cached with var_export() when WP_DEBUG is off, a closure cannot be exported
+        ArrayToFirstClassCallableRector::class => [
+            __DIR__ . '/src/*/Module.php',
+        ],
+    ]);

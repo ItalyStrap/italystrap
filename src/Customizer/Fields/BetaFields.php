@@ -11,15 +11,13 @@ class BetaFields
 {
     public const SECTION = 'beta';
 
-    private \WP_Customize_Manager $manager;
-    private ConfigInterface $config;
+    private readonly \WP_Customize_Manager $manager;
 
     public function __construct(
         \WP_Customize_Manager $manager,
-        ConfigInterface $config
+        private readonly ConfigInterface $config
     ) {
         $this->manager = $manager;
-        $this->config = $config;
     }
 
     public function __invoke(): void

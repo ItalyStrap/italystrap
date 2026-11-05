@@ -27,13 +27,8 @@ class AuthorInfo implements ElementInterface
 
     private array $attributes = [];
 
-    private ViewInterface $view;
-    private Json $json;
-
-    public function __construct(ViewInterface $view, Json $json)
+    public function __construct(private readonly ViewInterface $view, private readonly Json $json)
     {
-        $this->view = $view;
-        $this->json = $json;
     }
 
     public function withAttributes(array $attributes): void
@@ -49,9 +44,9 @@ class AuthorInfo implements ElementInterface
     {
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return \do_shortcode(
+        return (string) \do_shortcode(
             $this->view->render(self::TEMPLATE_NAME, [
                 self::ATTR => $this->json->encode(\array_merge(self::DEFAULT, $this->attributes)),
             ])

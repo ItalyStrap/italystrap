@@ -23,12 +23,8 @@ class SearchHeadline implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'archive/search-headline';
 
-    private ViewInterface $view;
-
-    public function __construct(
-        ViewInterface $view
-    ) {
-        $this->view = $view;
+    public function __construct(private readonly ViewInterface $view)
+    {
     }
 
     public function shouldDisplay(): bool

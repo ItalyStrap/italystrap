@@ -40,7 +40,7 @@
 		}
 	],
 	"require": {
-		"php": ">=7.4",
+		"php": ">=8.2",
 		"italystrap/empress": "dev-modularized as 2.0.x-dev",
 		"italystrap/event": "dev-master",
 		"italystrap/config": "^2.0",
@@ -52,7 +52,6 @@
 		"overclokk/minimum-requirements": "dev-master",
 		"cmb2/cmb2": "~2.6.0",
 		"yiisoft/json": "^1.0",
-		"symfony/polyfill-php80": "^1.0",
 		"friendsofphp/proxy-manager-lts": "^1.0"
 	},
 	"require-dev": {
@@ -86,7 +85,7 @@
 		"wordpress/wordpress": "dev-master",
 		"monolog/monolog": "^2.3",
 		"franzl/studio": "^0.15.0",
-		"rector/rector": "^0.14.0",
+		"rector/rector": "^2.2",
 		"hoa/console": "^3.17",
 		"fig/event-dispatcher-util": "^1.0",
 		"behat/gherkin": "~4.11.0"
@@ -195,7 +194,10 @@
 			"@php vendor//bin//codecept clean"
 		],
 		"rector": [
-			"@php vendor//bin//rector process src"
+			"@php vendor/bin/rector process --dry-run"
+		],
+		"rector:fix": [
+			"@php vendor/bin/rector process"
 		],
 		"theme:json": [
 			"\\ItalyStrap\\ThemeJsonGenerator\\Composer\\Plugin::run"

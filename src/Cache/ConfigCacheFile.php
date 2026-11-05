@@ -10,7 +10,7 @@ namespace ItalyStrap\Cache;
  * The fingerprint changes with the theme versions, so a release reads a new file and never
  * a config cached by the previous code. The files of older fingerprints are removed.
  */
-final class ConfigCacheFile
+final readonly class ConfigCacheFile
 {
     private const PREFIX = 'config-cache-';
     private const FINGERPRINT_LENGTH = 8;
@@ -52,7 +52,7 @@ final class ConfigCacheFile
         // The exact fingerprint length keeps another key with the same prefix, like "theme-qa", out of the match.
         return \array_values(\array_filter(
             [...(\glob($base . '-' . $hex . '.php') ?: []), $base . '.php'],
-            'is_file'
+            is_file(...)
         ));
     }
 

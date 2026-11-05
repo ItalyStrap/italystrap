@@ -8,11 +8,8 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Support;
 
-final class SupportSubscriber implements SubscriberInterface
+final readonly class SupportSubscriber implements SubscriberInterface
 {
-    private ConfigInterface $config;
-    private Support $support;
-
     public function getSubscribedEvents(): iterable
     {
         yield 'italystrap_theme_load'   => [
@@ -21,10 +18,8 @@ final class SupportSubscriber implements SubscriberInterface
         ];
     }
 
-    public function __construct(ConfigInterface $config, Support $support)
+    public function __construct(private ConfigInterface $config, private Support $support)
     {
-        $this->config = $config;
-        $this->support = $support;
     }
 
     /**

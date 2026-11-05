@@ -14,7 +14,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
  *
  * It bridges the block templates to the ItalyStrap components until each region becomes blocks.
  */
-final class Region implements SubscriberInterface
+final readonly class Region implements SubscriberInterface
 {
     public const NAME = 'italystrap/region';
 
@@ -26,16 +26,13 @@ final class Region implements SubscriberInterface
         'footer' => FooterContent::class,
     ];
 
-    private EventDispatcherInterface $dispatcher;
-
     public function getSubscribedEvents(): iterable
     {
         yield 'init' => $this;
     }
 
-    public function __construct(EventDispatcherInterface $dispatcher)
+    public function __construct(private EventDispatcherInterface $dispatcher)
     {
-        $this->dispatcher = $dispatcher;
     }
 
     public function __invoke(): void
@@ -44,7 +41,7 @@ final class Region implements SubscriberInterface
             'attributes'      => [
                 'name' => ['type' => 'string', 'default' => ''],
             ],
-            'render_callback' => [$this, 'render'],
+            'render_callback' => $this->render(...),
         ]);
     }
 

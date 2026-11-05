@@ -7,9 +7,8 @@ namespace ItalyStrap\Theme\Application;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
-final class LicenseSubscriber implements SubscriberInterface
+final readonly class LicenseSubscriber implements SubscriberInterface
 {
-    private ConfigInterface $config;
     private \WP_Theme $theme;
 
     public function getSubscribedEvents(): iterable
@@ -19,9 +18,8 @@ final class LicenseSubscriber implements SubscriberInterface
         ];
     }
 
-    public function __construct(\WP_Theme $theme, ConfigInterface $config)
+    public function __construct(\WP_Theme $theme, private ConfigInterface $config)
     {
-        $this->config = $config;
         $this->theme = $theme;
     }
 

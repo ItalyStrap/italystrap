@@ -10,19 +10,13 @@ use ItalyStrap\View\ViewInterface;
 class Figure implements ElementInterface
 {
     public const TEMPLATE_NAME = 'elements/figure';
-    private ViewInterface $view;
 
     private array $attributes = [];
     private string $context = '';
     private string $content = '';
-    private TagInterface $tag;
 
-    public function __construct(
-        ViewInterface $view,
-        TagInterface $tag
-    ) {
-        $this->view = $view;
-        $this->tag = $tag;
+    public function __construct(private readonly ViewInterface $view, private readonly TagInterface $tag)
+    {
     }
 
     public function withAttributes(array $attributes): void

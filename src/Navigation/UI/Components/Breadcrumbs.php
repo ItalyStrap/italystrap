@@ -26,18 +26,11 @@ class Breadcrumbs implements ComponentInterface, SubscriberInterface
         ];
     }
 
-    private GlobalDispatcherInterface $dispatcher;
-    private ConfigInterface $config;
-    private Support $support;
-
     public function __construct(
-        GlobalDispatcherInterface $dispatcher,
-        ConfigInterface $config,
-        Support $support
+        private readonly GlobalDispatcherInterface $dispatcher,
+        private readonly ConfigInterface $config,
+        private readonly Support $support,
     ) {
-        $this->dispatcher = $dispatcher;
-        $this->config = $config;
-        $this->support = $support;
     }
 
     public function shouldDisplay(): bool

@@ -14,15 +14,12 @@ use function wp_link_pages;
  */
 class LinkPages
 {
-    private EventDispatcherInterface $dispatcher;
-
     /**
      * LinkPages constructor.
      * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct(EventDispatcherInterface $dispatcher)
+    public function __construct(private readonly EventDispatcherInterface $dispatcher)
     {
-        $this->dispatcher = $dispatcher;
     }
     /**
      * Render the output of the controller.

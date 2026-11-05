@@ -16,18 +16,13 @@ use function ItalyStrap\Bools\experimental_is_block_theme;
  */
 class MetaBoxesSubscriber implements SubscriberInterface
 {
-    private ConfigInterface $config;
-    private CMB2Factory $factory;
-
     public function getSubscribedEvents(): iterable
     {
         yield 'cmb2_admin_init' => $this;
     }
 
-    public function __construct(ConfigInterface $config, CMB2Factory $factory)
+    public function __construct(private readonly ConfigInterface $config, private readonly CMB2Factory $factory)
     {
-        $this->config = $config;
-        $this->factory = $factory;
     }
 
     public function __invoke()

@@ -24,7 +24,7 @@ final class WidgetArea implements SubscriberInterface
             'attributes'      => [
                 'id' => ['type' => 'string', 'default' => ''],
             ],
-            'render_callback' => [$this, 'render'],
+            'render_callback' => $this->render(...),
         ]);
     }
 

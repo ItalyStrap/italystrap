@@ -8,11 +8,9 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigLayoutProvider;
 use ItalyStrap\Event\SubscriberInterface;
 
-final class ConfigWpSubscriber implements SubscriberInterface
+final readonly class ConfigWpSubscriber implements SubscriberInterface
 {
     public const CURRENT_PAGE_ID = 'current_page_id';
-
-    private ConfigInterface $config;
     private \WP_Query $query;
     public function getSubscribedEvents(): iterable
     {
@@ -22,10 +20,9 @@ final class ConfigWpSubscriber implements SubscriberInterface
         ];
     }
     public function __construct(
-        ConfigInterface $config,
+        private ConfigInterface $config,
         \WP_Query $query
     ) {
-        $this->config = $config;
         $this->query = $query;
     }
 

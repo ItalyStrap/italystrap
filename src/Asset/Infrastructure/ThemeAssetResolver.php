@@ -33,11 +33,8 @@ use const PATHINFO_FILENAME;
  */
 class ThemeAssetResolver
 {
-    private ConfigInterface $config;
-
-    public function __construct(ConfigInterface $config)
+    public function __construct(private readonly ConfigInterface $config)
     {
-        $this->config = $config;
     }
 
     /**

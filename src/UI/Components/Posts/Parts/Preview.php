@@ -23,12 +23,8 @@ class Preview implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'posts/parts/preview';
 
-    private ViewInterface $view;
-
-    public function __construct(
-        ViewInterface $view
-    ) {
-        $this->view = $view;
+    public function __construct(private readonly ViewInterface $view)
+    {
     }
 
     public function shouldDisplay(): bool

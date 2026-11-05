@@ -21,12 +21,8 @@ class FooterWidgetArea implements ComponentInterface, SubscriberInterface
 
     public const REGISTERED_WIDGET_AREAS = 'footer_sidebars';
 
-    private ViewInterface $view;
-
-    public function __construct(
-        ViewInterface $view
-    ) {
-        $this->view = $view;
+    public function __construct(private readonly ViewInterface $view)
+    {
     }
 
     public function shouldDisplay(): bool

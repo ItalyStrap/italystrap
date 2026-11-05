@@ -10,18 +10,14 @@ use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
 class PostContentTemplateFields
 {
-    private \WP_Customize_Manager $manager;
-    private ConfigInterface $config;
-    private FieldControlFactory $factory;
+    private readonly \WP_Customize_Manager $manager;
 
     public function __construct(
         \WP_Customize_Manager $manager,
-        ConfigInterface $config,
-        FieldControlFactory $factory
+        private readonly ConfigInterface $config,
+        private readonly FieldControlFactory $factory
     ) {
         $this->manager = $manager;
-        $this->config = $config;
-        $this->factory = $factory;
     }
 
     public function __invoke(): void

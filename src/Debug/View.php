@@ -6,13 +6,11 @@ namespace ItalyStrap\Debug;
 
 use ItalyStrap\View\ViewInterface;
 
-final class View implements ViewInterface {
+final readonly class View implements ViewInterface {
 
-    private ViewInterface $view;
-
-    public function __construct(ViewInterface $view) {
-		$this->view = $view;
-	}
+    public function __construct(private ViewInterface $view)
+    {
+    }
 
 	public function render($slugs, $data = []): string {
 

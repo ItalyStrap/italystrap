@@ -7,18 +7,15 @@ namespace ItalyStrap\Theme\Application;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
-final class PostTypeSupportSubscriber implements SubscriberInterface
+final readonly class PostTypeSupportSubscriber implements SubscriberInterface
 {
     public function getSubscribedEvents(): iterable
     {
         yield 'init'    => $this;
     }
 
-    private ConfigInterface $config;
-
-    public function __construct(ConfigInterface $config)
+    public function __construct(private ConfigInterface $config)
     {
-        $this->config = $config;
     }
 
     public function __invoke(): void

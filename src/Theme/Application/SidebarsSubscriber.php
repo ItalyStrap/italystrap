@@ -11,7 +11,7 @@ use function array_filter;
 use function array_merge;
 use function register_sidebar;
 
-final class SidebarsSubscriber implements SubscriberInterface
+final readonly class SidebarsSubscriber implements SubscriberInterface
 {
     public const NAME = 'name';
     public const ID = 'id';
@@ -28,11 +28,8 @@ final class SidebarsSubscriber implements SubscriberInterface
         yield 'dynamic_sidebar_before'  => 'parseDynamicSidebarBefore';
     }
 
-    private Config $config;
-
-    public function __construct(Config $config)
+    public function __construct(private Config $config)
     {
-        $this->config = $config;
     }
 
     public function register(): void

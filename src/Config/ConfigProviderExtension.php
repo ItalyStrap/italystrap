@@ -10,14 +10,11 @@ use ItalyStrap\Empress\Extension;
 
 class ConfigProviderExtension implements Extension
 {
-    private ConfigInterface $config;
-
     /**
      * @param ConfigInterface $config
      */
-    public function __construct(ConfigInterface $config)
+    public function __construct(private readonly ConfigInterface $config)
     {
-        $this->config = $config;
     }
 
     public function name(): string

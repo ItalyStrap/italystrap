@@ -23,11 +23,8 @@ class Modified implements SubscriberInterface, ComponentInterface
 
     public const TEMPLATE_NAME = 'posts/parts/modified';
 
-    private ViewInterface $view;
-
-    public function __construct(ViewInterface $view)
+    public function __construct(private readonly ViewInterface $view)
     {
-        $this->view = $view;
     }
 
     public function shouldDisplay(): bool

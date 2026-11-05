@@ -10,20 +10,15 @@ use ItalyStrap\Navigation\Domain\NavMenuLocation;
 use ItalyStrap\Navigation\UI\Components\NavMenuPrimary;
 use ItalyStrap\Navigation\UI\Components\NavMenuSecondary;
 
-final class NavMenusSubscriber implements SubscriberInterface
+final readonly class NavMenusSubscriber implements SubscriberInterface
 {
-    private ConfigInterface $config;
-    private NavMenuLocation $location;
-
     public function getSubscribedEvents(): iterable
     {
         yield 'init'    => $this;
     }
 
-    public function __construct(ConfigInterface $config, NavMenuLocation $location)
+    public function __construct(private ConfigInterface $config, private NavMenuLocation $location)
     {
-        $this->config = $config;
-        $this->location = $location;
     }
 
     public function __invoke()

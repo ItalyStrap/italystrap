@@ -27,18 +27,11 @@ class MainNavigation implements ComponentInterface, SubscriberInterface
         ];
     }
 
-    private ConfigInterface $config;
-    private ViewInterface $view;
-    private EventDispatcherInterface $dispatcher;
-
     public function __construct(
-        ConfigInterface $config,
-        ViewInterface $view,
-        EventDispatcherInterface $dispatcher
+        private readonly ConfigInterface $config,
+        private readonly ViewInterface $view,
+        private readonly EventDispatcherInterface $dispatcher,
     ) {
-        $this->config = $config;
-        $this->view = $view;
-        $this->dispatcher = $dispatcher;
     }
 
     public function shouldDisplay(): bool

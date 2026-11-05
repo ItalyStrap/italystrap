@@ -8,7 +8,7 @@ use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
-final class TextDomainSubscriber implements SubscriberInterface
+final readonly class TextDomainSubscriber implements SubscriberInterface
 {
     public function getSubscribedEvents(): iterable
     {
@@ -18,11 +18,8 @@ final class TextDomainSubscriber implements SubscriberInterface
         ];
     }
 
-    private Config $config;
-
-    public function __construct(Config $config)
+    public function __construct(private Config $config)
     {
-        $this->config = $config;
     }
 
     public function __invoke()

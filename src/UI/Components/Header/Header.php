@@ -20,18 +20,11 @@ class Header implements ComponentInterface, SubscriberInterface
     public const TEMPLATE_NAME = 'header/header';
     public const WRAPPER_CLASS_NAMES = 'wrapper_class_names';
 
-    private ViewInterface $view;
-    private TagInterface $tag;
-    private EventDispatcherInterface $dispatcher;
-
     public function __construct(
-        ViewInterface $view,
-        EventDispatcherInterface $dispatcher,
-        TagInterface $tag
+        private readonly ViewInterface $view,
+        private readonly EventDispatcherInterface $dispatcher,
+        private readonly TagInterface $tag,
     ) {
-        $this->view = $view;
-        $this->dispatcher = $dispatcher;
-        $this->tag = $tag;
     }
 
     public function shouldDisplay(): bool

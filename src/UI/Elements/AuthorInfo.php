@@ -44,9 +44,9 @@ class AuthorInfo implements ElementInterface
     {
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return \do_shortcode(
+        return (string) \do_shortcode(
             $this->view->render(self::TEMPLATE_NAME, [
                 self::ATTR => $this->json->encode(\array_merge(self::DEFAULT, $this->attributes)),
             ])

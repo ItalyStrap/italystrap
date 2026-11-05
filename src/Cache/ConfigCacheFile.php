@@ -52,7 +52,7 @@ final readonly class ConfigCacheFile
         // The exact fingerprint length keeps another key with the same prefix, like "theme-qa", out of the match.
         return \array_values(\array_filter(
             [...(\glob($base . '-' . $hex . '.php') ?: []), $base . '.php'],
-            'is_file'
+            is_file(...)
         ));
     }
 

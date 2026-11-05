@@ -41,7 +41,7 @@ final readonly class Region implements SubscriberInterface
             'attributes'      => [
                 'name' => ['type' => 'string', 'default' => ''],
             ],
-            'render_callback' => [$this, 'render'],
+            'render_callback' => $this->render(...),
         ]);
     }
 

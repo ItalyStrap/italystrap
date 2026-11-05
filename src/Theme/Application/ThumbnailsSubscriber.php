@@ -75,9 +75,7 @@ final readonly class ThumbnailsSubscriber implements SubscriberInterface
          * Default: 750px is the default ItalyStrap container width.
          */
         global $content_width;
-        if (! isset($content_width)) {
-            $content_width = (string)$this->config->get(ConfigPostThumbnailProvider::POST_CONTENT_WIDTH, '750');
-        }
+        $content_width ??= (string)$this->config->get(ConfigPostThumbnailProvider::POST_CONTENT_WIDTH, '750');
 
         /**
          * 'post-thumbnails' is by default the size displayed for posts, pages and all archives.

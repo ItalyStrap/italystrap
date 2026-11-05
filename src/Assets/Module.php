@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace ItalyStrap\Assets;
 
 use Auryn\Injector;
-use ItalyStrap\Asset\AssetManager;
-use ItalyStrap\Asset\AssetsSubscriber;
+use ItalyStrap\Asset\AssetLoader;
+use ItalyStrap\Asset\Core\CoreScriptRegistry;
+use ItalyStrap\Asset\Core\CoreStyleRegistry;
+use ItalyStrap\Asset\ScriptRegistry;
+use ItalyStrap\Asset\StyleRegistry;
+use ItalyStrap\Assets\Application\ConfigAssetsSubscriber;
 use ItalyStrap\Assets\Application\CustomizerAssetsSubscriber;
 use ItalyStrap\Assets\Application\EditorSubscriber;
 use ItalyStrap\Assets\Application\InlineStyleSubscriber;
-use ItalyStrap\Assets\Infrastructure\ExperimentalAssetPreparator;
+use ItalyStrap\Assets\Infrastructure\ThemeFolders;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscribersConfigExtension;
@@ -24,12 +28,27 @@ class Module
     {
         return [
             AurynConfig::SHARING => [
-
+                AssetLoader::class,
+                ThemeFolders::class,
             ],
             AurynConfig::ALIASES => [
-
+                ScriptRegistry::class => CoreScriptRegistry::class,
+                StyleRegistry::class => CoreStyleRegistry::class,
             ],
             AurynConfig::DEFINITIONS => [
+                ThemeFolders::class => [
+                    '+folders' => static function (string $named_param, Injector $injector): array {
+                        $config = $injector->make(ConfigInterface::class);
+
+                        // The child theme first, the same folders without a child theme
+                        return [
+                            (string) $config->get(ConfigThemeProvider::STYLESHEET_DIR)
+                                => (string) $config->get(ConfigThemeProvider::STYLESHEET_DIR_URI),
+                            (string) $config->get(ConfigThemeProvider::TEMPLATE_DIR)
+                                => (string) $config->get(ConfigThemeProvider::TEMPLATE_DIR_URI),
+                        ];
+                    },
+                ],
                 EditorSubscriber::class => [
                     '+finder' => static function (string $named_param, Injector $injector): FinderInterface {
 
@@ -46,19 +65,9 @@ class Module
                     },
                 ],
             ],
-            AurynConfig::PREPARATIONS => [
-
-                /**
-                 * This class is lazy loaded
-                 */
-                AssetManager::class => new ExperimentalAssetPreparator(),
-            ],
-            AurynConfig::PROXY => [
-                AssetManager::class,
-            ],
             SubscribersConfigExtension::SUBSCRIBERS => [
                 InlineStyleSubscriber::class,
-                AssetsSubscriber::class,
+                ConfigAssetsSubscriber::class,
                 EditorSubscriber::class,
                 CustomizerAssetsSubscriber::class,
             ]

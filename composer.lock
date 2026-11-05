@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "88fe5588255540a6eb10224821759ba8",
+    "content-hash": "e3ca7d9def0f485e80ecc4b46d5d5150",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -195,184 +195,39 @@
             "time": "2025-10-28T10:28:17+00:00"
         },
         {
-            "name": "inpsyde/assets",
-            "version": "2.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/inpsyde/assets.git",
-                "reference": "3b30fb2ec910d834f19a4010bebfdb17423fb21a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/assets/zipball/3b30fb2ec910d834f19a4010bebfdb17423fb21a",
-                "reference": "3b30fb2ec910d834f19a4010bebfdb17423fb21a",
-                "shasum": ""
-            },
-            "require": {
-                "ext-dom": "*",
-                "ext-json": "*",
-                "inpsyde/wp-context": "^1.3",
-                "php": ">=7.4"
-            },
-            "require-dev": {
-                "brain/monkey": "^2.5.0",
-                "johnpbloch/wordpress-core": ">=6.7",
-                "mikey179/vfsstream": "^1.6.8",
-                "php-stubs/wordpress-stubs": ">=6.2@stable",
-                "phpstan/phpstan": "^2.1.1",
-                "phpstan/phpstan-deprecation-rules": "^2.0.1",
-                "phpstan/phpstan-mockery": "^2.0.0",
-                "phpstan/phpstan-phpunit": "^2.0.4",
-                "phpunit/phpunit": "^8.5.14 || ^9.0",
-                "swissspidy/phpstan-no-private": "^v1.0.0",
-                "syde/phpcs": "^1.0.0",
-                "szepeviktor/phpstan-wordpress": "^2"
-            },
-            "type": "library",
-            "extra": {
-                "wordpress-install-dir": "vendor/wordpress/wordpress"
-            },
-            "autoload": {
-                "files": [
-                    "inc/functions.php",
-                    "inc/bootstrap.php"
-                ],
-                "psr-4": {
-                    "Inpsyde\\Assets\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Syde GmbH",
-                    "email": "hello@syde.com",
-                    "homepage": "https://syde.com/",
-                    "role": "Company"
-                },
-                {
-                    "name": "Christian Leucht",
-                    "email": "c.leucht@syde.com",
-                    "homepage": "https://www.chrico.info",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Package to manage assets in WordPress.",
-            "support": {
-                "issues": "https://github.com/inpsyde/assets/issues",
-                "source": "https://github.com/inpsyde/assets/tree/2.13"
-            },
-            "time": "2026-02-20T17:51:50+00:00"
-        },
-        {
-            "name": "inpsyde/wp-context",
-            "version": "1.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/inpsyde/wp-context.git",
-                "reference": "1350ada72517f5d374bff9409b4ea5a02377ec1a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/wp-context/zipball/1350ada72517f5d374bff9409b4ea5a02377ec1a",
-                "reference": "1350ada72517f5d374bff9409b4ea5a02377ec1a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "brain/monkey": "^2.6.1",
-                "inpsyde/php-coding-standards": "^1",
-                "inpsyde/wp-stubs": "dev-main",
-                "mockery/mockery": "~1.3.6",
-                "phpunit/phpunit": "~7.5.20 || ^8",
-                "vimeo/psalm": "^4.27.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Inpsyde\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "gpl-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Inpsyde GmbH",
-                    "email": "hello@inpsyde.com",
-                    "homepage": "https://inpsyde.com/",
-                    "role": "Company"
-                },
-                {
-                    "name": "Giuseppe Mazzapica",
-                    "email": "g.mazzapica@inpsyde.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A single-class utility to check the running context in WordPress sites.",
-            "support": {
-                "issues": "https://github.com/inpsyde/wp-context/issues",
-                "source": "https://github.com/inpsyde/wp-context/tree/1.5.1"
-            },
-            "time": "2024-10-16T10:44:18+00:00"
-        },
-        {
             "name": "italystrap/asset",
-            "version": "dev-master",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/asset.git",
-                "reference": "5f78e4518fab988b79f978fd271134fe7acb779f"
+                "reference": "8d02b7a51f097a3dfa8cde8d89f97e726e7855d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/asset/zipball/5f78e4518fab988b79f978fd271134fe7acb779f",
-                "reference": "5f78e4518fab988b79f978fd271134fe7acb779f",
+                "url": "https://api.github.com/repos/ItalyStrap/asset/zipball/8d02b7a51f097a3dfa8cde8d89f97e726e7855d1",
+                "reference": "8d02b7a51f097a3dfa8cde8d89f97e726e7855d1",
                 "shasum": ""
             },
             "require": {
-                "inpsyde/assets": "^2.2",
-                "italystrap/config": "^2.0",
-                "italystrap/finder": "dev-master",
-                "php": ">=7.2"
+                "php": ">=8.2"
             },
             "require-dev": {
-                "brianium/paratest": "^4.0",
-                "codeception/c3": "2.*",
-                "codeception/module-asserts": "^1.0",
-                "codeception/module-cli": "^1.0",
-                "codeception/module-db": "^1.0",
-                "codeception/module-filesystem": "^1.0",
-                "codeception/module-phpbrowser": "^1.0",
-                "codeception/module-webdriver": "^1.0",
-                "codeception/util-universalframework": "^1.0",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
-                "dg/bypass-finals": "^1.2",
-                "infection/infection": "^0.15.3",
-                "italystrap/debug": "^2.0",
-                "italystrap/event": "dev-master",
-                "lucatume/function-mocker-le": "^1.0",
-                "lucatume/wp-browser": "^2.4",
-                "nunomaduro/phpinsights": "^1.14.0",
-                "phpbench/phpbench": "@dev",
-                "phpcompatibility/php-compatibility": "*",
-                "phpmetrics/phpmetrics": "^2.5",
-                "phpstan/phpstan": "^0.11.16",
-                "squizlabs/php_codesniffer": "*",
-                "szepeviktor/phpstan-wordpress": "^0.3.0",
-                "vimeo/psalm": "^3.9"
+                "codeception/codeception": "^5.3",
+                "codeception/module-asserts": "^3.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^1.2",
+                "infection/codeception-adapter": "^0.4.3",
+                "infection/infection": "^0.29",
+                "italystrap/event": "^0.2.2",
+                "lucatume/wp-browser": "^4.5",
+                "phpcompatibility/php-compatibility": "^9.3",
+                "phpstan/phpstan": "^2.3",
+                "rector/rector": "^2.2",
+                "squizlabs/php_codesniffer": "^3.13",
+                "szepeviktor/phpstan-wordpress": "^2.0"
             },
-            "default-branch": true,
+            "suggest": {
+                "italystrap/event": "Load the assets on their event with the AssetsSubscriber"
+            },
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -391,19 +246,20 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Handle the CSS and JS register and enqueue for WordPress",
+            "description": "Register and enqueue scripts and styles as value objects",
             "keywords": [
                 "asset",
                 "enqueue",
-                "localize",
                 "register",
-                "wordpress"
+                "script",
+                "style"
             ],
             "support": {
                 "issues": "https://github.com/ItalyStrap/asset/issues",
                 "source": "https://github.com/ItalyStrap/asset"
             },
-            "time": "2026-03-31T04:34:11+00:00"
+            "time": "2026-11-05T04:38:51+00:00",
+            "published-time": "2026-11-05T04:39:02+00:00"
         },
         {
             "name": "italystrap/common",
@@ -6648,63 +6504,6 @@
                 "source": "https://github.com/ItalyStrap/debug"
             },
             "time": "2024-08-30T15:05:40+00:00"
-        },
-        {
-            "name": "italystrap/pipeline",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ItalyStrap/pipeline.git",
-                "reference": "dd3b0ce386600c944222ddb965904c4d53d5dd8c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/pipeline/zipball/dd3b0ce386600c944222ddb965904c4d53d5dd8c",
-                "reference": "dd3b0ce386600c944222ddb965904c4d53d5dd8c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.2"
-            },
-            "require-dev": {
-                "phpbench/phpbench": "^1.6",
-                "phpstan/phpstan": "^2.1",
-                "phpunit/phpunit": "^11.0",
-                "rector/rector": "^2.0",
-                "symplify/easy-coding-standard": "^12.5"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ItalyStrap\\Pipeline\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Enea Overclokk",
-                    "email": "info@overclokk.net",
-                    "homepage": "https://www.italystrap.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A lightweight middleware pipeline for PHP — chain handlers and middleware to process messages through a composable pipeline",
-            "keywords": [
-                "handler",
-                "middleware",
-                "pipeline",
-                "stack-handler"
-            ],
-            "support": {
-                "issues": "https://github.com/ItalyStrap/pipeline/issues",
-                "source": "https://github.com/ItalyStrap/pipeline"
-            },
-            "time": "2026-04-07T14:28:28+00:00",
-            "published-time": "2026-04-07T14:28:37+00:00"
         },
         {
             "name": "italystrap/theme-json-generator",
@@ -16715,7 +16514,6 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "italystrap/asset": 20,
         "italystrap/debug": 20,
         "italystrap/empress": 20,
         "italystrap/event": 20,

@@ -4,20 +4,26 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Assets\Application;
 
-use ItalyStrap\Asset\Asset;
-use ItalyStrap\Assets\Infrastructure\ThemeAssetResolver;
+use ItalyStrap\Asset\AssetLoader;
+use ItalyStrap\Asset\Dependencies;
+use ItalyStrap\Asset\Handle;
 use ItalyStrap\Asset\Script;
-use ItalyStrap\Config\ConfigFactory;
+use ItalyStrap\Asset\ScriptLoading;
+use ItalyStrap\Assets\Infrastructure\ThemeFolders;
 use ItalyStrap\Event\SubscriberInterface;
 
-use function array_merge;
-use function array_unique;
-use function array_values;
-
-class CustomizerAssetsSubscriber implements SubscriberInterface
+/**
+ * The scripts of the Customizer preview and of its controls.
+ */
+final readonly class CustomizerAssetsSubscriber implements SubscriberInterface
 {
-    public function __construct(private readonly ThemeAssetResolver $resolver)
-    {
+    public const PREVIEW_HANDLE = 'italystrap-customize-preview';
+    public const CONTROLS_HANDLE = 'italystrap-customize-controls';
+
+    public function __construct(
+        private ThemeFolders $folders,
+        private AssetLoader $assets,
+    ) {
     }
 
     public function getSubscribedEvents(): iterable
@@ -29,41 +35,31 @@ class CustomizerAssetsSubscriber implements SubscriberInterface
     }
 
     /**
-     * Enqueues the live-preview script used by the Customizer preview iframe.
+     * The live preview script of the Customizer preview iframe.
      */
     public function enqueueScriptOnLivePreview(): void
     {
-        $this->enqueueScript(
-            self::class . '-preview',
-            'build/customizer/live-preview.js',
-            ['customize-preview']
-        );
+        $this->load(self::PREVIEW_HANDLE, 'build/customizer/live-preview.js', 'customize-preview');
     }
 
     /**
-     * Enqueues the controls script used inside the Customizer panel.
+     * The script of the controls inside the Customizer panel.
      */
     public function enqueueCustomizeControl(): void
     {
-        $this->enqueueScript(
-            self::class . '-controls',
-            'build/customizer/customize-controls.js',
-            ['customize-controls']
-        );
+        $this->load(self::CONTROLS_HANDLE, 'build/customizer/customize-controls.js', 'customize-controls');
     }
 
-    private function enqueueScript(string $handle, string $relative_path, array $required_deps): void
+    private function load(string $handle, string $path, string $dependency): void
     {
-        $resolved = $this->resolver->resolve($relative_path);
+        $file = $this->folders->file($path);
 
-        $config = (new ConfigFactory())->make([
-            Asset::HANDLE      => $handle,
-            Asset::URL         => $resolved['url'],
-            Asset::DEPENDENCIES => array_values(array_unique(array_merge($required_deps, $resolved['dependencies']))),
-            Asset::VERSION     => $resolved['version'],
-            Asset::IN_FOOTER   => true,
-        ]);
-
-        (new Script($config))->enqueue();
+        $this->assets->load(new Script(
+            handle: new Handle($handle),
+            source: $file->url(),
+            dependencies: (new Dependencies($dependency))->with($file->dependencies()),
+            version: $file->version(),
+            loading: new ScriptLoading(inFooter: true),
+        ));
     }
 }

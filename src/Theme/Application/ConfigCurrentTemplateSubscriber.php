@@ -8,7 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Finder\FileInfoFactoryInterface;
 
-final class ConfigCurrentTemplateSubscriber implements SubscriberInterface
+final readonly class ConfigCurrentTemplateSubscriber implements SubscriberInterface
 {
     public const TEMPLATE_FILE_NAME = 'current_template_file';
     public const TEMPLATE_FILE_SLUG = 'current_template_slug';

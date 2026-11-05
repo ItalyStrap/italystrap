@@ -30,10 +30,10 @@ class NavMenuPrimary implements ComponentInterface, \ItalyStrap\Event\Subscriber
     private $fallback;
 
     public function __construct(
-        private ConfigInterface $config,
-        private ViewInterface $view,
-        private NavMenuInterface $menu,
-        private NavMenuLocationInterface $location,
+        private readonly ConfigInterface $config,
+        private readonly ViewInterface $view,
+        private readonly NavMenuInterface $menu,
+        private readonly NavMenuLocationInterface $location,
         ?callable $fallback = null
     ) {
         $this->fallback = $fallback;

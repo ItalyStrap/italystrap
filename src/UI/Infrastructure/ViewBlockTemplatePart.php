@@ -10,7 +10,7 @@ use ItalyStrap\View\ViewInterface;
 
 class ViewBlockTemplatePart implements ViewInterface
 {
-    public function __construct(private ConfigInterface $config)
+    public function __construct(private readonly ConfigInterface $config)
     {
     }
 

@@ -11,7 +11,7 @@ use function array_filter;
 use function array_merge;
 use function register_sidebar;
 
-final class SidebarsSubscriber implements SubscriberInterface
+final readonly class SidebarsSubscriber implements SubscriberInterface
 {
     public const NAME = 'name';
     public const ID = 'id';

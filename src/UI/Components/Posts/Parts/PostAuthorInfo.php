@@ -22,7 +22,7 @@ class PostAuthorInfo implements ComponentInterface, SubscriberInterface
         ];
     }
 
-    public function __construct(private ConfigInterface $config, private AuthorInfo $authorInfo)
+    public function __construct(private readonly ConfigInterface $config, private readonly AuthorInfo $authorInfo)
     {
     }
 

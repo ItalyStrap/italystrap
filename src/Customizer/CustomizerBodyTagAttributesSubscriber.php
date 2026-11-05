@@ -17,7 +17,7 @@ class CustomizerBodyTagAttributesSubscriber implements SubscriberInterface
         ];
     }
 
-    public function __construct(private ConfigInterface $config)
+    public function __construct(private readonly ConfigInterface $config)
     {
     }
 

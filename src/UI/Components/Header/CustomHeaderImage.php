@@ -31,10 +31,10 @@ class CustomHeaderImage implements ComponentInterface, SubscriberInterface
     public const CONTAINER_WIDTH = 'container_width';
 
     public function __construct(
-        private ConfigInterface $config,
-        private ViewInterface $view,
-        private TagInterface $tag,
-        private Figure $figure,
+        private readonly ConfigInterface $config,
+        private readonly ViewInterface $view,
+        private readonly TagInterface $tag,
+        private readonly Figure $figure,
     ) {
     }
 

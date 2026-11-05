@@ -10,7 +10,7 @@ use function do_blocks;
 
 class ViewBlock implements ViewBlockInterface
 {
-    public function __construct(private ViewInterface $view)
+    public function __construct(private readonly ViewInterface $view)
     {
     }
 

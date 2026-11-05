@@ -25,7 +25,7 @@ class Title implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'site/title';
 
-    public function __construct(private ViewInterface $view)
+    public function __construct(private readonly ViewInterface $view)
     {
     }
 

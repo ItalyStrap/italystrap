@@ -15,7 +15,7 @@ class Search implements ElementInterface
     private string $context = '';
     private string $content = '';
 
-    public function __construct(private ViewBlockInterface $view, private TagInterface $tag)
+    public function __construct(private readonly ViewBlockInterface $view, private readonly TagInterface $tag)
     {
     }
 

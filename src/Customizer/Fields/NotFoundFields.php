@@ -14,12 +14,12 @@ class NotFoundFields
     public const SHOW_IMAGE = 'show';
     public const HIDE_IMAGE = 'hide';
 
-    private \WP_Customize_Manager $manager;
+    private readonly \WP_Customize_Manager $manager;
 
     public function __construct(
         \WP_Customize_Manager $manager,
-        private ConfigInterface $config,
-        private FieldControlFactory $control
+        private readonly ConfigInterface $config,
+        private readonly FieldControlFactory $control
     ) {
         $this->manager = $manager;
     }

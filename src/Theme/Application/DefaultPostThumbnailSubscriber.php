@@ -8,7 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigPostThumbnailProvider;
 
-final class DefaultPostThumbnailSubscriber implements SubscriberInterface
+final readonly class DefaultPostThumbnailSubscriber implements SubscriberInterface
 {
     public function getSubscribedEvents(): iterable
     {

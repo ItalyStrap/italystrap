@@ -13,7 +13,7 @@ class ConfigProviderExtension implements Extension
     /**
      * @param ConfigInterface $config
      */
-    public function __construct(private ConfigInterface $config)
+    public function __construct(private readonly ConfigInterface $config)
     {
     }
 

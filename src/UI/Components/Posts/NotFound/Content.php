@@ -31,8 +31,11 @@ class Content implements ComponentInterface, SubscriberInterface
 
     private string $search = '';
 
-    public function __construct(private ConfigInterface $config, private ViewInterface $view, private Search $searchObj)
-    {
+    public function __construct(
+        private readonly ConfigInterface $config,
+        private readonly ViewInterface $view,
+        private readonly Search $searchObj,
+    ) {
     }
 
     public function shouldDisplay(): bool

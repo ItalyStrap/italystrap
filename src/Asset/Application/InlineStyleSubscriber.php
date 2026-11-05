@@ -20,7 +20,7 @@ class InlineStyleSubscriber implements SubscriberInterface
         ];
     }
 
-    public function __construct(private ConfigInterface $config, private InlineStyleGenerator $style)
+    public function __construct(private readonly ConfigInterface $config, private readonly InlineStyleGenerator $style)
     {
     }
 

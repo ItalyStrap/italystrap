@@ -27,7 +27,7 @@ class AuthorInfo implements ElementInterface
 
     private array $attributes = [];
 
-    public function __construct(private ViewInterface $view, private Json $json)
+    public function __construct(private readonly ViewInterface $view, private readonly Json $json)
     {
     }
 

@@ -8,7 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 
 class InlineStyleGenerator
 {
-    public function __construct(private ConfigInterface $config)
+    public function __construct(private readonly ConfigInterface $config)
     {
     }
 

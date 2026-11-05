@@ -25,7 +25,7 @@ class Pager implements SubscriberInterface, ComponentInterface
         ];
     }
 
-    public function __construct(private ConfigInterface $config, private ViewInterface $view)
+    public function __construct(private readonly ConfigInterface $config, private readonly ViewInterface $view)
     {
     }
 

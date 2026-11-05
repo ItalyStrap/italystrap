@@ -24,7 +24,7 @@ use Throwable;
 class Injector extends MainInjector {
 
 
-	public function __construct( private MainInjector $injector ) {
+	public function __construct( private readonly MainInjector $injector ) {
 		parent::__construct();
 	}
 

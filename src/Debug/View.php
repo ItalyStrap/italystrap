@@ -6,7 +6,7 @@ namespace ItalyStrap\Debug;
 
 use ItalyStrap\View\ViewInterface;
 
-final class View implements ViewInterface {
+final readonly class View implements ViewInterface {
 
     public function __construct(private ViewInterface $view)
     {

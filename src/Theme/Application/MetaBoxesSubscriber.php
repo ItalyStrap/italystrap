@@ -21,7 +21,7 @@ class MetaBoxesSubscriber implements SubscriberInterface
         yield 'cmb2_admin_init' => $this;
     }
 
-    public function __construct(private ConfigInterface $config, private CMB2Factory $factory)
+    public function __construct(private readonly ConfigInterface $config, private readonly CMB2Factory $factory)
     {
     }
 

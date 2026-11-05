@@ -46,7 +46,7 @@ final class ItemCustomFieldsSubscriber implements SubscriberInterface
   */
     private array $fields = [];
 
-    private string $key_pattern;
+    private readonly string $key_pattern;
 
     /**
      * Init the constructor

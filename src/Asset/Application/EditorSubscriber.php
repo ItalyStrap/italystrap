@@ -22,9 +22,9 @@ class EditorSubscriber implements SubscriberInterface
     }
 
     public function __construct(
-        private ConfigInterface $config,
-        private FinderInterface $finder,
-        private GlobalDispatcherInterface $globalDispatcher,
+        private readonly ConfigInterface $config,
+        private readonly FinderInterface $finder,
+        private readonly GlobalDispatcherInterface $globalDispatcher,
     ) {
     }
 

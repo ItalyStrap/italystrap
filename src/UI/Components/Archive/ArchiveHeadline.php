@@ -23,7 +23,7 @@ class ArchiveHeadline implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'archive/archive-headline';
 
-    public function __construct(private ViewInterface $view)
+    public function __construct(private readonly ViewInterface $view)
     {
     }
 

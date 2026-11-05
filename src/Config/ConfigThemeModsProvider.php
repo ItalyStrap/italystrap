@@ -6,7 +6,7 @@ namespace ItalyStrap\Config;
 
 class ConfigThemeModsProvider
 {
-    public function __construct(private array $theme_mods)
+    public function __construct(private readonly array $theme_mods)
     {
     }
 

@@ -22,7 +22,7 @@ class Comments implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'comments/comments';
 
-    public function __construct(private ConfigInterface $config, private ViewBlockInterface $view)
+    public function __construct(private readonly ConfigInterface $config, private readonly ViewBlockInterface $view)
     {
     }
 

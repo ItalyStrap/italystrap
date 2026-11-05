@@ -8,12 +8,12 @@ use ItalyStrap\Customizer\FieldControlFactory;
 
 class BreadcrumsFields
 {
-    private \WP_Customize_Manager $manager;
-    private \WP_Theme $theme;
+    private readonly \WP_Customize_Manager $manager;
+    private readonly \WP_Theme $theme;
 
     public function __construct(
         \WP_Customize_Manager $manager,
-        private FieldControlFactory $control,
+        private readonly FieldControlFactory $control,
         \WP_Theme $theme
     ) {
         $this->manager = $manager;

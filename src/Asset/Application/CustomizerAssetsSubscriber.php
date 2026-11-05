@@ -16,7 +16,7 @@ use function array_values;
 
 class CustomizerAssetsSubscriber implements SubscriberInterface
 {
-    public function __construct(private ThemeAssetResolver $resolver)
+    public function __construct(private readonly ThemeAssetResolver $resolver)
     {
     }
 

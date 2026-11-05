@@ -14,7 +14,7 @@ use function array_walk;
 use function intval;
 use function set_post_thumbnail_size;
 
-final class ThumbnailsSubscriber implements SubscriberInterface
+final readonly class ThumbnailsSubscriber implements SubscriberInterface
 {
     public const WIDTH = 'width';
     public const HEIGHT = 'height';

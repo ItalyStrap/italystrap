@@ -26,9 +26,9 @@ class NavMenuHeader implements ComponentInterface, SubscriberInterface
     }
 
     public function __construct(
-        private ConfigInterface $config,
-        private ViewInterface $view,
-        private EventDispatcherInterface $dispatcher,
+        private readonly ConfigInterface $config,
+        private readonly ViewInterface $view,
+        private readonly EventDispatcherInterface $dispatcher,
     ) {
     }
 

@@ -22,9 +22,9 @@ class ConfigThemeProvider
     public const VIEW_DIR = 'templates';
     public const PREFIX = 'prefix';
 
-    private \WP_Theme $theme;
+    private readonly \WP_Theme $theme;
 
-    public function __construct(\WP_Theme $theme, private EventDispatcherInterface $dispatcher)
+    public function __construct(\WP_Theme $theme, private readonly EventDispatcherInterface $dispatcher)
     {
         $this->theme = $theme;
     }

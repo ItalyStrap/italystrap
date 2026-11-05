@@ -7,7 +7,7 @@ namespace ItalyStrap\Theme\Application;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
-final class PostTypeSupportSubscriber implements SubscriberInterface
+final readonly class PostTypeSupportSubscriber implements SubscriberInterface
 {
     public function getSubscribedEvents(): iterable
     {

@@ -23,7 +23,7 @@ class ArchiveAuthorInfo implements ComponentInterface, SubscriberInterface
         ];
     }
 
-    public function __construct(private AuthorInfo $authorInfo)
+    public function __construct(private readonly AuthorInfo $authorInfo)
     {
     }
 

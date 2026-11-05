@@ -19,8 +19,10 @@ class Posts implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'posts/posts';
 
-    public function __construct(private ViewInterface $view, private EventDispatcherInterface $dispatcher)
-    {
+    public function __construct(
+        private readonly ViewInterface $view,
+        private readonly EventDispatcherInterface $dispatcher,
+    ) {
     }
 
     public function shouldDisplay(): bool

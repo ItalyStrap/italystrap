@@ -28,7 +28,7 @@ class Navbar
   * The number of this instance
   *
   */
-    private int $number;
+    private readonly int $number;
 
     /**
      * The ID of the Navbar instance
@@ -41,7 +41,7 @@ class Navbar
   * Walker instance
   *
   */
-    private \Walker_Nav_Menu $walker;
+    private readonly \Walker_Nav_Menu $walker;
 
     /**
      * @var bool|callable   $fallback_cb If the menu doesn't exists, a callback function will fire.
@@ -60,7 +60,7 @@ class Navbar
     public function __construct(
         private \ItalyStrap\Config\ConfigInterface $config,
         Walker_Nav_Menu $walker,
-        private NavMenu $menu,
+        private readonly NavMenu $menu,
         $fallback_cb = false
     ) {
 

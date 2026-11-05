@@ -10,7 +10,7 @@ use ItalyStrap\Navigation\Domain\NavMenuLocation;
 use ItalyStrap\Navigation\UI\Components\NavMenuPrimary;
 use ItalyStrap\Navigation\UI\Components\NavMenuSecondary;
 
-final class NavMenusSubscriber implements SubscriberInterface
+final readonly class NavMenusSubscriber implements SubscriberInterface
 {
     public function getSubscribedEvents(): iterable
     {

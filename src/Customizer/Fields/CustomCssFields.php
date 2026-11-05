@@ -12,13 +12,13 @@ use WP_Post;
 
 class CustomCssFields
 {
-    private \WP_Customize_Manager $manager;
-    private \WP_Theme $theme;
+    private readonly \WP_Customize_Manager $manager;
+    private readonly \WP_Theme $theme;
 
     public function __construct(
         \WP_Customize_Manager $manager,
-        private ConfigInterface $config,
-        private FieldControlFactory $control,
+        private readonly ConfigInterface $config,
+        private readonly FieldControlFactory $control,
         \WP_Theme $theme
     ) {
         $this->manager = $manager;

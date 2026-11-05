@@ -23,7 +23,7 @@ class Modified implements SubscriberInterface, ComponentInterface
 
     public const TEMPLATE_NAME = 'posts/parts/modified';
 
-    public function __construct(private ViewInterface $view)
+    public function __construct(private readonly ViewInterface $view)
     {
     }
 

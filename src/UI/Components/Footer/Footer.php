@@ -20,9 +20,9 @@ class Footer implements ComponentInterface, SubscriberInterface
     public const TEMPLATE_NAME = 'footer/footer';
 
     public function __construct(
-        private ViewInterface $view,
-        private TagInterface $tag,
-        private EventDispatcherInterface $dispatcher,
+        private readonly ViewInterface $view,
+        private readonly TagInterface $tag,
+        private readonly EventDispatcherInterface $dispatcher,
     ) {
     }
 

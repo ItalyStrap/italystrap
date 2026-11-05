@@ -8,7 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigLayoutProvider;
 use ItalyStrap\Event\SubscriberInterface;
 
-final class ConfigWpSubscriber implements SubscriberInterface
+final readonly class ConfigWpSubscriber implements SubscriberInterface
 {
     public const CURRENT_PAGE_ID = 'current_page_id';
     private \WP_Query $query;

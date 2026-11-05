@@ -24,7 +24,7 @@ class Meta implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'posts/parts/meta';
 
-    public function __construct(private ConfigInterface $config, private ViewInterface $view)
+    public function __construct(private readonly ConfigInterface $config, private readonly ViewInterface $view)
     {
     }
 

@@ -14,7 +14,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
  *
  * It bridges the block templates to the ItalyStrap components until each region becomes blocks.
  */
-final class Region implements SubscriberInterface
+final readonly class Region implements SubscriberInterface
 {
     public const NAME = 'italystrap/region';
 

@@ -6,7 +6,7 @@ namespace ItalyStrap\Customizer\Fields;
 
 class SiteIdentityFields
 {
-    private \WP_Customize_Manager $manager;
+    private readonly \WP_Customize_Manager $manager;
 
     public function __construct(
         \WP_Customize_Manager $manager

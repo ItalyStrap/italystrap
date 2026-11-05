@@ -8,7 +8,7 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Support;
 
-final class SupportSubscriber implements SubscriberInterface
+final readonly class SupportSubscriber implements SubscriberInterface
 {
     public function getSubscribedEvents(): iterable
     {

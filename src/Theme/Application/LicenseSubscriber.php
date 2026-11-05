@@ -7,7 +7,7 @@ namespace ItalyStrap\Theme\Application;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;
 
-final class LicenseSubscriber implements SubscriberInterface
+final readonly class LicenseSubscriber implements SubscriberInterface
 {
     private \WP_Theme $theme;
 

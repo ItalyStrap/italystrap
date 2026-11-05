@@ -24,7 +24,7 @@ class Content implements SubscriberInterface, ComponentInterface
 
     public const TEMPLATE_NAME = 'posts/parts/content';
 
-    public function __construct(private ConfigInterface $config, private ViewInterface $view)
+    public function __construct(private readonly ConfigInterface $config, private readonly ViewInterface $view)
     {
     }
 

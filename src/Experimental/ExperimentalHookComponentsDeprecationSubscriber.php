@@ -63,7 +63,7 @@ class ExperimentalHookComponentsDeprecationSubscriber implements SubscriberInter
         yield Index::class => 'onIndex';
     }
 
-    public function __construct(private GlobalDispatcher $globalDispatcher)
+    public function __construct(private readonly GlobalDispatcher $globalDispatcher)
     {
     }
 

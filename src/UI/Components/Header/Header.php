@@ -21,9 +21,9 @@ class Header implements ComponentInterface, SubscriberInterface
     public const WRAPPER_CLASS_NAMES = 'wrapper_class_names';
 
     public function __construct(
-        private ViewInterface $view,
-        private EventDispatcherInterface $dispatcher,
-        private TagInterface $tag,
+        private readonly ViewInterface $view,
+        private readonly EventDispatcherInterface $dispatcher,
+        private readonly TagInterface $tag,
     ) {
     }
 

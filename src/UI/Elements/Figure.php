@@ -15,7 +15,7 @@ class Figure implements ElementInterface
     private string $context = '';
     private string $content = '';
 
-    public function __construct(private ViewInterface $view, private TagInterface $tag)
+    public function __construct(private readonly ViewInterface $view, private readonly TagInterface $tag)
     {
     }
 

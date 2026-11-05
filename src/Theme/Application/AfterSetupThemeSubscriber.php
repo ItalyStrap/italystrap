@@ -15,7 +15,7 @@ use ItalyStrap\Event\SubscriberInterface;
  *
  * ========================================================================
  */
-final class AfterSetupThemeSubscriber implements SubscriberInterface
+final readonly class AfterSetupThemeSubscriber implements SubscriberInterface
 {
     public const AFTER_SETUP_THEME = 'after_setup_theme';
 

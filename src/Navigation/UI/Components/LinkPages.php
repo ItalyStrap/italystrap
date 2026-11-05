@@ -18,7 +18,7 @@ class LinkPages
      * LinkPages constructor.
      * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct(private EventDispatcherInterface $dispatcher)
+    public function __construct(private readonly EventDispatcherInterface $dispatcher)
     {
     }
     /**

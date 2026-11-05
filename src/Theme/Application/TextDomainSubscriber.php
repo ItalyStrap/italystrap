@@ -8,7 +8,7 @@ use ItalyStrap\Config\ConfigInterface as Config;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;
 
-final class TextDomainSubscriber implements SubscriberInterface
+final readonly class TextDomainSubscriber implements SubscriberInterface
 {
     public function getSubscribedEvents(): iterable
     {

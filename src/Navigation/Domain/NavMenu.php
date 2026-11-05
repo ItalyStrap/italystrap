@@ -29,7 +29,7 @@ class NavMenu implements NavMenuInterface
     public const THEME_LOCATION = 'theme_location';
     public const SEARCH = 'search';
 
-    private Walker_Nav_Menu $walker;
+    private readonly Walker_Nav_Menu $walker;
     private $fallback_cb;
 
     public function __construct(

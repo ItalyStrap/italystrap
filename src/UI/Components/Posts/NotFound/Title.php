@@ -25,7 +25,7 @@ class Title implements ComponentInterface, SubscriberInterface
 
     public const TEMPLATE_NAME = 'posts/not-found/title';
 
-    public function __construct(private ConfigInterface $config, private ViewInterface $view)
+    public function __construct(private readonly ConfigInterface $config, private readonly ViewInterface $view)
     {
     }
 

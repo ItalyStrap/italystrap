@@ -39,9 +39,9 @@ final class HiddenBlocksSubscriber implements SubscriberInterface
     }
 
     public function __construct(
-        private ConfigInterface $config,
-        private BlockContext $context,
-        private TemplateSettings $settings,
+        private readonly ConfigInterface $config,
+        private readonly BlockContext $context,
+        private readonly TemplateSettings $settings,
     ) {
     }
 

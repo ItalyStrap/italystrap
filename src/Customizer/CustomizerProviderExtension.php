@@ -10,8 +10,10 @@ use ItalyStrap\Event\ListenerRegisterInterface;
 
 class CustomizerProviderExtension implements \ItalyStrap\Empress\Extension
 {
-    public function __construct(private ListenerRegisterInterface $listenerRegister, private Injector $injector)
-    {
+    public function __construct(
+        private readonly ListenerRegisterInterface $listenerRegister,
+        private readonly Injector $injector,
+    ) {
     }
 
     /**

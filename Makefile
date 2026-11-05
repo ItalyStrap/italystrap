@@ -33,19 +33,19 @@ files/own: ### Set again the ownership off all the file to the current user
 .PHONY: build
 build: files/permission	### Build the containers inside the ./docker folder
 	@echo "Building the containers"
-	$(DOCKER_DIR) docker-compose up -d --build --remove-orphans
+	$(DOCKER_DIR) docker-compose --env-file test.env up -d --build --remove-orphans
 	@echo "Containers built"
 
 .PHONY: up
 up: files/permission	### Start the containers inside the ./docker folder
 	@echo "Starting the containers..."
-	@$(DOCKER_DIR) docker-compose up -d --remove-orphans
+	@$(DOCKER_DIR) docker-compose --env-file test.env up -d --remove-orphans
 	@echo "Containers started"
 
 .PHONY: down
 down:	### Stop the containers inside the ./docker folder
 	@echo "Stopping the containers"
-	@$(DOCKER_DIR) docker-compose down --remove-orphans --volumes
+	@$(DOCKER_DIR) docker-compose --env-file test.env down --remove-orphans --volumes
 	@echo "Containers stopped"
 
 .PHONY: restart

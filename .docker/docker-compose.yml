@@ -1,3 +1,6 @@
+# The project name, the folder .docker would share it with the other projects
+name: ${PROJECT_NAME:-italystrap}
+
 services:
 
   wordpress:
@@ -20,7 +23,6 @@ services:
     volumes:
       - ../:/var/www/html/wp-content/themes/${PROJECT_NAME:-wordpress}
       - ../tests/_output/:/var/www/html/wp-content/themes/${PROJECT_NAME:-wordpress}/tests/_output/
-      - ./codeception.yml:/var/www/html/wp-content/themes/${PROJECT_NAME:-wordpress}/codeception.yml
       #- ./mu-plugins/:/var/www/html/wp-content/mu-plugins/
     depends_on:
       - mysql

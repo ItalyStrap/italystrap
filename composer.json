@@ -85,7 +85,7 @@
 		"wordpress/wordpress": "dev-master",
 		"monolog/monolog": "^2.3",
 		"franzl/studio": "^0.15.0",
-		"rector/rector": "^0.14.0",
+		"rector/rector": "^2.2",
 		"hoa/console": "^3.17",
 		"fig/event-dispatcher-util": "^1.0",
 		"behat/gherkin": "~4.11.0"
@@ -194,7 +194,10 @@
 			"@php vendor//bin//codecept clean"
 		],
 		"rector": [
-			"@php vendor//bin//rector process src"
+			"@php vendor/bin/rector process --dry-run"
+		],
+		"rector:fix": [
+			"@php vendor/bin/rector process"
 		],
 		"theme:json": [
 			"\\ItalyStrap\\ThemeJsonGenerator\\Composer\\Plugin::run"

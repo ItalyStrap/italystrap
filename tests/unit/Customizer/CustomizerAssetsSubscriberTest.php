@@ -4,111 +4,78 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Customizer;
 
-use ItalyStrap\Asset\Application\CustomizerAssetsSubscriber;
-use ItalyStrap\Asset\Infrastructure\ThemeAssetResolver;
-use ItalyStrap\Tests\UnitTestCase;
-use Prophecy\Argument;
+use Codeception\Test\Unit;
+use ItalyStrap\Asset\AssetLoader;
+use ItalyStrap\Asset\ScriptLoader;
+use ItalyStrap\Assets\Application\CustomizerAssetsSubscriber;
+use ItalyStrap\Assets\Infrastructure\ThemeFolders;
+use ItalyStrap\Tests\Asset\ScriptRegistrySpy;
 
-class CustomizerAssetsSubscriberTest extends UnitTestCase
+class CustomizerAssetsSubscriberTest extends Unit
 {
-    private function makeResolver(array $resolved): ThemeAssetResolver
+    private const PARENT_URL = 'http://wordpress/wp-content/themes/italystrap';
+
+    private ScriptRegistrySpy $scripts;
+
+    // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore -- Codeception method
+    protected function _before(): void
     {
-        $resolver = $this->prophet->prophesize(ThemeAssetResolver::class);
-        $resolver->resolve(Argument::type('string'))->willReturn($resolved);
-        return $resolver->reveal();
+        $this->scripts = new ScriptRegistrySpy();
     }
 
     public function testItShouldSubscribeToCustomizerHooks(): void
     {
-        $sut = new CustomizerAssetsSubscriber(
-            $this->makeResolver(['url' => '', 'dependencies' => [], 'version' => null])
-        );
-
         self::assertSame(
             [
                 'customize_preview_init'             => 'enqueueScriptOnLivePreview',
                 'customize_controls_enqueue_scripts' => 'enqueueCustomizeControl',
             ],
-            $sut->getSubscribedEvents(),
-            ''
+            $this->makeInstance()->getSubscribedEvents()
         );
     }
 
-    public function testItShouldEnqueueLivePreviewScriptFromBuildCandidate(): void
+    public function testItShouldEnqueueLivePreviewScriptInTheFooter(): void
     {
-        $resolved = [
-            'url'          => 'http://wordpress/wp-content/themes/italystrap/build/customizer/live-preview.js',
-            'dependencies' => [],
-            'version'      => null,
-        ];
+        $this->makeInstance()->enqueueScriptOnLivePreview();
 
-        $sut = new CustomizerAssetsSubscriber($this->makeResolver($resolved));
-
-        $this->defineFunction('wp_enqueue_script', static function (
-            string $handle,
-            string $src,
-            array $dependencies,
-            $version,
-            bool $in_footer
-        ): void {
-            self::assertSame(CustomizerAssetsSubscriber::class . '-preview', $handle, '');
-            self::assertSame('http://wordpress/wp-content/themes/italystrap/build/customizer/live-preview.js', $src, '');
-            self::assertSame(['customize-preview'], $dependencies, '');
-            self::assertNull($version, '');
-            self::assertTrue($in_footer, '');
-        });
-
-        $sut->enqueueScriptOnLivePreview();
+        self::assertSame([
+            [
+                'register',
+                CustomizerAssetsSubscriber::PREVIEW_HANDLE,
+                self::PARENT_URL . '/build/customizer/live-preview.js',
+                ['customize-preview'],
+                null,
+                ['in_footer' => true],
+            ],
+            ['enqueue', CustomizerAssetsSubscriber::PREVIEW_HANDLE],
+        ], $this->scripts->calls);
     }
 
-    public function testItShouldEnqueueControlsScriptFromBuildCandidate(): void
+    public function testItShouldEnqueueControlsScriptInTheFooter(): void
     {
-        $resolved = [
-            'url'          => 'http://wordpress/wp-content/themes/italystrap/build/customizer/customize-controls.js',
-            'dependencies' => [],
-            'version'      => null,
-        ];
+        $this->makeInstance()->enqueueCustomizeControl();
 
-        $sut = new CustomizerAssetsSubscriber($this->makeResolver($resolved));
-
-        $this->defineFunction('wp_enqueue_script', static function (
-            string $handle,
-            string $src,
-            array $dependencies,
-            $version,
-            bool $in_footer
-        ): void {
-            self::assertSame(CustomizerAssetsSubscriber::class . '-controls', $handle, '');
-            self::assertSame('http://wordpress/wp-content/themes/italystrap/build/customizer/customize-controls.js', $src, '');
-            self::assertSame(['customize-controls'], $dependencies, '');
-            self::assertNull($version, '');
-            self::assertTrue($in_footer, '');
-        });
-
-        $sut->enqueueCustomizeControl();
+        self::assertSame([
+            [
+                'register',
+                CustomizerAssetsSubscriber::CONTROLS_HANDLE,
+                self::PARENT_URL . '/build/customizer/customize-controls.js',
+                ['customize-controls'],
+                null,
+                ['in_footer' => true],
+            ],
+            ['enqueue', CustomizerAssetsSubscriber::CONTROLS_HANDLE],
+        ], $this->scripts->calls);
     }
 
-    public function testItShouldMergeResolvedDependenciesWithRequiredOnes(): void
+    private function makeInstance(): CustomizerAssetsSubscriber
     {
-        $resolved = [
-            'url'          => 'http://wordpress/wp-content/themes/italystrap/build/customizer/live-preview.js',
-            'dependencies' => ['wp-dom-ready'],
-            'version'      => 'abc123',
-        ];
-
-        $sut = new CustomizerAssetsSubscriber($this->makeResolver($resolved));
-
-        $this->defineFunction('wp_enqueue_script', static function (
-            string $handle,
-            string $src,
-            array $dependencies,
-            $version,
-            bool $in_footer
-        ): void {
-            self::assertSame(['customize-preview', 'wp-dom-ready'], $dependencies, '');
-            self::assertSame('abc123', $version, '');
-        });
-
-        $sut->enqueueScriptOnLivePreview();
+        return new CustomizerAssetsSubscriber(
+            new ThemeFolders([
+                '/missing/child' => 'http://wordpress/wp-content/themes/child',
+                '/missing/parent' => self::PARENT_URL,
+            ]),
+            new AssetLoader(new ScriptLoader($this->scripts)),
+        );
     }
 }

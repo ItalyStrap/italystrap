@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Unit\Asset\Application;
+namespace ItalyStrap\Tests\Unit\Assets\Application;
 
-use ItalyStrap\Asset\Application\InlineStyleSubscriber;
+use ItalyStrap\Assets\Application\InlineStyleSubscriber;
 use ItalyStrap\Event\SubscriberInterface;
 use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;

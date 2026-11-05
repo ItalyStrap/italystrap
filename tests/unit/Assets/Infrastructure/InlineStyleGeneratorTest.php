@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Unit\Asset\Infrastructure;
+namespace ItalyStrap\Tests\Unit\Assets\Infrastructure;
 
-use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
+use ItalyStrap\Assets\Infrastructure\InlineStyleGenerator;
 use ItalyStrap\Tests\UnitTestCase;
 
 class InlineStyleGeneratorTest extends UnitTestCase

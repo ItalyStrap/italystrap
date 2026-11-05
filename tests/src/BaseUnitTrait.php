@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests;
 
 use Auryn\Injector;
-use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
+use ItalyStrap\Assets\Infrastructure\InlineStyleGenerator;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Customizer\FieldControlFactory;
 use ItalyStrap\Empress\AurynConfigInterface;

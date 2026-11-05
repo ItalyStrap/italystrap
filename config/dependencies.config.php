@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Auryn\Injector;
 use ItalyStrap\Cache\ConfigCacheFile;
-use ItalyStrap\Asset\Module as AssetModule;
+use ItalyStrap\Assets\Module as AssetModule;
 use ItalyStrap\Block\Module as BlockModule;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Config\ConfigInterface;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Asset\Application;
+namespace ItalyStrap\Assets\Application;
 
-use ItalyStrap\Asset\Infrastructure\InlineStyleGenerator;
+use ItalyStrap\Assets\Infrastructure\InlineStyleGenerator;
 use ItalyStrap\Config\ConfigColorSectionProvider;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\SubscriberInterface;

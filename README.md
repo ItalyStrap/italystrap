@@ -62,6 +62,37 @@ The canonical frontend build uses `@wordpress/scripts`.
 
 Do not revive Grunt, Gulp, Bower, or legacy compiled `assets/css/*` and `assets/js/*` files as the active build contract.
 
+## Styles and scripts of a child theme ##
+
+The styles and the scripts are value objects of [italystrap/asset](https://github.com/ItalyStrap/asset). `config/assets/styles.php` and `config/assets/scripts.php` return lists of `Style` and `Script`, the file of the child theme replaces the one of the parent. `ThemeFile` finds a file in the child theme, then in the parent, with its URL and the dependencies and the version of its `.asset.php`:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use ItalyStrap\Asset\Handle;
+use ItalyStrap\Asset\Script;
+use ItalyStrap\Asset\ScriptLoading;
+use ItalyStrap\Asset\When;
+use ItalyStrap\Assets\Infrastructure\ThemeFile;
+
+$script = new ThemeFile('build/js/highlight.js');
+
+return [
+    new Script(
+        handle: new Handle('my-child-highlight'),
+        source: $script->url(),
+        dependencies: $script->dependencies(),
+        version: $script->version(),
+        loading: new ScriptLoading(inFooter: true),
+        condition: new When(is_singular(...)),
+    ),
+];
+```
+
+The filters `italystrap_config_enqueue_style` and `italystrap_config_enqueue_script` receive the lists and return them, a value that is not a `Style` or a `Script` is skipped.
+
 ## Release and package workflow ##
 
 Releases now follow the `@wordpress/scripts` build path and do not use Grunt, Gulp, or Bower tasks.
@@ -115,6 +146,7 @@ Treat this as a migration to a new runtime contract.
 - Move block-editor and global design token changes into `theme.json`.
 - Keep using child themes or classic template overrides for PHP template customization.
 - Do not assume a full block-theme conversion, template-html takeover, or full FSE support.
+- The theme requires PHP 8.2. The child themes return `Style` and `Script` objects from `config/assets/*.php` and from the `italystrap_config_enqueue_*` filters, the arrays with `Asset::HANDLE` and `ConfigBuilder::FILE_NAME` of italystrap/asset 0.x are no longer read, see [Styles and scripts of a child theme](#styles-and-scripts-of-a-child-theme).
 
 Remember! This is a full refactoring of the theme, consider it like a new theme, if you have the old version you have to do a migration to the new version.
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Asset\Infrastructure;
+namespace ItalyStrap\Assets\Infrastructure;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;

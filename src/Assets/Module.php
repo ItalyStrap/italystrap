@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Asset;
+namespace ItalyStrap\Assets;
 
 use Auryn\Injector;
-use ItalyStrap\Asset\Application\CustomizerAssetsSubscriber;
-use ItalyStrap\Asset\Application\EditorSubscriber;
-use ItalyStrap\Asset\Application\InlineStyleSubscriber;
-use ItalyStrap\Asset\Infrastructure\ExperimentalAssetPreparator;
+use ItalyStrap\Asset\AssetManager;
+use ItalyStrap\Asset\AssetsSubscriber;
+use ItalyStrap\Assets\Application\CustomizerAssetsSubscriber;
+use ItalyStrap\Assets\Application\EditorSubscriber;
+use ItalyStrap\Assets\Application\InlineStyleSubscriber;
+use ItalyStrap\Assets\Infrastructure\ExperimentalAssetPreparator;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Empress\AurynConfig;
 use ItalyStrap\Event\SubscribersConfigExtension;

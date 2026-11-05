@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Unit\Customizer;
 
-use ItalyStrap\Asset\Application\CustomizerAssetsSubscriber;
-use ItalyStrap\Asset\Infrastructure\ThemeAssetResolver;
+use ItalyStrap\Assets\Application\CustomizerAssetsSubscriber;
+use ItalyStrap\Assets\Infrastructure\ThemeAssetResolver;
 use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
 

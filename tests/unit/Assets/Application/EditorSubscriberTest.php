@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Unit\Asset\Application;
+namespace ItalyStrap\Tests\Unit\Assets\Application;
 
-use ItalyStrap\Asset\Application\EditorSubscriber;
+use ItalyStrap\Assets\Application\EditorSubscriber;
 use ItalyStrap\Tests\Shared\Asset\Application\EditorSubscriberTestTrait;
 use ItalyStrap\Tests\UnitTestCase;
 use ItalyStrap\Theme\Infrastructure\Config\ConfigThemeProvider;

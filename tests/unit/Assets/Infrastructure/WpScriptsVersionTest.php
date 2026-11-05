@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests\Unit\Asset\Infrastructure;
+namespace ItalyStrap\Tests\Unit\Assets\Infrastructure;
 
-use ItalyStrap\Asset\Infrastructure\WpScriptsVersion;
+use ItalyStrap\Assets\Infrastructure\WpScriptsVersion;
 use ItalyStrap\Tests\UnitTestCase;
 use SplFileInfo;
 

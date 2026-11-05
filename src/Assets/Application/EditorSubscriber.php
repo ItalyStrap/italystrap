@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Asset\Application;
+namespace ItalyStrap\Assets\Application;
 
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\GlobalDispatcherInterface;

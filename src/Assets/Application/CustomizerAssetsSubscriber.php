@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Asset\Application;
+namespace ItalyStrap\Assets\Application;
 
 use ItalyStrap\Asset\Asset;
-use ItalyStrap\Asset\Infrastructure\ThemeAssetResolver;
+use ItalyStrap\Assets\Infrastructure\ThemeAssetResolver;
 use ItalyStrap\Asset\Script;
 use ItalyStrap\Config\ConfigFactory;
 use ItalyStrap\Event\SubscriberInterface;

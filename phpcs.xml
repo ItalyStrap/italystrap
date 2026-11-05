@@ -10,7 +10,7 @@
 
     <!-- Check PHP version compatibility. -->
     <rule ref="PHPCompatibility"/>
-    <config name="testVersion" value="8.0-"/>
+    <config name="testVersion" value="8.2-"/>
 
     <file>./config/</file>
     <file>./functions/</file>

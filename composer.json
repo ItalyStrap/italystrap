@@ -40,7 +40,7 @@
 		}
 	],
 	"require": {
-		"php": ">=7.4",
+		"php": ">=8.2",
 		"italystrap/empress": "dev-modularized as 2.0.x-dev",
 		"italystrap/event": "dev-master",
 		"italystrap/config": "^2.0",
@@ -52,7 +52,6 @@
 		"overclokk/minimum-requirements": "dev-master",
 		"cmb2/cmb2": "~2.6.0",
 		"yiisoft/json": "^1.0",
-		"symfony/polyfill-php80": "^1.0",
 		"friendsofphp/proxy-manager-lts": "^1.0"
 	},
 	"require-dev": {

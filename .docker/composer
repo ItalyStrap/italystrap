@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Get project name from .env file
-PROJECT_NAME=$(grep PROJECT_NAME .env | cut -d '=' -f2 | tr -d '"')
+# Get project name from test.env file
+PROJECT_NAME=$(grep PROJECT_NAME test.env | cut -d '=' -f2 | tr -d '"')
 
-docker-compose run -w /var/www/html/wp-content/themes/"${PROJECT_NAME}" --rm wordpress sh -c "composer ${*}"
+docker-compose --env-file test.env run -w /var/www/html/wp-content/themes/"${PROJECT_NAME}" --rm wordpress sh -c "composer ${*}"

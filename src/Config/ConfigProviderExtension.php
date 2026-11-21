@@ -22,7 +22,7 @@ class ConfigProviderExtension implements Extension
         return self::class;
     }
 
-    public function execute(AurynConfigInterface $application)
+    public function execute(AurynConfigInterface $application): void
     {
         $application->walk(self::class, $this);
     }

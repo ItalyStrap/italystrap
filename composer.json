@@ -41,9 +41,11 @@
 	],
 	"require": {
 		"php": ">=8.2",
-		"italystrap/empress": "dev-modularized as 2.0.x-dev",
+		"italystrap/empress": "^3.0",
+		"italystrap/empress-cache": "^1.0",
+		"brick/varexporter": "^0.3.8 || ^0.5 || ^0.6 || ^0.7",
 		"italystrap/event": "dev-master",
-		"italystrap/config": "^2.0",
+		"italystrap/config": "^2.12",
 		"italystrap/helpers": "^1.0",
 		"italystrap/html": "^1.0",
 		"italystrap/view": "^1.0",

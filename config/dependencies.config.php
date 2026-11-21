@@ -11,8 +11,9 @@ use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Config\ConfigProviderExtension;
 use ItalyStrap\Config\ConfigThemeModsProvider;
 use ItalyStrap\Customizer\Module as CustomizerModule;
+use ItalyStrap\Empress\Cache\ProvidersCache;
+use ItalyStrap\Empress\Cache\VarExporterConfigExporter;
 use ItalyStrap\Empress\PhpFileProvider;
-use ItalyStrap\Empress\ProvidersCache;
 use ItalyStrap\Empress\ProvidersCollection;
 use ItalyStrap\Event\Module as EventModule;
 use ItalyStrap\Experimental\ExperimentalThemeFileFinderFactory;
@@ -53,6 +54,8 @@ return static function (Injector $injector): ConfigInterface {
         file: $cacheFile->path(),
         fileMode: 0666,
         enabled: $cacheEnabled,
+        // The configuration holds closures, for example the WP_Theme delegate, the native exporter rejects them.
+        exporter: new VarExporterConfigExporter(),
     );
 
     $collection = new ProvidersCollection(

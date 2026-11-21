@@ -21,7 +21,7 @@ return (static function (Injector $injector): Injector {
     // The lazy services of the PROXY config need a factory, Empress no longer creates one by default.
     $injectorConfig = $injector->make(AurynConfig::class, [
         ':dependencies' => (require __DIR__ . '/../config/dependencies.config.php')($injector),
-        ':proxy_factory' => new ProxyFactory(),
+        ':proxyFactory' => new ProxyFactory(),
     ]);
 
     $injectorConfig->extend(

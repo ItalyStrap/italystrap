@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ce929e6755a87809d66c05903525a4a",
+    "content-hash": "c8170cc639f72870fb17e955a63d3474",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -390,16 +390,16 @@
         },
         {
             "name": "italystrap/empress",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/empress.git",
-                "reference": "c27cd330e6a90e40eee58dd150a5c40bdf2ace4a"
+                "reference": "642a4c564a1c0e04f0057f2ab1787e810772895d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/empress/zipball/c27cd330e6a90e40eee58dd150a5c40bdf2ace4a",
-                "reference": "c27cd330e6a90e40eee58dd150a5c40bdf2ace4a",
+                "url": "https://api.github.com/repos/ItalyStrap/empress/zipball/642a4c564a1c0e04f0057f2ab1787e810772895d",
+                "reference": "642a4c564a1c0e04f0057f2ab1787e810772895d",
                 "shasum": ""
             },
             "require": {
@@ -499,7 +499,7 @@
                 "issues": "https://github.com/ItalyStrap/empress/issues",
                 "source": "https://github.com/ItalyStrap/empress"
             },
-            "time": "2026-11-21T09:08:15+00:00"
+            "time": "2026-11-21T13:12:05+00:00"
         },
         {
             "name": "italystrap/empress-cache",
